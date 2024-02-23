@@ -1,8 +1,8 @@
-use tauri_build::WindowsAttributes;
+use tauri_build::{Attributes, WindowsAttributes};
 
 fn main() {
-    let windows = tauri_build::WindowsAttributes::new().app_manifest(include_str!("manifest.xml"));
+    let windows = WindowsAttributes::new().app_manifest(include_str!("manifest.xml"));
 
-    tauri_build::try_build(tauri_build::Attributes::new().windows_attributes(windows))
+    tauri_build::try_build(Attributes::new().windows_attributes(windows))
         .expect("Could not build Tauri app.")
 }

@@ -1,15 +1,17 @@
-use std::ffi::OsString;
-use std::os::windows::ffi::OsStringExt;
-
+use thiserror::Error;
+use windows::Win32::Foundation::HMODULE;
 use windows::Win32::System::Diagnostics::ToolHelp::{
     CreateToolhelp32Snapshot, Module32FirstW, Process32FirstW, Process32NextW, MODULEENTRY32W,
     PROCESSENTRY32W, TH32CS_SNAPMODULE, TH32CS_SNAPMODULE32, TH32CS_SNAPPROCESS,
 };
 
-#[derive(Debug)]
+#[derive(Error, Debug)]
 pub enum ProcessError {
+    #[error("Process was not found with that name")]
     ProcessNotFound,
+    #[error("Could not snapshot process")]
     ProcessSnapshotError(windows::core::Error),
+    #[error("Could not snapshot process memory")]
     ModuleSnapshotError(windows::core::Error),
 }
 
@@ -17,6 +19,7 @@ pub struct Process {
     pub pid: u32,
     pub name: String,
     pub base_address: usize,
+    pub module_handle: HMODULE,
 }
 
 impl Process {
@@ -39,8 +42,6 @@ impl Process {
                             .to_string();
 
                         if process_name == name {
-                            println!("Found process!");
-
                             let module_snapshot = CreateToolhelp32Snapshot(
                                 TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32,
                                 process.th32ProcessID,
@@ -56,11 +57,13 @@ impl Process {
 
                                 if module_name == name {
                                     let base_address = module_entry.modBaseAddr as usize;
+                                    let module_handle = module_entry.hModule;
 
                                     found_process = Some(Process {
                                         pid: process.th32ProcessID,
                                         name: process_name,
                                         base_address,
+                                        module_handle,
                                     });
                                 }
                             } else {

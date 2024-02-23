@@ -34,7 +34,7 @@ fn main() {
             },
             _ => {}
         })
-        .setup(|app| {
+        .setup(|_app| {
             thread::spawn(|| {
                 let target =
                     OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").unwrap();
