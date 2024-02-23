@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+}
+
+.app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-content {
+  height: 100vh;
+  margin-top: 30px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.titlebar {
+  height: 30px;
+  background: #252525;
+  opacity: 0.9;
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.titlebar-button:hover {
+  background: #5bbec3;
+}
+
+.footer {
+  height: 30px;
+  background: #252525;
+  opacity: 0.9;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+}
+
+.version {
+  flex: 1;
+}
+
+.version-number {
+  color: #696969;
+}
+
+.status {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.status .status-text {
+  padding: 0 3px;
+}
+
+.status .status-icon {
+  display: flex;
+}
+
+.unit {
+  color: #e6e6e6;
+  font-size: 13px;
+}
+
+.table {
+  table-layout: fixed;
+  text-align: left;
+  border: none;
+  border-spacing: 0;
+}
+
+.table .header {
+  background: #252525;
+}
+
+.table .header-name {
+  width: 100%;
+  padding: 2px 4px;
+}
+
+.table .header-column {
+  width: 3.5rem;
+}
+
+.table .player-row,
+.table .damage-bar {
+  height: 27px;
+}
+
+.table .damage-bar {
+  z-index: -2;
+  position: absolute;
+  left: 0;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: width 0.1s ease-in-out;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-full {
+  width: 100%;
+}

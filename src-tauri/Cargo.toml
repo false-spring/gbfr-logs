@@ -1,0 +1,23 @@
+[package]
+name = "gbfr-logs"
+version = "0.0.0"
+description = "GBFR Logs"
+authors = ["you"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [ "system-tray", "window-show", "window-minimize", "window-maximize", "window-start-dragging", "window-unmaximize", "window-hide", "window-unminimize", "window-close", "shell-open"] }
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dll-syringe = "0.15.2"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
