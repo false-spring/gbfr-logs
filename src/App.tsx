@@ -1,6 +1,9 @@
 import { appWindow } from "@tauri-apps/api/window";
-import { Minus, Lightning } from "@phosphor-icons/react";
+import { Minus, Lightning, Play } from "@phosphor-icons/react";
 
+import { useTranslation } from "react-i18next";
+
+import "./i18n";
 import "./App.css";
 
 const Titlebar = () => {
@@ -21,7 +24,81 @@ const Titlebar = () => {
   );
 };
 
+type PlayerData = {
+  index: number;
+  type: string;
+  damage: number;
+  dps: number;
+  percentage: number;
+};
+
+const PlayerRow = ({
+  player,
+  color,
+}: {
+  player: PlayerData;
+  color: string;
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <tr className="player-row">
+      <td className="text-left">
+        {player.index} - {t(`characters.${player.type}`)}
+      </td>
+      <td className="text-center">
+        {player.damage}
+        <span className="unit">m</span>
+      </td>
+      <td className="text-center">
+        {player.dps}
+        <span className="unit">k</span>
+      </td>
+      <td className="text-center">
+        {player.percentage}
+        <span className="unit">%</span>
+      </td>
+      <div
+        className="damage-bar"
+        style={{ backgroundColor: color, width: `${player.percentage}%` }}
+      />
+    </tr>
+  );
+};
+
 const Table = () => {
+  const colors = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9"];
+  const playerData: PlayerData[] = [
+    {
+      index: 1,
+      type: "PL1800",
+      damage: 6.7,
+      dps: 300,
+      percentage: 36.2,
+    },
+    {
+      index: 2,
+      type: "PL1100",
+      damage: 7.7,
+      dps: 270.2,
+      percentage: 27.9,
+    },
+    {
+      index: 3,
+      type: "PL0500",
+      damage: 7.7,
+      dps: 270.2,
+      percentage: 27.9,
+    },
+    {
+      index: 4,
+      type: "PL0400",
+      damage: 2.2,
+      dps: 50.5,
+      percentage: 8,
+    },
+  ];
+
   return (
     <table className="table w-full">
       <thead className="header">
@@ -33,70 +110,9 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        <tr className="player-row">
-          <td className="text-left">1 - Cagliostro</td>
-          <td className="text-center">
-            10<span className="unit">m</span>
-          </td>
-          <td className="text-center">
-            327.7<span className="unit">k</span>
-          </td>
-          <td className="text-center">
-            36.2<span className="unit">%</span>
-          </td>
-          <div
-            className="damage-bar"
-            style={{ backgroundColor: "#FF5630", width: "36.2%" }}
-          />
-        </tr>
-        <tr className="player-row">
-          <td className="text-left">2 - Siegfried</td>
-          <td className="text-center">
-            7.7<span className="unit">m</span>
-          </td>
-          <td className="text-center">
-            270.2<span className="unit">k</span>
-          </td>
-          <td className="text-center">
-            27.9<span className="unit">%</span>
-          </td>
-          <div
-            className="damage-bar"
-            style={{ backgroundColor: "#FFAB00", width: "27.9%" }}
-          />
-        </tr>
-        <tr className="player-row">
-          <td className="text-left">3 - Eugen</td>
-          <td className="text-center">
-            7.7<span className="unit">m</span>
-          </td>
-          <td className="text-center">
-            270.2<span className="unit">k</span>
-          </td>
-          <td className="text-center">
-            27.9<span className="unit">%</span>
-          </td>
-          <div
-            className="damage-bar"
-            style={{ backgroundColor: "#36B37E", width: "27.9%" }}
-          />
-        </tr>
-        <tr className="player-row">
-          <td className="text-left">4 - Io</td>
-          <td className="text-center">
-            2.2<span className="unit">m</span>
-          </td>
-          <td className="text-center">
-            50.5<span className="unit">k</span>
-          </td>
-          <td className="text-center">
-            8<span className="unit">%</span>
-          </td>
-          <div
-            className="damage-bar"
-            style={{ backgroundColor: "#00B8D9", width: "8%" }}
-          />
-        </tr>
+        {playerData.map((player, index) => (
+          <PlayerRow key={index} player={player} color={colors[index]} />
+        ))}
       </tbody>
     </table>
   );
