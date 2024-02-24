@@ -14,8 +14,7 @@ fn main() {
         .expect("Could not build hook library.");
 
     // Copy the built library to the tauri app directory
-    fs::copy(hook_lib_path.join("target/release/hook.dll"), "hook.dll")
-        .expect("Could not copy hook library.");
+    let _ = fs::copy(hook_lib_path.join("target/release/hook.dll"), "hook.dll");
 
     let windows = WindowsAttributes::new().app_manifest(include_str!("manifest.xml"));
 

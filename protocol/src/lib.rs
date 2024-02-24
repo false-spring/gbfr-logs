@@ -18,7 +18,7 @@ pub enum ActionType {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
-    Hello,
+    OnAreaEnter,
     DamageEvent {
         source: Actor,
         target: Actor,

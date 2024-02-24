@@ -1,5 +1,5 @@
 use anyhow::{anyhow, Result};
-use log::{info, warn};
+use log::warn;
 use pelite::{
     pattern,
     pe64::{Pe, PeView},
@@ -112,9 +112,9 @@ unsafe fn process_dot_event(a1: *const usize, a2: *const usize) -> usize {
     ret
 }
 
-unsafe fn on_enter_area(a1: u32, a2: *const usize, a3: u8) -> usize {
-    // @TODO(false): Implement area change event.
+unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usize {
     let ret = OnEnterArea.call(a1, a2, a3);
+    let _ = tx.send(Message::OnAreaEnter);
     ret
 }
 
@@ -123,7 +123,7 @@ pub fn init(tx: event::Tx) -> Result<()> {
 
     // See https://github.com/nyaoouo/GBFR-ACT/blob/5801c193de2f474764b55b7c6b759c3901dc591c/injector.py#L1773-L1809
     if let Ok(process_dmg_evt) = search(&process, PROCESS_DAMAGE_EVENT_SIG) {
-        info!("Found process_dmg_evt");
+        let tx = tx.clone();
         unsafe {
             let func: ProcessDamageEventFunc = std::mem::transmute(process_dmg_evt);
             ProcessDamageEvent.initialize(func, move |a1, a2, a3, a4| {
@@ -135,7 +135,6 @@ pub fn init(tx: event::Tx) -> Result<()> {
         warn!("Could not find process_dmg_evt");
     }
     if let Ok(process_dot_evt) = search(&process, PROCESS_DOT_EVENT_SIG) {
-        info!("Found process_dot_evt");
         unsafe {
             let func: ProcessDotEventFunc = std::mem::transmute(process_dot_evt);
             ProcessDotEvent.initialize(func, |a1, a2| process_dot_event(a1, a2))?;
@@ -145,10 +144,12 @@ pub fn init(tx: event::Tx) -> Result<()> {
         warn!("Could not find process_dot_evt");
     }
     if let Ok(on_enter_area_evt) = search(&process, ON_ENTER_AREA_SIG) {
-        info!("Found on_enter_area");
+        let tx = tx.clone();
         unsafe {
             let func: OnEnterAreaFunc = std::mem::transmute(on_enter_area_evt);
-            OnEnterArea.initialize(func, |a1, a2, a3| on_enter_area(a1, a2, a3))?;
+            OnEnterArea.initialize(func, move |a1, a2, a3| {
+                on_enter_area(tx.clone(), a1, a2, a3)
+            })?;
             OnEnterArea.enable()?;
         }
     } else {
@@ -156,7 +157,7 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
     #[allow(non_snake_case)]
     if let Ok(_p_qword_1467572B0) = search(&process, P_QWORD_1467572B0_SIG) {
-        info!("Found p_qword_1467572B0");
+        //
     } else {
         warn!("Could not find p_qword_1467572B0");
     }
