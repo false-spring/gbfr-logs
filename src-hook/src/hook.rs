@@ -1,5 +1,5 @@
 use anyhow::{anyhow, Result};
-use log::{info, warn};
+use log::warn;
 use pelite::{
     pattern,
     pe64::{Pe, PeView},
@@ -24,7 +24,7 @@ static_detour! {
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
-const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
+// const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
 
 type IA10x40 = unsafe extern "system" fn(
     *const usize,
@@ -162,12 +162,6 @@ pub fn init(tx: event::Tx) -> Result<()> {
         }
     } else {
         warn!("Could not find on_enter_area");
-    }
-    #[allow(non_snake_case)]
-    if let Ok(_p_qword_1467572B0) = search(&process, P_QWORD_1467572B0_SIG) {
-        //
-    } else {
-        warn!("Could not find p_qword_1467572B0");
     }
 
     Ok(())

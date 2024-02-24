@@ -5,6 +5,7 @@ use tauri_build::{Attributes, WindowsAttributes};
 
 fn main() {
     // Build hook library
+    println!("cargo:rerun-if-changed=../src-hook/src");
     let hook_lib_path = fs::canonicalize("../src-hook").unwrap();
 
     Command::new("cargo")
