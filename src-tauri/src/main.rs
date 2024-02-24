@@ -35,7 +35,10 @@ fn main() {
             _ => {}
         })
         .setup(|_app| {
-            let target = OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").unwrap();
+            // @TODO(false): Let application continue to run even if the game is not found.
+            // We can still show the window and let the user know that the game was not found.
+            // We can also show a button to retry the injection or automatically detect the game again.
+            let target = OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").expect("Process was not found for injection");
             let syringe = Syringe::for_process(target);
             let dll_path = "hook.dll";
 
