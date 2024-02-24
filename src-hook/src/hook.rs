@@ -4,7 +4,7 @@ use pelite::{
     pattern,
     pe64::{Pe, PeView},
 };
-use protocol::{ActionType, Actor, Message};
+use protocol::{ActionType, Actor, DamageEvent, Message};
 use retour::static_detour;
 
 use crate::event;
@@ -95,7 +95,7 @@ unsafe fn process_damage_event(
     let target_idx = actor_idx(target as *const usize);
     let target_type_id: u32 = actor_type_id(target as *const usize);
 
-    let event = Message::DamageEvent {
+    let event = Message::DamageEvent(DamageEvent {
         source: Actor {
             index: source_idx,
             actor_type: source_type_id,
@@ -107,8 +107,7 @@ unsafe fn process_damage_event(
         damage,
         flags,
         action_id: action_type,
-    };
-
+    });
     let _ = tx.send(event);
 
     original_value

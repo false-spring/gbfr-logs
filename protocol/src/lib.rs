@@ -18,13 +18,16 @@ pub enum ActionType {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct DamageEvent {
+    pub source: Actor,
+    pub target: Actor,
+    pub damage: i32,
+    pub flags: u64,
+    pub action_id: ActionType,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter,
-    DamageEvent {
-        source: Actor,
-        target: Actor,
-        damage: i32,
-        flags: u64,
-        action_id: ActionType,
-    },
+    DamageEvent(DamageEvent),
 }
