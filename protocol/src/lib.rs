@@ -6,6 +6,7 @@ pub const PIPE_NAME: &str = r"\\.\pipe\gbfr-logs";
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Actor {
+    pub index: u32,
     pub actor_type: u32,
 }
 

@@ -1,5 +1,5 @@
 use anyhow::{anyhow, Result};
-use log::warn;
+use log::{info, warn};
 use pelite::{
     pattern,
     pe64::{Pe, PeView},
@@ -49,6 +49,10 @@ fn actor_type_id(actor_ptr: *const usize) -> u32 {
     type_id
 }
 
+fn actor_idx(actor_ptr: *const usize) -> u32 {
+    unsafe { (actor_ptr.byte_add(0x170) as *const u32).read() }
+}
+
 unsafe fn process_damage_event(
     tx: event::Tx,
     a1: *const usize,
@@ -86,14 +90,18 @@ unsafe fn process_damage_event(
     };
 
     // Get the source actor's type ID.
+    let source_idx = actor_idx(source as *const usize);
     let source_type_id = actor_type_id(source as *const usize);
+    let target_idx = actor_idx(target as *const usize);
     let target_type_id: u32 = actor_type_id(target as *const usize);
 
     let event = Message::DamageEvent {
         source: Actor {
+            index: source_idx,
             actor_type: source_type_id,
         },
         target: Actor {
+            index: target_idx,
             actor_type: target_type_id,
         },
         damage,
