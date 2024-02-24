@@ -1,9 +1,9 @@
 // Prevents additional console window on Windows in release.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::thread;
-
 use dll_syringe::{process::OwnedProcess, Syringe};
+use futures::io::AsyncReadExt;
+use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
 fn main() {
@@ -35,13 +35,31 @@ fn main() {
             _ => {}
         })
         .setup(|_app| {
-            thread::spawn(|| {
-                let target =
-                    OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").unwrap();
-                let syringe = Syringe::for_process(target);
-                let dll_path = "hook.dll";
+            let target = OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").unwrap();
+            let syringe = Syringe::for_process(target);
+            let dll_path = "hook.dll";
 
-                let _ = syringe.inject(dll_path).unwrap();
+            let _ = syringe.inject(dll_path).unwrap();
+
+            // @TODO(false): Actually track the connection status and reflect back to the user if we were able to connect to the game or not.
+            tauri::async_runtime::spawn(async {
+                loop  {
+                    match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
+                        Ok(mut stream) => {
+                            let mut buffer = [0; 1024];
+                            while let Ok(msg) = stream.read(&mut buffer).await {
+                                if let Ok(msg) =
+                                    protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
+                                {
+                                    println!("Received message: {:?}", msg);
+                                }
+                            }
+                        }
+                        Err(e) => {
+                            tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+                        }
+                    }
+                }
             });
 
             Ok(())

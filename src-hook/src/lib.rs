@@ -1,48 +1,31 @@
 use std::ffi::OsStr;
 use std::path::PathBuf;
 
-use anyhow::Context;
-use interprocess::os::windows::named_pipe::tokio::MsgWriterPipeStream;
-use interprocess::os::windows::named_pipe::{
-    tokio::PipeListenerOptionsExt, PipeListenerOptions, PipeMode,
-};
-use log::{info, warn};
-use serde::{Deserialize, Serialize};
+use anyhow::{Context, Result};
+use futures::io::AsyncWriteExt;
+use interprocess::os::windows::named_pipe::tokio::{ByteWriterPipeStream, PipeListenerOptionsExt};
+use interprocess::os::windows::named_pipe::{PipeListenerOptions, PipeMode};
+use log::{info, logger, warn};
 use tokio::sync::broadcast;
 
+mod event;
 mod hook;
 mod process;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-struct Actor {
-    actor_type: String,
-    actor_idx: u32,
-    actor_id: u32,
-    party_idx: u32,
+use protocol::Message;
+
+async fn handle_client(mut stream: ByteWriterPipeStream, mut rx: event::Rx) -> Result<()> {
+    while let Ok(msg) = rx.recv().await {
+        let bytes = protocol::bincode::serialize(&msg)?;
+        stream.write_all(&bytes).await?;
+    }
+
+    Ok(())
 }
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-enum Message {
-    Hello,
-    DamageEvent {
-        source: Actor,
-        target: Actor,
-        damage: i32,
-        flags: u64,
-        action_id: i32,
-    },
-}
-
-type Tx = broadcast::Sender<Message>;
-type Rx = broadcast::Receiver<Message>;
-
-const PIPE_NAME: &str = r"\\.\pipe\gbfr-logs";
-
-fn handle_client(_stream: MsgWriterPipeStream, _rx: Rx) {}
 
 #[derive(Debug)]
 struct Server {
-    tx: Tx,
+    tx: event::Tx,
 }
 
 impl Server {
@@ -53,10 +36,10 @@ impl Server {
 
     async fn run(&self) {
         if let Ok(listener) = PipeListenerOptions::new()
-            .name(OsStr::new(PIPE_NAME))
-            .mode(PipeMode::Messages)
+            .name(OsStr::new(protocol::PIPE_NAME))
+            .mode(PipeMode::Bytes)
             .accept_remote(false)
-            .create_tokio::<MsgWriterPipeStream>()
+            .create_tokio::<ByteWriterPipeStream>()
         {
             loop {
                 let read_pipe = listener.accept().await;
@@ -64,7 +47,7 @@ impl Server {
                     Ok(stream) => {
                         let rx = self.tx.subscribe();
                         tokio::spawn(async move {
-                            handle_client(stream, rx);
+                            let _ = handle_client(stream, rx).await;
                         });
                     }
                     Err(e) => {
@@ -78,25 +61,19 @@ impl Server {
 
 #[tokio::main]
 async fn setup() {
-    info!("Setting up hooks...");
-
-    match hook::init() {
-        Ok(_) => info!("Hooks initialized"),
-        Err(e) => warn!("Error initializing hooks: {:?}", e),
-    }
-
     info!("Setting up named pipe listener");
 
     let server = Server::new();
     let tx = server.tx.clone();
 
-    tokio::spawn(async move {
-        server.run().await;
-    });
+    info!("Setting up hooks...");
 
-    tx.send(Message::Hello).unwrap();
+    match hook::init(tx) {
+        Ok(_) => info!("Hooks initialized"),
+        Err(e) => warn!("Error initializing hooks: {:?}", e),
+    }
 
-    info!("Exiting");
+    server.run().await;
 }
 
 fn initialize_logger() -> anyhow::Result<()> {
@@ -128,4 +105,10 @@ fn initialize_logger() -> anyhow::Result<()> {
 fn entry() {
     let _ = initialize_logger();
     std::thread::spawn(setup);
+}
+
+#[ctor::dtor]
+unsafe fn shutdown() {
+    logger().flush();
+    hook::uninstall();
 }
