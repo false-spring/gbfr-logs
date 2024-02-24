@@ -1,5 +1,5 @@
 import { appWindow } from "@tauri-apps/api/window";
-import { Minus, Lightning, Play } from "@phosphor-icons/react";
+import { Minus, Lightning } from "@phosphor-icons/react";
 
 import { useTranslation } from "react-i18next";
 

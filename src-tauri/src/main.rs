@@ -58,7 +58,7 @@ fn main() {
                                 }
                             }
                         }
-                        Err(e) => {
+                        Err(_) => {
                             tokio::time::sleep(std::time::Duration::from_millis(100)).await;
                         }
                     }

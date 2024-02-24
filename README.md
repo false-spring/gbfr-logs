@@ -16,3 +16,28 @@ This project is split up into a few subprojects:
 - `src-tauri/` - The Tauri Rust backend that communicates with the hooked process and does parsing.
 - `protocol/` - Defines the message protocol used by hook + back-end.
 - `src/` - The JS front-end used by the Tauri web app
+
+## TODO
+
+Core functionality:
+
+- Build encounter state tracking / parser on backend
+- Pass encounter state updates to frontend
+- Provide translations for skills
+
+Useful functionality:
+
+- Skill tracking, min/max damage.
+- DPS charting
+
+Improvements:
+
+- Capturing snapshots
+- Multiple language support (can pull some from translation files, but skill names are manual)
+- Configuration / Settings
+
+Reverse Engineering:
+
+- Figure out if we can fetch party data upon area enter, would make it easier to cache it then.
+- Flags for damage cap tracking, if they exist.
+- Buff tracking
