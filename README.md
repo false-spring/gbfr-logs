@@ -2,6 +2,11 @@
 
 Experimental, work-in-progress DPS meter for Granblue Fantasy: Relink.
 
+## Troubleshooting
+
+Q: The meter isn't updating or displaying anything.
+A: Try running the program after the game has been launched.
+
 ## Developers
 
 - Install nightly Rust ([rustup.rs](https://rustup.rs/)) + [Node.js](https://nodejs.org/en/download).
