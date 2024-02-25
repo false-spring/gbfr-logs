@@ -80,6 +80,7 @@ impl EncounterState {
         self.dps = self.total_damage as f64 / ((now - self.start_time) as f64 / 1000.0);
 
         // Add actor to party if not already present.
+        // @TODO(false): Why are some source actors not tied to a character? This is leading to CharacterType being unknown.
         let source_player = self.party.entry(event.source.index).or_insert(PlayerState {
             index: event.source.index,
             character_type: CharacterType::from(event.source.actor_type),

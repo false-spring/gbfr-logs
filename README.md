@@ -21,14 +21,17 @@ This project is split up into a few subprojects:
 
 Core functionality:
 
-- Build encounter state tracking / parser on backend
-- Pass encounter state updates to frontend
-- Provide translations for skills
+- Meter notifications
+- Encounter Time Tracking
+- Reset encounter upon area enter
 
 Useful functionality:
 
+- Track damage per target
+- Provide translations for skills
 - Skill tracking, min/max damage.
 - DPS charting
+- Historical logs
 
 Improvements:
 

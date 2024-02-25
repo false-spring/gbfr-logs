@@ -28,6 +28,7 @@ const Titlebar = () => {
 
 type PlayerData = {
   index: number;
+  // @TODO(false): Handle unknown CharacterTypes
   character_type: string;
   total_damage: number;
   dps: number;
