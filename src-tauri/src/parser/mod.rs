@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use chrono::Utc;
 use protocol::DamageEvent;
 use serde::{Deserialize, Serialize};
+use tauri::Window;
 
 use self::constants::CharacterType;
 
@@ -21,7 +22,7 @@ type PlayerIndex = u32;
 type DamageLogEvent = (u64, u64);
 
 #[derive(Debug, Serialize, Deserialize)]
-struct EncounterState {
+pub struct EncounterState {
     /// Total damage dealt by the party in this encounter
     total_damage: u64,
     /// The current DPS of the party in this encounter
@@ -35,10 +36,13 @@ struct EncounterState {
 
     #[serde(skip)]
     damage_event_log: HashMap<PlayerIndex, Vec<DamageLogEvent>>,
+
+    #[serde(skip)]
+    window_handle: Option<Window>,
 }
 
 impl EncounterState {
-    pub fn new() -> Self {
+    pub fn new(window_handle: Option<Window>) -> Self {
         Self {
             total_damage: 0,
             dps: 0.0,
@@ -46,7 +50,17 @@ impl EncounterState {
             end_time: 0,
             party: HashMap::new(),
             damage_event_log: HashMap::new(),
+            window_handle,
         }
+    }
+
+    pub fn reset(&mut self) {
+        self.total_damage = 0;
+        self.dps = 0.0;
+        self.start_time = 0;
+        self.end_time = 0;
+        self.party.clear();
+        self.damage_event_log.clear();
     }
 
     pub fn on_damage_event(&mut self, event: DamageEvent) {
@@ -78,5 +92,9 @@ impl EncounterState {
         source_player.last_damage_time = now;
         source_player.dps =
             source_player.total_damage as f64 / ((now - self.start_time) as f64 / 1000.0);
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self);
+        }
     }
 }

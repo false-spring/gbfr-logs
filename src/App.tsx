@@ -1,10 +1,12 @@
 import { appWindow } from "@tauri-apps/api/window";
+import { listen } from "@tauri-apps/api/event";
 import { Minus, Lightning } from "@phosphor-icons/react";
 
 import { useTranslation } from "react-i18next";
 
 import "./i18n";
 import "./App.css";
+import { useEffect, useState } from "react";
 
 const Titlebar = () => {
   const onMinimize = () => {
@@ -26,10 +28,26 @@ const Titlebar = () => {
 
 type PlayerData = {
   index: number;
-  type: string;
-  damage: number;
+  character_type: string;
+  total_damage: number;
   dps: number;
+  last_damage_time: number;
+
+  // Calculated fields
   percentage: number;
+};
+
+type EncounterUpdateEvent = {
+  event: string;
+  payload: EncounterState;
+};
+
+type EncounterState = {
+  total_damage: number;
+  dps: number;
+  start_time: number;
+  end_time: number;
+  party: Record<string, PlayerData>;
 };
 
 const PlayerRow = ({
@@ -44,18 +62,12 @@ const PlayerRow = ({
   return (
     <tr className="player-row">
       <td className="text-left">
-        {player.index} - {t(`characters.${player.type}`)}
+        {player.index} - {t(`characters.${player.character_type}`)}
       </td>
+      <td className="text-center">{player.total_damage}</td>
+      <td className="text-center">{Math.round(player.dps)}</td>
       <td className="text-center">
-        {player.damage}
-        <span className="unit">m</span>
-      </td>
-      <td className="text-center">
-        {player.dps}
-        <span className="unit">k</span>
-      </td>
-      <td className="text-center">
-        {player.percentage}
+        {player.percentage.toFixed(2)}
         <span className="unit">%</span>
       </td>
       <div
@@ -66,38 +78,18 @@ const PlayerRow = ({
   );
 };
 
-const Table = () => {
+const Table = ({ encounterState }: { encounterState: EncounterState }) => {
   const colors = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9"];
-  const playerData: PlayerData[] = [
-    {
-      index: 1,
-      type: "PL1800",
-      damage: 6.7,
-      dps: 300,
-      percentage: 36.2,
-    },
-    {
-      index: 2,
-      type: "PL1100",
-      damage: 7.7,
-      dps: 270.2,
-      percentage: 27.9,
-    },
-    {
-      index: 3,
-      type: "PL0500",
-      damage: 7.7,
-      dps: 270.2,
-      percentage: 27.9,
-    },
-    {
-      index: 4,
-      type: "PL0400",
-      damage: 2.2,
-      dps: 50.5,
-      percentage: 8,
-    },
-  ];
+
+  let players = Object.keys(encounterState.party).map((key) => {
+    let playerData = encounterState.party[key];
+    playerData.percentage =
+      (playerData.total_damage / encounterState.total_damage) * 100;
+
+    return playerData;
+  });
+
+  players.sort((a, b) => b.total_damage - a.total_damage);
 
   return (
     <table className="table w-full">
@@ -110,7 +102,7 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {playerData.map((player, index) => (
+        {players.map((player, index) => (
           <PlayerRow key={index} player={player} color={colors[index]} />
         ))}
       </tbody>
@@ -135,11 +127,25 @@ const Footer = () => {
 };
 
 function App() {
+  const [encounterState, setEncounterState] = useState<EncounterState>({
+    total_damage: 0,
+    dps: 0,
+    start_time: 0,
+    end_time: 1,
+    party: {},
+  });
+
+  useEffect(() => {
+    listen("encounter-update", (event: EncounterUpdateEvent) => {
+      setEncounterState(event.payload);
+    });
+  }, []);
+
   return (
     <div className="app">
       <Titlebar />
       <div className="app-content">
-        <Table />
+        <Table encounterState={encounterState} />
       </div>
       <Footer />
     </div>

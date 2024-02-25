@@ -4,6 +4,7 @@
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
+use parser::EncounterState;
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
 mod parser;
@@ -36,7 +37,7 @@ fn main() {
             },
             _ => {}
         })
-        .setup(|_app| {
+        .setup(|app| {
             // @TODO(false): Let application continue to run even if the game is not found.
             // We can still show the window and let the user know that the game was not found.
             // We can also show a button to retry the injection or automatically detect the game again.
@@ -46,8 +47,11 @@ fn main() {
 
             let _ = syringe.inject(dll_path).unwrap();
 
+            let window = app.get_window("main").expect("Window not found");
+            let mut state = EncounterState::new(Some(window));
+
             // @TODO(false): Actually track the connection status and reflect back to the user if we were able to connect to the game or not.
-            tauri::async_runtime::spawn(async {
+            tauri::async_runtime::spawn(async move {
                 loop  {
                     match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
                         Ok(mut stream) => {
@@ -56,7 +60,14 @@ fn main() {
                                 if let Ok(msg) =
                                     protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
                                 {
-                                    println!("Received message: {:?}", msg);
+                                    match msg {
+                                        protocol::Message::DamageEvent(event) => {
+                                            state.on_damage_event(event);
+                                        }
+                                        protocol::Message::OnAreaEnter => {
+                                            state.reset();
+                                        }
+                                    }
                                 }
                             }
                         }
