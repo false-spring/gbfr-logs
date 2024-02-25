@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import { listen } from "@tauri-apps/api/event";
 import { Minus, Lightning } from "@phosphor-icons/react";
@@ -6,7 +7,8 @@ import { useTranslation } from "react-i18next";
 
 import "./i18n";
 import "./App.css";
-import { useEffect, useState } from "react";
+
+import { EncounterState, EncounterUpdateEvent, PlayerData } from "./types";
 
 const Titlebar = () => {
   const onMinimize = () => {
@@ -24,31 +26,6 @@ const Titlebar = () => {
       </div>
     </div>
   );
-};
-
-type PlayerData = {
-  index: number;
-  // @TODO(false): Handle unknown CharacterTypes
-  character_type: string;
-  total_damage: number;
-  dps: number;
-  last_damage_time: number;
-
-  // Calculated fields
-  percentage: number;
-};
-
-type EncounterUpdateEvent = {
-  event: string;
-  payload: EncounterState;
-};
-
-type EncounterState = {
-  total_damage: number;
-  dps: number;
-  start_time: number;
-  end_time: number;
-  party: Record<string, PlayerData>;
 };
 
 const PlayerRow = ({
@@ -115,13 +92,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="version">
-        GBFR Logs <span className="version-number">v0.0.0</span>
-      </div>
-      <div className="status">
-        <div className="status-text">Connected</div>
-        <div className="status-icon">
-          <Lightning size={16} fill={"#58e777"} />
-        </div>
+        GBFR Logs <span className="version-number">v0.0.1</span>
       </div>
     </div>
   );
@@ -140,7 +111,11 @@ function App() {
     listen("encounter-update", (event: EncounterUpdateEvent) => {
       setEncounterState(event.payload);
     });
-  }, []);
+
+    listen("encounter-reset", (event: EncounterUpdateEvent) => {
+      setEncounterState(event.payload);
+    });
+  });
 
   return (
     <div className="app">

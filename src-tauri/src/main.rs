@@ -48,7 +48,7 @@ fn main() {
             let _ = syringe.inject(dll_path).unwrap();
 
             let window = app.get_window("main").expect("Window not found");
-            let mut state = EncounterState::new(Some(window));
+            let mut state = EncounterState::new(Some(window.clone()));
 
             // @TODO(false): Actually track the connection status and reflect back to the user if we were able to connect to the game or not.
             tauri::async_runtime::spawn(async move {

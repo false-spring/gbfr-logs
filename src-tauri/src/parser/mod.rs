@@ -61,9 +61,21 @@ impl EncounterState {
         self.end_time = 0;
         self.party.clear();
         self.damage_event_log.clear();
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-reset", &self);
+        }
     }
 
     pub fn on_damage_event(&mut self, event: DamageEvent) {
+        let character_type = CharacterType::from(event.source.actor_type);
+
+        // @TODO(false): Sometimes monsters can damage themselves, we should track those.
+        // For now, I'm ignoring them from the damage calculation.
+        if matches!(character_type, CharacterType::Unknown(_)) {
+            return;
+        }
+
         // @TODO(false): Do heals come through as negative damage?
         if event.damage <= 0 {
             return;
@@ -80,7 +92,6 @@ impl EncounterState {
         self.dps = self.total_damage as f64 / ((now - self.start_time) as f64 / 1000.0);
 
         // Add actor to party if not already present.
-        // @TODO(false): Why are some source actors not tied to a character? This is leading to CharacterType being unknown.
         let source_player = self.party.entry(event.source.index).or_insert(PlayerState {
             index: event.source.index,
             character_type: CharacterType::from(event.source.actor_type),

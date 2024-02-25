@@ -23,10 +23,10 @@ Core functionality:
 
 - Meter notifications
 - Encounter Time Tracking
-- Reset encounter upon area enter
 
 Useful functionality:
 
+- Track player index in party (for distinguising between duplicate charas)
 - Track damage per target
 - Provide translations for skills
 - Skill tracking, min/max damage.
