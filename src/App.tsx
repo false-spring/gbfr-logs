@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import { listen } from "@tauri-apps/api/event";
-import { Minus, Lightning } from "@phosphor-icons/react";
+import { Minus } from "@phosphor-icons/react";
 
 import { useTranslation } from "react-i18next";
 
@@ -9,6 +9,34 @@ import "./i18n";
 import "./App.css";
 
 import { EncounterState, EncounterUpdateEvent, PlayerData } from "./types";
+
+const tryParseInt = (intString: string | number, defaultValue = 0) => {
+  if (typeof intString === "number") {
+    if (isNaN(intString)) return defaultValue;
+    return intString;
+  }
+
+  let intNum;
+
+  try {
+    intNum = parseInt(intString);
+    if (isNaN(intNum)) intNum = defaultValue;
+  } catch {
+    intNum = defaultValue;
+  }
+
+  return intNum;
+};
+
+// Takes a number and returns a shortened version of it that is friendlier to read.
+// For example, 1200 would be returned as 1.2k, 1200000 as 1.2m, and so on.
+const humanizeNumbers = (n: number) => {
+  if (n >= 1e3 && n < 1e6) return [+(n / 1e3).toFixed(1), "k"];
+  if (n >= 1e6 && n < 1e9) return [+(n / 1e6).toFixed(1), "m"];
+  if (n >= 1e9 && n < 1e12) return [+(n / 1e9).toFixed(1), "b"];
+  if (n >= 1e12) return [+(n / 1e12).toFixed(1), "t"];
+  else return [tryParseInt(n).toFixed(0), ""];
+};
 
 const Titlebar = () => {
   const onMinimize = () => {
@@ -37,13 +65,22 @@ const PlayerRow = ({
 }) => {
   const { t } = useTranslation();
 
+  const [totalDamage, totalDamageUnit] = humanizeNumbers(player.total_damage);
+  const [dps, dpsUnit] = humanizeNumbers(player.dps);
+
   return (
     <tr className="player-row">
       <td className="text-left">
         {player.index} - {t(`characters.${player.character_type}`)}
       </td>
-      <td className="text-center">{player.total_damage}</td>
-      <td className="text-center">{Math.round(player.dps)}</td>
+      <td className="text-center">
+        {totalDamage}
+        <span className="unit">{totalDamageUnit}</span>
+      </td>
+      <td className="text-center">
+        {dps}
+        <span className="unit">{dpsUnit}</span>
+      </td>
       <td className="text-center">
         {player.percentage.toFixed(2)}
         <span className="unit">%</span>
