@@ -40,7 +40,7 @@ const humanizeNumbers = (n: number) => {
 
 const Titlebar = () => {
   const onMinimize = () => {
-    appWindow.hide();
+    appWindow.minimize();
   };
 
   return (

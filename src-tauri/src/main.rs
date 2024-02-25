@@ -1,49 +1,32 @@
 // Prevents additional console window on Windows in release.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use std::path::Path;
+
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::EncounterState;
-use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
+use tauri::Manager;
 
 mod parser;
 
 fn main() {
-    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
-    let tray_menu = SystemTrayMenu::new().add_item(quit);
-    let system_tray = SystemTray::new().with_menu(tray_menu);
-
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
-        .system_tray(system_tray)
-        .on_window_event(|event| match event.event() {
-            tauri::WindowEvent::CloseRequested { api, .. } => {
-                event.window().hide().unwrap();
-                api.prevent_close();
-            }
-            _ => {}
-        })
-        .on_system_tray_event(|app, event| match event {
-            SystemTrayEvent::LeftClick { .. } => {
-                let window = app.get_window("main").unwrap();
-                window.show().unwrap();
-            }
-            SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
-                "quit" => {
-                    std::process::exit(0);
-                }
-                _ => {}
-            },
-            _ => {}
-        })
         .setup(|app| {
             // @TODO(false): Let application continue to run even if the game is not found.
             // We can still show the window and let the user know that the game was not found.
             // We can also show a button to retry the injection or automatically detect the game again.
             let target = OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").expect("Process was not found for injection");
             let syringe = Syringe::for_process(target);
-            let dll_path = "hook.dll";
+            let debug_dll_path = Path::new("hook-dbg.dll");
+            let mut dll_path = Path::new("hook.dll");
+
+            // If the debug DLL is present, use it instead.
+            if debug_dll_path.exists() {
+                dll_path = debug_dll_path;
+            }
 
             let _ = syringe.inject(dll_path).unwrap();
 
