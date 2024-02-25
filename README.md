@@ -2,10 +2,21 @@
 
 Experimental, work-in-progress DPS meter for Granblue Fantasy: Relink.
 
+## Screenshots
+
+![Meter](./docs/screenshots/meter.png)
+
+## How to install
+
+- Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
+- Run the installer.
+- Open GBFR Logs after the game is already running.
+
 ## Troubleshooting
 
-Q: The meter isn't updating or displaying anything.
-A: Try running the program after the game has been launched.
+> Q: The meter isn't updating or displaying anything.
+
+Try running the program after the game has been launched.
 
 ## Developers
 
