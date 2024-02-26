@@ -35,6 +35,7 @@ type IA10x40 = unsafe extern "system" fn(
 ) -> u32;
 type IActor0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
+#[inline(always)]
 unsafe fn v_func<T: Sized>(ptr: *const usize, offset: usize) -> T {
     ((ptr.read() as *const usize).byte_add(offset) as *const T).read()
 }
@@ -49,6 +50,7 @@ fn actor_type_id(actor_ptr: *const usize) -> u32 {
     type_id
 }
 
+#[inline(always)]
 fn actor_idx(actor_ptr: *const usize) -> u32 {
     unsafe { (actor_ptr.byte_add(0x170) as *const u32).read() }
 }
@@ -60,9 +62,15 @@ unsafe fn process_damage_event(
     a3: *const usize,
     a4: u8,
 ) -> usize {
-    // ah yes, just rust things
     let target: usize = *(*a1.byte_add(0x08) as *const usize);
-    let source: usize = *((*a2.byte_add(0x18) as *const usize).byte_add(0x70) as *const usize);
+    let source_ptr = (a2.byte_add(0x18) as *const *const usize).read();
+
+    // @TODO(false): For some reason, online + Ferry's Umlauf skill pet can return a null pointer here.
+    if source_ptr == std::ptr::null() {
+        return ProcessDamageEvent.call(a1, a2, a3, a4);
+    }
+
+    let source: usize = *(source_ptr.byte_add(0x70) as *const usize);
 
     let ignore = !(a4 > 0
         || v_func::<IA10x40>(a1, 0x40)(
@@ -81,6 +89,7 @@ unsafe fn process_damage_event(
 
     let damage: i32 = (a2.byte_add(0xD0) as *const i32).read();
     let flags: u64 = (a2.byte_add(0xD8) as *const u64).read();
+
     let action_type: ActionType = if ((1 << 7 | 1 << 50) & flags) != 0 {
         ActionType::LinkAttack
     } else if ((1 << 13 | 1 << 14) & flags) != 0 {
@@ -90,10 +99,20 @@ unsafe fn process_damage_event(
     };
 
     // Get the source actor's type ID.
-    let source_idx = actor_idx(source as *const usize);
     let source_type_id = actor_type_id(source as *const usize);
-    let target_idx = actor_idx(target as *const usize);
+
+    // @TODO(false): Temporarily ignore these damage sources.
+    // Pl0700Ghost
+    // Pl0700GhostSatellite
+    // Wp1890: Cagliostro's Ouroboros Dragon Sled
+    if source_type_id == 0x2AF678E8 || source_type_id == 0x8364C8BC || source_type_id == 0xC9F45042
+    {
+        return original_value;
+    };
+
+    let source_idx = actor_idx(source as *const usize);
     let target_type_id: u32 = actor_type_id(target as *const usize);
+    let target_idx = actor_idx(target as *const usize);
 
     let event = Message::DamageEvent(DamageEvent {
         source: Actor {
@@ -108,6 +127,7 @@ unsafe fn process_damage_event(
         flags,
         action_id: action_type,
     });
+
     let _ = tx.send(event);
 
     original_value

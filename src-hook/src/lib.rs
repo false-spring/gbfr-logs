@@ -73,6 +73,9 @@ async fn setup() {
         Err(e) => warn!("Error initializing hooks: {:?}", e),
     }
 
+    #[cfg(feature = "console")]
+    println!("Hook library initialized");
+
     server.run().await;
 }
 
@@ -103,12 +106,20 @@ fn initialize_logger() -> anyhow::Result<()> {
 
 #[ctor::ctor]
 fn entry() {
+    #[cfg(feature = "console")]
+    unsafe {
+        let _ = windows::Win32::System::Console::AllocConsole();
+    }
+
     let _ = initialize_logger();
     std::thread::spawn(setup);
 }
 
 #[ctor::dtor]
 unsafe fn shutdown() {
+    #[cfg(feature = "console")]
+    let _ = windows::Win32::System::Console::FreeConsole();
+
     logger().flush();
     hook::uninstall();
 }
