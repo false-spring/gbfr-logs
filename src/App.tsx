@@ -138,7 +138,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="version">
-        GBFR Logs <span className="version-number">v0.0.1</span>
+        GBFR Logs <span className="version-number">0.0.2</span>
       </div>
     </div>
   );
