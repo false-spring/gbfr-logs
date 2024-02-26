@@ -1,6 +1,6 @@
 # gbfr-logs
 
-![GitHub Release](https://img.shields.io/github/v/release/false-spring/gbfr-logs?link=https%3A%2F%2Fgithub.com%2Ffalse-spring%2Fgbfr-logs%2Freleases)
+[![GitHub Release](https://img.shields.io/github/v/release/false-spring/gbfr-logs)](https://github.com/false-spring/gbfr-logs/releases)
 
 Experimental DPS meter for Granblue Fantasy: Relink, based on the reverse engineering work from [naoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT).
 
