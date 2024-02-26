@@ -94,7 +94,16 @@ const PlayerRow = ({
 };
 
 const Table = ({ encounterState }: { encounterState: EncounterState }) => {
-  const colors = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9"];
+  const colors = [
+    "#FF5630",
+    "#FFAB00",
+    "#36B37E",
+    "#00B8D9",
+    "#9BCF53",
+    "#380E7F",
+    "#416D19",
+    "#2C568D",
+  ];
 
   let players = Object.keys(encounterState.party).map((key) => {
     let playerData = encounterState.party[key];
