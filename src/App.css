@@ -10,20 +10,32 @@ body {
 .app-content {
   height: 100vh;
   margin-top: 30px;
-  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .titlebar {
   height: 30px;
-  background: #252525;
-  opacity: 0.9;
   user-select: none;
   display: flex;
-  justify-content: flex-end;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  padding: 0 6px;
+}
+
+.titlebar-left,
+.titlebar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.titlebar-left {
+  justify-content: flex-start;
+}
+
+.titlebar-right {
+  justify-content: flex-end;
 }
 
 .titlebar-button {
@@ -40,17 +52,14 @@ body {
 
 .footer {
   height: 30px;
-  background: #252525;
-  opacity: 0.9;
   user-select: none;
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 6px;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  font-size: 12px;
 }
 
 .version {
@@ -70,7 +79,7 @@ body {
 }
 
 .status .status-text {
-  padding: 0 3px;
+  padding: 0 6px;
 }
 
 .status .status-icon {
@@ -79,7 +88,6 @@ body {
 
 .unit {
   color: #e6e6e6;
-  font-size: 13px;
 }
 
 .table {
@@ -90,17 +98,13 @@ body {
   user-select: none;
 }
 
-.table .header {
-  background: #252525;
-}
-
 .table .header-name {
   width: 100%;
-  padding: 2px 4px;
+  padding: 2px 8px;
 }
 
 .table .header-column {
-  width: 4rem;
+  width: 4.5rem;
 }
 
 .table .player-row,
@@ -116,6 +120,10 @@ body {
   transition: width 0.1s ease-in-out;
 }
 
+.player-row .row-data {
+  padding: 0 6px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -126,4 +134,13 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.transparent-bg {
+  background: #252525;
+  opacity: 0.8;
+}
+
+.font-sm {
+  font-size: 12px;
 }

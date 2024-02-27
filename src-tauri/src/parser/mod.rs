@@ -22,6 +22,12 @@ type PlayerIndex = u32;
 type DamageLogEvent = (u64, u64);
 
 #[derive(Debug, Serialize, Deserialize)]
+pub enum EncounterStatus {
+    Waiting,
+    InProgress,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EncounterState {
     /// Total damage dealt by the party in this encounter
     total_damage: u64,
@@ -33,6 +39,8 @@ pub struct EncounterState {
     end_time: u64,
     /// The players in the party,
     party: HashMap<PlayerIndex, PlayerState>,
+    /// The current status of the encounter
+    status: EncounterStatus,
 
     #[serde(skip)]
     damage_event_log: HashMap<PlayerIndex, Vec<DamageLogEvent>>,
@@ -50,6 +58,7 @@ impl EncounterState {
             end_time: 0,
             party: HashMap::new(),
             damage_event_log: HashMap::new(),
+            status: EncounterStatus::Waiting,
             window_handle,
         }
     }
@@ -59,6 +68,7 @@ impl EncounterState {
         self.dps = 0.0;
         self.start_time = 0;
         self.end_time = 0;
+        self.status = EncounterStatus::Waiting;
         self.party.clear();
         self.damage_event_log.clear();
 
@@ -83,8 +93,10 @@ impl EncounterState {
 
         let now = Utc::now().timestamp_millis() as u64;
 
+        // If this is the first damage event, set the start time.
         if self.start_time == 0 {
             self.start_time = now;
+            self.status = EncounterStatus::InProgress;
         }
 
         self.end_time = now;

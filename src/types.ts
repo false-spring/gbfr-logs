@@ -12,12 +12,15 @@ export type PlayerData = {
   percentage: number;
 };
 
+export type EncounterStatus = "Waiting" | "InProgress";
+
 export type EncounterState = {
   total_damage: number;
   dps: number;
   start_time: number;
   end_time: number;
   party: Record<string, PlayerData>;
+  status: EncounterStatus;
 };
 
 export type EncounterUpdateEvent = {

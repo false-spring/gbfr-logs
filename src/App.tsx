@@ -9,48 +9,24 @@ import "./i18n";
 import "./App.css";
 
 import { EncounterState, EncounterUpdateEvent, PlayerData } from "./types";
+import { humanizeNumbers, millisecondsToElapsedFormat } from "./utils";
 
-const tryParseInt = (intString: string | number, defaultValue = 0) => {
-  if (typeof intString === "number") {
-    if (isNaN(intString)) return defaultValue;
-    return intString;
-  }
-
-  let intNum;
-
-  try {
-    intNum = parseInt(intString);
-    if (isNaN(intNum)) intNum = defaultValue;
-  } catch {
-    intNum = defaultValue;
-  }
-
-  return intNum;
-};
-
-// Takes a number and returns a shortened version of it that is friendlier to read.
-// For example, 1200 would be returned as 1.2k, 1200000 as 1.2m, and so on.
-const humanizeNumbers = (n: number) => {
-  if (n >= 1e3 && n < 1e6) return [+(n / 1e3).toFixed(1), "k"];
-  if (n >= 1e6 && n < 1e9) return [+(n / 1e6).toFixed(1), "m"];
-  if (n >= 1e9 && n < 1e12) return [+(n / 1e9).toFixed(1), "b"];
-  if (n >= 1e12) return [+(n / 1e12).toFixed(1), "t"];
-  else return [tryParseInt(n).toFixed(0), ""];
-};
-
-const Titlebar = () => {
+const Titlebar = ({ encounterState }: { encounterState: EncounterState }) => {
   const onMinimize = () => {
     appWindow.minimize();
   };
 
   return (
-    <div data-tauri-drag-region className="titlebar">
-      <div
-        className="titlebar-button"
-        id="titlebar-minimize"
-        onClick={onMinimize}
-      >
-        <Minus size={16} />
+    <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
+      <div data-tauri-drag-region className="titlebar-left"></div>
+      <div data-tauri-drag-region className="titlebar-right">
+        <div
+          className="titlebar-button"
+          id="titlebar-minimize"
+          onClick={onMinimize}
+        >
+          <Minus size={16} />
+        </div>
       </div>
     </div>
   );
@@ -70,20 +46,20 @@ const PlayerRow = ({
 
   return (
     <tr className="player-row">
-      <td className="text-left">
+      <td className="text-left row-data">
         {player.index} - {t(`characters.${player.character_type}`)}
       </td>
-      <td className="text-center">
+      <td className="text-center row-data">
         {totalDamage}
-        <span className="unit">{totalDamageUnit}</span>
+        <span className="unit font-sm">{totalDamageUnit}</span>
       </td>
-      <td className="text-center">
+      <td className="text-center row-data">
         {dps}
-        <span className="unit">{dpsUnit}</span>
+        <span className="unit font-sm">{dpsUnit}</span>
       </td>
-      <td className="text-center">
+      <td className="text-center row-data">
         {player.percentage.toFixed(2)}
-        <span className="unit">%</span>
+        <span className="unit font-sm">%</span>
       </td>
       <div
         className="damage-bar"
@@ -117,7 +93,7 @@ const Table = ({ encounterState }: { encounterState: EncounterState }) => {
 
   return (
     <table className="table w-full">
-      <thead className="header">
+      <thead className="header transparent-bg">
         <tr>
           <th className="header-name">Name</th>
           <th className="header-column text-center">DMG</th>
@@ -134,42 +110,88 @@ const Table = ({ encounterState }: { encounterState: EncounterState }) => {
   );
 };
 
-const Footer = () => {
+const Footer = ({
+  encounterState,
+  elapsedTime,
+}: {
+  encounterState: EncounterState;
+  elapsedTime: number;
+}) => {
   return (
-    <div className="footer">
+    <div className="footer transparent-bg font-sm">
       <div className="version">
         GBFR Logs <span className="version-number">0.0.2</span>
       </div>
+
+      {encounterState.status === "Waiting" ? (
+        <div className="encounter-status">{encounterState.status}..</div>
+      ) : (
+        <div className="encounter-elapsedTime">
+          {millisecondsToElapsedFormat(elapsedTime)}
+        </div>
+      )}
     </div>
   );
 };
 
 function App() {
+  const [currentTime, setCurrentTime] = useState(0);
   const [encounterState, setEncounterState] = useState<EncounterState>({
     total_damage: 0,
     dps: 0,
     start_time: 0,
     end_time: 1,
     party: {},
+    status: "Waiting",
   });
 
   useEffect(() => {
-    listen("encounter-update", (event: EncounterUpdateEvent) => {
-      setEncounterState(event.payload);
-    });
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 500);
 
-    listen("encounter-reset", (event: EncounterUpdateEvent) => {
-      setEncounterState(event.payload);
-    });
-  });
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    const encounterUpdateListener = listen(
+      "encounter-update",
+      (event: EncounterUpdateEvent) => {
+        setEncounterState(event.payload);
+
+        if (
+          event.payload.status === "InProgress" &&
+          encounterState.status === "Waiting"
+        ) {
+          encounterState.start_time == Date.now();
+        }
+      }
+    );
+
+    const encounterResetListener = listen(
+      "encounter-reset",
+      (event: EncounterUpdateEvent) => {
+        setEncounterState(event.payload);
+      }
+    );
+
+    return () => {
+      encounterUpdateListener.then((f) => f());
+      encounterResetListener.then((f) => f());
+    };
+  }, []);
+
+  const elapsedTime = Math.max(currentTime - encounterState.start_time, 0);
 
   return (
     <div className="app">
-      <Titlebar />
+      <Titlebar encounterState={encounterState} />
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>
-      <Footer />
+      <Footer encounterState={encounterState} elapsedTime={elapsedTime} />
     </div>
   );
 }
