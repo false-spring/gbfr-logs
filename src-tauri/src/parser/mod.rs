@@ -68,7 +68,7 @@ impl EncounterState {
     }
 
     pub fn on_damage_event(&mut self, event: DamageEvent) {
-        let character_type = CharacterType::from(event.source.actor_type);
+        let character_type = CharacterType::from(event.source.parent_actor_type);
 
         // @TODO(false): Sometimes monsters can damage themselves, we should track those.
         // For now, I'm ignoring them from the damage calculation.
@@ -92,13 +92,16 @@ impl EncounterState {
         self.dps = self.total_damage as f64 / ((now - self.start_time) as f64 / 1000.0);
 
         // Add actor to party if not already present.
-        let source_player = self.party.entry(event.source.index).or_insert(PlayerState {
-            index: event.source.index,
-            character_type: CharacterType::from(event.source.actor_type),
-            total_damage: 0,
-            dps: 0.0,
-            last_damage_time: now,
-        });
+        let source_player = self
+            .party
+            .entry(event.source.parent_index)
+            .or_insert(PlayerState {
+                index: event.source.parent_index,
+                character_type: CharacterType::from(event.source.parent_actor_type),
+                total_damage: 0,
+                dps: 0.0,
+                last_damage_time: now,
+            });
 
         source_player.total_damage += event.damage as u64;
         source_player.last_damage_time = now;

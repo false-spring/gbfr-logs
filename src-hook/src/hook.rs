@@ -56,6 +56,18 @@ fn actor_idx(actor_ptr: *const usize) -> u32 {
     unsafe { (actor_ptr.byte_add(0x170) as *const u32).read() }
 }
 
+// Returns the specified instance of the parent entity.
+// ptr+offset: Entity
+// *(ptr+offset) + 0x70: m_pSpecifiedInstance (Pl0700, Pl1200, etc.)
+fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> *const usize {
+    unsafe {
+        (actor_ptr.byte_add(offset) as *const *const *const usize)
+            .read()
+            .byte_add(0x70)
+            .read()
+    }
+}
+
 unsafe fn process_damage_event(
     tx: event::Tx,
     a1: *const usize, // RCX: EmBehaviourBase instance
@@ -108,17 +120,39 @@ unsafe fn process_damage_event(
 
     // Get the source actor's type ID.
     let source_type_id = actor_type_id(source_specified_instance_ptr as *const usize);
+    let source_idx = actor_idx(source_specified_instance_ptr as *const usize);
 
-    // @TODO(false): Temporarily ignore these damage sources.
-    // Pl0700Ghost
-    // Pl0700GhostSatellite
-    // Wp1890: Cagliostro's Ouroboros Dragon Sled
-    if source_type_id == 0x2AF678E8 || source_type_id == 0x8364C8BC || source_type_id == 0xC9F45042
-    {
-        return original_value;
+    // If the source_type is any of the following, then we need to get their parent entity.
+    let (source_parent_type_id, source_parent_idx) = match source_type_id {
+        // Pl0700Ghost -> Pl0700
+        0x2AF678E8 => {
+            let parent_instance =
+                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0xE48);
+
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Pl0700GhostSatellite -> Pl0700
+        0x8364C8BC => {
+            let parent_instance =
+                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0x508);
+
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Wp1890: Cagliostro's Ouroboros Dragon Sled -> Pl1800
+        0xC9F45042 => {
+            let parent_instance =
+                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0x578);
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Pl2000: Id's Dragon Form -> Pl1900
+        0xF5755C0E => {
+            let parent_instance =
+                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0xD028);
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        _ => (source_type_id, source_idx),
     };
 
-    let source_idx = actor_idx(source_specified_instance_ptr as *const usize);
     let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
     let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
@@ -126,10 +160,14 @@ unsafe fn process_damage_event(
         source: Actor {
             index: source_idx,
             actor_type: source_type_id,
+            parent_index: source_parent_idx,
+            parent_actor_type: source_parent_type_id,
         },
         target: Actor {
             index: target_idx,
             actor_type: target_type_id,
+            parent_index: target_idx,
+            parent_actor_type: target_type_id,
         },
         damage,
         flags,
