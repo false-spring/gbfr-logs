@@ -26,14 +26,15 @@ const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
 // const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
 
-type IA10x40 = unsafe extern "system" fn(
+type BehaviorShouldDamage0x40 = unsafe extern "system" fn(
     *const usize,
     *const usize,
     *const usize,
     *const usize,
     *const usize,
 ) -> u32;
-type IActor0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
+
+type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
 #[inline(always)]
 unsafe fn v_func<T: Sized>(ptr: *const usize, offset: usize) -> T {
@@ -44,7 +45,7 @@ fn actor_type_id(actor_ptr: *const usize) -> u32 {
     let mut type_id: u32 = 0;
 
     unsafe {
-        v_func::<IActor0x58>(actor_ptr, 0x58)(actor_ptr, &mut type_id as *mut u32);
+        v_func::<GetEntityHashID0x58>(actor_ptr, 0x58)(actor_ptr, &mut type_id as *mut u32);
     }
 
     type_id
@@ -57,28 +58,35 @@ fn actor_idx(actor_ptr: *const usize) -> u32 {
 
 unsafe fn process_damage_event(
     tx: event::Tx,
-    a1: *const usize,
-    a2: *const usize,
-    a3: *const usize,
-    a4: u8,
+    a1: *const usize, // RCX: EmBehaviourBase instance
+    a2: *const usize, // RDX
+    a3: *const usize, // R8
+    a4: u8,           // R9
 ) -> usize {
-    let target: usize = *(*a1.byte_add(0x08) as *const usize);
-    let source_ptr = (a2.byte_add(0x18) as *const *const usize).read();
+    // Target is the instance of the actor being damaged.
+    // For example: Instance of the Em2700 class.
+    let target_specified_instance_ptr: usize = *(*a1.byte_add(0x08) as *const usize);
+
+    // This points to the first Entity instance in the 'a2' entity list.
+    let source_entity_ptr = (a2.byte_add(0x18) as *const *const usize).read();
 
     // @TODO(false): For some reason, online + Ferry's Umlauf skill pet can return a null pointer here.
-    if source_ptr == std::ptr::null() {
+    // Possible data race with online?
+    if source_entity_ptr == std::ptr::null() {
         return ProcessDamageEvent.call(a1, a2, a3, a4);
     }
 
-    let source: usize = *(source_ptr.byte_add(0x70) as *const usize);
+    // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
+    // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
+    let source_specified_instance_ptr: usize = *(source_entity_ptr.byte_add(0x70) as *const usize);
 
     let ignore = !(a4 > 0
-        || v_func::<IA10x40>(a1, 0x40)(
+        || v_func::<BehaviorShouldDamage0x40>(a1, 0x40)(
             a1 as *const usize,
             a2 as *const usize,
             std::ptr::null(),
-            target as *const usize,
-            source as *const usize,
+            target_specified_instance_ptr as *const usize,
+            source_specified_instance_ptr as *const usize,
         ) > 0);
 
     let original_value = ProcessDamageEvent.call(a1, a2, a3, a4);
@@ -99,7 +107,7 @@ unsafe fn process_damage_event(
     };
 
     // Get the source actor's type ID.
-    let source_type_id = actor_type_id(source as *const usize);
+    let source_type_id = actor_type_id(source_specified_instance_ptr as *const usize);
 
     // @TODO(false): Temporarily ignore these damage sources.
     // Pl0700Ghost
@@ -110,9 +118,9 @@ unsafe fn process_damage_event(
         return original_value;
     };
 
-    let source_idx = actor_idx(source as *const usize);
-    let target_type_id: u32 = actor_type_id(target as *const usize);
-    let target_idx = actor_idx(target as *const usize);
+    let source_idx = actor_idx(source_specified_instance_ptr as *const usize);
+    let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
+    let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
     let event = Message::DamageEvent(DamageEvent {
         source: Actor {
