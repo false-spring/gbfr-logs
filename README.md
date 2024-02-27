@@ -16,8 +16,6 @@ Experimental DPS meter for Granblue Fantasy: Relink, based on the reverse engine
 
 ## Known Issues
 
-- Ferry's pets don't count towards her damage.
-- Cagliostro's Pain Train skill doesn't count towards her damage.
 - DoT skills do not count towards damage.
 
 ## Troubleshooting
