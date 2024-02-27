@@ -1,3 +1,5 @@
+import html2canvas from "html2canvas";
+
 const tryParseInt = (intString: string | number, defaultValue = 0) => {
   if (typeof intString === "number") {
     if (isNaN(intString)) return defaultValue;
@@ -32,4 +34,19 @@ export const millisecondsToElapsedFormat = (ms: number): string => {
     .getUTCSeconds()
     .toString()
     .padStart(2, "0")}`;
+};
+
+export const exportScreenshotToClipboard = () => {
+  const app = document.querySelector(".app") as HTMLElement;
+
+  html2canvas(app, {
+    backgroundColor: "transparent",
+  }).then((canvas) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]);
+      }
+    });
+  });
 };

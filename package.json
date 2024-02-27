@@ -13,6 +13,7 @@
     "@fontsource-variable/noto-sans": "^5.0.1",
     "@phosphor-icons/react": "^2.0.14",
     "@tauri-apps/api": "^1.5.2",
+    "html2canvas": "^1.4.1",
     "i18next": "^23.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

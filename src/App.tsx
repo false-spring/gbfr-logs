@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { appWindow } from "@tauri-apps/api/window";
 import { listen } from "@tauri-apps/api/event";
-import { Minus } from "@phosphor-icons/react";
-
-import { useTranslation } from "react-i18next";
+import { Minus, Camera } from "@phosphor-icons/react";
 
 import "./i18n";
 import "./App.css";
 
 import { EncounterState, EncounterUpdateEvent, PlayerData } from "./types";
-import { humanizeNumbers, millisecondsToElapsedFormat } from "./utils";
+import {
+  humanizeNumbers,
+  millisecondsToElapsedFormat,
+  exportScreenshotToClipboard,
+} from "./utils";
 
-const Titlebar = ({ encounterState }: { encounterState: EncounterState }) => {
+const Titlebar = () => {
   const onMinimize = () => {
     appWindow.minimize();
   };
@@ -20,6 +23,13 @@ const Titlebar = ({ encounterState }: { encounterState: EncounterState }) => {
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left"></div>
       <div data-tauri-drag-region className="titlebar-right">
+        <div
+          className="titlebar-button"
+          id="titlebar-snapshot"
+          onClick={exportScreenshotToClipboard}
+        >
+          <Camera size={16} />
+        </div>
         <div
           className="titlebar-button"
           id="titlebar-minimize"
@@ -134,7 +144,7 @@ const Footer = ({
   );
 };
 
-function App() {
+const App = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [encounterState, setEncounterState] = useState<EncounterState>({
     total_damage: 0,
@@ -187,13 +197,13 @@ function App() {
 
   return (
     <div className="app">
-      <Titlebar encounterState={encounterState} />
+      <Titlebar />
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>
       <Footer encounterState={encounterState} elapsedTime={elapsedTime} />
     </div>
   );
-}
+};
 
 export default App;

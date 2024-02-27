@@ -57,7 +57,6 @@ Useful functionality:
 
 Improvements:
 
-- Capturing snapshots
 - Multiple language support (can pull some from translation files, but skill names are manual)
 - Configuration / Settings
 
