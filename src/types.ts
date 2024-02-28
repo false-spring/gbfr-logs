@@ -53,7 +53,7 @@ export type ComputedPlayerData = PlayerData & {
   percentage: number;
 };
 
-export type EncounterStatus = "Waiting" | "InProgress";
+export type EncounterStatus = "Waiting" | "InProgress" | "Stopped";
 
 export type EncounterState = {
   /** Total damage dealt in the whole encounter */

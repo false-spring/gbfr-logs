@@ -59,20 +59,16 @@ const App = () => {
       }
     );
 
-    const encounterResetListener = listen(
-      "encounter-reset",
+    const onAreaEnterListener = listen(
+      "on-area-enter",
       (event: EncounterUpdateEvent) => {
         setEncounterState(event.payload);
+        toast.success(t("ui.on-area-enter"));
       }
     );
 
-    const onAreaEnterListener = listen("on-area-enter", () => {
-      toast.success(t("ui.on-area-enter"));
-    });
-
     return () => {
       encounterUpdateListener.then((f) => f());
-      encounterResetListener.then((f) => f());
       encounterSavedListener.then((f) => f());
       encounterSavedErrorListener.then((f) => f());
       onAreaEnterListener.then((f) => f());

@@ -89,11 +89,12 @@ impl PlayerState {
 
 type PlayerIndex = u32;
 
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize, PartialEq)]
 pub enum EncounterStatus {
     #[default]
     Waiting,
     InProgress,
+    Stopped,
 }
 
 #[derive(Default, Debug, Serialize, Deserialize)]
@@ -166,21 +167,32 @@ impl Parser {
 
         self.encounter_state.reset_stats();
         self.damage_event_log.clear();
-
-        if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-reset", &self.encounter_state);
-        }
     }
 
     pub fn on_area_enter_event(&mut self) {
-        self.reset();
+        if self.encounter_state.status == EncounterStatus::InProgress {
+            // If the encounter was is in progress, then stop it as we've left the instance.
+            self.encounter_state.status = EncounterStatus::Stopped;
+        } else {
+            // Otherwise, we're waiting for the encounter to start.
+            self.encounter_state.status = EncounterStatus::Waiting;
+        }
 
         if let Some(window) = &self.window_handle {
-            let _ = window.emit("on-area-enter", "");
+            let _ = window.emit("on-area-enter", &self.encounter_state);
         }
     }
 
     pub fn on_damage_event(&mut self, event: DamageEvent) {
+        let now = Utc::now().timestamp_millis();
+
+        // If this is the first damage event, set the start time.
+        if self.encounter_state.status == EncounterStatus::Waiting {
+            self.reset();
+            self.encounter_state.start_time = now;
+            self.encounter_state.status = EncounterStatus::InProgress;
+        }
+
         self.damage_event_log.push(event.clone());
 
         let character_type = CharacterType::from(event.source.parent_actor_type);
@@ -194,14 +206,6 @@ impl Parser {
         // @TODO(false): Do heals come through as negative damage?
         if event.damage <= 0 {
             return;
-        }
-
-        let now = Utc::now().timestamp_millis();
-
-        // If this is the first damage event, set the start time.
-        if self.encounter_state.start_time == 0 {
-            self.encounter_state.start_time = now;
-            self.encounter_state.status = EncounterStatus::InProgress;
         }
 
         self.encounter_state.end_time = now;
