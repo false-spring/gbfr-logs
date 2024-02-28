@@ -20,6 +20,7 @@ pub struct Actor {
 pub enum ActionType {
     LinkAttack,
     SBA,
+    DamageOverTime(u32),
     Normal(u32),
 }
 

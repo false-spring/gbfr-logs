@@ -123,36 +123,11 @@ unsafe fn process_damage_event(
     let source_idx = actor_idx(source_specified_instance_ptr as *const usize);
 
     // If the source_type is any of the following, then we need to get their parent entity.
-    let (source_parent_type_id, source_parent_idx) = match source_type_id {
-        // Pl0700Ghost -> Pl0700
-        0x2AF678E8 => {
-            let parent_instance =
-                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0xE48);
-
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
-        }
-        // Pl0700GhostSatellite -> Pl0700
-        0x8364C8BC => {
-            let parent_instance =
-                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0x508);
-
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
-        }
-        // Wp1890: Cagliostro's Ouroboros Dragon Sled -> Pl1800
-        0xC9F45042 => {
-            let parent_instance =
-                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0x578);
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
-        }
-        // Pl2000: Id's Dragon Form -> Pl1900
-        0xF5755C0E => {
-            let parent_instance =
-                parent_specified_instance_at(source_specified_instance_ptr as *const usize, 0xD028);
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
-        }
-        _ => (source_type_id, source_idx),
-    };
-
+    let (source_parent_type_id, source_parent_idx) = get_source_parent(
+        source_type_id,
+        source_specified_instance_ptr as *const usize,
+        source_idx,
+    );
     let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
     let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
@@ -179,10 +154,92 @@ unsafe fn process_damage_event(
     original_value
 }
 
-unsafe fn process_dot_event(a1: *const usize, a2: *const usize) -> usize {
-    // @TODO(false): Implement DOT tracking.
-    let ret = ProcessDotEvent.call(a1, a2);
-    ret
+// A1: DoT Instance (StatusPl2300ParalysisArrow)
+// *A1+0x00 -> StatusAilmentPoison : StatusBase
+// A1+0x18->targetEntityInfo : CEntityInfo (Target entity of the DoT, what is being damaged)
+// A1+0x30->sourceEntityInfo : CEntityInfo (Source entity of the DoT, who applied it)
+// A1+0x50->duration : float (How much time is left for the DoT)
+unsafe fn process_dot_event(tx: event::Tx, dot_instance: *const usize, a2: *const usize) -> usize {
+    let original_value = ProcessDotEvent.call(dot_instance, a2);
+
+    // @TODO(false): There's a better way to check null pointers with Option type, but I'm too dumb to figure it out right now.
+    let target_info = dot_instance.byte_add(0x18).read() as *const usize;
+    let source_info = dot_instance.byte_add(0x30).read() as *const usize;
+
+    if target_info == std::ptr::null() || source_info == std::ptr::null() {
+        return original_value;
+    }
+
+    let target = target_info.byte_add(0x70).read() as *const usize;
+    let source = source_info.byte_add(0x70).read() as *const usize;
+
+    if target == std::ptr::null() || source == std::ptr::null() {
+        return original_value;
+    }
+
+    let dmg = (a2 as *const i32).read();
+
+    let source_idx = actor_idx(source);
+    let source_type_id = actor_type_id(source);
+
+    let target_idx = actor_idx(target);
+    let target_type_id = actor_type_id(target);
+
+    let (source_parent_type_id, source_parent_idx) =
+        get_source_parent(source_type_id, source, source_idx);
+
+    // @TODO(false): There should be a way to get the type of DoT being applied. Too dumb to find it right now.
+    let event = Message::DamageEvent(DamageEvent {
+        source: Actor {
+            index: source_idx,
+            actor_type: source_type_id,
+            parent_index: source_parent_idx,
+            parent_actor_type: source_parent_type_id,
+        },
+        target: Actor {
+            index: target_idx,
+            actor_type: target_type_id,
+            parent_index: target_idx,
+            parent_actor_type: target_type_id,
+        },
+        damage: dmg,
+        flags: 0,
+        action_id: ActionType::DamageOverTime(0),
+    });
+
+    let _ = tx.send(event);
+
+    original_value
+}
+
+// Returns the parent entity of the source entity if necessary.
+fn get_source_parent(source_type_id: u32, source: *const usize, source_idx: u32) -> (u32, u32) {
+    let (source_parent_type_id, source_parent_idx) = match source_type_id {
+        // Pl0700Ghost -> Pl0700
+        0x2AF678E8 => {
+            let parent_instance = parent_specified_instance_at(source, 0xE48);
+
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Pl0700GhostSatellite -> Pl0700
+        0x8364C8BC => {
+            let parent_instance = parent_specified_instance_at(source, 0x508);
+
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Wp1890: Cagliostro's Ouroboros Dragon Sled -> Pl1800
+        0xC9F45042 => {
+            let parent_instance = parent_specified_instance_at(source, 0x578);
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        // Pl2000: Id's Dragon Form -> Pl1900
+        0xF5755C0E => {
+            let parent_instance = parent_specified_instance_at(source, 0xD028);
+            (actor_type_id(parent_instance), actor_idx(parent_instance))
+        }
+        _ => (source_type_id, source_idx),
+    };
+    (source_parent_type_id, source_parent_idx)
 }
 
 unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usize {
@@ -207,15 +264,19 @@ pub fn init(tx: event::Tx) -> Result<()> {
     } else {
         warn!("Could not find process_dmg_evt");
     }
+
     if let Ok(process_dot_evt) = search(&process, PROCESS_DOT_EVENT_SIG) {
+        let tx = tx.clone();
         unsafe {
             let func: ProcessDotEventFunc = std::mem::transmute(process_dot_evt);
-            ProcessDotEvent.initialize(func, |a1, a2| process_dot_event(a1, a2))?;
+            ProcessDotEvent
+                .initialize(func, move |a1, a2| process_dot_event(tx.clone(), a1, a2))?;
             ProcessDotEvent.enable()?;
         }
     } else {
         warn!("Could not find process_dot_evt");
     }
+
     if let Ok(on_enter_area_evt) = search(&process, ON_ENTER_AREA_SIG) {
         let tx = tx.clone();
         unsafe {
