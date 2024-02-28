@@ -37,7 +37,7 @@ async fn check_and_perform_hook(app: AppHandle) {
                 break;
             }
             None => {
-                tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+                tokio::time::sleep(std::time::Duration::from_millis(1000)).await;
             }
         }
     }

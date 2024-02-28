@@ -147,6 +147,8 @@ impl Parser {
 
     pub fn reset(&mut self) {
         // If there was damage, then save this encounter as a new log.
+        // Temporarily disabled.
+        #[cfg(feature = "log-export")]
         if self.encounter_state.has_damage() {
             match self.save_parse_log_to_file() {
                 Ok(file_name) => {
