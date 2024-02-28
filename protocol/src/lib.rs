@@ -16,7 +16,7 @@ pub struct Actor {
     pub parent_actor_type: u32,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ActionType {
     LinkAttack,
     SBA,

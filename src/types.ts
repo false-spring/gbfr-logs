@@ -1,27 +1,72 @@
+/**
+ * CharacterType represents the type of character that a player can be.
+ *
+ * Examples:
+ * - `"Pl1000"`
+ * - `"Pl1800"`
+ * - `{ Unknown: 0xF546E414 }`
+ */
 export type CharacterType = string | { Unknown: number };
 
-export type PlayerData = {
-  index: number;
-  // @TODO(false): Handle unknown CharacterTypes
-  characterType: CharacterType;
+/**
+ * ActionType represents the type of action that a skill can be.
+ *
+ * Examples:
+ * - `"LinkAttack"` - Link Attack
+ * - `"SBA"` - Skybound Art
+ * - `{ Normal: 113 }` (as its key, object with a number representing the skill number)
+ */
+export type ActionType = "LinkAttack" | "SBA" | { Normal: number };
+
+export type SkillState = {
+  /** ActionType of the skill */
+  actionType: ActionType;
+  /** For some characters, the skill can be a child of another character type. */
+  childCharacterType: CharacterType;
+  /** Number of total hits of the skill */
+  hits: number;
+  /** Minimum damage of the skill */
+  minDamage: number | null;
+  /** Maximum damage of the skill */
+  maxDamage: number | null;
+  /** Total damage of the skill */
   totalDamage: number;
-  dps: number;
-  lastDamageTime: number;
 };
 
-// Calculated fields
+export type PlayerData = {
+  /** Unique ID for this player */
+  index: number;
+  /** Character type of this player. (Pl1000 / Pl1800 / ..) */
+  characterType: CharacterType;
+  /** Total damage dealt */
+  totalDamage: number;
+  /** DPS over the encounter time */
+  dps: number;
+  /** Time of the last damage dealt */
+  lastDamageTime: number;
+  /** Stats for individual skills logged */
+  skills: SkillState[];
+};
+
 export type ComputedPlayerData = PlayerData & {
+  /** Damage contribution as a percentage of the total */
   percentage: number;
 };
 
 export type EncounterStatus = "Waiting" | "InProgress";
 
 export type EncounterState = {
+  /** Total damage dealt in the whole encounter */
   totalDamage: number;
+  /** Total DPS dealt over the encounter time */
   dps: number;
+  /** The time of the encounter's first damage instance (UTC milliseconds since epoch) */
   startTime: number;
+  /** The time of the encounter's last known damage instance (UTC milliseconds since epoch) */
   endTime: number;
+  /** Represents the players in the encounter */
   party: Record<string, PlayerData>;
+  /** Status of the encounter */
   status: EncounterStatus;
 };
 
