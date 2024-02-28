@@ -1,4 +1,5 @@
 import html2canvas from "html2canvas";
+import toast from "react-hot-toast";
 
 const tryParseInt = (intString: string | number, defaultValue = 0) => {
   if (typeof intString === "number") {
@@ -46,6 +47,7 @@ export const exportScreenshotToClipboard = () => {
       if (blob) {
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]);
+        toast.success("Screenshot copied to clipboard!");
       }
     });
   });
