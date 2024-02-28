@@ -68,7 +68,9 @@ impl PlayerState {
 
         // If the skill is already being tracked, update it.
         for skill in self.skills.iter_mut() {
-            if skill.action_type == event.action_id {
+            if skill.action_type == event.action_id
+                && skill.child_character_type == CharacterType::from(event.source.actor_type)
+            {
                 skill.update_from_damage_event(event);
                 return;
             }
