@@ -69,7 +69,6 @@ This project is split up into a few subprojects:
 
 Core functionality:
 
-- Meter notifications
 - Track skill breakdown, min/max damage.
 - Track damage per target
 - Provide translations for skills
