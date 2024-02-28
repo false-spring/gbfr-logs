@@ -6,61 +6,82 @@ use std::path::Path;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
-use parser::EncounterState;
-use tauri::Manager;
+use parser::Parser;
+use tauri::{AppHandle, Manager};
 
 mod parser;
+
+#[tauri::command]
+fn load_parse_log_from_file(path: String) -> Result<Parser, String> {
+    Parser::load_parse_log_from_file(&path).map_err(|e| e.to_string())
+}
+
+// Continuously check for the game process and inject the DLL when found.
+async fn check_and_perform_hook(app: AppHandle) {
+    loop {
+        match OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe") {
+            Some(target) => {
+                let syringe = Syringe::for_process(target);
+                let debug_dll_path = Path::new("hook-dbg.dll");
+                let mut dll_path = Path::new("hook.dll");
+
+                // If the debug DLL is present, use it instead.
+                if debug_dll_path.exists() {
+                    dll_path = debug_dll_path;
+                }
+
+                let _ = syringe.inject(dll_path);
+
+                connect_and_run_parser(app);
+
+                break;
+            }
+            None => {
+                tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+            }
+        }
+    }
+}
+
+// Connect to the game hook event channel and listen for damage events.
+fn connect_and_run_parser(app: AppHandle) {
+    let window = app.get_window("main").expect("Window not found");
+    let mut state = Parser::new(Some(window.clone()));
+
+    tauri::async_runtime::spawn(async move {
+        loop {
+            match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
+                Ok(mut stream) => {
+                    let mut buffer = [0; 1024];
+                    while let Ok(msg) = stream.read(&mut buffer).await {
+                        if let Ok(msg) =
+                            protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
+                        {
+                            match msg {
+                                protocol::Message::DamageEvent(event) => {
+                                    state.on_damage_event(event);
+                                }
+                                protocol::Message::OnAreaEnter => {
+                                    state.on_area_enter_event();
+                                }
+                            }
+                        }
+                    }
+                }
+                Err(_) => {
+                    tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+                }
+            }
+        }
+    });
+}
 
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
+        .invoke_handler(tauri::generate_handler![load_parse_log_from_file])
         .setup(|app| {
-            // @TODO(false): Let application continue to run even if the game is not found.
-            // We can still show the window and let the user know that the game was not found.
-            // We can also show a button to retry the injection or automatically detect the game again.
-            let target = OwnedProcess::find_first_by_name("granblue_fantasy_relink.exe").expect("Process was not found for injection");
-            let syringe = Syringe::for_process(target);
-            let debug_dll_path = Path::new("hook-dbg.dll");
-            let mut dll_path = Path::new("hook.dll");
-
-            // If the debug DLL is present, use it instead.
-            if debug_dll_path.exists() {
-                dll_path = debug_dll_path;
-            }
-
-            let _ = syringe.inject(dll_path).unwrap();
-
-            let window = app.get_window("main").expect("Window not found");
-            let mut state = EncounterState::new(Some(window.clone()));
-
-            // @TODO(false): Actually track the connection status and reflect back to the user if we were able to connect to the game or not.
-            tauri::async_runtime::spawn(async move {
-                loop  {
-                    match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
-                        Ok(mut stream) => {
-                            let mut buffer = [0; 1024];
-                            while let Ok(msg) = stream.read(&mut buffer).await {
-                                if let Ok(msg) =
-                                    protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
-                                {
-                                    match msg {
-                                        protocol::Message::DamageEvent(event) => {
-                                            state.on_damage_event(event);
-                                        }
-                                        protocol::Message::OnAreaEnter => {
-                                            state.reset();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        Err(_) => {
-                            tokio::time::sleep(std::time::Duration::from_millis(100)).await;
-                        }
-                    }
-                }
-            });
-
+            tauri::async_runtime::spawn(check_and_perform_hook(app.handle()));
             Ok(())
         })
         .run(tauri::generate_context!())

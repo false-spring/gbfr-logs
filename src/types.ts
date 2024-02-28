@@ -3,22 +3,24 @@ export type CharacterType = string | { Unknown: number };
 export type PlayerData = {
   index: number;
   // @TODO(false): Handle unknown CharacterTypes
-  character_type: CharacterType;
-  total_damage: number;
+  characterType: CharacterType;
+  totalDamage: number;
   dps: number;
-  last_damage_time: number;
+  lastDamageTime: number;
+};
 
-  // Calculated fields
+// Calculated fields
+export type ComputedPlayerData = PlayerData & {
   percentage: number;
 };
 
 export type EncounterStatus = "Waiting" | "InProgress";
 
 export type EncounterState = {
-  total_damage: number;
+  totalDamage: number;
   dps: number;
-  start_time: number;
-  end_time: number;
+  startTime: number;
+  endTime: number;
   party: Record<string, PlayerData>;
   status: EncounterStatus;
 };

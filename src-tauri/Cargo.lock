@@ -1226,6 +1226,7 @@ dependencies = [
 name = "gbfr-logs"
 version = "0.0.2"
 dependencies = [
+ "anyhow",
  "chrono",
  "dll-syringe",
  "futures",

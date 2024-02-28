@@ -7,12 +7,17 @@ import { Minus, Camera } from "@phosphor-icons/react";
 import "./i18n";
 import "./App.css";
 
-import { EncounterState, EncounterUpdateEvent, PlayerData } from "./types";
+import {
+  ComputedPlayerData,
+  EncounterState,
+  EncounterUpdateEvent,
+} from "./types";
 import {
   humanizeNumbers,
   millisecondsToElapsedFormat,
   exportScreenshotToClipboard,
 } from "./utils";
+import toast, { Toaster } from "react-hot-toast";
 
 const Titlebar = () => {
   const onMinimize = () => {
@@ -46,18 +51,18 @@ const PlayerRow = ({
   player,
   color,
 }: {
-  player: PlayerData;
+  player: ComputedPlayerData;
   color: string;
 }) => {
   const { t } = useTranslation();
 
-  const [totalDamage, totalDamageUnit] = humanizeNumbers(player.total_damage);
+  const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
   const [dps, dpsUnit] = humanizeNumbers(player.dps);
 
   return (
     <tr className="player-row">
       <td className="text-left row-data">
-        {player.index} - {t(`characters.${player.character_type}`)}
+        {player.index} - {t(`characters.${player.characterType}`)}
       </td>
       <td className="text-center row-data">
         {totalDamage}
@@ -91,15 +96,18 @@ const Table = ({ encounterState }: { encounterState: EncounterState }) => {
     "#2C568D",
   ];
 
-  let players = Object.keys(encounterState.party).map((key) => {
+  let players: Array<ComputedPlayerData> = Object.keys(
+    encounterState.party
+  ).map((key) => {
     let playerData = encounterState.party[key];
-    playerData.percentage =
-      (playerData.total_damage / encounterState.total_damage) * 100;
 
-    return playerData;
+    return {
+      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
+      ...playerData,
+    };
   });
 
-  players.sort((a, b) => b.total_damage - a.total_damage);
+  players.sort((a, b) => b.totalDamage - a.totalDamage);
 
   return (
     <table className="table w-full">
@@ -145,12 +153,13 @@ const Footer = ({
 };
 
 const App = () => {
+  const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(0);
   const [encounterState, setEncounterState] = useState<EncounterState>({
-    total_damage: 0,
+    totalDamage: 0,
     dps: 0,
-    start_time: 0,
-    end_time: 1,
+    startTime: 0,
+    endTime: 1,
     party: {},
     status: "Waiting",
   });
@@ -175,8 +184,19 @@ const App = () => {
           event.payload.status === "InProgress" &&
           encounterState.status === "Waiting"
         ) {
-          encounterState.start_time == Date.now();
+          encounterState.startTime == Date.now();
         }
+      }
+    );
+
+    const encounterSavedListener = listen("encounter-saved", () => {
+      toast.success(t("ui.successful-save"));
+    });
+
+    const encounterSavedErrorListener = listen(
+      "encounter-saved-error",
+      (evt) => {
+        toast.error(t("ui.unsuccessful-save", { error: evt.payload }));
       }
     );
 
@@ -187,13 +207,20 @@ const App = () => {
       }
     );
 
+    const onAreaEnterListener = listen("on-area-enter", () => {
+      toast.success(t("ui.on-area-enter"));
+    });
+
     return () => {
       encounterUpdateListener.then((f) => f());
       encounterResetListener.then((f) => f());
+      encounterSavedListener.then((f) => f());
+      encounterSavedErrorListener.then((f) => f());
+      onAreaEnterListener.then((f) => f());
     };
   }, []);
 
-  const elapsedTime = Math.max(currentTime - encounterState.start_time, 0);
+  const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
   return (
     <div className="app">
@@ -201,6 +228,16 @@ const App = () => {
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            borderRadius: "10px",
+            backgroundColor: "#252525",
+            color: "#fff",
+          },
+        }}
+      />
       <Footer encounterState={encounterState} elapsedTime={elapsedTime} />
     </div>
   );

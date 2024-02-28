@@ -1,5 +1,10 @@
 {
   "translation": {
+    "ui": {
+      "successful-save": "Saved encounter to logs",
+      "unsuccessful-save": "Failed to save encounter to logs: {{error}}",
+      "on-area-enter": "Entered area.."
+    },
     "characters": {
       "Pl0000": "Gran",
       "Pl0100": "Djeeta",
