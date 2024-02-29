@@ -186,16 +186,12 @@ impl Parser {
     pub fn on_damage_event(&mut self, event: DamageEvent) {
         let now = Utc::now().timestamp_millis();
 
-        // If this is the first damage event, set the start time.
-        if self.encounter_state.status == EncounterStatus::Waiting {
-            self.reset();
-            self.encounter_state.start_time = now;
-            self.encounter_state.status = EncounterStatus::InProgress;
-        }
-
-        self.damage_event_log.push(event.clone());
-
         let character_type = CharacterType::from(event.source.parent_actor_type);
+
+        // Eugen's Grenade should be ignored.
+        if event.target.actor_type == 0x022a350f {
+            return;
+        }
 
         // @TODO(false): Sometimes monsters can damage themselves, we should track those.
         // For now, I'm ignoring them from the damage calculation.
@@ -207,6 +203,17 @@ impl Parser {
         if event.damage <= 0 {
             return;
         }
+
+        // If this is the first damage event, set the start time.
+        if self.encounter_state.status == EncounterStatus::Stopped
+            || self.encounter_state.status == EncounterStatus::Waiting
+        {
+            self.reset();
+            self.encounter_state.start_time = now;
+            self.encounter_state.status = EncounterStatus::InProgress;
+        }
+
+        self.damage_event_log.push(event.clone());
 
         self.encounter_state.end_time = now;
         self.encounter_state.total_damage += event.damage as u64;
