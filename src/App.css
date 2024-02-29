@@ -113,6 +113,7 @@ td {
 .table .header-name {
   width: 100%;
   padding: 2px 8px;
+  min-width: 50px;
 }
 
 .table .header-column {
@@ -127,7 +128,7 @@ td {
 }
 
 .skill-row:hover {
-  background: rgba(22, 22, 22, 0.8);
+  background: rgba(51, 51, 51, 0.8);
 }
 
 .table .player-row:hover {
@@ -154,6 +155,9 @@ td {
   z-index: 2;
   position: inherit;
   padding: 0 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .row-button {

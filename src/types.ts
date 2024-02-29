@@ -19,7 +19,7 @@ export type CharacterType = string | { Unknown: number };
 export type ActionType =
   | "LinkAttack"
   | "SBA"
-  | "DamageOverTime"
+  | { DamageOverTime: number }
   | { Normal: number };
 
 export type SkillState = {

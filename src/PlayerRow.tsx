@@ -25,15 +25,18 @@ const getSkillName = (
         `skills.${characterType}.skybound-arts`,
         "skills.default.skybound-arts",
       ]);
-    case skill.actionType === "DamageOverTime":
+    case skill.actionType.hasOwnProperty("DamageOverTime"):
       return t([
+        `skills.${skill.childCharacterType}.damage-over-time`,
         `skills.${characterType}.damage-over-time`,
         "skills.default.damage-over-time",
       ]);
     case skill.actionType.hasOwnProperty("Normal"):
-      let skillID = skill.actionType.Normal;
+      let actionType = skill.actionType as { Normal: number };
+      let skillID = actionType["Normal"];
       return t(
         [
+          `skills.${skill.childCharacterType}.${skillID}`,
           `skills.${characterType}.${skillID}`,
           `skills.default.${skillID}`,
           `skills.default.unknown-skill`,
@@ -115,7 +118,7 @@ const SkillBreakdown = ({ player, color }: Props) => {
         <table className="table w-full">
           <thead className="header transparent-bg">
             <tr>
-              <th className="header-name">Skill Name</th>
+              <th className="header-name">Skill</th>
               <th className="header-column text-center">Hits</th>
               <th className="header-column text-center">Total</th>
               <th className="header-column text-center">Min</th>
@@ -127,7 +130,10 @@ const SkillBreakdown = ({ player, color }: Props) => {
           <tbody className="transparent-bg">
             {computedSkills.map((skill) => (
               <SkillRow
-                key={getSkillName(player.characterType, skill)}
+                key={`${skill.childCharacterType}-${getSkillName(
+                  player.characterType,
+                  skill
+                )}`}
                 characterType={player.characterType}
                 skill={skill}
                 color={color}
