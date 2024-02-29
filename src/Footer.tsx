@@ -64,7 +64,7 @@ export const Footer = ({
   return (
     <div className="footer transparent-bg font-sm">
       <div className="version">
-        GBFR Logs <span className="version-number">0.0.2</span>
+        GBFR Logs <span className="version-number">0.0.3</span>
       </div>
       {encounterState.totalDamage > 0 && (
         <TeamDamageStats encounterState={encounterState} />
