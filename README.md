@@ -8,19 +8,19 @@ Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the revers
 
 ## Screenshots
 
+### DPS Overlay
+
 ![Meter](./docs/screenshots/meter.png)
+
+### Skill Tracking
+
+![Meter](./docs/screenshots/skill-tracking.png)
 
 ## How to install
 
 - Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
 - Download the latest .msi installer and run it.
 - Open GBFR Logs after the game is already running.
-
-## Known Issues
-
-- Ferry's pets don't count towards her damage. (fixed in upcoming 0.0.3 release)
-- Cagliostro's Pain Train skill doesn't count towards her damage. (fixed in upcoming 0.0.3 release)
-- DoT skills do not count towards damage. (fixed in upcoming 0.0.3 release)
 
 ## Frequently Asked Questions
 
