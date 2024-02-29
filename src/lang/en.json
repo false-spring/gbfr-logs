@@ -631,6 +631,8 @@
         "900": "Transformation"
       },
       "default": {
+        "5000": "Ether Round",
+        "5010": "Charged Shot",
         "link-attack": "Link Attack",
         "skybound-arts": "Skybound Arts",
         "damage-over-time": "Damage Over Time",
