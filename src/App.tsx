@@ -77,8 +77,6 @@ const App = () => {
 
   const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
-  console.log(encounterState.status);
-
   return (
     <div className="app">
       <Titlebar />
