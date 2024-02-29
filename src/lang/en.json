@@ -3,7 +3,8 @@
     "ui": {
       "successful-save": "Saved encounter to logs",
       "unsuccessful-save": "Failed to save encounter to logs: {{error}}",
-      "on-area-enter": "Entered area.."
+      "on-area-enter": "Entered area..",
+      "unknown": "Unknown"
     },
     "characters": {
       "Pl0000": "Gran",
@@ -28,6 +29,14 @@
       "Pl1900": "Id",
       "Pl2000": "Id (Transformation)",
       "Unknown": "Unknown"
+    },
+    "skills": {
+      "default": {
+        "link-attack": "Link Attack",
+        "skybound-arts": "Skybound Arts",
+        "damage-over-time": "Damage Over Time",
+        "unknown-skill": "Skill {{id}}"
+      }
     },
     "enemies": {
       "Em0000": "Goblin Stormer/Bandit/Striker/Gatherer/Trooper/Savage Carrion-Eater",

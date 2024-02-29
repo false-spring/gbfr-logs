@@ -16,7 +16,11 @@ export type CharacterType = string | { Unknown: number };
  * - `"SBA"` - Skybound Art
  * - `{ Normal: 113 }` (as its key, object with a number representing the skill number)
  */
-export type ActionType = "LinkAttack" | "SBA" | { Normal: number };
+export type ActionType =
+  | "LinkAttack"
+  | "SBA"
+  | "DamageOverTime"
+  | { Normal: number };
 
 export type SkillState = {
   /** ActionType of the skill */
@@ -31,6 +35,11 @@ export type SkillState = {
   maxDamage: number | null;
   /** Total damage of the skill */
   totalDamage: number;
+};
+
+export type ComputedSkillState = SkillState & {
+  /** Damage contribution as a percentage of the total */
+  percentage: number;
 };
 
 export type PlayerData = {

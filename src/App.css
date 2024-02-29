@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+td {
+  padding: 0;
+}
+
 .app {
   height: 100vh;
   overflow: hidden;
@@ -10,6 +14,12 @@ body {
 .app-content {
   height: 100vh;
   margin-top: 30px;
+  overflow: auto;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.app-content:hover {
+  background: rgba(22, 22, 22, 0.8);
 }
 
 .titlebar {
@@ -61,6 +71,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
 }
 
 .version {
@@ -108,21 +119,49 @@ body {
   width: 4.5rem;
 }
 
+/* @TODO(false): Abusing TR as Button */
 .table .player-row,
+.table .skill-row {
+  cursor: pointer;
+  position: relative;
+}
+
+.skill-row:hover {
+  background: rgba(22, 22, 22, 0.8);
+}
+
+.table .player-row:hover {
+  box-shadow: 0 5px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.table .player-row,
+.table .skill-row,
 .table .damage-bar {
   height: 27px;
 }
 
 .table .damage-bar {
-  z-index: -2;
+  z-index: 1;
   position: absolute;
   left: 0;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   transition: width 0.1s ease-in-out;
 }
 
-.player-row .row-data {
+.skill-row .row-data,
+.player-row .row-data,
+.row-button {
+  z-index: 2;
+  position: inherit;
   padding: 0 6px;
+}
+
+.row-button {
+  width: 1em;
+}
+
+.player-table {
+  padding-bottom: 60px;
 }
 
 .text-left {
@@ -138,8 +177,7 @@ body {
 }
 
 .transparent-bg {
-  background: #252525;
-  opacity: 0.8;
+  background: rgba(22, 22, 22, 0.8);
 }
 
 .font-sm {

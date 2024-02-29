@@ -31,13 +31,17 @@ export const Table = ({
   players.sort((a, b) => b.totalDamage - a.totalDamage);
 
   return (
-    <table className="table w-full">
+    <table className="player-table table w-full">
       <thead className="header transparent-bg">
         <tr>
           <th className="header-name">Name</th>
           <th className="header-column text-center">DMG</th>
           <th className="header-column text-center">DPS</th>
           <th className="header-column text-center">%</th>
+          <th
+            className="header-column text-center"
+            style={{ width: "2em" }}
+          ></th>
         </tr>
       </thead>
       <tbody>
