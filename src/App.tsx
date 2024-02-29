@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Footer } from "./Footer";
 import { Table } from "./Table";
 import { Titlebar } from "./Titlebar";
+import { exportEncounterToClipboard } from "./utils";
 
 const App = () => {
   const { t } = useTranslation();
@@ -77,9 +78,13 @@ const App = () => {
 
   const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
+  const handleExportTextToClipboard = () => {
+    exportEncounterToClipboard(encounterState);
+  };
+
   return (
     <div className="app">
-      <Titlebar />
+      <Titlebar onExportTextToClipboard={handleExportTextToClipboard} />
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>

@@ -1,51 +1,12 @@
 import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { t } from "i18next";
 import { CharacterType, ComputedPlayerData, ComputedSkillState } from "./types";
-import { humanizeNumbers } from "./utils";
+import { humanizeNumbers, getSkillName } from "./utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
   player: ComputedPlayerData;
   color: string;
-};
-
-const getSkillName = (
-  characterType: CharacterType,
-  skill: ComputedSkillState
-) => {
-  switch (true) {
-    case skill.actionType === "LinkAttack":
-      return t([
-        `skills.${characterType}.link-attack`,
-        "skills.default.link-attack",
-      ]);
-    case skill.actionType === "SBA":
-      return t([
-        `skills.${characterType}.skybound-arts`,
-        "skills.default.skybound-arts",
-      ]);
-    case skill.actionType.hasOwnProperty("DamageOverTime"):
-      return t([
-        `skills.${skill.childCharacterType}.damage-over-time`,
-        `skills.${characterType}.damage-over-time`,
-        "skills.default.damage-over-time",
-      ]);
-    case skill.actionType.hasOwnProperty("Normal"):
-      let actionType = skill.actionType as { Normal: number };
-      let skillID = actionType["Normal"];
-      return t(
-        [
-          `skills.${skill.childCharacterType}.${skillID}`,
-          `skills.${characterType}.${skillID}`,
-          `skills.default.${skillID}`,
-          `skills.default.unknown-skill`,
-        ],
-        { id: skillID }
-      );
-    default:
-      return t("ui.unknown");
-  }
 };
 
 const SkillRow = ({
@@ -160,7 +121,8 @@ export const PlayerRow = ({ player, color }: Props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <td className="text-left row-data">
-          {t(`characters.${player.characterType}`)}#{player.index}
+          {t(`characters.${player.characterType}`)}
+          <span className="unit font-sm">#{player.index}</span>
         </td>
         <td className="text-center row-data">
           {totalDamage}
