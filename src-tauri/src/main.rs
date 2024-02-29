@@ -31,6 +31,7 @@ async fn check_and_perform_hook(app: AppHandle) {
                 }
 
                 let _ = syringe.inject(dll_path);
+                let _ = app.emit_all("success-alert", "Found game..");
 
                 connect_and_run_parser(app);
 
@@ -52,6 +53,7 @@ fn connect_and_run_parser(app: AppHandle) {
         loop {
             match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
                 Ok(mut stream) => {
+                    let _ = app.emit_all("success-alert", "Connnected to game!");
                     let mut buffer = [0; 1024];
                     while let Ok(msg) = stream.read(&mut buffer).await {
                         if let Ok(msg) =

@@ -68,11 +68,21 @@ const App = () => {
       }
     );
 
+    const onSuccessAlert = listen("success-alert", (evt) => {
+      toast.success(evt.payload as string);
+    });
+
+    const onErrorAlert = listen("error-alert", (evt) => {
+      toast.error(evt.payload as string);
+    });
+
     return () => {
       encounterUpdateListener.then((f) => f());
       encounterSavedListener.then((f) => f());
       encounterSavedErrorListener.then((f) => f());
       onAreaEnterListener.then((f) => f());
+      onSuccessAlert.then((f) => f());
+      onErrorAlert.then((f) => f());
     };
   }, []);
 
