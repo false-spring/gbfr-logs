@@ -71,9 +71,7 @@ This project is split up into a few subprojects:
 
 Core functionality:
 
-- Track skill breakdown, min/max damage.
 - Track damage per target
-- Provide translations for skills
 - DPS charting
 - Historical encounter logs
 
@@ -90,3 +88,10 @@ Reverse Engineering:
 - Figure out if we can fetch party data upon area enter, would make it easier to cache it then.
 - Flags for damage cap tracking, if they exist.
 - Buff tracking
+
+## Credits
+
+This project would not have been possible without the following folks:
+
+- [nyaoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT) for the original reverse engineering work.
+- [Harkain](https://github.com/Harkains) for their work on formatting and translating skills to friendly English names.
