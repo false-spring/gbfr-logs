@@ -160,7 +160,7 @@ export const PlayerRow = ({ player, color }: Props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <td className="text-left row-data">
-          {player.index} - {t(`characters.${player.characterType}`)}
+          {t(`characters.${player.characterType}`)}#{player.index}
         </td>
         <td className="text-center row-data">
           {totalDamage}
