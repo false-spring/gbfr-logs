@@ -1,5 +1,28 @@
+import { Fragment } from "react";
 import { EncounterState } from "./types";
-import { millisecondsToElapsedFormat } from "./utils";
+import { humanizeNumbers, millisecondsToElapsedFormat } from "./utils";
+
+const TeamDamageStats = ({
+  encounterState,
+}: {
+  encounterState: EncounterState;
+}) => {
+  let [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
+  let [totalTeamDmg, dmgUnit] = humanizeNumbers(encounterState.totalDamage);
+
+  return (
+    <Fragment>
+      <div className="encounter-totalDamage item">
+        {totalTeamDmg}
+        <span className="unit font-sm">{dmgUnit} -</span>
+      </div>
+      <div className="encounter-totalDps item">
+        {teamDps}
+        <span className="unit font-sm">{dpsUnit}/s -</span>
+      </div>
+    </Fragment>
+  );
+};
 
 const EncounterStatus = ({
   encounterState,
@@ -12,17 +35,21 @@ const EncounterStatus = ({
     return <div className="encounter-status">{encounterState.status}..</div>;
   } else if (encounterState.status === "InProgress") {
     return (
-      <div className="encounter-elapsedTime">
-        {millisecondsToElapsedFormat(elapsedTime)}
-      </div>
+      <Fragment>
+        <div className="encounter-elapsedTime item">
+          {millisecondsToElapsedFormat(elapsedTime)}
+        </div>
+      </Fragment>
     );
   } else if (encounterState.status === "Stopped") {
     return (
-      <div className="encounter-elapsedTime">
-        {millisecondsToElapsedFormat(
-          encounterState.endTime - encounterState.startTime
-        )}
-      </div>
+      <Fragment>
+        <div className="encounter-elapsedTime">
+          {millisecondsToElapsedFormat(
+            encounterState.endTime - encounterState.startTime
+          )}
+        </div>
+      </Fragment>
     );
   }
 };
@@ -39,6 +66,9 @@ export const Footer = ({
       <div className="version">
         GBFR Logs <span className="version-number">0.0.2</span>
       </div>
+      {encounterState.totalDamage > 0 && (
+        <TeamDamageStats encounterState={encounterState} />
+      )}
       <EncounterStatus
         encounterState={encounterState}
         elapsedTime={elapsedTime}

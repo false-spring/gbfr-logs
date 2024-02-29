@@ -74,6 +74,10 @@ td {
   z-index: 2;
 }
 
+.footer .item {
+  padding-right: 6px;
+}
+
 .version {
   flex: 1;
 }
