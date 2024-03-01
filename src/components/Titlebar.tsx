@@ -1,6 +1,6 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { Minus, Camera, ClipboardText } from "@phosphor-icons/react";
-import { exportScreenshotToClipboard } from "./utils";
+import { exportScreenshotToClipboard } from "../utils";
 
 export const Titlebar = ({
   onExportTextToClipboard,

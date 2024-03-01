@@ -1,4 +1,4 @@
-import { ComputedPlayerData, EncounterState } from "./types";
+import { ComputedPlayerData, EncounterState } from "../types";
 import { PlayerRow } from "./PlayerRow";
 
 export const Table = ({

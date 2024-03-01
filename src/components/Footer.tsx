@@ -1,6 +1,6 @@
 import { Fragment } from "react";
-import { EncounterState } from "./types";
-import { humanizeNumbers, millisecondsToElapsedFormat } from "./utils";
+import { EncounterState } from "../types";
+import { humanizeNumbers, millisecondsToElapsedFormat } from "../utils";
 
 const TeamDamageStats = ({
   encounterState,

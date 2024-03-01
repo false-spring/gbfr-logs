@@ -1,7 +1,11 @@
 import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CharacterType, ComputedPlayerData, ComputedSkillState } from "./types";
-import { humanizeNumbers, getSkillName } from "./utils";
+import {
+  CharacterType,
+  ComputedPlayerData,
+  ComputedSkillState,
+} from "../types";
+import { humanizeNumbers, getSkillName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
