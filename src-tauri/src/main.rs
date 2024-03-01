@@ -81,6 +81,7 @@ fn connect_and_run_parser(app: AppHandle) {
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
+        .plugin(tauri_plugin_window_state::Builder::default().build())
         .invoke_handler(tauri::generate_handler![load_parse_log_from_file])
         .setup(|app| {
             tauri::async_runtime::spawn(check_and_perform_hook(app.handle()));
