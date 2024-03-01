@@ -2,13 +2,9 @@ import { Fragment } from "react";
 import { EncounterState } from "../types";
 import { humanizeNumbers, millisecondsToElapsedFormat } from "../utils";
 
-const TeamDamageStats = ({
-  encounterState,
-}: {
-  encounterState: EncounterState;
-}) => {
-  let [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
-  let [totalTeamDmg, dmgUnit] = humanizeNumbers(encounterState.totalDamage);
+const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
+  const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
+  const [totalTeamDmg, dmgUnit] = humanizeNumbers(encounterState.totalDamage);
 
   return (
     <Fragment>
@@ -24,55 +20,34 @@ const TeamDamageStats = ({
   );
 };
 
-const EncounterStatus = ({
-  encounterState,
-  elapsedTime,
-}: {
-  encounterState: EncounterState;
-  elapsedTime: number;
-}) => {
+const EncounterStatus = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
   if (encounterState.status === "Waiting") {
     return <div className="encounter-status">{encounterState.status}..</div>;
   } else if (encounterState.status === "InProgress") {
     return (
       <Fragment>
-        <div className="encounter-elapsedTime item">
-          {millisecondsToElapsedFormat(elapsedTime)}
-        </div>
+        <div className="encounter-elapsedTime item">{millisecondsToElapsedFormat(elapsedTime)}</div>
       </Fragment>
     );
   } else if (encounterState.status === "Stopped") {
     return (
       <Fragment>
         <div className="encounter-elapsedTime">
-          {millisecondsToElapsedFormat(
-            encounterState.endTime - encounterState.startTime
-          )}
+          {millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime)}
         </div>
       </Fragment>
     );
   }
 };
 
-export const Footer = ({
-  encounterState,
-  elapsedTime,
-}: {
-  encounterState: EncounterState;
-  elapsedTime: number;
-}) => {
+export const Footer = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
   return (
     <div className="footer transparent-bg font-sm">
       <div className="version">
         GBFR Logs <span className="version-number">0.0.3</span>
       </div>
-      {encounterState.totalDamage > 0 && (
-        <TeamDamageStats encounterState={encounterState} />
-      )}
-      <EncounterStatus
-        encounterState={encounterState}
-        elapsedTime={elapsedTime}
-      />
+      {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
+      <EncounterStatus encounterState={encounterState} elapsedTime={elapsedTime} />
     </div>
   );
 };

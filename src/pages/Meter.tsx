@@ -34,38 +34,26 @@ const Meter = () => {
   }, []);
 
   useEffect(() => {
-    const encounterUpdateListener = listen(
-      "encounter-update",
-      (event: EncounterUpdateEvent) => {
-        setEncounterState(event.payload);
+    const encounterUpdateListener = listen("encounter-update", (event: EncounterUpdateEvent) => {
+      setEncounterState(event.payload);
 
-        if (
-          event.payload.status === "InProgress" &&
-          encounterState.status === "Waiting"
-        ) {
-          encounterState.startTime == Date.now();
-        }
+      if (event.payload.status === "InProgress" && encounterState.status === "Waiting") {
+        encounterState.startTime == Date.now();
       }
-    );
+    });
 
     const encounterSavedListener = listen("encounter-saved", () => {
       toast.success(t("ui.successful-save"));
     });
 
-    const encounterSavedErrorListener = listen(
-      "encounter-saved-error",
-      (evt) => {
-        toast.error(t("ui.unsuccessful-save", { error: evt.payload }));
-      }
-    );
+    const encounterSavedErrorListener = listen("encounter-saved-error", (evt) => {
+      toast.error(t("ui.unsuccessful-save", { error: evt.payload }));
+    });
 
-    const onAreaEnterListener = listen(
-      "on-area-enter",
-      (event: EncounterUpdateEvent) => {
-        setEncounterState(event.payload);
-        toast.success(t("ui.on-area-enter"));
-      }
-    );
+    const onAreaEnterListener = listen("on-area-enter", (event: EncounterUpdateEvent) => {
+      setEncounterState(event.payload);
+      toast.success(t("ui.on-area-enter"));
+    });
 
     const onSuccessAlert = listen("success-alert", (evt) => {
       toast.success(evt.payload as string);

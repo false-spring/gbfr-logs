@@ -24,6 +24,7 @@ i18n
 
 declare global {
   interface Window {
+    /* eslint-disable */
     i18n: any;
   }
 }

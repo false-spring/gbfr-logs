@@ -1,39 +1,26 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
-import {
-  ComputedPlayerData,
-  EncounterState,
-  CharacterType,
-  ComputedSkillState,
-} from "./types";
+import { ComputedPlayerData, EncounterState, CharacterType, ComputedSkillState } from "./types";
 import { t } from "i18next";
 
-export const getSkillName = (
-  characterType: CharacterType,
-  skill: ComputedSkillState
-) => {
+export const getSkillName = (characterType: CharacterType, skill: ComputedSkillState) => {
   switch (true) {
     case skill.actionType === "LinkAttack":
-      return t([
-        `skills.${characterType}.link-attack`,
-        "skills.default.link-attack",
-      ]);
+      return t([`skills.${characterType}.link-attack`, "skills.default.link-attack"]);
     case skill.actionType === "SBA":
-      return t([
-        `skills.${characterType}.skybound-arts`,
-        "skills.default.skybound-arts",
-      ]);
-    case skill.actionType.hasOwnProperty("SupplementaryDamage"):
+      return t([`skills.${characterType}.skybound-arts`, "skills.default.skybound-arts"]);
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "SupplementaryDamage"):
       return t(["skills.default.supplementary-damage"]);
-    case skill.actionType.hasOwnProperty("DamageOverTime"):
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "DamageOverTime"):
       return t([
         `skills.${skill.childCharacterType}.damage-over-time`,
         `skills.${characterType}.damage-over-time`,
         "skills.default.damage-over-time",
       ]);
-    case skill.actionType.hasOwnProperty("Normal"):
-      let actionType = skill.actionType as { Normal: number };
-      let skillID = actionType["Normal"];
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "Normal"): {
+      const actionType = skill.actionType as { Normal: number };
+      const skillID = actionType["Normal"];
+
       return t(
         [
           `skills.${skill.childCharacterType}.${skillID}`,
@@ -43,6 +30,7 @@ export const getSkillName = (
         ],
         { id: skillID }
       );
+    }
     default:
       return t("ui.unknown");
   }
@@ -77,10 +65,7 @@ export const humanizeNumbers = (n: number) => {
 
 export const millisecondsToElapsedFormat = (ms: number): string => {
   const date = new Date(Date.UTC(0, 0, 0, 0, 0, 0, ms));
-  return `${date.getUTCMinutes().toString().padStart(2, "0")}:${date
-    .getUTCSeconds()
-    .toString()
-    .padStart(2, "0")}`;
+  return `${date.getUTCMinutes().toString().padStart(2, "0")}:${date.getUTCSeconds().toString().padStart(2, "0")}`;
 };
 
 export const exportScreenshotToClipboard = () => {
@@ -101,11 +86,9 @@ export const exportScreenshotToClipboard = () => {
 };
 
 export const exportEncounterToClipboard = (encounterState: EncounterState) => {
-  let playerHeader = `Name,DMG,DPS,%`;
-  let players: Array<ComputedPlayerData> = Object.keys(
-    encounterState.party
-  ).map((key) => {
-    let playerData = encounterState.party[key];
+  const playerHeader = `Name,DMG,DPS,%`;
+  const players: Array<ComputedPlayerData> = Object.keys(encounterState.party).map((key) => {
+    const playerData = encounterState.party[key];
 
     return {
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -115,12 +98,9 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
 
   players.sort((a, b) => b.totalDamage - a.totalDamage);
 
-  let playerData = players
+  const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce(
-        (acc, skill) => acc + skill.totalDamage,
-        0
-      );
+      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
       const computedSkills = player.skills.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
@@ -130,28 +110,19 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
 
       computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
 
-      let playerLine = [
+      const playerLine = [
         t(`characters.${player.characterType}`) + "#" + player.index,
         player.totalDamage,
         Math.round(player.dps),
         player.percentage,
       ].join(",");
 
-      let skillHeader = [
-        "Skill",
-        "Hits",
-        "Total",
-        "Min",
-        "Max",
-        "Avg",
-        "%",
-      ].join(",");
+      const skillHeader = ["Skill", "Hits", "Total", "Min", "Max", "Avg", "%"].join(",");
 
-      let skillLine = computedSkills
+      const skillLine = computedSkills
         .map((skill) => {
-          let skillName = getSkillName(player.characterType, skill);
-          let averageHit =
-            skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
+          const skillName = getSkillName(player.characterType, skill);
+          const averageHit = skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
 
           return [
             skillName,

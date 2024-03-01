@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "eslint ./src --fix",
+    "format": "prettier --write --ignore-unknown --ext js,jsx,ts,tsx src ./src",
     "tauri": "tauri"
   },
   "dependencies": {
@@ -26,7 +28,13 @@
     "@tauri-apps/cli": "^1.5.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "3.2.5",
     "typescript": "^5.0.2",
     "vite": "^5.0.0"
   }
