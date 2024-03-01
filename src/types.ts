@@ -14,11 +14,13 @@ export type CharacterType = string | { Unknown: number };
  * Examples:
  * - `"LinkAttack"` - Link Attack
  * - `"SBA"` - Skybound Art
+ * - `{ SupplementaryAttack: 113 }` (as its key, object with a number representing the skill number)
  * - `{ Normal: 113 }` (as its key, object with a number representing the skill number)
  */
 export type ActionType =
   | "LinkAttack"
   | "SBA"
+  | { SupplementaryAttack: number }
   | { DamageOverTime: number }
   | { Normal: number };
 

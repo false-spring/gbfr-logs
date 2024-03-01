@@ -23,6 +23,8 @@ export const getSkillName = (
         `skills.${characterType}.skybound-arts`,
         "skills.default.skybound-arts",
       ]);
+    case skill.actionType.hasOwnProperty("SupplementaryDamage"):
+      return t(["skills.default.supplementary-damage"]);
     case skill.actionType.hasOwnProperty("DamageOverTime"):
       return t([
         `skills.${skill.childCharacterType}.damage-over-time`,

@@ -18,9 +18,15 @@ pub struct Actor {
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum ActionType {
+    /// Link Attack
     LinkAttack,
+    /// Skybound Arts
     SBA,
+    /// Supplementary Damage containing the original skill ID that trigged it.
+    SupplementaryDamage(u32),
+    /// Damage over time, containing the effect type. (Currently, always 0 until we find more info)
     DamageOverTime(u32),
+    /// Normal Skill Attack containing the skill ID.
     Normal(u32),
 }
 

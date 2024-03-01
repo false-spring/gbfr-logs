@@ -633,6 +633,7 @@
       "default": {
         "5000": "Ether Round",
         "5010": "Charged Shot",
+        "supplementary-damage": "Supplementary Damage",
         "link-attack": "Link Attack",
         "skybound-arts": "Skybound Arts",
         "damage-over-time": "Damage Over Time",

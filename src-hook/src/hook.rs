@@ -114,6 +114,8 @@ unsafe fn process_damage_event(
         ActionType::LinkAttack
     } else if ((1 << 13 | 1 << 14) & flags) != 0 {
         ActionType::SBA
+    } else if ((1 << 15) & flags) != 0 {
+        ActionType::SupplementaryDamage((a2.byte_add(0x154) as *const u32).read())
     } else {
         ActionType::Normal((a2.byte_add(0x154) as *const u32).read())
     };

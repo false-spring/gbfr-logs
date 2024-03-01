@@ -68,6 +68,19 @@ impl PlayerState {
 
         // If the skill is already being tracked, update it.
         for skill in self.skills.iter_mut() {
+            // Aggregate all supplementary damage events into the same skill instance.
+            if matches!(
+                skill.action_type,
+                protocol::ActionType::SupplementaryDamage(_)
+            ) && matches!(
+                event.action_id,
+                protocol::ActionType::SupplementaryDamage(_)
+            ) {
+                skill.update_from_damage_event(event);
+                return;
+            }
+
+            // If the skill is already being tracked, update it.
             if skill.action_type == event.action_id
                 && skill.child_character_type == CharacterType::from(event.source.actor_type)
             {
