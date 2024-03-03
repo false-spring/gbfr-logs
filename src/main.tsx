@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 import "@mantine/core/styles.css";
+import "@mantine/charts/styles.css";
 import "@fontsource-variable/noto-sans";
 import "./styles.css";
 

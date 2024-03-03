@@ -215,6 +215,7 @@ const LogViewPage = () => {
           data={data}
           dataKey="timestamp"
           withDots={false}
+          withLegend
           series={labels}
           valueFormatter={(value) => {
             const [num, suffix] = humanizeNumbers(value);
