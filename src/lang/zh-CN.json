@@ -1,5 +1,17 @@
 {
   "translation": {
+    "ui": {
+      "successful-save": "保存的遭遇",
+      "unsuccessful-save": "保存失败: {{error}}",
+      "on-area-enter": "进入区域",
+      "unknown": "Unknown",
+      "language": "语言",
+      "meter-settings": "Meter 配置",
+      "settings": "配置",
+      "logs": {
+        "delete-selected-btn": "删除"
+      }
+    },
     "characters": {
       "Pl0000": "古兰",
       "Pl0100": "姬塔",

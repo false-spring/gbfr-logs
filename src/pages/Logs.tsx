@@ -12,7 +12,6 @@ import {
   Text,
   Pagination,
   Fieldset,
-  Slider,
   Select,
   Stack,
   Space,
@@ -42,6 +41,8 @@ import {
   translatedPlayerName,
 } from "../utils";
 import { ComputedPlayerData, EncounterState } from "../types";
+import { useTranslation } from "react-i18next";
+import { SUPPORTED_LANGUAGES } from "../i18n";
 
 interface SearchResult {
   logs: Log[];
@@ -216,20 +217,24 @@ const LogViewPage = () => {
     <Box>
       <Text>
         <Button size="xs" variant="default" component={Link} to="/logs">
-          Back
+          {t("ui.back-btn")}
         </Button>
       </Text>
       <Divider my="sm" />
       <Stack>
         <Box>
-          <Text size="sm">Date: {epochToLocalTime(encounter.startTime)}</Text>
-          <Text size="sm">Duration: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}</Text>
           <Text size="sm">
-            Total Damage: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
+            {t("ui.logs.date")}: {epochToLocalTime(encounter.startTime)}
+          </Text>
+          <Text size="sm">
+            {t("ui.logs.duration")}: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
+          </Text>
+          <Text size="sm">
+            {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
           </Text>
         </Box>
         <MeterTable encounterState={encounter} />
-        <Text size="sm">Damage Per Second</Text>
+        <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
         <LineChart
           h={400}
           data={data}
@@ -251,6 +256,7 @@ const LogViewPage = () => {
 };
 
 const LogIndexPage = () => {
+  const { t } = useTranslation();
   const {
     currentPage,
     setCurrentPage,
@@ -334,8 +340,8 @@ const LogIndexPage = () => {
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Date</Table.Th>
-              <Table.Th>Name</Table.Th>
+              <Table.Th>{t("ui.logs.date")}</Table.Th>
+              <Table.Th>{t("ui.logs.name")}</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>
           </Table.Thead>
@@ -343,7 +349,7 @@ const LogIndexPage = () => {
         </Table>
         <Space h="sm" />
         <Center>
-          <Text>No logs recorded yet.</Text>
+          <Text>{t("ui.logs.saved-count", { count: 0 })}</Text>
         </Center>
         <Divider my="sm" />
         <Pagination total={1} disabled />
@@ -354,11 +360,11 @@ const LogIndexPage = () => {
       <Box>
         <Group>
           <Box style={{ display: "flex" }}>
-            <Text>{searchResult.logCount} logs saved</Text>
+            <Text>{t("ui.logs.saved-count", { count: searchResult.logCount })}</Text>
           </Box>
           <Box style={{ display: "flex", flexDirection: "row-reverse", flex: 1 }}>
             <Button size="xs" variant="default" onClick={deleteSelectedLogs} disabled={selectedLogIds.length === 0}>
-              Delete Selected
+              {t("ui.logs.delete-selected-btn")}
             </Button>
           </Box>
         </Group>
@@ -366,8 +372,8 @@ const LogIndexPage = () => {
           <Table.Thead>
             <Table.Tr>
               <Table.Th />
-              <Table.Th>Date</Table.Th>
-              <Table.Th>Name</Table.Th>
+              <Table.Th>{t("ui.logs.date")}</Table.Th>
+              <Table.Th>{t("ui.logs.name")}</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>
           </Table.Thead>
@@ -381,25 +387,19 @@ const LogIndexPage = () => {
 };
 
 const SettingsPage = () => {
-  return (
-    <Box>
-      <Fieldset legend="Meter Settings">
-        <Stack>
-          <Text size="sm">Nothing here yet.</Text>
-        </Stack>
-      </Fieldset>
-    </Box>
-  );
+  const { t, i18n } = useTranslation();
+  const languages = Object.keys(SUPPORTED_LANGUAGES).map((key) => ({ value: key, label: SUPPORTED_LANGUAGES[key] }));
 
-  // @TODO(false): Implement user config settings.
+  const handleLanguageChange = (language: string | null) => {
+    i18n.changeLanguage(language as string);
+  };
+
   return (
     <Box>
-      <Fieldset legend="Meter Settings">
+      <Fieldset legend={t("ui.meter-settings")}>
         <Stack>
-          <Text size="sm">Background Opacity</Text>
-          <Slider defaultValue={0} label={(value) => `${value}%`} />
-          <Text size="sm">Copy-to-clipboard Text Format</Text>
-          <Select data={["Normal", "Compact"]} defaultValue="Normal" allowDeselect={false} />
+          <Text size="sm">{t("ui.language")}</Text>
+          <Select data={languages} defaultValue={i18n.language} allowDeselect={false} onChange={handleLanguageChange} />
         </Stack>
       </Fieldset>
     </Box>

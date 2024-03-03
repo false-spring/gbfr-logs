@@ -10,12 +10,16 @@ const resources = {
   "zh-CN": zhCN,
 };
 
+export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
+  en: "English",
+  "zh-CN": "简体中文",
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,
