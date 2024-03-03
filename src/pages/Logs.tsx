@@ -170,7 +170,13 @@ const LogViewPage = () => {
     for (const playerIndex in dpsChart) {
       const player = players.find((p) => p.index === Number(playerIndex));
       const playerName = translatedPlayerName(player as ComputedPlayerData);
-      datapoint[playerName] = Math.round(dpsChart[playerIndex][i] / DPS_INTERVAL);
+
+      const lastFiveValues = dpsChart[playerIndex].slice(i - 5, i);
+      const totalLastFiveValues = lastFiveValues.reduce((a, b) => a + b, 0);
+      const currentValue = dpsChart[playerIndex][i] || 0;
+      const averageValue = (totalLastFiveValues + currentValue) / (lastFiveValues.length + 1);
+
+      datapoint[playerName] = Math.round(averageValue / DPS_INTERVAL);
     }
 
     data.push(datapoint);
@@ -203,22 +209,21 @@ const LogViewPage = () => {
           </Text>
         </Box>
         <MeterTable encounterState={encounter} />
-        <Box>
-          <Text size="sm">DPS ({DPS_INTERVAL}s intervals)</Text>
-          <LineChart
-            h={400}
-            data={data}
-            dataKey="timestamp"
-            series={labels}
-            valueFormatter={(value) => {
-              const [num, suffix] = humanizeNumbers(value);
-              return `${num}${suffix}`;
-            }}
-            tooltipProps={{
-              content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-            }}
-          />
-        </Box>
+        <Text size="sm">Damage Per Second</Text>
+        <LineChart
+          h={400}
+          data={data}
+          dataKey="timestamp"
+          withDots={false}
+          series={labels}
+          valueFormatter={(value) => {
+            const [num, suffix] = humanizeNumbers(value);
+            return `${num}${suffix}`;
+          }}
+          tooltipProps={{
+            content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
+          }}
+        />
       </Stack>
     </Box>
   );
