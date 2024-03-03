@@ -7,6 +7,7 @@ use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{EncounterState, Parser};
+use rusqlite::params_from_iter;
 use serde::Serialize;
 use tauri::{AppHandle, Manager};
 
@@ -19,6 +20,7 @@ struct SearchResult {
     logs: Vec<LogEntry>,
     page: u32,
     page_count: u32,
+    log_count: u32,
 }
 
 #[derive(Debug, Serialize)]
@@ -68,6 +70,7 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
         logs,
         page,
         page_count,
+        log_count,
     })
 }
 
@@ -118,6 +121,22 @@ fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> {
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
     })
+}
+
+#[tauri::command]
+fn delete_logs(ids: Vec<u64>) -> Result<(), String> {
+    let conn = db::connect_to_db().map_err(|e| e.to_string())?;
+
+    let id_params: Vec<String> = ids.iter().map(|_| "?".to_string()).collect();
+    let param = id_params.join(",");
+
+    let sql = format!("DELETE FROM logs WHERE id IN ({})", param);
+    let mut statement = conn.prepare_cached(&sql).map_err(|e| e.to_string())?;
+    statement
+        .execute(params_from_iter(ids))
+        .map_err(|e| e.to_string())?;
+
+    Ok(())
 }
 
 #[tauri::command]
@@ -198,7 +217,8 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             load_parse_log_from_file,
             fetch_encounter_state,
-            fetch_logs
+            fetch_logs,
+            delete_logs
         ])
         .setup(|app| {
             // Perform the game hook check in a separate thread.

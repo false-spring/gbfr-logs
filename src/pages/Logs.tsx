@@ -19,6 +19,7 @@ import {
   Center,
   NumberFormatter,
   Paper,
+  Checkbox,
 } from "@mantine/core";
 import { LineChart } from "@mantine/charts";
 import { useDisclosure } from "@mantine/hooks";
@@ -46,6 +47,7 @@ interface SearchResult {
   logs: Log[];
   page: number;
   pageCount: number;
+  logCount: number;
 }
 
 interface Log {
@@ -58,15 +60,33 @@ interface Log {
 interface LogIndexState {
   currentPage: number;
   searchResult: SearchResult;
+  selectedLogIds: number[];
   setSearchResult: (result: SearchResult) => void;
   setCurrentPage: (page: number) => void;
+  setSelectedLogIds: (ids: number[]) => void;
+  deleteSelectedLogs: () => void;
 }
 
-const useLogIndexStore = create<LogIndexState>((set) => ({
+const useLogIndexStore = create<LogIndexState>((set, get) => ({
   currentPage: 1,
-  searchResult: { logs: [], page: 1, pageCount: 0 },
+  searchResult: { logs: [], page: 1, pageCount: 0, logCount: 0 },
+  selectedLogIds: [],
   setCurrentPage: (page: number) => set({ currentPage: page }),
   setSearchResult: (result) => set({ searchResult: result }),
+  setSelectedLogIds: (ids) => set({ selectedLogIds: ids }),
+  deleteSelectedLogs: async () => {
+    const { setSearchResult, selectedLogIds: ids } = get();
+
+    try {
+      await invoke("delete_logs", { ids });
+      set({ currentPage: 1, selectedLogIds: [], searchResult: { logs: [], page: 1, pageCount: 0, logCount: 0 } });
+      toast.success("Logs deleted successfully.");
+      const result = await invoke("fetch_logs");
+      setSearchResult(result as SearchResult);
+    } catch (e) {
+      toast.error(`Failed to delete logs: ${e}`);
+    }
+  },
 }));
 
 interface EncounterStore {
@@ -231,10 +251,23 @@ const LogViewPage = () => {
 };
 
 const LogIndexPage = () => {
-  const currentPage = useLogIndexStore((state) => state.currentPage);
-  const setCurrentPage = useLogIndexStore((state) => state.setCurrentPage);
-  const searchResult = useLogIndexStore((state) => state.searchResult);
-  const setSearchResult = useLogIndexStore((state) => state.setSearchResult);
+  const {
+    currentPage,
+    setCurrentPage,
+    searchResult,
+    setSearchResult,
+    selectedLogIds,
+    setSelectedLogIds,
+    deleteSelectedLogs,
+  } = useLogIndexStore((state) => ({
+    currentPage: state.currentPage,
+    setCurrentPage: state.setCurrentPage,
+    searchResult: state.searchResult,
+    setSearchResult: state.setSearchResult,
+    selectedLogIds: state.selectedLogIds,
+    setSelectedLogIds: state.setSelectedLogIds,
+    deleteSelectedLogs: state.deleteSelectedLogs,
+  }));
 
   useEffect(() => {
     invoke("fetch_logs").then((result) => {
@@ -269,6 +302,17 @@ const LogIndexPage = () => {
 
     return (
       <Table.Tr key={log.id}>
+        <Table.Td>
+          <Checkbox
+            aria-label="Select row"
+            checked={selectedLogIds.includes(log.id)}
+            onChange={(event) =>
+              setSelectedLogIds(
+                event.currentTarget.checked ? [...selectedLogIds, log.id] : selectedLogIds.filter((id) => id !== log.id)
+              )
+            }
+          />
+        </Table.Td>
         <Table.Td>
           <Text size="sm">{epochToLocalTime(log.time)}</Text>
         </Table.Td>
@@ -308,9 +352,20 @@ const LogIndexPage = () => {
   } else {
     return (
       <Box>
+        <Group>
+          <Box style={{ display: "flex" }}>
+            <Text>{searchResult.logCount} logs saved</Text>
+          </Box>
+          <Box style={{ display: "flex", flexDirection: "row-reverse", flex: 1 }}>
+            <Button size="xs" variant="default" onClick={deleteSelectedLogs} disabled={selectedLogIds.length === 0}>
+              Delete Selected
+            </Button>
+          </Box>
+        </Group>
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
+              <Table.Th />
               <Table.Th>Date</Table.Th>
               <Table.Th>Name</Table.Th>
               <Table.Th></Table.Th>
