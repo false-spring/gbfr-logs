@@ -24,6 +24,8 @@ tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-works
 tokio = { version = "1.0", features = ["full"] }
 num_enum = "0.7.2"
 chrono = "0.4"
+rusqlite = { version = "0.30.0", features = ["bundled"] }
+rusqlite_migration = "1.1.0"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

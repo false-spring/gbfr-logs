@@ -61,7 +61,9 @@ export type PlayerData = {
 
 export type ComputedPlayerData = PlayerData & {
   /** Damage contribution as a percentage of the total */
-  percentage: number;
+  percentage?: number;
+  /** Actual party index */
+  partyIndex: number;
 };
 
 export type EncounterStatus = "Waiting" | "InProgress" | "Stopped";

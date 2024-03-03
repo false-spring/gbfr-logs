@@ -1,7 +1,33 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
-import { ComputedPlayerData, EncounterState, CharacterType, ComputedSkillState } from "./types";
+import { ComputedPlayerData, EncounterState, CharacterType, ComputedSkillState, PlayerData } from "./types";
 import { t } from "i18next";
+
+export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedPlayerData[] => {
+  const players = Object.keys(party).map((key) => {
+    return party[key];
+  });
+
+  players.sort((a, b) => a.index - b.index);
+
+  return players.map((player, i) => ({
+    partyIndex: i,
+    ...player,
+  }));
+};
+
+export const epochToLocalTime = (epoch: number): string => {
+  const utc = new Date(epoch);
+
+  return new Intl.DateTimeFormat("default", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  }).format(utc);
+};
 
 export const getSkillName = (characterType: CharacterType, skill: ComputedSkillState) => {
   switch (true) {
@@ -85,11 +111,13 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
+export const translatedPlayerName = (player: ComputedPlayerData) =>
+  t(`characters.${player.characterType}`) + " " + `[${player.partyIndex + 1}]`;
+
 export const exportEncounterToClipboard = (encounterState: EncounterState) => {
   const playerHeader = `Name,DMG,DPS,%`;
-  const players: Array<ComputedPlayerData> = Object.keys(encounterState.party).map((key) => {
-    const playerData = encounterState.party[key];
-
+  const orderedPlayers = formatInPartyOrder(encounterState.party);
+  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
     return {
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
       ...playerData,
@@ -111,7 +139,7 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
       computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
 
       const playerLine = [
-        t(`characters.${player.characterType}`) + "#" + player.index,
+        translatedPlayerName(player),
         player.totalDamage,
         Math.round(player.dps),
         player.percentage,
@@ -144,3 +172,5 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
     toast.success("Copied text to clipboard!");
   });
 };
+
+export const PLAYER_COLORS = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];

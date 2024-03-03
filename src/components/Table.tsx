@@ -1,12 +1,10 @@
 import { ComputedPlayerData, EncounterState } from "../types";
+import { PLAYER_COLORS, formatInPartyOrder } from "../utils";
 import { PlayerRow } from "./PlayerRow";
 
 export const Table = ({ encounterState }: { encounterState: EncounterState }) => {
-  const colors = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
-
-  const players: Array<ComputedPlayerData> = Object.keys(encounterState.party).map((key) => {
-    const playerData = encounterState.party[key];
-
+  const partyOrderPlayers = formatInPartyOrder(encounterState.party);
+  const players: Array<ComputedPlayerData> = partyOrderPlayers.map((playerData) => {
     return {
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
       ...playerData,
@@ -27,8 +25,8 @@ export const Table = ({ encounterState }: { encounterState: EncounterState }) =>
         </tr>
       </thead>
       <tbody>
-        {players.map((player, index) => (
-          <PlayerRow key={index} player={player} color={colors[index]} />
+        {players.map((player) => (
+          <PlayerRow key={player.index} player={player} color={PLAYER_COLORS[player.partyIndex]} />
         ))}
       </tbody>
     </table>

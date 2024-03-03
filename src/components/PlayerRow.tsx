@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { CharacterType, ComputedPlayerData, ComputedSkillState } from "../types";
-import { humanizeNumbers, getSkillName } from "../utils";
+import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
@@ -95,7 +94,6 @@ const SkillBreakdown = ({ player, color }: Props) => {
 };
 
 export const PlayerRow = ({ player, color }: Props) => {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
@@ -104,10 +102,7 @@ export const PlayerRow = ({ player, color }: Props) => {
   return (
     <Fragment>
       <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
-        <td className="text-left row-data">
-          {t(`characters.${player.characterType}`)}
-          <span className="unit font-sm">#{player.index}</span>
-        </td>
+        <td className="text-left row-data">{translatedPlayerName(player)}</td>
         <td className="text-center row-data">
           {totalDamage}
           <span className="unit font-sm">{totalDamageUnit}</span>
@@ -117,7 +112,7 @@ export const PlayerRow = ({ player, color }: Props) => {
           <span className="unit font-sm">{dpsUnit}</span>
         </td>
         <td className="text-center row-data">
-          {player.percentage.toFixed(2)}
+          {player.percentage?.toFixed(2)}
           <span className="unit font-sm">%</span>
         </td>
         <td className="text-center row-button">{isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}</td>

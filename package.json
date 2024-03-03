@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@fontsource-variable/noto-sans": "^5.0.1",
+    "@mantine/charts": "^7.6.1",
     "@mantine/core": "^7.6.1",
     "@mantine/dropzone": "^7.6.1",
     "@mantine/hooks": "^7.6.1",
