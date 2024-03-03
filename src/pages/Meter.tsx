@@ -92,6 +92,7 @@ const Meter = () => {
             borderRadius: "10px",
             backgroundColor: "#252525",
             color: "#fff",
+            fontSize: "14px",
           },
         }}
       />

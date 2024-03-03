@@ -72,7 +72,7 @@ export const exportScreenshotToClipboard = () => {
   const app = document.querySelector(".app") as HTMLElement;
 
   html2canvas(app, {
-    backgroundColor: "transparent",
+    backgroundColor: "#252525",
   }).then((canvas) => {
     canvas.toBlob((blob) => {
       if (blob) {

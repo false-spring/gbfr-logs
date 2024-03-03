@@ -30,7 +30,7 @@
     },
     "windows": [
       {
-        "title": "gbfr-logs (Meter)",
+        "title": "Meter",
         "label": "main",
         "fullscreen": false,
         "width": 500,
@@ -43,16 +43,15 @@
         "alwaysOnTop": true
       },
       {
-        "title": "gbfr-logs (Logs)",
+        "title": "Logs",
         "label": "logs",
         "url": "/logs",
         "fullscreen": false,
-        "width": 500,
-        "height": 350,
-        "resizable": true,
-        "decorations": true,
-        "minWidth": 450,
-        "minHeight": 120
+        "width": 800,
+        "height": 600,
+        "resizable": false,
+        "closable": false,
+        "decorations": true
       }
     ],
     "security": {
