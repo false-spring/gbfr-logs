@@ -202,7 +202,7 @@ const LogViewPage = () => {
       <Divider my="sm" />
       <Stack>
         <Box>
-          <Text size="sm">Date: {epochToLocalTime(encounter.endTime)}</Text>
+          <Text size="sm">Date: {epochToLocalTime(encounter.startTime)}</Text>
           <Text size="sm">Duration: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}</Text>
           <Text size="sm">
             Total Damage: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
