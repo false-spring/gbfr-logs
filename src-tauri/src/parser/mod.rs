@@ -1,20 +1,17 @@
-use std::{
-    collections::HashMap,
-    fs::File,
-    io::{BufReader, BufWriter},
-    path::PathBuf,
-};
+use std::{collections::HashMap, fs::File, io::BufReader};
 
-use chrono::Utc;
+use anyhow::Result;
+use chrono::prelude::*;
 use protocol::DamageEvent;
+use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::Window;
 
-use self::constants::CharacterType;
+use self::constants::{CharacterType, EnemyType};
 
-mod constants;
+pub mod constants;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct SkillState {
     action_type: protocol::ActionType,
@@ -49,10 +46,10 @@ impl SkillState {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerState {
-    index: u32,
+    pub index: u32,
     character_type: CharacterType,
     total_damage: u64,
     dps: f64,
@@ -61,6 +58,13 @@ pub struct PlayerState {
 }
 
 impl PlayerState {
+    fn reset(&mut self) {
+        self.total_damage = 0;
+        self.dps = 0.0;
+        self.last_damage_time = 0;
+        self.skills.clear();
+    }
+
     fn update_from_damage_event(&mut self, event: &DamageEvent, start_time: i64, now: i64) {
         self.total_damage += event.damage as u64;
         self.last_damage_time = now;
@@ -82,7 +86,7 @@ impl PlayerState {
 
             // If the skill is already being tracked, update it.
             if skill.action_type == event.action_id
-                && skill.child_character_type == CharacterType::from(event.source.actor_type)
+                && skill.child_character_type == CharacterType::from_hash(event.source.actor_type)
             {
                 skill.update_from_damage_event(event);
                 return;
@@ -92,7 +96,7 @@ impl PlayerState {
         // Otherwise, create a new skill and track it.
         let mut skill = SkillState::new(
             event.action_id.clone(),
-            CharacterType::from(event.source.actor_type),
+            CharacterType::from_hash(event.source.actor_type),
         );
 
         skill.update_from_damage_event(event);
@@ -134,58 +138,79 @@ impl EncounterState {
     fn has_damage(&self) -> bool {
         self.total_damage > 0
     }
+
+    fn process_damage_event(&mut self, now: i64, event: &DamageEvent) {
+        self.total_damage += event.damage as u64;
+        self.dps = self.total_damage as f64 / ((now - self.start_time) as f64 / 1000.0);
+
+        // Add actor to party if not already present.
+        let source_player = self
+            .party
+            .entry(event.source.parent_index)
+            .or_insert(PlayerState {
+                index: event.source.parent_index,
+                character_type: CharacterType::from_hash(event.source.parent_actor_type),
+                total_damage: 0,
+                dps: 0.0,
+                last_damage_time: now,
+                skills: Vec::new(),
+            });
+
+        // Update player stats from damage event.
+        source_player.update_from_damage_event(&event, self.start_time, now);
+    }
 }
 
 #[derive(Default, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Parser {
-    /// Whether the parser is currently live and listening for damage events.
-    is_live: bool,
     /// The current state of the encounter.
-    encounter_state: EncounterState,
+    pub encounter_state: EncounterState,
+
     /// A log of all damage events that have occurred during the encounter.
-    damage_event_log: Vec<DamageEvent>,
+    pub damage_event_log: Vec<(i64, DamageEvent)>,
 
     #[serde(skip)]
     window_handle: Option<Window>,
+
+    #[serde(skip)]
+    db: Option<Connection>,
 }
 
 impl Parser {
-    pub fn new(window_handle: Option<Window>) -> Self {
+    pub fn new(window_handle: Option<Window>, db: Connection) -> Self {
         Self {
-            is_live: true,
             window_handle,
+            db: Some(db),
             ..Default::default()
         }
     }
 
     pub fn reset(&mut self) {
-        // If there was damage, then save this encounter as a new log.
-        // Temporarily disabled.
-        #[cfg(feature = "log-export")]
-        if self.encounter_state.has_damage() {
-            match self.save_parse_log_to_file() {
-                Ok(file_name) => {
-                    if let Some(window) = &self.window_handle {
-                        let _ = window.emit("encounter-saved", file_name);
-                    }
-                }
-                Err(e) => {
-                    if let Some(window) = &self.window_handle {
-                        let _ = window.emit("encounter-saved-error", e.to_string());
-                    }
-                }
-            }
-        }
-
         self.encounter_state.reset_stats();
         self.damage_event_log.clear();
     }
 
     pub fn on_area_enter_event(&mut self) {
+        // If there was damage, then save this encounter as a new log.
         if self.encounter_state.status == EncounterStatus::InProgress {
             // If the encounter was is in progress, then stop it as we've left the instance.
             self.encounter_state.status = EncounterStatus::Stopped;
+
+            if self.encounter_state.has_damage() {
+                match self.save_parse_to_db() {
+                    Ok(file_name) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved", file_name);
+                        }
+                    }
+                    Err(e) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved-error", e.to_string());
+                        }
+                    }
+                }
+            }
         } else {
             // Otherwise, we're waiting for the encounter to start.
             self.encounter_state.status = EncounterStatus::Waiting;
@@ -196,24 +221,33 @@ impl Parser {
         }
     }
 
+    // Re-analyzes the encounter with the given targets.
+    pub fn reparse(&mut self, targets: &Vec<EnemyType>) {
+        self.encounter_state.total_damage = 0;
+        self.encounter_state.dps = 0.0;
+
+        for player in self.encounter_state.party.values_mut() {
+            player.reset();
+        }
+
+        let event_log = self.damage_event_log.iter_mut();
+
+        for (time, event) in event_log {
+            // If the target list is empty, then we're not filtering by target.
+            // Otherwise, we only process damage events that match the target list.
+            let target_type = EnemyType::from_hash(event.target.parent_actor_type);
+
+            if targets.is_empty() || targets.contains(&target_type) {
+                self.encounter_state.process_damage_event(*time, &event);
+            }
+        }
+    }
+
+    // Called when a damage event is received from the game.
     pub fn on_damage_event(&mut self, event: DamageEvent) {
         let now = Utc::now().timestamp_millis();
 
-        let character_type = CharacterType::from(event.source.parent_actor_type);
-
-        // Eugen's Grenade should be ignored.
-        if event.target.actor_type == 0x022a350f {
-            return;
-        }
-
-        // @TODO(false): Sometimes monsters can damage themselves, we should track those.
-        // For now, I'm ignoring them from the damage calculation.
-        if matches!(character_type, CharacterType::Unknown(_)) {
-            return;
-        }
-
-        // @TODO(false): Do heals come through as negative damage?
-        if event.damage <= 0 {
+        if Self::should_ignore_damage_event(&event) {
             return;
         }
 
@@ -226,52 +260,75 @@ impl Parser {
             self.encounter_state.status = EncounterStatus::InProgress;
         }
 
-        self.damage_event_log.push(event.clone());
-
+        self.damage_event_log.push((now, event.clone()));
         self.encounter_state.end_time = now;
-        self.encounter_state.total_damage += event.damage as u64;
-        self.encounter_state.dps = self.encounter_state.total_damage as f64
-            / ((now - self.encounter_state.start_time) as f64 / 1000.0);
 
-        // Add actor to party if not already present.
-        let source_player = self
-            .encounter_state
-            .party
-            .entry(event.source.parent_index)
-            .or_insert(PlayerState {
-                index: event.source.parent_index,
-                character_type: CharacterType::from(event.source.parent_actor_type),
-                total_damage: 0,
-                dps: 0.0,
-                last_damage_time: now,
-                skills: Vec::new(),
-            });
-
-        // Update player stats from damage event.
-        source_player.update_from_damage_event(&event, self.encounter_state.start_time, now);
+        self.encounter_state.process_damage_event(now, &event);
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.encounter_state);
         }
     }
 
-    fn save_parse_log_to_file(&self) -> Result<String, anyhow::Error> {
+    // Checks if the damage event should be ignored for the purposes of parsing.
+    fn should_ignore_damage_event(event: &DamageEvent) -> bool {
+        let character_type = CharacterType::from_hash(event.source.parent_actor_type);
+
+        // @TODO(false): Do heals come through as negative damage?
+        if event.damage <= 0 {
+            return true;
+        }
+
+        // Eugen's Grenade should be ignored.
+        if event.target.actor_type == 0x022a350f {
+            return true;
+        }
+
+        // @TODO(false): Sometimes monsters can damage themselves, we should track those.
+        // For now, I'm ignoring them from the damage calculation.
+        if matches!(character_type, CharacterType::Unknown(_)) {
+            return true;
+        }
+
+        false
+    }
+
+    fn save_parse_to_db(&mut self) -> Result<()> {
+        let duration_in_millis = self.encounter_state.end_time - self.encounter_state.start_time;
         let start_datetime =
             chrono::DateTime::from_timestamp_millis(self.encounter_state.start_time)
                 .ok_or(anyhow::anyhow!("Failed to convert start time to DateTime"))?;
 
-        let mut folder_path = PathBuf::new();
-        folder_path.push("logs");
-        folder_path.push(start_datetime.format("%Y%m%d").to_string());
-        std::fs::create_dir_all(folder_path.as_path())?;
-        let file_name = format!("encounter-{}.gbfr", start_datetime.format("%Y%m%d-%H%M%S"));
-        folder_path.push(file_name.clone());
+        let mut party_members = self
+            .encounter_state
+            .party
+            .clone()
+            .into_values()
+            .collect::<Vec<PlayerState>>();
 
-        let file = File::create(folder_path)?;
-        let writer = BufWriter::new(file);
-        protocol::bincode::serialize_into(writer, &self)?;
+        party_members.sort_by(|a, b| a.index.partial_cmp(&b.index).unwrap());
 
-        Ok(file_name.to_string())
+        let name = party_members
+            .into_iter()
+            .map(|p| p.character_type.to_string())
+            .collect::<Vec<String>>()
+            .join(", ");
+
+        let serialized_self = protocol::bincode::serialize(&self)?;
+
+        if let Some(conn) = &mut self.db {
+            conn.execute(
+                "INSERT INTO logs (name, time, duration, data) VALUES (?, ?, ?, ?)",
+                params![
+                    name,
+                    start_datetime.timestamp_millis(),
+                    duration_in_millis,
+                    &serialized_self,
+                ],
+            )?;
+        }
+
+        Ok(())
     }
 
     pub fn load_parse_log_from_file(file_name: &str) -> Result<Self, anyhow::Error> {

@@ -1,6 +1,6 @@
 [package]
 name = "gbfr-logs"
-version = "0.0.3"
+version = "0.0.4"
 description = "GBFR Logs"
 authors = ["you"]
 edition = "2021"
@@ -20,9 +20,13 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tauri = { version = "1.5", features = [ "system-tray", "window-show", "window-minimize", "window-maximize", "window-start-dragging", "window-unmaximize", "window-hide", "window-unminimize", "window-close", "shell-open"] }
 tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 tokio = { version = "1.0", features = ["full"] }
 num_enum = "0.7.2"
 chrono = "0.4"
+rusqlite = { version = "0.30.0", features = ["bundled"] }
+rusqlite_migration = "1.1.0"
+enum-display = "0.1.4"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

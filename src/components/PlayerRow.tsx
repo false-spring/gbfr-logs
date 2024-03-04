@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { CharacterType, ComputedPlayerData, ComputedSkillState } from "./types";
-import { humanizeNumbers, getSkillName } from "./utils";
+import { CharacterType, ComputedPlayerData, ComputedSkillState } from "../types";
+import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
@@ -21,15 +20,11 @@ const SkillRow = ({
   const [totalDamage, totalDamageUnit] = humanizeNumbers(skill.totalDamage);
   const [minDmg, minDmgUnit] = humanizeNumbers(skill.minDamage || 0);
   const [maxDmg, maxDmgUnit] = humanizeNumbers(skill.maxDamage || 0);
-  const [averageDmg, averageDmgUnit] = humanizeNumbers(
-    skill.hits === 0 ? 0 : skill.totalDamage / skill.hits
-  );
+  const [averageDmg, averageDmgUnit] = humanizeNumbers(skill.hits === 0 ? 0 : skill.totalDamage / skill.hits);
 
   return (
     <tr className="skill-row">
-      <td className="text-left row-data">
-        {getSkillName(characterType, skill)}
-      </td>
+      <td className="text-left row-data">{getSkillName(characterType, skill)}</td>
       <td className="text-center row-data">{skill.hits}</td>
       <td className="text-center row-data">
         {totalDamage}
@@ -51,19 +46,13 @@ const SkillRow = ({
         {skill.percentage.toFixed(2)}
         <span className="unit font-sm">%</span>
       </td>
-      <div
-        className="damage-bar"
-        style={{ backgroundColor: color, width: `${skill.percentage}%` }}
-      />
+      <div className="damage-bar" style={{ backgroundColor: color, width: `${skill.percentage}%` }} />
     </tr>
   );
 };
 
 const SkillBreakdown = ({ player, color }: Props) => {
-  const totalDamage = player.skills.reduce(
-    (acc, skill) => acc + skill.totalDamage,
-    0
-  );
+  const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
   const computedSkills = player.skills.map((skill) => {
     return {
       percentage: (skill.totalDamage / totalDamage) * 100,
@@ -91,10 +80,7 @@ const SkillBreakdown = ({ player, color }: Props) => {
           <tbody className="transparent-bg">
             {computedSkills.map((skill) => (
               <SkillRow
-                key={`${skill.childCharacterType}-${getSkillName(
-                  player.characterType,
-                  skill
-                )}`}
+                key={`${skill.childCharacterType}-${getSkillName(player.characterType, skill)}`}
                 characterType={player.characterType}
                 skill={skill}
                 color={color}
@@ -108,7 +94,6 @@ const SkillBreakdown = ({ player, color }: Props) => {
 };
 
 export const PlayerRow = ({ player, color }: Props) => {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
@@ -116,14 +101,8 @@ export const PlayerRow = ({ player, color }: Props) => {
 
   return (
     <Fragment>
-      <tr
-        className={`player-row ${isOpen ? "transparent-bg" : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <td className="text-left row-data">
-          {t(`characters.${player.characterType}`)}
-          <span className="unit font-sm">#{player.index}</span>
-        </td>
+      <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
+        <td className="text-left row-data">{translatedPlayerName(player)}</td>
         <td className="text-center row-data">
           {totalDamage}
           <span className="unit font-sm">{totalDamageUnit}</span>
@@ -133,16 +112,11 @@ export const PlayerRow = ({ player, color }: Props) => {
           <span className="unit font-sm">{dpsUnit}</span>
         </td>
         <td className="text-center row-data">
-          {player.percentage.toFixed(2)}
+          {player.percentage?.toFixed(2)}
           <span className="unit font-sm">%</span>
         </td>
-        <td className="text-center row-button">
-          {isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}
-        </td>
-        <div
-          className="damage-bar"
-          style={{ backgroundColor: color, width: `${player.percentage}%` }}
-        />
+        <td className="text-center row-button">{isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}</td>
+        <div className="damage-bar" style={{ backgroundColor: color, width: `${player.percentage}%` }} />
       </tr>
       {isOpen && <SkillBreakdown player={player} color={color} />}
     </Fragment>

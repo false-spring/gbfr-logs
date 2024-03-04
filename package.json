@@ -7,25 +7,42 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "eslint ./src --fix",
+    "format": "prettier --write --ignore-unknown --ext js,jsx,ts,tsx src ./src",
     "tauri": "tauri"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans": "^5.0.1",
+    "@mantine/charts": "^7.6.1",
+    "@mantine/core": "^7.6.1",
+    "@mantine/dropzone": "^7.6.1",
+    "@mantine/hooks": "^7.6.1",
     "@phosphor-icons/react": "^2.0.14",
     "@tauri-apps/api": "^1.5.2",
     "html2canvas": "^1.4.1",
     "i18next": "^23.10.0",
+    "i18next-browser-languagedetector": "^7.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.5.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prettier": "3.2.5",
     "typescript": "^5.0.2",
     "vite": "^5.0.0"
   }

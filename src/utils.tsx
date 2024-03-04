@@ -1,39 +1,52 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
-import {
-  ComputedPlayerData,
-  EncounterState,
-  CharacterType,
-  ComputedSkillState,
-} from "./types";
+import { ComputedPlayerData, EncounterState, CharacterType, ComputedSkillState, PlayerData } from "./types";
 import { t } from "i18next";
 
-export const getSkillName = (
-  characterType: CharacterType,
-  skill: ComputedSkillState
-) => {
+export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedPlayerData[] => {
+  const players = Object.keys(party).map((key) => {
+    return party[key];
+  });
+
+  players.sort((a, b) => a.index - b.index);
+
+  return players.map((player, i) => ({
+    partyIndex: i,
+    ...player,
+  }));
+};
+
+export const epochToLocalTime = (epoch: number): string => {
+  const utc = new Date(epoch);
+
+  return new Intl.DateTimeFormat("default", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  }).format(utc);
+};
+
+export const getSkillName = (characterType: CharacterType, skill: ComputedSkillState) => {
   switch (true) {
     case skill.actionType === "LinkAttack":
-      return t([
-        `skills.${characterType}.link-attack`,
-        "skills.default.link-attack",
-      ]);
+      return t([`skills.${characterType}.link-attack`, "skills.default.link-attack"]);
     case skill.actionType === "SBA":
-      return t([
-        `skills.${characterType}.skybound-arts`,
-        "skills.default.skybound-arts",
-      ]);
-    case skill.actionType.hasOwnProperty("SupplementaryDamage"):
+      return t([`skills.${characterType}.skybound-arts`, "skills.default.skybound-arts"]);
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "SupplementaryDamage"):
       return t(["skills.default.supplementary-damage"]);
-    case skill.actionType.hasOwnProperty("DamageOverTime"):
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "DamageOverTime"):
       return t([
         `skills.${skill.childCharacterType}.damage-over-time`,
         `skills.${characterType}.damage-over-time`,
         "skills.default.damage-over-time",
       ]);
-    case skill.actionType.hasOwnProperty("Normal"):
-      let actionType = skill.actionType as { Normal: number };
-      let skillID = actionType["Normal"];
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "Normal"): {
+      const actionType = skill.actionType as { Normal: number };
+      const skillID = actionType["Normal"];
+
       return t(
         [
           `skills.${skill.childCharacterType}.${skillID}`,
@@ -43,6 +56,7 @@ export const getSkillName = (
         ],
         { id: skillID }
       );
+    }
     default:
       return t("ui.unknown");
   }
@@ -77,17 +91,14 @@ export const humanizeNumbers = (n: number) => {
 
 export const millisecondsToElapsedFormat = (ms: number): string => {
   const date = new Date(Date.UTC(0, 0, 0, 0, 0, 0, ms));
-  return `${date.getUTCMinutes().toString().padStart(2, "0")}:${date
-    .getUTCSeconds()
-    .toString()
-    .padStart(2, "0")}`;
+  return `${date.getUTCMinutes().toString().padStart(2, "0")}:${date.getUTCSeconds().toString().padStart(2, "0")}`;
 };
 
 export const exportScreenshotToClipboard = () => {
   const app = document.querySelector(".app") as HTMLElement;
 
   html2canvas(app, {
-    backgroundColor: "transparent",
+    backgroundColor: "#252525",
   }).then((canvas) => {
     canvas.toBlob((blob) => {
       if (blob) {
@@ -100,13 +111,13 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
-export const exportEncounterToClipboard = (encounterState: EncounterState) => {
-  let playerHeader = `Name,DMG,DPS,%`;
-  let players: Array<ComputedPlayerData> = Object.keys(
-    encounterState.party
-  ).map((key) => {
-    let playerData = encounterState.party[key];
+export const translatedPlayerName = (player: ComputedPlayerData) =>
+  t(`characters.${player.characterType}`) + " " + `[${player.partyIndex + 1}]`;
 
+export const exportEncounterToClipboard = (encounterState: EncounterState) => {
+  const playerHeader = `Name,DMG,DPS,%`;
+  const orderedPlayers = formatInPartyOrder(encounterState.party);
+  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
     return {
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
       ...playerData,
@@ -115,12 +126,9 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
 
   players.sort((a, b) => b.totalDamage - a.totalDamage);
 
-  let playerData = players
+  const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce(
-        (acc, skill) => acc + skill.totalDamage,
-        0
-      );
+      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
       const computedSkills = player.skills.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
@@ -130,28 +138,19 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
 
       computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
 
-      let playerLine = [
-        t(`characters.${player.characterType}`) + "#" + player.index,
+      const playerLine = [
+        translatedPlayerName(player),
         player.totalDamage,
         Math.round(player.dps),
         player.percentage,
       ].join(",");
 
-      let skillHeader = [
-        "Skill",
-        "Hits",
-        "Total",
-        "Min",
-        "Max",
-        "Avg",
-        "%",
-      ].join(",");
+      const skillHeader = ["Skill", "Hits", "Total", "Min", "Max", "Avg", "%"].join(",");
 
-      let skillLine = computedSkills
+      const skillLine = computedSkills
         .map((skill) => {
-          let skillName = getSkillName(player.characterType, skill);
-          let averageHit =
-            skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
+          const skillName = getSkillName(player.characterType, skill);
+          const averageHit = skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
 
           return [
             skillName,
@@ -173,3 +172,5 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
     toast.success("Copied text to clipboard!");
   });
 };
+
+export const PLAYER_COLORS = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];

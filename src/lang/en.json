@@ -4,7 +4,22 @@
       "successful-save": "Saved encounter to logs",
       "unsuccessful-save": "Failed to save encounter to logs: {{error}}",
       "on-area-enter": "Entered area..",
-      "unknown": "Unknown"
+      "unknown": "Unknown",
+      "language": "Language",
+      "meter-settings": "Meter Settings",
+      "settings": "Settings",
+      "back-btn": "Back",
+      "logs": {
+        "saved-count_zero": "No logs saved",
+        "saved-count_one": "{{count}} log saved",
+        "saved-count_other": "{{count}} logs saved",
+        "delete-selected-btn": "Delete Selected",
+        "date": "Date",
+        "name": "Name",
+        "duration": "Duration",
+        "total-damage": "Total Damage",
+        "damage-per-second": "Damage Per Second"
+      }
     },
     "characters": {
       "Pl0000": "Gran",
@@ -726,7 +741,17 @@
       "Em7600": "Bahamut Versa",
       "Em7603": "Bahamut Core",
       "Em7610": "Bahamut Versa Omega",
-      "Unknown": "Unknown"
+      "unknown-type": "Unknown 0x{{id}}",
+      "unknown": {
+        "df348320": "Proto Bahamut",
+        "2c800d3a": "Skotadi",
+        "632dd368": "Light Blast",
+        "d1642ea8": "Light Blast (Arcadia)",
+        "0f7062bc": "Anemos",
+        "22102ccd": "Edafos",
+        "269529e2": "Hydor",
+        "ae3325e8": "Fotia"
+      }
     }
   }
 }
