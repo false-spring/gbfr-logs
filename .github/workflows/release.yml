@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          - toolchain: nightly
+          toolchain: nightly
 
       - name: Install app dependencies from lockfile and build web
         run: npm install && npm run build
