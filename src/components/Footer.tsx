@@ -44,7 +44,7 @@ export const Footer = ({ encounterState, elapsedTime }: { encounterState: Encoun
   return (
     <div className="footer transparent-bg font-sm">
       <div className="version">
-        GBFR Logs <span className="version-number">0.0.3</span>
+        GBFR Logs <span className="version-number">0.0.4</span>
       </div>
       {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       <EncounterStatus encounterState={encounterState} elapsedTime={elapsedTime} />
