@@ -16,6 +16,14 @@ Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the revers
 
 ![Meter](./docs/screenshots/skill-tracking.png)
 
+### Historical Logs
+
+![Logs](./docs/screenshots/log-history.png)
+
+### DPS Charts
+
+![Charts](./docs/screenshots/charting.png)
+
 ## How to install
 
 - Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
@@ -69,19 +77,10 @@ This project is split up into a few subprojects:
 
 ## TODO
 
-Core functionality:
-
-- Track damage per target
-- DPS charting
-- Historical encounter logs
-
 Improvements:
 
 - Hotkey shortcuts
 - Toggle clickthrough
-- Configuration / Settings
-- Track player index in party (for distinguising between duplicate charas)
-- Multiple language support (can pull some from translation files, but skill names are manual)
 
 Reverse Engineering:
 
