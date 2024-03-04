@@ -320,6 +320,10 @@ const LogIndexPage = () => {
     deleteSelectedLogs: state.deleteSelectedLogs,
   }));
 
+  const { setSelectedTargets } = useEncounterStore((state) => ({
+    setSelectedTargets: state.setSelectedTargets,
+  }));
+
   useEffect(() => {
     invoke("fetch_logs").then((result) => {
       setSearchResult(result as SearchResult);
@@ -351,6 +355,10 @@ const LogIndexPage = () => {
       .map((name) => t(`characters.${name}`))
       .join(", ");
 
+    const resetSelectedTargets = () => {
+      setSelectedTargets([]);
+    };
+
     return (
       <Table.Tr key={log.id}>
         <Table.Td>
@@ -371,7 +379,7 @@ const LogIndexPage = () => {
           {millisecondsToElapsedFormat(log.duration)} - {names}
         </Table.Td>
         <Table.Td>
-          <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`}>
+          <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`} onClick={resetSelectedTargets}>
             View
           </Button>
         </Table.Td>
