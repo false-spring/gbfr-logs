@@ -741,7 +741,17 @@
       "Em7600": "Bahamut Versa",
       "Em7603": "Bahamut Core",
       "Em7610": "Bahamut Versa Omega",
-      "Unknown": "Unknown"
+      "unknown-type": "Unknown 0x{{id}}",
+      "unknown": {
+        "df348320": "Proto Bahamut",
+        "2c800d3a": "Skotadi",
+        "632dd368": "Light Blast",
+        "d1642ea8": "Light Blast (Arcadia)",
+        "0f7062bc": "Anemos",
+        "22102ccd": "Edafos",
+        "269529e2": "Hydor",
+        "ae3325e8": "Fotia"
+      }
     }
   }
 }

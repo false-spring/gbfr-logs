@@ -6,9 +6,9 @@ use std::{collections::HashMap, path::Path};
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
-use parser::{EncounterState, Parser};
+use parser::{constants::EnemyType, EncounterState, Parser};
 use rusqlite::params_from_iter;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Manager};
 
 mod db;
@@ -78,12 +78,18 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
 #[serde(rename_all = "camelCase")]
 struct EncounterStateResponse {
     encounter_state: EncounterState,
+    targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
 }
 
+#[derive(Debug, Deserialize)]
+struct ParseOptions {
+    targets: Vec<EnemyType>,
+}
+
 #[tauri::command]
-fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> {
+fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStateResponse, String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
     let mut stmt = conn
         .prepare("SELECT data FROM logs WHERE id = ?")
@@ -93,11 +99,12 @@ fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> {
         .query_row([id], |row| row.get(0))
         .map_err(|e| e.to_string())?;
 
-    let parser: Parser =
+    let mut parser: Parser =
         protocol::bincode::deserialize(&serialized_parser).map_err(|e| e.to_string())?;
 
-    let duration = parser.encounter_state.end_time - parser.encounter_state.start_time;
+    parser.reparse(&options.targets);
 
+    let duration = parser.encounter_state.end_time - parser.encounter_state.start_time;
     let mut player_dps: HashMap<u32, Vec<i32>> = HashMap::new();
 
     const DPS_INTERVAL: i64 = 5 * 1_000;
@@ -109,10 +116,21 @@ fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> {
         );
     }
 
+    let mut targets = Vec::new();
+
     for (timestamp, damage_event) in parser.damage_event_log.iter() {
         let index = ((timestamp - parser.encounter_state.start_time) / DPS_INTERVAL) as usize;
+        let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
+
+        if !targets.contains(&target_type) {
+            targets.push(target_type);
+        }
+
         if let Some(chart) = player_dps.get_mut(&damage_event.source.parent_index) {
-            chart[index] += damage_event.damage;
+            // Check to see if the target is in the list of targets to filter by.
+            if options.targets.is_empty() || options.targets.contains(&target_type) {
+                chart[index] += damage_event.damage;
+            }
         }
     }
 
@@ -120,6 +138,7 @@ fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> {
         encounter_state: parser.encounter_state,
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
+        targets,
     })
 }
 

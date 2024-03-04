@@ -9,6 +9,16 @@
 export type CharacterType = string | { Unknown: number };
 
 /**
+ * EnemyType represents the type of enemy.
+ *
+ * Examples:
+ * - `"Em1000"`
+ * - `"Em1200"`
+ * - `{ Unknown: 0xF546E414 }`
+ */
+export type EnemyType = string | { Unknown: number };
+
+/**
  * ActionType represents the type of action that a skill can be.
  *
  * Examples:

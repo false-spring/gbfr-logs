@@ -19,6 +19,7 @@ import {
   NumberFormatter,
   Paper,
   Checkbox,
+  MultiSelect,
 } from "@mantine/core";
 import { LineChart } from "@mantine/charts";
 import { useDisclosure } from "@mantine/hooks";
@@ -40,7 +41,7 @@ import {
   millisecondsToElapsedFormat,
   translatedPlayerName,
 } from "../utils";
-import { ComputedPlayerData, EncounterState } from "../types";
+import { ComputedPlayerData, EncounterState, EnemyType } from "../types";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../i18n";
 
@@ -94,6 +95,9 @@ interface EncounterStore {
   encounterState: EncounterState | null;
   dpsChart: Record<number, number[]>;
   chartLen: number;
+  targets: EnemyType[];
+  selectedTargets: EnemyType[];
+  setSelectedTargets: (targets: EnemyType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
 }
 
@@ -101,17 +105,22 @@ interface EncounterStateResponse {
   encounterState: EncounterState;
   dpsChart: Record<number, number[]>;
   chartLen: number;
+  targets: EnemyType[];
 }
 
 const useEncounterStore = create<EncounterStore>((set) => ({
   encounterState: null,
   dpsChart: {},
   chartLen: 0,
+  targets: [],
+  selectedTargets: [],
+  setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
   loadFromResponse: (response: EncounterStateResponse) =>
     set({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,
       chartLen: response.chartLen,
+      targets: response.targets,
     }),
 }));
 
@@ -148,20 +157,26 @@ const DPS_INTERVAL = 5;
 
 const LogViewPage = () => {
   const { id } = useParams();
-  const encounter = useEncounterStore((state) => state.encounterState);
-  const dpsChart = useEncounterStore((state) => state.dpsChart);
-  const chartLen = useEncounterStore((state) => state.chartLen);
-  const loadFromResponse = useEncounterStore((state) => state.loadFromResponse);
+  const { encounter, dpsChart, chartLen, targets, selectedTargets, setSelectedTargets, loadFromResponse } =
+    useEncounterStore((state) => ({
+      encounter: state.encounterState,
+      dpsChart: state.dpsChart,
+      chartLen: state.chartLen,
+      targets: state.targets,
+      selectedTargets: state.selectedTargets,
+      setSelectedTargets: state.setSelectedTargets,
+      loadFromResponse: state.loadFromResponse,
+    }));
 
   useEffect(() => {
-    invoke("fetch_encounter_state", { id: Number(id) })
+    invoke("fetch_encounter_state", { id: Number(id), options: { targets: selectedTargets } })
       .then((result) => {
         loadFromResponse(result as EncounterStateResponse);
       })
       .catch((e) => {
         toast.error(`Failed to fetch encounter state: ${e}`);
       });
-  }, [id]);
+  }, [id, selectedTargets]);
 
   if (!encounter) {
     return (
@@ -213,6 +228,24 @@ const LogViewPage = () => {
 
   labels.sort((a, b) => b.damage - a.damage);
 
+  const targetItems = targets.map((target) => {
+    if (typeof target == "object" && Object.hasOwn(target, "Unknown")) {
+      const hash = target.Unknown.toString(16).padStart(8, "0");
+
+      return {
+        rawValue: target,
+        value: target.Unknown.toString(),
+        label: t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
+      };
+    }
+
+    return {
+      rawValue: target,
+      value: target.toString(),
+      label: t([`enemies.${target}`, "enemies.unknown-type"]),
+    };
+  });
+
   return (
     <Box>
       <Text>
@@ -233,6 +266,18 @@ const LogViewPage = () => {
             {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
           </Text>
         </Box>
+        <MultiSelect
+          data={targetItems}
+          placeholder="All"
+          clearable
+          onChange={(value) => {
+            const targets = value
+              .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
+              .filter((v) => v !== undefined) as EnemyType[];
+
+            setSelectedTargets(targets);
+          }}
+        />
         <MeterTable encounterState={encounter} />
         <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
         <LineChart
