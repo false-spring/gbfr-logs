@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::{collections::HashMap, path::Path, sync::Mutex};
+use std::{collections::HashMap,path::Path,sync::atomic::{AtomicBool, Ordering}};
 
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
@@ -9,7 +9,7 @@ use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{constants::EnemyType, EncounterState, Parser};
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
-use tauri::{AppHandle, CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
+use tauri::{AppHandle, CustomMenuItem, State, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu,SystemTrayMenuItem};
 
 mod db;
 mod parser;
@@ -225,81 +225,110 @@ fn connect_and_run_parser(app: AppHandle) {
     });
 }
 
-struct Clickthrough(Mutex<bool>);
+
+fn system_tray_with_menu() -> SystemTray {
+    let meter = CustomMenuItem::new("open_meter", "Open Meter");
+    let logs = CustomMenuItem::new("open_logs", "Open Logs");
+    let always_on_top = CustomMenuItem::new("always_on_top", "Always on top");
+    let toggle_clickthrough = CustomMenuItem::new("toggle_clickthrough", "Clickthrough");
+    let quit = CustomMenuItem::new("quit", "Quit");
+
+    let menu = SystemTrayMenu::new()
+        .add_item(meter)
+        .add_item(logs)
+        .add_item(always_on_top)
+        .add_item(toggle_clickthrough)
+        .add_native_item(SystemTrayMenuItem::Separator)
+        .add_item(quit);
+    SystemTray::new().with_menu(menu)
+}
+
+fn toggle_window_visibility(handle: &AppHandle, id: &str, focus: Option<bool>) {
+    if let Some(window) = handle.get_window(id) {
+        if let Some(focus_value) = focus {
+            if focus_value {
+                window.set_focus().unwrap();
+            }
+        }
+
+        match window.is_visible().unwrap() {
+            true => window.hide().unwrap(),
+            false => window.show().unwrap(),
+        }
+    }
+}
+
+struct AlwaysOnTop(AtomicBool);
+#[tauri::command]
+fn toggle_always_on_top(window: tauri::Window, state: State<AlwaysOnTop>) {
+    let always_on_top = &state.0;
+    let new_state = !always_on_top.load(Ordering::Acquire);
+    always_on_top.store(new_state, Ordering::Release);
+    window.set_always_on_top(new_state).unwrap();
+}
+
+struct ClickThrough(AtomicBool);
+#[tauri::command]
+fn toggle_clickthrough(window: tauri::Window, state: State<ClickThrough>) {
+    let click_through = &state.0;
+    let new_state = !click_through.load(Ordering::Acquire);
+    click_through.store(new_state, Ordering::Release);
+    window.set_ignore_cursor_events(new_state).unwrap();
+}
+
+fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
+    let should_focus = true;
+    match event {
+        SystemTrayEvent::LeftClick { .. } => {
+            toggle_window_visibility(handle, "main", Some(should_focus))
+        }
+        SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
+            "open_meter" => toggle_window_visibility(handle, "main", Some(should_focus)),
+            "open_logs" => toggle_window_visibility(handle, "logs", Some(should_focus)),
+            "toggle_clickthrough" => toggle_clickthrough(
+                handle.get_window("main").unwrap(),
+                handle.state::<ClickThrough>(),
+            ),
+            "always_on_top" => toggle_always_on_top(
+                handle.get_window("main").unwrap(),
+                handle.state::<AlwaysOnTop>(),
+            ),
+            "quit" => handle.exit(0),
+
+            _ => {}
+        },
+        _ => {} // Ignore rest of the events.
+    }
+}
 
 fn main() {
     // Setup the database.
     db::setup_db().expect("Failed to setup database");
 
-    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
-    let open_logs = CustomMenuItem::new("open_logs".to_string(), "Open Logs");
-    let open_meter = CustomMenuItem::new("open_meter".to_string(), "Open Meter");
-    let toggle_clickthrough =
-        CustomMenuItem::new("toggle_clickthrough".to_string(), "Enable clickthrough");
-    let tray_menu = SystemTrayMenu::new()
-        .add_item(open_logs)
-        .add_item(open_meter)
-        .add_item(toggle_clickthrough)
-        .add_item(quit);
-
-    let system_tray = SystemTray::new().with_menu(tray_menu);
-
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
         .plugin(tauri_plugin_window_state::Builder::default().build())
-        .manage(Clickthrough(Mutex::new(false)))
-        .system_tray(system_tray)
+        .manage(AlwaysOnTop(AtomicBool::new(false)))
+        .manage(ClickThrough(AtomicBool::new(false)))
+        .system_tray(system_tray_with_menu())
+        .on_system_tray_event(menu_tray_handler)
+        .on_window_event(|event| {
+            if let tauri::WindowEvent::CloseRequested { api, .. } = event.event() {
+                event.window().hide().unwrap();
+                api.prevent_close();
+            }
+        })
         .invoke_handler(tauri::generate_handler![
             load_parse_log_from_file,
             fetch_encounter_state,
             fetch_logs,
-            delete_logs
+            delete_logs,
+            toggle_always_on_top
         ])
         .on_window_event(|event| match event.event() {
             tauri::WindowEvent::CloseRequested { api, .. } => {
                 event.window().hide().unwrap();
                 api.prevent_close();
-            }
-            _ => {}
-        })
-        .on_system_tray_event(|app, event| match event {
-            SystemTrayEvent::LeftClick { .. } => {
-                let window = app.get_window("main").unwrap();
-                window.show().unwrap();
-            }
-            SystemTrayEvent::MenuItemClick { id, .. } => {
-                let item_handle = app.tray_handle().get_item(&id);
-
-                match id.as_str() {
-                    "quit" => {
-                        std::process::exit(0);
-                    }
-                    "open_meter" => {
-                        let window = app.get_window("main").unwrap();
-                        window.show().unwrap();
-                    }
-                    "open_logs" => {
-                        let window = app.get_window("logs").unwrap();
-                        window.show().unwrap();
-                    }
-                    "toggle_clickthrough" => {
-                        let current_state = app.state::<Clickthrough>();
-                        let window = app.get_window("main").unwrap();
-
-                        if let Ok(mut is_clickthrough) = current_state.0.lock() {
-                            if *is_clickthrough {
-                                let _ = window.set_ignore_cursor_events(false);
-                                *is_clickthrough = false;
-                                let _ = item_handle.set_title("Enable clickthrough");
-                            } else {
-                                let _ = window.set_ignore_cursor_events(true);
-                                *is_clickthrough = true;
-                                let _ = item_handle.set_title("Disable clickthrough");
-                            }
-                        };
-                    }
-                    _ => {}
-                }
             }
             _ => {}
         })
