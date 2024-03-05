@@ -9,6 +9,8 @@
       "meter-settings": "Meter Settings",
       "settings": "Settings",
       "back-btn": "Back",
+      "copy-to-clipboard-simple": "Copy to Clipboard (simple)",
+      "copy-to-clipboard-full": "Copy to Clipboard (full)",
       "logs": {
         "saved-count_zero": "No logs saved",
         "saved-count_one": "{{count}} log saved",

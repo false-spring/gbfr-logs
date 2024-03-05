@@ -114,9 +114,71 @@ export const exportScreenshotToClipboard = () => {
 export const translatedPlayerName = (player: ComputedPlayerData) =>
   `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
 
-export const exportEncounterToClipboard = (encounterState: EncounterState) => {
-  const playerHeader = `Name,DMG,DPS,%`;
+export const exportSimpleEncounterToClipboard = (encounterState: EncounterState) => {
+  if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
+
+  const encounterHeader = "Enounter Time, Total Damage, Total DPS";
+  const encounterValues = [
+    millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime),
+    encounterState.totalDamage,
+    Math.round(encounterState.dps),
+  ].join(", ");
+
+  const encounterData = [encounterHeader, encounterValues].join("\n");
+
   const orderedPlayers = formatInPartyOrder(encounterState.party);
+
+  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
+    return {
+      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
+      ...playerData,
+    };
+  });
+
+  players.sort((a, b) => b.totalDamage - a.totalDamage);
+
+  const playerHeader = "Name, DMG, DPS, %";
+  const playerData = players
+    .map((player) => {
+      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
+      const computedSkills = player.skills.map((skill) => {
+        return {
+          percentage: (skill.totalDamage / totalDamage) * 100,
+          ...skill,
+        };
+      });
+
+      computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
+
+      return [
+        translatedPlayerName(player),
+        player.totalDamage,
+        Math.round(player.dps),
+        `${player.percentage?.toFixed(2)}%`,
+      ].join(", ");
+    })
+    .join("\n");
+
+  navigator.clipboard.writeText([encounterData, playerHeader, playerData].join("\n")).then(() => {
+    toast.success("Copied text to clipboard!");
+  });
+};
+
+export const exportFullEncounterToClipboard = (encounterState: EncounterState) => {
+  if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
+
+  const encounterHeader = "Enounter Time, Total Damage, Total DPS";
+  const encounterValues = [
+    millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime),
+    encounterState.totalDamage,
+    Math.round(encounterState.dps),
+  ].join(", ");
+
+  const encounterData = [encounterHeader, encounterValues].join("\n");
+
+  const playerHeader = "Name, DMG, DPS, %";
+  const orderedPlayers = formatInPartyOrder(encounterState.party);
+
   const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
     return {
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -142,10 +204,10 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
         translatedPlayerName(player),
         player.totalDamage,
         Math.round(player.dps),
-        player.percentage,
-      ].join(",");
+        `${player.percentage?.toFixed(2)}%`,
+      ].join(", ");
 
-      const skillHeader = ["Skill", "Hits", "Total", "Min", "Max", "Avg", "%"].join(",");
+      const skillHeader = ["Skill", "Hits", "Total", "Min", "Max", "Avg", "%"].join(", ");
 
       const skillLine = computedSkills
         .map((skill) => {
@@ -159,16 +221,16 @@ export const exportEncounterToClipboard = (encounterState: EncounterState) => {
             skill.minDamage,
             skill.maxDamage,
             Math.round(averageHit),
-            skill.percentage.toFixed(2),
-          ].join(",");
+            `${skill.percentage.toFixed(2)}%`,
+          ].join(", ");
         })
         .join("\n");
 
       return [playerHeader, playerLine, skillHeader, skillLine].join("\n");
     })
-    .join("\n\n");
+    .join("\n");
 
-  navigator.clipboard.writeText(playerData).then(() => {
+  navigator.clipboard.writeText([encounterData, playerData].join("\n")).then(() => {
     toast.success("Copied text to clipboard!");
   });
 };

@@ -1,9 +1,16 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { Minus, Camera, ClipboardText } from "@phosphor-icons/react";
-import { exportScreenshotToClipboard, humanizeNumbers, millisecondsToElapsedFormat } from "../utils";
-import { Tooltip } from "@mantine/core";
+import {
+  exportFullEncounterToClipboard,
+  exportScreenshotToClipboard,
+  exportSimpleEncounterToClipboard,
+  humanizeNumbers,
+  millisecondsToElapsedFormat,
+} from "../utils";
+import { ActionIcon, Menu, Tooltip, Text } from "@mantine/core";
 import { EncounterState } from "../types";
-import { Fragment } from "react";
+import { Fragment, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
@@ -49,20 +56,21 @@ const EncounterStatus = ({ encounterState, elapsedTime }: { encounterState: Enco
   }
 };
 
-export const Titlebar = ({
-  onExportTextToClipboard,
-  encounterState,
-  elapsedTime,
-}: {
-  onExportTextToClipboard: () => void;
-  encounterState: EncounterState;
-  elapsedTime: number;
-}) => {
+export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
+  const { t } = useTranslation();
+
   const onMinimize = () => {
     appWindow.minimize();
   };
 
-  // @TODO(false): I've committed the sin of using divs as buttons. Replace later with actual buttons, please.
+  const handleSimpleEncounterCopy = useCallback(() => {
+    exportSimpleEncounterToClipboard(encounterState);
+  }, [encounterState]);
+
+  const handleFullEncounterCopy = useCallback(() => {
+    exportFullEncounterToClipboard(encounterState);
+  }, [encounterState]);
+
   return (
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
@@ -73,11 +81,19 @@ export const Titlebar = ({
       </div>
       <div data-tauri-drag-region className="titlebar-right">
         <EncounterStatus encounterState={encounterState} elapsedTime={elapsedTime} />
-        <Tooltip label="Copy text to clipboard" color="dark">
-          <div className="titlebar-button" id="titlebar-text-export" onClick={onExportTextToClipboard}>
-            <ClipboardText size={16} />
-          </div>
-        </Tooltip>
+        <Menu shadow="md" trigger="hover" openDelay={100} closeDelay={400}>
+          <Menu.Target>
+            <ActionIcon aria-label="Clipboard" variant="transparent" color="light">
+              <ClipboardText size={16} />
+            </ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={handleSimpleEncounterCopy}>
+              <Text size="xs">{t("ui.copy-to-clipboard-simple")}</Text>
+            </Menu.Item>
+            <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
         <Tooltip label="Copy screenshot to clipboard" color="dark">
           <div className="titlebar-button" id="titlebar-snapshot" onClick={exportScreenshotToClipboard}>
             <Camera size={16} />

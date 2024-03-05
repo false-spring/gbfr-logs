@@ -6,7 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { EncounterState, EncounterUpdateEvent } from "../types";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
-import { exportEncounterToClipboard } from "../utils";
 
 import "../i18n";
 
@@ -74,17 +73,9 @@ export const Meter = () => {
 
   const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
-  const handleExportTextToClipboard = () => {
-    exportEncounterToClipboard(encounterState);
-  };
-
   return (
     <div className="app">
-      <Titlebar
-        onExportTextToClipboard={handleExportTextToClipboard}
-        encounterState={encounterState}
-        elapsedTime={elapsedTime}
-      />
+      <Titlebar encounterState={encounterState} elapsedTime={elapsedTime} />
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>

@@ -20,12 +20,15 @@ import {
   Paper,
   Checkbox,
   MultiSelect,
+  Menu,
+  ActionIcon,
+  Flex,
 } from "@mantine/core";
 import { LineChart } from "@mantine/charts";
 import { useDisclosure } from "@mantine/hooks";
-import { Gear, House } from "@phosphor-icons/react";
+import { ClipboardText, Gear, House } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { create } from "zustand";
 import { listen } from "@tauri-apps/api/event";
@@ -36,6 +39,8 @@ import { Table as MeterTable } from "../components/Table";
 import {
   PLAYER_COLORS,
   epochToLocalTime,
+  exportFullEncounterToClipboard,
+  exportSimpleEncounterToClipboard,
   formatInPartyOrder,
   humanizeNumbers,
   millisecondsToElapsedFormat,
@@ -178,11 +183,19 @@ const LogViewPage = () => {
       });
   }, [id, selectedTargets]);
 
+  const handleSimpleEncounterCopy = useCallback(() => {
+    if (encounter) exportSimpleEncounterToClipboard(encounter);
+  }, [encounter]);
+
+  const handleFullEncounterCopy = useCallback(() => {
+    if (encounter) exportFullEncounterToClipboard(encounter);
+  }, [encounter]);
+
   if (!encounter) {
     return (
       <Box>
         <Text>
-          <Link to="/logs">Back</Link>
+          <Link to="/logs">{t("ui.back-btn")}</Link>
         </Text>
         <Divider my="sm" />
         <Text>Loading...</Text>
@@ -249,9 +262,28 @@ const LogViewPage = () => {
   return (
     <Box>
       <Text>
-        <Button size="xs" variant="default" component={Link} to="/logs">
-          {t("ui.back-btn")}
-        </Button>
+        <Box display="flex">
+          <Box display="flex" flex={1}>
+            <Button size="xs" variant="default" component={Link} to="/logs">
+              {t("ui.back-btn")}
+            </Button>
+          </Box>
+          <Flex display="flex" flex={1} justify={"flex-end"}>
+            <Menu shadow="md" trigger="hover" openDelay={100} closeDelay={400}>
+              <Menu.Target>
+                <ActionIcon aria-label="Clipboard" variant="filled" color="light">
+                  <ClipboardText size={16} />
+                </ActionIcon>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item onClick={handleSimpleEncounterCopy}>
+                  <Text size="xs">{t("ui.copy-to-clipboard-simple")}</Text>
+                </Menu.Item>
+                <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          </Flex>
+        </Box>
       </Text>
       <Divider my="sm" />
       <Stack>
