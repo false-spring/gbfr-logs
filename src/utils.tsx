@@ -112,7 +112,7 @@ export const exportScreenshotToClipboard = () => {
 };
 
 export const translatedPlayerName = (player: ComputedPlayerData) =>
-  t(`characters.${player.characterType}`) + " " + `[${player.partyIndex + 1}]`;
+  `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
 
 export const exportEncounterToClipboard = (encounterState: EncounterState) => {
   const playerHeader = `Name,DMG,DPS,%`;

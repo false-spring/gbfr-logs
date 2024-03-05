@@ -11,11 +11,11 @@ const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState })
 
   return (
     <Fragment>
-      <div className="encounter-totalDamage item">
-        {totalTeamDmg}
+      <div data-tauri-drag-region className="encounter-totalDamage item">
+        - {totalTeamDmg}
         <span className="unit font-sm">{dmgUnit} -</span>
       </div>
-      <div className="encounter-totalDps item">
+      <div data-tauri-drag-region className="encounter-totalDps item">
         {teamDps}
         <span className="unit font-sm">{dpsUnit}/s</span>
       </div>
@@ -25,17 +25,23 @@ const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState })
 
 const EncounterStatus = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
   if (encounterState.status === "Waiting") {
-    return <div className="encounter-status item">{encounterState.status}..</div>;
+    return (
+      <div data-tauri-drag-region className="encounter-status item">
+        {encounterState.status}..
+      </div>
+    );
   } else if (encounterState.status === "InProgress") {
     return (
       <Fragment>
-        <div className="encounter-elapsedTime item">{millisecondsToElapsedFormat(elapsedTime)}</div>
+        <div data-tauri-drag-region className="encounter-elapsedTime item">
+          {millisecondsToElapsedFormat(elapsedTime)}
+        </div>
       </Fragment>
     );
   } else if (encounterState.status === "Stopped") {
     return (
       <Fragment>
-        <div className="encounter-elapsedTime item">
+        <div data-tauri-drag-region className="encounter-elapsedTime item">
           {millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime)}
         </div>
       </Fragment>
@@ -60,8 +66,8 @@ export const Titlebar = ({
   return (
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
-        <div className="version">
-          GBFR Logs <span className="version-number">0.0.4</span> -
+        <div data-tauri-drag-region className="version">
+          GBFR Logs <span className="version-number">0.0.4</span>
         </div>
         {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       </div>

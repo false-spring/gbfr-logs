@@ -27,16 +27,17 @@
 
 .titlebar-left,
 .titlebar-right {
-  flex: 1;
   display: flex;
   align-items: center;
 }
 
 .titlebar-left {
+  flex: 2;
   justify-content: flex-start;
 }
 
 .titlebar-right {
+  flex: 1;
   justify-content: flex-end;
 }
 
@@ -176,4 +177,20 @@
 
 .font-sm {
   font-size: 12px;
+}
+
+@media only screen and (max-width: 325px) {
+  .encounter-totalDamage,
+  .encounter-totalDps {
+    display: none;
+  }
+
+  .table .header-column {
+    width: 55px;
+  }
+
+  .table .dropdown,
+  .table .row-button {
+    display: none;
+  }
 }

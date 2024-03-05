@@ -21,7 +21,7 @@ export const Table = ({ encounterState }: { encounterState: EncounterState }) =>
           <th className="header-column text-center">DMG</th>
           <th className="header-column text-center">DPS</th>
           <th className="header-column text-center">%</th>
-          <th className="header-column text-center" style={{ width: "2em" }}></th>
+          <th className="header-column text-center dropdown" style={{ width: "2em" }}></th>
         </tr>
       </thead>
       <tbody>

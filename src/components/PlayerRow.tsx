@@ -43,7 +43,7 @@ const SkillRow = ({
         <span className="unit font-sm">{averageDmgUnit}</span>
       </td>
       <td className="text-center row-data">
-        {skill.percentage.toFixed(2)}
+        {skill.percentage.toFixed(0)}
         <span className="unit font-sm">%</span>
       </td>
       <div className="damage-bar" style={{ backgroundColor: color, width: `${skill.percentage}%` }} />
@@ -112,7 +112,7 @@ export const PlayerRow = ({ player, color }: Props) => {
           <span className="unit font-sm">{dpsUnit}</span>
         </td>
         <td className="text-center row-data">
-          {player.percentage?.toFixed(2)}
+          {player.percentage?.toFixed(0)}
           <span className="unit font-sm">%</span>
         </td>
         <td className="text-center row-button">{isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}</td>

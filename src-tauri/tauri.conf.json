@@ -38,7 +38,7 @@
         "resizable": true,
         "decorations": false,
         "transparent": true,
-        "minWidth": 450,
+        "minWidth": 250,
         "minHeight": 120,
         "alwaysOnTop": true
       },
