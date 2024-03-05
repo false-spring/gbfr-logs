@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::{collections::HashMap, path::Path};
+use std::{collections::HashMap, path::Path, sync::Mutex};
 
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
@@ -9,7 +9,7 @@ use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{constants::EnemyType, EncounterState, Parser};
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
 mod db;
 mod parser;
@@ -225,19 +225,84 @@ fn connect_and_run_parser(app: AppHandle) {
     });
 }
 
+struct Clickthrough(Mutex<bool>);
+
 fn main() {
     // Setup the database.
     db::setup_db().expect("Failed to setup database");
 
+    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
+    let open_logs = CustomMenuItem::new("open_logs".to_string(), "Open Logs");
+    let open_meter = CustomMenuItem::new("open_meter".to_string(), "Open Meter");
+    let toggle_clickthrough =
+        CustomMenuItem::new("toggle_clickthrough".to_string(), "Enable clickthrough");
+    let tray_menu = SystemTrayMenu::new()
+        .add_item(open_logs)
+        .add_item(open_meter)
+        .add_item(toggle_clickthrough)
+        .add_item(quit);
+
+    let system_tray = SystemTray::new().with_menu(tray_menu);
+
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
         .plugin(tauri_plugin_window_state::Builder::default().build())
+        .manage(Clickthrough(Mutex::new(false)))
+        .system_tray(system_tray)
         .invoke_handler(tauri::generate_handler![
             load_parse_log_from_file,
             fetch_encounter_state,
             fetch_logs,
             delete_logs
         ])
+        .on_window_event(|event| match event.event() {
+            tauri::WindowEvent::CloseRequested { api, .. } => {
+                event.window().hide().unwrap();
+                api.prevent_close();
+            }
+            _ => {}
+        })
+        .on_system_tray_event(|app, event| match event {
+            SystemTrayEvent::LeftClick { .. } => {
+                let window = app.get_window("main").unwrap();
+                window.show().unwrap();
+            }
+            SystemTrayEvent::MenuItemClick { id, .. } => {
+                let item_handle = app.tray_handle().get_item(&id);
+
+                match id.as_str() {
+                    "quit" => {
+                        std::process::exit(0);
+                    }
+                    "open_meter" => {
+                        let window = app.get_window("main").unwrap();
+                        window.show().unwrap();
+                    }
+                    "open_logs" => {
+                        let window = app.get_window("logs").unwrap();
+                        window.show().unwrap();
+                    }
+                    "toggle_clickthrough" => {
+                        let current_state = app.state::<Clickthrough>();
+                        let window = app.get_window("main").unwrap();
+
+                        if let Ok(mut is_clickthrough) = current_state.0.lock() {
+                            if *is_clickthrough {
+                                let _ = window.set_ignore_cursor_events(false);
+                                *is_clickthrough = false;
+                                let _ = item_handle.set_title("Enable clickthrough");
+                            } else {
+                                let _ = window.set_ignore_cursor_events(true);
+                                *is_clickthrough = true;
+                                let _ = item_handle.set_title("Disable clickthrough");
+                            }
+                        };
+                    }
+                    _ => {}
+                }
+            }
+            _ => {}
+        })
         .setup(|app| {
             // Perform the game hook check in a separate thread.
             tauri::async_runtime::spawn(check_and_perform_hook(app.handle()));
