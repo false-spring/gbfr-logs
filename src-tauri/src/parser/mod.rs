@@ -65,10 +65,13 @@ impl PlayerState {
         self.skills.clear();
     }
 
-    fn update_from_damage_event(&mut self, event: &DamageEvent, start_time: i64, now: i64) {
+    fn update_dps(&mut self, now: i64, start_time: i64) {
+        self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
+    }
+
+    fn update_from_damage_event(&mut self, event: &DamageEvent, now: i64) {
         self.total_damage += event.damage as u64;
         self.last_damage_time = now;
-        self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
 
         // If the skill is already being tracked, update it.
         for skill in self.skills.iter_mut() {
@@ -157,7 +160,12 @@ impl EncounterState {
             });
 
         // Update player stats from damage event.
-        source_player.update_from_damage_event(&event, self.start_time, now);
+        source_player.update_from_damage_event(&event, now);
+
+        // Update everyone's DPS
+        for player in self.party.values_mut() {
+            player.update_dps(now, self.start_time);
+        }
     }
 }
 
