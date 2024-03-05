@@ -1,5 +1,5 @@
 import { appWindow } from "@tauri-apps/api/window";
-import { Minus, Camera, ClipboardText } from "@phosphor-icons/react";
+import { Minus, Camera, ClipboardText, PushPinSimple } from "@phosphor-icons/react";
 import {
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
@@ -11,6 +11,7 @@ import { ActionIcon, Menu, Tooltip, Text } from "@mantine/core";
 import { EncounterState } from "../types";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { invoke } from "@tauri-apps/api";
 
 const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
@@ -62,6 +63,9 @@ export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: Enco
   const onMinimize = () => {
     appWindow.minimize();
   };
+  const onPin = () => {
+    invoke("toggle_always_on_top");
+  };
 
   const handleSimpleEncounterCopy = useCallback(() => {
     exportSimpleEncounterToClipboard(encounterState);
@@ -94,6 +98,11 @@ export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: Enco
             <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
           </Menu.Dropdown>
         </Menu>
+        <Tooltip label="Pin window" color="dark">
+          <div className="titlebar-button" id="titlebar-snapshot" onClick={onPin}>
+            <PushPinSimple size={16} />
+          </div>
+        </Tooltip>
         <Tooltip label="Copy screenshot to clipboard" color="dark">
           <div className="titlebar-button" id="titlebar-snapshot" onClick={exportScreenshotToClipboard}>
             <Camera size={16} />
