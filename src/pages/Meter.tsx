@@ -10,7 +10,7 @@ import { exportEncounterToClipboard } from "../utils";
 
 import "../i18n";
 
-const Meter = () => {
+export const Meter = () => {
   const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(0);
   const [encounterState, setEncounterState] = useState<EncounterState>({
@@ -102,5 +102,3 @@ const Meter = () => {
     </div>
   );
 };
-
-export default Meter;

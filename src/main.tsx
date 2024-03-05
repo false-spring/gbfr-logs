@@ -1,12 +1,11 @@
 import ReactDOM from "react-dom/client";
-import App from "./App";
-
+import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/charts/styles.css";
-import "@fontsource-variable/noto-sans";
 import "./styles.css";
+import "@fontsource-variable/noto-sans";
 
-import { createTheme, MantineProvider } from "@mantine/core";
+import { App } from "./App";
 
 const theme = createTheme({
   fontFamily: '"Noto Sans Variable", Inter, Avenir, Helvetica, Arial, sans-serif',

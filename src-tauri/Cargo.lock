@@ -1759,7 +1759,7 @@ dependencies = [
  "httpdate",
  "itoa 1.0.10",
  "pin-project-lite",
- "socket2 0.4.10",
+ "socket2 0.5.6",
  "tokio",
  "tower-service",
  "tracing",
@@ -4018,7 +4018,7 @@ dependencies = [
 [[package]]
 name = "tauri-plugin-single-instance"
 version = "0.0.0"
-source = "git+https://github.com/tauri-apps/plugins-workspace?branch=v1#ed682dd96eb765e7cd3cdbc3cc64f794a0d6f9df"
+source = "git+https://github.com/tauri-apps/plugins-workspace?branch=v1#19aa2204115e7304681cb40faf7512aba525bc5e"
 dependencies = [
  "log",
  "serde",
@@ -4032,7 +4032,7 @@ dependencies = [
 [[package]]
 name = "tauri-plugin-window-state"
 version = "0.1.0"
-source = "git+https://github.com/tauri-apps/plugins-workspace?branch=v1#ed682dd96eb765e7cd3cdbc3cc64f794a0d6f9df"
+source = "git+https://github.com/tauri-apps/plugins-workspace?branch=v1#19aa2204115e7304681cb40faf7512aba525bc5e"
 dependencies = [
  "bincode",
  "bitflags 2.4.2",

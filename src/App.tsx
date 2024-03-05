@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Meter from "./pages/Meter";
+import { Meter } from "./pages/Meter";
 import Logs, { LogIndexPage, LogViewPage, SettingsPage } from "./pages/Logs";
 
 import "./App.css";
 
-const App = () => {
+export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -19,5 +19,3 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
-export default App;

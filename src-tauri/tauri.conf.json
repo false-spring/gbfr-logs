@@ -26,6 +26,16 @@
         "unmaximize": true,
         "unminimize": true,
         "startDragging": true
+      },
+      "fs": {
+        "readFile": true,
+        "scope": [
+          "$RESOURCE/*",
+          "$RESOURCE/lang/*"
+        ]
+      },
+      "path": {
+        "all": true
       }
     },
     "windows": [
@@ -61,7 +71,10 @@
     },
     "bundle": {
       "active": true,
-      "targets": "all",
+      "targets": [
+        "msi",
+        "updater"
+      ],
       "identifier": "com.false",
       "longDescription": "GBFR Logs - DPS Meter for Granblue Fantasy: Relink",
       "shortDescription": "GBFR Logs",
@@ -73,7 +86,8 @@
         "icons/icon.ico"
       ],
       "resources": [
-        "hook.dll"
+        "hook.dll",
+        "lang/*"
       ]
     },
     "systemTray": {
