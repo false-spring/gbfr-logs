@@ -79,6 +79,14 @@
     "systemTray": {
       "iconPath": "icons/32x32.png",
       "iconAsTemplate": true
+    },
+    "updater": {
+      "active": true,
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERDQjZEMTgxOEY4OTIwNDcKUldSSElJbVBnZEcyM1BSUklxWWRsWStXYnVsWU1mODY3YzZCWCtTZzJrUGJsZHpNY1h1S3hhc2cK",
+      "endpoints": [
+        "https://raw.githubusercontent.com/false-spring/gbfr-logs/main/update.json"
+      ]
     }
   }
 }
