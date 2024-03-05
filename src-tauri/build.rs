@@ -17,8 +17,12 @@ fn main() {
     // Copy the built library to the tauri app directory
     let _ = fs::copy(hook_lib_path.join("target/release/hook.dll"), "hook.dll");
 
-    let windows = WindowsAttributes::new().app_manifest(include_str!("manifest.xml"));
+    if cfg!(debug_assertions) {
+        tauri_build::build();
+    } else {
+        let windows = WindowsAttributes::new().app_manifest(include_str!("manifest.xml"));
 
-    tauri_build::try_build(Attributes::new().windows_attributes(windows))
-        .expect("Could not build Tauri app.")
+        tauri_build::try_build(Attributes::new().windows_attributes(windows))
+            .expect("Could not build Tauri app.")
+    }
 }

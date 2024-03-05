@@ -27,6 +27,7 @@ chrono = "0.4"
 rusqlite = { version = "0.30.0", features = ["bundled"] }
 rusqlite_migration = "1.1.0"
 enum-display = "0.1.4"
+zstd = "0.13.0"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

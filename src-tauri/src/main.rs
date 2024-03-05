@@ -95,12 +95,11 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         .prepare("SELECT data FROM logs WHERE id = ?")
         .map_err(|e| e.to_string())?;
 
-    let serialized_parser: Vec<u8> = stmt
+    let blob: Vec<u8> = stmt
         .query_row([id], |row| row.get(0))
         .map_err(|e| e.to_string())?;
 
-    let mut parser: Parser =
-        protocol::bincode::deserialize(&serialized_parser).map_err(|e| e.to_string())?;
+    let mut parser: Parser = Parser::from_blob(&blob).map_err(|e| e.to_string())?;
 
     parser.reparse(&options.targets);
 

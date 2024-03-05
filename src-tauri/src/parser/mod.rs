@@ -186,6 +186,27 @@ impl Parser {
         }
     }
 
+    /// Compresses the Parser instance into a binary blob.
+    pub fn to_blob(&self) -> Result<Vec<u8>> {
+        let blob = protocol::bincode::serialize(self)?;
+        let mut reader = BufReader::new(blob.as_slice());
+        let compressed_blob = zstd::encode_all(&mut reader, 3)?;
+        Ok(compressed_blob)
+    }
+
+    /// Deserializes a binary blob into a Parser instance.
+    /// The blob can be optionally compressed with zstd.
+    pub fn from_blob(blob: &[u8]) -> Result<Self> {
+        let is_zstd = blob.len() > 4 && blob[0..4] == [0x28, 0xb5, 0x2f, 0xfd];
+
+        if is_zstd {
+            let decompressed = zstd::decode_all(blob)?;
+            Ok(protocol::bincode::deserialize(&decompressed)?)
+        } else {
+            Ok(protocol::bincode::deserialize(blob)?)
+        }
+    }
+
     pub fn reset(&mut self) {
         self.encounter_state.reset_stats();
         self.damage_event_log.clear();
@@ -314,7 +335,7 @@ impl Parser {
             .collect::<Vec<String>>()
             .join(", ");
 
-        let serialized_self = protocol::bincode::serialize(&self)?;
+        let blob = self.to_blob()?;
 
         if let Some(conn) = &mut self.db {
             conn.execute(
@@ -323,7 +344,7 @@ impl Parser {
                     name,
                     start_datetime.timestamp_millis(),
                     duration_in_millis,
-                    &serialized_self,
+                    &blob,
                 ],
             )?;
         }
