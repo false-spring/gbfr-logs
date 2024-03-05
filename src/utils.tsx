@@ -117,7 +117,7 @@ export const translatedPlayerName = (player: ComputedPlayerData) =>
 export const exportSimpleEncounterToClipboard = (encounterState: EncounterState) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
-  const encounterHeader = "Enounter Time, Total Damage, Total DPS";
+  const encounterHeader = "Encounter Time, Total Damage, Total DPS";
   const encounterValues = [
     millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime),
     encounterState.totalDamage,
@@ -167,7 +167,7 @@ export const exportSimpleEncounterToClipboard = (encounterState: EncounterState)
 export const exportFullEncounterToClipboard = (encounterState: EncounterState) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
-  const encounterHeader = "Enounter Time, Total Damage, Total DPS";
+  const encounterHeader = "Encounter Time, Total Damage, Total DPS";
   const encounterValues = [
     millisecondsToElapsedFormat(encounterState.endTime - encounterState.startTime),
     encounterState.totalDamage,
