@@ -4,7 +4,6 @@ import { listen } from "@tauri-apps/api/event";
 import toast, { Toaster } from "react-hot-toast";
 
 import { EncounterState, EncounterUpdateEvent } from "../types";
-import { Footer } from "../components/Footer";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
 import { exportEncounterToClipboard } from "../utils";
@@ -81,7 +80,11 @@ const Meter = () => {
 
   return (
     <div className="app">
-      <Titlebar onExportTextToClipboard={handleExportTextToClipboard} />
+      <Titlebar
+        onExportTextToClipboard={handleExportTextToClipboard}
+        encounterState={encounterState}
+        elapsedTime={elapsedTime}
+      />
       <div className="app-content">
         <Table encounterState={encounterState} />
       </div>
@@ -96,7 +99,6 @@ const Meter = () => {
           },
         }}
       />
-      <Footer encounterState={encounterState} elapsedTime={elapsedTime} />
     </div>
   );
 };

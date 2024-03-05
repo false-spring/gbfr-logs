@@ -7,6 +7,7 @@
   height: 100vh;
   margin-top: 30px;
   overflow: auto;
+  background: rgba(22, 22, 22, 0.2);
   transition: background-color 0.15s ease-in-out;
 }
 
@@ -22,7 +23,6 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 0 6px;
 }
 
 .titlebar-left,
@@ -53,25 +53,12 @@
   background: var(--mantine-color-blue-light-color);
 }
 
-.footer {
-  height: 30px;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  padding: 0 6px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-}
-
-.footer .item {
-  padding-right: 6px;
+.titlebar .item {
+  padding-right: 3px;
 }
 
 .version {
-  flex: 1;
+  padding: 0 3px;
 }
 
 .version-number {
