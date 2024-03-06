@@ -6,6 +6,7 @@ import "./styles.css";
 import "@fontsource-variable/noto-sans";
 
 import { App } from "./App";
+import { ModalsProvider } from "@mantine/modals";
 
 const theme = createTheme({
   fontFamily: '"Noto Sans Variable", Inter, Avenir, Helvetica, Arial, sans-serif',
@@ -20,6 +21,8 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <MantineProvider theme={theme} defaultColorScheme="dark">
-    <App />
+    <ModalsProvider>
+      <App />
+    </ModalsProvider>
   </MantineProvider>
 );

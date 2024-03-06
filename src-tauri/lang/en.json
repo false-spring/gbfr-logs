@@ -9,6 +9,8 @@
       "meter-settings": "Meter Settings",
       "settings": "Settings",
       "back-btn": "Back",
+      "delete-btn": "Delete",
+      "cancel-btn": "Cancel",
       "copy-to-clipboard-simple": "Copy to Clipboard (simple)",
       "copy-to-clipboard-full": "Copy to Clipboard (full)",
       "export-damage-log": "Export Damage Log to File",
@@ -17,11 +19,15 @@
         "saved-count_one": "{{count}} log saved",
         "saved-count_other": "{{count}} logs saved",
         "delete-selected-btn": "Delete Selected",
+        "delete-all-btn": "Delete All",
         "date": "Date",
         "name": "Name",
         "duration": "Duration",
         "total-damage": "Total Damage",
-        "damage-per-second": "Damage Per Second"
+        "damage-per-second": "Damage Per Second",
+        "delete-all-logs-confirmation": "This will delete all logs from the database. This action cannot be undone.",
+        "delete-selected-logs-confirmation_one": "This will delete {{count}} log from the database. This action cannot be undone.",
+        "delete-selected-logs-confirmation_other": "This will delete {{count}} logs from the database. This action cannot be undone."
       }
     },
     "characters": {
