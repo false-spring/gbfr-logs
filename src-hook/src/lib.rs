@@ -114,12 +114,3 @@ fn entry() {
     let _ = initialize_logger();
     std::thread::spawn(setup);
 }
-
-#[ctor::dtor]
-unsafe fn shutdown() {
-    #[cfg(feature = "console")]
-    let _ = windows::Win32::System::Console::FreeConsole();
-
-    logger().flush();
-    hook::uninstall();
-}
