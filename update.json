@@ -1,6 +1,6 @@
 {
   "version": "0.0.5",
-  "notes": "Version 0.0.5",
+  "notes": "QoL + UI Improvements! This WILL quit your game if you update, so please make sure to save and exit before updating.",
   "pub_date": "2024-03-06T00:18:38+00:00",
   "platforms": {
     "windows-x86_64": {
