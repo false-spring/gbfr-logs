@@ -191,6 +191,10 @@ const LogViewPage = () => {
     if (encounter) exportFullEncounterToClipboard(encounter);
   }, [encounter]);
 
+  const exportDamageLogToFile = useCallback(() => {
+    if (id) invoke("export_damage_log_to_file", { id: Number(id), options: { targets: selectedTargets } });
+  }, [id, selectedTargets]);
+
   if (!encounter) {
     return (
       <Box>
@@ -280,6 +284,7 @@ const LogViewPage = () => {
                   <Text size="xs">{t("ui.copy-to-clipboard-simple")}</Text>
                 </Menu.Item>
                 <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
+                <Menu.Item onClick={exportDamageLogToFile}>{t("ui.export-damage-log")}</Menu.Item>
               </Menu.Dropdown>
             </Menu>
           </Flex>
@@ -357,10 +362,10 @@ const LogIndexPage = () => {
   }));
 
   useEffect(() => {
-    invoke("fetch_logs").then((result) => {
+    invoke("fetch_logs", { page: currentPage }).then((result) => {
       setSearchResult(result as SearchResult);
     });
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const encounterSavedListener = listen("encounter-saved", () => {
