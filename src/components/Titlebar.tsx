@@ -79,7 +79,7 @@ export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: Enco
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
         <div data-tauri-drag-region className="version">
-          GBFR Logs <span className="version-number">0.0.4</span>
+          GBFR Logs <span className="version-number">0.0.5</span>
         </div>
         {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       </div>
