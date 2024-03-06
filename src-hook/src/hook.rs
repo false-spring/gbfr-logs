@@ -26,14 +26,6 @@ const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
 // const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
 
-type BehaviorShouldDamage0x40 = unsafe extern "system" fn(
-    *const usize,
-    *const usize,
-    *const usize,
-    *const usize,
-    *const usize,
-) -> u32;
-
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
 #[inline(always)]
@@ -75,6 +67,8 @@ unsafe fn process_damage_event(
     a3: *const usize, // R8
     a4: u8,           // R9
 ) -> usize {
+    let original_value = ProcessDamageEvent.call(a1, a2, a3, a4);
+
     // Target is the instance of the actor being damaged.
     // For example: Instance of the Em2700 class.
     let target_specified_instance_ptr: usize = *(*a1.byte_add(0x08) as *const usize);
@@ -85,29 +79,18 @@ unsafe fn process_damage_event(
     // @TODO(false): For some reason, online + Ferry's Umlauf skill pet can return a null pointer here.
     // Possible data race with online?
     if source_entity_ptr == std::ptr::null() {
-        return ProcessDamageEvent.call(a1, a2, a3, a4);
+        return original_value;
     }
 
     // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
     // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
     let source_specified_instance_ptr: usize = *(source_entity_ptr.byte_add(0x70) as *const usize);
+    let damage: i32 = (a2.byte_add(0xD0) as *const i32).read();
 
-    let ignore = !(a4 > 0
-        || v_func::<BehaviorShouldDamage0x40>(a1, 0x40)(
-            a1 as *const usize,
-            a2 as *const usize,
-            std::ptr::null(),
-            target_specified_instance_ptr as *const usize,
-            source_specified_instance_ptr as *const usize,
-        ) > 0);
-
-    let original_value = ProcessDamageEvent.call(a1, a2, a3, a4);
-
-    if ignore {
+    if original_value == 0 || damage <= 0 {
         return original_value;
     }
 
-    let damage: i32 = (a2.byte_add(0xD0) as *const i32).read();
     let flags: u64 = (a2.byte_add(0xD8) as *const u64).read();
 
     let action_type: ActionType = if ((1 << 7 | 1 << 50) & flags) != 0 {
