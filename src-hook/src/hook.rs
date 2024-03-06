@@ -278,15 +278,6 @@ pub fn init(tx: event::Tx) -> Result<()> {
     Ok(())
 }
 
-/// Uninstalls the hooks.
-pub fn uninstall() {
-    unsafe {
-        ProcessDamageEvent.disable().unwrap();
-        ProcessDotEvent.disable().unwrap();
-        OnEnterArea.disable().unwrap();
-    }
-}
-
 /// Searches and returns the RVAs of the function that matches the given signature pattern.
 fn search(process: &Process, signature_pattern: &str) -> Result<usize> {
     let view = unsafe { PeView::module(process.module_handle.0 as *const u8) };

@@ -5,7 +5,7 @@ use anyhow::{Context, Result};
 use futures::io::AsyncWriteExt;
 use interprocess::os::windows::named_pipe::tokio::{ByteWriterPipeStream, PipeListenerOptionsExt};
 use interprocess::os::windows::named_pipe::{PipeListenerOptions, PipeMode};
-use log::{info, logger, warn};
+use log::{info, warn};
 use tokio::sync::broadcast;
 
 mod event;
