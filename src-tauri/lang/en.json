@@ -62,7 +62,6 @@
         "121": "Attack 3 (After P-strike 1)",
         "130": "Attack 4",
         "131": "Attack 4 (After P-strike 2)",
-        
         "200": "Power Raise",
         "201": "Power Raise (A)",
         "202": "Power Raise (B)",
@@ -436,11 +435,8 @@
         "2": "Empty Mist",
         "5": "Tit for Tat",
         "7": "Flashing Void",
-        "17": "Flashing Void (Multi-Hit)",
-        "18": "Flashing Void (Finisher)",
-        
         "8": "Sky Shatter",
-        "17": "Flashing Void (Perfects)",
+        "17": "Flashing Void (Multi-Hit)",
         "18": "Flashing Void (Finisher)",
         "100": "Attack 1",
         "110": "Attack 2",
