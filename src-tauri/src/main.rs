@@ -37,7 +37,7 @@ async fn delete_all_logs() -> Result<(), String> {
 // @TODO(false): Swap these results to return a proper error type, instead of stringified errors.
 
 #[tauri::command]
-async fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), String> {
+fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), String> {
     let file_path = FileDialogBuilder::new()
         .add_filter("csv", &["csv"])
         .set_file_name(&format!("{id}_damage_log.csv"))
@@ -61,33 +61,31 @@ async fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(),
     // @TODO(false): Split formatting into a separate function.
     let mut writer = std::io::BufWriter::new(file);
 
-    writer
-        .write_all(
-            b"timestamp,source_type,source_index,target_type,target_index,action_id,flags,damage\n",
-        )
-        .map_err(|e| e.to_string())?;
+    writeln!(
+        writer,
+        "timestamp,source_type,source_index,target_type,target_index,action_id,flags,damage"
+    )
+    .map_err(|e| e.to_string())?;
 
-    for damage_event in parser.damage_event_log.iter() {
+    for damage_event in &parser.damage_event_log {
+        let timestamp = damage_event.0 - parser.encounter_state.start_time;
         let target_type = EnemyType::from_hash(damage_event.1.target.parent_actor_type);
+        let character_type = CharacterType::from_hash(damage_event.1.source.parent_actor_type);
 
         if options.targets.is_empty() || options.targets.contains(&target_type) {
-            let timestamp = damage_event.0 - parser.encounter_state.start_time;
-
-            let line = format!(
-                "{},{},{},{},{},{:?},{},{}\n",
+            writeln!(
+                writer,
+                "{},{},{},{},{},{},{},{}",
                 timestamp,
-                CharacterType::from_hash(damage_event.1.source.parent_actor_type),
+                character_type,
                 damage_event.1.source.parent_index,
-                EnemyType::from_hash(damage_event.1.target.parent_actor_type),
+                target_type,
                 damage_event.1.target.parent_index,
                 damage_event.1.action_id,
                 damage_event.1.flags,
                 damage_event.1.damage
-            );
-
-            writer
-                .write_all(line.as_bytes())
-                .map_err(|e| e.to_string())?;
+            )
+            .map_err(|e| e.to_string())?;
         }
     }
 

@@ -1,9 +1,7 @@
-use std::fmt::{Display, Formatter};
-
-use enum_display::EnumDisplay;
 use serde::{Deserialize, Serialize};
+use strum_macros::Display;
 
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, Clone, Copy, EnumDisplay)]
+#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, Clone, Copy, Display)]
 pub enum CharacterType {
     Pl0000,
     Pl0100,
@@ -26,6 +24,7 @@ pub enum CharacterType {
     Pl1800,
     Pl1900,
     Pl2000,
+    #[strum(default)]
     Unknown(u32),
 }
 
@@ -58,7 +57,7 @@ impl CharacterType {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, Clone, Copy, Display)]
 pub enum EnemyType {
     Em0000,
     Em0001,
@@ -145,6 +144,7 @@ pub enum EnemyType {
     Em7600,
     Em7603,
     Em7610,
+    #[strum(default)]
     Unknown(u32),
 }
 
@@ -237,15 +237,6 @@ impl EnemyType {
             0x5E316D49 => Self::Em7603,
             0xA86498C5 => Self::Em7610,
             _ => EnemyType::Unknown(hash),
-        }
-    }
-}
-
-impl Display for EnemyType {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Unknown(hash) => return write!(f, "Unknown({:x})", hash),
-            _ => write!(f, "{}", self.to_string()),
         }
     }
 }

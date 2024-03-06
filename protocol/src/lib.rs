@@ -1,3 +1,6 @@
+use core::fmt;
+use std::fmt::{Display, Formatter};
+
 pub use bincode;
 
 use serde::{Deserialize, Serialize};
@@ -16,7 +19,7 @@ pub struct Actor {
     pub parent_actor_type: u32,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Copy)]
 pub enum ActionType {
     /// Link Attack
     LinkAttack,
@@ -28,6 +31,18 @@ pub enum ActionType {
     DamageOverTime(u32),
     /// Normal Skill Attack containing the skill ID.
     Normal(u32),
+}
+
+impl Display for ActionType {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        match self {
+            ActionType::LinkAttack => write!(f, "Link Attack"),
+            ActionType::SBA => write!(f, "Skybound Arts"),
+            ActionType::SupplementaryDamage(id) => write!(f, "Supplementary Damage ({})", id),
+            ActionType::DamageOverTime(id) => write!(f, "Damage Over Time ({})", id),
+            ActionType::Normal(id) => write!(f, "Skill ({})", id),
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
