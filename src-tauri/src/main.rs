@@ -26,6 +26,14 @@ use tauri::{
 mod db;
 mod parser;
 
+#[tauri::command]
+async fn delete_all_logs() -> Result<(), String> {
+    let conn = db::connect_to_db().map_err(|e| e.to_string())?;
+    conn.execute("DELETE FROM logs", [])
+        .map_err(|e| e.to_string())?;
+    Ok(())
+}
+
 // @TODO(false): Swap these results to return a proper error type, instead of stringified errors.
 
 #[tauri::command]
@@ -396,6 +404,7 @@ fn main() {
             fetch_encounter_state,
             fetch_logs,
             delete_logs,
+            delete_all_logs,
             toggle_always_on_top,
             export_damage_log_to_file
         ])
