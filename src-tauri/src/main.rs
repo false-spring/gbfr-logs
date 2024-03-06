@@ -14,7 +14,7 @@ use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{
     constants::{CharacterType, EnemyType},
-    EncounterState, Parser,
+    v0,
 };
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
@@ -47,7 +47,7 @@ async fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(),
         .query_row([id], |row| row.get(0))
         .map_err(|e| e.to_string())?;
 
-    let parser = Parser::from_blob(&blob).map_err(|e| e.to_string())?;
+    let parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
     let file = File::create(&file_path).map_err(|e| e.to_string())?;
 
     // @TODO(false): Split formatting into a separate function.
@@ -151,7 +151,7 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct EncounterStateResponse {
-    encounter_state: EncounterState,
+    encounter_state: v0::EncounterState,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
@@ -173,7 +173,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         .query_row([id], |row| row.get(0))
         .map_err(|e| e.to_string())?;
 
-    let mut parser: Parser = Parser::from_blob(&blob).map_err(|e| e.to_string())?;
+    let mut parser: v0::Parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
 
     parser.reparse(&options.targets);
 
@@ -232,8 +232,8 @@ fn delete_logs(ids: Vec<u64>) -> Result<(), String> {
 }
 
 #[tauri::command]
-fn load_parse_log_from_file(path: String) -> Result<Parser, String> {
-    Parser::load_parse_log_from_file(&path).map_err(|e| e.to_string())
+fn load_parse_log_from_file(path: String) -> Result<v0::Parser, String> {
+    v0::Parser::load_parse_log_from_file(&path).map_err(|e| e.to_string())
 }
 
 // Continuously check for the game process and inject the DLL when found.
@@ -268,7 +268,7 @@ async fn check_and_perform_hook(app: AppHandle) {
 fn connect_and_run_parser(app: AppHandle) {
     let window = app.get_window("main").expect("Window not found");
     let database = db::connect_to_db().expect("Could not connect to database");
-    let mut state = Parser::new(Some(window.clone()), database);
+    let mut state = v0::Parser::new(Some(window.clone()), database);
 
     tauri::async_runtime::spawn(async move {
         loop {
