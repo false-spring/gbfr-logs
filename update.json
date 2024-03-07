@@ -1,11 +1,11 @@
 {
-  "version": "0.0.5",
-  "notes": "QoL + UI Improvements! This WILL quit your game if you update, so please make sure to save and exit before updating.",
+  "version": "0.0.6",
+  "notes": "(!!!) THIS WILL QUIT YOUR GAME IF YOU UPDATE (!!!). Please make sure to save and exit before updating. This update fixes important issues related to crashing when closing the game, updating is recommended! https://github.com/false-spring/gbfr-logs/releases/tag/0.0.6",
   "pub_date": "2024-03-06T00:18:38+00:00",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0RqVFZHRGwvNVZESlpkdHdaY0VHaTVvNVF3VVZ6bWtJWkl5YUtpZHNwWkhrTWlJTUxoVUpRYmhyTlRia1NiUVBNRDJucmtZUXdFYXNWT2g1UFFsNXc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzA5Njg0MjA3CWZpbGU6R0JGUiBMb2dzXzAuMC41X3g2NF9lbi1VUy5tc2kuemlwClRERGdBMHdOSGRRTUlZQnptVzRvNzZXTWYwN1J5b0tEOUI1TXNOZk9PZTN6a3BwbTUxZGdLMGovR3ZSNW9CMkM0UXlCVkl1bENRNTRZRnFZVjBmVEJnPT0K",
-      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.5/GBFR.Logs_0.0.5_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM1BMcFpPaXdCTzY3NklaNjY5VEdlS3llOFV0bGRobDV0bjY2YlBOd0ZidFpmWFAwY0pNWXU0SkFUNUl2K3RncjUvUm5qalhOVzFaZ2dmL1cyNWxzZmdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzA5Nzk5ODQzCWZpbGU6R0JGUiBMb2dzXzAuMC42X3g2NF9lbi1VUy5tc2kuemlwCmgzWnZvVnJuS2d0NE9NUzZRSyszdGpmTUxKN3BESDhza0RkbFZRSkpUeE1HbjhPUyttaVRiYjZsd0dYVHp1SG1QbnF5Q2xSSlU4N3FSRE9hOHRybUF3PT0K",
+      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.6/GBFR.Logs_0.0.6_x64_en-US.msi.zip"
     }
   }
 }
