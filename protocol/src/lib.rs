@@ -1,5 +1,8 @@
 use core::fmt;
-use std::fmt::{Display, Formatter};
+use std::{
+    ffi::CString,
+    fmt::{Display, Formatter},
+};
 
 pub use bincode;
 
@@ -55,7 +58,29 @@ pub struct DamageEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Sigil {
+    pub first_trait_id: u32,
+    pub first_trait_level: u32,
+    pub second_trait_id: u32,
+    pub second_trait_level: u32,
+    pub sigil_id: u32,
+    pub equipped_character: u32,
+    pub sigil_level: u32,
+    pub acquisition_count: u32,
+    pub notification_enum: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SigilLoadoutEvent {
+    pub sigils: Vec<Sigil>,
+    pub character_name: CString,
+    pub display_name: CString,
+    pub party_index: u8,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter,
     DamageEvent(DamageEvent),
+    SigilLoadoutEvent(SigilLoadoutEvent),
 }

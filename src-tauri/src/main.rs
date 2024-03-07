@@ -299,6 +299,17 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::OnAreaEnter => {
                                     state.on_area_enter_event();
                                 }
+                                protocol::Message::SigilLoadoutEvent(event) => {
+                                    // @TODO(false): Sigil loadout event is called multiple times.
+                                    // On instance enter: an event will fire for each character loaded in the party.
+                                    // On item pickup (?): an event will fire for each character loaded in the party.
+                                    println!(
+                                        "Sigil loadout event: {} - {} [{}]",
+                                        event.character_name.to_string_lossy(),
+                                        event.display_name.to_string_lossy(),
+                                        event.party_index
+                                    );
+                                }
                             }
                         }
                     }

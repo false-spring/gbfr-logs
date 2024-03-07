@@ -1,3 +1,5 @@
+use std::ffi::{CStr, CString};
+
 use anyhow::{anyhow, Result};
 use log::warn;
 use pelite::{
@@ -14,17 +16,19 @@ type ProcessDamageEventFunc =
     unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
 type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+type OnLoadSigilListFunc = unsafe extern "system" fn(*const usize, *const usize);
 
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
     static ProcessDotEvent: unsafe extern "system" fn(*const usize, *const usize) -> usize;
     static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+    static OnLoadSigilList: unsafe extern "system" fn(*const usize, *const usize);
 }
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
-// const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
+const ON_LOAD_SIGIL_LIST: &str = "48 85 c9 74 05 e8 $ { ' } 48 89 f9 ba 05 00 00 00";
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
@@ -233,6 +237,92 @@ unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usi
     ret
 }
 
+#[derive(Debug)]
+#[repr(C)]
+struct SigilEntry {
+    first_trait_id: u32,
+    first_trait_level: u32,
+    second_trait_id: u32,
+    second_trait_level: u32,
+    sigil_id: u32,
+    equipped_character: u32,
+    sigil_level: u32,
+    acquisition_count: u32,
+    notification_enum: u32,
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct SigilList {
+    sigils: [SigilEntry; 12], // 0x00
+    unk_1b0: u32,             //0x01B0
+    unk_1b4: u32,             //0x01B4
+    unk_1b8: u32,             //0x01B8
+    unk_1bc: u32,             //0x01BC
+    unk_1c0: u32,             //0x01C0
+    unk_1c4: u32,             //0x01C4
+    unk_1c8: u32,             //0x01C8
+    unk_1cc: u32,             //0x01CC
+    unk_1d0: u32,             //0x01D0
+    unk_1d4: u32,             //0x01D4
+    unk_1d8: u32,             //0x01D8
+    unk_1dc: u32,             //0x01DC
+    unk_1e0: u32,             //0x01E0
+    unk_1e4: u32,             //0x01E4
+    character_name: [u8; 16], //0x01E8
+    padding_1f8: [u8; 16],    //0x01F8
+    display_name: [u8; 16],   //0x0208
+    padding_218: [u8; 24],    //0x0218
+    party_index: u32,         //0x0230
+}
+
+unsafe fn on_load_sigil_list(tx: event::Tx, a1: *const usize, a2: *const usize) {
+    OnLoadSigilList.call(a1, a2);
+
+    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0x3290).read() as *mut SigilList);
+
+    if let Some(sigil_list) = sigil_list {
+        let sigil_list = sigil_list.as_ref();
+
+        if sigil_list.party_index <= 3 {
+            let sigils = sigil_list
+                .sigils
+                .iter()
+                .map(|sigil| protocol::Sigil {
+                    first_trait_id: sigil.first_trait_id,
+                    first_trait_level: sigil.first_trait_level,
+                    second_trait_id: sigil.second_trait_id,
+                    second_trait_level: sigil.second_trait_level,
+                    sigil_id: sigil.sigil_id,
+                    equipped_character: sigil.equipped_character,
+                    sigil_level: sigil.sigil_level,
+                    acquisition_count: sigil.acquisition_count,
+                    notification_enum: sigil.notification_enum,
+                })
+                .collect();
+
+            let character_name = CStr::from_bytes_until_nul(&sigil_list.character_name)
+                .ok()
+                .map(|cstr| cstr.to_owned())
+                .unwrap_or(CString::new("").unwrap());
+
+            let display_name = CStr::from_bytes_until_nul(&sigil_list.display_name)
+                .ok()
+                .map(|cstr| cstr.to_owned())
+                .unwrap_or(CString::new("").unwrap());
+
+            let payload = Message::SigilLoadoutEvent(protocol::SigilLoadoutEvent {
+                sigils,
+                character_name,
+                display_name,
+                party_index: sigil_list.party_index as u8,
+            });
+
+            let _ = tx.send(payload);
+        }
+    }
+}
+
 pub fn init(tx: event::Tx) -> Result<()> {
     let process = Process::with_name("granblue_fantasy_relink.exe")?;
 
@@ -273,6 +363,19 @@ pub fn init(tx: event::Tx) -> Result<()> {
         }
     } else {
         warn!("Could not find on_enter_area");
+    }
+
+    if let Ok(on_load_sigil_list_evt) = search(&process, ON_LOAD_SIGIL_LIST) {
+        let tx = tx.clone();
+        unsafe {
+            let func: OnLoadSigilListFunc = std::mem::transmute(on_load_sigil_list_evt);
+            OnLoadSigilList.initialize(func, move |a1, a2| {
+                on_load_sigil_list(tx.clone(), a1, a2);
+            })?;
+            OnLoadSigilList.enable()?;
+        }
+    } else {
+        warn!("Could not find on_load_sigil_list");
     }
 
     Ok(())
