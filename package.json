@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint ./src --fix",
+    "lint": "eslint ./src",
+    "tsc": "tsc",
     "format": "prettier --write --ignore-unknown --ext js,jsx,ts,tsx src ./src",
+    "format-check": "prettier --check --ignore-unknown --ext js,jsx,ts,tsx src ./src",
     "tauri": "tauri"
   },
   "dependencies": {
