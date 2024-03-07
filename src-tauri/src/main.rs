@@ -282,7 +282,13 @@ fn connect_and_run_parser(app: AppHandle) {
                 Ok(mut stream) => {
                     let _ = app.emit_all("success-alert", "Connnected to game!");
                     let mut buffer = [0; 1024];
+
                     while let Ok(msg) = stream.read(&mut buffer).await {
+                        // Handle EOF when the game closes.
+                        if msg == 0 {
+                            break;
+                        }
+
                         if let Ok(msg) =
                             protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
                         {
@@ -296,12 +302,20 @@ fn connect_and_run_parser(app: AppHandle) {
                             }
                         }
                     }
+
+                    // The game has closed, so we should go back to waiting for the game to reopen.
+                    let _ = app.emit_all("error-alert", "Game has closed!");
+                    break;
                 }
                 Err(_) => {
                     tokio::time::sleep(std::time::Duration::from_millis(100)).await;
                 }
             }
         }
+
+        // Check for the game process again.
+        tokio::time::sleep(std::time::Duration::from_millis(1000)).await;
+        tauri::async_runtime::spawn(check_and_perform_hook(app));
     });
 }
 
@@ -319,6 +333,7 @@ fn system_tray_with_menu() -> SystemTray {
         .add_item(toggle_clickthrough)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
+
     SystemTray::new().with_menu(menu)
 }
 
@@ -405,13 +420,6 @@ fn main() {
             toggle_always_on_top,
             export_damage_log_to_file
         ])
-        .on_window_event(|event| match event.event() {
-            tauri::WindowEvent::CloseRequested { api, .. } => {
-                event.window().hide().unwrap();
-                api.prevent_close();
-            }
-            _ => {}
-        })
         .setup(|app| {
             // Perform the game hook check in a separate thread.
             tauri::async_runtime::spawn(check_and_perform_hook(app.handle()));
