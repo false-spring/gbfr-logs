@@ -43,7 +43,7 @@ export const IndexPage = () => {
   useEffect(() => {
     const encounterSavedListener = listen("encounter-saved", () => {
       invoke("fetch_logs", { page: currentPage }).then((result) => {
-        setSearchResult(result as SearchResult);
+            setSearchResult(result)
       });
     });
 
