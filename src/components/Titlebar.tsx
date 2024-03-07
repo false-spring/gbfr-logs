@@ -8,7 +8,7 @@ import {
   millisecondsToElapsedFormat,
 } from "../utils";
 import { ActionIcon, Menu, Tooltip, Text } from "@mantine/core";
-import { EncounterState } from "../types";
+import { EncounterState, SortDirection, SortType } from "../types";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { invoke } from "@tauri-apps/api";
@@ -57,7 +57,17 @@ const EncounterStatus = ({ encounterState, elapsedTime }: { encounterState: Enco
   }
 };
 
-export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
+export const Titlebar = ({
+  encounterState,
+  elapsedTime,
+  sortType,
+  sortDirection,
+}: {
+  encounterState: EncounterState;
+  elapsedTime: number;
+  sortType: SortType;
+  sortDirection: SortDirection;
+}) => {
   const { t } = useTranslation();
 
   const onMinimize = () => {
@@ -68,11 +78,11 @@ export const Titlebar = ({ encounterState, elapsedTime }: { encounterState: Enco
   };
 
   const handleSimpleEncounterCopy = useCallback(() => {
-    exportSimpleEncounterToClipboard(encounterState);
+    exportSimpleEncounterToClipboard(sortType, sortDirection, encounterState);
   }, [encounterState]);
 
   const handleFullEncounterCopy = useCallback(() => {
-    exportFullEncounterToClipboard(encounterState);
+    exportFullEncounterToClipboard(sortType, sortDirection, encounterState);
   }, [encounterState]);
 
   return (
