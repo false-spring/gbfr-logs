@@ -71,7 +71,7 @@ export type PlayerData = {
 
 export type ComputedPlayerData = PlayerData & {
   /** Damage contribution as a percentage of the total */
-  percentage?: number;
+  percentage: number;
   /** Actual party index */
   partyIndex: number;
 };
@@ -102,3 +102,6 @@ export type EncounterResetEvent = {
   event: string;
   payload: EncounterState;
 };
+
+export type SortType = "partyIndex" | "dps" | "damage" | "percentage";
+export type SortDirection = "asc" | "desc";

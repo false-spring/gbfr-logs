@@ -14,7 +14,7 @@ import {
 import { LineChart } from "@mantine/charts";
 import { ClipboardText } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { t } from "i18next";
 import toast from "react-hot-toast";
@@ -30,7 +30,7 @@ import {
   millisecondsToElapsedFormat,
   translatedPlayerName,
 } from "../../utils";
-import { ComputedPlayerData, EnemyType } from "../../types";
+import { ComputedPlayerData, EnemyType, SortDirection, SortType } from "../../types";
 import { useEncounterStore, EncounterStateResponse } from "../Logs";
 
 interface ChartTooltipProps {
@@ -76,6 +76,8 @@ export const ViewPage = () => {
       setSelectedTargets: state.setSelectedTargets,
       loadFromResponse: state.loadFromResponse,
     }));
+  const [sortType, setSortType] = useState<SortType>("damage");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
   useEffect(() => {
     invoke("fetch_encounter_state", { id: Number(id), options: { targets: selectedTargets } })
@@ -88,12 +90,12 @@ export const ViewPage = () => {
   }, [id, selectedTargets]);
 
   const handleSimpleEncounterCopy = useCallback(() => {
-    if (encounter) exportSimpleEncounterToClipboard(encounter);
-  }, [encounter]);
+    if (encounter) exportSimpleEncounterToClipboard(sortType, sortDirection, encounter);
+  }, [sortType, sortDirection, encounter]);
 
   const handleFullEncounterCopy = useCallback(() => {
-    if (encounter) exportFullEncounterToClipboard(encounter);
-  }, [encounter]);
+    if (encounter) exportFullEncounterToClipboard(sortType, sortDirection, encounter);
+  }, [sortType, sortDirection, encounter]);
 
   const exportDamageLogToFile = useCallback(() => {
     if (id) invoke("export_damage_log_to_file", { id: Number(id), options: { targets: selectedTargets } });
@@ -219,7 +221,13 @@ export const ViewPage = () => {
             setSelectedTargets(targets);
           }}
         />
-        <MeterTable encounterState={encounter} />
+        <MeterTable
+          encounterState={encounter}
+          sortType={sortType}
+          sortDirection={sortDirection}
+          setSortType={setSortType}
+          setSortDirection={setSortDirection}
+        />
         <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
         <LineChart
           h={400}

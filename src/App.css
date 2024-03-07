@@ -105,6 +105,11 @@
   width: 4.5rem;
 }
 
+.table .header-name,
+.table .header-column {
+  cursor: pointer;
+}
+
 /* @TODO(false): Abusing TR as Button */
 .table .player-row,
 .table .skill-row {

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { listen } from "@tauri-apps/api/event";
 import toast, { Toaster } from "react-hot-toast";
 
-import { EncounterState, EncounterUpdateEvent } from "../types";
+import { EncounterState, EncounterUpdateEvent, SortDirection, SortType } from "../types";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
 
@@ -20,6 +20,8 @@ export const Meter = () => {
     party: {},
     status: "Waiting",
   });
+  const [sortType, setSortType] = useState<SortType>("damage");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,9 +77,20 @@ export const Meter = () => {
 
   return (
     <div className="app">
-      <Titlebar encounterState={encounterState} elapsedTime={elapsedTime} />
+      <Titlebar
+        encounterState={encounterState}
+        elapsedTime={elapsedTime}
+        sortType={sortType}
+        sortDirection={sortDirection}
+      />
       <div className="app-content">
-        <Table encounterState={encounterState} />
+        <Table
+          encounterState={encounterState}
+          sortType={sortType}
+          setSortType={setSortType}
+          sortDirection={sortDirection}
+          setSortDirection={setSortDirection}
+        />
       </div>
       <Toaster
         position="bottom-center"

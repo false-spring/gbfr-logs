@@ -1,6 +1,14 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
-import { ComputedPlayerData, EncounterState, CharacterType, ComputedSkillState, PlayerData } from "./types";
+import {
+  ComputedPlayerData,
+  EncounterState,
+  CharacterType,
+  ComputedSkillState,
+  PlayerData,
+  SortType,
+  SortDirection,
+} from "./types";
 import { t } from "i18next";
 
 export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedPlayerData[] => {
@@ -12,6 +20,7 @@ export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedP
 
   return players.map((player, i) => ({
     partyIndex: i,
+    percentage: 0,
     ...player,
   }));
 };
@@ -114,7 +123,27 @@ export const exportScreenshotToClipboard = () => {
 export const translatedPlayerName = (player: ComputedPlayerData) =>
   `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
 
-export const exportSimpleEncounterToClipboard = (encounterState: EncounterState) => {
+export const sortPlayers = (players: ComputedPlayerData[], sortType: SortType, sortDirection: SortDirection) => {
+  players.sort((a, b) => {
+    if (sortType === "partyIndex") {
+      return sortDirection === "asc" ? a.partyIndex - b.partyIndex : b.partyIndex - a.partyIndex;
+    } else if (sortType === "dps") {
+      return sortDirection === "asc" ? a.dps - b.dps : b.dps - a.dps;
+    } else if (sortType === "damage") {
+      return sortDirection === "asc" ? a.totalDamage - b.totalDamage : b.totalDamage - a.totalDamage;
+    } else if (sortType === "percentage") {
+      return sortDirection === "asc" ? a?.percentage - b?.percentage : b?.percentage - a?.percentage;
+    }
+
+    return 0;
+  });
+};
+
+export const exportSimpleEncounterToClipboard = (
+  sortType: SortType,
+  sortDirection: SortDirection,
+  encounterState: EncounterState
+) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
   const encounterHeader = "Encounter Time, Total Damage, Total DPS";
@@ -130,12 +159,12 @@ export const exportSimpleEncounterToClipboard = (encounterState: EncounterState)
 
   const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
     return {
-      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
       ...playerData,
+      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
     };
   });
 
-  players.sort((a, b) => b.totalDamage - a.totalDamage);
+  sortPlayers(players, sortType, sortDirection);
 
   const playerHeader = "Name, DMG, DPS, %";
   const playerData = players
@@ -164,7 +193,11 @@ export const exportSimpleEncounterToClipboard = (encounterState: EncounterState)
   });
 };
 
-export const exportFullEncounterToClipboard = (encounterState: EncounterState) => {
+export const exportFullEncounterToClipboard = (
+  sortType: SortType,
+  sortDirection: SortDirection,
+  encounterState: EncounterState
+) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
   const encounterHeader = "Encounter Time, Total Damage, Total DPS";
@@ -181,12 +214,12 @@ export const exportFullEncounterToClipboard = (encounterState: EncounterState) =
 
   const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
     return {
-      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
       ...playerData,
+      percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
     };
   });
 
-  players.sort((a, b) => b.totalDamage - a.totalDamage);
+  sortPlayers(players, sortType, sortDirection);
 
   const playerData = players
     .map((player) => {
