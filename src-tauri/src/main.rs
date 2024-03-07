@@ -372,8 +372,7 @@ fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
                 handle.get_window("main").unwrap(),
                 handle.state::<AlwaysOnTop>(),
             ),
-            "quit" => handle.exit(0),
-
+            "quit" => std::process::exit(0),
             _ => {}
         },
         _ => {} // Ignore rest of the events.
