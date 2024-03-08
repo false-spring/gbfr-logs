@@ -359,6 +359,10 @@ fn toggle_always_on_top(window: tauri::Window, state: State<AlwaysOnTop>) {
     let new_state = !always_on_top.load(Ordering::Acquire);
     always_on_top.store(new_state, Ordering::Release);
     window.set_always_on_top(new_state).unwrap();
+    window.emit("on-pinned", new_state);
+    window.app_handle().tray_handle().get_item("always_on_top").set_title(
+    if new_state { "Always on top ✓" } else { "Always on top" }
+    );
 }
 
 struct ClickThrough(AtomicBool);
@@ -368,6 +372,10 @@ fn toggle_clickthrough(window: tauri::Window, state: State<ClickThrough>) {
     let new_state = !click_through.load(Ordering::Acquire);
     click_through.store(new_state, Ordering::Release);
     window.set_ignore_cursor_events(new_state).unwrap();
+    window.emit("on-clickthrough", new_state);
+    window.app_handle().tray_handle().get_item("toggle_clickthrough").set_title(
+    if new_state { "Clickthrough ✓" } else { "ClickThrough" }
+    );
 }
 
 fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {

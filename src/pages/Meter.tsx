@@ -34,6 +34,8 @@ export const Meter = () => {
   }, []);
 
   useEffect(() => {
+    // TODO(Xwth|Nina): Refactor, Couldn't find a good way abstract/refactor
+    //      since `fn listen` takes a`handler: EventCallback<T>`
     const encounterUpdateListener = listen("encounter-update", (event: EncounterUpdateEvent) => {
       setEncounterState(event.payload);
 
@@ -63,6 +65,14 @@ export const Meter = () => {
       toast.error(evt.payload as string);
     });
 
+    const onPinned = listen("on-pinned", (evt) => {
+      evt.payload ? toast.success(t("ui.on-pin-enabled")) : toast.success(t("ui.on-pin-disabled")) ;
+    });
+
+    const onClickthrough = listen("on-clickthrough", (evt) => {
+      evt.payload ? toast.success(t("ui.on-clickthrough-enabled")) : toast.success(t("ui.on-clickthrough-disabled")) ;
+    })
+
     return () => {
       encounterUpdateListener.then((f) => f());
       encounterSavedListener.then((f) => f());
@@ -70,6 +80,8 @@ export const Meter = () => {
       onAreaEnterListener.then((f) => f());
       onSuccessAlert.then((f) => f());
       onErrorAlert.then((f) => f());
+      onPinned.then((f) => f());
+      onClickthrough.then((f) => f());
     };
   }, []);
 
