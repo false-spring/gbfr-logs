@@ -322,7 +322,7 @@ fn connect_and_run_parser(app: AppHandle) {
 fn system_tray_with_menu() -> SystemTray {
     let meter = CustomMenuItem::new("open_meter", "Open Meter");
     let logs = CustomMenuItem::new("open_logs", "Open Logs");
-    let always_on_top = CustomMenuItem::new("always_on_top", "Always on top");
+    let always_on_top = CustomMenuItem::new("always_on_top", "Always on top ✓");
     let toggle_clickthrough = CustomMenuItem::new("toggle_clickthrough", "Clickthrough");
     let quit = CustomMenuItem::new("quit", "Quit");
 
@@ -353,29 +353,43 @@ fn toggle_window_visibility(handle: &AppHandle, id: &str, focus: Option<bool>) {
 }
 
 struct AlwaysOnTop(AtomicBool);
+
 #[tauri::command]
 fn toggle_always_on_top(window: tauri::Window, state: State<AlwaysOnTop>) {
     let always_on_top = &state.0;
     let new_state = !always_on_top.load(Ordering::Acquire);
     always_on_top.store(new_state, Ordering::Release);
     window.set_always_on_top(new_state).unwrap();
-    window.emit("on-pinned", new_state);
-    window.app_handle().tray_handle().get_item("always_on_top").set_title(
-    if new_state { "Always on top ✓" } else { "Always on top" }
-    );
+    let _ = window.emit("on-pinned", new_state);
+    let _ = window
+        .app_handle()
+        .tray_handle()
+        .get_item("always_on_top")
+        .set_title(if new_state {
+            "Always on top ✓"
+        } else {
+            "Always on top"
+        });
 }
 
 struct ClickThrough(AtomicBool);
+
 #[tauri::command]
 fn toggle_clickthrough(window: tauri::Window, state: State<ClickThrough>) {
     let click_through = &state.0;
     let new_state = !click_through.load(Ordering::Acquire);
     click_through.store(new_state, Ordering::Release);
     window.set_ignore_cursor_events(new_state).unwrap();
-    window.emit("on-clickthrough", new_state);
-    window.app_handle().tray_handle().get_item("toggle_clickthrough").set_title(
-    if new_state { "Clickthrough ✓" } else { "ClickThrough" }
-    );
+    let _ = window.emit("on-clickthrough", new_state);
+    let _ = window
+        .app_handle()
+        .tray_handle()
+        .get_item("toggle_clickthrough")
+        .set_title(if new_state {
+            "Clickthrough ✓"
+        } else {
+            "Clickthrough"
+        });
 }
 
 fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
@@ -409,7 +423,7 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
         .plugin(tauri_plugin_window_state::Builder::default().build())
-        .manage(AlwaysOnTop(AtomicBool::new(false)))
+        .manage(AlwaysOnTop(AtomicBool::new(true)))
         .manage(ClickThrough(AtomicBool::new(false)))
         .system_tray(system_tray_with_menu())
         .on_system_tray_event(menu_tray_handler)
