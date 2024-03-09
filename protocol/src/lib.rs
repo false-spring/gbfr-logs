@@ -76,6 +76,7 @@ pub struct SigilLoadoutEvent {
     pub character_name: CString,
     pub display_name: CString,
     pub party_index: u8,
+    pub actor_index: u32,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

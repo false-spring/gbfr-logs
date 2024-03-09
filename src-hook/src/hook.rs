@@ -16,19 +16,19 @@ type ProcessDamageEventFunc =
     unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
 type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8) -> usize;
-type OnLoadSigilListFunc = unsafe extern "system" fn(*const usize, *const usize);
+type OnLoadPlayerFunc = unsafe extern "system" fn(*const usize) -> usize;
 
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
     static ProcessDotEvent: unsafe extern "system" fn(*const usize, *const usize) -> usize;
     static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8) -> usize;
-    static OnLoadSigilList: unsafe extern "system" fn(*const usize, *const usize);
+    static OnLoadPlayer: unsafe extern "system" fn(*const usize) -> usize;
 }
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
-const ON_LOAD_SIGIL_LIST: &str = "48 85 c9 74 05 e8 $ { ' } 48 89 f9 ba 05 00 00 00";
+const ON_LOAD_PLAYER: &str = "49 89 ce e8 $ { ' } 31 ff 85 c0 ? ? ? ? ? ? 49 8b 46 28";
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
@@ -177,7 +177,6 @@ unsafe fn process_dot_event(tx: event::Tx, dot_instance: *const usize, a2: *cons
     let (source_parent_type_id, source_parent_idx) =
         get_source_parent(source_type_id, source, source_idx);
 
-    // @TODO(false): There should be a way to get the type of DoT being applied. Too dumb to find it right now.
     let event = Message::DamageEvent(DamageEvent {
         source: Actor {
             index: source_idx,
@@ -276,12 +275,18 @@ struct SigilList {
     party_index: u32,         //0x0230
 }
 
-unsafe fn on_load_sigil_list(tx: event::Tx, a1: *const usize, a2: *const usize) {
-    OnLoadSigilList.call(a1, a2);
+unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
+    let ret = OnLoadPlayer.call(a1);
 
-    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0x3290).read() as *mut SigilList);
+    let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
+    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB890).read() as *mut SigilList);
+
+    if player_entity_info_ptr == std::ptr::null() {
+        return ret;
+    }
 
     if let Some(sigil_list) = sigil_list {
+        let player_idx = player_entity_info_ptr.byte_add(0x38).read() as u32;
         let sigil_list = sigil_list.as_ref();
 
         if sigil_list.party_index <= 3 {
@@ -316,11 +321,14 @@ unsafe fn on_load_sigil_list(tx: event::Tx, a1: *const usize, a2: *const usize) 
                 character_name,
                 display_name,
                 party_index: sigil_list.party_index as u8,
+                actor_index: player_idx,
             });
 
             let _ = tx.send(payload);
         }
     }
+
+    ret
 }
 
 pub fn init(tx: event::Tx) -> Result<()> {
@@ -365,17 +373,15 @@ pub fn init(tx: event::Tx) -> Result<()> {
         warn!("Could not find on_enter_area");
     }
 
-    if let Ok(on_load_sigil_list_evt) = search(&process, ON_LOAD_SIGIL_LIST) {
+    if let Ok(on_load_player_original) = search(&process, ON_LOAD_PLAYER) {
         let tx = tx.clone();
         unsafe {
-            let func: OnLoadSigilListFunc = std::mem::transmute(on_load_sigil_list_evt);
-            OnLoadSigilList.initialize(func, move |a1, a2| {
-                on_load_sigil_list(tx.clone(), a1, a2);
-            })?;
-            OnLoadSigilList.enable()?;
+            let func: OnLoadPlayerFunc = std::mem::transmute(on_load_player_original);
+            OnLoadPlayer.initialize(func, move |a1| on_load_player(tx.clone(), a1))?;
+            OnLoadPlayer.enable()?;
         }
     } else {
-        warn!("Could not find on_load_sigil_list");
+        warn!("Could not find on_load_player");
     }
 
     Ok(())
