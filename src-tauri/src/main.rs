@@ -237,11 +237,6 @@ fn delete_logs(ids: Vec<u64>) -> Result<(), String> {
     Ok(())
 }
 
-#[tauri::command]
-fn load_parse_log_from_file(path: String) -> Result<v0::Parser, String> {
-    v0::Parser::load_parse_log_from_file(&path).map_err(|e| e.to_string())
-}
-
 // Continuously check for the game process and inject the DLL when found.
 async fn check_and_perform_hook(app: AppHandle) {
     loop {
@@ -444,7 +439,6 @@ fn main() {
             }
         })
         .invoke_handler(tauri::generate_handler![
-            load_parse_log_from_file,
             fetch_encounter_state,
             fetch_logs,
             delete_logs,

@@ -1,4 +1,4 @@
-use std::{collections::HashMap, fs::File, io::BufReader};
+use std::{collections::HashMap, io::BufReader};
 
 use anyhow::Result;
 use chrono::prelude::*;
@@ -356,13 +356,5 @@ impl Parser {
         }
 
         Ok(())
-    }
-
-    pub fn load_parse_log_from_file(file_name: &str) -> Result<Self, anyhow::Error> {
-        let file = File::open(file_name)?;
-        let reader = BufReader::new(file);
-        let parsed_log: Self = protocol::bincode::deserialize_from(reader)?;
-
-        Ok(parsed_log)
     }
 }
