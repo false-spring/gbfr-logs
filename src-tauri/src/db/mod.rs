@@ -8,15 +8,27 @@ pub fn setup_db() -> Result<()> {
 
     conn.pragma_update(None, "journal_mode", &"WAL")?;
 
-    let migrations = Migrations::new(vec![M::up(
-        r#"CREATE TABLE IF NOT EXISTS logs (
+    let migrations = Migrations::new(vec![
+        M::up(
+            r#"CREATE TABLE IF NOT EXISTS logs (
             id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             time INTEGER NOT NULL,
             duration INTEGER NOT NULL,
             data BLOB NOT NULL
         )"#,
-    )]);
+        ),
+        M::up("ALTER TABLE logs ADD COLUMN version INTEGER NOT NULL DEFAULT 0"),
+        M::up("ALTER TABLE logs ADD COLUMN primary_target INTEGER"),
+        M::up("ALTER TABLE logs ADD COLUMN p1_name TEXT"),
+        M::up("ALTER TABLE logs ADD COLUMN p1_type INTEGER"),
+        M::up("ALTER TABLE logs ADD COLUMN p2_name TEXT"),
+        M::up("ALTER TABLE logs ADD COLUMN p2_type INTEGER"),
+        M::up("ALTER TABLE logs ADD COLUMN p3_name TEXT"),
+        M::up("ALTER TABLE logs ADD COLUMN p3_type INTEGER"),
+        M::up("ALTER TABLE logs ADD COLUMN p4_name TEXT"),
+        M::up("ALTER TABLE logs ADD COLUMN p4_type INTEGER"),
+    ]);
 
     migrations.to_latest(&mut conn)?;
 
