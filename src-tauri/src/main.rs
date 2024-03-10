@@ -295,12 +295,23 @@ fn connect_and_run_parser(app: AppHandle) {
                                     state.on_area_enter_event();
                                 }
                                 protocol::Message::SigilLoadoutEvent(event) => {
+                                    // when load player event comes in:
+                                    // if i'm a local player:
+                                    // - check if player is in my index
+                                    // - if not occupied: set player info to that party index
+                                    // - if occupied: check next slot and set player info to that party index
+                                    // if i'm an online player:
+                                    // - check if player is in my index
+                                    // - if not occupied: set player info to that party index
+                                    // - if occupied: replace player info with my info, and shift that player to the next slot available
+
                                     println!(
-                                        "Sigil loadout event: {} - {}, party_slot={} actor_index={} first_sigil={:?}",
+                                        "Sigil loadout event: {} - {}, party_slot={} actor_index={} character_type={:x} first_sigil={:?}",
                                         event.character_name.to_string_lossy(),
                                         event.display_name.to_string_lossy(),
                                         event.party_index,
                                         event.actor_index,
+                                        event.character_type,
                                         event.sigils.first()
                                     );
                                 }

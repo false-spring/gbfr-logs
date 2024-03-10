@@ -260,7 +260,8 @@ struct SigilList {
     unk_1bc: u32,             //0x01BC
     unk_1c0: u32,             //0x01C0
     unk_1c4: u32,             //0x01C4
-    unk_1c8: u32,             //0x01C8
+    /// 0 == local, 1 == online
+    is_online: u32, //0x01C8
     unk_1cc: u32,             //0x01CC
     unk_1d0: u32,             //0x01D0
     unk_1d4: u32,             //0x01D4
@@ -278,6 +279,7 @@ struct SigilList {
 unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
     let ret = OnLoadPlayer.call(a1);
 
+    let online_party_index = a1.byte_add(0x3A28).read() as u8;
     let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
     let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB890).read() as *mut SigilList);
 
@@ -285,11 +287,23 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
         return ret;
     }
 
+    let player = player_entity_info_ptr.byte_add(0x70).read() as *const usize;
+
+    if player == std::ptr::null() {
+        return ret;
+    }
+
     if let Some(sigil_list) = sigil_list {
         let player_idx = player_entity_info_ptr.byte_add(0x38).read() as u32;
+        let character_type = actor_type_id(player);
         let sigil_list = sigil_list.as_ref();
+        let party_index = if sigil_list.party_index == u32::MAX {
+            online_party_index
+        } else {
+            sigil_list.party_index as u8
+        };
 
-        if sigil_list.party_index <= 3 {
+        if party_index <= 3 {
             let sigils = sigil_list
                 .sigils
                 .iter()
@@ -320,8 +334,10 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
                 sigils,
                 character_name,
                 display_name,
-                party_index: sigil_list.party_index as u8,
                 actor_index: player_idx,
+                is_online: sigil_list.is_online == 1,
+                party_index,
+                character_type,
             });
 
             let _ = tx.send(payload);

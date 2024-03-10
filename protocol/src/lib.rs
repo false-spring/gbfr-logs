@@ -75,8 +75,10 @@ pub struct SigilLoadoutEvent {
     pub sigils: Vec<Sigil>,
     pub character_name: CString,
     pub display_name: CString,
+    pub character_type: u32,
     pub party_index: u8,
     pub actor_index: u32,
+    pub is_online: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
