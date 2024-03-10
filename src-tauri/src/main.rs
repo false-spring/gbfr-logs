@@ -9,12 +9,13 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
+use anyhow::Context;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{
     constants::{CharacterType, EnemyType},
-    v0,
+    v1,
 };
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
@@ -48,14 +49,16 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
 
     let mut stmt = conn
-        .prepare("SELECT data FROM logs WHERE id = ?")
+        .prepare("SELECT data, version FROM logs WHERE id = ?")
         .map_err(|e| e.to_string())?;
 
-    let blob: Vec<u8> = stmt
-        .query_row([id], |row| row.get(0))
+    let (blob, version): (Vec<u8>, u8) = stmt
+        .query_row([id], |row| Ok((row.get(0)?, row.get(1)?)))
+        .context("Failed to fetch log from database")
         .map_err(|e| e.to_string())?;
 
-    let parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
+    let parser = parser::deserialize_version(&blob, version).map_err(|e| e.to_string())?;
+
     let file = File::create(&file_path).map_err(|e| e.to_string())?;
 
     // @TODO(false): Split formatting into a separate function.
@@ -67,8 +70,8 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     )
     .map_err(|e| e.to_string())?;
 
-    for damage_event in &parser.damage_event_log {
-        let timestamp = damage_event.0 - parser.encounter_state.start_time;
+    for damage_event in &parser.encounter.event_log {
+        let timestamp = damage_event.0 - parser.start_time();
         let target_type = EnemyType::from_hash(damage_event.1.target.parent_actor_type);
         let character_type = CharacterType::from_hash(damage_event.1.source.parent_actor_type);
 
@@ -157,7 +160,7 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct EncounterStateResponse {
-    encounter_state: v0::EncounterState,
+    encounter_state: v1::DerivedEncounterState,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
@@ -172,23 +175,24 @@ struct ParseOptions {
 fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStateResponse, String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
     let mut stmt = conn
-        .prepare("SELECT data FROM logs WHERE id = ?")
+        .prepare("SELECT data, version FROM logs WHERE id = ?")
         .map_err(|e| e.to_string())?;
 
-    let blob: Vec<u8> = stmt
-        .query_row([id], |row| row.get(0))
+    let (blob, version): (Vec<u8>, u8) = stmt
+        .query_row([id], |row| Ok((row.get(0)?, row.get(1)?)))
         .map_err(|e| e.to_string())?;
 
-    let mut parser: v0::Parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
+    // @TODO(false): If we deserialize from an older version, we should save it back into the DB as the newer format.
+    let mut parser = parser::deserialize_version(&blob, version).map_err(|e| e.to_string())?;
 
-    parser.reparse(&options.targets);
+    parser.reparse_with_options(&options.targets);
 
-    let duration = parser.encounter_state.end_time - parser.encounter_state.start_time;
+    let duration = parser.derived_state.duration();
     let mut player_dps: HashMap<u32, Vec<i32>> = HashMap::new();
 
     const DPS_INTERVAL: i64 = 5 * 1_000;
 
-    for player in parser.encounter_state.party.values() {
+    for player in parser.derived_state.party.values() {
         player_dps.insert(
             player.index,
             vec![0; (duration / DPS_INTERVAL) as usize + 1],
@@ -196,9 +200,10 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     }
 
     let mut targets = Vec::new();
+    let start_time = parser.start_time();
 
-    for (timestamp, damage_event) in parser.damage_event_log.iter() {
-        let index = ((timestamp - parser.encounter_state.start_time) / DPS_INTERVAL) as usize;
+    for (timestamp, damage_event) in parser.encounter.event_log.iter() {
+        let index = ((timestamp - start_time) / DPS_INTERVAL) as usize;
         let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
 
         if !targets.contains(&target_type) {
@@ -214,7 +219,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     }
 
     Ok(EncounterStateResponse {
-        encounter_state: parser.encounter_state,
+        encounter_state: parser.derived_state,
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         targets,
@@ -269,7 +274,7 @@ async fn check_and_perform_hook(app: AppHandle) {
 fn connect_and_run_parser(app: AppHandle) {
     let window = app.get_window("main").expect("Window not found");
     let database = db::connect_to_db().expect("Could not connect to database");
-    let mut state = v0::Parser::new(Some(window.clone()), database);
+    let mut state = v1::Parser::new(window.clone(), database);
 
     tauri::async_runtime::spawn(async move {
         loop {

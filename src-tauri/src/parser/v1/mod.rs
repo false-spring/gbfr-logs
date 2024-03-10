@@ -7,10 +7,14 @@ use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::Window;
 
-use super::constants::{CharacterType, EnemyType};
+use super::{
+    constants::{CharacterType, EnemyType},
+    v0,
+};
 
 /// Equippable sigil for a character
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct Sigil {
     /// ID of the first trait in this sigil
     pub first_trait_id: u32,
@@ -34,6 +38,7 @@ struct Sigil {
 
 /// Data for a player in the encounter
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct PlayerData {
     /// Display name for this player
     display_name: String,
@@ -47,6 +52,7 @@ struct PlayerData {
 
 /// Derived stat breakdown of a particular skill
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct SkillState {
     /// Type of action ID that this skill is
     action_type: ActionType,
@@ -94,8 +100,9 @@ impl SkillState {
 
 /// Derived stat breakdown for a player
 #[derive(Debug, Serialize, Deserialize)]
-struct PlayerState {
-    index: u32,
+#[serde(rename_all = "camelCase")]
+pub struct PlayerState {
+    pub index: u32,
     character_type: CharacterType,
     total_damage: u64,
     dps: f64,
@@ -146,6 +153,7 @@ impl PlayerState {
 
 /// Derived breakdown for an enemy target
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct EnemyState {
     index: u32,
     target_type: EnemyType,
@@ -160,9 +168,10 @@ impl EnemyState {
 
 /// The necessary details of an encounter that can be used to recreate the state at any point in time.
 #[derive(Debug, Serialize, Deserialize)]
-struct Encounter {
+#[serde(rename_all = "camelCase")]
+pub struct Encounter {
     player_data: [Option<PlayerData>; 4],
-    event_log: Vec<(i64, DamageEvent)>,
+    pub event_log: Vec<(i64, DamageEvent)>,
 }
 
 impl Default for Encounter {
@@ -207,7 +216,8 @@ enum ParserStatus {
 /// The state of the encounter after processing all damage events (or all known events for now)
 /// Used for parsing the encounter into a calculated format that can be consumed by the front-end.
 #[derive(Debug, Serialize, Deserialize)]
-struct DerivedEncounterState {
+#[serde(rename_all = "camelCase")]
+pub struct DerivedEncounterState {
     /// Timestamp of the first damage event
     start_time: i64,
     /// Timestamp of the last damage event (or the last known damage event if the encounter is still in progress)
@@ -219,7 +229,7 @@ struct DerivedEncounterState {
     /// Status of the parser
     status: ParserStatus,
     /// Derived party stats
-    party: HashMap<u32, PlayerState>,
+    pub party: HashMap<u32, PlayerState>,
     /// Derived target stats, damage done to each target.
     targets: HashMap<u32, EnemyState>,
 }
@@ -239,8 +249,8 @@ impl Default for DerivedEncounterState {
 }
 
 impl DerivedEncounterState {
-    fn duration(&self) -> i64 {
-        (self.end_time - self.start_time).min(1)
+    pub fn duration(&self) -> i64 {
+        (self.end_time - self.start_time).max(1)
     }
 
     fn utc_start_time(&self) -> Result<chrono::DateTime<Utc>> {
@@ -301,11 +311,11 @@ impl DerivedEncounterState {
 
 /// The parser for the encounter.
 #[derive(Debug, Serialize, Deserialize, Default)]
-struct Parser {
+pub struct Parser {
     /// Encounter that will be saved into the database, contains all the state needed to reparse
-    encounter: Encounter,
+    pub encounter: Encounter,
     /// Derived state of the encounter, used for parsing the encounter into a calculated format that can be consumed by the front-end
-    derived_state: DerivedEncounterState,
+    pub derived_state: DerivedEncounterState,
     /// Status of the parser
     status: ParserStatus,
 
@@ -327,6 +337,15 @@ impl Parser {
         }
     }
 
+    /// Peeks at the first damage event in the log to get the start time of the encounter.
+    pub fn start_time(&self) -> i64 {
+        if let Some((timestamp, _)) = self.encounter.event_log.first() {
+            *timestamp
+        } else {
+            1
+        }
+    }
+
     /// Reparses derived state from a given encounter.
     pub fn from_encounter(encounter: Encounter) -> Self {
         let mut parser = Self {
@@ -338,9 +357,35 @@ impl Parser {
         parser
     }
 
+    pub fn from_encounter_blob(blob: &[u8]) -> Result<Self> {
+        let encounter = Encounter::from_blob(blob)?;
+        Ok(Self::from_encounter(encounter))
+    }
+
     /// Reparses derived state from the current encounter.
     pub fn reparse(&mut self) {
-        todo!()
+        self.derived_state = Default::default();
+        self.derived_state.start(self.start_time());
+
+        for (timestamp, event) in self.encounter.event_log.iter() {
+            self.derived_state.process_damage_event(*timestamp, &event);
+        }
+    }
+
+    // Re-analyzes the encounter with the given targets.
+    pub fn reparse_with_options(&mut self, targets: &Vec<EnemyType>) {
+        self.derived_state = Default::default();
+        self.derived_state.start(self.start_time());
+
+        for (timestamp, event) in self.encounter.event_log.iter() {
+            // If the target list is empty, then we're not filtering by target.
+            // Otherwise, we only process damage events that match the target list.
+            let target_type = EnemyType::from_hash(event.target.parent_actor_type);
+
+            if targets.is_empty() || targets.contains(&target_type) {
+                self.derived_state.process_damage_event(*timestamp, &event);
+            }
+        }
     }
 
     /// Handles the event when an area is entered.
@@ -487,5 +532,21 @@ impl Parser {
         }
 
         Ok(())
+    }
+}
+
+/// Converts a v0 parser into a v1 parser, but does not reparse the encounter.
+impl From<v0::Parser> for Parser {
+    fn from(parser: v0::Parser) -> Self {
+        let encounter = Encounter {
+            event_log: parser.damage_event_log,
+            ..Default::default()
+        };
+
+        Self {
+            encounter,
+            status: ParserStatus::Stopped,
+            ..Default::default()
+        }
     }
 }

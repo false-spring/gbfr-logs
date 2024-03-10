@@ -335,7 +335,7 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
                 character_name,
                 display_name,
                 actor_index: player_idx,
-                is_online: sigil_list.is_online == 1,
+                is_online: sigil_list.is_online != 0,
                 party_index,
                 character_type,
             });

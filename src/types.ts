@@ -66,7 +66,7 @@ export type PlayerData = {
   /** Time of the last damage dealt */
   lastDamageTime: number;
   /** Stats for individual skills logged */
-  skills: SkillState[];
+  skillBreakdown: SkillState[];
 };
 
 export type ComputedPlayerData = PlayerData & {

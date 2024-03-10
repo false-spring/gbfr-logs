@@ -169,8 +169,8 @@ export const exportSimpleEncounterToClipboard = (
   const playerHeader = "Name, DMG, DPS, %";
   const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
-      const computedSkills = player.skills.map((skill) => {
+      const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
+      const computedSkills = player.skillBreakdown.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
           ...skill,
@@ -223,8 +223,8 @@ export const exportFullEncounterToClipboard = (
 
   const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
-      const computedSkills = player.skills.map((skill) => {
+      const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
+      const computedSkills = player.skillBreakdown.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
           ...skill,
