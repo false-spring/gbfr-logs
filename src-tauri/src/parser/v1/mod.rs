@@ -150,6 +150,12 @@ struct EnemyState {
     total_damage: u64,
 }
 
+impl EnemyState {
+    fn update_from_damage_event(&mut self, event: &DamageEvent) {
+        self.total_damage += event.damage as u64;
+    }
+}
+
 /// The necessary details of an encounter that can be used to recreate the state at any point in time.
 #[derive(Debug, Serialize, Deserialize)]
 struct Encounter {
@@ -245,6 +251,13 @@ impl DerivedEncounterState {
         self.end_time = now;
     }
 
+    /// Gets the primary target of the encounter (the target that had the most damage done to it)
+    fn get_primary_target(&self) -> Option<&EnemyState> {
+        self.targets
+            .values()
+            .max_by_key(|target| target.total_damage)
+    }
+
     fn process_damage_event(&mut self, now: i64, event: &DamageEvent) {
         self.end_time = now;
         self.total_damage += event.damage as u64;
@@ -264,6 +277,18 @@ impl DerivedEncounterState {
 
         // Update player stats from damage event.
         source_player.update_from_damage_event(&event);
+
+        // Update target stats from damage event.
+        let target = self
+            .targets
+            .entry(event.target.parent_index)
+            .or_insert(EnemyState {
+                index: event.target.parent_index,
+                target_type: EnemyType::from_hash(event.target.parent_actor_type),
+                total_damage: 0,
+            });
+
+        target.update_from_damage_event(&event);
 
         // Update everyone's DPS
         for player in self.party.values_mut() {
@@ -416,14 +441,21 @@ impl Parser {
 
         let encounter_data = self.encounter.to_blob()?;
 
+        let primary_target = self
+            .derived_state
+            .get_primary_target()
+            .map(|target| target.index);
+
         if let Some(conn) = &mut self.db {
             conn.execute(
-                "INSERT INTO logs (name, time, duration, data) VALUES (?, ?, ?, ?)",
+                "INSERT INTO logs (name, time, duration, data, version, primary_target) VALUES (?, ?, ?, ?, ?, ?)",
                 params![
                     log_name,
                     start_datetime.timestamp_millis(),
                     duration_in_millis,
                     &encounter_data,
+                    1,
+                    primary_target
                 ],
             )?;
         }
