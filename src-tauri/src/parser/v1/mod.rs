@@ -39,6 +39,8 @@ struct PlayerData {
     display_name: String,
     /// Character name for this playe if it's an NPC, otherwise it is the same as display_name
     character_name: String,
+    /// Character type for this player
+    character_type: CharacterType,
     /// Sigils that this player has equipped
     sigils: Vec<Sigil>,
 }
@@ -413,7 +415,6 @@ impl Parser {
     fn should_ignore_damage_event(event: &DamageEvent) -> bool {
         let character_type = CharacterType::from_hash(event.source.parent_actor_type);
 
-        // @TODO(false): Do heals come through as negative damage?
         if event.damage <= 0 {
             return true;
         }
@@ -436,26 +437,51 @@ impl Parser {
         let duration_in_millis = self.derived_state.duration();
         let start_datetime = self.derived_state.utc_start_time()?;
 
-        // @TODO(false): Generate good display name
-        let log_name = "Log";
-
         let encounter_data = self.encounter.to_blob()?;
 
         let primary_target = self
             .derived_state
             .get_primary_target()
-            .map(|target| target.index);
+            .map(|target| target.target_type.to_string());
+
+        let p1 = self.encounter.player_data[0].as_ref();
+        let p2 = self.encounter.player_data[1].as_ref();
+        let p3 = self.encounter.player_data[2].as_ref();
+        let p4 = self.encounter.player_data[3].as_ref();
 
         if let Some(conn) = &mut self.db {
             conn.execute(
-                "INSERT INTO logs (name, time, duration, data, version, primary_target) VALUES (?, ?, ?, ?, ?, ?)",
+                r#"INSERT INTO logs (
+                        name,
+                        time,
+                        duration,
+                        data,
+                        version,
+                        primary_target,
+                        p1_name,
+                        p1_type,
+                        p2_name,
+                        p2_type,
+                        p3_name,
+                        p3_type,
+                        p4_name,
+                        p4_type
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
                 params![
-                    log_name,
+                    "",
                     start_datetime.timestamp_millis(),
                     duration_in_millis,
                     &encounter_data,
                     1,
-                    primary_target
+                    primary_target,
+                    p1.map(|p| p.display_name.as_str()),
+                    p1.map(|p| p.character_type.to_string()),
+                    p2.map(|p| p.display_name.as_str()),
+                    p2.map(|p| p.character_type.to_string()),
+                    p3.map(|p| p.display_name.as_str()),
+                    p3.map(|p| p.character_type.to_string()),
+                    p4.map(|p| p.display_name.as_str()),
+                    p4.map(|p| p.character_type.to_string()),
                 ],
             )?;
         }
