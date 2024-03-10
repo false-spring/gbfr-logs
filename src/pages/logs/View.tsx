@@ -30,7 +30,7 @@ import {
   millisecondsToElapsedFormat,
   translatedPlayerName,
 } from "../../utils";
-import { ComputedPlayerData, EnemyType, SortDirection, SortType } from "../../types";
+import { ComputedPlayerState, EnemyType, SortDirection, SortType } from "../../types";
 import { useEncounterStore, EncounterStateResponse } from "../Logs";
 
 interface ChartTooltipProps {
@@ -128,7 +128,7 @@ export const ViewPage = () => {
 
     for (const playerIndex in dpsChart) {
       const player = players.find((p) => p.index === Number(playerIndex));
-      const playerName = translatedPlayerName(player as ComputedPlayerData);
+      const playerName = translatedPlayerName(player as ComputedPlayerState);
 
       const lastFiveValues = dpsChart[playerIndex].slice(i - 5, i);
       const totalLastFiveValues = lastFiveValues.reduce((a, b) => a + b, 0);

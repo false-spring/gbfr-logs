@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
-import { CharacterType, ComputedPlayerData, ComputedSkillState } from "../types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState } from "../types";
 import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
-  player: ComputedPlayerData;
+  player: ComputedPlayerState;
   color: string;
 };
 

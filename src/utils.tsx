@@ -1,17 +1,17 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
 import {
-  ComputedPlayerData,
+  ComputedPlayerState,
   EncounterState,
   CharacterType,
   ComputedSkillState,
-  PlayerData,
+  PlayerState,
   SortType,
   SortDirection,
 } from "./types";
 import { t } from "i18next";
 
-export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedPlayerData[] => {
+export const formatInPartyOrder = (party: Record<string, PlayerState>): ComputedPlayerState[] => {
   const players = Object.keys(party).map((key) => {
     return party[key];
   });
@@ -120,10 +120,10 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
-export const translatedPlayerName = (player: ComputedPlayerData) =>
+export const translatedPlayerName = (player: ComputedPlayerState) =>
   `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
 
-export const sortPlayers = (players: ComputedPlayerData[], sortType: SortType, sortDirection: SortDirection) => {
+export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, sortDirection: SortDirection) => {
   players.sort((a, b) => {
     if (sortType === "partyIndex") {
       return sortDirection === "asc" ? a.partyIndex - b.partyIndex : b.partyIndex - a.partyIndex;
@@ -157,7 +157,7 @@ export const exportSimpleEncounterToClipboard = (
 
   const orderedPlayers = formatInPartyOrder(encounterState.party);
 
-  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
+  const players: Array<ComputedPlayerState> = orderedPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -212,7 +212,7 @@ export const exportFullEncounterToClipboard = (
   const playerHeader = "Name, DMG, DPS, %";
   const orderedPlayers = formatInPartyOrder(encounterState.party);
 
-  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
+  const players: Array<ComputedPlayerState> = orderedPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,

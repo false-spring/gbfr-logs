@@ -54,7 +54,7 @@ export type ComputedSkillState = SkillState & {
   percentage: number;
 };
 
-export type PlayerData = {
+export type PlayerState = {
   /** Unique ID for this player */
   index: number;
   /** Character type of this player. (Pl1000 / Pl1800 / ..) */
@@ -69,11 +69,20 @@ export type PlayerData = {
   skillBreakdown: SkillState[];
 };
 
-export type ComputedPlayerData = PlayerData & {
+export type ComputedPlayerState = PlayerState & {
   /** Damage contribution as a percentage of the total */
   percentage: number;
   /** Actual party index */
   partyIndex: number;
+};
+
+export type EnemyState = {
+  /** Enemy index */
+  index: number;
+  /** Enemy type */
+  targetType: EnemyType;
+  /** Total damage done to this target */
+  totalDamage: number;
 };
 
 export type EncounterStatus = "Waiting" | "InProgress" | "Stopped";
@@ -88,9 +97,11 @@ export type EncounterState = {
   /** The time of the encounter's last known damage instance (UTC milliseconds since epoch) */
   endTime: number;
   /** Represents the players in the encounter */
-  party: Record<string, PlayerData>;
+  party: Record<string, PlayerState>;
   /** Status of the encounter */
   status: EncounterStatus;
+  /** Targets for this encounter */
+  targets: Record<number, EnemyState>;
 };
 
 export type EncounterUpdateEvent = {

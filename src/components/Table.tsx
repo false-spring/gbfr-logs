@@ -1,4 +1,4 @@
-import { ComputedPlayerData, EncounterState, SortDirection, SortType } from "../types";
+import { ComputedPlayerState, EncounterState, SortDirection, SortType } from "../types";
 import { PLAYER_COLORS, formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";
 
@@ -16,7 +16,7 @@ export const Table = ({
   setSortDirection: (sortDirection: SortDirection) => void;
 }) => {
   const partyOrderPlayers = formatInPartyOrder(encounterState.party);
-  const players: Array<ComputedPlayerData> = partyOrderPlayers.map((playerData) => {
+  const players: Array<ComputedPlayerState> = partyOrderPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
