@@ -114,5 +114,31 @@ export type EncounterResetEvent = {
   payload: EncounterState;
 };
 
+export type Sigil = {
+  firstTraitId: number;
+  firstTraitLevel: number;
+  secondTraitId: number;
+  secondTraitLevel: number;
+  sigilId: number;
+  equippedCharacter: number;
+  sigilLevel: number;
+  acquisitionCount: number;
+  notificationEnum: number;
+};
+
+export type PlayerData = {
+  actorIndex: number;
+  displayName: string;
+  characterName: string;
+  characterType: CharacterType;
+  sigils: Sigil[];
+  isOnline: boolean;
+};
+
+export type PartyUpdateEvent = {
+  event: string;
+  payload: Array<PlayerData | null>;
+};
+
 export type SortType = "partyIndex" | "dps" | "damage" | "percentage";
 export type SortDirection = "asc" | "desc";

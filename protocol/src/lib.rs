@@ -71,7 +71,7 @@ pub struct Sigil {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SigilLoadoutEvent {
+pub struct PlayerLoadEvent {
     pub sigils: Vec<Sigil>,
     pub character_name: CString,
     pub display_name: CString,
@@ -85,5 +85,5 @@ pub struct SigilLoadoutEvent {
 pub enum Message {
     OnAreaEnter,
     DamageEvent(DamageEvent),
-    SigilLoadoutEvent(SigilLoadoutEvent),
+    PlayerLoadEvent(PlayerLoadEvent),
 }

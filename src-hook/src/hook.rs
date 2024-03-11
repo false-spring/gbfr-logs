@@ -330,7 +330,7 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
                 .map(|cstr| cstr.to_owned())
                 .unwrap_or(CString::new("").unwrap());
 
-            let payload = Message::SigilLoadoutEvent(protocol::SigilLoadoutEvent {
+            let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
                 sigils,
                 character_name,
                 display_name,

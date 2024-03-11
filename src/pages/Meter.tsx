@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { listen } from "@tauri-apps/api/event";
 import toast, { Toaster } from "react-hot-toast";
 
-import { EncounterState, EncounterUpdateEvent, SortDirection, SortType } from "../types";
+import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, SortDirection, SortType } from "../types";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
 
@@ -18,6 +18,7 @@ export const Meter = () => {
     startTime: 0,
     endTime: 1,
     party: {},
+    targets: {},
     status: "Waiting",
   });
   const [sortType, setSortType] = useState<SortType>("damage");
@@ -57,6 +58,10 @@ export const Meter = () => {
       toast.success(t("ui.on-area-enter"));
     });
 
+    // @ts-expect-error - @TODO(false): Implement looking at party data.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const onPartyUpdate = listen("encounter-party-update", (event: PartyUpdateEvent) => {});
+
     const onSuccessAlert = listen("success-alert", (evt) => {
       toast.success(evt.payload as string);
     });
@@ -78,6 +83,7 @@ export const Meter = () => {
       encounterSavedListener.then((f) => f());
       encounterSavedErrorListener.then((f) => f());
       onAreaEnterListener.then((f) => f());
+      onPartyUpdate.then((f) => f());
       onSuccessAlert.then((f) => f());
       onErrorAlert.then((f) => f());
       onPinned.then((f) => f());

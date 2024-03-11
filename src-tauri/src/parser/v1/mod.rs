@@ -2,7 +2,7 @@ use std::{collections::HashMap, io::BufReader};
 
 use anyhow::Result;
 use chrono::Utc;
-use protocol::{ActionType, DamageEvent};
+use protocol::{ActionType, DamageEvent, PlayerLoadEvent};
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::Window;
@@ -13,7 +13,7 @@ use super::{
 };
 
 /// Equippable sigil for a character
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 struct Sigil {
     /// ID of the first trait in this sigil
@@ -37,17 +37,21 @@ struct Sigil {
 }
 
 /// Data for a player in the encounter
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 struct PlayerData {
-    /// Display name for this player
+    /// Actor index for this player
+    actor_index: u32,
+    /// Display name for this player, empty if its an NPC
     display_name: String,
-    /// Character name for this playe if it's an NPC, otherwise it is the same as display_name
+    /// Character name for this player if it's an NPC, otherwise it is the same as display_name
     character_name: String,
     /// Character type for this player
     character_type: CharacterType,
     /// Sigils that this player has equipped
     sigils: Vec<Sigil>,
+    /// Whether this player was an online player or not
+    is_online: bool,
 }
 
 /// Derived stat breakdown of a particular skill
@@ -201,6 +205,10 @@ impl Encounter {
     /// Processes a damage event and adds it to the event log.
     pub fn process_damage_event(&mut self, timestamp: i64, event: &DamageEvent) {
         self.event_log.push((timestamp, event.clone()));
+    }
+
+    fn reset_player_data(&mut self) {
+        self.player_data[1..=3].clone_from_slice(&[None, None, None]);
     }
 }
 
@@ -414,6 +422,8 @@ impl Parser {
             self.update_status(ParserStatus::Waiting);
         }
 
+        self.encounter.reset_player_data();
+
         if let Some(window) = &self.window_handle {
             let _ = window.emit("on-area-enter", &self.derived_state);
         }
@@ -439,6 +449,63 @@ impl Parser {
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);
+        }
+    }
+
+    pub fn on_player_load_event(&mut self, event: PlayerLoadEvent) {
+        let sigils = event
+            .sigils
+            .into_iter()
+            .map(|sigil| Sigil {
+                first_trait_id: sigil.first_trait_id,
+                first_trait_level: sigil.first_trait_level,
+                second_trait_id: sigil.second_trait_id,
+                second_trait_level: sigil.second_trait_level,
+                sigil_id: sigil.sigil_id,
+                equipped_character: sigil.equipped_character,
+                sigil_level: sigil.sigil_level,
+                acquisition_count: sigil.acquisition_count,
+                notification_enum: sigil.notification_enum,
+            })
+            .collect();
+
+        let player_data = PlayerData {
+            actor_index: event.actor_index,
+            display_name: event.display_name.to_string_lossy().to_string(),
+            character_name: event.character_name.to_string_lossy().to_string(),
+            character_type: CharacterType::from_hash(event.character_type),
+            is_online: event.is_online,
+            sigils,
+        };
+
+        // Insert into encounter player data array, using actor_index.
+        if !player_data.is_online && event.party_index == 0 {
+            self.encounter.player_data[0] = Some(player_data.clone());
+        } else {
+            for i in 1..=3 {
+                if let Some(player) = &self.encounter.player_data[i] {
+                    // If this is the same player, update it.
+                    if player.actor_index == player_data.actor_index {
+                        self.encounter.player_data[i] = Some(player_data.clone());
+                        break;
+                    }
+
+                    // If the actor index we're trying to insert is lower than the current slot's actor index,
+                    // then we need to shift the rest of the array to the right.
+                    if player_data.actor_index < player.actor_index {
+                        self.encounter.player_data[i..].rotate_right(1);
+                        self.encounter.player_data[i] = Some(player_data.clone());
+                        break;
+                    }
+                } else {
+                    self.encounter.player_data[i] = Some(player_data.clone());
+                    break;
+                }
+            }
+        }
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-party-update", &self.encounter.player_data);
         }
     }
 
