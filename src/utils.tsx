@@ -8,6 +8,7 @@ import {
   PlayerState,
   SortType,
   SortDirection,
+  EnemyType,
 } from "./types";
 import { t } from "i18next";
 
@@ -269,3 +270,15 @@ export const exportFullEncounterToClipboard = (
 };
 
 export const PLAYER_COLORS = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
+
+export const translateEnemyType = (type: EnemyType | null): string => {
+  if (type === null) return "";
+
+  if (typeof type == "object" && Object.hasOwn(type, "Unknown")) {
+    const hash = type.Unknown.toString(16).padStart(8, "0");
+
+    return t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash });
+  } else {
+    return t([`enemies.${type}`, "enemies.unknown-type"]);
+  }
+};

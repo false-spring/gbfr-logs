@@ -161,6 +161,7 @@ impl PlayerState {
 struct EnemyState {
     index: u32,
     target_type: EnemyType,
+    raw_target_type: u32,
     total_damage: u64,
 }
 
@@ -305,6 +306,7 @@ impl DerivedEncounterState {
             .or_insert(EnemyState {
                 index: event.target.parent_index,
                 target_type: EnemyType::from_hash(event.target.parent_actor_type),
+                raw_target_type: event.target.parent_actor_type,
                 total_damage: 0,
             });
 
@@ -510,7 +512,8 @@ impl Parser {
     }
 
     fn reset(&mut self) {
-        self.encounter = Default::default();
+        self.encounter.event_log.clear();
+        self.encounter.event_log.shrink_to_fit();
         self.derived_state = Default::default();
     }
 
@@ -554,7 +557,7 @@ impl Parser {
         let primary_target = self
             .derived_state
             .get_primary_target()
-            .map(|target| target.target_type.to_string());
+            .map(|target| target.raw_target_type);
 
         let p1 = self.encounter.player_data[0].as_ref();
         let p2 = self.encounter.player_data[1].as_ref();

@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { listen } from "@tauri-apps/api/event";
-import { epochToLocalTime, millisecondsToElapsedFormat } from "../../utils";
+import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType } from "../../utils";
 import { useTranslation } from "react-i18next";
 import { useLogIndexStore, useEncounterStore, SearchResult } from "../Logs";
 import { modals } from "@mantine/modals";
@@ -80,10 +80,29 @@ export const IndexPage = () => {
   };
 
   const rows = searchResult.logs.map((log) => {
-    const names = log.name
-      .split(", ")
-      .map((name) => t(`characters.${name}`))
-      .join(", ");
+    const primaryTarget = translateEnemyType(log.primaryTarget);
+
+    let names = "";
+
+    if (log.version == 0) {
+      names = log.name
+        .split(", ")
+        .map((name) => t(`characters.${name}`))
+        .join(", ");
+    } else {
+      names = [
+        { name: log.p1Name, type: log.p1Type },
+        { name: log.p2Name, type: log.p2Type },
+        { name: log.p3Name, type: log.p3Type },
+        { name: log.p4Name, type: log.p4Type },
+      ]
+        .filter((player) => player.name || player.type)
+        .map((player) => {
+          if (!player.name) return t(`characters.${player.type}`);
+          return `${player.name} (${t(`characters.${player.type}`)})`;
+        })
+        .join(", ");
+    }
 
     const resetSelectedTargets = () => {
       setSelectedTargets([]);
@@ -106,8 +125,12 @@ export const IndexPage = () => {
           <Text size="sm">{epochToLocalTime(log.time)}</Text>
         </Table.Td>
         <Table.Td>
-          {millisecondsToElapsedFormat(log.duration)} - {names}
+          <Text size="sm">{primaryTarget}</Text>
         </Table.Td>
+        <Table.Td>
+          <Text size="sm">{millisecondsToElapsedFormat(log.duration)}</Text>
+        </Table.Td>
+        <Table.Td>{names}</Table.Td>
         <Table.Td>
           <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`} onClick={resetSelectedTargets}>
             View
@@ -123,8 +146,6 @@ export const IndexPage = () => {
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>{t("ui.logs.date")}</Table.Th>
-              <Table.Th>{t("ui.logs.name")}</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>
           </Table.Thead>
@@ -167,6 +188,8 @@ export const IndexPage = () => {
             <Table.Tr>
               <Table.Th />
               <Table.Th>{t("ui.logs.date")}</Table.Th>
+              <Table.Th>{t("ui.logs.primary-target")}</Table.Th>
+              <Table.Th>{t("ui.logs.duration")}</Table.Th>
               <Table.Th>{t("ui.logs.name")}</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>
