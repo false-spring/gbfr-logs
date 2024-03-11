@@ -9,7 +9,7 @@ fn main() {
     let hook_lib_path = fs::canonicalize("../src-hook").unwrap();
 
     Command::new("cargo")
-        .args(&["build", "--release"])
+        .args(["build", "--release"])
         .current_dir(&hook_lib_path)
         .status()
         .expect("Could not build hook library.");

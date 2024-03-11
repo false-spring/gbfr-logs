@@ -59,7 +59,7 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
 
     let parser = parser::deserialize_version(&blob, version).map_err(|e| e.to_string())?;
 
-    let file = File::create(&file_path).map_err(|e| e.to_string())?;
+    let file = File::create(file_path).map_err(|e| e.to_string())?;
 
     // @TODO(false): Split formatting into a separate function.
     let mut writer = std::io::BufWriter::new(file);

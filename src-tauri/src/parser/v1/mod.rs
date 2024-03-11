@@ -146,7 +146,7 @@ impl PlayerState {
 
         // Otherwise, create a new skill and track it.
         let mut skill = SkillState::new(
-            event.action_id.clone(),
+            event.action_id,
             CharacterType::from_hash(event.source.actor_type),
         );
 
@@ -172,20 +172,11 @@ impl EnemyState {
 }
 
 /// The necessary details of an encounter that can be used to recreate the state at any point in time.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Encounter {
     player_data: [Option<PlayerData>; 4],
     pub event_log: Vec<(i64, DamageEvent)>,
-}
-
-impl Default for Encounter {
-    fn default() -> Self {
-        Self {
-            player_data: [None, None, None, None],
-            event_log: vec![],
-        }
-    }
 }
 
 impl Encounter {
@@ -297,7 +288,7 @@ impl DerivedEncounterState {
             });
 
         // Update player stats from damage event.
-        source_player.update_from_damage_event(&event);
+        source_player.update_from_damage_event(event);
 
         // Update target stats from damage event.
         let target = self
@@ -310,7 +301,7 @@ impl DerivedEncounterState {
                 total_damage: 0,
             });
 
-        target.update_from_damage_event(&event);
+        target.update_from_damage_event(event);
 
         // Update everyone's DPS
         for player in self.party.values_mut() {
@@ -378,12 +369,12 @@ impl Parser {
         self.derived_state.start(self.start_time());
 
         for (timestamp, event) in self.encounter.event_log.iter() {
-            self.derived_state.process_damage_event(*timestamp, &event);
+            self.derived_state.process_damage_event(*timestamp, event);
         }
     }
 
     // Re-analyzes the encounter with the given targets.
-    pub fn reparse_with_options(&mut self, targets: &Vec<EnemyType>) {
+    pub fn reparse_with_options(&mut self, targets: &[EnemyType]) {
         self.derived_state = Default::default();
         self.derived_state.start(self.start_time());
 
@@ -393,7 +384,7 @@ impl Parser {
             let target_type = EnemyType::from_hash(event.target.parent_actor_type);
 
             if targets.is_empty() || targets.contains(&target_type) {
-                self.derived_state.process_damage_event(*timestamp, &event);
+                self.derived_state.process_damage_event(*timestamp, event);
             }
         }
     }

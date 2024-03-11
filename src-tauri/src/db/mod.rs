@@ -6,7 +6,7 @@ use rusqlite_migration::{Migrations, M};
 pub fn setup_db() -> Result<()> {
     let mut conn = Connection::open("logs.db")?;
 
-    conn.pragma_update(None, "journal_mode", &"WAL")?;
+    conn.pragma_update(None, "journal_mode", "WAL")?;
 
     let migrations = Migrations::new(vec![
         M::up(
@@ -38,7 +38,7 @@ pub fn setup_db() -> Result<()> {
 /// Connect to database.
 pub fn connect_to_db() -> Result<Connection> {
     let conn = Connection::open("logs.db")?;
-    conn.pragma_update(None, "journal_mode", &"WAL")?;
+    conn.pragma_update(None, "journal_mode", "WAL")?;
 
     Ok(conn)
 }
