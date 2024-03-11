@@ -29,6 +29,7 @@ rusqlite_migration = "1.1.0"
 zstd = "0.13.0"
 strum = "0.26"
 strum_macros = "0.26"
+cbor4ii = { version = "0.3.2", features = ["use_std", "serde1"] }
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

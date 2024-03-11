@@ -182,7 +182,7 @@ pub struct Encounter {
 impl Encounter {
     /// Compresses this encounter data into a binary blob.
     pub fn to_blob(&self) -> Result<Vec<u8>> {
-        let blob = protocol::bincode::serialize(self)?;
+        let blob = cbor4ii::serde::to_vec(Vec::new(), &self)?;
         let mut reader = BufReader::new(blob.as_slice());
         let compressed_blob = zstd::encode_all(&mut reader, 3)?;
         Ok(compressed_blob)
@@ -191,7 +191,7 @@ impl Encounter {
     /// Deserializes a binary blob into encounter instance.
     pub fn from_blob(blob: &[u8]) -> Result<Self> {
         let decompressed = zstd::decode_all(blob)?;
-        Ok(protocol::bincode::deserialize(&decompressed)?)
+        Ok(cbor4ii::serde::from_slice(&decompressed)?)
     }
 
     /// Processes a damage event and adds it to the event log.

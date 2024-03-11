@@ -459,6 +459,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cbor4ii"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "59b4c883b9cc4757b061600d39001d4d0232bece4a3174696cf8f58a14db107d"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "cc"
 version = "1.0.89"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1261,6 +1270,7 @@ name = "gbfr-logs"
 version = "0.0.6"
 dependencies = [
  "anyhow",
+ "cbor4ii",
  "chrono",
  "dll-syringe",
  "futures",
