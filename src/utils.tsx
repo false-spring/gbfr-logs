@@ -35,7 +35,6 @@ export const epochToLocalTime = (epoch: number): string => {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
   }).format(utc);
 };
 
