@@ -343,11 +343,14 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::DamageEvent(event) => {
                                     state.on_damage_event(event);
                                 }
-                                protocol::Message::OnAreaEnter => {
-                                    state.on_area_enter_event();
+                                protocol::Message::OnAreaEnter(event) => {
+                                    state.on_area_enter_event(event);
                                 }
                                 protocol::Message::PlayerLoadEvent(event) => {
                                     state.on_player_load_event(event);
+                                }
+                                protocol::Message::OnQuestComplete(event) => {
+                                    state.on_quest_complete_event(event);
                                 }
                             }
                         }

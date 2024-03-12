@@ -82,8 +82,23 @@ pub struct PlayerLoadEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct AreaEnterEvent {
+    /// Quest ID, last known. Could be stale if no other quest was ran while changing areas. 0 if no quest.
+    pub last_known_quest_id: u32,
+    /// Elapsed time in seconds, the in-game quest timer. Could be stale if no other quest was ran while changing areas.
+    pub last_known_elapsed_time_in_secs: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct QuestCompleteEvent {
+    pub quest_id: u32,
+    pub elapsed_time_in_secs: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
-    OnAreaEnter,
+    OnAreaEnter(AreaEnterEvent),
+    OnQuestComplete(QuestCompleteEvent),
     DamageEvent(DamageEvent),
     PlayerLoadEvent(PlayerLoadEvent),
 }

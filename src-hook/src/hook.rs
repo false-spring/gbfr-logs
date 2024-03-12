@@ -1,4 +1,8 @@
-use std::ffi::{CStr, CString};
+use std::{
+    ffi::{CStr, CString},
+    ptr,
+    sync::atomic::{AtomicPtr, Ordering},
+};
 
 use anyhow::{anyhow, Result};
 use log::warn;
@@ -17,18 +21,28 @@ type ProcessDamageEventFunc =
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
 type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8) -> usize;
 type OnLoadPlayerFunc = unsafe extern "system" fn(*const usize) -> usize;
+type OnLoadQuestState = unsafe extern "system" fn(*const usize) -> usize;
+type OnShowResultScreen = unsafe extern "system" fn(*const usize) -> usize;
 
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
     static ProcessDotEvent: unsafe extern "system" fn(*const usize, *const usize) -> usize;
     static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8) -> usize;
     static OnLoadPlayer: unsafe extern "system" fn(*const usize) -> usize;
+    static OnLoadQuestState: unsafe extern "system" fn(*const usize) -> usize;
+    static OnShowResultScreen: unsafe extern "system" fn(*const usize) -> usize;
 }
+
+static QUEST_STATE_PTR: AtomicPtr<QuestState> = AtomicPtr::new(ptr::null_mut());
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
 const ON_LOAD_PLAYER: &str = "49 89 ce e8 $ { ' } 31 ff 85 c0 ? ? ? ? ? ? 49 8b 46 28";
+const ON_LOAD_QUEST_STATE: &str =
+    "48 8b 0d ? ? ? ? e8 $ { ' } c5 fb 12 ? ? ? ? ? c5 f8 11 ? ? ? ? ? c5 f8 11 ? ? ? ? ? 48 83 c4 48";
+const ON_SHOW_RESULT_SCREEN_SIG: &str =
+    "e8 $ { ' } b8 ? ? ? ? 23 87 ? ? 00 00 3d 00 00 60 00 0f 94 c0";
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
@@ -232,7 +246,66 @@ fn get_source_parent(source_type_id: u32, source: *const usize, source_idx: u32)
 
 unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usize {
     let ret = OnEnterArea.call(a1, a2, a3);
-    let _ = tx.send(Message::OnAreaEnter);
+    let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
+
+    if quest_state_ptr != std::ptr::null_mut() {
+        let quest_state = quest_state_ptr.read();
+
+        let quest_id = quest_state.quest_id;
+        let timer = quest_state.elapsed_time;
+
+        let _ = tx.send(Message::OnAreaEnter(protocol::AreaEnterEvent {
+            last_known_quest_id: quest_id,
+            last_known_elapsed_time_in_secs: timer,
+        }));
+    } else {
+        let _ = tx.send(Message::OnAreaEnter(protocol::AreaEnterEvent {
+            last_known_quest_id: 0,
+            last_known_elapsed_time_in_secs: 0,
+        }));
+    }
+
+    ret
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct QuestState {
+    quest_id: u32,            // 0x00
+    padding_640: [u8; 0x644], // 0x004 - 0x648
+    elapsed_time: u32,        // 0x648
+}
+
+unsafe fn on_load_quest_state(a1: *const usize) -> usize {
+    let ret = OnLoadQuestState.call(a1);
+
+    let quest_state_ptr = a1.byte_add(0x1D8) as *mut QuestState;
+
+    if quest_state_ptr == std::ptr::null_mut() {
+        return ret;
+    }
+
+    QUEST_STATE_PTR.store(quest_state_ptr, std::sync::atomic::Ordering::Relaxed);
+
+    ret
+}
+
+unsafe fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
+    let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
+
+    if quest_state_ptr != std::ptr::null_mut() {
+        let quest_state = quest_state_ptr.read();
+        let quest_id = quest_state.quest_id;
+        let timer = quest_state.elapsed_time;
+
+        let _ = tx.send(Message::OnQuestComplete(protocol::QuestCompleteEvent {
+            quest_id,
+            elapsed_time_in_secs: timer,
+        }));
+    }
+
+    let ret = OnShowResultScreen.call(a1);
+
     ret
 }
 
@@ -398,6 +471,28 @@ pub fn init(tx: event::Tx) -> Result<()> {
         }
     } else {
         warn!("Could not find on_load_player");
+    }
+
+    if let Ok(on_load_quest_state_original) = search(&process, ON_LOAD_QUEST_STATE) {
+        unsafe {
+            let func: OnLoadQuestState = std::mem::transmute(on_load_quest_state_original);
+            OnLoadQuestState.initialize(func, move |a1| on_load_quest_state(a1))?;
+            OnLoadQuestState.enable()?;
+        }
+    } else {
+        warn!("Could not find on_load_quest_state");
+    }
+
+    if let Ok(on_show_result_screen_original) = search(&process, ON_SHOW_RESULT_SCREEN_SIG) {
+        let tx = tx.clone();
+
+        unsafe {
+            let func: OnShowResultScreen = std::mem::transmute(on_show_result_screen_original);
+            OnShowResultScreen.initialize(func, move |a1| on_show_result_screen(tx.clone(), a1))?;
+            OnShowResultScreen.enable()?;
+        }
+    } else {
+        warn!("Could not find on_show_result_screen");
     }
 
     Ok(())

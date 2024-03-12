@@ -2,7 +2,7 @@ use std::{collections::HashMap, io::BufReader};
 
 use anyhow::Result;
 use chrono::Utc;
-use protocol::{ActionType, DamageEvent, PlayerLoadEvent};
+use protocol::{ActionType, AreaEnterEvent, DamageEvent, PlayerLoadEvent, QuestCompleteEvent};
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::Window;
@@ -176,6 +176,10 @@ impl EnemyState {
 #[serde(rename_all = "camelCase")]
 pub struct Encounter {
     player_data: [Option<PlayerData>; 4],
+    quest_id: Option<u32>,
+    quest_timer: Option<u32>,
+    #[serde(default)]
+    quest_completed: bool,
     pub event_log: Vec<(i64, DamageEvent)>,
 }
 
@@ -201,6 +205,11 @@ impl Encounter {
 
     fn reset_player_data(&mut self) {
         self.player_data[1..=3].clone_from_slice(&[None, None, None]);
+    }
+
+    fn reset_quest(&mut self) {
+        self.quest_id = None;
+        self.quest_timer = None;
     }
 }
 
@@ -393,7 +402,9 @@ impl Parser {
     /// If the current encounter was in progress, then stop it as we've left the instance.
     /// If there was damage in that stopped instance, then save it as a new log.
     /// Otherwise, we're waiting for the encounter to start.
-    pub fn on_area_enter_event(&mut self) {
+    pub fn on_area_enter_event(&mut self, event: AreaEnterEvent) {
+        self.encounter.quest_id = Some(event.last_known_quest_id);
+
         if self.status == ParserStatus::InProgress {
             self.update_status(ParserStatus::Stopped);
 
@@ -415,11 +426,19 @@ impl Parser {
             self.update_status(ParserStatus::Waiting);
         }
 
+        self.encounter.quest_completed = false;
         self.encounter.reset_player_data();
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("on-area-enter", &self.derived_state);
         }
+    }
+
+    pub fn on_quest_complete_event(&mut self, event: QuestCompleteEvent) {
+        // @TODO(false): Check to see if we need any logic to run on quest completion.
+        self.encounter.quest_id = Some(event.quest_id);
+        self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
+        self.encounter.quest_completed = true;
     }
 
     // Called when a damage event is received from the game.
@@ -543,12 +562,18 @@ impl Parser {
         let duration_in_millis = self.derived_state.duration();
         let start_datetime = self.derived_state.utc_start_time()?;
 
-        let encounter_data = self.encounter.to_blob()?;
-
         let primary_target = self
             .derived_state
             .get_primary_target()
             .map(|target| target.raw_target_type);
+
+        // Sir Barrold should never save quest ID, as it could be stale.
+        if primary_target == Some(0xA379AC65) {
+            self.encounter.quest_id = None;
+            self.encounter.quest_timer = None;
+        }
+
+        let encounter_data = self.encounter.to_blob()?;
 
         let p1 = self.encounter.player_data[0].as_ref();
         let p2 = self.encounter.player_data[1].as_ref();
