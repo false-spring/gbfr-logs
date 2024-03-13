@@ -465,6 +465,13 @@ impl Parser {
     }
 
     pub fn on_player_load_event(&mut self, event: PlayerLoadEvent) {
+        let character_type = CharacterType::from_hash(event.character_type);
+
+        // Ignore Id's transformation.
+        if character_type == CharacterType::Pl2000 {
+            return;
+        }
+
         let sigils = event
             .sigils
             .into_iter()
@@ -485,8 +492,8 @@ impl Parser {
             actor_index: event.actor_index,
             display_name: event.display_name.to_string_lossy().to_string(),
             character_name: event.character_name.to_string_lossy().to_string(),
-            character_type: CharacterType::from_hash(event.character_type),
             is_online: event.is_online,
+            character_type,
             sigils,
         };
 

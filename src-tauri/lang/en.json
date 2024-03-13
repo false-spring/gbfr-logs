@@ -760,7 +760,7 @@
       "Em7100": "Vulkan Bolla ",
       "Em7110": "Vulkan Bolla Nihilla",
       "Em7200": "Furycane",
-      "Em7210": "Furycane Nihilla",
+      "Em7210": "Furycane Nihilla (Phase 1)",
       "Em7300": "Managarmr",
       "Em7310": "Managarmr Nihilla",
       "Em7400": "Excavallion",
@@ -785,7 +785,8 @@
         "0f7062bc": "Anemos",
         "22102ccd": "Edafos",
         "269529e2": "Hydor",
-        "ae3325e8": "Fotia"
+        "ae3325e8": "Fotia",
+        "745da8b4": "Furycane Nihila (Phase 2)"
       }
     },
     "sigils": {
