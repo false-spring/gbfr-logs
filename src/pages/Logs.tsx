@@ -34,6 +34,8 @@ interface Log {
   p3Type: string | null;
   p4Name: string | null;
   p4Type: string | null;
+  questId: number | null;
+  questElapsedTime: number | null;
 }
 
 interface LogIndexState {

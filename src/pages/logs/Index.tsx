@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { listen } from "@tauri-apps/api/event";
-import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType } from "../../utils";
+import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType, translateQuestId } from "../../utils";
 import { useTranslation } from "react-i18next";
 import { useLogIndexStore, useEncounterStore, SearchResult } from "../Logs";
 import { modals } from "@mantine/modals";
@@ -122,15 +122,23 @@ export const IndexPage = () => {
           />
         </Table.Td>
         <Table.Td>
-          <Text size="sm">{epochToLocalTime(log.time)}</Text>
+          <Text size="xs">{epochToLocalTime(log.time)}</Text>
         </Table.Td>
         <Table.Td>
-          <Text size="sm">{primaryTarget}</Text>
+          <Text size="xs">{translateQuestId(log.questId)}</Text>
         </Table.Td>
         <Table.Td>
-          <Text size="sm">{millisecondsToElapsedFormat(log.duration)}</Text>
+          <Text size="xs">{primaryTarget}</Text>
         </Table.Td>
-        <Table.Td>{names}</Table.Td>
+        <Table.Td>
+          <Text size="xs">{millisecondsToElapsedFormat(log.duration)}</Text>
+        </Table.Td>
+        <Table.Td>
+          <Text size="xs">{log.questElapsedTime ? millisecondsToElapsedFormat(log.questElapsedTime * 1000) : ""}</Text>
+        </Table.Td>
+        <Table.Td>
+          <Text size="xs">{names}</Text>
+        </Table.Td>
         <Table.Td>
           <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`} onClick={resetSelectedTargets}>
             View
@@ -188,8 +196,10 @@ export const IndexPage = () => {
             <Table.Tr>
               <Table.Th />
               <Table.Th>{t("ui.logs.date")}</Table.Th>
+              <Table.Th>{t("ui.logs.quest-name")}</Table.Th>
               <Table.Th>{t("ui.logs.primary-target")}</Table.Th>
               <Table.Th>{t("ui.logs.duration")}</Table.Th>
+              <Table.Th>{t("ui.logs.quest-elapsed-time")}</Table.Th>
               <Table.Th>{t("ui.logs.name")}</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>

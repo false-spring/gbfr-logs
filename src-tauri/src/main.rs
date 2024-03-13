@@ -137,6 +137,10 @@ struct LogEntry {
     p4_name: Option<String>,
     /// Player 4 character type
     p4_type: Option<String>,
+    /// Quest ID
+    quest_id: Option<u32>,
+    /// Quest elapsed time
+    quest_elapsed_time: Option<u32>,
 }
 
 #[tauri::command]
@@ -162,7 +166,9 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
             p3_name,
             p3_type,
             p4_name,
-            p4_type
+            p4_type,
+            quest_id,
+            quest_elapsed_time
          FROM logs ORDER BY time DESC LIMIT ? OFFSET ?"#,
         )
         .map_err(|e| e.to_string())?;
@@ -184,6 +190,8 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
                 p3_type: row.get(11)?,
                 p4_name: row.get(12)?,
                 p4_type: row.get(13)?,
+                quest_id: row.get(14)?,
+                quest_elapsed_time: row.get(15)?,
             })
         })
         .map_err(|e| e.to_string())?

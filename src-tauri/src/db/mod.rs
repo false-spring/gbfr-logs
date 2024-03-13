@@ -28,6 +28,8 @@ pub fn setup_db() -> Result<()> {
         M::up("ALTER TABLE logs ADD COLUMN p3_type TEXT"),
         M::up("ALTER TABLE logs ADD COLUMN p4_name TEXT"),
         M::up("ALTER TABLE logs ADD COLUMN p4_type TEXT"),
+        M::up("ALTER TABLE logs ADD COLUMN quest_id INTEGER"),
+        M::up("ALTER TABLE logs ADD COLUMN quest_elapsed_time INTEGER"),
     ]);
 
     migrations.to_latest(&mut conn)?;

@@ -281,3 +281,11 @@ export const translateEnemyType = (type: EnemyType | null): string => {
     return t([`enemies.${type}`, "enemies.unknown-type"]);
   }
 };
+
+export const translateQuestId = (id: number | null): string => {
+  if (id === null) return "";
+
+  const hash = id.toString(16);
+
+  return t([`quest.${hash}`, "quest.unknown"], { id: hash });
+};

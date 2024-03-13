@@ -596,8 +596,10 @@ impl Parser {
                         p3_name,
                         p3_type,
                         p4_name,
-                        p4_type
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
+                        p4_type,
+                        quest_id,
+                        quest_elapsed_time
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
                 params![
                     "",
                     start_datetime.timestamp_millis(),
@@ -613,6 +615,8 @@ impl Parser {
                     p3.map(|p| p.character_type.to_string()),
                     p4.map(|p| p.display_name.as_str()),
                     p4.map(|p| p.character_type.to_string()),
+                    self.encounter.quest_id,
+                    self.encounter.quest_timer,
                 ],
             )?;
         }
