@@ -15,7 +15,7 @@ use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{
     constants::{CharacterType, EnemyType},
-    v1,
+    v1::{self, PlayerData},
 };
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
@@ -216,6 +216,9 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
 #[serde(rename_all = "camelCase")]
 struct EncounterStateResponse {
     encounter_state: v1::DerivedEncounterState,
+    players: [Option<PlayerData>; 4],
+    quest_id: Option<u32>,
+    quest_timer: Option<u32>,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
@@ -275,6 +278,9 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
 
     Ok(EncounterStateResponse {
         encounter_state: parser.derived_state,
+        players: parser.encounter.player_data,
+        quest_id: parser.encounter.quest_id,
+        quest_timer: parser.encounter.quest_timer,
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         targets,

@@ -9,7 +9,7 @@ import { create } from "zustand";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import { EncounterState, EnemyType } from "../types";
+import { EncounterState, EnemyType, PlayerData } from "../types";
 import { SUPPORTED_LANGUAGES } from "../i18n";
 
 export interface SearchResult {
@@ -90,6 +90,9 @@ interface EncounterStore {
   chartLen: number;
   targets: EnemyType[];
   selectedTargets: EnemyType[];
+  players: PlayerData[];
+  questId: number | null;
+  questTimer: number | null;
   setSelectedTargets: (targets: EnemyType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
 }
@@ -99,6 +102,9 @@ export interface EncounterStateResponse {
   dpsChart: Record<number, number[]>;
   chartLen: number;
   targets: EnemyType[];
+  players: PlayerData[];
+  questId: number | null;
+  questTimer: number | null;
 }
 
 export const useEncounterStore = create<EncounterStore>((set) => ({
@@ -107,6 +113,9 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   chartLen: 0,
   targets: [],
   selectedTargets: [],
+  players: [],
+  questId: null,
+  questTimer: null,
   setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
   loadFromResponse: (response: EncounterStateResponse) =>
     set({
@@ -114,6 +123,9 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
       dpsChart: response.dpsChart,
       chartLen: response.chartLen,
       targets: response.targets,
+      players: response.players,
+      questId: response.questId,
+      questTimer: response.questTimer,
     }),
 }));
 

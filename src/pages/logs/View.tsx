@@ -28,6 +28,8 @@ import {
   formatInPartyOrder,
   humanizeNumbers,
   millisecondsToElapsedFormat,
+  toHash,
+  translateQuestId,
   translatedPlayerName,
 } from "../../utils";
 import { ComputedPlayerState, EnemyType, SortDirection, SortType } from "../../types";
@@ -66,16 +68,28 @@ const DPS_INTERVAL = 5;
 
 export const ViewPage = () => {
   const { id } = useParams();
-  const { encounter, dpsChart, chartLen, targets, selectedTargets, setSelectedTargets, loadFromResponse } =
-    useEncounterStore((state) => ({
-      encounter: state.encounterState,
-      dpsChart: state.dpsChart,
-      chartLen: state.chartLen,
-      targets: state.targets,
-      selectedTargets: state.selectedTargets,
-      setSelectedTargets: state.setSelectedTargets,
-      loadFromResponse: state.loadFromResponse,
-    }));
+  const {
+    encounter,
+    dpsChart,
+    chartLen,
+    targets,
+    selectedTargets,
+    questId,
+    questTimer,
+    setSelectedTargets,
+    loadFromResponse,
+  } = useEncounterStore((state) => ({
+    encounter: state.encounterState,
+    dpsChart: state.dpsChart,
+    chartLen: state.chartLen,
+    targets: state.targets,
+    selectedTargets: state.selectedTargets,
+    playerData: state.players,
+    questId: state.questId,
+    questTimer: state.questTimer,
+    setSelectedTargets: state.setSelectedTargets,
+    loadFromResponse: state.loadFromResponse,
+  }));
   const [sortType, setSortType] = useState<SortType>("damage");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
@@ -199,12 +213,22 @@ export const ViewPage = () => {
       <Divider my="sm" />
       <Stack>
         <Box>
+          {questId && (
+            <Text size="sm">
+              {t("ui.logs.quest-name")}: {translateQuestId(questId)} ({toHash(questId)})
+            </Text>
+          )}
           <Text size="sm">
             {t("ui.logs.date")}: {epochToLocalTime(encounter.startTime)}
           </Text>
           <Text size="sm">
             {t("ui.logs.duration")}: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
           </Text>
+          {questTimer && (
+            <Text size="sm">
+              {t("ui.logs.quest-elapsed-time")}: {millisecondsToElapsedFormat(questTimer * 1000)}
+            </Text>
+          )}
           <Text size="sm">
             {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
           </Text>

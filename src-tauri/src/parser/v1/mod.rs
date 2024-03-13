@@ -39,7 +39,7 @@ struct Sigil {
 /// Data for a player in the encounter
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
-struct PlayerData {
+pub struct PlayerData {
     /// Actor index for this player
     actor_index: u32,
     /// Display name for this player, empty if its an NPC
@@ -175,9 +175,9 @@ impl EnemyState {
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Encounter {
-    player_data: [Option<PlayerData>; 4],
-    quest_id: Option<u32>,
-    quest_timer: Option<u32>,
+    pub player_data: [Option<PlayerData>; 4],
+    pub quest_id: Option<u32>,
+    pub quest_timer: Option<u32>,
     #[serde(default)]
     quest_completed: bool,
     pub event_log: Vec<(i64, DamageEvent)>,

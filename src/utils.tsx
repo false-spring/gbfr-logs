@@ -289,3 +289,5 @@ export const translateQuestId = (id: number | null): string => {
 
   return t([`quest.${hash}`, "quest.unknown"], { id: hash });
 };
+
+export const toHash = (num: number): string => num.toString(16);
