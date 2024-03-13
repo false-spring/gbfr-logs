@@ -207,9 +207,7 @@ export const ViewPage = () => {
                 </ActionIcon>
               </Menu.Target>
               <Menu.Dropdown>
-                <Menu.Item onClick={handleSimpleEncounterCopy}>
-                  <Text size="xs">{t("ui.copy-to-clipboard-simple")}</Text>
-                </Menu.Item>
+                <Menu.Item onClick={handleSimpleEncounterCopy}>{t("ui.copy-to-clipboard-simple")}</Menu.Item>
                 <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
                 <Menu.Item onClick={exportDamageLogToFile}>{t("ui.export-damage-log")}</Menu.Item>
               </Menu.Dropdown>
