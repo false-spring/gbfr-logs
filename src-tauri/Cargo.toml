@@ -31,6 +31,11 @@ strum = "0.26"
 strum_macros = "0.26"
 cbor4ii = { version = "0.3.2", features = ["use_std", "serde1"] }
 
+[gbfr-logs.crates.typenum.'1.17.0']
+additional_flags = [
+  "--cfg=feature=\\\"force_unix_path_separator\\\"",
+]
+
 [features]
 custom-protocol = ["tauri/custom-protocol"]
 log-export = []
