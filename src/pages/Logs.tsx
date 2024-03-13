@@ -117,16 +117,19 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   questId: null,
   questTimer: null,
   setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
-  loadFromResponse: (response: EncounterStateResponse) =>
+  loadFromResponse: (response: EncounterStateResponse) => {
+    const filteredPlayers = response.players.filter((player) => player !== null);
+
     set({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,
       chartLen: response.chartLen,
       targets: response.targets,
-      players: response.players,
+      players: filteredPlayers,
       questId: response.questId,
       questTimer: response.questTimer,
-    }),
+    });
+  },
 }));
 
 const SettingsPage = () => {

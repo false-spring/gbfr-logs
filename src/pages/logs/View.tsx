@@ -247,7 +247,9 @@ export const ViewPage = () => {
       <Tabs defaultValue="overview" variant="outline">
         <Tabs.List>
           <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
-          <Tabs.Tab value="equipment">{t("ui.logs.equipment")}</Tabs.Tab>
+          <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
+            {t("ui.logs.equipment")}
+          </Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="overview">
           <Box mt="md">
