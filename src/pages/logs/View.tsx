@@ -64,7 +64,7 @@ export const ChartTooltip = ({ label, payload }: ChartTooltipProps) => {
   );
 };
 
-const DPS_INTERVAL = 5;
+const DPS_INTERVAL = 3;
 
 export const ViewPage = () => {
   const { id } = useParams();

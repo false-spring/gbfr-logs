@@ -248,7 +248,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     let duration = parser.derived_state.duration();
     let mut player_dps: HashMap<u32, Vec<i32>> = HashMap::new();
 
-    const DPS_INTERVAL: i64 = 5 * 1_000;
+    const DPS_INTERVAL: i64 = 3 * 1_000;
 
     for player in parser.derived_state.party.values() {
         player_dps.insert(
