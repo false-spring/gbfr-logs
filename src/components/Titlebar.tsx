@@ -89,7 +89,7 @@ export const Titlebar = ({
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
         <div data-tauri-drag-region className="version">
-          GBFR Logs <span className="version-number">0.0.6</span>
+          GBFR Logs <span className="version-number">0.0.7</span>
         </div>
         {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       </div>
