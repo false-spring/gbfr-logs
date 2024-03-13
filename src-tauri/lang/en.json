@@ -34,7 +34,9 @@
         "delete-selected-logs-confirmation_one": "This will delete {{count}} log from the database. This action cannot be undone.",
         "delete-selected-logs-confirmation_other": "This will delete {{count}} logs from the database. This action cannot be undone.",
         "quest-name": "Quest",
-        "quest-elapsed-time": "IGT"
+        "quest-elapsed-time": "IGT",
+        "overview": "Overview",
+        "equipment": "Equipment"
       }
     },
     "characters": {

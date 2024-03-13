@@ -10,7 +10,10 @@ import {
   SortDirection,
   EnemyType,
 } from "./types";
+
 import { t } from "i18next";
+
+export const EMPTY_ID = 2289754288;
 
 export const formatInPartyOrder = (party: Record<string, PlayerState>): ComputedPlayerState[] => {
   const players = Object.keys(party).map((key) => {
@@ -284,10 +287,24 @@ export const translateEnemyType = (type: EnemyType | null): string => {
 
 export const translateQuestId = (id: number | null): string => {
   if (id === null) return "";
-
   const hash = id.toString(16);
-
   return t([`quest.${hash}`, "quest.unknown"], { id: hash });
+};
+
+export const translateTraitId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+  return t([`traits.${hash}`, "ui.unknown"], { id: hash });
+};
+
+export const translateSigilId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+  return t([`sigils.${hash}`, "ui.unknown"], { id: hash });
 };
 
 export const toHash = (num: number): string => num.toString(16);

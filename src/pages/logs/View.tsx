@@ -10,6 +10,9 @@ import {
   ActionIcon,
   Flex,
   Paper,
+  Tabs,
+  Group,
+  Table,
 } from "@mantine/core";
 import { LineChart } from "@mantine/charts";
 import { ClipboardText } from "@phosphor-icons/react";
@@ -21,6 +24,7 @@ import toast from "react-hot-toast";
 
 import { Table as MeterTable } from "../../components/Table";
 import {
+  EMPTY_ID,
   PLAYER_COLORS,
   epochToLocalTime,
   exportFullEncounterToClipboard,
@@ -30,6 +34,8 @@ import {
   millisecondsToElapsedFormat,
   toHash,
   translateQuestId,
+  translateSigilId,
+  translateTraitId,
   translatedPlayerName,
 } from "../../utils";
 import { ComputedPlayerState, EnemyType, SortDirection, SortType } from "../../types";
@@ -76,6 +82,7 @@ export const ViewPage = () => {
     selectedTargets,
     questId,
     questTimer,
+    playerData,
     setSelectedTargets,
     loadFromResponse,
   } = useEncounterStore((state) => ({
@@ -210,65 +217,128 @@ export const ViewPage = () => {
           </Flex>
         </Box>
       </Text>
-      <Divider my="sm" />
-      <Stack>
-        <Box>
-          {questId && (
-            <Text size="sm">
-              {t("ui.logs.quest-name")}: {translateQuestId(questId)} ({toHash(questId)})
-            </Text>
-          )}
-          <Text size="sm">
-            {t("ui.logs.date")}: {epochToLocalTime(encounter.startTime)}
-          </Text>
-          <Text size="sm">
-            {t("ui.logs.duration")}: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
-          </Text>
-          {questTimer && (
-            <Text size="sm">
-              {t("ui.logs.quest-elapsed-time")}: {millisecondsToElapsedFormat(questTimer * 1000)}
-            </Text>
-          )}
-          <Text size="sm">
-            {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
-          </Text>
-        </Box>
-        <MultiSelect
-          data={targetItems}
-          placeholder="All"
-          clearable
-          onChange={(value) => {
-            const targets = value
-              .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
-              .filter((v) => v !== undefined) as EnemyType[];
 
-            setSelectedTargets(targets);
-          }}
-        />
-        <MeterTable
-          encounterState={encounter}
-          sortType={sortType}
-          sortDirection={sortDirection}
-          setSortType={setSortType}
-          setSortDirection={setSortDirection}
-        />
-        <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
-        <LineChart
-          h={400}
-          data={data}
-          dataKey="timestamp"
-          withDots={false}
-          withLegend
-          series={labels}
-          valueFormatter={(value) => {
-            const [num, suffix] = humanizeNumbers(value);
-            return `${num}${suffix}`;
-          }}
-          tooltipProps={{
-            content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-          }}
-        />
-      </Stack>
+      <Divider my="sm" />
+
+      <Box>
+        {questId && (
+          <Text size="sm">
+            {t("ui.logs.quest-name")}: {translateQuestId(questId)} ({toHash(questId)})
+          </Text>
+        )}
+        <Text size="sm">
+          {t("ui.logs.date")}: {epochToLocalTime(encounter.startTime)}
+        </Text>
+        <Text size="sm">
+          {t("ui.logs.duration")}: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
+        </Text>
+        {questTimer && (
+          <Text size="sm">
+            {t("ui.logs.quest-elapsed-time")}: {millisecondsToElapsedFormat(questTimer * 1000)}
+          </Text>
+        )}
+        <Text size="sm">
+          {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
+        </Text>
+      </Box>
+
+      <Divider my="sm" />
+
+      <Tabs defaultValue="overview" variant="outline">
+        <Tabs.List>
+          <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
+          <Tabs.Tab value="equipment">{t("ui.logs.equipment")}</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="overview">
+          <Box mt="md">
+            <Stack>
+              <MultiSelect
+                data={targetItems}
+                placeholder="All"
+                clearable
+                onChange={(value) => {
+                  const targets = value
+                    .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
+                    .filter((v) => v !== undefined) as EnemyType[];
+
+                  setSelectedTargets(targets);
+                }}
+              />
+              <MeterTable
+                encounterState={encounter}
+                sortType={sortType}
+                sortDirection={sortDirection}
+                setSortType={setSortType}
+                setSortDirection={setSortDirection}
+              />
+              <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
+              <LineChart
+                h={400}
+                data={data}
+                dataKey="timestamp"
+                withDots={false}
+                withLegend
+                series={labels}
+                valueFormatter={(value) => {
+                  const [num, suffix] = humanizeNumbers(value);
+                  return `${num}${suffix}`;
+                }}
+                tooltipProps={{
+                  content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
+                }}
+              />
+            </Stack>
+          </Box>
+        </Tabs.Panel>
+        <Tabs.Panel value="equipment">
+          <Group mt="20" gap="xs">
+            <Table striped layout="fixed">
+              <Table.Tbody>
+                <Table.Tr>
+                  {playerData.map((player) => {
+                    return (
+                      <Table.Td key={player.actorIndex} flex={1}>
+                        <Text fw={700} size="xl">
+                          {player.displayName} ({t(`characters.${player.characterType}`)})
+                        </Text>
+                      </Table.Td>
+                    );
+                  })}
+                </Table.Tr>
+                {Array.from(Array(12).keys()).map((sigilIndex) => (
+                  <Table.Tr key={sigilIndex}>
+                    {playerData.map((player) => {
+                      const sigil = player.sigils[sigilIndex];
+
+                      if (!sigil || sigil.sigilId === EMPTY_ID) {
+                        return (
+                          <Table.Td key={player.actorIndex}>
+                            <Text size="xs" fw={300}>
+                              ---
+                            </Text>
+                          </Table.Td>
+                        );
+                      }
+
+                      return (
+                        <Table.Td key={player.actorIndex}>
+                          <Text size="xs" fw={700}>
+                            {translateSigilId(sigil.sigilId)} (Lvl. {sigil.sigilLevel})
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {translateTraitId(sigil.firstTraitId)}
+                            {sigil.secondTraitId !== EMPTY_ID && ` / ${translateTraitId(sigil.secondTraitId)}`}
+                          </Text>
+                        </Table.Td>
+                      );
+                    })}
+                  </Table.Tr>
+                ))}
+              </Table.Tbody>
+            </Table>
+          </Group>
+        </Tabs.Panel>
+      </Tabs>
     </Box>
   );
 };
