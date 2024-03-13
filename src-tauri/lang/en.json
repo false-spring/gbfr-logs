@@ -61,6 +61,9 @@
       "Pl1800": "Cagliostro",
       "Pl1900": "Id",
       "Pl2000": "Id (Transformation)",
+      "Pl2100": "Sandalphon",
+      "Pl2200": "Seofon",
+      "Pl2300": "Tweyen",
       "Unknown": "Unknown"
     },
     "skills": {
@@ -2432,6 +2435,8 @@
       "407317": "Into the Abyss",
       "407318": "The Tale of Bahamut's Rage",
       "407319": "The Automagod Strikes Back",
+      "407320": "The Final Vision",
+      "407321": "The Final Vision",
       "unknown": "{{id}}"
     }
   }

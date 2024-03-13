@@ -24,6 +24,9 @@ pub enum CharacterType {
     Pl1800,
     Pl1900,
     Pl2000,
+    Pl2100,
+    Pl2200,
+    Pl2300,
     #[strum(default)]
     Unknown(u32),
 }
@@ -52,6 +55,9 @@ impl CharacterType {
             0x6FDD6932 => CharacterType::Pl1800,
             0x8056ABCD => CharacterType::Pl1900,
             0xF5755C0E => CharacterType::Pl2000,
+            0x9C89A455 => CharacterType::Pl2100,
+            0x59DB0CD9 => CharacterType::Pl2200,
+            0xDA5A8E25 => CharacterType::Pl2300,
             _ => CharacterType::Unknown(hash),
         }
     }
