@@ -9,7 +9,7 @@ import { create } from "zustand";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-import { EncounterState, EnemyType } from "../types";
+import { EncounterState, EnemyType, PlayerData } from "../types";
 import { SUPPORTED_LANGUAGES } from "../i18n";
 
 export interface SearchResult {
@@ -24,6 +24,18 @@ interface Log {
   name: string;
   time: number;
   duration: number;
+  version: number;
+  primaryTarget: EnemyType | null;
+  p1Name: string | null;
+  p1Type: string | null;
+  p2Name: string | null;
+  p2Type: string | null;
+  p3Name: string | null;
+  p3Type: string | null;
+  p4Name: string | null;
+  p4Type: string | null;
+  questId: number | null;
+  questElapsedTime: number | null;
 }
 
 interface LogIndexState {
@@ -78,6 +90,9 @@ interface EncounterStore {
   chartLen: number;
   targets: EnemyType[];
   selectedTargets: EnemyType[];
+  players: PlayerData[];
+  questId: number | null;
+  questTimer: number | null;
   setSelectedTargets: (targets: EnemyType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
 }
@@ -87,6 +102,9 @@ export interface EncounterStateResponse {
   dpsChart: Record<number, number[]>;
   chartLen: number;
   targets: EnemyType[];
+  players: PlayerData[];
+  questId: number | null;
+  questTimer: number | null;
 }
 
 export const useEncounterStore = create<EncounterStore>((set) => ({
@@ -95,14 +113,23 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   chartLen: 0,
   targets: [],
   selectedTargets: [],
+  players: [],
+  questId: null,
+  questTimer: null,
   setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
-  loadFromResponse: (response: EncounterStateResponse) =>
+  loadFromResponse: (response: EncounterStateResponse) => {
+    const filteredPlayers = response.players.filter((player) => player !== null);
+
     set({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,
       chartLen: response.chartLen,
       targets: response.targets,
-    }),
+      players: filteredPlayers,
+      questId: response.questId,
+      questTimer: response.questTimer,
+    });
+  },
 }));
 
 const SettingsPage = () => {

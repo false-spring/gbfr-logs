@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { createTheme, MantineProvider } from "@mantine/core";
+import { createTheme, MantineProvider, rem } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/charts/styles.css";
 import "./styles.css";
@@ -11,7 +11,7 @@ import { ModalsProvider } from "@mantine/modals";
 const theme = createTheme({
   fontFamily: '"Noto Sans Variable", Inter, Avenir, Helvetica, Arial, sans-serif',
   fontSizes: {
-    xs: "10",
+    xs: rem(14),
     sm: "12",
     md: "14",
     lg: "16",

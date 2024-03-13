@@ -1,17 +1,21 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
 import {
-  ComputedPlayerData,
+  ComputedPlayerState,
   EncounterState,
   CharacterType,
   ComputedSkillState,
-  PlayerData,
+  PlayerState,
   SortType,
   SortDirection,
+  EnemyType,
 } from "./types";
+
 import { t } from "i18next";
 
-export const formatInPartyOrder = (party: Record<string, PlayerData>): ComputedPlayerData[] => {
+export const EMPTY_ID = 2289754288;
+
+export const formatInPartyOrder = (party: Record<string, PlayerState>): ComputedPlayerState[] => {
   const players = Object.keys(party).map((key) => {
     return party[key];
   });
@@ -34,7 +38,6 @@ export const epochToLocalTime = (epoch: number): string => {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
   }).format(utc);
 };
 
@@ -120,10 +123,10 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
-export const translatedPlayerName = (player: ComputedPlayerData) =>
+export const translatedPlayerName = (player: ComputedPlayerState) =>
   `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
 
-export const sortPlayers = (players: ComputedPlayerData[], sortType: SortType, sortDirection: SortDirection) => {
+export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, sortDirection: SortDirection) => {
   players.sort((a, b) => {
     if (sortType === "partyIndex") {
       return sortDirection === "asc" ? a.partyIndex - b.partyIndex : b.partyIndex - a.partyIndex;
@@ -157,7 +160,7 @@ export const exportSimpleEncounterToClipboard = (
 
   const orderedPlayers = formatInPartyOrder(encounterState.party);
 
-  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
+  const players: Array<ComputedPlayerState> = orderedPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -169,8 +172,8 @@ export const exportSimpleEncounterToClipboard = (
   const playerHeader = "Name, DMG, DPS, %";
   const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
-      const computedSkills = player.skills.map((skill) => {
+      const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
+      const computedSkills = player.skillBreakdown.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
           ...skill,
@@ -212,7 +215,7 @@ export const exportFullEncounterToClipboard = (
   const playerHeader = "Name, DMG, DPS, %";
   const orderedPlayers = formatInPartyOrder(encounterState.party);
 
-  const players: Array<ComputedPlayerData> = orderedPlayers.map((playerData) => {
+  const players: Array<ComputedPlayerState> = orderedPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -223,8 +226,8 @@ export const exportFullEncounterToClipboard = (
 
   const playerData = players
     .map((player) => {
-      const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
-      const computedSkills = player.skills.map((skill) => {
+      const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
+      const computedSkills = player.skillBreakdown.map((skill) => {
         return {
           percentage: (skill.totalDamage / totalDamage) * 100,
           ...skill,
@@ -269,3 +272,39 @@ export const exportFullEncounterToClipboard = (
 };
 
 export const PLAYER_COLORS = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
+
+export const translateEnemyType = (type: EnemyType | null): string => {
+  if (type === null) return "";
+
+  if (typeof type == "object" && Object.hasOwn(type, "Unknown")) {
+    const hash = type.Unknown.toString(16).padStart(8, "0");
+
+    return t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash });
+  } else {
+    return t([`enemies.${type}`, "enemies.unknown-type"]);
+  }
+};
+
+export const translateQuestId = (id: number | null): string => {
+  if (id === null) return "";
+  const hash = id.toString(16);
+  return t([`quest.${hash}`, "quest.unknown"], { id: hash });
+};
+
+export const translateTraitId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+  return t([`traits.${hash}`, "ui.unknown"], { id: hash });
+};
+
+export const translateSigilId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+  return t([`sigils.${hash}`, "ui.unknown"], { id: hash });
+};
+
+export const toHash = (num: number): string => num.toString(16);

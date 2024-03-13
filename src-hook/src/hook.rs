@@ -1,3 +1,9 @@
+use std::{
+    ffi::{CStr, CString},
+    ptr,
+    sync::atomic::{AtomicPtr, Ordering},
+};
+
 use anyhow::{anyhow, Result};
 use log::warn;
 use pelite::{
@@ -14,17 +20,29 @@ type ProcessDamageEventFunc =
     unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
 type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+type OnLoadPlayerFunc = unsafe extern "system" fn(*const usize) -> usize;
+type OnLoadQuestState = unsafe extern "system" fn(*const usize) -> usize;
+type OnShowResultScreen = unsafe extern "system" fn(*const usize) -> usize;
 
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
     static ProcessDotEvent: unsafe extern "system" fn(*const usize, *const usize) -> usize;
     static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+    static OnLoadPlayer: unsafe extern "system" fn(*const usize) -> usize;
+    static OnLoadQuestState: unsafe extern "system" fn(*const usize) -> usize;
+    static OnShowResultScreen: unsafe extern "system" fn(*const usize) -> usize;
 }
+
+static QUEST_STATE_PTR: AtomicPtr<QuestState> = AtomicPtr::new(ptr::null_mut());
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
 const ON_ENTER_AREA_SIG: &str = "e8 $ { ' } c5 ? ? ? c5 f8 29 45 ? c7 45 ? ? ? ? ?";
-// const P_QWORD_1467572B0_SIG: &str = "48 ? ? $ { ' } 83 66 ? ? 48 ? ?";
+const ON_LOAD_PLAYER: &str = "49 89 ce e8 $ { ' } 31 ff 85 c0 ? ? ? ? ? ? 49 8b 46 28";
+const ON_LOAD_QUEST_STATE: &str =
+    "48 8b 0d ? ? ? ? e8 $ { ' } c5 fb 12 ? ? ? ? ? c5 f8 11 ? ? ? ? ? c5 f8 11 ? ? ? ? ? 48 83 c4 48";
+const ON_SHOW_RESULT_SCREEN_SIG: &str =
+    "e8 $ { ' } b8 ? ? ? ? 23 87 ? ? 00 00 3d 00 00 60 00 0f 94 c0";
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
@@ -173,7 +191,6 @@ unsafe fn process_dot_event(tx: event::Tx, dot_instance: *const usize, a2: *cons
     let (source_parent_type_id, source_parent_idx) =
         get_source_parent(source_type_id, source, source_idx);
 
-    // @TODO(false): There should be a way to get the type of DoT being applied. Too dumb to find it right now.
     let event = Message::DamageEvent(DamageEvent {
         source: Actor {
             index: source_idx,
@@ -229,7 +246,177 @@ fn get_source_parent(source_type_id: u32, source: *const usize, source_idx: u32)
 
 unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usize {
     let ret = OnEnterArea.call(a1, a2, a3);
-    let _ = tx.send(Message::OnAreaEnter);
+    let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
+
+    if quest_state_ptr != std::ptr::null_mut() {
+        let quest_state = quest_state_ptr.read();
+
+        let quest_id = quest_state.quest_id;
+        let timer = quest_state.elapsed_time;
+
+        let _ = tx.send(Message::OnAreaEnter(protocol::AreaEnterEvent {
+            last_known_quest_id: quest_id,
+            last_known_elapsed_time_in_secs: timer,
+        }));
+    } else {
+        let _ = tx.send(Message::OnAreaEnter(protocol::AreaEnterEvent {
+            last_known_quest_id: 0,
+            last_known_elapsed_time_in_secs: 0,
+        }));
+    }
+
+    ret
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct QuestState {
+    quest_id: u32,            // 0x00
+    padding_640: [u8; 0x644], // 0x004 - 0x648
+    elapsed_time: u32,        // 0x648
+}
+
+unsafe fn on_load_quest_state(a1: *const usize) -> usize {
+    let ret = OnLoadQuestState.call(a1);
+
+    let quest_state_ptr = a1.byte_add(0x1D8) as *mut QuestState;
+
+    if quest_state_ptr == std::ptr::null_mut() {
+        return ret;
+    }
+
+    QUEST_STATE_PTR.store(quest_state_ptr, std::sync::atomic::Ordering::Relaxed);
+
+    ret
+}
+
+unsafe fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
+    let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
+
+    if quest_state_ptr != std::ptr::null_mut() {
+        let quest_state = quest_state_ptr.read();
+        let quest_id = quest_state.quest_id;
+        let timer = quest_state.elapsed_time;
+
+        let _ = tx.send(Message::OnQuestComplete(protocol::QuestCompleteEvent {
+            quest_id,
+            elapsed_time_in_secs: timer,
+        }));
+    }
+
+    let ret = OnShowResultScreen.call(a1);
+
+    ret
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct SigilEntry {
+    first_trait_id: u32,
+    first_trait_level: u32,
+    second_trait_id: u32,
+    second_trait_level: u32,
+    sigil_id: u32,
+    equipped_character: u32,
+    sigil_level: u32,
+    acquisition_count: u32,
+    notification_enum: u32,
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct SigilList {
+    sigils: [SigilEntry; 12], // 0x00
+    unk_1b0: u32,             //0x01B0
+    unk_1b4: u32,             //0x01B4
+    unk_1b8: u32,             //0x01B8
+    unk_1bc: u32,             //0x01BC
+    unk_1c0: u32,             //0x01C0
+    unk_1c4: u32,             //0x01C4
+    /// 0 == local, 1 == online
+    is_online: u32, //0x01C8
+    unk_1cc: u32,             //0x01CC
+    unk_1d0: u32,             //0x01D0
+    unk_1d4: u32,             //0x01D4
+    unk_1d8: u32,             //0x01D8
+    unk_1dc: u32,             //0x01DC
+    unk_1e0: u32,             //0x01E0
+    unk_1e4: u32,             //0x01E4
+    character_name: [u8; 16], //0x01E8
+    padding_1f8: [u8; 16],    //0x01F8
+    display_name: [u8; 16],   //0x0208
+    padding_218: [u8; 24],    //0x0218
+    party_index: u32,         //0x0230
+}
+
+unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
+    let ret = OnLoadPlayer.call(a1);
+
+    let online_party_index = a1.byte_add(0x3A28).read() as u8;
+    let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
+    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB890).read() as *mut SigilList);
+
+    if player_entity_info_ptr == std::ptr::null() {
+        return ret;
+    }
+
+    let player = player_entity_info_ptr.byte_add(0x70).read() as *const usize;
+
+    if player == std::ptr::null() {
+        return ret;
+    }
+
+    if let Some(sigil_list) = sigil_list {
+        let player_idx = player_entity_info_ptr.byte_add(0x38).read() as u32;
+        let character_type = actor_type_id(player);
+        let sigil_list = sigil_list.as_ref();
+        let party_index = if sigil_list.party_index == u32::MAX {
+            online_party_index
+        } else {
+            sigil_list.party_index as u8
+        };
+
+        if party_index <= 3 {
+            let sigils = sigil_list
+                .sigils
+                .iter()
+                .map(|sigil| protocol::Sigil {
+                    first_trait_id: sigil.first_trait_id,
+                    first_trait_level: sigil.first_trait_level,
+                    second_trait_id: sigil.second_trait_id,
+                    second_trait_level: sigil.second_trait_level,
+                    sigil_id: sigil.sigil_id,
+                    equipped_character: sigil.equipped_character,
+                    sigil_level: sigil.sigil_level,
+                    acquisition_count: sigil.acquisition_count,
+                    notification_enum: sigil.notification_enum,
+                })
+                .collect();
+
+            let character_name = CStr::from_bytes_until_nul(&sigil_list.character_name)
+                .ok()
+                .map(|cstr| cstr.to_owned())
+                .unwrap_or(CString::new("").unwrap());
+
+            let display_name = CStr::from_bytes_until_nul(&sigil_list.display_name)
+                .ok()
+                .map(|cstr| cstr.to_owned())
+                .unwrap_or(CString::new("").unwrap());
+
+            let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
+                sigils,
+                character_name,
+                display_name,
+                actor_index: player_idx,
+                is_online: sigil_list.is_online != 0,
+                party_index,
+                character_type,
+            });
+
+            let _ = tx.send(payload);
+        }
+    }
+
     ret
 }
 
@@ -273,6 +460,39 @@ pub fn init(tx: event::Tx) -> Result<()> {
         }
     } else {
         warn!("Could not find on_enter_area");
+    }
+
+    if let Ok(on_load_player_original) = search(&process, ON_LOAD_PLAYER) {
+        let tx = tx.clone();
+        unsafe {
+            let func: OnLoadPlayerFunc = std::mem::transmute(on_load_player_original);
+            OnLoadPlayer.initialize(func, move |a1| on_load_player(tx.clone(), a1))?;
+            OnLoadPlayer.enable()?;
+        }
+    } else {
+        warn!("Could not find on_load_player");
+    }
+
+    if let Ok(on_load_quest_state_original) = search(&process, ON_LOAD_QUEST_STATE) {
+        unsafe {
+            let func: OnLoadQuestState = std::mem::transmute(on_load_quest_state_original);
+            OnLoadQuestState.initialize(func, move |a1| on_load_quest_state(a1))?;
+            OnLoadQuestState.enable()?;
+        }
+    } else {
+        warn!("Could not find on_load_quest_state");
+    }
+
+    if let Ok(on_show_result_screen_original) = search(&process, ON_SHOW_RESULT_SCREEN_SIG) {
+        let tx = tx.clone();
+
+        unsafe {
+            let func: OnShowResultScreen = std::mem::transmute(on_show_result_screen_original);
+            OnShowResultScreen.initialize(func, move |a1| on_show_result_screen(tx.clone(), a1))?;
+            OnShowResultScreen.enable()?;
+        }
+    } else {
+        warn!("Could not find on_show_result_screen");
     }
 
     Ok(())

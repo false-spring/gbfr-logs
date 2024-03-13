@@ -9,12 +9,13 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
+use anyhow::Context;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
 use parser::{
     constants::{CharacterType, EnemyType},
-    v0,
+    v1::{self, PlayerData},
 };
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
@@ -48,15 +49,17 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
 
     let mut stmt = conn
-        .prepare("SELECT data FROM logs WHERE id = ?")
+        .prepare("SELECT data, version FROM logs WHERE id = ?")
         .map_err(|e| e.to_string())?;
 
-    let blob: Vec<u8> = stmt
-        .query_row([id], |row| row.get(0))
+    let (blob, version): (Vec<u8>, u8) = stmt
+        .query_row([id], |row| Ok((row.get(0)?, row.get(1)?)))
+        .context("Failed to fetch log from database")
         .map_err(|e| e.to_string())?;
 
-    let parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
-    let file = File::create(&file_path).map_err(|e| e.to_string())?;
+    let parser = parser::deserialize_version(&blob, version).map_err(|e| e.to_string())?;
+
+    let file = File::create(file_path).map_err(|e| e.to_string())?;
 
     // @TODO(false): Split formatting into a separate function.
     let mut writer = std::io::BufWriter::new(file);
@@ -67,8 +70,8 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     )
     .map_err(|e| e.to_string())?;
 
-    for damage_event in &parser.damage_event_log {
-        let timestamp = damage_event.0 - parser.encounter_state.start_time;
+    for damage_event in &parser.encounter.event_log {
+        let timestamp = damage_event.0 - parser.start_time();
         let target_type = EnemyType::from_hash(damage_event.1.target.parent_actor_type);
         let character_type = CharacterType::from_hash(damage_event.1.source.parent_actor_type);
 
@@ -114,6 +117,30 @@ struct LogEntry {
     time: i64,
     /// Duration of the encounter in milliseconds.
     duration: i64,
+    /// The version of the parser used
+    version: u8,
+    /// Primary enemy target
+    primary_target: Option<EnemyType>,
+    /// Player 1 display name
+    p1_name: Option<String>,
+    /// Player 1 character type
+    p1_type: Option<String>,
+    /// Player 2 display name
+    p2_name: Option<String>,
+    /// Player 2 character type
+    p2_type: Option<String>,
+    /// Player 3 display name
+    p3_name: Option<String>,
+    /// Player 3 character type
+    p3_type: Option<String>,
+    /// Player 4 display name
+    p4_name: Option<String>,
+    /// Player 4 character type
+    p4_type: Option<String>,
+    /// Quest ID
+    quest_id: Option<u32>,
+    /// Quest elapsed time
+    quest_elapsed_time: Option<u32>,
 }
 
 #[tauri::command]
@@ -124,7 +151,26 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
     let offset = page.saturating_sub(1) * per_page;
 
     let mut stmt = conn
-        .prepare("SELECT id, name, time, duration FROM logs ORDER BY time DESC LIMIT ? OFFSET ?")
+        .prepare(
+            r#"SELECT
+            id,
+            name,
+            time,
+            duration,
+            version,
+            primary_target,
+            p1_name,
+            p1_type,
+            p2_name,
+            p2_type,
+            p3_name,
+            p3_type,
+            p4_name,
+            p4_type,
+            quest_id,
+            quest_elapsed_time
+         FROM logs ORDER BY time DESC LIMIT ? OFFSET ?"#,
+        )
         .map_err(|e| e.to_string())?;
 
     let logs = stmt
@@ -134,6 +180,18 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
                 name: row.get(1)?,
                 time: row.get(2)?,
                 duration: row.get(3)?,
+                version: row.get(4)?,
+                primary_target: row.get::<usize, Option<u32>>(5)?.map(EnemyType::from_hash),
+                p1_name: row.get(6)?,
+                p1_type: row.get(7)?,
+                p2_name: row.get(8)?,
+                p2_type: row.get(9)?,
+                p3_name: row.get(10)?,
+                p3_type: row.get(11)?,
+                p4_name: row.get(12)?,
+                p4_type: row.get(13)?,
+                quest_id: row.get(14)?,
+                quest_elapsed_time: row.get(15)?,
             })
         })
         .map_err(|e| e.to_string())?
@@ -157,7 +215,10 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct EncounterStateResponse {
-    encounter_state: v0::EncounterState,
+    encounter_state: v1::DerivedEncounterState,
+    players: [Option<PlayerData>; 4],
+    quest_id: Option<u32>,
+    quest_timer: Option<u32>,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
@@ -172,23 +233,24 @@ struct ParseOptions {
 fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStateResponse, String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
     let mut stmt = conn
-        .prepare("SELECT data FROM logs WHERE id = ?")
+        .prepare("SELECT data, version FROM logs WHERE id = ?")
         .map_err(|e| e.to_string())?;
 
-    let blob: Vec<u8> = stmt
-        .query_row([id], |row| row.get(0))
+    let (blob, version): (Vec<u8>, u8) = stmt
+        .query_row([id], |row| Ok((row.get(0)?, row.get(1)?)))
         .map_err(|e| e.to_string())?;
 
-    let mut parser: v0::Parser = v0::Parser::from_blob(&blob).map_err(|e| e.to_string())?;
+    // @TODO(false): If we deserialize from an older version, we should save it back into the DB as the newer format.
+    let mut parser = parser::deserialize_version(&blob, version).map_err(|e| e.to_string())?;
 
-    parser.reparse(&options.targets);
+    parser.reparse_with_options(&options.targets);
 
-    let duration = parser.encounter_state.end_time - parser.encounter_state.start_time;
+    let duration = parser.derived_state.duration();
     let mut player_dps: HashMap<u32, Vec<i32>> = HashMap::new();
 
-    const DPS_INTERVAL: i64 = 5 * 1_000;
+    const DPS_INTERVAL: i64 = 3 * 1_000;
 
-    for player in parser.encounter_state.party.values() {
+    for player in parser.derived_state.party.values() {
         player_dps.insert(
             player.index,
             vec![0; (duration / DPS_INTERVAL) as usize + 1],
@@ -196,9 +258,10 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     }
 
     let mut targets = Vec::new();
+    let start_time = parser.start_time();
 
-    for (timestamp, damage_event) in parser.damage_event_log.iter() {
-        let index = ((timestamp - parser.encounter_state.start_time) / DPS_INTERVAL) as usize;
+    for (timestamp, damage_event) in parser.encounter.event_log.iter() {
+        let index = ((timestamp - start_time) / DPS_INTERVAL) as usize;
         let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
 
         if !targets.contains(&target_type) {
@@ -214,7 +277,10 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     }
 
     Ok(EncounterStateResponse {
-        encounter_state: parser.encounter_state,
+        encounter_state: parser.derived_state,
+        players: parser.encounter.player_data,
+        quest_id: parser.encounter.quest_id,
+        quest_timer: parser.encounter.quest_timer,
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         targets,
@@ -235,11 +301,6 @@ fn delete_logs(ids: Vec<u64>) -> Result<(), String> {
         .map_err(|e| e.to_string())?;
 
     Ok(())
-}
-
-#[tauri::command]
-fn load_parse_log_from_file(path: String) -> Result<v0::Parser, String> {
-    v0::Parser::load_parse_log_from_file(&path).map_err(|e| e.to_string())
 }
 
 // Continuously check for the game process and inject the DLL when found.
@@ -274,7 +335,7 @@ async fn check_and_perform_hook(app: AppHandle) {
 fn connect_and_run_parser(app: AppHandle) {
     let window = app.get_window("main").expect("Window not found");
     let database = db::connect_to_db().expect("Could not connect to database");
-    let mut state = v0::Parser::new(Some(window.clone()), database);
+    let mut state = v1::Parser::new(window.clone(), database);
 
     tauri::async_runtime::spawn(async move {
         loop {
@@ -296,8 +357,14 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::DamageEvent(event) => {
                                     state.on_damage_event(event);
                                 }
-                                protocol::Message::OnAreaEnter => {
-                                    state.on_area_enter_event();
+                                protocol::Message::OnAreaEnter(event) => {
+                                    state.on_area_enter_event(event);
+                                }
+                                protocol::Message::PlayerLoadEvent(event) => {
+                                    state.on_player_load_event(event);
+                                }
+                                protocol::Message::OnQuestComplete(event) => {
+                                    state.on_quest_complete_event(event);
                                 }
                             }
                         }
@@ -434,7 +501,6 @@ fn main() {
             }
         })
         .invoke_handler(tauri::generate_handler![
-            load_parse_log_from_file,
             fetch_encounter_state,
             fetch_logs,
             delete_logs,

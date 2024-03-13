@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
-import { CharacterType, ComputedPlayerData, ComputedSkillState } from "../types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState } from "../types";
 import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 type Props = {
-  player: ComputedPlayerData;
+  player: ComputedPlayerState;
   color: string;
 };
 
@@ -52,8 +52,8 @@ const SkillRow = ({
 };
 
 const SkillBreakdown = ({ player, color }: Props) => {
-  const totalDamage = player.skills.reduce((acc, skill) => acc + skill.totalDamage, 0);
-  const computedSkills = player.skills.map((skill) => {
+  const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
+  const computedSkills = player.skillBreakdown.map((skill) => {
     return {
       percentage: (skill.totalDamage / totalDamage) * 100,
       ...skill,
