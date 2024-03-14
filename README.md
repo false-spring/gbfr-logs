@@ -26,6 +26,14 @@ Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the revers
 
 ![Charts](./docs/screenshots/charting.png)
 
+### Sigil Tracking
+
+![Sigil Tracking](./docs/screenshots/sigil-tracking.png)
+
+### Multi-language Support
+
+![Simplified Chinese](./docs/screenshots/simplified-chinese.png)
+
 ## How to install
 
 - Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
@@ -76,19 +84,6 @@ This project is split up into a few subprojects:
 - `src-tauri/` - The Tauri Rust backend that communicates with the hooked process and does parsing.
 - `protocol/` - Defines the message protocol used by hook + back-end.
 - `src/` - The JS front-end used by the Tauri web app
-
-## TODO
-
-Improvements:
-
-- Hotkey shortcuts
-- Toggle clickthrough
-
-Reverse Engineering:
-
-- Figure out if we can fetch party data upon area enter, would make it easier to cache it then.
-- Flags for damage cap tracking, if they exist.
-- Buff tracking
 
 ## Credits
 
