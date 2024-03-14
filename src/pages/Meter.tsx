@@ -35,8 +35,6 @@ export const Meter = () => {
   }, []);
 
   useEffect(() => {
-    // TODO(Xwth|Nina): Refactor, Couldn't find a good way abstract/refactor
-    //      since `fn listen` takes a `handler: EventCallback<T>`
     const encounterUpdateListener = listen("encounter-update", (event: EncounterUpdateEvent) => {
       setEncounterState(event.payload);
 

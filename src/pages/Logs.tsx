@@ -1,6 +1,6 @@
 import "./Logs.css";
 
-import { AppShell, Box, Burger, Group, NavLink, Text, Fieldset, Select, Stack } from "@mantine/core";
+import { AppShell, Box, Burger, Group, NavLink, Text, Fieldset, Select, Stack, ColorInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Gear, House } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 
 import { EncounterState, EnemyType, PlayerData } from "../types";
 import { SUPPORTED_LANGUAGES } from "../i18n";
+import { useMeterSettingsStore } from "../Store";
 
 export interface SearchResult {
   logs: Log[];
@@ -133,7 +134,16 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
 }));
 
 const SettingsPage = () => {
+  const { color_1, color_2, color_3, color_4, setMeterSettings } = useMeterSettingsStore((state) => ({
+    color_1: state.color_1,
+    color_2: state.color_2,
+    color_3: state.color_3,
+    color_4: state.color_4,
+    setMeterSettings: state.set,
+  }));
+
   const { t, i18n } = useTranslation();
+
   const languages = Object.keys(SUPPORTED_LANGUAGES).map((key) => ({ value: key, label: SUPPORTED_LANGUAGES[key] }));
 
   const handleLanguageChange = (language: string | null) => {
@@ -144,8 +154,41 @@ const SettingsPage = () => {
     <Box>
       <Fieldset legend={t("ui.meter-settings")}>
         <Stack>
-          <Text size="sm">{t("ui.language")}</Text>
-          <Select data={languages} defaultValue={i18n.language} allowDeselect={false} onChange={handleLanguageChange} />
+          <Select
+            label={t("ui.language")}
+            data={languages}
+            defaultValue={i18n.language}
+            allowDeselect={false}
+            onChange={handleLanguageChange}
+          />
+          <ColorInput
+            defaultValue={color_1}
+            onChangeEnd={(value) => setMeterSettings({ color_1: value })}
+            withEyeDropper={false}
+            label="Bar Color - Player 1"
+            placeholder="Color"
+          />
+          <ColorInput
+            defaultValue={color_2}
+            onChangeEnd={(value) => setMeterSettings({ color_2: value })}
+            withEyeDropper={false}
+            label="Bar Color - Player 2"
+            placeholder="Color"
+          />
+          <ColorInput
+            defaultValue={color_3}
+            onChangeEnd={(value) => setMeterSettings({ color_3: value })}
+            withEyeDropper={false}
+            label="Bar Color - Player 3"
+            placeholder="Color"
+          />
+          <ColorInput
+            defaultValue={color_4}
+            onChangeEnd={(value) => setMeterSettings({ color_4: value })}
+            withEyeDropper={false}
+            label="Bar Color - Player 4"
+            placeholder="Color"
+          />
         </Stack>
       </Fieldset>
     </Box>
