@@ -150,6 +150,7 @@ pub enum EnemyType {
     Em7600,
     Em7603,
     Em7610,
+    Em7700,
     #[strum(default)]
     Unknown(u32),
 }
@@ -242,6 +243,7 @@ impl EnemyType {
             0xB4AED02D => Self::Em7600,
             0x5E316D49 => Self::Em7603,
             0xA86498C5 => Self::Em7610,
+            0x2B31654B => Self::Em7700,
             _ => EnemyType::Unknown(hash),
         }
     }
