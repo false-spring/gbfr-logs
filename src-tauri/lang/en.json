@@ -2010,7 +2010,10 @@
       "b74c207b": "Crimson's Clout+",
       "44d48479": "Crimson's Flight+",
       "fb0f9037": "Ebony's Presence+",
-      "a59c9613": "Ebony's Poise+"
+      "a59c9613": "Ebony's Poise+",
+      "921d90d8": "Alpha+",
+      "ee337fe3": "Beta+",
+      "4438676e": "Gamma+"
     },
     "traits": {
       "50079a1c": "ATK",
@@ -2188,7 +2191,10 @@
       "cd18a77d": "Potent Greens",
       "333e5862": "Roll of the Die",
       "a8a3163b": "Glass Cannon",
-      "ec1c6779": "Flight over Fight"
+      "ec1c6779": "Flight over Fight",
+      "dbe1d775": "Alpha",
+      "8d2adb6e": "Beta",
+      "5c862e13": "Gamma"
     },
     "quest": {
       "200000": "A Lingering Regret",

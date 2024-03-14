@@ -19,7 +19,7 @@ use crate::process::Process;
 type ProcessDamageEventFunc =
     unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
-type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8, *const usize) -> usize;
 type OnLoadPlayerFunc = unsafe extern "system" fn(*const usize) -> usize;
 type OnLoadQuestState = unsafe extern "system" fn(*const usize) -> usize;
 type OnShowResultScreen = unsafe extern "system" fn(*const usize) -> usize;
@@ -27,7 +27,7 @@ type OnShowResultScreen = unsafe extern "system" fn(*const usize) -> usize;
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
     static ProcessDotEvent: unsafe extern "system" fn(*const usize, *const usize) -> usize;
-    static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8) -> usize;
+    static OnEnterArea: unsafe extern "system" fn(u32, *const usize, u8, *const usize) -> usize;
     static OnLoadPlayer: unsafe extern "system" fn(*const usize) -> usize;
     static OnLoadQuestState: unsafe extern "system" fn(*const usize) -> usize;
     static OnShowResultScreen: unsafe extern "system" fn(*const usize) -> usize;
@@ -244,8 +244,14 @@ fn get_source_parent(source_type_id: u32, source: *const usize, source_idx: u32)
     (source_parent_type_id, source_parent_idx)
 }
 
-unsafe fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8) -> usize {
-    let ret = OnEnterArea.call(a1, a2, a3);
+unsafe fn on_enter_area(
+    tx: event::Tx,
+    a1: u32,
+    a2: *const usize,
+    a3: u8,
+    a4: *const usize,
+) -> usize {
+    let ret = OnEnterArea.call(a1, a2, a3, a4);
     let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
     if quest_state_ptr != std::ptr::null_mut() {
@@ -277,6 +283,9 @@ struct QuestState {
 }
 
 unsafe fn on_load_quest_state(a1: *const usize) -> usize {
+    #[cfg(feature = "console")]
+    println!("on load quest state");
+
     let ret = OnLoadQuestState.call(a1);
 
     let quest_state_ptr = a1.byte_add(0x1D8) as *mut QuestState;
@@ -291,6 +300,9 @@ unsafe fn on_load_quest_state(a1: *const usize) -> usize {
 }
 
 unsafe fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
+    #[cfg(feature = "console")]
+    println!("on show result screen");
+
     let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
     if quest_state_ptr != std::ptr::null_mut() {
@@ -350,11 +362,13 @@ struct SigilList {
 }
 
 unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
+    #[cfg(feature = "console")]
+    println!("on load player: {:p}", a1);
+
     let ret = OnLoadPlayer.call(a1);
 
-    let online_party_index = a1.byte_add(0x3A28).read() as u8;
     let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
-    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB890).read() as *mut SigilList);
+    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB9A0).read() as *mut SigilList);
 
     if player_entity_info_ptr == std::ptr::null() {
         return ret;
@@ -370,51 +384,51 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
         let player_idx = player_entity_info_ptr.byte_add(0x38).read() as u32;
         let character_type = actor_type_id(player);
         let sigil_list = sigil_list.as_ref();
-        let party_index = if sigil_list.party_index == u32::MAX {
-            online_party_index
-        } else {
-            sigil_list.party_index as u8
-        };
 
-        if party_index <= 3 {
-            let sigils = sigil_list
-                .sigils
-                .iter()
-                .map(|sigil| protocol::Sigil {
-                    first_trait_id: sigil.first_trait_id,
-                    first_trait_level: sigil.first_trait_level,
-                    second_trait_id: sigil.second_trait_id,
-                    second_trait_level: sigil.second_trait_level,
-                    sigil_id: sigil.sigil_id,
-                    equipped_character: sigil.equipped_character,
-                    sigil_level: sigil.sigil_level,
-                    acquisition_count: sigil.acquisition_count,
-                    notification_enum: sigil.notification_enum,
-                })
-                .collect();
-
-            let character_name = CStr::from_bytes_until_nul(&sigil_list.character_name)
-                .ok()
-                .map(|cstr| cstr.to_owned())
-                .unwrap_or(CString::new("").unwrap());
-
-            let display_name = CStr::from_bytes_until_nul(&sigil_list.display_name)
-                .ok()
-                .map(|cstr| cstr.to_owned())
-                .unwrap_or(CString::new("").unwrap());
-
-            let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
-                sigils,
-                character_name,
-                display_name,
-                actor_index: player_idx,
-                is_online: sigil_list.is_online != 0,
-                party_index,
-                character_type,
-            });
-
-            let _ = tx.send(payload);
+        if (sigil_list.party_index as u8) == 0xFF && sigil_list.is_online == 0 {
+            return ret;
         }
+
+        let sigils = sigil_list
+            .sigils
+            .iter()
+            .map(|sigil| protocol::Sigil {
+                first_trait_id: sigil.first_trait_id,
+                first_trait_level: sigil.first_trait_level,
+                second_trait_id: sigil.second_trait_id,
+                second_trait_level: sigil.second_trait_level,
+                sigil_id: sigil.sigil_id,
+                equipped_character: sigil.equipped_character,
+                sigil_level: sigil.sigil_level,
+                acquisition_count: sigil.acquisition_count,
+                notification_enum: sigil.notification_enum,
+            })
+            .collect();
+
+        let character_name = CStr::from_bytes_until_nul(&sigil_list.character_name)
+            .ok()
+            .map(|cstr| cstr.to_owned())
+            .unwrap_or(CString::new("").unwrap());
+
+        let display_name = CStr::from_bytes_until_nul(&sigil_list.display_name)
+            .ok()
+            .map(|cstr| cstr.to_owned())
+            .unwrap_or(CString::new("").unwrap());
+
+        let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
+            sigils,
+            character_name,
+            display_name,
+            actor_index: player_idx,
+            is_online: sigil_list.is_online != 0,
+            party_index: sigil_list.party_index as u8,
+            character_type,
+        });
+
+        #[cfg(feature = "console")]
+        println!("sending player load event: {:?}", payload);
+
+        let _ = tx.send(payload);
     }
 
     ret
@@ -425,6 +439,9 @@ pub fn init(tx: event::Tx) -> Result<()> {
 
     // See https://github.com/nyaoouo/GBFR-ACT/blob/5801c193de2f474764b55b7c6b759c3901dc591c/injector.py#L1773-L1809
     if let Ok(process_dmg_evt) = search(&process, PROCESS_DAMAGE_EVENT_SIG) {
+        #[cfg(feature = "console")]
+        println!("Found process dmg event");
+
         let tx = tx.clone();
         unsafe {
             let func: ProcessDamageEventFunc = std::mem::transmute(process_dmg_evt);
@@ -438,6 +455,9 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
 
     if let Ok(process_dot_evt) = search(&process, PROCESS_DOT_EVENT_SIG) {
+        #[cfg(feature = "console")]
+        println!("Found process dot event");
+
         let tx = tx.clone();
         unsafe {
             let func: ProcessDotEventFunc = std::mem::transmute(process_dot_evt);
@@ -450,11 +470,14 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
 
     if let Ok(on_enter_area_evt) = search(&process, ON_ENTER_AREA_SIG) {
+        #[cfg(feature = "console")]
+        println!("Found on enter area");
+
         let tx = tx.clone();
         unsafe {
             let func: OnEnterAreaFunc = std::mem::transmute(on_enter_area_evt);
-            OnEnterArea.initialize(func, move |a1, a2, a3| {
-                on_enter_area(tx.clone(), a1, a2, a3)
+            OnEnterArea.initialize(func, move |a1, a2, a3, a4| {
+                on_enter_area(tx.clone(), a1, a2, a3, a4)
             })?;
             OnEnterArea.enable()?;
         }
@@ -463,6 +486,9 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
 
     if let Ok(on_load_player_original) = search(&process, ON_LOAD_PLAYER) {
+        #[cfg(feature = "console")]
+        println!("Found on load player");
+
         let tx = tx.clone();
         unsafe {
             let func: OnLoadPlayerFunc = std::mem::transmute(on_load_player_original);
@@ -474,6 +500,9 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
 
     if let Ok(on_load_quest_state_original) = search(&process, ON_LOAD_QUEST_STATE) {
+        #[cfg(feature = "console")]
+        println!("Found on load quest state");
+
         unsafe {
             let func: OnLoadQuestState = std::mem::transmute(on_load_quest_state_original);
             OnLoadQuestState.initialize(func, move |a1| on_load_quest_state(a1))?;
@@ -484,6 +513,9 @@ pub fn init(tx: event::Tx) -> Result<()> {
     }
 
     if let Ok(on_show_result_screen_original) = search(&process, ON_SHOW_RESULT_SCREEN_SIG) {
+        #[cfg(feature = "console")]
+        println!("found on show result screen");
+
         let tx = tx.clone();
 
         unsafe {
