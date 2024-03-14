@@ -12,15 +12,18 @@ const loadLanguageFromPath = async (language: string) => {
 
 const en = await loadLanguageFromPath("en");
 const zhCN = await loadLanguageFromPath("zh-CN");
+const zhTW = await loadLanguageFromPath("zh-TW");
 
 const resources = {
   en,
   "zh-CN": zhCN,
+  "zh-TW": zhTW,
 };
 
 export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
   en: "English",
   "zh-CN": "简体中文",
+  "zh-TW": "繁體中文",
 };
 
 i18n
@@ -28,7 +31,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "en",
+    fallbackLng: ["en", "zh-CN", "zh-TW"],
     interpolation: {
       escapeValue: false,
     },
