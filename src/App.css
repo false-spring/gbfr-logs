@@ -7,12 +7,11 @@
   height: 100vh;
   margin-top: 30px;
   overflow: auto;
-  background: rgba(22, 22, 22, 0.2);
   transition: background-color 0.15s ease-in-out;
 }
 
 .app-content:hover {
-  background: rgba(22, 22, 22, 0.8);
+  background: rgba(22, 22, 22, 0.8) !important;
 }
 
 .titlebar {

@@ -1,6 +1,18 @@
 import "./Logs.css";
 
-import { AppShell, Box, Burger, Group, NavLink, Text, Fieldset, Select, Stack, ColorInput } from "@mantine/core";
+import {
+  AppShell,
+  Box,
+  Burger,
+  Group,
+  NavLink,
+  Text,
+  Fieldset,
+  Select,
+  Stack,
+  ColorInput,
+  Slider,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Gear, House } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
@@ -134,11 +146,12 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
 }));
 
 const SettingsPage = () => {
-  const { color_1, color_2, color_3, color_4, setMeterSettings } = useMeterSettingsStore((state) => ({
+  const { color_1, color_2, color_3, color_4, transparency, setMeterSettings } = useMeterSettingsStore((state) => ({
     color_1: state.color_1,
     color_2: state.color_2,
     color_3: state.color_3,
     color_4: state.color_4,
+    transparency: state.transparency,
     setMeterSettings: state.set,
   }));
 
@@ -165,29 +178,37 @@ const SettingsPage = () => {
             defaultValue={color_1}
             onChangeEnd={(value) => setMeterSettings({ color_1: value })}
             withEyeDropper={false}
-            label="Bar Color - Player 1"
+            label={t("ui.player-1-color")}
             placeholder="Color"
           />
           <ColorInput
             defaultValue={color_2}
             onChangeEnd={(value) => setMeterSettings({ color_2: value })}
             withEyeDropper={false}
-            label="Bar Color - Player 2"
+            label={t("ui.player-2-color")}
             placeholder="Color"
           />
           <ColorInput
             defaultValue={color_3}
             onChangeEnd={(value) => setMeterSettings({ color_3: value })}
             withEyeDropper={false}
-            label="Bar Color - Player 3"
+            label={t("ui.player-3-color")}
             placeholder="Color"
           />
           <ColorInput
             defaultValue={color_4}
             onChangeEnd={(value) => setMeterSettings({ color_4: value })}
             withEyeDropper={false}
-            label="Bar Color - Player 4"
+            label={t("ui.player-4-color")}
             placeholder="Color"
+          />
+          <Text size="sm">{t("ui.meter-transparency")}</Text>
+          <Slider
+            min={0}
+            max={1}
+            step={0.005}
+            defaultValue={transparency}
+            onChangeEnd={(value) => setMeterSettings({ transparency: value })}
           />
         </Stack>
       </Fieldset>

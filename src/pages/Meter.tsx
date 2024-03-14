@@ -8,6 +8,8 @@ import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
 
 import "../i18n";
+import { useMeterSettingsStore } from "../Store";
+import { useShallow } from "zustand/react/shallow";
 
 export const Meter = () => {
   const { t } = useTranslation();
@@ -23,6 +25,11 @@ export const Meter = () => {
   });
   const [sortType, setSortType] = useState<SortType>("damage");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const { transparency } = useMeterSettingsStore(
+    useShallow((state) => ({
+      transparency: state.transparency,
+    }))
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,7 +106,7 @@ export const Meter = () => {
         sortType={sortType}
         sortDirection={sortDirection}
       />
-      <div className="app-content">
+      <div className="app-content" style={{ background: `rgba(22, 22, 22, ${transparency})` }}>
         <Table
           encounterState={encounterState}
           sortType={sortType}
