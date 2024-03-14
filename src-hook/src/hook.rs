@@ -69,12 +69,15 @@ fn actor_idx(actor_ptr: *const usize) -> u32 {
 // Returns the specified instance of the parent entity.
 // ptr+offset: Entity
 // *(ptr+offset) + 0x70: m_pSpecifiedInstance (Pl0700, Pl1200, etc.)
-fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> *const usize {
+fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> Option<*const usize> {
     unsafe {
-        (actor_ptr.byte_add(offset) as *const *const *const usize)
-            .read()
-            .byte_add(0x70)
-            .read()
+        let info = (actor_ptr.byte_add(offset) as *const *const *const usize).read_unaligned();
+
+        if info == std::ptr::null() {
+            return None;
+        }
+
+        Some(info.byte_add(0x70).read())
     }
 }
 
@@ -129,8 +132,9 @@ unsafe fn process_damage_event(
     let (source_parent_type_id, source_parent_idx) = get_source_parent(
         source_type_id,
         source_specified_instance_ptr as *const usize,
-        source_idx,
-    );
+    )
+    .unwrap_or((source_type_id, source_idx));
+
     let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
     let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
@@ -189,7 +193,7 @@ unsafe fn process_dot_event(tx: event::Tx, dot_instance: *const usize, a2: *cons
     let target_type_id = actor_type_id(target);
 
     let (source_parent_type_id, source_parent_idx) =
-        get_source_parent(source_type_id, source, source_idx);
+        get_source_parent(source_type_id, source).unwrap_or((source_type_id, source_idx));
 
     let event = Message::DamageEvent(DamageEvent {
         source: Actor {
@@ -215,33 +219,32 @@ unsafe fn process_dot_event(tx: event::Tx, dot_instance: *const usize, a2: *cons
 }
 
 // Returns the parent entity of the source entity if necessary.
-fn get_source_parent(source_type_id: u32, source: *const usize, source_idx: u32) -> (u32, u32) {
-    let (source_parent_type_id, source_parent_idx) = match source_type_id {
+fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, u32)> {
+    match source_type_id {
         // Pl0700Ghost -> Pl0700
         0x2AF678E8 => {
-            let parent_instance = parent_specified_instance_at(source, 0xE48);
+            let parent_instance = parent_specified_instance_at(source, 0xE48)?;
 
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
         // Pl0700GhostSatellite -> Pl0700
         0x8364C8BC => {
-            let parent_instance = parent_specified_instance_at(source, 0x508);
+            let parent_instance = parent_specified_instance_at(source, 0x508)?;
 
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
         // Wp1890: Cagliostro's Ouroboros Dragon Sled -> Pl1800
         0xC9F45042 => {
-            let parent_instance = parent_specified_instance_at(source, 0x578);
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
+            let parent_instance = parent_specified_instance_at(source, 0x578)?;
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
         // Pl2000: Id's Dragon Form -> Pl1900
         0xF5755C0E => {
-            let parent_instance = parent_specified_instance_at(source, 0xD028);
-            (actor_type_id(parent_instance), actor_idx(parent_instance))
+            let parent_instance = parent_specified_instance_at(source, 0xD138)?;
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
-        _ => (source_type_id, source_idx),
-    };
-    (source_parent_type_id, source_parent_idx)
+        _ => None,
+    }
 }
 
 unsafe fn on_enter_area(

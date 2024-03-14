@@ -26,7 +26,7 @@ export const Table = ({
     }))
   );
 
-  const player_colors = [color_1, color_2, color_3, color_4];
+  const player_colors = [color_1, color_2, color_3, color_4, "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
 
   const partyOrderPlayers = formatInPartyOrder(encounterState.party);
   const players: Array<ComputedPlayerState> = partyOrderPlayers.map((playerData) => {
