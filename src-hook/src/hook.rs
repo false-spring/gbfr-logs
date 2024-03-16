@@ -46,6 +46,33 @@ const ON_SHOW_RESULT_SCREEN_SIG: &str =
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
+struct VBuffer(*const usize);
+
+impl VBuffer {
+    fn ptr(&self) -> *const usize {
+        if self.max_size() > 0xf {
+            unsafe { self.0.read() as *const usize }
+        } else {
+            self.0
+        }
+    }
+
+    fn used_size(&self) -> usize {
+        unsafe { self.0.byte_add(0x10).read() }
+    }
+
+    fn max_size(&self) -> usize {
+        unsafe { self.0.byte_add(0x18).read() }
+    }
+
+    fn raw(&self) -> CString {
+        let bytes =
+            unsafe { std::slice::from_raw_parts(self.ptr() as *const u8, self.used_size()) };
+
+        unsafe { CString::from_vec_unchecked(bytes.to_vec()) }
+    }
+}
+
 #[inline(always)]
 unsafe fn v_func<T: Sized>(ptr: *const usize, offset: usize) -> T {
     ((ptr.read() as *const usize).byte_add(offset) as *const T).read()
@@ -413,10 +440,8 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
             .map(|cstr| cstr.to_owned())
             .unwrap_or(CString::new("").unwrap());
 
-        let display_name = CStr::from_bytes_until_nul(&sigil_list.display_name)
-            .ok()
-            .map(|cstr| cstr.to_owned())
-            .unwrap_or(CString::new("").unwrap());
+        let display_name =
+            VBuffer(std::ptr::addr_of!(sigil_list.display_name) as *const usize).raw();
 
         let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
             sigils,
