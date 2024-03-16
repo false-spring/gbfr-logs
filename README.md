@@ -2,7 +2,7 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/false-spring/gbfr-logs)](https://github.com/false-spring/gbfr-logs/releases)
 [![GitHub Downloads](https://img.shields.io/github/downloads/false-spring/gbfr-logs/total)](https://github.com/false-spring/gbfr-logs/releases)
-![Discord](https://img.shields.io/discord/1203608338344976434?style=flat&label=discord&color=7289da&link=https%3A%2F%2Fdiscord.gg%2FgbsG4CDsru)
+[![Discord](https://img.shields.io/discord/1203608338344976434?style=flat&label=discord&color=7289da&link=https%3A%2F%2Fdiscord.gg%2FgbsG4CDsru)](https://discord.gg/gbsG4CDsru)
 
 <a href="https://www.buymeacoffee.com/false.spring" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
