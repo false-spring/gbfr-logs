@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { listen } from "@tauri-apps/api/event";
 import toast, { Toaster } from "react-hot-toast";
 
-import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, SortDirection, SortType } from "../types";
+import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, PlayerData, SortDirection, SortType } from "../types";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
 
@@ -11,18 +11,22 @@ import "../i18n";
 import { useMeterSettingsStore } from "../Store";
 import { useShallow } from "zustand/react/shallow";
 
+const DEFAULT_ENCOUNTER_STATE: EncounterState = {
+  totalDamage: 0,
+  dps: 0,
+  startTime: 0,
+  endTime: 1,
+  party: {},
+  targets: {},
+  status: "Waiting",
+};
+
 export const Meter = () => {
   const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(0);
-  const [encounterState, setEncounterState] = useState<EncounterState>({
-    totalDamage: 0,
-    dps: 0,
-    startTime: 0,
-    endTime: 1,
-    party: {},
-    targets: {},
-    status: "Waiting",
-  });
+  const [partyData, setPartyData] = useState<Array<PlayerData | null>>([null, null, null, null]);
+  const [encounterState, setEncounterState] = useState<EncounterState>(DEFAULT_ENCOUNTER_STATE);
+
   const [sortType, setSortType] = useState<SortType>("damage");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
   const { transparency } = useMeterSettingsStore(
@@ -59,13 +63,18 @@ export const Meter = () => {
     });
 
     const onAreaEnterListener = listen("on-area-enter", (event: EncounterUpdateEvent) => {
-      setEncounterState(event.payload);
+      if (event.payload.status === "Waiting") {
+        setEncounterState(DEFAULT_ENCOUNTER_STATE);
+      } else {
+        setEncounterState(event.payload);
+      }
+
       toast.success(t("ui.on-area-enter"));
     });
 
-    // @ts-expect-error - @TODO(false): Implement looking at party data.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const onPartyUpdate = listen("encounter-party-update", (event: PartyUpdateEvent) => {});
+    const onPartyUpdate = listen("encounter-party-update", (event: PartyUpdateEvent) => {
+      setPartyData(event.payload);
+    });
 
     const onSuccessAlert = listen("success-alert", (evt) => {
       toast.success(evt.payload as string);
@@ -94,7 +103,7 @@ export const Meter = () => {
       onPinned.then((f) => f());
       onClickthrough.then((f) => f());
     };
-  }, []);
+  }, [partyData]);
 
   const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
@@ -102,6 +111,7 @@ export const Meter = () => {
     <div className="app">
       <Titlebar
         encounterState={encounterState}
+        partyData={partyData}
         elapsedTime={elapsedTime}
         sortType={sortType}
         sortDirection={sortDirection}
@@ -109,6 +119,7 @@ export const Meter = () => {
       <div className="app-content" style={{ background: `rgba(22, 22, 22, ${transparency})` }}>
         <Table
           encounterState={encounterState}
+          partyData={partyData}
           sortType={sortType}
           setSortType={setSortType}
           sortDirection={sortDirection}

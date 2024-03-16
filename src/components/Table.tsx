@@ -1,33 +1,22 @@
-import { useShallow } from "zustand/react/shallow";
-import { useMeterSettingsStore } from "../Store";
-import { ComputedPlayerState, EncounterState, SortDirection, SortType } from "../types";
+import { ComputedPlayerState, EncounterState, PlayerData, SortDirection, SortType } from "../types";
 import { formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";
 
 export const Table = ({
   encounterState,
+  partyData,
   sortType,
   sortDirection,
   setSortType,
   setSortDirection,
 }: {
   encounterState: EncounterState;
+  partyData: Array<PlayerData | null>;
   sortType: SortType;
   sortDirection: SortDirection;
   setSortType: (sortType: SortType) => void;
   setSortDirection: (sortDirection: SortDirection) => void;
 }) => {
-  const { color_1, color_2, color_3, color_4 } = useMeterSettingsStore(
-    useShallow((state) => ({
-      color_1: state.color_1,
-      color_2: state.color_2,
-      color_3: state.color_3,
-      color_4: state.color_4,
-    }))
-  );
-
-  const player_colors = [color_1, color_2, color_3, color_4, "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
-
   const partyOrderPlayers = formatInPartyOrder(encounterState.party);
   const players: Array<ComputedPlayerState> = partyOrderPlayers.map((playerData) => {
     return {
@@ -69,7 +58,7 @@ export const Table = ({
       </thead>
       <tbody>
         {players.map((player) => (
-          <PlayerRow key={player.index} player={player} color={player_colors[player.partyIndex]} />
+          <PlayerRow key={player.index} player={player} partyData={partyData} />
         ))}
       </tbody>
     </table>

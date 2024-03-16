@@ -23,6 +23,7 @@
       "player-3-color": "Bar Color - Player 3",
       "player-4-color": "Bar Color - Player 4",
       "meter-transparency": "Background Transparency",
+      "show-player-names": "Show Player Names",
       "logs": {
         "saved-count_zero": "No logs saved",
         "saved-count_one": "{{count}} log saved",

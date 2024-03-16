@@ -111,11 +111,11 @@ export const ViewPage = () => {
   }, [id, selectedTargets]);
 
   const handleSimpleEncounterCopy = useCallback(() => {
-    if (encounter) exportSimpleEncounterToClipboard(sortType, sortDirection, encounter);
+    if (encounter) exportSimpleEncounterToClipboard(sortType, sortDirection, encounter, playerData);
   }, [sortType, sortDirection, encounter]);
 
   const handleFullEncounterCopy = useCallback(() => {
-    if (encounter) exportFullEncounterToClipboard(sortType, sortDirection, encounter);
+    if (encounter) exportFullEncounterToClipboard(sortType, sortDirection, encounter, playerData);
   }, [sortType, sortDirection, encounter]);
 
   const exportDamageLogToFile = useCallback(() => {
@@ -149,7 +149,12 @@ export const ViewPage = () => {
 
     for (const playerIndex in dpsChart) {
       const player = players.find((p) => p.index === Number(playerIndex));
-      const playerName = translatedPlayerName(player as ComputedPlayerState);
+      const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player?.index);
+      const playerName = translatedPlayerName(
+        partySlotIndex,
+        playerData[partySlotIndex],
+        player as ComputedPlayerState
+      );
 
       const lastFiveValues = dpsChart[playerIndex].slice(i - 5, i);
       const totalLastFiveValues = lastFiveValues.reduce((a, b) => a + b, 0);
@@ -163,8 +168,10 @@ export const ViewPage = () => {
   }
 
   const labels = players.map((player) => {
+    const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+
     return {
-      name: translatedPlayerName(player),
+      name: translatedPlayerName(partySlotIndex, playerData[partySlotIndex], player),
       damage: player.totalDamage,
       color: PLAYER_COLORS[player.partyIndex],
     };
@@ -270,6 +277,7 @@ export const ViewPage = () => {
                 sortDirection={sortDirection}
                 setSortType={setSortType}
                 setSortDirection={setSortDirection}
+                partyData={playerData}
               />
               <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
               <LineChart

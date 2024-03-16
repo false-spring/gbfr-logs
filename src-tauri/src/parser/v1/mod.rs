@@ -441,10 +441,32 @@ impl Parser {
     }
 
     pub fn on_quest_complete_event(&mut self, event: QuestCompleteEvent) {
-        // @TODO(false): Check to see if we need any logic to run on quest completion.
         self.encounter.quest_id = Some(event.quest_id);
         self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
         self.encounter.quest_completed = true;
+
+        if self.status == ParserStatus::InProgress {
+            self.update_status(ParserStatus::Stopped);
+
+            if self.has_damage() {
+                match self.save_encounter_to_db() {
+                    Ok(_) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved", "");
+                        }
+                    }
+                    Err(e) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved-error", e.to_string());
+                        }
+                    }
+                }
+            }
+
+            if let Some(window) = &self.window_handle {
+                let _ = window.emit("encounter-update", &self.derived_state);
+            }
+        }
     }
 
     // Called when a damage event is received from the game.
@@ -475,6 +497,21 @@ impl Parser {
 
         // Ignore Id's transformation.
         if character_type == CharacterType::Pl2000 {
+            return;
+        }
+
+        // Don't load players while the encounter is in progress.
+        if self.status == ParserStatus::InProgress {
+            return;
+        }
+
+        // If all players are already loaded, then we don't need to do anything.
+        if self
+            .encounter
+            .player_data
+            .iter()
+            .all(|player| player.is_some())
+        {
             return;
         }
 

@@ -12,6 +12,7 @@ import {
   Stack,
   ColorInput,
   Slider,
+  Checkbox,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Gear, House } from "@phosphor-icons/react";
@@ -146,14 +147,16 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
 }));
 
 const SettingsPage = () => {
-  const { color_1, color_2, color_3, color_4, transparency, setMeterSettings } = useMeterSettingsStore((state) => ({
-    color_1: state.color_1,
-    color_2: state.color_2,
-    color_3: state.color_3,
-    color_4: state.color_4,
-    transparency: state.transparency,
-    setMeterSettings: state.set,
-  }));
+  const { color_1, color_2, color_3, color_4, transparency, show_display_names, setMeterSettings } =
+    useMeterSettingsStore((state) => ({
+      color_1: state.color_1,
+      color_2: state.color_2,
+      color_3: state.color_3,
+      color_4: state.color_4,
+      transparency: state.transparency,
+      show_display_names: state.show_display_names,
+      setMeterSettings: state.set,
+    }));
 
   const { t, i18n } = useTranslation();
 
@@ -209,6 +212,11 @@ const SettingsPage = () => {
             step={0.005}
             defaultValue={transparency}
             onChangeEnd={(value) => setMeterSettings({ transparency: value })}
+          />
+          <Checkbox
+            label={t("ui.show-player-names")}
+            checked={show_display_names}
+            onChange={(event) => setMeterSettings({ show_display_names: event.currentTarget.checked })}
           />
         </Stack>
       </Fieldset>

@@ -7,6 +7,7 @@ interface MeterSettings {
   color_3: string;
   color_4: string;
   transparency: number;
+  show_display_names: boolean;
 }
 
 interface MeterStateFunctions {
@@ -19,6 +20,7 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   color_3: "#36B37E",
   color_4: "#00B8D9",
   transparency: 0.2,
+  show_display_names: true,
 };
 
 export type StoreWithPersist<T> = Mutate<StoreApi<T>, [["zustand/persist", T]]>;

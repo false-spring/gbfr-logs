@@ -9,6 +9,7 @@ import {
   SortType,
   SortDirection,
   EnemyType,
+  PlayerData,
 } from "./types";
 
 import { t } from "i18next";
@@ -123,8 +124,18 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
-export const translatedPlayerName = (player: ComputedPlayerState) =>
-  `[${player.partyIndex + 1}]` + " " + t(`characters.${player.characterType}`);
+export const translatedPlayerName = (
+  partySlotIndex: number,
+  partySlotData: PlayerData | null,
+  player: ComputedPlayerState,
+  show_display_names: boolean = true
+) => {
+  const characterType = t(`characters.${player.characterType}`);
+  const displayName = `${partySlotData?.displayName} (${characterType})`;
+  const name = show_display_names && partySlotData?.displayName ? displayName : characterType;
+
+  return `[${partySlotData ? partySlotIndex + 1 : "Guest"}]` + " " + name;
+};
 
 export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, sortDirection: SortDirection) => {
   players.sort((a, b) => {
@@ -145,7 +156,8 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
 export const exportSimpleEncounterToClipboard = (
   sortType: SortType,
   sortDirection: SortDirection,
-  encounterState: EncounterState
+  encounterState: EncounterState,
+  partyData: Array<PlayerData | null>
 ) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
@@ -182,8 +194,10 @@ export const exportSimpleEncounterToClipboard = (
 
       computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
 
+      const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+
       return [
-        translatedPlayerName(player),
+        translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player),
         player.totalDamage,
         Math.round(player.dps),
         `${player.percentage?.toFixed(2)}%`,
@@ -199,7 +213,8 @@ export const exportSimpleEncounterToClipboard = (
 export const exportFullEncounterToClipboard = (
   sortType: SortType,
   sortDirection: SortDirection,
-  encounterState: EncounterState
+  encounterState: EncounterState,
+  partyData: Array<PlayerData | null>
 ) => {
   if (encounterState.totalDamage === 0) return toast.error("Nothing to copy!");
 
@@ -234,10 +249,12 @@ export const exportFullEncounterToClipboard = (
         };
       });
 
+      const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+
       computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
 
       const playerLine = [
-        translatedPlayerName(player),
+        translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player),
         player.totalDamage,
         Math.round(player.dps),
         `${player.percentage?.toFixed(2)}%`,

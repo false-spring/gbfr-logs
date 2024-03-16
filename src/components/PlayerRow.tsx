@@ -1,7 +1,9 @@
 import { Fragment, useState } from "react";
-import { CharacterType, ComputedPlayerState, ComputedSkillState } from "../types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState, PlayerData } from "../types";
 import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
+import { useMeterSettingsStore } from "../Store";
+import { useShallow } from "zustand/react/shallow";
 
 type Props = {
   player: ComputedPlayerState;
@@ -93,7 +95,27 @@ const SkillBreakdown = ({ player, color }: Props) => {
   );
 };
 
-export const PlayerRow = ({ player, color }: Props) => {
+export const PlayerRow = ({
+  player,
+  partyData,
+}: {
+  player: ComputedPlayerState;
+  partyData: Array<PlayerData | null>;
+}) => {
+  const { color_1, color_2, color_3, color_4, show_display_names } = useMeterSettingsStore(
+    useShallow((state) => ({
+      color_1: state.color_1,
+      color_2: state.color_2,
+      color_3: state.color_3,
+      color_4: state.color_4,
+      show_display_names: state.show_display_names,
+    }))
+  );
+
+  const playerColors = [color_1, color_2, color_3, color_4, "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
+  const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+  const color = partySlotIndex !== -1 ? playerColors[partySlotIndex] : playerColors[player.partyIndex];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
@@ -102,7 +124,9 @@ export const PlayerRow = ({ player, color }: Props) => {
   return (
     <Fragment>
       <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
-        <td className="text-left row-data">{translatedPlayerName(player)}</td>
+        <td className="text-left row-data">
+          {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
+        </td>
         <td className="text-center row-data">
           {totalDamage}
           <span className="unit font-sm">{totalDamageUnit}</span>
