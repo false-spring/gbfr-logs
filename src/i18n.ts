@@ -13,17 +13,20 @@ const loadLanguageFromPath = async (language: string) => {
 const en = await loadLanguageFromPath("en");
 const zhCN = await loadLanguageFromPath("zh-CN");
 const zhTW = await loadLanguageFromPath("zh-TW");
+const koKR = await loadLanguageFromPath("ko-KR");
 
 const resources = {
   en,
   "zh-CN": zhCN,
   "zh-TW": zhTW,
+  "ko-KR": koKR,
 };
 
 export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
   en: "English",
   "zh-CN": "简体中文",
   "zh-TW": "繁體中文",
+  "ko-KR": "한국어",
 };
 
 i18n
