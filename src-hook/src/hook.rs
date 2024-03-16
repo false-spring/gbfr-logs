@@ -250,18 +250,12 @@ fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, 
     }
 }
 
-unsafe fn on_enter_area(
-    tx: event::Tx,
-    a1: u32,
-    a2: *const usize,
-    a3: u8,
-    a4: *const usize,
-) -> usize {
-    let ret = OnEnterArea.call(a1, a2, a3, a4);
+fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8, a4: *const usize) -> usize {
+    let ret = unsafe { OnEnterArea.call(a1, a2, a3, a4) };
     let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
     if quest_state_ptr != std::ptr::null_mut() {
-        let quest_state = quest_state_ptr.read();
+        let quest_state = unsafe { quest_state_ptr.read() };
 
         let quest_id = quest_state.quest_id;
         let timer = quest_state.elapsed_time;
@@ -288,13 +282,12 @@ struct QuestState {
     elapsed_time: u32,        // 0x648
 }
 
-unsafe fn on_load_quest_state(a1: *const usize) -> usize {
+fn on_load_quest_state(a1: *const usize) -> usize {
     #[cfg(feature = "console")]
     println!("on load quest state");
 
-    let ret = OnLoadQuestState.call(a1);
-
-    let quest_state_ptr = a1.byte_add(0x1D8) as *mut QuestState;
+    let ret = unsafe { OnLoadQuestState.call(a1) };
+    let quest_state_ptr = unsafe { a1.byte_add(0x1D8) } as *mut QuestState;
 
     if quest_state_ptr == std::ptr::null_mut() {
         return ret;
@@ -305,14 +298,14 @@ unsafe fn on_load_quest_state(a1: *const usize) -> usize {
     ret
 }
 
-unsafe fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
+fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
     #[cfg(feature = "console")]
     println!("on show result screen");
 
     let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
     if quest_state_ptr != std::ptr::null_mut() {
-        let quest_state = quest_state_ptr.read();
+        let quest_state = unsafe { quest_state_ptr.read() };
         let quest_id = quest_state.quest_id;
         let timer = quest_state.elapsed_time;
 
@@ -322,7 +315,7 @@ unsafe fn on_show_result_screen(tx: event::Tx, a1: *const usize) -> usize {
         }));
     }
 
-    let ret = OnShowResultScreen.call(a1);
+    let ret = unsafe { OnShowResultScreen.call(a1) };
 
     ret
 }
@@ -367,32 +360,33 @@ struct SigilList {
     party_index: u32,         //0x0230
 }
 
-unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
+fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
     #[cfg(feature = "console")]
     println!("on load player: {:p}", a1);
 
-    let ret = OnLoadPlayer.call(a1);
+    let ret = unsafe { OnLoadPlayer.call(a1) };
 
-    let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
+    let player_entity_info_ptr = unsafe { a1.byte_add(0x890).read() } as *const usize;
 
     let sigil_offset = SIGIL_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
-    let sigil_list =
-        std::ptr::NonNull::new(a1.byte_add(sigil_offset as usize).read() as *mut SigilList);
+    let sigil_list = std::ptr::NonNull::new(
+        unsafe { a1.byte_add(sigil_offset as usize).read() } as *mut SigilList
+    );
 
     if player_entity_info_ptr == std::ptr::null() {
         return ret;
     }
 
-    let player = player_entity_info_ptr.byte_add(0x70).read() as *const usize;
+    let player = unsafe { player_entity_info_ptr.byte_add(0x70).read() } as *const usize;
 
     if player == std::ptr::null() {
         return ret;
     }
 
     if let Some(sigil_list) = sigil_list {
-        let player_idx = player_entity_info_ptr.byte_add(0x38).read() as u32;
+        let player_idx = unsafe { player_entity_info_ptr.byte_add(0x38).read() } as u32;
         let character_type = actor_type_id(player);
-        let sigil_list = sigil_list.as_ref();
+        let sigil_list = unsafe { sigil_list.as_ref() };
 
         if (sigil_list.party_index as u8) == 0xFF && sigil_list.is_online == 0 {
             return ret;
