@@ -121,6 +121,15 @@ impl PlayerState {
     fn update_from_damage_event(&mut self, event: &DamageEvent) {
         self.total_damage += event.damage as u64;
 
+        let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
+
+        // @TODO(false): This is temporarily fixing Ferry's pets overwriting Ferry's actions.
+        let child_character_type = if parent_character_type == CharacterType::Pl0700 {
+            parent_character_type
+        } else {
+            CharacterType::from_hash(event.source.actor_type)
+        };
+
         // If the skill is already being tracked, update it.
         for skill in self.skill_breakdown.iter_mut() {
             // Aggregate all supplementary damage events into the same skill instance.
@@ -137,7 +146,7 @@ impl PlayerState {
 
             // If the skill is already being tracked, update it.
             if skill.action_type == event.action_id
-                && skill.child_character_type == CharacterType::from_hash(event.source.actor_type)
+                && skill.child_character_type == child_character_type
             {
                 skill.update_from_damage_event(event);
                 return;
@@ -145,10 +154,7 @@ impl PlayerState {
         }
 
         // Otherwise, create a new skill and track it.
-        let mut skill = SkillState::new(
-            event.action_id,
-            CharacterType::from_hash(event.source.actor_type),
-        );
+        let mut skill = SkillState::new(event.action_id, child_character_type);
 
         skill.update_from_damage_event(event);
         self.skill_breakdown.push(skill);

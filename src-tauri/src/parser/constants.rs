@@ -3,29 +3,53 @@ use strum_macros::Display;
 
 #[derive(Debug, Serialize, Deserialize, Eq, PartialEq, Clone, Copy, Display)]
 pub enum CharacterType {
+    /// Gran
     Pl0000,
+    /// Djeeta
     Pl0100,
+    /// Katalina
     Pl0200,
+    /// Rackam
     Pl0300,
+    /// Io
     Pl0400,
+    /// Eugen
     Pl0500,
+    /// Rosetta
     Pl0600,
+    /// Ferry
     Pl0700,
+    /// Lancelot
     Pl0800,
+    /// Vane
     Pl0900,
+    /// Percival
     Pl1000,
+    /// Siegfried
     Pl1100,
+    /// Charlotta
     Pl1200,
+    /// Yodarha
     Pl1300,
+    /// Narmaya
     Pl1400,
+    /// Ghandagoza
     Pl1500,
+    /// Zeta
     Pl1600,
+    /// Vaseraga
     Pl1700,
+    /// Cagliostro
     Pl1800,
+    /// Id
     Pl1900,
+    /// Id (Transformation)
     Pl2000,
+    /// Sandalphon
     Pl2100,
+    /// Seofon
     Pl2200,
+    /// Tweyen
     Pl2300,
     #[strum(default)]
     Unknown(u32),
