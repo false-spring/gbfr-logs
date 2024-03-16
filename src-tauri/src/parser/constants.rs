@@ -51,6 +51,10 @@ pub enum CharacterType {
     Pl2200,
     /// Tweyen
     Pl2300,
+    /// Ferry Ghost
+    Pl0700Ghost,
+    /// Ferry Ghost (Satellite) / Umlauf
+    Pl0700GhostSatellite,
     #[strum(default)]
     Unknown(u32),
 }
@@ -82,6 +86,8 @@ impl CharacterType {
             0x9C89A455 => CharacterType::Pl2100,
             0x59DB0CD9 => CharacterType::Pl2200,
             0xDA5A8E25 => CharacterType::Pl2300,
+            0x2AF678E8 => CharacterType::Pl0700Ghost,
+            0x8364C8BC => CharacterType::Pl0700GhostSatellite,
             _ => CharacterType::Unknown(hash),
         }
     }

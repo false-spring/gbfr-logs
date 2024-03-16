@@ -66,21 +66,24 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
 
     writeln!(
         writer,
-        "timestamp,source_type,source_index,target_type,target_index,action_id,flags,damage"
+        "timestamp,source_type,child_source_type,source_index,target_type,target_index,action_id,flags,damage"
     )
     .map_err(|e| e.to_string())?;
 
     for damage_event in &parser.encounter.event_log {
         let timestamp = damage_event.0 - parser.start_time();
         let target_type = EnemyType::from_hash(damage_event.1.target.parent_actor_type);
-        let character_type = CharacterType::from_hash(damage_event.1.source.parent_actor_type);
+        let parent_character_type =
+            CharacterType::from_hash(damage_event.1.source.parent_actor_type);
+        let child_character_type = CharacterType::from_hash(damage_event.1.source.actor_type);
 
         if options.targets.is_empty() || options.targets.contains(&target_type) {
             writeln!(
                 writer,
-                "{},{},{},{},{},{},{},{}",
+                "{},{},{},{},{},{},{},{},{}",
                 timestamp,
-                character_type,
+                parent_character_type,
+                child_character_type,
                 damage_event.1.source.parent_index,
                 target_type,
                 damage_event.1.target.parent_index,
