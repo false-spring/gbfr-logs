@@ -1,11 +1,10 @@
 use std::{
     ffi::{CStr, CString},
     ptr,
-    sync::atomic::{AtomicPtr, Ordering},
+    sync::atomic::{AtomicPtr, AtomicU32, Ordering},
 };
 
-use anyhow::{anyhow, Result};
-use log::warn;
+use anyhow::{anyhow, Context, Result};
 use pelite::{
     pattern,
     pe64::{Pe, PeView},
@@ -34,6 +33,7 @@ static_detour! {
 }
 
 static QUEST_STATE_PTR: AtomicPtr<QuestState> = AtomicPtr::new(ptr::null_mut());
+static SIGIL_OFFSET: AtomicU32 = AtomicU32::new(0);
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
@@ -81,21 +81,21 @@ fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> Optio
     }
 }
 
-unsafe fn process_damage_event(
+fn process_damage_event(
     tx: event::Tx,
     a1: *const usize, // RCX: EmBehaviourBase instance
     a2: *const usize, // RDX
     a3: *const usize, // R8
     a4: u8,           // R9
 ) -> usize {
-    let original_value = ProcessDamageEvent.call(a1, a2, a3, a4);
+    let original_value = unsafe { ProcessDamageEvent.call(a1, a2, a3, a4) };
 
     // Target is the instance of the actor being damaged.
     // For example: Instance of the Em2700 class.
-    let target_specified_instance_ptr: usize = *(*a1.byte_add(0x08) as *const usize);
+    let target_specified_instance_ptr: usize = unsafe { *(*a1.byte_add(0x08) as *const usize) };
 
     // This points to the first Entity instance in the 'a2' entity list.
-    let source_entity_ptr = (a2.byte_add(0x18) as *const *const usize).read();
+    let source_entity_ptr = unsafe { (a2.byte_add(0x18) as *const *const usize).read() };
 
     // @TODO(false): For some reason, online + Ferry's Umlauf skill pet can return a null pointer here.
     // Possible data race with online?
@@ -105,23 +105,26 @@ unsafe fn process_damage_event(
 
     // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
     // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
-    let source_specified_instance_ptr: usize = *(source_entity_ptr.byte_add(0x70) as *const usize);
-    let damage: i32 = (a2.byte_add(0xD0) as *const i32).read();
+    let source_specified_instance_ptr: usize =
+        unsafe { *(source_entity_ptr.byte_add(0x70) as *const usize) };
+    let damage: i32 = unsafe { (a2.byte_add(0xD0) as *const i32).read() };
 
     if original_value == 0 || damage <= 0 {
         return original_value;
     }
 
-    let flags: u64 = (a2.byte_add(0xD8) as *const u64).read();
+    let flags: u64 = unsafe { (a2.byte_add(0xD8) as *const u64).read() };
 
     let action_type: ActionType = if ((1 << 7 | 1 << 50) & flags) != 0 {
         ActionType::LinkAttack
     } else if ((1 << 13 | 1 << 14) & flags) != 0 {
         ActionType::SBA
     } else if ((1 << 15) & flags) != 0 {
-        ActionType::SupplementaryDamage((a2.byte_add(0x154) as *const u32).read())
+        let skill_id = unsafe { (a2.byte_add(0x154) as *const u32).read() };
+        ActionType::SupplementaryDamage(skill_id)
     } else {
-        ActionType::Normal((a2.byte_add(0x154) as *const u32).read())
+        let skill_id = unsafe { (a2.byte_add(0x154) as *const u32).read() };
+        ActionType::Normal(skill_id)
     };
 
     // Get the source actor's type ID.
@@ -371,7 +374,10 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
     let ret = OnLoadPlayer.call(a1);
 
     let player_entity_info_ptr = a1.byte_add(0x890).read() as *const usize;
-    let sigil_list = std::ptr::NonNull::new(a1.byte_add(0xB9A0).read() as *mut SigilList);
+
+    let sigil_offset = SIGIL_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
+    let sigil_list =
+        std::ptr::NonNull::new(a1.byte_add(sigil_offset as usize).read() as *mut SigilList);
 
     if player_entity_info_ptr == std::ptr::null() {
         return ret;
@@ -440,8 +446,33 @@ unsafe fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
 pub fn init(tx: event::Tx) -> Result<()> {
     let process = Process::with_name("granblue_fantasy_relink.exe")?;
 
+    let sigil_offset_1 = search_slice::<u32>(
+        &process,
+        "3d b0 e0 7a 88 0f ? ? ? ? ? b8 b0 e0 7a 88 48 8d 8e '",
+    )
+    .context("Could not find sigil offset 1")?;
+
+    let sigil_offset_2 = search_slice::<u32>(
+        &process,
+        "8b 01 eb 02 31 c0 49 8b 8c 24 ' ? ? ? ? 89 81 ? ? ? ?",
+    )
+    .context("Could not find sigil offset 2")?;
+
+    #[cfg(feature = "console")]
+    println!(
+        "sigil offsets: {:x} + {:x} = {:x}",
+        sigil_offset_1,
+        sigil_offset_2,
+        sigil_offset_1 + sigil_offset_2
+    );
+
+    SIGIL_OFFSET.store(
+        sigil_offset_1 + sigil_offset_2,
+        std::sync::atomic::Ordering::Relaxed,
+    );
+
     // See https://github.com/nyaoouo/GBFR-ACT/blob/5801c193de2f474764b55b7c6b759c3901dc591c/injector.py#L1773-L1809
-    if let Ok(process_dmg_evt) = search(&process, PROCESS_DAMAGE_EVENT_SIG) {
+    if let Ok(process_dmg_evt) = search_address(&process, PROCESS_DAMAGE_EVENT_SIG) {
         #[cfg(feature = "console")]
         println!("Found process dmg event");
 
@@ -454,10 +485,10 @@ pub fn init(tx: event::Tx) -> Result<()> {
             ProcessDamageEvent.enable()?;
         }
     } else {
-        warn!("Could not find process_dmg_evt");
+        return Err(anyhow!("Could not find process_dmg_evt"));
     }
 
-    if let Ok(process_dot_evt) = search(&process, PROCESS_DOT_EVENT_SIG) {
+    if let Ok(process_dot_evt) = search_address(&process, PROCESS_DOT_EVENT_SIG) {
         #[cfg(feature = "console")]
         println!("Found process dot event");
 
@@ -469,10 +500,10 @@ pub fn init(tx: event::Tx) -> Result<()> {
             ProcessDotEvent.enable()?;
         }
     } else {
-        warn!("Could not find process_dot_evt");
+        return Err(anyhow!("Could not find process_dot_evt"));
     }
 
-    if let Ok(on_enter_area_evt) = search(&process, ON_ENTER_AREA_SIG) {
+    if let Ok(on_enter_area_evt) = search_address(&process, ON_ENTER_AREA_SIG) {
         #[cfg(feature = "console")]
         println!("Found on enter area");
 
@@ -485,10 +516,10 @@ pub fn init(tx: event::Tx) -> Result<()> {
             OnEnterArea.enable()?;
         }
     } else {
-        warn!("Could not find on_enter_area");
+        return Err(anyhow!("Could not find on_enter_area"));
     }
 
-    if let Ok(on_load_player_original) = search(&process, ON_LOAD_PLAYER) {
+    if let Ok(on_load_player_original) = search_address(&process, ON_LOAD_PLAYER) {
         #[cfg(feature = "console")]
         println!("Found on load player");
 
@@ -499,10 +530,10 @@ pub fn init(tx: event::Tx) -> Result<()> {
             OnLoadPlayer.enable()?;
         }
     } else {
-        warn!("Could not find on_load_player");
+        return Err(anyhow!("Could not find on_load_player"));
     }
 
-    if let Ok(on_load_quest_state_original) = search(&process, ON_LOAD_QUEST_STATE) {
+    if let Ok(on_load_quest_state_original) = search_address(&process, ON_LOAD_QUEST_STATE) {
         #[cfg(feature = "console")]
         println!("Found on load quest state");
 
@@ -512,10 +543,11 @@ pub fn init(tx: event::Tx) -> Result<()> {
             OnLoadQuestState.enable()?;
         }
     } else {
-        warn!("Could not find on_load_quest_state");
+        return Err(anyhow!("Could not find on_load_quest_state"));
     }
 
-    if let Ok(on_show_result_screen_original) = search(&process, ON_SHOW_RESULT_SCREEN_SIG) {
+    if let Ok(on_show_result_screen_original) = search_address(&process, ON_SHOW_RESULT_SCREEN_SIG)
+    {
         #[cfg(feature = "console")]
         println!("found on show result screen");
 
@@ -527,14 +559,33 @@ pub fn init(tx: event::Tx) -> Result<()> {
             OnShowResultScreen.enable()?;
         }
     } else {
-        warn!("Could not find on_show_result_screen");
+        return Err(anyhow!("Could not find on_show_result_screen"));
     }
 
     Ok(())
 }
 
+fn search_slice<T>(process: &Process, signature_pattern: &str) -> Result<T> {
+    let view = unsafe { PeView::module(process.module_handle.0 as *const u8) };
+    let scanner = view.scanner();
+    let pattern = pattern::parse(signature_pattern)?;
+    let mut addrs = [0; 8];
+    let matches = scanner.matches_code(&pattern).next(&mut addrs);
+
+    if matches {
+        let addr = process.base_address + addrs[1] as usize;
+        let ptr = addr as *const T;
+        Ok(unsafe { ptr.read_unaligned() })
+    } else {
+        return Err(anyhow!(
+            "Could not find match for pattern: {}",
+            signature_pattern
+        ));
+    }
+}
+
 /// Searches and returns the RVAs of the function that matches the given signature pattern.
-fn search(process: &Process, signature_pattern: &str) -> Result<usize> {
+fn search_address(process: &Process, signature_pattern: &str) -> Result<usize> {
     let view = unsafe { PeView::module(process.module_handle.0 as *const u8) };
     let scanner = view.scanner();
     let pattern = pattern::parse(signature_pattern)?;
