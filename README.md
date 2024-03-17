@@ -2,7 +2,8 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/false-spring/gbfr-logs)](https://github.com/false-spring/gbfr-logs/releases)
 [![GitHub Downloads](https://img.shields.io/github/downloads/false-spring/gbfr-logs/total)](https://github.com/false-spring/gbfr-logs/releases)
-[![Discord](https://img.shields.io/discord/1203608338344976434?style=flat&label=discord&color=7289da&link=https%3A%2F%2Fdiscord.gg%2FgbsG4CDsru)](https://discord.gg/gbsG4CDsru)
+[![Discord](https://img.shields.io/discord/1218833963032776774?style=flat&label=discord&color=7289da)](https://discord.gg/GR4r9zrqJj)
+[![GitHub License](https://img.shields.io/github/license/false-spring/gbfr-logs)](./LICENSE)
 
 <a href="https://www.buymeacoffee.com/false.spring" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
@@ -68,7 +69,7 @@ You can uninstall GBFR Logs the normal way through the Control Panel or by runni
 
 > Q: My issue isn't listed here, or I have a suggestion.
 
-Feel free to create a [new GitHub issue](https://github.com/false-spring/gbfr-logs/issues) or look for the GBFR Logs thread on [Discord](https://discord.gg/gbsG4CDsru)
+Feel free to create a [new GitHub issue](https://github.com/false-spring/gbfr-logs/issues) or [join the Discord server](https://discord.gg/GR4r9zrqJj).
 
 ## For Developers
 
