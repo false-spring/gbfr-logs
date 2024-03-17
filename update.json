@@ -1,11 +1,11 @@
 {
-  "version": "0.0.8",
-  "notes": "(!!!) THIS WILL QUIT YOUR GAME IF YOU UPDATE (!!!) Please make sure to save and exit before updating. This hotfix update fixes crashes in patch v1.1.1",
-  "pub_date": "2024-03-06T00:18:38+00:00",
+  "version": "0.0.9",
+  "notes": "Please make sure to save and exit before updating. This adds various improvements around displaying player names in the meter, as well as traditional chinese + korean language support. Check release notes on github for more details!",
+  "pub_date": "2024-03-17T02:14:58+00:00",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM1BKY0tiMC95bDBEQmRtQzh3cDdyazVGU056MlJ2VlVrZFB3ejNmY1VibGJHd09Gei9na1hzVUMxbzEvd3V5ZHhCTytkd0tCRG5IRFZIWmlOVFZKMWcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzEwNDQxNzk1CWZpbGU6R0JGUiBMb2dzXzAuMC44X3g2NF9lbi1VUy5tc2kuemlwCjUxRlorZjJ5UTQzQWcvZkF2cFJucHZvT0ZYRVlHRWdMc0U2ZEFUWEp0c242MEszcGVMbTNFcVV4OGV6WHgrek1sRlRDK2h6NndGZ0VOM1h6UlFZbkF3PT0K",
-      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.8/GBFR.Logs_0.0.8_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0ZiVmQwdTE2Ym9WSVlJRVcvVWxvRnNnVVNTRnJiN2tnVmh2QXEvUkEzL3oxVTdCYmRRbjlJTUdoTEJvWjlyM2syNERaMzhyZEgvaFVUMnpSUnhKU1FBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzEwNjE5NjE5CWZpbGU6R0JGUiBMb2dzXzAuMC45X3g2NF9lbi1VUy5tc2kuemlwCit5ZFF0L3ljQS9xT2F2SitTM0VGOURIWGxQVmVKcm96RGtHRC9uOVhwYm5GWisydGdTZEk4Y3VtTVNrcjBWdG5KVzBDUGg3aUJaV0hJbXFBVUhjSERBPT0K",
+      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.9/GBFR.Logs_0.0.9_x64_en-US.msi.zip"
     }
   }
 }
