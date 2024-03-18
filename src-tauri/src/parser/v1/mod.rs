@@ -210,7 +210,7 @@ impl Encounter {
     }
 
     fn reset_player_data(&mut self) {
-        self.player_data[1..=3].clone_from_slice(&[None, None, None]);
+        self.player_data[0..=3].clone_from_slice(&[None, None, None, None]);
     }
 
     fn reset_quest(&mut self) {
@@ -497,21 +497,6 @@ impl Parser {
 
         // Ignore Id's transformation.
         if character_type == CharacterType::Pl2000 {
-            return;
-        }
-
-        // Don't load players while the encounter is in progress.
-        if self.status == ParserStatus::InProgress {
-            return;
-        }
-
-        // If all players are already loaded, then we don't need to do anything.
-        if self
-            .encounter
-            .player_data
-            .iter()
-            .all(|player| player.is_some())
-        {
             return;
         }
 

@@ -71,6 +71,64 @@ pub struct Sigil {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct WeaponInfo {
+    /// Weapon ID Hash
+    pub weapon_id: u32,
+    /// How many uncap stars the weapon has
+    pub star_level: u32,
+    /// Number of plus marks on the weapon
+    pub plus_marks: u32,
+    /// Weapon's awakening level
+    pub awakening_level: u32,
+    /// First trait ID
+    pub trait_1_id: u32,
+    /// First trait level
+    pub trait_1_level: u32,
+    /// Second trait ID
+    pub trait_2_id: u32,
+    /// Second trait level
+    pub trait_2_level: u32,
+    /// Third trait ID
+    pub trait_3_id: u32,
+    /// Third trait level
+    pub trait_3_level: u32,
+    /// Wrightstone used on the weapon
+    pub wrightstone_id: u32,
+    /// Current weapon level
+    pub weapon_level: u32,
+    /// Weapon's HP Stats (before plus marks)
+    pub weapon_hp: u32,
+    /// Weapon's Attack Stats (before plus marks)
+    pub weapon_attack: u32,
+}
+
+/// Overmastery, also known as `limit_bonus`.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Overmastery {
+    /// Overmastery ID
+    pub id: u32,
+    /// Flags
+    pub flags: u32,
+    /// Value
+    pub value: f32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OvermasteryInfo {
+    pub overmasteries: Vec<Overmastery>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct PlayerStats {
+    pub level: u32,
+    pub total_hp: u32,
+    pub total_attack: u32,
+    pub stun_power: f32,
+    pub critical_rate: f32,
+    pub total_power: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerLoadEvent {
     pub sigils: Vec<Sigil>,
     pub character_name: CString,
@@ -79,6 +137,9 @@ pub struct PlayerLoadEvent {
     pub party_index: u8,
     pub actor_index: u32,
     pub is_online: bool,
+    pub weapon_info: WeaponInfo,
+    pub overmastery_info: OvermasteryInfo,
+    pub player_stats: PlayerStats,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
