@@ -13,6 +13,7 @@ import {
 } from "./types";
 
 import { t } from "i18next";
+import { useEffect, useRef } from "react";
 
 export const EMPTY_ID = 2289754288;
 
@@ -325,3 +326,13 @@ export const translateSigilId = (id: number | null): string => {
 };
 
 export const toHash = (num: number): string => num.toString(16);
+
+export const usePrevious = <T>(value: T): T | undefined => {
+  const ref = useRef<T>();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+};
