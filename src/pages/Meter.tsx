@@ -10,6 +10,7 @@ import { Titlebar } from "../components/Titlebar";
 import "../i18n";
 import { useMeterSettingsStore } from "../Store";
 import { useShallow } from "zustand/react/shallow";
+import { usePrevious } from "../utils";
 
 const DEFAULT_ENCOUNTER_STATE: EncounterState = {
   totalDamage: 0,
@@ -26,6 +27,9 @@ export const Meter = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [partyData, setPartyData] = useState<Array<PlayerData | null>>([null, null, null, null]);
   const [encounterState, setEncounterState] = useState<EncounterState>(DEFAULT_ENCOUNTER_STATE);
+  const [lastPartyData, setLastPartyData] = useState<Array<PlayerData | null>>([null, null, null, null]);
+
+  const previousStatus = usePrevious(encounterState.status);
 
   const [sortType, setSortType] = useState<SortType>("damage");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
@@ -105,13 +109,19 @@ export const Meter = () => {
     };
   }, [partyData]);
 
+  useEffect(() => {
+    if (previousStatus === "InProgress" && encounterState.status === "Stopped") {
+      setLastPartyData(partyData);
+    }
+  }, [previousStatus, encounterState.status, partyData]);
+
   const elapsedTime = Math.max(currentTime - encounterState.startTime, 0);
 
   return (
     <div className="app">
       <Titlebar
         encounterState={encounterState}
-        partyData={partyData}
+        partyData={encounterState.status === "Stopped" ? lastPartyData : partyData}
         elapsedTime={elapsedTime}
         sortType={sortType}
         sortDirection={sortDirection}
@@ -119,7 +129,7 @@ export const Meter = () => {
       <div className="app-content" style={{ background: `rgba(22, 22, 22, ${transparency})` }}>
         <Table
           encounterState={encounterState}
-          partyData={partyData}
+          partyData={encounterState.status === "Stopped" ? lastPartyData : partyData}
           sortType={sortType}
           setSortType={setSortType}
           sortDirection={sortDirection}

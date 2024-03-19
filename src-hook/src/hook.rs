@@ -278,7 +278,9 @@ fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, 
 }
 
 fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8, a4: *const usize) -> usize {
-    let ret = unsafe { OnEnterArea.call(a1, a2, a3, a4) };
+    #[cfg(feature = "console")]
+    println!("on enter area");
+
     let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
     if quest_state_ptr != std::ptr::null_mut() {
@@ -297,6 +299,8 @@ fn on_enter_area(tx: event::Tx, a1: u32, a2: *const usize, a3: u8, a4: *const us
             last_known_elapsed_time_in_secs: 0,
         }));
     }
+
+    let ret = unsafe { OnEnterArea.call(a1, a2, a3, a4) };
 
     ret
 }
@@ -393,26 +397,15 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
 
     let ret = unsafe { OnLoadPlayer.call(a1) };
 
-    let player_entity_info_ptr = unsafe { a1.byte_add(0x890).read() } as *const usize;
+    let player_idx = unsafe { a1.byte_add(0x170).read() } as u32;
 
     let sigil_offset = SIGIL_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
     let sigil_list = std::ptr::NonNull::new(
         unsafe { a1.byte_add(sigil_offset as usize).read() } as *mut SigilList
     );
 
-    if player_entity_info_ptr == std::ptr::null() {
-        return ret;
-    }
-
-    let player = unsafe { player_entity_info_ptr.byte_add(0x70).read() } as *const usize;
-
-    if player == std::ptr::null() {
-        return ret;
-    }
-
     if let Some(sigil_list) = sigil_list {
-        let player_idx = unsafe { player_entity_info_ptr.byte_add(0x38).read() } as u32;
-        let character_type = actor_type_id(player);
+        let character_type = actor_type_id(a1);
         let sigil_list = unsafe { sigil_list.as_ref() };
 
         if (sigil_list.party_index as u8) == 0xFF && sigil_list.is_online == 0 {
