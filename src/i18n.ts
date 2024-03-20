@@ -35,7 +35,7 @@ i18n
     })
   )
   .init({
-    ns: ["ui", "characters", "items", "overmasteries", "sigils", "traits", "weapons"],
+    ns: ["ui", "characters", "items", "overmasteries", "sigils", "traits", "weapons", "quests", "enemies"],
     defaultNS: "ui",
     fallbackLng: {
       default: ["en"],

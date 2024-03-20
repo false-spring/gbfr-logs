@@ -1,0 +1,574 @@
+{
+  "00012bcd": {
+    "key": "EM0003",
+    "text": "Arquero trasgo"
+  },
+  "0178bc98": {
+    "key": "EM0603",
+    "text": "Viscosín plateado rey"
+  },
+  "044bbc73": {
+    "key": "EM1800",
+    "text": "Dragón ancestral"
+  },
+  "06d40674": {
+    "key": "WE2112",
+    "text": "Caduceo"
+  },
+  "095c118f": {
+    "key": "EM0900",
+    "text": "Espíritu del fuego"
+  },
+  "0c9d3c34": {
+    "key": "EM2300",
+    "text": "Iz"
+  },
+  "0cab680e": {
+    "key": "BH2005",
+    "text": "Unidad de control"
+  },
+  "0d24bc0b": {
+    "key": "WE7011",
+    "text": "Fotia"
+  },
+  "0dbfc18a": {
+    "key": "EM7401",
+    "text": "Reactor astrágalo"
+  },
+  "0e0a8d33": {
+    "key": "EM0100",
+    "text": "Esqueleto"
+  },
+  "0e3d1703": {
+    "key": "EM1805",
+    "text": "Draco prístino Radis"
+  },
+  "0ee3e67f": {
+    "key": "EM0902",
+    "text": "Espíritu del agua"
+  },
+  "0f7062bc": {
+    "key": "WE7004",
+    "text": "Anemos"
+  },
+  "119d4d01": {
+    "key": "EM0400",
+    "text": "Guiverno"
+  },
+  "1343cb82": {
+    "key": "EM00A1",
+    "text": "Sanador trasgo"
+  },
+  "17576f75": {
+    "key": "EM2000",
+    "text": "Gallanza"
+  },
+  "181b3a5b": {
+    "key": "EM1804",
+    "text": "Draco eólico Elusio"
+  },
+  "1943ed28": {
+    "key": "EM7530",
+    "text": "Akomán"
+  },
+  "1b7264b0": {
+    "key": "EM00A4",
+    "text": "Soldado trasgo"
+  },
+  "20037267": {
+    "key": "BA7200",
+    "text": "Guardián"
+  },
+  "22102ccd": {
+    "key": "WE7003",
+    "text": "Edafos"
+  },
+  "22e188a1": {
+    "key": "EM7406",
+    "text": "Conector cervical"
+  },
+  "269529e2": {
+    "key": "WE7002",
+    "text": "Hydor"
+  },
+  "2b31654b": {
+    "key": "EM7700",
+    "text": "Lucilius"
+  },
+  "2bd7220b": {
+    "key": "WE7701",
+    "text": "Espada de repudio"
+  },
+  "2c800d3a": {
+    "key": "WE7000",
+    "text": "Skotadi"
+  },
+  "2d1e3cc6": {
+    "key": "EM0604",
+    "text": "Viscosín dorado rey"
+  },
+  "3165aaba": {
+    "key": "EM1001",
+    "text": "Lancero de Avia"
+  },
+  "363f9b5c": {
+    "key": "EM1003",
+    "text": "Abanderado de Avia"
+  },
+  "3a0ea858": {
+    "key": "EM0102",
+    "text": "Geraseno"
+  },
+  "3a1c16f4": {
+    "key": "EM1005",
+    "text": "Hermano Avalan"
+  },
+  "3d05eb17": {
+    "key": "EM0002",
+    "text": "Defensor trasgo"
+  },
+  "3f7f9a35": {
+    "key": "EM1500",
+    "text": "Gólem pétreo"
+  },
+  "427e32fe": {
+    "key": "EM0000",
+    "text": "Asaltante trasgo"
+  },
+  "44a72d4b": {
+    "key": "EM0001",
+    "text": "Sanador trasgo"
+  },
+  "4698f258": {
+    "key": "EM0201",
+    "text": "Jinete trasgo"
+  },
+  "48ebace1": {
+    "key": "EM1000",
+    "text": "Espadachín de Avia"
+  },
+  "4a299e62": {
+    "key": "EM1801",
+    "text": "Draco ígneo Vrazarek"
+  },
+  "4d2202ae": {
+    "key": "EM7404",
+    "text": "Núcleo raquídeo"
+  },
+  "4d2d2ef6": {
+    "key": "EM7402",
+    "text": "Excavalion"
+  },
+  "4fdad2ca": {
+    "key": "EM7526",
+    "text": "Daeva"
+  },
+  "4fdb94bb": {
+    "key": "EM3100",
+    "text": "Torp"
+  },
+  "4ff6785b": {
+    "key": "EM00A2",
+    "text": "Defensor trasgo"
+  },
+  "563b59b1": {
+    "key": "BH2002",
+    "text": "Cañón automático de éter de 20 mm"
+  },
+  "578e0df2": {
+    "key": "WE7024",
+    "text": "Anemos"
+  },
+  "584b39dc": {
+    "key": "EM7524",
+    "text": "Daeva"
+  },
+  "5e316d49": {
+    "key": "EM7603",
+    "text": "Núcleo de Bahamut"
+  },
+  "5fb90ec9": {
+    "key": "EM0501",
+    "text": "Glaciosaurio"
+  },
+  "6056b80a": {
+    "key": "EM2600",
+    "text": "Cobra"
+  },
+  "635fffb6": {
+    "key": "WE7702",
+    "text": "Espada de renuncia"
+  },
+  "6409b2a8": {
+    "key": "EM1900",
+    "text": "Tayu'itar"
+  },
+  "65c26889": {
+    "key": "EM1806",
+    "text": "Draco azabache Evyl"
+  },
+  "677f73cd": {
+    "key": "EM7409",
+    "text": "Reactor pectoral"
+  },
+  "6782b537": {
+    "key": "EM0600",
+    "text": "Viscosín"
+  },
+  "69bb1528": {
+    "key": "WE7022",
+    "text": "Hydor"
+  },
+  "6d5ba989": {
+    "key": "EM0701",
+    "text": "Cyaegha"
+  },
+  "6ef4d20b": {
+    "key": "WE7021",
+    "text": "Fotia"
+  },
+  "6f92396e": {
+    "key": "EM7520",
+    "text": "Daeva"
+  },
+  "703b6906": {
+    "key": "WE2113",
+    "text": "Gae Bolg"
+  },
+  "7044a13d": {
+    "key": "WE3100",
+    "text": "Libélula"
+  },
+  "745da8b4": {
+    "key": "EM7211",
+    "text": "Furiacán Nihilla"
+  },
+  "75a3867c": {
+    "key": "EM7300",
+    "text": "Mánagarm"
+  },
+  "777abf6d": {
+    "key": "EM0200",
+    "text": "Lobo"
+  },
+  "7d71c604": {
+    "key": "EM1600",
+    "text": "Grifo"
+  },
+  "7ef65e6d": {
+    "key": "EM7525",
+    "text": "Daeva"
+  },
+  "80b7eeff": {
+    "key": "EM0602",
+    "text": "Viscosín dorado"
+  },
+  "84abcd3e": {
+    "key": "EM7529",
+    "text": "Daeva"
+  },
+  "84fdd7b5": {
+    "key": "EM0005",
+    "text": "Guerrero trasgo"
+  },
+  "8b964be7": {
+    "key": "EM2800",
+    "text": "Ente siniestro"
+  },
+  "8c3adb57": {
+    "key": "EM7100",
+    "text": "Vulkan Bora"
+  },
+  "8eaf20fb": {
+    "key": "EM0804",
+    "text": "Gyro luminoso"
+  },
+  "90793b2e": {
+    "key": "BA7211",
+    "text": "Puerta calamitosa"
+  },
+  "938a4bdf": {
+    "key": "EM7310",
+    "text": "Mánagarm Nihilla"
+  },
+  "95ecf6ab": {
+    "key": "EM7540",
+    "text": "Daeva"
+  },
+  "96316442": {
+    "key": "EM7110",
+    "text": "Vulkan Bora Nihilla"
+  },
+  "966b47a8": {
+    "key": "EM7527",
+    "text": "Daeva"
+  },
+  "974772c3": {
+    "key": "BH0002",
+    "text": "Cargamento del mercader"
+  },
+  "9a7dfec3": {
+    "key": "EM7522",
+    "text": "Daeva"
+  },
+  "9ac78d6f": {
+    "key": "EM1002",
+    "text": "Arquero de Avia"
+  },
+  "9af5d7f5": {
+    "key": "EM7405",
+    "text": "Excavalion"
+  },
+  "9beb4c14": {
+    "key": "WE7023",
+    "text": "Edafos"
+  },
+  "9ff822ce": {
+    "key": "EM7528",
+    "text": "Daeva"
+  },
+  "a379ac65": {
+    "key": "EM2700",
+    "text": "Sir Plácido"
+  },
+  "a3af9e04": {
+    "key": "BH0004",
+    "text": "Barricada"
+  },
+  "a51ba796": {
+    "key": "EM7407",
+    "text": "Reactor deltoideo"
+  },
+  "a63de428": {
+    "key": "EM0300",
+    "text": "Cálao"
+  },
+  "a685791c": {
+    "key": "EM7403",
+    "text": "Excavalion"
+  },
+  "a81f6dca": {
+    "key": "EM0101",
+    "text": "Esqueleto gélido"
+  },
+  "a86498c5": {
+    "key": "EM7610",
+    "text": "Bahamut Alterum Omega"
+  },
+  "ad9c4174": {
+    "key": "EM7505",
+    "text": "Angra Mainyu"
+  },
+  "ae3325e8": {
+    "key": "WE7001",
+    "text": "Fotia"
+  },
+  "afeb2d7e": {
+    "key": "EM1803",
+    "text": "Draco telúrico Corvell"
+  },
+  "b12f9db1": {
+    "key": "WE2110",
+    "text": "Freikugel"
+  },
+  "b2efc09d": {
+    "key": "EM0801",
+    "text": "Gyro acuático"
+  },
+  "b31ee30a": {
+    "key": "EM0706",
+    "text": "Nazarbonju"
+  },
+  "b3704145": {
+    "key": "EM00A0",
+    "text": "Asaltante trasgo"
+  },
+  "b39eeab5": {
+    "key": "EM2400",
+    "text": "Lilith"
+  },
+  "b4aed02d": {
+    "key": "EM7600",
+    "text": "Bahamut Alterum"
+  },
+  "b50fcb1d": {
+    "key": "BA7201",
+    "text": "Vigía"
+  },
+  "b624c0be": {
+    "key": "EM0605",
+    "text": "Viscosín prismático"
+  },
+  "b67bc0ca": {
+    "key": "WE7014",
+    "text": "Anemos"
+  },
+  "b69dd953": {
+    "key": "EM0103",
+    "text": "Scarmiglione"
+  },
+  "b6e8888a": {
+    "key": "EM7400",
+    "text": "Excavalion"
+  },
+  "b71014c5": {
+    "key": "EM0500",
+    "text": "Telurosaurio"
+  },
+  "b74037ea": {
+    "key": "WE7013",
+    "text": "Edafos"
+  },
+  "b81ca4b7": {
+    "key": "WE7012",
+    "text": "Hydor"
+  },
+  "ba320eeb": {
+    "key": "EM0502",
+    "text": "Vulcasaurio"
+  },
+  "bc7e01a9": {
+    "key": "BA2103",
+    "text": "Arpeo"
+  },
+  "bcef1ee2": {
+    "key": "EM1100",
+    "text": "Velo de la Espada"
+  },
+  "bdc484a5": {
+    "key": "EM1303",
+    "text": "Bálsamo droita"
+  },
+  "bdf271c2": {
+    "key": "EM7601",
+    "text": "Bahamut Alterum"
+  },
+  "c3089918": {
+    "key": "EM2500",
+    "text": "Pinzador"
+  },
+  "c3c58c76": {
+    "key": "EM7200",
+    "text": "Furiacán"
+  },
+  "ca4091c8": {
+    "key": "EM0004",
+    "text": "Soldado trasgo"
+  },
+  "cdaa9205": {
+    "key": "EM7504",
+    "text": "Angra Mainyu"
+  },
+  "d09c5b2e": {
+    "key": "EM7201",
+    "text": "Furiacán"
+  },
+  "d4950d74": {
+    "key": "WE7700",
+    "text": "Espada de refutación"
+  },
+  "d4eebb52": {
+    "key": "EM7531",
+    "text": "Akomán"
+  },
+  "d622ed34": {
+    "key": "EM0800",
+    "text": "Gyro ardiente"
+  },
+  "dbca3857": {
+    "key": "EM7000",
+    "text": "Proto-Bahamut"
+  },
+  "dea8e6e6": {
+    "key": "EM7523",
+    "text": "Daeva"
+  },
+  "df348320": {
+    "key": "EM7001",
+    "text": "Proto-Bahamut"
+  },
+  "e07acd74": {
+    "key": "WE7300",
+    "text": "Nereida"
+  },
+  "e121c79f": {
+    "key": "EM00A3",
+    "text": "Arquero trasgo"
+  },
+  "e170f036": {
+    "key": "EM1802",
+    "text": "Draco gélido Wilino"
+  },
+  "e25b6346": {
+    "key": "BA7210",
+    "text": "Vestigios calamitosos"
+  },
+  "e4c12a94": {
+    "key": "EM2100",
+    "text": "Maglielle"
+  },
+  "e556d1bf": {
+    "key": "EM7210",
+    "text": "Furiacán Nihilla"
+  },
+  "e57a72bc": {
+    "key": "WE2111",
+    "text": "Mjolnir"
+  },
+  "e7576708": {
+    "key": "EM7500",
+    "text": "Angra Mainyu"
+  },
+  "e7767ba1": {
+    "key": "EM0805",
+    "text": "Gyro umbrío"
+  },
+  "e777f247": {
+    "key": "EM0802",
+    "text": "Gyro terroso"
+  },
+  "e7f7fc6d": {
+    "key": "EM7503",
+    "text": "Angra Mainyu"
+  },
+  "e873d0f9": {
+    "key": "EM7501",
+    "text": "Angra Mainyu"
+  },
+  "eab390a0": {
+    "key": "EM2200",
+    "text": "Iz"
+  },
+  "f45a0b6d": {
+    "key": "EM1301",
+    "text": "Madre droita"
+  },
+  "f740812d": {
+    "key": "EM7502",
+    "text": "Angra Mainyu"
+  },
+  "f83b508a": {
+    "key": "EM0601",
+    "text": "Viscosín plateado"
+  },
+  "f946d055": {
+    "key": "EM7408",
+    "text": "Reactor coxal"
+  },
+  "fac02e60": {
+    "key": "EM7521",
+    "text": "Daeva"
+  },
+  "fb16498e": {
+    "key": "WE3101",
+    "text": "Generador Hutchison"
+  },
+  "fd6d4bab": {
+    "key": "EM1004",
+    "text": "Inquisidor Rook"
+  },
+  "fdfb322b": {
+    "key": "BH0003",
+    "text": "Tierra sagrada"
+  }
+}
