@@ -1,0 +1,514 @@
+{
+  "0053599e": {
+    "key": "SKILL_094_00",
+    "text": "Hohe Konzentration"
+  },
+  "05f2ecdc": {
+    "key": "SKILL_070_00",
+    "text": "Herabstürzen"
+  },
+  "05fa4599": {
+    "key": "SKILL_124_01",
+    "text": "Kreativität des Drachentöters"
+  },
+  "082033cb": {
+    "key": "SKILL_140_00",
+    "text": "Krabbenecho"
+  },
+  "09aa7db5": {
+    "key": "SKILL_104_00",
+    "text": "Flinke Verteidigung"
+  },
+  "0aa20846": {
+    "key": "SKILL_060_00",
+    "text": "Verbessertes Blocken"
+  },
+  "0cd6c625": {
+    "key": "SKILL_126_00",
+    "text": "Talent des Schwertmeisters"
+  },
+  "0ead65e0": {
+    "key": "SKILL_103_00",
+    "text": "Natürliche Verteidigung"
+  },
+  "0fba47e8": {
+    "key": "SKILL_133_00",
+    "text": "Verstärkender Tropfen"
+  },
+  "11aae5f5": {
+    "key": "SKILL_117_01",
+    "text": "Klugheit der Magierin"
+  },
+  "1470f860": {
+    "key": "SKILL_096_00",
+    "text": "Nerven aus Stahl"
+  },
+  "151e4674": {
+    "key": "SKILL_116_00",
+    "text": "Navigation des Steuermanns"
+  },
+  "1568e0e4": {
+    "key": "SKILL_153_00",
+    "text": "Vorsprung"
+  },
+  "16eff868": {
+    "key": "SKILL_122_01",
+    "text": "Gemüt des Helden"
+  },
+  "1b0d9897": {
+    "key": "SKILL_141_00",
+    "text": "Ein Meer an Erträgen"
+  },
+  "1c360c63": {
+    "key": "SKILL_008_00",
+    "text": "Himmelssturm-Schaden"
+  },
+  "1dc9d7e7": {
+    "key": "SKILL_136_00",
+    "text": "Unterdrückungsresistenz"
+  },
+  "2242921f": {
+    "key": "SKILL_055_00",
+    "text": "Lähmungsresistenz"
+  },
+  "23d0f67f": {
+    "key": "SKILL_119_00",
+    "text": "Blüte der Rose"
+  },
+  "24883af3": {
+    "key": "SKILL_073_00",
+    "text": "Tränkehamsterer"
+  },
+  "29b07beb": {
+    "key": "SKILL_127_00",
+    "text": "Anmut des Schmetterlings"
+  },
+  "29b292a8": {
+    "key": "SKILL_107_00",
+    "text": "Präzise Belastbarkeit"
+  },
+  "2e65a774": {
+    "key": "SKILL_122_00",
+    "text": "Überzeugung des Helden"
+  },
+  "2fc8fbff": {
+    "key": "SKILL_006_00",
+    "text": "Ausdauer"
+  },
+  "318d12e9": {
+    "key": "SKILL_069_00",
+    "text": "Schnelles Abklingen"
+  },
+  "333e5862": {
+    "key": "SKILL_157_00",
+    "text": "Würfelwurf"
+  },
+  "3759a5b9": {
+    "key": "SKILL_054_00",
+    "text": "Schwindelresistenz"
+  },
+  "3bfed918": {
+    "key": "SKILL_115_00",
+    "text": "Überzeugung der Wächterin"
+  },
+  "3c2b57b0": {
+    "key": "SKILL_061_00",
+    "text": "Blocken-Rache"
+  },
+  "3f2c482e": {
+    "key": "SKILL_100_00",
+    "text": "Ergänzung"
+  },
+  "3f488339": {
+    "key": "SKILL_005_00",
+    "text": "Bosheit"
+  },
+  "3fec5f80": {
+    "key": "SKILL_009_00",
+    "text": "Linkangriff"
+  },
+  "40223c28": {
+    "key": "SKILL_143_00",
+    "text": "Katastrophe"
+  },
+  "451d814c": {
+    "key": "SKILL_128_01",
+    "text": "Ethos des Ewigen Jähzorns"
+  },
+  "4bf2e191": {
+    "key": "SKILL_138_00",
+    "text": "ANG↓-Resistenz"
+  },
+  "4c588c27": {
+    "key": "SKILL_146_00",
+    "text": "Krieg-Elementar"
+  },
+  "4f1a3683": {
+    "key": "SKILL_029_00",
+    "text": "Wie zum Hohn"
+  },
+  "50079a1c": {
+    "key": "SKILL_000_00",
+    "text": "ANG"
+  },
+  "50b453dd": {
+    "key": "SKILL_057_00",
+    "text": "Fähigkeit versiegelt-Resistenz"
+  },
+  "522e2388": {
+    "key": "SKILL_125_01",
+    "text": "Erhabene heilige Ritterin"
+  },
+  "5463232f": {
+    "key": "SKILL_128_00",
+    "text": "Bravura des Ewigen Jähzorns"
+  },
+  "57ab5b10": {
+    "key": "SKILL_151_00",
+    "text": "Zusätzlicher Schaden"
+  },
+  "57e8a93f": {
+    "key": "SKILL_113_00",
+    "text": "Siegelstärker"
+  },
+  "5c862e13": {
+    "key": "SKILL_162_00",
+    "text": "Gamma"
+  },
+  "5e422ae5": {
+    "key": "SKILL_147_00",
+    "text": "Weg zur Meisterschaft"
+  },
+  "6018372b": {
+    "key": "SKILL_078_00",
+    "text": "Provozieren"
+  },
+  "6085da25": {
+    "key": "SKILL_066_00",
+    "text": "Regenerieren"
+  },
+  "66de60b1": {
+    "key": "SKILL_139_00",
+    "text": "ABW↓-Resistenz"
+  },
+  "6b694d6d": {
+    "key": "SKILL_014_00",
+    "text": "Schwachstellenschaden"
+  },
+  "6ebfa176": {
+    "key": "SKILL_131_00",
+    "text": "Blutrote Macht"
+  },
+  "6ff05223": {
+    "key": "SKILL_123_01",
+    "text": "Ehrgeiz des Lords"
+  },
+  "70395731": {
+    "key": "SKILL_154_00",
+    "text": "Berserker"
+  },
+  "71f11a9b": {
+    "key": "SKILL_027_00",
+    "text": "Tyrannei"
+  },
+  "7351d602": {
+    "key": "SKILL_120_01",
+    "text": "Harmonie des Hirngespinsts"
+  },
+  "7440e869": {
+    "key": "SKILL_132_00",
+    "text": "Tiefschwarze Gegenwart"
+  },
+  "74aa75d6": {
+    "key": "SKILL_144_00",
+    "text": "Festung"
+  },
+  "7ad0c010": {
+    "key": "SKILL_130_01",
+    "text": "Versalis-Entzündung"
+  },
+  "7c2e4d64": {
+    "key": "SKILL_064_00",
+    "text": "Ausweichen-Rache"
+  },
+  "7c84a6b3": {
+    "key": "SKILL_047_00",
+    "text": "Brennen-Resistenz"
+  },
+  "7ccff74f": {
+    "key": "SKILL_067_00",
+    "text": "Entziehen"
+  },
+  "7edd69d0": {
+    "key": "SKILL_109_00",
+    "text": "Präziser Zorn"
+  },
+  "82ce278d": {
+    "key": "SKILL_152_00",
+    "text": "Weniger ist mehr"
+  },
+  "84078cb0": {
+    "key": "SKILL_111_00",
+    "text": "Schnelle Aufladung"
+  },
+  "86cbcdc4": {
+    "key": "SKILL_124_00",
+    "text": "Überlegener Drachentöter"
+  },
+  "8b3bf60c": {
+    "key": "SKILL_063_00",
+    "text": "Verbessertes Ausweichen"
+  },
+  "8cdf9382": {
+    "key": "SKILL_121_00",
+    "text": "Schwur des Weißdrachen"
+  },
+  "8d078597": {
+    "key": "SKILL_012_00",
+    "text": "Wurfschaden"
+  },
+  "8d2adb6e": {
+    "key": "SKILL_161_00",
+    "text": "Beta"
+  },
+  "8d78a19b": {
+    "key": "SKILL_003_00",
+    "text": "Kritische Trefferrate"
+  },
+  "8f502f0d": {
+    "key": "SKILL_110_00",
+    "text": "Leben auf dem Drahtseil"
+  },
+  "921b6b0c": {
+    "key": "SKILL_118_01",
+    "text": "Vision des Veteranen"
+  },
+  "9389cc06": {
+    "key": "SKILL_065_00",
+    "text": "Verbesserte Heilung"
+  },
+  "93a2093c": {
+    "key": "SKILL_130_00",
+    "text": "Versalis-Fundament"
+  },
+  "95f3fa86": {
+    "key": "SKILL_068_00",
+    "text": "Automatisches Wiederbeleben"
+  },
+  "9702860f": {
+    "key": "SKILL_088_00",
+    "text": "Zerstörungsresistenz"
+  },
+  "973b49af": {
+    "key": "SKILL_046_00",
+    "text": "Giftresistenz"
+  },
+  "9a9dc170": {
+    "key": "SKILL_125_00",
+    "text": "Glanz der heiligen Ritterin"
+  },
+  "9ad8b5e6": {
+    "key": "SKILL_142_00",
+    "text": "7er-Netz"
+  },
+  "a1a8e39d": {
+    "key": "SKILL_044_00",
+    "text": "Starkes Herz"
+  },
+  "a2fa9685": {
+    "key": "SKILL_086_00",
+    "text": "Langsam-Resistenz"
+  },
+  "a374fdf0": {
+    "key": "SKILL_116_01",
+    "text": "Hartnäckiger Steuermann"
+  },
+  "a38510e2": {
+    "key": "SKILL_114_01",
+    "text": "Furchtloser Geist"
+  },
+  "a3b49220": {
+    "key": "SKILL_126_01",
+    "text": "Kunst des Schwertmeisters"
+  },
+  "a4d6b880": {
+    "key": "SKILL_134_00",
+    "text": "Leistungstropfen"
+  },
+  "a63b89cd": {
+    "key": "SKILL_127_01",
+    "text": "Mut des Schmetterlings"
+  },
+  "a7a45f28": {
+    "key": "SKILL_017_00",
+    "text": "Kombo-Finisher-Schaden"
+  },
+  "a8a3163b": {
+    "key": "SKILL_158_00",
+    "text": "Glaskanone"
+  },
+  "a9d17f55": {
+    "key": "SKILL_030_00",
+    "text": "Überladungsattentäter"
+  },
+  "aa83f548": {
+    "key": "SKILL_118_00",
+    "text": "Erkenntnis des Veteranen"
+  },
+  "ac9674c1": {
+    "key": "SKILL_031_00",
+    "text": "Durchbrechen-Attentäter"
+  },
+  "af513a9d": {
+    "key": "SKILL_129_01",
+    "text": "Wahrheit der Gründerin"
+  },
+  "af794a87": {
+    "key": "SKILL_150_00",
+    "text": "Unantastbar"
+  },
+  "b360801d": {
+    "key": "SKILL_018_00",
+    "text": "Konzentriertes Feuer"
+  },
+  "b48eef48": {
+    "key": "SKILL_117_00",
+    "text": "Bestreben der Magierin"
+  },
+  "b5ff9fd3": {
+    "key": "SKILL_072_00",
+    "text": "Erheben"
+  },
+  "b6e31f76": {
+    "key": "SKILL_087_00",
+    "text": "Starker Stand"
+  },
+  "c0979a17": {
+    "key": "SKILL_013_00",
+    "text": "Kritischer Trefferschaden"
+  },
+  "c2a4c7a9": {
+    "key": "SKILL_119_01",
+    "text": "Rosenbarriere"
+  },
+  "c35b111b": {
+    "key": "SKILL_028_00",
+    "text": "Glück-Himmelssturm"
+  },
+  "c86f3082": {
+    "key": "SKILL_080_00",
+    "text": "Rupien-Sparfuchs"
+  },
+  "cd030268": {
+    "key": "SKILL_114_00",
+    "text": "Furchtloser Antrieb"
+  },
+  "cd124165": {
+    "key": "SKILL_132_01",
+    "text": "Tiefschwarze Gelassenheit"
+  },
+  "cd18a77d": {
+    "key": "SKILL_156_00",
+    "text": "Wirksame Kräuter"
+  },
+  "cdeb73f6": {
+    "key": "SKILL_135_00",
+    "text": "Goldtropfen"
+  },
+  "ceb700ee": {
+    "key": "SKILL_004_00",
+    "text": "Betäubungskraft"
+  },
+  "cfb48782": {
+    "key": "SKILL_058_00",
+    "text": "HK versiegelt-Resistenz"
+  },
+  "d1012d8c": {
+    "key": "SKILL_121_01",
+    "text": "Stolz des Weißdrachen"
+  },
+  "d2c8e10a": {
+    "key": "SKILL_106_00",
+    "text": "Flinker Ansturm"
+  },
+  "d54f8ca7": {
+    "key": "SKILL_051_00",
+    "text": "Sandgrabresistenz"
+  },
+  "d908223d": {
+    "key": "SKILL_120_00",
+    "text": "Eintracht des Hirngespinsts"
+  },
+  "dbe1d775": {
+    "key": "SKILL_160_00",
+    "text": "Alpha"
+  },
+  "dc225c96": {
+    "key": "SKILL_145_00",
+    "text": "Machthungrig"
+  },
+  "dc584f60": {
+    "key": "SKILL_020_00",
+    "text": "Schadensobergrenze"
+  },
+  "dc607d75": {
+    "key": "SKILL_077_00",
+    "text": "Untertauchen"
+  },
+  "dd4a701e": {
+    "key": "SKILL_137_00",
+    "text": "Dunkelflammenresistenz"
+  },
+  "e0abfdfe": {
+    "key": "SKILL_085_00",
+    "text": "Ägide"
+  },
+  "e60a735c": {
+    "key": "SKILL_123_00",
+    "text": "Umzug des Lords"
+  },
+  "e69a4694": {
+    "key": "SKILL_045_00",
+    "text": "Mumm"
+  },
+  "e6cdba9c": {
+    "key": "SKILL_036_00",
+    "text": "Besetzen"
+  },
+  "eae321eb": {
+    "key": "SKILL_083_00",
+    "text": "Geschickter Überfall"
+  },
+  "ec1c6779": {
+    "key": "SKILL_159_00",
+    "text": "Flucht vor Kampf"
+  },
+  "ec3cf174": {
+    "key": "SKILL_129_00",
+    "text": "Strategie der Gründerin"
+  },
+  "f17850b9": {
+    "key": "SKILL_024_00",
+    "text": "Kombo-Bonus"
+  },
+  "f1d5dbd0": {
+    "key": "SKILL_131_01",
+    "text": "Blutroter Flug"
+  },
+  "f372f096": {
+    "key": "SKILL_001_00",
+    "text": "LP"
+  },
+  "f687c5ef": {
+    "key": "SKILL_079_00",
+    "text": "Helles Köpfchen"
+  },
+  "f8496336": {
+    "key": "SKILL_115_01",
+    "text": "Ehre der Wächterin"
+  },
+  "fb572681": {
+    "key": "SKILL_052_00",
+    "text": "Gletscherresistenz"
+  }
+}

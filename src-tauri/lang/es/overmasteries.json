@@ -1,0 +1,1030 @@
+{
+  "020d2c07": {
+    "key": "020D2C07",
+    "text": "Más daño de arcanos"
+  },
+  "032a5217": {
+    "key": "032A5217",
+    "text": "Más vitalidad"
+  },
+  "047b7a70": {
+    "key": "047B7A70",
+    "text": "Más límite de daño de arcanos"
+  },
+  "06595c52": {
+    "key": "06595C52",
+    "text": "Más límite daño ataques norm."
+  },
+  "0716aa8d": {
+    "key": "0716AA8D",
+    "text": "Más límite daño ataques norm."
+  },
+  "0781c7a2": {
+    "key": "0781C7A2",
+    "text": "Más vitalidad"
+  },
+  "0b0e4311": {
+    "key": "0B0E4311",
+    "text": "Más límite de daño de habilidades"
+  },
+  "0b134a7f": {
+    "key": "0B134A7F",
+    "text": "Más poder de ataque"
+  },
+  "0ce31e6b": {
+    "key": "0CE31E6B",
+    "text": "Más daño de arcanos"
+  },
+  "0cf5d0f3": {
+    "key": "0CF5D0F3",
+    "text": "Más poder de ataque"
+  },
+  "0d4295fd": {
+    "key": "0D4295FD",
+    "text": "Más límite daño ataques norm."
+  },
+  "0d6b32a3": {
+    "key": "0D6B32A3",
+    "text": "Más daño de habilidades"
+  },
+  "0db88f30": {
+    "key": "0DB88F30",
+    "text": "Más vitalidad"
+  },
+  "0f25b474": {
+    "key": "0F25B474",
+    "text": "Más poder de ataque"
+  },
+  "0febc993": {
+    "key": "0FEBC993",
+    "text": "Más vitalidad"
+  },
+  "11023c6f": {
+    "key": "11023C6F",
+    "text": "Más vitalidad"
+  },
+  "124db819": {
+    "key": "124DB819",
+    "text": "Más poder de ataque"
+  },
+  "1268b903": {
+    "key": "1268B903",
+    "text": "Más poder de ataque"
+  },
+  "1296ed4a": {
+    "key": "1296ED4A",
+    "text": "Más prob. de crítico"
+  },
+  "13c9452a": {
+    "key": "13C9452A",
+    "text": "Más poder de ataque"
+  },
+  "149593b8": {
+    "key": "149593B8",
+    "text": "Más límite de daño de arcanos"
+  },
+  "155c25c3": {
+    "key": "155C25C3",
+    "text": "Más vitalidad"
+  },
+  "157c0614": {
+    "key": "157C0614",
+    "text": "Más prob. de crítico"
+  },
+  "15afe5a1": {
+    "key": "15AFE5A1",
+    "text": "Más prob. de crítico"
+  },
+  "18be125b": {
+    "key": "18BE125B",
+    "text": "Más límite de daño de arcanos"
+  },
+  "19e012e9": {
+    "key": "19E012E9",
+    "text": "Más límite daño ataques norm."
+  },
+  "1cc2f730": {
+    "key": "1CC2F730",
+    "text": "Más poder de ataque"
+  },
+  "1d85a640": {
+    "key": "1D85A640",
+    "text": "Más prob. de crítico"
+  },
+  "1e2b3db5": {
+    "key": "1E2B3DB5",
+    "text": "Más vitalidad"
+  },
+  "2229b810": {
+    "key": "2229B810",
+    "text": "Más prob. de crítico"
+  },
+  "233a60d5": {
+    "key": "233A60D5",
+    "text": "Más límite de daño de habilidades"
+  },
+  "24499a25": {
+    "key": "24499A25",
+    "text": "Más poder de ataque"
+  },
+  "254a08d4": {
+    "key": "254A08D4",
+    "text": "Más poder de ataque"
+  },
+  "2676f9d2": {
+    "key": "2676F9D2",
+    "text": "Más prob. de aturdir"
+  },
+  "27927560": {
+    "key": "27927560",
+    "text": "Más prob. de crítico"
+  },
+  "281dc5ff": {
+    "key": "281DC5FF",
+    "text": "Más límite daño ataques norm."
+  },
+  "287f67c9": {
+    "key": "287F67C9",
+    "text": "Más prob. de crítico"
+  },
+  "2906f3ed": {
+    "key": "2906F3ED",
+    "text": "Más prob. de crítico"
+  },
+  "2989cae9": {
+    "key": "2989CAE9",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "29938b25": {
+    "key": "29938B25",
+    "text": "Más prob. de crítico"
+  },
+  "2ab305f4": {
+    "key": "2AB305F4",
+    "text": "Más límite de daño de arcanos"
+  },
+  "2ba1549d": {
+    "key": "2BA1549D",
+    "text": "Más daño de arcanos"
+  },
+  "2c1c933d": {
+    "key": "2C1C933D",
+    "text": "Más prob. de aturdir"
+  },
+  "2d6c03eb": {
+    "key": "2D6C03EB",
+    "text": "Más vitalidad"
+  },
+  "2ea457f3": {
+    "key": "2EA457F3",
+    "text": "Más vitalidad"
+  },
+  "303becc0": {
+    "key": "303BECC0",
+    "text": "Más poder de ataque"
+  },
+  "3356dd03": {
+    "key": "3356DD03",
+    "text": "Más prob. de aturdir"
+  },
+  "3526fecb": {
+    "key": "3526FECB",
+    "text": "Más vitalidad"
+  },
+  "36f068fd": {
+    "key": "36F068FD",
+    "text": "Más prob. de aturdir"
+  },
+  "38f656e7": {
+    "key": "38F656E7",
+    "text": "Más poder de ataque"
+  },
+  "394083bd": {
+    "key": "394083BD",
+    "text": "Más vitalidad"
+  },
+  "3ac53494": {
+    "key": "3AC53494",
+    "text": "Más vitalidad"
+  },
+  "3b23fe95": {
+    "key": "3B23FE95",
+    "text": "Más prob. de crítico"
+  },
+  "3ca4c8d5": {
+    "key": "3CA4C8D5",
+    "text": "Más vitalidad"
+  },
+  "3cd2f6af": {
+    "key": "3CD2F6AF",
+    "text": "Más límite de daño de arcanos"
+  },
+  "3d6600d9": {
+    "key": "3D6600D9",
+    "text": "Más vitalidad"
+  },
+  "3dabc271": {
+    "key": "3DABC271",
+    "text": "Más límite daño ataques norm."
+  },
+  "3dae6494": {
+    "key": "3DAE6494",
+    "text": "Más prob. de aturdir"
+  },
+  "403be586": {
+    "key": "403BE586",
+    "text": "Más poder de ataque"
+  },
+  "409df671": {
+    "key": "409DF671",
+    "text": "Más vitalidad"
+  },
+  "424f95e2": {
+    "key": "424F95E2",
+    "text": "Más límite de daño de arcanos"
+  },
+  "426b370b": {
+    "key": "426B370B",
+    "text": "Más daño de habilidades"
+  },
+  "427b5e26": {
+    "key": "427B5E26",
+    "text": "Más vitalidad"
+  },
+  "437c055d": {
+    "key": "437C055D",
+    "text": "Más vitalidad"
+  },
+  "43b7581d": {
+    "key": "43B7581D",
+    "text": "Más límite daño ataques norm."
+  },
+  "43d71e8f": {
+    "key": "43D71E8F",
+    "text": "Más límite de curación"
+  },
+  "44f04a7a": {
+    "key": "44F04A7A",
+    "text": "Más vitalidad"
+  },
+  "455d6a1c": {
+    "key": "455D6A1C",
+    "text": "Más prob. de aturdir"
+  },
+  "45bc2345": {
+    "key": "45BC2345",
+    "text": "Más prob. de crítico"
+  },
+  "45c65767": {
+    "key": "45C65767",
+    "text": "Más prob. de crítico"
+  },
+  "49089d4f": {
+    "key": "49089D4F",
+    "text": "Más poder de ataque"
+  },
+  "4a4c093d": {
+    "key": "4A4C093D",
+    "text": "Más límite de daño de arcanos"
+  },
+  "4ab91ea7": {
+    "key": "4AB91EA7",
+    "text": "Más poder de ataque"
+  },
+  "4b54500d": {
+    "key": "4B54500D",
+    "text": "Más límite de daño de arcanos"
+  },
+  "4bf827d5": {
+    "key": "4BF827D5",
+    "text": "Más daño de habilidades"
+  },
+  "4c0cbd32": {
+    "key": "4C0CBD32",
+    "text": "Más vitalidad"
+  },
+  "4ce64874": {
+    "key": "4CE64874",
+    "text": "Más vitalidad"
+  },
+  "4dee3365": {
+    "key": "4DEE3365",
+    "text": "Más límite de daño de habilidades"
+  },
+  "4e2513df": {
+    "key": "4E2513DF",
+    "text": "Más poder de ataque"
+  },
+  "4e42646b": {
+    "key": "4E42646B",
+    "text": "Más daño de arcanos"
+  },
+  "4fc7db58": {
+    "key": "4FC7DB58",
+    "text": "Más daño de habilidades"
+  },
+  "51bcf5ae": {
+    "key": "51BCF5AE",
+    "text": "Más daño de habilidades"
+  },
+  "524492e2": {
+    "key": "524492E2",
+    "text": "Más prob. de crítico"
+  },
+  "52a207b5": {
+    "key": "52A207B5",
+    "text": "Más vitalidad"
+  },
+  "5382923d": {
+    "key": "5382923D",
+    "text": "Más poder de ataque"
+  },
+  "53d358e0": {
+    "key": "53D358E0",
+    "text": "Más poder de ataque"
+  },
+  "54929589": {
+    "key": "54929589",
+    "text": "Más límite de curación"
+  },
+  "563f7784": {
+    "key": "563F7784",
+    "text": "Más límite daño ataques norm."
+  },
+  "574ac06b": {
+    "key": "574AC06B",
+    "text": "Más daño de habilidades"
+  },
+  "5767dd9f": {
+    "key": "5767DD9F",
+    "text": "Más vitalidad"
+  },
+  "57bbc478": {
+    "key": "57BBC478",
+    "text": "Más vitalidad"
+  },
+  "59dce1e8": {
+    "key": "59DCE1E8",
+    "text": "Más poder de ataque"
+  },
+  "59fbb7d8": {
+    "key": "59FBB7D8",
+    "text": "Más prob. de aturdir"
+  },
+  "5a51f0cb": {
+    "key": "5A51F0CB",
+    "text": "Más vitalidad"
+  },
+  "5a57dc07": {
+    "key": "5A57DC07",
+    "text": "Más vitalidad"
+  },
+  "5e95a4a4": {
+    "key": "5E95A4A4",
+    "text": "Más prob. de crítico"
+  },
+  "60835d4f": {
+    "key": "60835D4F",
+    "text": "Más poder de ataque"
+  },
+  "60926b53": {
+    "key": "60926B53",
+    "text": "Más poder de ataque"
+  },
+  "61d4efa0": {
+    "key": "61D4EFA0",
+    "text": "Más vitalidad"
+  },
+  "62289920": {
+    "key": "62289920",
+    "text": "Más límite de daño de habilidades"
+  },
+  "6564c02b": {
+    "key": "6564C02B",
+    "text": "Más vitalidad"
+  },
+  "66092bc7": {
+    "key": "66092BC7",
+    "text": "Más poder de ataque"
+  },
+  "67bde89b": {
+    "key": "67BDE89B",
+    "text": "Más poder de ataque"
+  },
+  "6811123b": {
+    "key": "6811123B",
+    "text": "Más límite daño ataques norm."
+  },
+  "6837e60c": {
+    "key": "6837E60C",
+    "text": "Más prob. de aturdir"
+  },
+  "688246f9": {
+    "key": "688246F9",
+    "text": "Más límite de daño de arcanos"
+  },
+  "68b39018": {
+    "key": "68B39018",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "699c6476": {
+    "key": "699C6476",
+    "text": "Más prob. de crítico"
+  },
+  "6cb38ef3": {
+    "key": "6CB38EF3",
+    "text": "Más prob. de aturdir"
+  },
+  "6e13df92": {
+    "key": "6E13DF92",
+    "text": "Más prob. de crítico"
+  },
+  "6e4f2f5e": {
+    "key": "6E4F2F5E",
+    "text": "Más poder de ataque"
+  },
+  "6f6b59ba": {
+    "key": "6F6B59BA",
+    "text": "Más límite de daño de habilidades"
+  },
+  "6fb47781": {
+    "key": "6FB47781",
+    "text": "Más poder de ataque"
+  },
+  "70ba21ad": {
+    "key": "70BA21AD",
+    "text": "Más daño de arcanos"
+  },
+  "7125942e": {
+    "key": "7125942E",
+    "text": "Más poder de ataque"
+  },
+  "72296d1c": {
+    "key": "72296D1C",
+    "text": "Más prob. de crítico"
+  },
+  "72ecdb4f": {
+    "key": "72ECDB4F",
+    "text": "Más límite de daño de arcanos"
+  },
+  "75d793bd": {
+    "key": "75D793BD",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "76c83bfd": {
+    "key": "76C83BFD",
+    "text": "Más límite de curación"
+  },
+  "776adca4": {
+    "key": "776ADCA4",
+    "text": "Más límite de daño de arcanos"
+  },
+  "7affde77": {
+    "key": "7AFFDE77",
+    "text": "Más límite de daño de habilidades"
+  },
+  "7b05e679": {
+    "key": "7B05E679",
+    "text": "Más prob. de aturdir"
+  },
+  "7b498c32": {
+    "key": "7B498C32",
+    "text": "Más prob. de aturdir"
+  },
+  "7cbbb4e0": {
+    "key": "7CBBB4E0",
+    "text": "Más vitalidad"
+  },
+  "7ccf98c5": {
+    "key": "7CCF98C5",
+    "text": "Más poder de ataque"
+  },
+  "7e870ebe": {
+    "key": "7E870EBE",
+    "text": "Más vitalidad"
+  },
+  "7f69df6b": {
+    "key": "7F69DF6B",
+    "text": "Más límite de daño de habilidades"
+  },
+  "807e9e58": {
+    "key": "807E9E58",
+    "text": "Más poder de ataque"
+  },
+  "8105c89c": {
+    "key": "8105C89C",
+    "text": "Más límite daño ataques norm."
+  },
+  "829b8b5c": {
+    "key": "829B8B5C",
+    "text": "Más vitalidad"
+  },
+  "834892b4": {
+    "key": "834892B4",
+    "text": "Más poder de ataque"
+  },
+  "85f0f318": {
+    "key": "85F0F318",
+    "text": "Más poder de ataque"
+  },
+  "871d12cc": {
+    "key": "871D12CC",
+    "text": "Más vitalidad"
+  },
+  "874353d7": {
+    "key": "874353D7",
+    "text": "Más poder de ataque"
+  },
+  "8af65803": {
+    "key": "8AF65803",
+    "text": "Más poder de ataque"
+  },
+  "8e175220": {
+    "key": "8E175220",
+    "text": "Más límite de daño de habilidades"
+  },
+  "8e4af42a": {
+    "key": "8E4AF42A",
+    "text": "Más daño de habilidades"
+  },
+  "8e66b68c": {
+    "key": "8E66B68C",
+    "text": "Más vitalidad"
+  },
+  "8f505d1d": {
+    "key": "8F505D1D",
+    "text": "Más límite daño ataques norm."
+  },
+  "8fe7fb0a": {
+    "key": "8FE7FB0A",
+    "text": "Más poder de ataque"
+  },
+  "911d4f18": {
+    "key": "911D4F18",
+    "text": "Más vitalidad"
+  },
+  "91265f66": {
+    "key": "91265F66",
+    "text": "Más poder de ataque"
+  },
+  "93572974": {
+    "key": "93572974",
+    "text": "Más poder de ataque"
+  },
+  "937efb96": {
+    "key": "937EFB96",
+    "text": "Más poder de ataque"
+  },
+  "95567556": {
+    "key": "95567556",
+    "text": "Más poder de ataque"
+  },
+  "9730a344": {
+    "key": "9730A344",
+    "text": "Más prob. de crítico"
+  },
+  "9a0988df": {
+    "key": "9A0988DF",
+    "text": "Más poder de ataque"
+  },
+  "9a29aa64": {
+    "key": "9A29AA64",
+    "text": "Más vitalidad"
+  },
+  "9a97c049": {
+    "key": "9A97C049",
+    "text": "Más daño de habilidades"
+  },
+  "9b6f164c": {
+    "key": "9B6F164C",
+    "text": "Más poder de ataque"
+  },
+  "9bf7878a": {
+    "key": "9BF7878A",
+    "text": "Más prob. de aturdir"
+  },
+  "9bfd4548": {
+    "key": "9BFD4548",
+    "text": "Más poder de ataque"
+  },
+  "9c555433": {
+    "key": "9C555433",
+    "text": "Más límite de daño de habilidades"
+  },
+  "9c6272cf": {
+    "key": "9C6272CF",
+    "text": "Más límite de daño de habilidades"
+  },
+  "9c6375cf": {
+    "key": "9C6375CF",
+    "text": "Más vitalidad"
+  },
+  "9ee4105a": {
+    "key": "9EE4105A",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "a1dc63b3": {
+    "key": "A1DC63B3",
+    "text": "Más poder de ataque"
+  },
+  "a2388de8": {
+    "key": "A2388DE8",
+    "text": "Más daño de habilidades"
+  },
+  "a257dac1": {
+    "key": "A257DAC1",
+    "text": "Más poder de ataque"
+  },
+  "a2bcf523": {
+    "key": "A2BCF523",
+    "text": "Más poder de ataque"
+  },
+  "a3460028": {
+    "key": "A3460028",
+    "text": "Más poder de ataque"
+  },
+  "a3545ca1": {
+    "key": "A3545CA1",
+    "text": "Más prob. de aturdir"
+  },
+  "a5a1b56b": {
+    "key": "A5A1B56B",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "a73cd44c": {
+    "key": "A73CD44C",
+    "text": "Más daño de arcanos"
+  },
+  "a85495ba": {
+    "key": "A85495BA",
+    "text": "Más prob. de aturdir"
+  },
+  "a85b4af5": {
+    "key": "A85B4AF5",
+    "text": "Más poder de ataque"
+  },
+  "a901e065": {
+    "key": "A901E065",
+    "text": "Más prob. de aturdir"
+  },
+  "aa7247e1": {
+    "key": "AA7247E1",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "aac23948": {
+    "key": "AAC23948",
+    "text": "Más vitalidad"
+  },
+  "ab56bde3": {
+    "key": "AB56BDE3",
+    "text": "Más vitalidad"
+  },
+  "aba0fedd": {
+    "key": "ABA0FEDD",
+    "text": "Más límite daño ataques norm."
+  },
+  "accbece1": {
+    "key": "ACCBECE1",
+    "text": "Más vitalidad"
+  },
+  "ad5ecdd3": {
+    "key": "AD5ECDD3",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "ae39e4a1": {
+    "key": "AE39E4A1",
+    "text": "Más daño de arcanos"
+  },
+  "af0d8b97": {
+    "key": "AF0D8B97",
+    "text": "Más vitalidad"
+  },
+  "b5b62b63": {
+    "key": "B5B62B63",
+    "text": "Más límite daño ataques norm."
+  },
+  "b63a15af": {
+    "key": "B63A15AF",
+    "text": "Más límite de daño de habilidades"
+  },
+  "b83aa115": {
+    "key": "B83AA115",
+    "text": "Más poder de ataque"
+  },
+  "bbe7992a": {
+    "key": "BBE7992A",
+    "text": "Más vitalidad"
+  },
+  "bd488071": {
+    "key": "BD488071",
+    "text": "Más poder de ataque"
+  },
+  "bd612b10": {
+    "key": "BD612B10",
+    "text": "Más límite daño ataques norm."
+  },
+  "be8c17d4": {
+    "key": "BE8C17D4",
+    "text": "Más poder de ataque"
+  },
+  "bf44c20b": {
+    "key": "BF44C20B",
+    "text": "Más vitalidad"
+  },
+  "c11fdfbd": {
+    "key": "C11FDFBD",
+    "text": "Más prob. de aturdir"
+  },
+  "c1360291": {
+    "key": "C1360291",
+    "text": "Más poder de ataque"
+  },
+  "c265b03b": {
+    "key": "C265B03B",
+    "text": "Más vitalidad"
+  },
+  "c2d708c1": {
+    "key": "C2D708C1",
+    "text": "Más poder de ataque"
+  },
+  "c40a90df": {
+    "key": "C40A90DF",
+    "text": "Más límite de daño de habilidades"
+  },
+  "c4925bd7": {
+    "key": "C4925BD7",
+    "text": "Más poder de ataque"
+  },
+  "c4b86ed7": {
+    "key": "C4B86ED7",
+    "text": "Más prob. de crítico"
+  },
+  "c52d2245": {
+    "key": "C52D2245",
+    "text": "Más vitalidad"
+  },
+  "c5d68c62": {
+    "key": "C5D68C62",
+    "text": "Más poder de ataque"
+  },
+  "c680087d": {
+    "key": "C680087D",
+    "text": "Más prob. de crítico"
+  },
+  "c6bdc7a6": {
+    "key": "C6BDC7A6",
+    "text": "Más poder de ataque"
+  },
+  "c7e54acc": {
+    "key": "C7E54ACC",
+    "text": "Más límite de daño de habilidades"
+  },
+  "c96005f7": {
+    "key": "C96005F7",
+    "text": "Más prob. de crítico"
+  },
+  "cac0beb6": {
+    "key": "CAC0BEB6",
+    "text": "Más límite de daño de habilidades"
+  },
+  "cb43ff8e": {
+    "key": "CB43FF8E",
+    "text": "Más poder de ataque"
+  },
+  "cb63be55": {
+    "key": "CB63BE55",
+    "text": "Más poder de ataque"
+  },
+  "cb6bb434": {
+    "key": "CB6BB434",
+    "text": "Más poder de ataque"
+  },
+  "cbc6b841": {
+    "key": "CBC6B841",
+    "text": "Más límite de daño de arcanos"
+  },
+  "cc8a39ef": {
+    "key": "CC8A39EF",
+    "text": "Más prob. de crítico"
+  },
+  "ccef4492": {
+    "key": "CCEF4492",
+    "text": "Más poder de ataque"
+  },
+  "cd5b5b8f": {
+    "key": "CD5B5B8F",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "cd5d6315": {
+    "key": "CD5D6315",
+    "text": "Más poder de ataque"
+  },
+  "cd6542f5": {
+    "key": "CD6542F5",
+    "text": "Más daño de arcanos"
+  },
+  "ce775676": {
+    "key": "CE775676",
+    "text": "Más límite de daño de habilidades"
+  },
+  "ceb0dbd2": {
+    "key": "CEB0DBD2",
+    "text": "Más prob. de crítico"
+  },
+  "cf24e1a2": {
+    "key": "CF24E1A2",
+    "text": "Más vitalidad"
+  },
+  "cf6b267a": {
+    "key": "CF6B267A",
+    "text": "Más poder de ataque"
+  },
+  "cfa862bd": {
+    "key": "CFA862BD",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "d4c00baf": {
+    "key": "D4C00BAF",
+    "text": "Más límite de daño de habilidades"
+  },
+  "d5169339": {
+    "key": "D5169339",
+    "text": "Más prob. de aturdir"
+  },
+  "d51958d1": {
+    "key": "D51958D1",
+    "text": "Más vitalidad"
+  },
+  "d63dd12b": {
+    "key": "D63DD12B",
+    "text": "Más prob. de aturdir"
+  },
+  "d83326ce": {
+    "key": "D83326CE",
+    "text": "Más prob. de crítico"
+  },
+  "da546dfe": {
+    "key": "DA546DFE",
+    "text": "Más poder de ataque"
+  },
+  "dcbd8423": {
+    "key": "DCBD8423",
+    "text": "Más poder de ataque"
+  },
+  "ddc29837": {
+    "key": "DDC29837",
+    "text": "Más poder de ataque"
+  },
+  "de3f845b": {
+    "key": "DE3F845B",
+    "text": "Más límite de daño de arcanos"
+  },
+  "de6a367a": {
+    "key": "DE6A367A",
+    "text": "Más poder de ataque"
+  },
+  "df2cab83": {
+    "key": "DF2CAB83",
+    "text": "Más poder de ataque"
+  },
+  "df2eef09": {
+    "key": "DF2EEF09",
+    "text": "Más poder de ataque"
+  },
+  "dfb00115": {
+    "key": "DFB00115",
+    "text": "Más vitalidad"
+  },
+  "e056ba80": {
+    "key": "E056BA80",
+    "text": "Más poder de ataque"
+  },
+  "e14a5507": {
+    "key": "E14A5507",
+    "text": "Más daño de arcanos"
+  },
+  "e16a1d0d": {
+    "key": "E16A1D0D",
+    "text": "Más límite daño ataques norm."
+  },
+  "e50ea3d0": {
+    "key": "E50EA3D0",
+    "text": "Más prob. de crítico"
+  },
+  "e57f6d44": {
+    "key": "E57F6D44",
+    "text": "Más daño de arcanos"
+  },
+  "e5d1f9e1": {
+    "key": "E5D1F9E1",
+    "text": "Más límite de daño de arcanos"
+  },
+  "e742cce0": {
+    "key": "E742CCE0",
+    "text": "Más límite de daño de habilidades"
+  },
+  "e7710898": {
+    "key": "E7710898",
+    "text": "Más poder de ataque"
+  },
+  "ea14fa65": {
+    "key": "EA14FA65",
+    "text": "Más límite de daño de arcanos"
+  },
+  "ea5eaafc": {
+    "key": "EA5EAAFC",
+    "text": "Más vitalidad"
+  },
+  "ea99fa76": {
+    "key": "EA99FA76",
+    "text": "Más poder de ataque"
+  },
+  "ec3b22ff": {
+    "key": "EC3B22FF",
+    "text": "Más límite de curación"
+  },
+  "ee6100ca": {
+    "key": "EE6100CA",
+    "text": "Más vitalidad"
+  },
+  "eefb4ade": {
+    "key": "EEFB4ADE",
+    "text": "Más poder de ataque"
+  },
+  "f004e9f2": {
+    "key": "F004E9F2",
+    "text": "Más vitalidad"
+  },
+  "f203bb15": {
+    "key": "F203BB15",
+    "text": "Más poder de ataque"
+  },
+  "f2111b99": {
+    "key": "F2111B99",
+    "text": "Más poder de ataque"
+  },
+  "f3883729": {
+    "key": "F3883729",
+    "text": "Más límite daño ataques norm."
+  },
+  "f3ee9a98": {
+    "key": "F3EE9A98",
+    "text": "Más límite de daño de arcanos"
+  },
+  "f5514f81": {
+    "key": "F5514F81",
+    "text": "Más vitalidad"
+  },
+  "f581c321": {
+    "key": "F581C321",
+    "text": "Más daño de arcanos"
+  },
+  "f5c314a0": {
+    "key": "F5C314A0",
+    "text": "Más prob. de aturdir"
+  },
+  "f80e3310": {
+    "key": "F80E3310",
+    "text": "Más vitalidad"
+  },
+  "f87deeb9": {
+    "key": "F87DEEB9",
+    "text": "Más daño de habilidades"
+  },
+  "f913d839": {
+    "key": "F913D839",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "fa230938": {
+    "key": "FA230938",
+    "text": "Más poder de ataque"
+  },
+  "fa9bcf64": {
+    "key": "FA9BCF64",
+    "text": "Más poder de ataque"
+  },
+  "fb276afd": {
+    "key": "FB276AFD",
+    "text": "Más poder de ataque"
+  },
+  "fb4819d9": {
+    "key": "FB4819D9",
+    "text": "Más límite de daño de arcanos"
+  },
+  "fc0a10f6": {
+    "key": "FC0A10F6",
+    "text": "Más límite daño ataques norm."
+  },
+  "fc942f30": {
+    "key": "FC942F30",
+    "text": "Más daño de ráfagas en cadena"
+  },
+  "fe59f993": {
+    "key": "FE59F993",
+    "text": "Más daño de habilidades"
+  },
+  "fe71865d": {
+    "key": "FE71865D",
+    "text": "Más poder de ataque"
+  }
+}

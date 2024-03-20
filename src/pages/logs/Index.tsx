@@ -87,7 +87,7 @@ export const IndexPage = () => {
     if (log.version == 0) {
       names = log.name
         .split(", ")
-        .map((name) => t(`characters.${name}`))
+        .map((name) => t(`characters:${name}`, `ui:characters.${name}`))
         .join(", ");
     } else {
       names = [
@@ -98,8 +98,8 @@ export const IndexPage = () => {
       ]
         .filter((player) => player.name || player.type)
         .map((player) => {
-          if (!player.name) return t(`characters.${player.type}`);
-          return `${player.name} (${t(`characters.${player.type}`)})`;
+          if (!player.name) return t(`characters:${player.type}`, `ui:characters.${player.type}`);
+          return `${player.name} (${t(`characters:${player.type}`, `ui:characters.${player.type}`)})`;
         })
         .join(", ");
     }

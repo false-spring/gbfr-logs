@@ -131,7 +131,7 @@ export const translatedPlayerName = (
   player: ComputedPlayerState,
   show_display_names: boolean = true
 ) => {
-  const characterType = t(`characters.${player.characterType}`);
+  const characterType = t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`);
   const displayName = `${partySlotData?.displayName} (${characterType})`;
   const name = show_display_names && partySlotData?.displayName ? displayName : characterType;
 
@@ -314,7 +314,7 @@ export const translateTraitId = (id: number | null): string => {
   if (id === EMPTY_ID) return "";
 
   const hash = id.toString(16).padStart(8, "0");
-  return t([`traits.${hash}`, "ui.unknown"], { id: hash });
+  return t([`traits:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
 export const translateSigilId = (id: number | null): string => {
@@ -322,7 +322,7 @@ export const translateSigilId = (id: number | null): string => {
   if (id === EMPTY_ID) return "";
 
   const hash = id.toString(16).padStart(8, "0");
-  return t([`sigils.${hash}`, "ui.unknown"], { id: hash });
+  return t([`sigils:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
 export const toHash = (num: number): string => num.toString(16);

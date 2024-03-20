@@ -344,7 +344,8 @@ export const ViewPage = () => {
                     return (
                       <Table.Td key={player.actorIndex} flex={1}>
                         <Text fw={700} size="xl">
-                          {player.displayName} ({t(`characters.${player.characterType}`)})
+                          {player.displayName} (
+                          {t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`)})
                         </Text>
                       </Table.Td>
                     );
