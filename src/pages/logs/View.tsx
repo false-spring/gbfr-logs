@@ -188,7 +188,7 @@ export const ViewPage = () => {
       return {
         rawValue: target,
         value: target.Unknown.toString(),
-        label: t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
+        label: t([`enemies:${hash}.text`, `enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
       };
     }
 

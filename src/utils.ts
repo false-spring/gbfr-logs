@@ -297,7 +297,7 @@ export const translateEnemyType = (type: EnemyType | null): string => {
   if (typeof type == "object" && Object.hasOwn(type, "Unknown")) {
     const hash = type.Unknown.toString(16).padStart(8, "0");
 
-    return t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash });
+    return t([`enemies:${hash}.text`, `enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash });
   } else {
     return t([`enemies.${type}`, "enemies.unknown-type"]);
   }
