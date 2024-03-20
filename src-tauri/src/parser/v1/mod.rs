@@ -15,6 +15,125 @@ use super::{
 /// Equippable sigil for a character
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
+struct WeaponInfo {
+    /// Weapon ID Hash
+    pub weapon_id: u32,
+    /// How many uncap stars the weapon has
+    pub star_level: u32,
+    /// Number of plus marks on the weapon
+    pub plus_marks: u32,
+    /// Weapon's awakening level
+    pub awakening_level: u32,
+    /// First trait ID
+    pub trait_1_id: u32,
+    /// First trait level
+    pub trait_1_level: u32,
+    /// Second trait ID
+    pub trait_2_id: u32,
+    /// Second trait level
+    pub trait_2_level: u32,
+    /// Third trait ID
+    pub trait_3_id: u32,
+    /// Third trait level
+    pub trait_3_level: u32,
+    /// Wrightstone used on the weapon
+    pub wrightstone_id: u32,
+    /// Current weapon level
+    pub weapon_level: u32,
+    /// Weapon's HP Stats (before plus marks)
+    pub weapon_hp: u32,
+    /// Weapon's Attack Stats (before plus marks)
+    pub weapon_attack: u32,
+}
+
+impl From<protocol::WeaponInfo> for WeaponInfo {
+    fn from(info: protocol::WeaponInfo) -> Self {
+        Self {
+            weapon_id: info.weapon_id,
+            star_level: info.star_level,
+            plus_marks: info.plus_marks,
+            awakening_level: info.awakening_level,
+            trait_1_id: info.trait_1_id,
+            trait_1_level: info.trait_1_level,
+            trait_2_id: info.trait_2_id,
+            trait_2_level: info.trait_2_level,
+            trait_3_id: info.trait_3_id,
+            trait_3_level: info.trait_3_level,
+            wrightstone_id: info.wrightstone_id,
+            weapon_level: info.weapon_level,
+            weapon_hp: info.weapon_hp,
+            weapon_attack: info.weapon_attack,
+        }
+    }
+}
+
+/// Overmastery, also known as `limit_bonus`.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Overmastery {
+    /// Overmastery ID
+    pub id: u32,
+    /// Flags
+    pub flags: u32,
+    /// Value
+    pub value: f32,
+}
+
+impl From<protocol::Overmastery> for Overmastery {
+    fn from(info: protocol::Overmastery) -> Self {
+        Self {
+            id: info.id,
+            flags: info.flags,
+            value: info.value,
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct OvermasteryInfo {
+    pub overmasteries: Vec<Overmastery>,
+}
+
+impl From<protocol::OvermasteryInfo> for OvermasteryInfo {
+    fn from(info: protocol::OvermasteryInfo) -> Self {
+        Self {
+            overmasteries: info
+                .overmasteries
+                .into_iter()
+                .map(Overmastery::from)
+                .collect(),
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct PlayerStats {
+    pub level: u32,
+    pub total_hp: u32,
+    pub total_attack: u32,
+    pub stun_power: f32,
+    pub critical_rate: f32,
+    pub total_power: u32,
+}
+
+impl From<protocol::PlayerStats> for PlayerStats {
+    fn from(stats: protocol::PlayerStats) -> Self {
+        Self {
+            level: stats.level,
+            total_hp: stats.total_hp,
+            total_attack: stats.total_attack,
+            stun_power: stats.stun_power,
+            critical_rate: stats.critical_rate,
+            total_power: stats.total_power,
+        }
+    }
+}
+
+/// Equippable sigil for a character
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
 struct Sigil {
     /// ID of the first trait in this sigil
     pub first_trait_id: u32,
@@ -52,6 +171,12 @@ pub struct PlayerData {
     sigils: Vec<Sigil>,
     /// Whether this player was an online player or not
     is_online: bool,
+    /// Weapon info for this player
+    weapon_info: Option<WeaponInfo>,
+    /// Overmastery info for this player
+    overmastery_info: Option<OvermasteryInfo>,
+    /// Player stats for this player
+    player_stats: Option<PlayerStats>,
 }
 
 /// Derived stat breakdown of a particular skill
@@ -185,7 +310,7 @@ pub struct Encounter {
     pub quest_id: Option<u32>,
     pub quest_timer: Option<u32>,
     #[serde(default)]
-    quest_completed: bool,
+    pub quest_completed: bool,
     pub event_log: Vec<(i64, DamageEvent)>,
 }
 
@@ -523,6 +648,9 @@ impl Parser {
             is_online: event.is_online,
             character_type,
             sigils,
+            weapon_info: Some(event.weapon_info.into()),
+            overmastery_info: Some(event.overmastery_info.into()),
+            player_stats: Some(event.player_stats.into()),
         };
 
         // Insert into encounter player data array, using actor_index.
@@ -633,8 +761,9 @@ impl Parser {
                         p4_name,
                         p4_type,
                         quest_id,
-                        quest_elapsed_time
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
+                        quest_elapsed_time,
+                        quest_completed
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
                 params![
                     "",
                     start_datetime.timestamp_millis(),
@@ -652,6 +781,7 @@ impl Parser {
                     p4.map(|p| p.character_type.to_string()),
                     self.encounter.quest_id,
                     self.encounter.quest_timer,
+                    self.encounter.quest_completed
                 ],
             )?;
         }

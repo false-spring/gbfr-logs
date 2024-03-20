@@ -50,6 +50,7 @@ interface Log {
   p4Type: string | null;
   questId: number | null;
   questElapsedTime: number | null;
+  questCompleted: boolean;
 }
 
 interface LogIndexState {
@@ -119,6 +120,7 @@ export interface EncounterStateResponse {
   players: PlayerData[];
   questId: number | null;
   questTimer: number | null;
+  questCompleted: boolean | null;
 }
 
 export const useEncounterStore = create<EncounterStore>((set) => ({
