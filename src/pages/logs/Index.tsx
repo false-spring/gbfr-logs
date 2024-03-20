@@ -127,7 +127,7 @@ export const IndexPage = () => {
         <Table.Td>
           <Text size="xs">{translateQuestId(log.questId)}</Text>
         </Table.Td>
-        <Table.Td>{log.questId && (log.questCompleted ? "✓" : "X")}</Table.Td>
+        <Table.Td>{log.questId && log.questCompleted !== null && (log.questCompleted ? "✓" : "X")}</Table.Td>
         <Table.Td>
           <Text size="xs">{primaryTarget}</Text>
         </Table.Td>

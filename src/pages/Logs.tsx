@@ -108,6 +108,7 @@ interface EncounterStore {
   players: PlayerData[];
   questId: number | null;
   questTimer: number | null;
+  questCompleted: boolean;
   setSelectedTargets: (targets: EnemyType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
 }
@@ -132,6 +133,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   players: [],
   questId: null,
   questTimer: null,
+  questCompleted: false,
   setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
   loadFromResponse: (response: EncounterStateResponse) => {
     const filteredPlayers = response.players.filter((player) => player !== null);
@@ -144,6 +146,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
       players: filteredPlayers,
       questId: response.questId,
       questTimer: response.questTimer,
+      questCompleted: response.questCompleted || false,
     });
   },
 }));
