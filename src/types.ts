@@ -126,6 +126,42 @@ export type Sigil = {
   notificationEnum: number;
 };
 
+export type WeaponInfo = {
+  weaponId: number;
+  starLevel: number;
+  plusMarks: number;
+  awakeningLevel: number;
+  trait1Id: number;
+  trait1Level: number;
+  trait2Id: number;
+  trait2Level: number;
+  trait3Id: number;
+  trait3Level: number;
+  wrightstoneId: number;
+  weaponLevel: number;
+  weaponHp: number;
+  weaponAttack: number;
+};
+
+export type Overmastery = {
+  id: number;
+  flags: number;
+  value: number;
+};
+
+export type OvermasteryInfo = {
+  overmasterys: Overmastery[];
+};
+
+export type PlayerStats = {
+  level: number;
+  totalHp: number;
+  totalAttack: number;
+  stunPower: number;
+  criticalRate: number;
+  totalPower: number;
+};
+
 export type PlayerData = {
   actorIndex: number;
   displayName: string;
@@ -133,6 +169,9 @@ export type PlayerData = {
   characterType: CharacterType;
   sigils: Sigil[];
   isOnline: boolean;
+  weaponInfo: WeaponInfo | null;
+  overmasteryInfo: OvermasteryInfo | null;
+  playerStats: PlayerStats | null;
 };
 
 export type PartyUpdateEvent = {
