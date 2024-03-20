@@ -144,6 +144,8 @@ struct LogEntry {
     quest_id: Option<u32>,
     /// Quest elapsed time
     quest_elapsed_time: Option<u32>,
+    /// Was quest completed?
+    quest_completed: Option<bool>,
 }
 
 #[tauri::command]
@@ -171,7 +173,8 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
             p4_name,
             p4_type,
             quest_id,
-            quest_elapsed_time
+            quest_elapsed_time,
+            quest_completed
          FROM logs ORDER BY time DESC LIMIT ? OFFSET ?"#,
         )
         .map_err(|e| e.to_string())?;
@@ -195,6 +198,7 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
                 p4_type: row.get(13)?,
                 quest_id: row.get(14)?,
                 quest_elapsed_time: row.get(15)?,
+                quest_completed: row.get(16)?,
             })
         })
         .map_err(|e| e.to_string())?
@@ -222,6 +226,7 @@ struct EncounterStateResponse {
     players: [Option<PlayerData>; 4],
     quest_id: Option<u32>,
     quest_timer: Option<u32>,
+    quest_completed: bool,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     chart_len: usize,
@@ -284,6 +289,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         players: parser.encounter.player_data,
         quest_id: parser.encounter.quest_id,
         quest_timer: parser.encounter.quest_timer,
+        quest_completed: parser.encounter.quest_completed,
         dps_chart: player_dps,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         targets,

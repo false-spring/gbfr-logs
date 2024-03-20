@@ -33,6 +33,9 @@ static_detour! {
 }
 
 static QUEST_STATE_PTR: AtomicPtr<QuestState> = AtomicPtr::new(ptr::null_mut());
+static PLAYER_DATA_OFFSET: AtomicU32 = AtomicU32::new(0);
+static WEAPON_OFFSET: AtomicU32 = AtomicU32::new(0);
+static OVERMASTERY_OFFSET: AtomicU32 = AtomicU32::new(0);
 static SIGIL_OFFSET: AtomicU32 = AtomicU32::new(0);
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
@@ -391,6 +394,74 @@ struct SigilList {
     party_index: u32,         //0x0230
 }
 
+#[derive(Debug)]
+#[repr(C)]
+struct PlayerStats {
+    level: u32,
+    total_health: u32,
+    total_attack: u32,
+    unk_0c: u32,
+    stun_power: f32,
+    critical_rate: f32,
+    total_power: u32,
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct WeaponInfo {
+    unk_00: u32,
+    /// Weapon ID Hash
+    weapon_id: u32,
+    weapon_ap_tree: u32,
+    unk_0c: u32,
+    weapon_exp: u32,
+    /// How many uncap stars the weapon has
+    star_level: u32,
+    /// Number of plus marks on the weapon
+    plus_marks: u32,
+    /// Weapon's awakening level
+    awakening_level: u32,
+    /// First trait ID
+    trait_1_id: u32,
+    /// First trait level
+    trait_1_level: u32,
+    /// Second trait ID
+    trait_2_id: u32,
+    /// Second trait level
+    trait_2_level: u32,
+    /// Third trait ID
+    trait_3_id: u32,
+    /// Third trait level
+    trait_3_level: u32,
+    /// Wrightstone used on the weapon
+    wrightstone_id: u32,
+    unk_3c: u32,
+    /// Current weapon level
+    weapon_level: u32,
+    /// Weapon's HP Stats (before plus marks)
+    weapon_hp: u32,
+    /// Weapon's Attack Stats (before plus marks)
+    weapon_attack: u32,
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct Overmastery {
+    /// Overmastery Stats ID type
+    id: u32,
+    /// Flags
+    flags: u32,
+    unk_08: u32,
+    /// Value for the overmastery
+    value: f32,
+}
+
+#[derive(Debug)]
+#[repr(C)]
+struct Overmasteries {
+    stats: [Overmastery; 4],
+}
+
 fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
     #[cfg(feature = "console")]
     println!("on load player: {:p}", a1);
@@ -399,13 +470,36 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
 
     let player_idx = unsafe { a1.byte_add(0x170).read() } as u32;
 
+    let player_offset = PLAYER_DATA_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
+    let weapon_offset = WEAPON_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
+    let overmastery_offset = OVERMASTERY_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
     let sigil_offset = SIGIL_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
+
+    let raw_player_stats =
+        std::ptr::NonNull::new(unsafe { a1.byte_add(player_offset as usize) } as *mut PlayerStats);
+
+    let raw_weapon_info =
+        std::ptr::NonNull::new(unsafe { a1.byte_add(weapon_offset as usize) } as *mut WeaponInfo);
+
+    let raw_overmastery_info =
+        std::ptr::NonNull::new(
+            unsafe { a1.byte_add(overmastery_offset as usize) } as *mut Overmasteries
+        );
+
     let sigil_list = std::ptr::NonNull::new(
         unsafe { a1.byte_add(sigil_offset as usize).read() } as *mut SigilList
     );
 
-    if let Some(sigil_list) = sigil_list {
+    if let (Some(raw_player_stats), Some(weapon_info), Some(overmastery_info), Some(sigil_list)) = (
+        raw_player_stats,
+        raw_weapon_info,
+        raw_overmastery_info,
+        sigil_list,
+    ) {
         let character_type = actor_type_id(a1);
+        let player_stats = unsafe { raw_player_stats.as_ref() };
+        let weapon_info = unsafe { weapon_info.as_ref() };
+        let overmastery_info = unsafe { overmastery_info.as_ref() };
         let sigil_list = unsafe { sigil_list.as_ref() };
 
         if (sigil_list.party_index as u8) == 0xFF && sigil_list.is_online == 0 {
@@ -436,6 +530,35 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
         let display_name =
             VBuffer(std::ptr::addr_of!(sigil_list.display_name) as *const usize).raw();
 
+        let weapon_info = protocol::WeaponInfo {
+            weapon_id: weapon_info.weapon_id,
+            star_level: weapon_info.star_level,
+            plus_marks: weapon_info.plus_marks,
+            awakening_level: weapon_info.awakening_level,
+            trait_1_id: weapon_info.trait_1_id,
+            trait_1_level: weapon_info.trait_1_level,
+            trait_2_id: weapon_info.trait_2_id,
+            trait_2_level: weapon_info.trait_2_level,
+            trait_3_id: weapon_info.trait_3_id,
+            trait_3_level: weapon_info.trait_3_level,
+            wrightstone_id: weapon_info.wrightstone_id,
+            weapon_level: weapon_info.weapon_level,
+            weapon_hp: weapon_info.weapon_hp,
+            weapon_attack: weapon_info.weapon_attack,
+        };
+
+        let overmastery_info = protocol::OvermasteryInfo {
+            overmasteries: overmastery_info
+                .stats
+                .iter()
+                .map(|overmastery| protocol::Overmastery {
+                    id: overmastery.id,
+                    flags: overmastery.flags,
+                    value: overmastery.value,
+                })
+                .collect(),
+        };
+
         let payload = Message::PlayerLoadEvent(protocol::PlayerLoadEvent {
             sigils,
             character_name,
@@ -443,7 +566,17 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
             actor_index: player_idx,
             is_online: sigil_list.is_online != 0,
             party_index: sigil_list.party_index as u8,
+            player_stats: protocol::PlayerStats {
+                level: player_stats.level,
+                total_hp: player_stats.total_health,
+                total_attack: player_stats.total_attack,
+                stun_power: player_stats.stun_power,
+                critical_rate: player_stats.critical_rate,
+                total_power: player_stats.total_power,
+            },
             character_type,
+            weapon_info,
+            overmastery_info,
         });
 
         #[cfg(feature = "console")]
@@ -458,28 +591,53 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
 pub fn init(tx: event::Tx) -> Result<()> {
     let process = Process::with_name("granblue_fantasy_relink.exe")?;
 
-    let sigil_offset_1 = search_slice::<u32>(
+    let player_data_offset = search_slice::<u32>(
         &process,
         "3d b0 e0 7a 88 0f ? ? ? ? ? b8 b0 e0 7a 88 48 8d 8e '",
     )
-    .context("Could not find sigil offset 1")?;
+    .context("Could not find player_data_offset")?;
 
-    let sigil_offset_2 = search_slice::<u32>(
+    #[cfg(feature = "console")]
+    println!("player_data_offset: {:x}", player_data_offset);
+
+    PLAYER_DATA_OFFSET.store(player_data_offset, std::sync::atomic::Ordering::Relaxed);
+
+    let sigil_offset = search_slice::<u32>(
         &process,
         "8b 01 eb 02 31 c0 49 8b 8c 24 ' ? ? ? ? 89 81 ? ? ? ?",
     )
-    .context("Could not find sigil offset 2")?;
+    .context("Could not find sigil offset")?;
 
     #[cfg(feature = "console")]
-    println!(
-        "sigil offsets: {:x} + {:x} = {:x}",
-        sigil_offset_1,
-        sigil_offset_2,
-        sigil_offset_1 + sigil_offset_2
-    );
+    println!("sigil offsets: {:x}", sigil_offset);
 
     SIGIL_OFFSET.store(
-        sigil_offset_1 + sigil_offset_2,
+        player_data_offset + sigil_offset,
+        std::sync::atomic::Ordering::Relaxed,
+    );
+
+    let weapon_offset = search_slice::<u8>(&process, "48 ? ? ' ? 48 ? ? ? 48 ? ? e8 ? ? ? ? 31 ?")
+        .context("Could not find weapon offset")?;
+
+    #[cfg(feature = "console")]
+    println!("weapon_offset: {:x}", weapon_offset);
+
+    WEAPON_OFFSET.store(
+        player_data_offset + weapon_offset as u32,
+        std::sync::atomic::Ordering::Relaxed,
+    );
+
+    let overmastery_offset = search_slice::<u32>(
+        &process,
+        "49 8D 8C 24 ' ? ? ? ? 48 8D 93 ? ? ? ? E8 ? ? ? ?",
+    )
+    .context("Could not find overmastery offset")?;
+
+    #[cfg(feature = "console")]
+    println!("overmastery_offset: {:x}", overmastery_offset);
+
+    OVERMASTERY_OFFSET.store(
+        player_data_offset + overmastery_offset,
         std::sync::atomic::Ordering::Relaxed,
     );
 

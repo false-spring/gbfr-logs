@@ -82,6 +82,7 @@ export const ViewPage = () => {
     selectedTargets,
     questId,
     questTimer,
+    questCompleted,
     playerData,
     setSelectedTargets,
     loadFromResponse,
@@ -94,6 +95,7 @@ export const ViewPage = () => {
     playerData: state.players,
     questId: state.questId,
     questTimer: state.questTimer,
+    questCompleted: state.questCompleted,
     setSelectedTargets: state.setSelectedTargets,
     loadFromResponse: state.loadFromResponse,
   }));
@@ -227,24 +229,59 @@ export const ViewPage = () => {
 
       <Box>
         {questId && (
-          <Text size="sm">
-            {t("ui.logs.quest-name")}: {translateQuestId(questId)} ({toHash(questId)})
-          </Text>
+          <Box display="flex">
+            <Text size="sm" fw={800}>
+              {t("ui.logs.quest-name")}:
+            </Text>
+            <Text size="sm" ml={4}>
+              {translateQuestId(questId)} ({toHash(questId)}){" "}
+            </Text>
+          </Box>
         )}
-        <Text size="sm">
-          {t("ui.logs.date")}: {epochToLocalTime(encounter.startTime)}
-        </Text>
-        <Text size="sm">
-          {t("ui.logs.duration")}: {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
-        </Text>
+        {questId && (
+          <Box display="flex">
+            <Text size="sm" fw={800}>
+              {t("ui.logs.quest-status")}:
+            </Text>
+            <Text size="sm" fs="italic" ml={4}>
+              {questCompleted ? "✅" : "❌"}
+            </Text>
+          </Box>
+        )}
+        <Box display="flex">
+          <Text size="sm" fw={800}>
+            {t("ui.logs.date")}:
+          </Text>
+          <Text size="sm" fs="italic" ml={4}>
+            {epochToLocalTime(encounter.startTime)}
+          </Text>
+        </Box>
+        <Box display="flex">
+          <Text size="sm" fw={800}>
+            {t("ui.logs.duration")}:
+          </Text>
+          <Text size="sm" fs="italic" ml={4}>
+            {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
+          </Text>
+        </Box>
         {questTimer && (
-          <Text size="sm">
-            {t("ui.logs.quest-elapsed-time")}: {millisecondsToElapsedFormat(questTimer * 1000)}
-          </Text>
+          <Box display="flex">
+            <Text size="sm" fw={800}>
+              {t("ui.logs.quest-elapsed-time")}:
+            </Text>
+            <Text size="sm" fs="italic" ml={4}>
+              {millisecondsToElapsedFormat(questTimer * 1000)}
+            </Text>
+          </Box>
         )}
-        <Text size="sm">
-          {t("ui.logs.total-damage")}: <NumberFormatter thousandSeparator value={encounter.totalDamage} />
-        </Text>
+        <Box display="flex">
+          <Text size="sm" fw={800}>
+            {t("ui.logs.total-damage")}:
+          </Text>
+          <Text size="sm" fs="italic" ml={4}>
+            <NumberFormatter thousandSeparator value={encounter.totalDamage} />
+          </Text>
+        </Box>
       </Box>
 
       <Divider my="sm" />
