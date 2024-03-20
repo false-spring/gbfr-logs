@@ -1,0 +1,1078 @@
+{
+  "000eb8f5": {
+    "key": "ITEM_31_0090",
+    "text": "Trança do Chefe"
+  },
+  "01eaa064": {
+    "key": "ITEM_16_0001",
+    "text": "Pena de Semideus"
+  },
+  "035c056d": {
+    "key": "ITEM_28_0010",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "050c5228": {
+    "key": "ITEM_01_0033",
+    "text": "Areia Eletromagnética"
+  },
+  "05d2cf79": {
+    "key": "ITEM_22_0020",
+    "text": "Escama de Dragão Vermelho"
+  },
+  "0657f403": {
+    "key": "ITEM_35_1000",
+    "text": "Pontos de maestria"
+  },
+  "0692327c": {
+    "key": "ITEM_31_0011",
+    "text": "Braçadeira Lúgubre"
+  },
+  "09370a3a": {
+    "key": "ITEM_21_0000",
+    "text": "Vale-adereços"
+  },
+  "09c7a73e": {
+    "key": "ITEM_01_0053",
+    "text": "Cabo da Espadaflor"
+  },
+  "09f9339e": {
+    "key": "ITEM_32_0056",
+    "text": "Chifre Abissal"
+  },
+  "0b8d0865": {
+    "key": "ITEM_27_9999",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "0f479fa7": {
+    "key": "ITEM_16_0000",
+    "text": "Urna de Heliotrópio"
+  },
+  "0f6b4a1f": {
+    "key": "ITEM_09_0012",
+    "text": "Ponta de Lança Lobos Prateados"
+  },
+  "11722a61": {
+    "key": "ITEM_18_0001",
+    "text": "Lágrimas do Apocalipse"
+  },
+  "11a0f065": {
+    "key": "ITEM_16_0010",
+    "text": "Fibra Protocolar"
+  },
+  "11a1b6b3": {
+    "key": "ITEM_25_0011",
+    "text": "Pedra-artífice do Medo"
+  },
+  "131a4636": {
+    "key": "ITEM_50_0008",
+    "text": "Casco de Efígie Iridescente"
+  },
+  "13fcf405": {
+    "key": "ITEM_05_0001",
+    "text": "Anima Ômega de Excavallion"
+  },
+  "141ef3a7": {
+    "key": "ITEM_02_0001",
+    "text": "Orbe de Vento"
+  },
+  "147ef70a": {
+    "key": "ITEM_34_3000",
+    "text": "Lumicristal"
+  },
+  "1544fb8a": {
+    "key": "ITEM_27_1001",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "15c3f606": {
+    "key": "ITEM_02_0052",
+    "text": "Orbe Brilhante"
+  },
+  "173851d4": {
+    "key": "ITEM_04_0002",
+    "text": "Crina Sequestrada"
+  },
+  "176436f3": {
+    "key": "ITEM_28_1002",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "181381e5": {
+    "key": "ITEM_16_0004",
+    "text": "Grilhão da Divindade"
+  },
+  "19b187d7": {
+    "key": "ITEM_28_0001",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "1a114b03": {
+    "key": "ITEM_04_0001",
+    "text": "Anima Ômega de Managarmr"
+  },
+  "1aa4382d": {
+    "key": "ITEM_02_0012",
+    "text": "Orbe de Gelo"
+  },
+  "1c67e865": {
+    "key": "ITEM_01_0011",
+    "text": "Hélice Quebrada"
+  },
+  "1cf9a666": {
+    "key": "ITEM_01_0022",
+    "text": "Flor Congelada"
+  },
+  "1da0a639": {
+    "key": "ITEM_32_0031",
+    "text": "Núcleo Ukhar"
+  },
+  "1e133aac": {
+    "key": "ITEM_18_0000",
+    "text": "Resíduo Sombrio"
+  },
+  "20612b0a": {
+    "key": "ITEM_31_0020",
+    "text": "Osso do Purgatório"
+  },
+  "206c6ec1": {
+    "key": "ITEM_01_0030",
+    "text": "Cinza do Deserto"
+  },
+  "208fa9e4": {
+    "key": "ITEM_02_0041",
+    "text": "Orbe Sombrio"
+  },
+  "21b32140": {
+    "key": "ITEM_31_0042",
+    "text": "Chifre da Besta da Terra"
+  },
+  "21dad920": {
+    "key": "ITEM_26_9999",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "23c59c51": {
+    "key": "ITEM_31_0075",
+    "text": "Pontas de Julgamento"
+  },
+  "23f2e797": {
+    "key": "ITEM_14_0013",
+    "text": "Prisma Arco-íris"
+  },
+  "24725515": {
+    "key": "ITEM_15_0003",
+    "text": "Refínio Excepcional"
+  },
+  "2492ecc9": {
+    "key": "ITEM_27_1002",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "24df54ee": {
+    "key": "ITEM_10_0003",
+    "text": "Cristal da Coragem (G)"
+  },
+  "26fa7da3": {
+    "key": "ITEM_01_0042",
+    "text": "Pó Vermelhão"
+  },
+  "28592cb2": {
+    "key": "ITEM_02_0022",
+    "text": "Orbe Estrondoso"
+  },
+  "29a7eec9": {
+    "key": "ITEM_16_0011",
+    "text": "Circuito de Mana"
+  },
+  "29bba035": {
+    "key": "ITEM_50_0001",
+    "text": "Vara de Proteção contra Feras"
+  },
+  "2a2ea603": {
+    "key": "ITEM_25_0030",
+    "text": "Pedra-artífice do Medo"
+  },
+  "2c8fa06c": {
+    "key": "ITEM_25_9999",
+    "text": "Pedra-artífice do Medo"
+  },
+  "2cdfa192": {
+    "key": "ITEM_26_0012",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "2d007309": {
+    "key": "ITEM_32_0070",
+    "text": "Chifre de Bahamut"
+  },
+  "2d510205": {
+    "key": "ITEM_01_0021",
+    "text": "Travesseiro de Neve"
+  },
+  "2e94d39a": {
+    "key": "ITEM_14_0022",
+    "text": "Prova de Lenda"
+  },
+  "3031e3e4": {
+    "key": "ITEM_01_0061",
+    "text": "Líquido Sombrio"
+  },
+  "3048daa9": {
+    "key": "ITEM_31_0092",
+    "text": "Espada Selvagem Quebrada"
+  },
+  "30e31afe": {
+    "key": "ITEM_34_2000",
+    "text": "Lumipedra (G)"
+  },
+  "33e663d0": {
+    "key": "ITEM_26_0010",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "354d4683": {
+    "key": "ITEM_31_0060",
+    "text": "Garra da Besta das Chamas"
+  },
+  "35c7fba0": {
+    "key": "ITEM_23_0000",
+    "text": "Cartão de Tripulação"
+  },
+  "38d2ecd0": {
+    "key": "ITEM_02_0032",
+    "text": "Orbe do Inferno"
+  },
+  "3916849c": {
+    "key": "ITEM_13_0000",
+    "text": "Poção Verde"
+  },
+  "3e0269bd": {
+    "key": "ITEM_26_0030",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "3f8f4efd": {
+    "key": "ITEM_16_0002",
+    "text": "Urna do Terror"
+  },
+  "41776dfd": {
+    "key": "ITEM_30_0000",
+    "text": "Munição de Miragem"
+  },
+  "41e92f0a": {
+    "key": "ITEM_16_0003",
+    "text": "Espinho da Realidade"
+  },
+  "4325ab79": {
+    "key": "ITEM_14_0011",
+    "text": "Prisma Defeituoso"
+  },
+  "434c567f": {
+    "key": "ITEM_07_0000",
+    "text": "Anima de Angra Mainyu"
+  },
+  "43915122": {
+    "key": "ITEM_08_0000",
+    "text": "Lingote Damasco"
+  },
+  "451f7d7a": {
+    "key": "ITEM_06_0000",
+    "text": "Anima de Vulkan Bolla"
+  },
+  "463abc2d": {
+    "key": "ITEM_28_0000",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "4ac30d94": {
+    "key": "ITEM_19_0003",
+    "text": "Curiosidade"
+  },
+  "4be41ec1": {
+    "key": "ITEM_26_1003",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "4c4caa77": {
+    "key": "ITEM_06_0002",
+    "text": "Cauda Temível"
+  },
+  "4c9be4de": {
+    "key": "ITEM_31_0062",
+    "text": "Chifre da Besta das Chamas"
+  },
+  "4d16fcab": {
+    "key": "ITEM_27_0020",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "4e3989b8": {
+    "key": "ITEM_25_0012",
+    "text": "Pedra-artífice do Medo"
+  },
+  "4f1e4c13": {
+    "key": "ITEM_03_0001",
+    "text": "Anima Ômega de Furycane"
+  },
+  "51355c28": {
+    "key": "ITEM_22_0031",
+    "text": "Orbe de Serpe de Gelo"
+  },
+  "514d7aa0": {
+    "key": "ITEM_01_0040",
+    "text": "Verme de Magma"
+  },
+  "52bb246c": {
+    "key": "ITEM_31_0041",
+    "text": "Placa da Besta da Terra"
+  },
+  "541d3800": {
+    "key": "ITEM_15_0001",
+    "text": "Refínio Padrão"
+  },
+  "54fc643a": {
+    "key": "ITEM_17_0000",
+    "text": "Núcleo de Nihilla de Furycane"
+  },
+  "552d70ed": {
+    "key": "ITEM_26_0000",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "559e221d": {
+    "key": "ITEM_26_1002",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "55d1b23f": {
+    "key": "ITEM_25_1003",
+    "text": "Pedra-artífice do Medo"
+  },
+  "5942c5fb": {
+    "key": "ITEM_70_0005",
+    "text": "Rebelde"
+  },
+  "5a5fa153": {
+    "key": "ITEM_32_0050",
+    "text": "Cornamenta Ancestral"
+  },
+  "5c07839a": {
+    "key": "ITEM_14_0032",
+    "text": "Emblema de Dalia de Ouro"
+  },
+  "5ceadfbc": {
+    "key": "ITEM_02_0002",
+    "text": "Orbe de Ciclone"
+  },
+  "5d7078cd": {
+    "key": "ITEM_14_0030",
+    "text": "Emblema de Dalia de Cobre"
+  },
+  "5e2d3d63": {
+    "key": "ITEM_07_0002",
+    "text": "Mão Calamitosa"
+  },
+  "6096c6bf": {
+    "key": "ITEM_16_0012",
+    "text": "Núcleo de Chronos"
+  },
+  "60fd93bd": {
+    "key": "ITEM_27_0030",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "6198f427": {
+    "key": "ITEM_19_0002",
+    "text": "Curiosidade"
+  },
+  "644536df": {
+    "key": "ITEM_10_0001",
+    "text": "Cristal da Coragem (P)"
+  },
+  "64473a6a": {
+    "key": "ITEM_22_0060",
+    "text": "Escama de Dragão Branco"
+  },
+  "648cda74": {
+    "key": "ITEM_11_0001",
+    "text": "Grimório de Prata"
+  },
+  "65c8078d": {
+    "key": "ITEM_09_0022",
+    "text": "Presa Implacável"
+  },
+  "65d98a52": {
+    "key": "ITEM_31_0032",
+    "text": "Bico Gigante"
+  },
+  "67e3f274": {
+    "key": "ITEM_32_0030",
+    "text": "Cabeça de Tayu'itar"
+  },
+  "687733c4": {
+    "key": "ITEM_10_0000",
+    "text": "Fragmento de Coragem"
+  },
+  "68b1ae43": {
+    "key": "ITEM_26_0020",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "68ff3a08": {
+    "key": "ITEM_31_0022",
+    "text": "Machado de Guerra Causticante"
+  },
+  "6b4e2182": {
+    "key": "ITEM_09_0001",
+    "text": "Anamnese de Id"
+  },
+  "6bdf6669": {
+    "key": "ITEM_02_0051",
+    "text": "Orbe de Luz"
+  },
+  "6d876fab": {
+    "key": "ITEM_32_0051",
+    "text": "Chifre Escarlate"
+  },
+  "6e49a111": {
+    "key": "ITEM_01_0063",
+    "text": "Matéria Astral"
+  },
+  "6f1fabe6": {
+    "key": "ITEM_14_0021",
+    "text": "Prova de Campeão"
+  },
+  "71bc9232": {
+    "key": "ITEM_70_0006",
+    "text": "Elpis, o Trancamentes"
+  },
+  "726575ff": {
+    "key": "ITEM_01_0050",
+    "text": "Manequim Golpeado"
+  },
+  "729d7fb0": {
+    "key": "ITEM_03_0002",
+    "text": "Casco de Vitalidade"
+  },
+  "745fd287": {
+    "key": "ITEM_32_0054",
+    "text": "Chifre de Tufão"
+  },
+  "759850ca": {
+    "key": "ITEM_01_0041",
+    "text": "Ovo de Salamandra"
+  },
+  "76079579": {
+    "key": "ITEM_19_0004",
+    "text": "Curiosidade"
+  },
+  "771d9272": {
+    "key": "ITEM_70_0009",
+    "text": "Registros de Pesquisa da Ávia"
+  },
+  "778897f4": {
+    "key": "ITEM_70_0003",
+    "text": "Pedaço do Mapa Celeste"
+  },
+  "77df2f30": {
+    "key": "ITEM_31_0082",
+    "text": "Baluarte Supremo"
+  },
+  "786407f5": {
+    "key": "ITEM_32_0055",
+    "text": "Chifre Luminescente"
+  },
+  "78fe6e2c": {
+    "key": "ITEM_80_0000",
+    "text": "Chave de Safira"
+  },
+  "7948de7d": {
+    "key": "ITEM_10_0002",
+    "text": "Cristal da Coragem (M)"
+  },
+  "7992b6f0": {
+    "key": "ITEM_01_0060",
+    "text": "Reflexo Cromático"
+  },
+  "79c247f6": {
+    "key": "ITEM_01_0052",
+    "text": "Vidro de Patalena"
+  },
+  "79e48056": {
+    "key": "ITEM_70_0015",
+    "text": "Pacote de Cor de Personagem 3"
+  },
+  "7a1cf760": {
+    "key": "ITEM_28_0020",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "7b600740": {
+    "key": "ITEM_17_0001",
+    "text": "Espada Forjada em Nihilla"
+  },
+  "7cfa41fc": {
+    "key": "ITEM_14_0012",
+    "text": "Prisma Impecável"
+  },
+  "7e7999b3": {
+    "key": "ITEM_31_0031",
+    "text": "Gadanho de Grifo"
+  },
+  "7eb26854": {
+    "key": "ITEM_31_0072",
+    "text": "Bateria de Éter"
+  },
+  "7f695b76": {
+    "key": "ITEM_50_0003",
+    "text": "Cristal Perene"
+  },
+  "815b2ee4": {
+    "key": "ITEM_04_0000",
+    "text": "Anima de Managarmr"
+  },
+  "817a2cc1": {
+    "key": "ITEM_27_0011",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "81bf605c": {
+    "key": "ITEM_14_0031",
+    "text": "Emblema de Dalia de Prata"
+  },
+  "82619167": {
+    "key": "ITEM_33_0003",
+    "text": "Moeda Comemorativa de Vallion"
+  },
+  "82c111c8": {
+    "key": "ITEM_32_0053",
+    "text": "Chifre da Terra"
+  },
+  "8682c2ac": {
+    "key": "ITEM_80_0001",
+    "text": "Chave de Lazulita"
+  },
+  "86b12abc": {
+    "key": "ITEM_80_0002",
+    "text": "Chave de Platina"
+  },
+  "8816adc5": {
+    "key": "ITEM_14_0010",
+    "text": "Lasca de Prisma"
+  },
+  "8b75e58a": {
+    "key": "ITEM_02_0011",
+    "text": "Orbe de Água"
+  },
+  "8bef5254": {
+    "key": "ITEM_31_0012",
+    "text": "Machado de Guerra Glacial"
+  },
+  "8c44f0ab": {
+    "key": "ITEM_28_0030",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "8d101b82": {
+    "key": "ITEM_25_1002",
+    "text": "Pedra-artífice do Medo"
+  },
+  "8db0b117": {
+    "key": "ITEM_28_9999",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "8e1cb52d": {
+    "key": "ITEM_02_0020",
+    "text": "Fragmento de Terra"
+  },
+  "8e5a0c09": {
+    "key": "ITEM_35_0000",
+    "text": "Rúpia"
+  },
+  "8ffe7300": {
+    "key": "ITEM_22_0010",
+    "text": "Asa de Dragão"
+  },
+  "90df952a": {
+    "key": "ITEM_14_0003",
+    "text": "Núcleo Prateado"
+  },
+  "91ccbc0f": {
+    "key": "ITEM_22_0051",
+    "text": "Orbe de Serpe do Vento"
+  },
+  "926d4ae9": {
+    "key": "ITEM_01_0031",
+    "text": "Cacto Incandescente"
+  },
+  "92781b4b": {
+    "key": "ITEM_02_0031",
+    "text": "Orbe de Fogo"
+  },
+  "9282abbe": {
+    "key": "ITEM_31_0051",
+    "text": "Placa da Besta do Gelo"
+  },
+  "9352ded3": {
+    "key": "ITEM_02_0010",
+    "text": "Fragmento de Água"
+  },
+  "9371081e": {
+    "key": "ITEM_17_0020",
+    "text": "Núcleo de Nihilla de Vulkan Bolla"
+  },
+  "94132ae1": {
+    "key": "ITEM_13_0001",
+    "text": "Megapoção"
+  },
+  "94dd261d": {
+    "key": "ITEM_22_0021",
+    "text": "Orbe de Serpe de Fogo"
+  },
+  "9519f56a": {
+    "key": "ITEM_02_0000",
+    "text": "Fragmento de Vento"
+  },
+  "95bf2c6f": {
+    "key": "ITEM_26_0011",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "9738c87a": {
+    "key": "ITEM_14_0020",
+    "text": "Prova de Glória"
+  },
+  "981c29bd": {
+    "key": "ITEM_70_0011",
+    "text": "Fragmento de Cristal Perene"
+  },
+  "98e75fcb": {
+    "key": "ITEM_22_0061",
+    "text": "Joia da Serpe Branca"
+  },
+  "99307633": {
+    "key": "ITEM_09_0011",
+    "text": "Anamnese de Gallanza"
+  },
+  "99d6247e": {
+    "key": "ITEM_15_0002",
+    "text": "Refínio de Qualidade"
+  },
+  "99f44080": {
+    "key": "ITEM_31_0081",
+    "text": "Mandíbula de Golem"
+  },
+  "9b442642": {
+    "key": "ITEM_12_0000",
+    "text": "Ambrosia"
+  },
+  "9ba6e51d": {
+    "key": "ITEM_32_0052",
+    "text": "Chifre Congelado"
+  },
+  "9be7982b": {
+    "key": "ITEM_31_0021",
+    "text": "Braçadeira do Purgatório"
+  },
+  "9c694865": {
+    "key": "ITEM_02_0021",
+    "text": "Orbe de Terra"
+  },
+  "9d598751": {
+    "key": "ITEM_22_0040",
+    "text": "Escama de Dragão Marrom"
+  },
+  "9e0ffa73": {
+    "key": "ITEM_31_0091",
+    "text": "Fragmento do Grande Escudo"
+  },
+  "9e75a958": {
+    "key": "ITEM_22_0071",
+    "text": "Joia da Serpe Negra"
+  },
+  "9f548db0": {
+    "key": "ITEM_22_0070",
+    "text": "Escama de Dragão Negro"
+  },
+  "9fc6585e": {
+    "key": "ITEM_50_0009",
+    "text": "Âmbar do Sol da Meia-noite"
+  },
+  "a062b3e4": {
+    "key": "ITEM_26_1000",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "a23f4f46": {
+    "key": "ITEM_27_0010",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "a7c72f41": {
+    "key": "ITEM_34_1000",
+    "text": "Lumipedra (P)"
+  },
+  "a84ca7e9": {
+    "key": "ITEM_13_0002",
+    "text": "Poção Azul"
+  },
+  "a90975b8": {
+    "key": "ITEM_25_1000",
+    "text": "Pedra-artífice do Medo"
+  },
+  "aa4626f6": {
+    "key": "ITEM_25_0020",
+    "text": "Pedra-artífice do Medo"
+  },
+  "aab4c91a": {
+    "key": "ITEM_28_0012",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "aae10c28": {
+    "key": "ITEM_25_0010",
+    "text": "Pedra-artífice do Medo"
+  },
+  "aba63a29": {
+    "key": "ITEM_02_0040",
+    "text": "Fragmento Sombrio"
+  },
+  "ad856c0c": {
+    "key": "ITEM_11_0002",
+    "text": "Grimório de Ouro"
+  },
+  "ad9737a9": {
+    "key": "ITEM_27_1000",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "b2045655": {
+    "key": "ITEM_14_0000",
+    "text": "Esplendor da Azurita"
+  },
+  "b451e459": {
+    "key": "ITEM_01_0003",
+    "text": "Flor do Vale"
+  },
+  "b4693222": {
+    "key": "ITEM_09_0021",
+    "text": "Anamnese de Maglielle"
+  },
+  "b5eeea35": {
+    "key": "ITEM_50_0011",
+    "text": "Fragmento de Cristal Perene"
+  },
+  "b763e7ac": {
+    "key": "ITEM_31_0071",
+    "text": "Serra da Condenação"
+  },
+  "b78ac87f": {
+    "key": "ITEM_02_0030",
+    "text": "Fragmento de Fogo"
+  },
+  "b79139fb": {
+    "key": "ITEM_26_1001",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "b83b6b1d": {
+    "key": "ITEM_31_0010",
+    "text": "Osso Lúgubre"
+  },
+  "ba78c0b2": {
+    "key": "ITEM_27_0012",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "ba799e24": {
+    "key": "ITEM_05_0002",
+    "text": "Reator Fortificado"
+  },
+  "bb579caf": {
+    "key": "ITEM_17_0010",
+    "text": "Núcleo de Nihilla de Managarmr"
+  },
+  "bb731907": {
+    "key": "ITEM_25_0000",
+    "text": "Pedra-artífice do Medo"
+  },
+  "bc413b80": {
+    "key": "ITEM_05_0000",
+    "text": "Anima de Excavallion"
+  },
+  "bee8897d": {
+    "key": "ITEM_22_0000",
+    "text": "Escama de Dragão"
+  },
+  "c05ca6a1": {
+    "key": "ITEM_09_0000",
+    "text": "Orgulho do Protetor"
+  },
+  "c1481583": {
+    "key": "ITEM_25_0001",
+    "text": "Pedra-artífice do Medo"
+  },
+  "c1dcb7ae": {
+    "key": "ITEM_32_0081",
+    "text": "Célula Lunar"
+  },
+  "c263ccdc": {
+    "key": "ITEM_01_0043",
+    "text": "Enxofre de Phondam"
+  },
+  "c2e4d287": {
+    "key": "ITEM_01_0051",
+    "text": "Livro de Orações da Ávia"
+  },
+  "c3d96c52": {
+    "key": "ITEM_01_0013",
+    "text": "Sucata Alto Nível"
+  },
+  "c48004dd": {
+    "key": "ITEM_70_0014",
+    "text": "Pacote de Cor de Personagem 2"
+  },
+  "c5406bba": {
+    "key": "ITEM_31_0074",
+    "text": "Canhão Giratório"
+  },
+  "c783f39d": {
+    "key": "ITEM_09_0010",
+    "text": "Coragem do Lobo-alfa"
+  },
+  "c96755a7": {
+    "key": "ITEM_31_0040",
+    "text": "Garra da Besta da Terra"
+  },
+  "cb0781ef": {
+    "key": "ITEM_70_0001",
+    "text": "Conexão das Forças Vitais"
+  },
+  "cb1e804f": {
+    "key": "ITEM_27_0000",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "cb39e0fc": {
+    "key": "ITEM_50_0000",
+    "text": "Crista-de-vento"
+  },
+  "cd298cc8": {
+    "key": "ITEM_31_0030",
+    "text": "Pena de Grifo"
+  },
+  "cd6af550": {
+    "key": "ITEM_50_0006",
+    "text": "Esfera Crepuscular"
+  },
+  "cdde3137": {
+    "key": "ITEM_22_0041",
+    "text": "Orbe de Serpe da Terra"
+  },
+  "ce0b379e": {
+    "key": "ITEM_50_0010",
+    "text": "Óleo do Deserto"
+  },
+  "d15091d9": {
+    "key": "ITEM_03_0000",
+    "text": "Anima de Furycane"
+  },
+  "d1d832c0": {
+    "key": "ITEM_32_0080",
+    "text": "Detector Lunar"
+  },
+  "d27ace64": {
+    "key": "ITEM_70_0012",
+    "text": "Capacete do Véu"
+  },
+  "d2c1330f": {
+    "key": "ITEM_28_1000",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "d465046a": {
+    "key": "ITEM_31_0070",
+    "text": "Roda Motriz"
+  },
+  "d47f792a": {
+    "key": "ITEM_31_0000",
+    "text": "Asa Bizarra"
+  },
+  "d5af421a": {
+    "key": "ITEM_31_0080",
+    "text": "Dedo de Golem"
+  },
+  "d5e89bc8": {
+    "key": "ITEM_01_0001",
+    "text": "Espiralmelo"
+  },
+  "d6cc00d6": {
+    "key": "ITEM_31_0050",
+    "text": "Garra da Besta do Gelo"
+  },
+  "d7db4607": {
+    "key": "ITEM_31_0073",
+    "text": "Braçadeira de Extensão"
+  },
+  "d93d7206": {
+    "key": "ITEM_17_0011",
+    "text": "Chifre de Rejeito de Nihilla"
+  },
+  "d943bee6": {
+    "key": "ITEM_31_0052",
+    "text": "Chifre da Besta do Gelo"
+  },
+  "d9d98ed6": {
+    "key": "ITEM_17_0021",
+    "text": "Material Sombrio Fundido de Nihilla"
+  },
+  "db1d4f35": {
+    "key": "ITEM_01_0000",
+    "text": "Cascalho"
+  },
+  "dd3f9978": {
+    "key": "ITEM_01_0023",
+    "text": "Floco de Neve Eterno"
+  },
+  "de302978": {
+    "key": "ITEM_15_0000",
+    "text": "Moeda Rafale"
+  },
+  "deed762b": {
+    "key": "ITEM_01_0002",
+    "text": "Tempesrocha"
+  },
+  "df18535c": {
+    "key": "ITEM_09_0020",
+    "text": "Estratagema Valente"
+  },
+  "e0937c5b": {
+    "key": "ITEM_01_0020",
+    "text": "Pináculo de Gelo"
+  },
+  "e35076b2": {
+    "key": "ITEM_09_0002",
+    "text": "Destrudo"
+  },
+  "e379e863": {
+    "key": "ITEM_11_0000",
+    "text": "Grimório de Cobre"
+  },
+  "e3adb298": {
+    "key": "ITEM_25_1001",
+    "text": "Pedra-artífice do Medo"
+  },
+  "e4070e98": {
+    "key": "ITEM_31_0002",
+    "text": "Olho de Demônio Assustador"
+  },
+  "e5481168": {
+    "key": "ITEM_06_0001",
+    "text": "Anima Ômega de Vulkan Bolla"
+  },
+  "e578bb85": {
+    "key": "ITEM_70_0008",
+    "text": "Pedra Catalisadora de Dehg"
+  },
+  "e600be75": {
+    "key": "ITEM_50_0002",
+    "text": "Itens Usados de Jardinagem"
+  },
+  "e68da071": {
+    "key": "ITEM_32_0060",
+    "text": "Guampo da Calamidade"
+  },
+  "e6e075e8": {
+    "key": "ITEM_13_0003",
+    "text": "Poção de Reavivamento"
+  },
+  "e82861b1": {
+    "key": "ITEM_22_0050",
+    "text": "Escama de Dragão Verde"
+  },
+  "e8c461ca": {
+    "key": "ITEM_50_0004",
+    "text": "Gema Azul-celeste"
+  },
+  "eac2d7ab": {
+    "key": "ITEM_50_0007",
+    "text": "Caleido-esfera"
+  },
+  "eb0a1dc8": {
+    "key": "ITEM_01_0032",
+    "text": "Pedra em Brasa"
+  },
+  "eb0ccd8d": {
+    "key": "ITEM_01_0010",
+    "text": "Madeira Chamuscada"
+  },
+  "eb9c99e5": {
+    "key": "ITEM_28_1001",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "ed3b872d": {
+    "key": "ITEM_07_0001",
+    "text": "Anima Ômega de Angra Mainyu"
+  },
+  "ed91fe58": {
+    "key": "ITEM_31_0001",
+    "text": "Garra Bizarra de Gelo"
+  },
+  "ee2559c6": {
+    "key": "ITEM_60_0000",
+    "text": "Pinça-miúda"
+  },
+  "eeb19bec": {
+    "key": "ITEM_27_0001",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "eed2f9d3": {
+    "key": "ITEM_27_1003",
+    "text": "Pedra-artífice da Fortificação"
+  },
+  "eedfa4e4": {
+    "key": "ITEM_70_0013",
+    "text": "Pacote de Cor de Personagem 1"
+  },
+  "f147229b": {
+    "key": "ITEM_70_0002",
+    "text": "Diário de Lyria"
+  },
+  "f384e322": {
+    "key": "ITEM_50_0005",
+    "text": "Lágrimas de Contrição"
+  },
+  "f42d8c01": {
+    "key": "ITEM_19_0001",
+    "text": "Curiosidade"
+  },
+  "f430b195": {
+    "key": "ITEM_01_0012",
+    "text": "Máquina"
+  },
+  "f53ae497": {
+    "key": "ITEM_26_0001",
+    "text": "Pedra-artífice da Vitalidade"
+  },
+  "f58676d3": {
+    "key": "ITEM_70_0010",
+    "text": "Anotações de Rolan"
+  },
+  "f6155395": {
+    "key": "ITEM_28_1003",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "f692f716": {
+    "key": "ITEM_34_4000",
+    "text": "Aglomerado de Lumicristal"
+  },
+  "f6ee4068": {
+    "key": "ITEM_02_0042",
+    "text": "Orbe do Abismo"
+  },
+  "f82726d9": {
+    "key": "ITEM_31_0061",
+    "text": "Placa da Besta das Chamas"
+  },
+  "f8f91f7e": {
+    "key": "ITEM_36_0000",
+    "text": "Bilhete Emblema de Ouro"
+  },
+  "f90a5398": {
+    "key": "ITEM_22_0030",
+    "text": "Escama de Dragão Azul"
+  },
+  "f9d46ad2": {
+    "key": "ITEM_28_0011",
+    "text": "Pedra-artífice do Isolamento"
+  },
+  "fa674fbd": {
+    "key": "ITEM_70_0004",
+    "text": "Transceptor de Rolan"
+  },
+  "fa737b89": {
+    "key": "ITEM_02_0050",
+    "text": "Fragmento de Luz"
+  },
+  "feeafccf": {
+    "key": "ITEM_01_0062",
+    "text": "Minério do Desastre"
+  },
+  "ff1a207a": {
+    "key": "ITEM_70_0007",
+    "text": "Estátua de Caranguejo Dourada"
+  }
+}

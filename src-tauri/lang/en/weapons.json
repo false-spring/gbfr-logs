@@ -1,0 +1,1026 @@
+{
+  "02352554": {
+    "key": "WEP_PL1600_03",
+    "text": "Brionac"
+  },
+  "027915bc": {
+    "key": "WEP_PL0100_06_01",
+    "text": "Seven-Star Sword"
+  },
+  "02a9b90b": {
+    "key": "WEP_PL1500_04_01",
+    "text": "Golden Fists of Ura"
+  },
+  "05b4630a": {
+    "key": "WEP_PL1800_03_02",
+    "text": "Transmigration Tome"
+  },
+  "05defb89": {
+    "key": "WEP_PL1100_03_01",
+    "text": "Ascalon"
+  },
+  "06f51a26": {
+    "key": "WEP_PL1800_03",
+    "text": "Transmigration Tome"
+  },
+  "071c082e": {
+    "key": "WEP_PL0600_01",
+    "text": "Egoism"
+  },
+  "07bb324c": {
+    "key": "WEP_PL0600_06",
+    "text": "Dagger of Bahamut Coda"
+  },
+  "08ac9299": {
+    "key": "WEP_PL0000_03_00",
+    "text": "Sword of Eos"
+  },
+  "0940d965": {
+    "key": "WEP_PL1900_02",
+    "text": "Aviaeth Faussart"
+  },
+  "099c8066": {
+    "key": "WEP_PL1400_03",
+    "text": "Venustas"
+  },
+  "0a9b7790": {
+    "key": "WEP_PL1600_02",
+    "text": "Sunspot Spear"
+  },
+  "0b1c14c1": {
+    "key": "WEP_PL0900_06_02",
+    "text": "Mjolnir"
+  },
+  "0d7b7a95": {
+    "key": "WEP_PL0000_06_03",
+    "text": "Seven-Star Sword, Celestial"
+  },
+  "0e0287dc": {
+    "key": "WEP_PL0100_03",
+    "text": "Sword of Eos"
+  },
+  "0ec52ea3": {
+    "key": "WEP_PL0800_02",
+    "text": "Hoarfrost Blade Persius"
+  },
+  "0fae326f": {
+    "key": "WEP_PL0700_03",
+    "text": "Ethereal Lasher"
+  },
+  "1006ed87": {
+    "key": "WEP_PL0300_03_02",
+    "text": "Benedia"
+  },
+  "11d39ce1": {
+    "key": "WEP_PL1400_04",
+    "text": "Fluorithium Blade"
+  },
+  "11e6966a": {
+    "key": "WEP_PL0000_02",
+    "text": "Durandal"
+  },
+  "159ca5b6": {
+    "key": "WEP_PL1000_01",
+    "text": "Flamberge"
+  },
+  "1779cd60": {
+    "key": "WEP_PL0400_06_03",
+    "text": "Caduceus, Immortal Coil"
+  },
+  "17dac878": {
+    "key": "WEP_PL1700_05",
+    "text": "Cosmic Scythe"
+  },
+  "18b2fc0e": {
+    "key": "WEP_PL1500_01",
+    "text": "Brahma Gauntlet"
+  },
+  "19a77e54": {
+    "key": "WEP_PL1400_06_01",
+    "text": "Ameno Habakiri"
+  },
+  "1a977f3f": {
+    "key": "WEP_PL0100_A0",
+    "text": "Partenza"
+  },
+  "1ab040dd": {
+    "key": "WEP_PL0700_06_01",
+    "text": "Erinnerung"
+  },
+  "1b09a462": {
+    "key": "WEP_PL0800_04",
+    "text": "Vegalta"
+  },
+  "1bcd26bc": {
+    "key": "WEP_PL0600_02",
+    "text": "Sword Breaker"
+  },
+  "1d0e9a84": {
+    "key": "WEP_PL1200_03_03",
+    "text": "Claidheamh Soluis, the Radiant"
+  },
+  "1de38944": {
+    "key": "WEP_PL1900_06",
+    "text": "Sword of Bahamut"
+  },
+  "1dec52b3": {
+    "key": "WEP_PL1200_03_01",
+    "text": "Claidheamh Soluis"
+  },
+  "1e90adb4": {
+    "key": "WEP_PL0100_03_03",
+    "text": "Sword of Eos, the Star Key"
+  },
+  "1ea049bc": {
+    "key": "WEP_PL1000_05_02",
+    "text": "Lord of Flames"
+  },
+  "1f0bcdba": {
+    "key": "WEP_PL1700_A0",
+    "text": "Great Scythe Grynoth"
+  },
+  "209aa176": {
+    "key": "WEP_PL0800_03",
+    "text": "Blanc Comme Neige"
+  },
+  "227b690e": {
+    "key": "WEP_PL0900_06_03",
+    "text": "Mjolnir, Thunderous Crusher"
+  },
+  "22e79816": {
+    "key": "WEP_PL0400_03",
+    "text": "Gambanteinn"
+  },
+  "22e9c126": {
+    "key": "WEP_PL1500_04_02",
+    "text": "Golden Fists of Ura"
+  },
+  "241b6d32": {
+    "key": "WEP_PL0800_05_01",
+    "text": "Knight of Ice"
+  },
+  "24c815ab": {
+    "key": "WEP_PL0100_03_01",
+    "text": "Sword of Eos"
+  },
+  "253333c3": {
+    "key": "WEP_PL1200_01",
+    "text": "Claíomh Solais"
+  },
+  "25ff2db3": {
+    "key": "WEP_PL0600_06_02",
+    "text": "Dagger of Bahamut Coda"
+  },
+  "26ad10bc": {
+    "key": "WEP_PL0400_03_01",
+    "text": "Gambanteinn"
+  },
+  "283cc36b": {
+    "key": "WEP_PL0900_01",
+    "text": "Alabarda"
+  },
+  "288d5590": {
+    "key": "WEP_PL0200_03_03",
+    "text": "Murgleis, the Azure Oath"
+  },
+  "28a1c76a": {
+    "key": "WEP_PL0700_06_02",
+    "text": "Erinnerung"
+  },
+  "292c88e4": {
+    "key": "WEP_PL1600_03_03",
+    "text": "Brionac, the Dominant"
+  },
+  "2a924378": {
+    "key": "WEP_PL0700_06",
+    "text": "Erinnerung"
+  },
+  "2a95501e": {
+    "key": "WEP_PL1300_06_02",
+    "text": "Swordfish"
+  },
+  "2af2a118": {
+    "key": "WEP_PL0000_06_00",
+    "text": "Seven-Star Sword"
+  },
+  "2be820f1": {
+    "key": "WEP_PL1800_03_01",
+    "text": "Transmigration Tome"
+  },
+  "2cbcacca": {
+    "key": "WEP_PL1400_06_02",
+    "text": "Ameno Habakiri"
+  },
+  "2d9be4cc": {
+    "key": "WEP_PL0200_04",
+    "text": "Luminiera Sword Omega"
+  },
+  "2e393b84": {
+    "key": "WEP_PL0200_03_01",
+    "text": "Murgleis"
+  },
+  "2e3c9e02": {
+    "key": "WEP_PL1800_06_01",
+    "text": "Zosimos"
+  },
+  "2e9c27ac": {
+    "key": "WEP_PL0000_03_02",
+    "text": "Sword of Eos"
+  },
+  "2f639454": {
+    "key": "WEP_PL1100_06_03",
+    "text": "Balmung, the Blue Blaze"
+  },
+  "301dbab7": {
+    "key": "WEP_PL0600_03_02",
+    "text": "Love Eternal"
+  },
+  "304e4448": {
+    "key": "WEP_PL1600_06",
+    "text": "Gae Bulg"
+  },
+  "32ee4d8a": {
+    "key": "WEP_PL0100_05",
+    "text": "Ultima Sword"
+  },
+  "33d018e0": {
+    "key": "WEP_PL0700_03_03",
+    "text": "Ethereal Lasher, Fleeting End"
+  },
+  "33d3457f": {
+    "key": "WEP_PL1200_04",
+    "text": "Ushumgal"
+  },
+  "348f349c": {
+    "key": "WEP_PL1600_06_02",
+    "text": "Gae Bulg"
+  },
+  "34ad70e6": {
+    "key": "WEP_PL0100_03_02",
+    "text": "Sword of Eos"
+  },
+  "361e2d95": {
+    "key": "WEP_PL1100_03_03",
+    "text": "Ascalon, Dragon's Bane"
+  },
+  "3679a543": {
+    "key": "WEP_PL1000_02",
+    "text": "Lohengrin"
+  },
+  "3869e1c6": {
+    "key": "WEP_PL0900_04",
+    "text": "Ukonvasara"
+  },
+  "3b2082b6": {
+    "key": "WEP_PL0200_01",
+    "text": "Rukalsa"
+  },
+  "3d596697": {
+    "key": "WEP_PL0200_02",
+    "text": "Flame Rapier"
+  },
+  "3d86cce3": {
+    "key": "WEP_PL0800_06_01",
+    "text": "Damascus Knife"
+  },
+  "3d94f6e9": {
+    "key": "WEP_PL1100_A0",
+    "text": "Integrity"
+  },
+  "3e331e1e": {
+    "key": "WEP_PL0700_05",
+    "text": "Live Wire"
+  },
+  "3ec1d082": {
+    "key": "WEP_PL0800_01",
+    "text": "Altachiara"
+  },
+  "3ef31d1c": {
+    "key": "WEP_PL1900_06_02",
+    "text": "Sword of Bahamut"
+  },
+  "3f39b5eb": {
+    "key": "WEP_PL0500_06",
+    "text": "Draconic Fire"
+  },
+  "407ca538": {
+    "key": "WEP_PL0000_A0",
+    "text": "Traveller's Sword"
+  },
+  "40f726f9": {
+    "key": "WEP_PL0800_06_02",
+    "text": "Damascus Knife"
+  },
+  "411c89ed": {
+    "key": "WEP_PL1700_06",
+    "text": "Ereshkigal"
+  },
+  "419b3cc0": {
+    "key": "WEP_PL1700_06_03",
+    "text": "Ereshkigal, Impending Doom"
+  },
+  "43a93192": {
+    "key": "WEP_PL0300_06_02",
+    "text": "Freikugel"
+  },
+  "44b508fa": {
+    "key": "WEP_PL0300_02",
+    "text": "Wheellock Axe"
+  },
+  "45addf75": {
+    "key": "WEP_PL0700_06_03",
+    "text": "Erinnerung, From Beyond"
+  },
+  "480fa83f": {
+    "key": "WEP_PL1800_05",
+    "text": "Arshivelle"
+  },
+  "48110ba3": {
+    "key": "WEP_PL1500_04_03",
+    "text": "Golden Fists of Ura, No Mercy"
+  },
+  "4868f8b4": {
+    "key": "WEP_PL1700_03_02",
+    "text": "Wurtzite Scythe"
+  },
+  "495424b5": {
+    "key": "WEP_PL1900_04",
+    "text": "Premium Sword"
+  },
+  "49d10f32": {
+    "key": "WEP_PL1100_05",
+    "text": "Windhose"
+  },
+  "4c3a7f95": {
+    "key": "WEP_PL1100_03",
+    "text": "Ascalon"
+  },
+  "4ca01db9": {
+    "key": "WEP_PL0800_05_03",
+    "text": "Knight of Ice, the Silver Blur"
+  },
+  "4ce111fe": {
+    "key": "WEP_PL1400_05",
+    "text": "Blade of Purification"
+  },
+  "4d9b69a5": {
+    "key": "WEP_PL1900_06_03",
+    "text": "Primal Sword of Bahamut"
+  },
+  "4e1ab7bb": {
+    "key": "WEP_PL0300_03",
+    "text": "Benedia"
+  },
+  "4e2093ba": {
+    "key": "WEP_PL0100_04",
+    "text": "Albacore Blade"
+  },
+  "515b69c7": {
+    "key": "WEP_PL0900_05",
+    "text": "Blossom Axe"
+  },
+  "51836359": {
+    "key": "WEP_PL1300_03_03",
+    "text": "Fudo-Kuniyuki, Scarlet Glory"
+  },
+  "51e080fa": {
+    "key": "WEP_PL0900_03_02",
+    "text": "Treuer Krieger"
+  },
+  "5403d78e": {
+    "key": "WEP_PL1600_03_01",
+    "text": "Brionac"
+  },
+  "55a28f62": {
+    "key": "WEP_PL0500_02",
+    "text": "Matchlock"
+  },
+  "56676778": {
+    "key": "WEP_PL0400_03_03",
+    "text": "Gambanteinn, Staff of Hope"
+  },
+  "56b2ba37": {
+    "key": "WEP_PL1800_01",
+    "text": "Magnum Opus"
+  },
+  "57e95993": {
+    "key": "WEP_PL0000_04",
+    "text": "Albacore Blade"
+  },
+  "5a744ce3": {
+    "key": "WEP_PL0500_06_01",
+    "text": "Draconic Fire"
+  },
+  "5cecd788": {
+    "key": "WEP_PL0100_02",
+    "text": "Durandal"
+  },
+  "5e36b1dd": {
+    "key": "WEP_PL1100_02",
+    "text": "Broadsword of Earth"
+  },
+  "5f751a07": {
+    "key": "WEP_PL0500_06_02",
+    "text": "Draconic Fire"
+  },
+  "606c0c73": {
+    "key": "WEP_PL0200_06_01",
+    "text": "Blutgang"
+  },
+  "607bfd73": {
+    "key": "WEP_PL1700_03_01",
+    "text": "Wurtzite Scythe"
+  },
+  "628521de": {
+    "key": "WEP_PL0400_06_02",
+    "text": "Caduceus"
+  },
+  "630d33d5": {
+    "key": "WEP_PL1500_02",
+    "text": "Rope Knuckles"
+  },
+  "633dd711": {
+    "key": "WEP_PL0000_06_02",
+    "text": "Seven-Star Sword"
+  },
+  "64368c4a": {
+    "key": "WEP_PL1300_04",
+    "text": "Higurashi"
+  },
+  "64dd708d": {
+    "key": "WEP_PL1400_03_02",
+    "text": "Venustas"
+  },
+  "67a31199": {
+    "key": "WEP_PL1700_06_02",
+    "text": "Ereshkigal"
+  },
+  "687ece62": {
+    "key": "WEP_PL1200_06",
+    "text": "Galatine"
+  },
+  "68aaf1a0": {
+    "key": "WEP_PL0900_02",
+    "text": "Swan"
+  },
+  "6a9d3dd0": {
+    "key": "WEP_PL1800_06_03",
+    "text": "Zosimos, the Unabridged Truth"
+  },
+  "6bb5e5fd": {
+    "key": "WEP_PL0700_04",
+    "text": "Flame Lit Curl"
+  },
+  "6c382cfb": {
+    "key": "WEP_PL0600_04",
+    "text": "Rose Crystal Knife"
+  },
+  "6c6d9083": {
+    "key": "WEP_PL1800_03_03",
+    "text": "Transmigration Tome, Infinity"
+  },
+  "6de3c01c": {
+    "key": "WEP_PL0300_05",
+    "text": "Stormcloud"
+  },
+  "7027741c": {
+    "key": "WEP_PL0800_06",
+    "text": "Damascus Knife"
+  },
+  "72aae787": {
+    "key": "WEP_PL0800_05",
+    "text": "Knight of Ice"
+  },
+  "73263fe6": {
+    "key": "WEP_PL0700_02",
+    "text": "Leather Belt"
+  },
+  "7463358a": {
+    "key": "WEP_PL1900_01",
+    "text": "Ragnarok"
+  },
+  "761a3597": {
+    "key": "WEP_PL1200_03",
+    "text": "Claidheamh Soluis"
+  },
+  "775e242a": {
+    "key": "WEP_PL0100_03_00",
+    "text": "Sword of Eos"
+  },
+  "776ca5a8": {
+    "key": "WEP_PL0900_03",
+    "text": "Treuer Krieger"
+  },
+  "77ab0809": {
+    "key": "WEP_PL0000_03_03",
+    "text": "Sword of Eos, the Star Key"
+  },
+  "79adecd8": {
+    "key": "WEP_PL1000_05_01",
+    "text": "Lord of Flames"
+  },
+  "7a0a0e34": {
+    "key": "WEP_PL1900_03_03",
+    "text": "Susanoo, the Condemner"
+  },
+  "7b5d7822": {
+    "key": "WEP_PL0300_06_03",
+    "text": "Freikugel, the Purifier"
+  },
+  "7bff8253": {
+    "key": "WEP_PL1800_06",
+    "text": "Zosimos"
+  },
+  "7c88222e": {
+    "key": "WEP_PL1800_06_02",
+    "text": "Zosimos"
+  },
+  "7f31e0d6": {
+    "key": "WEP_PL0000_03_01",
+    "text": "Sword of Eos"
+  },
+  "80ad3aeb": {
+    "key": "WEP_PL1600_06_03",
+    "text": "Gae Bulg, Impaler of Ruin"
+  },
+  "82a244a3": {
+    "key": "WEP_PL1900_05",
+    "text": "Ecke Sachs"
+  },
+  "847bd571": {
+    "key": "WEP_PL1200_06_03",
+    "text": "Galatine, Trinity's Wrath"
+  },
+  "84bf5de8": {
+    "key": "WEP_PL1000_06",
+    "text": "Gottfried"
+  },
+  "8a14e9db": {
+    "key": "WEP_PL0900_A0",
+    "text": "Alabarda"
+  },
+  "8b4a2615": {
+    "key": "WEP_PL1300_05",
+    "text": "Xeno Phantom Demon Blade"
+  },
+  "8b8fcb4e": {
+    "key": "WEP_PL0200_03",
+    "text": "Murgleis"
+  },
+  "8bc0176a": {
+    "key": "WEP_PL1300_02",
+    "text": "Asura"
+  },
+  "90a18c66": {
+    "key": "WEP_PL1200_03_02",
+    "text": "Claidheamh Soluis"
+  },
+  "9249b9ca": {
+    "key": "WEP_PL0500_03",
+    "text": "AK-4A"
+  },
+  "93244909": {
+    "key": "WEP_PL0600_03_03",
+    "text": "Love Eternal, Forevermore"
+  },
+  "95acad77": {
+    "key": "WEP_PL1900_03",
+    "text": "Susanoo"
+  },
+  "9712fdf2": {
+    "key": "WEP_PL1000_03",
+    "text": "Antwerp"
+  },
+  "980058ed": {
+    "key": "WEP_PL1000_04",
+    "text": "Joyeuse"
+  },
+  "98f8ca3e": {
+    "key": "WEP_PL1000_05",
+    "text": "Lord of Flames"
+  },
+  "9b9f83a2": {
+    "key": "WEP_PL0000_06_01",
+    "text": "Seven-Star Sword"
+  },
+  "9f671440": {
+    "key": "WEP_PL1000_06_03",
+    "text": "Gottfried, the White Fang"
+  },
+  "9ffa80bb": {
+    "key": "WEP_PL0800_06_03",
+    "text": "Damascus Knife, the Unseen"
+  },
+  "9ffc73a8": {
+    "key": "WEP_PL0900_03_01",
+    "text": "Treuer Krieger"
+  },
+  "a1f477d6": {
+    "key": "WEP_PL1300_06",
+    "text": "Swordfish"
+  },
+  "a44b08bf": {
+    "key": "WEP_PL0200_06_03",
+    "text": "Blutgang, Blade of Refuge"
+  },
+  "a44eb1b4": {
+    "key": "WEP_PL1400_06_03",
+    "text": "Ameno Habakiri, the Beheader"
+  },
+  "a8d420f2": {
+    "key": "WEP_PL1500_06_02",
+    "text": "Sky Piercer"
+  },
+  "a9e77ed8": {
+    "key": "WEP_PL0200_03_02",
+    "text": "Murgleis"
+  },
+  "a9e805ae": {
+    "key": "WEP_PL1300_06_01",
+    "text": "Swordfish"
+  },
+  "ab6678d2": {
+    "key": "WEP_PL1500_06",
+    "text": "Sky Piercer"
+  },
+  "abe40e34": {
+    "key": "WEP_PL1600_05",
+    "text": "Huanglong Spear"
+  },
+  "ac65075c": {
+    "key": "WEP_PL0000_01_01",
+    "text": "Traveller's Sword"
+  },
+  "ad5e2984": {
+    "key": "WEP_PL1500_05",
+    "text": "Arkab"
+  },
+  "aed9ebf8": {
+    "key": "WEP_PL0600_03_01",
+    "text": "Love Eternal"
+  },
+  "afbd8b45": {
+    "key": "WEP_PL1400_03_03",
+    "text": "Venustas, the Sacred Gift"
+  },
+  "b03ea930": {
+    "key": "WEP_PL1700_01",
+    "text": "Great Scythe Grynoth"
+  },
+  "b29038db": {
+    "key": "WEP_PL0700_01",
+    "text": "Geisterpeitsche"
+  },
+  "b3003c9b": {
+    "key": "WEP_PL0500_06_03",
+    "text": "Draconic Fire, Charring Breath"
+  },
+  "b3ddaae1": {
+    "key": "WEP_PL1000_05_03",
+    "text": "Lord of Flames, Exalted Reign"
+  },
+  "b5341662": {
+    "key": "WEP_PL0500_03_03",
+    "text": "AK-4A, the Suppressor"
+  },
+  "b586ae5b": {
+    "key": "WEP_PL1900_03_01",
+    "text": "Susanoo"
+  },
+  "b5c31ab2": {
+    "key": "WEP_PL1300_03",
+    "text": "Fudo-Kuniyuki"
+  },
+  "b70179f1": {
+    "key": "WEP_PL1500_03",
+    "text": "Crimson Finger"
+  },
+  "b81cf304": {
+    "key": "WEP_PL1100_03_02",
+    "text": "Ascalon"
+  },
+  "b9d3bdb9": {
+    "key": "WEP_PL0000_10",
+    "text": "False Sword of the Apocalypse"
+  },
+  "ba30bd26": {
+    "key": "WEP_PL0300_01",
+    "text": "Flintspike"
+  },
+  "bc5a4248": {
+    "key": "WEP_PL0400_06_01",
+    "text": "Caduceus"
+  },
+  "bc72036a": {
+    "key": "WEP_PL0300_06_01",
+    "text": "Freikugel"
+  },
+  "bc7f89fb": {
+    "key": "WEP_PL1300_01",
+    "text": "Kiku-Ichimonji"
+  },
+  "bc7f985e": {
+    "key": "WEP_PL1300_03_02",
+    "text": "Fudo-Kuniyuki"
+  },
+  "bcd65f7d": {
+    "key": "WEP_PL0600_06_03",
+    "text": "Primal Dagger of Bahamut Coda"
+  },
+  "bddcd5e3": {
+    "key": "WEP_PL1700_03",
+    "text": "Wurtzite Scythe"
+  },
+  "be1ba9e3": {
+    "key": "WEP_PL0400_04",
+    "text": "Colossus Cane Omega"
+  },
+  "be4d1a95": {
+    "key": "WEP_PL1700_06_01",
+    "text": "Ereshkigal"
+  },
+  "be726e20": {
+    "key": "WEP_PL0500_03_02",
+    "text": "AK-4A"
+  },
+  "beffb034": {
+    "key": "WEP_PL1100_01",
+    "text": "Integrity"
+  },
+  "bfdd3ae2": {
+    "key": "WEP_PL0500_01",
+    "text": "Dreyse"
+  },
+  "c05ff343": {
+    "key": "WEP_PL1900_03_02",
+    "text": "Susanoo"
+  },
+  "c1f29178": {
+    "key": "WEP_PL1100_04",
+    "text": "Hrunting"
+  },
+  "c1f3ad7b": {
+    "key": "WEP_PL0500_03_01",
+    "text": "AK-4A"
+  },
+  "c2d446f7": {
+    "key": "WEP_PL0100_01_01",
+    "text": "Partenza"
+  },
+  "c38561ab": {
+    "key": "WEP_PL1900_06_01",
+    "text": "Sword of Bahamut"
+  },
+  "c4112ee6": {
+    "key": "WEP_PL1800_04",
+    "text": "Sacred Codex"
+  },
+  "c54b8fe6": {
+    "key": "WEP_PL0400_01",
+    "text": "Little Witch Scepter"
+  },
+  "c8263fe1": {
+    "key": "WEP_PL0100_10",
+    "text": "False Sword of the Apocalypse"
+  },
+  "c84002e0": {
+    "key": "WEP_PL0900_06",
+    "text": "Mjolnir"
+  },
+  "c8736136": {
+    "key": "WEP_PL0000_99",
+    "text": "Sword of Eos"
+  },
+  "c88be9ee": {
+    "key": "WEP_PL0400_02",
+    "text": "Zhezl"
+  },
+  "c9fcccc6": {
+    "key": "WEP_PL0100_06",
+    "text": "Seven-Star Sword"
+  },
+  "cb5a08cd": {
+    "key": "WEP_PL1600_01",
+    "text": "Spear of Arvess"
+  },
+  "cba1f4e1": {
+    "key": "WEP_PL1200_06_02",
+    "text": "Galatine"
+  },
+  "cd8ca605": {
+    "key": "WEP_PL1500_06_03",
+    "text": "Sky Piercer, the Apex Fist"
+  },
+  "cde3b884": {
+    "key": "WEP_PL1900_A0",
+    "text": "Ragnarok"
+  },
+  "ce12662a": {
+    "key": "WEP_PL0100_06_03",
+    "text": "Seven-Star Sword, Celestial"
+  },
+  "cf9c4808": {
+    "key": "WEP_PL0000_05",
+    "text": "Ultima Sword"
+  },
+  "d055a41e": {
+    "key": "WEP_PL1700_02",
+    "text": "Alsarav"
+  },
+  "d2dfbe87": {
+    "key": "WEP_PL1000_A0",
+    "text": "Flamberge"
+  },
+  "d47f8689": {
+    "key": "WEP_PL0700_03_02",
+    "text": "Ethereal Lasher"
+  },
+  "d4ced80e": {
+    "key": "WEP_PL0100_01",
+    "text": "Partenza"
+  },
+  "d5e0bf7f": {
+    "key": "WEP_PL0300_03_03",
+    "text": "Benedia, Azure Ammunition"
+  },
+  "d6070a15": {
+    "key": "WEP_PL0300_03_01",
+    "text": "Benedia"
+  },
+  "d66d351c": {
+    "key": "WEP_PL0200_06_02",
+    "text": "Blutgang"
+  },
+  "d7280fe5": {
+    "key": "WEP_PL0900_06_01",
+    "text": "Mjolnir"
+  },
+  "d7cee3b8": {
+    "key": "WEP_PL0000_03",
+    "text": "Sword of Eos"
+  },
+  "d8b6e17c": {
+    "key": "WEP_PL1600_06_01",
+    "text": "Gae Bulg"
+  },
+  "da6ef17e": {
+    "key": "WEP_PL1600_04",
+    "text": "Gisla"
+  },
+  "db043dd7": {
+    "key": "WEP_PL1400_01",
+    "text": "Nakamaki Nodachi"
+  },
+  "dc144611": {
+    "key": "WEP_PL1500_06_01",
+    "text": "Sky Piercer"
+  },
+  "dc75ce8a": {
+    "key": "WEP_PL0800_05_02",
+    "text": "Knight of Ice"
+  },
+  "dc959f74": {
+    "key": "WEP_PL1000_06_01",
+    "text": "Gottfried"
+  },
+  "dc9d7c26": {
+    "key": "WEP_PL1300_03_01",
+    "text": "Fudo-Kuniyuki"
+  },
+  "dcc43052": {
+    "key": "WEP_PL1400_02",
+    "text": "Kotetsu"
+  },
+  "dd177582": {
+    "key": "WEP_PL1700_03_03",
+    "text": "Wurtzite Scythe, Reaper's Hand"
+  },
+  "ddc86786": {
+    "key": "WEP_PL1200_02",
+    "text": "Arondight"
+  },
+  "dddc7c2e": {
+    "key": "WEP_PL0700_03_01",
+    "text": "Ethereal Lasher"
+  },
+  "dfe5c297": {
+    "key": "WEP_PL1700_04",
+    "text": "Soul Eater"
+  },
+  "e04031cf": {
+    "key": "WEP_PL0200_06",
+    "text": "Blutgang"
+  },
+  "e1b27a1c": {
+    "key": "WEP_PL0200_05",
+    "text": "Ephemeron"
+  },
+  "e4c1b247": {
+    "key": "WEP_PL1100_06_02",
+    "text": "Balmung"
+  },
+  "e5d2832b": {
+    "key": "WEP_PL0100_06_02",
+    "text": "Seven-Star Sword"
+  },
+  "e6518d5a": {
+    "key": "WEP_PL0000_06",
+    "text": "Seven-Star Sword"
+  },
+  "e7c972e6": {
+    "key": "WEP_PL0300_04",
+    "text": "Tiamat Bolt Omega"
+  },
+  "e82df9ec": {
+    "key": "WEP_PL1100_06",
+    "text": "Balmung"
+  },
+  "e92002ca": {
+    "key": "WEP_PL0600_03",
+    "text": "Love Eternal"
+  },
+  "ebbe11a9": {
+    "key": "WEP_PL0600_06_01",
+    "text": "Dagger of Bahamut Coda"
+  },
+  "ee6cd89e": {
+    "key": "WEP_PL0500_04",
+    "text": "Leviathan Muzzle"
+  },
+  "f053c91e": {
+    "key": "WEP_PL1100_06_01",
+    "text": "Balmung"
+  },
+  "f0748132": {
+    "key": "WEP_PL0400_05",
+    "text": "Tupsimati"
+  },
+  "f0951249": {
+    "key": "WEP_PL1800_02",
+    "text": "Dream Atlas"
+  },
+  "f0b50dae": {
+    "key": "WEP_PL0000_01",
+    "text": "Traveller's Sword"
+  },
+  "f1845e70": {
+    "key": "WEP_PL0300_06",
+    "text": "Freikugel"
+  },
+  "f246096b": {
+    "key": "WEP_PL1400_03_01",
+    "text": "Venustas"
+  },
+  "f4c1de98": {
+    "key": "WEP_PL1500_04",
+    "text": "Golden Fists of Ura"
+  },
+  "f5cf6185": {
+    "key": "WEP_PL1000_06_02",
+    "text": "Gottfried"
+  },
+  "f6ff4cb2": {
+    "key": "WEP_PL1300_06_03",
+    "text": "Swordfish, Tipper of Scales"
+  },
+  "f71832ef": {
+    "key": "WEP_PL1200_05",
+    "text": "Sahrivar"
+  },
+  "f733ddd2": {
+    "key": "WEP_PL0600_05",
+    "text": "Cortana"
+  },
+  "f7c7b5dc": {
+    "key": "WEP_PL0900_03_03",
+    "text": "Treuer Krieger, the Dauntless"
+  },
+  "fb5818e6": {
+    "key": "WEP_PL0400_03_02",
+    "text": "Gambanteinn"
+  },
+  "fbccf69b": {
+    "key": "WEP_PL1200_06_01",
+    "text": "Galatine"
+  },
+  "fd7bf3d6": {
+    "key": "WEP_PL1600_03_02",
+    "text": "Brionac"
+  },
+  "fd9e2000": {
+    "key": "WEP_PL0500_05",
+    "text": "Clarion"
+  },
+  "febac81a": {
+    "key": "WEP_PL0400_06",
+    "text": "Caduceus"
+  },
+  "fed83c75": {
+    "key": "WEP_PL0100_06_00",
+    "text": "Seven-Star Sword"
+  },
+  "fff2f00f": {
+    "key": "WEP_PL1400_06",
+    "text": "Ameno Habakiri"
+  }
+}

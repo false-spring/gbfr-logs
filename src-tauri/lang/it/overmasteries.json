@@ -1,0 +1,1030 @@
+{
+  "020d2c07": {
+    "key": "020D2C07",
+    "text": "Incremento danni arte celeste"
+  },
+  "032a5217": {
+    "key": "032A5217",
+    "text": "Incremento salute"
+  },
+  "047b7a70": {
+    "key": "047B7A70",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "06595c52": {
+    "key": "06595C52",
+    "text": "Incremento limite danni att. standard"
+  },
+  "0716aa8d": {
+    "key": "0716AA8D",
+    "text": "Incremento limite danni att. standard"
+  },
+  "0781c7a2": {
+    "key": "0781C7A2",
+    "text": "Incremento salute"
+  },
+  "0b0e4311": {
+    "key": "0B0E4311",
+    "text": "Incremento limite danni abilità"
+  },
+  "0b134a7f": {
+    "key": "0B134A7F",
+    "text": "Incremento potenza attacco"
+  },
+  "0ce31e6b": {
+    "key": "0CE31E6B",
+    "text": "Incremento danni arte celeste"
+  },
+  "0cf5d0f3": {
+    "key": "0CF5D0F3",
+    "text": "Incremento potenza attacco"
+  },
+  "0d4295fd": {
+    "key": "0D4295FD",
+    "text": "Incremento limite danni att. standard"
+  },
+  "0d6b32a3": {
+    "key": "0D6B32A3",
+    "text": "Incremento danni abilità"
+  },
+  "0db88f30": {
+    "key": "0DB88F30",
+    "text": "Incremento salute"
+  },
+  "0f25b474": {
+    "key": "0F25B474",
+    "text": "Incremento potenza attacco"
+  },
+  "0febc993": {
+    "key": "0FEBC993",
+    "text": "Incremento salute"
+  },
+  "11023c6f": {
+    "key": "11023C6F",
+    "text": "Incremento salute"
+  },
+  "124db819": {
+    "key": "124DB819",
+    "text": "Incremento potenza attacco"
+  },
+  "1268b903": {
+    "key": "1268B903",
+    "text": "Incremento potenza attacco"
+  },
+  "1296ed4a": {
+    "key": "1296ED4A",
+    "text": "Incremento probabilità critico"
+  },
+  "13c9452a": {
+    "key": "13C9452A",
+    "text": "Incremento potenza attacco"
+  },
+  "149593b8": {
+    "key": "149593B8",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "155c25c3": {
+    "key": "155C25C3",
+    "text": "Incremento salute"
+  },
+  "157c0614": {
+    "key": "157C0614",
+    "text": "Incremento probabilità critico"
+  },
+  "15afe5a1": {
+    "key": "15AFE5A1",
+    "text": "Incremento probabilità critico"
+  },
+  "18be125b": {
+    "key": "18BE125B",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "19e012e9": {
+    "key": "19E012E9",
+    "text": "Incremento limite danni att. standard"
+  },
+  "1cc2f730": {
+    "key": "1CC2F730",
+    "text": "Incremento potenza attacco"
+  },
+  "1d85a640": {
+    "key": "1D85A640",
+    "text": "Incremento probabilità critico"
+  },
+  "1e2b3db5": {
+    "key": "1E2B3DB5",
+    "text": "Incremento salute"
+  },
+  "2229b810": {
+    "key": "2229B810",
+    "text": "Incremento probabilità critico"
+  },
+  "233a60d5": {
+    "key": "233A60D5",
+    "text": "Incremento limite danni abilità"
+  },
+  "24499a25": {
+    "key": "24499A25",
+    "text": "Incremento potenza attacco"
+  },
+  "254a08d4": {
+    "key": "254A08D4",
+    "text": "Incremento potenza attacco"
+  },
+  "2676f9d2": {
+    "key": "2676F9D2",
+    "text": "Incremento forza stordente"
+  },
+  "27927560": {
+    "key": "27927560",
+    "text": "Incremento probabilità critico"
+  },
+  "281dc5ff": {
+    "key": "281DC5FF",
+    "text": "Incremento limite danni att. standard"
+  },
+  "287f67c9": {
+    "key": "287F67C9",
+    "text": "Incremento probabilità critico"
+  },
+  "2906f3ed": {
+    "key": "2906F3ED",
+    "text": "Incremento probabilità critico"
+  },
+  "2989cae9": {
+    "key": "2989CAE9",
+    "text": "Incremento danni raffica a catena"
+  },
+  "29938b25": {
+    "key": "29938B25",
+    "text": "Incremento probabilità critico"
+  },
+  "2ab305f4": {
+    "key": "2AB305F4",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "2ba1549d": {
+    "key": "2BA1549D",
+    "text": "Incremento danni arte celeste"
+  },
+  "2c1c933d": {
+    "key": "2C1C933D",
+    "text": "Incremento forza stordente"
+  },
+  "2d6c03eb": {
+    "key": "2D6C03EB",
+    "text": "Incremento salute"
+  },
+  "2ea457f3": {
+    "key": "2EA457F3",
+    "text": "Incremento salute"
+  },
+  "303becc0": {
+    "key": "303BECC0",
+    "text": "Incremento potenza attacco"
+  },
+  "3356dd03": {
+    "key": "3356DD03",
+    "text": "Incremento forza stordente"
+  },
+  "3526fecb": {
+    "key": "3526FECB",
+    "text": "Incremento salute"
+  },
+  "36f068fd": {
+    "key": "36F068FD",
+    "text": "Incremento forza stordente"
+  },
+  "38f656e7": {
+    "key": "38F656E7",
+    "text": "Incremento potenza attacco"
+  },
+  "394083bd": {
+    "key": "394083BD",
+    "text": "Incremento salute"
+  },
+  "3ac53494": {
+    "key": "3AC53494",
+    "text": "Incremento salute"
+  },
+  "3b23fe95": {
+    "key": "3B23FE95",
+    "text": "Incremento probabilità critico"
+  },
+  "3ca4c8d5": {
+    "key": "3CA4C8D5",
+    "text": "Incremento salute"
+  },
+  "3cd2f6af": {
+    "key": "3CD2F6AF",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "3d6600d9": {
+    "key": "3D6600D9",
+    "text": "Incremento salute"
+  },
+  "3dabc271": {
+    "key": "3DABC271",
+    "text": "Incremento limite danni att. standard"
+  },
+  "3dae6494": {
+    "key": "3DAE6494",
+    "text": "Incremento forza stordente"
+  },
+  "403be586": {
+    "key": "403BE586",
+    "text": "Incremento potenza attacco"
+  },
+  "409df671": {
+    "key": "409DF671",
+    "text": "Incremento salute"
+  },
+  "424f95e2": {
+    "key": "424F95E2",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "426b370b": {
+    "key": "426B370B",
+    "text": "Incremento danni abilità"
+  },
+  "427b5e26": {
+    "key": "427B5E26",
+    "text": "Incremento salute"
+  },
+  "437c055d": {
+    "key": "437C055D",
+    "text": "Incremento salute"
+  },
+  "43b7581d": {
+    "key": "43B7581D",
+    "text": "Incremento limite danni att. standard"
+  },
+  "43d71e8f": {
+    "key": "43D71E8F",
+    "text": "Incremento limite cure"
+  },
+  "44f04a7a": {
+    "key": "44F04A7A",
+    "text": "Incremento salute"
+  },
+  "455d6a1c": {
+    "key": "455D6A1C",
+    "text": "Incremento forza stordente"
+  },
+  "45bc2345": {
+    "key": "45BC2345",
+    "text": "Incremento probabilità critico"
+  },
+  "45c65767": {
+    "key": "45C65767",
+    "text": "Incremento probabilità critico"
+  },
+  "49089d4f": {
+    "key": "49089D4F",
+    "text": "Incremento potenza attacco"
+  },
+  "4a4c093d": {
+    "key": "4A4C093D",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "4ab91ea7": {
+    "key": "4AB91EA7",
+    "text": "Incremento potenza attacco"
+  },
+  "4b54500d": {
+    "key": "4B54500D",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "4bf827d5": {
+    "key": "4BF827D5",
+    "text": "Incremento danni abilità"
+  },
+  "4c0cbd32": {
+    "key": "4C0CBD32",
+    "text": "Incremento salute"
+  },
+  "4ce64874": {
+    "key": "4CE64874",
+    "text": "Incremento salute"
+  },
+  "4dee3365": {
+    "key": "4DEE3365",
+    "text": "Incremento limite danni abilità"
+  },
+  "4e2513df": {
+    "key": "4E2513DF",
+    "text": "Incremento potenza attacco"
+  },
+  "4e42646b": {
+    "key": "4E42646B",
+    "text": "Incremento danni arte celeste"
+  },
+  "4fc7db58": {
+    "key": "4FC7DB58",
+    "text": "Incremento danni abilità"
+  },
+  "51bcf5ae": {
+    "key": "51BCF5AE",
+    "text": "Incremento danni abilità"
+  },
+  "524492e2": {
+    "key": "524492E2",
+    "text": "Incremento probabilità critico"
+  },
+  "52a207b5": {
+    "key": "52A207B5",
+    "text": "Incremento salute"
+  },
+  "5382923d": {
+    "key": "5382923D",
+    "text": "Incremento potenza attacco"
+  },
+  "53d358e0": {
+    "key": "53D358E0",
+    "text": "Incremento potenza attacco"
+  },
+  "54929589": {
+    "key": "54929589",
+    "text": "Incremento limite cure"
+  },
+  "563f7784": {
+    "key": "563F7784",
+    "text": "Incremento limite danni att. standard"
+  },
+  "574ac06b": {
+    "key": "574AC06B",
+    "text": "Incremento danni abilità"
+  },
+  "5767dd9f": {
+    "key": "5767DD9F",
+    "text": "Incremento salute"
+  },
+  "57bbc478": {
+    "key": "57BBC478",
+    "text": "Incremento salute"
+  },
+  "59dce1e8": {
+    "key": "59DCE1E8",
+    "text": "Incremento potenza attacco"
+  },
+  "59fbb7d8": {
+    "key": "59FBB7D8",
+    "text": "Incremento forza stordente"
+  },
+  "5a51f0cb": {
+    "key": "5A51F0CB",
+    "text": "Incremento salute"
+  },
+  "5a57dc07": {
+    "key": "5A57DC07",
+    "text": "Incremento salute"
+  },
+  "5e95a4a4": {
+    "key": "5E95A4A4",
+    "text": "Incremento probabilità critico"
+  },
+  "60835d4f": {
+    "key": "60835D4F",
+    "text": "Incremento potenza attacco"
+  },
+  "60926b53": {
+    "key": "60926B53",
+    "text": "Incremento potenza attacco"
+  },
+  "61d4efa0": {
+    "key": "61D4EFA0",
+    "text": "Incremento salute"
+  },
+  "62289920": {
+    "key": "62289920",
+    "text": "Incremento limite danni abilità"
+  },
+  "6564c02b": {
+    "key": "6564C02B",
+    "text": "Incremento salute"
+  },
+  "66092bc7": {
+    "key": "66092BC7",
+    "text": "Incremento potenza attacco"
+  },
+  "67bde89b": {
+    "key": "67BDE89B",
+    "text": "Incremento potenza attacco"
+  },
+  "6811123b": {
+    "key": "6811123B",
+    "text": "Incremento limite danni att. standard"
+  },
+  "6837e60c": {
+    "key": "6837E60C",
+    "text": "Incremento forza stordente"
+  },
+  "688246f9": {
+    "key": "688246F9",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "68b39018": {
+    "key": "68B39018",
+    "text": "Incremento danni raffica a catena"
+  },
+  "699c6476": {
+    "key": "699C6476",
+    "text": "Incremento probabilità critico"
+  },
+  "6cb38ef3": {
+    "key": "6CB38EF3",
+    "text": "Incremento forza stordente"
+  },
+  "6e13df92": {
+    "key": "6E13DF92",
+    "text": "Incremento probabilità critico"
+  },
+  "6e4f2f5e": {
+    "key": "6E4F2F5E",
+    "text": "Incremento potenza attacco"
+  },
+  "6f6b59ba": {
+    "key": "6F6B59BA",
+    "text": "Incremento limite danni abilità"
+  },
+  "6fb47781": {
+    "key": "6FB47781",
+    "text": "Incremento potenza attacco"
+  },
+  "70ba21ad": {
+    "key": "70BA21AD",
+    "text": "Incremento danni arte celeste"
+  },
+  "7125942e": {
+    "key": "7125942E",
+    "text": "Incremento potenza attacco"
+  },
+  "72296d1c": {
+    "key": "72296D1C",
+    "text": "Incremento probabilità critico"
+  },
+  "72ecdb4f": {
+    "key": "72ECDB4F",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "75d793bd": {
+    "key": "75D793BD",
+    "text": "Incremento danni raffica a catena"
+  },
+  "76c83bfd": {
+    "key": "76C83BFD",
+    "text": "Incremento limite cure"
+  },
+  "776adca4": {
+    "key": "776ADCA4",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "7affde77": {
+    "key": "7AFFDE77",
+    "text": "Incremento limite danni abilità"
+  },
+  "7b05e679": {
+    "key": "7B05E679",
+    "text": "Incremento forza stordente"
+  },
+  "7b498c32": {
+    "key": "7B498C32",
+    "text": "Incremento forza stordente"
+  },
+  "7cbbb4e0": {
+    "key": "7CBBB4E0",
+    "text": "Incremento salute"
+  },
+  "7ccf98c5": {
+    "key": "7CCF98C5",
+    "text": "Incremento potenza attacco"
+  },
+  "7e870ebe": {
+    "key": "7E870EBE",
+    "text": "Incremento salute"
+  },
+  "7f69df6b": {
+    "key": "7F69DF6B",
+    "text": "Incremento limite danni abilità"
+  },
+  "807e9e58": {
+    "key": "807E9E58",
+    "text": "Incremento potenza attacco"
+  },
+  "8105c89c": {
+    "key": "8105C89C",
+    "text": "Incremento limite danni att. standard"
+  },
+  "829b8b5c": {
+    "key": "829B8B5C",
+    "text": "Incremento salute"
+  },
+  "834892b4": {
+    "key": "834892B4",
+    "text": "Incremento potenza attacco"
+  },
+  "85f0f318": {
+    "key": "85F0F318",
+    "text": "Incremento potenza attacco"
+  },
+  "871d12cc": {
+    "key": "871D12CC",
+    "text": "Incremento salute"
+  },
+  "874353d7": {
+    "key": "874353D7",
+    "text": "Incremento potenza attacco"
+  },
+  "8af65803": {
+    "key": "8AF65803",
+    "text": "Incremento potenza attacco"
+  },
+  "8e175220": {
+    "key": "8E175220",
+    "text": "Incremento limite danni abilità"
+  },
+  "8e4af42a": {
+    "key": "8E4AF42A",
+    "text": "Incremento danni abilità"
+  },
+  "8e66b68c": {
+    "key": "8E66B68C",
+    "text": "Incremento salute"
+  },
+  "8f505d1d": {
+    "key": "8F505D1D",
+    "text": "Incremento limite danni att. standard"
+  },
+  "8fe7fb0a": {
+    "key": "8FE7FB0A",
+    "text": "Incremento potenza attacco"
+  },
+  "911d4f18": {
+    "key": "911D4F18",
+    "text": "Incremento salute"
+  },
+  "91265f66": {
+    "key": "91265F66",
+    "text": "Incremento potenza attacco"
+  },
+  "93572974": {
+    "key": "93572974",
+    "text": "Incremento potenza attacco"
+  },
+  "937efb96": {
+    "key": "937EFB96",
+    "text": "Incremento potenza attacco"
+  },
+  "95567556": {
+    "key": "95567556",
+    "text": "Incremento potenza attacco"
+  },
+  "9730a344": {
+    "key": "9730A344",
+    "text": "Incremento probabilità critico"
+  },
+  "9a0988df": {
+    "key": "9A0988DF",
+    "text": "Incremento potenza attacco"
+  },
+  "9a29aa64": {
+    "key": "9A29AA64",
+    "text": "Incremento salute"
+  },
+  "9a97c049": {
+    "key": "9A97C049",
+    "text": "Incremento danni abilità"
+  },
+  "9b6f164c": {
+    "key": "9B6F164C",
+    "text": "Incremento potenza attacco"
+  },
+  "9bf7878a": {
+    "key": "9BF7878A",
+    "text": "Incremento forza stordente"
+  },
+  "9bfd4548": {
+    "key": "9BFD4548",
+    "text": "Incremento potenza attacco"
+  },
+  "9c555433": {
+    "key": "9C555433",
+    "text": "Incremento limite danni abilità"
+  },
+  "9c6272cf": {
+    "key": "9C6272CF",
+    "text": "Incremento limite danni abilità"
+  },
+  "9c6375cf": {
+    "key": "9C6375CF",
+    "text": "Incremento salute"
+  },
+  "9ee4105a": {
+    "key": "9EE4105A",
+    "text": "Incremento danni raffica a catena"
+  },
+  "a1dc63b3": {
+    "key": "A1DC63B3",
+    "text": "Incremento potenza attacco"
+  },
+  "a2388de8": {
+    "key": "A2388DE8",
+    "text": "Incremento danni abilità"
+  },
+  "a257dac1": {
+    "key": "A257DAC1",
+    "text": "Incremento potenza attacco"
+  },
+  "a2bcf523": {
+    "key": "A2BCF523",
+    "text": "Incremento potenza attacco"
+  },
+  "a3460028": {
+    "key": "A3460028",
+    "text": "Incremento potenza attacco"
+  },
+  "a3545ca1": {
+    "key": "A3545CA1",
+    "text": "Incremento forza stordente"
+  },
+  "a5a1b56b": {
+    "key": "A5A1B56B",
+    "text": "Incremento danni raffica a catena"
+  },
+  "a73cd44c": {
+    "key": "A73CD44C",
+    "text": "Incremento danni arte celeste"
+  },
+  "a85495ba": {
+    "key": "A85495BA",
+    "text": "Incremento forza stordente"
+  },
+  "a85b4af5": {
+    "key": "A85B4AF5",
+    "text": "Incremento potenza attacco"
+  },
+  "a901e065": {
+    "key": "A901E065",
+    "text": "Incremento forza stordente"
+  },
+  "aa7247e1": {
+    "key": "AA7247E1",
+    "text": "Incremento danni raffica a catena"
+  },
+  "aac23948": {
+    "key": "AAC23948",
+    "text": "Incremento salute"
+  },
+  "ab56bde3": {
+    "key": "AB56BDE3",
+    "text": "Incremento salute"
+  },
+  "aba0fedd": {
+    "key": "ABA0FEDD",
+    "text": "Incremento limite danni att. standard"
+  },
+  "accbece1": {
+    "key": "ACCBECE1",
+    "text": "Incremento salute"
+  },
+  "ad5ecdd3": {
+    "key": "AD5ECDD3",
+    "text": "Incremento danni raffica a catena"
+  },
+  "ae39e4a1": {
+    "key": "AE39E4A1",
+    "text": "Incremento danni arte celeste"
+  },
+  "af0d8b97": {
+    "key": "AF0D8B97",
+    "text": "Incremento salute"
+  },
+  "b5b62b63": {
+    "key": "B5B62B63",
+    "text": "Incremento limite danni att. standard"
+  },
+  "b63a15af": {
+    "key": "B63A15AF",
+    "text": "Incremento limite danni abilità"
+  },
+  "b83aa115": {
+    "key": "B83AA115",
+    "text": "Incremento potenza attacco"
+  },
+  "bbe7992a": {
+    "key": "BBE7992A",
+    "text": "Incremento salute"
+  },
+  "bd488071": {
+    "key": "BD488071",
+    "text": "Incremento potenza attacco"
+  },
+  "bd612b10": {
+    "key": "BD612B10",
+    "text": "Incremento limite danni att. standard"
+  },
+  "be8c17d4": {
+    "key": "BE8C17D4",
+    "text": "Incremento potenza attacco"
+  },
+  "bf44c20b": {
+    "key": "BF44C20B",
+    "text": "Incremento salute"
+  },
+  "c11fdfbd": {
+    "key": "C11FDFBD",
+    "text": "Incremento forza stordente"
+  },
+  "c1360291": {
+    "key": "C1360291",
+    "text": "Incremento potenza attacco"
+  },
+  "c265b03b": {
+    "key": "C265B03B",
+    "text": "Incremento salute"
+  },
+  "c2d708c1": {
+    "key": "C2D708C1",
+    "text": "Incremento potenza attacco"
+  },
+  "c40a90df": {
+    "key": "C40A90DF",
+    "text": "Incremento limite danni abilità"
+  },
+  "c4925bd7": {
+    "key": "C4925BD7",
+    "text": "Incremento potenza attacco"
+  },
+  "c4b86ed7": {
+    "key": "C4B86ED7",
+    "text": "Incremento probabilità critico"
+  },
+  "c52d2245": {
+    "key": "C52D2245",
+    "text": "Incremento salute"
+  },
+  "c5d68c62": {
+    "key": "C5D68C62",
+    "text": "Incremento potenza attacco"
+  },
+  "c680087d": {
+    "key": "C680087D",
+    "text": "Incremento probabilità critico"
+  },
+  "c6bdc7a6": {
+    "key": "C6BDC7A6",
+    "text": "Incremento potenza attacco"
+  },
+  "c7e54acc": {
+    "key": "C7E54ACC",
+    "text": "Incremento limite danni abilità"
+  },
+  "c96005f7": {
+    "key": "C96005F7",
+    "text": "Incremento probabilità critico"
+  },
+  "cac0beb6": {
+    "key": "CAC0BEB6",
+    "text": "Incremento limite danni abilità"
+  },
+  "cb43ff8e": {
+    "key": "CB43FF8E",
+    "text": "Incremento potenza attacco"
+  },
+  "cb63be55": {
+    "key": "CB63BE55",
+    "text": "Incremento potenza attacco"
+  },
+  "cb6bb434": {
+    "key": "CB6BB434",
+    "text": "Incremento potenza attacco"
+  },
+  "cbc6b841": {
+    "key": "CBC6B841",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "cc8a39ef": {
+    "key": "CC8A39EF",
+    "text": "Incremento probabilità critico"
+  },
+  "ccef4492": {
+    "key": "CCEF4492",
+    "text": "Incremento potenza attacco"
+  },
+  "cd5b5b8f": {
+    "key": "CD5B5B8F",
+    "text": "Incremento danni raffica a catena"
+  },
+  "cd5d6315": {
+    "key": "CD5D6315",
+    "text": "Incremento potenza attacco"
+  },
+  "cd6542f5": {
+    "key": "CD6542F5",
+    "text": "Incremento danni arte celeste"
+  },
+  "ce775676": {
+    "key": "CE775676",
+    "text": "Incremento limite danni abilità"
+  },
+  "ceb0dbd2": {
+    "key": "CEB0DBD2",
+    "text": "Incremento probabilità critico"
+  },
+  "cf24e1a2": {
+    "key": "CF24E1A2",
+    "text": "Incremento salute"
+  },
+  "cf6b267a": {
+    "key": "CF6B267A",
+    "text": "Incremento potenza attacco"
+  },
+  "cfa862bd": {
+    "key": "CFA862BD",
+    "text": "Incremento danni raffica a catena"
+  },
+  "d4c00baf": {
+    "key": "D4C00BAF",
+    "text": "Incremento limite danni abilità"
+  },
+  "d5169339": {
+    "key": "D5169339",
+    "text": "Incremento forza stordente"
+  },
+  "d51958d1": {
+    "key": "D51958D1",
+    "text": "Incremento salute"
+  },
+  "d63dd12b": {
+    "key": "D63DD12B",
+    "text": "Incremento forza stordente"
+  },
+  "d83326ce": {
+    "key": "D83326CE",
+    "text": "Incremento probabilità critico"
+  },
+  "da546dfe": {
+    "key": "DA546DFE",
+    "text": "Incremento potenza attacco"
+  },
+  "dcbd8423": {
+    "key": "DCBD8423",
+    "text": "Incremento potenza attacco"
+  },
+  "ddc29837": {
+    "key": "DDC29837",
+    "text": "Incremento potenza attacco"
+  },
+  "de3f845b": {
+    "key": "DE3F845B",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "de6a367a": {
+    "key": "DE6A367A",
+    "text": "Incremento potenza attacco"
+  },
+  "df2cab83": {
+    "key": "DF2CAB83",
+    "text": "Incremento potenza attacco"
+  },
+  "df2eef09": {
+    "key": "DF2EEF09",
+    "text": "Incremento potenza attacco"
+  },
+  "dfb00115": {
+    "key": "DFB00115",
+    "text": "Incremento salute"
+  },
+  "e056ba80": {
+    "key": "E056BA80",
+    "text": "Incremento potenza attacco"
+  },
+  "e14a5507": {
+    "key": "E14A5507",
+    "text": "Incremento danni arte celeste"
+  },
+  "e16a1d0d": {
+    "key": "E16A1D0D",
+    "text": "Incremento limite danni att. standard"
+  },
+  "e50ea3d0": {
+    "key": "E50EA3D0",
+    "text": "Incremento probabilità critico"
+  },
+  "e57f6d44": {
+    "key": "E57F6D44",
+    "text": "Incremento danni arte celeste"
+  },
+  "e5d1f9e1": {
+    "key": "E5D1F9E1",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "e742cce0": {
+    "key": "E742CCE0",
+    "text": "Incremento limite danni abilità"
+  },
+  "e7710898": {
+    "key": "E7710898",
+    "text": "Incremento potenza attacco"
+  },
+  "ea14fa65": {
+    "key": "EA14FA65",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "ea5eaafc": {
+    "key": "EA5EAAFC",
+    "text": "Incremento salute"
+  },
+  "ea99fa76": {
+    "key": "EA99FA76",
+    "text": "Incremento potenza attacco"
+  },
+  "ec3b22ff": {
+    "key": "EC3B22FF",
+    "text": "Incremento limite cure"
+  },
+  "ee6100ca": {
+    "key": "EE6100CA",
+    "text": "Incremento salute"
+  },
+  "eefb4ade": {
+    "key": "EEFB4ADE",
+    "text": "Incremento potenza attacco"
+  },
+  "f004e9f2": {
+    "key": "F004E9F2",
+    "text": "Incremento salute"
+  },
+  "f203bb15": {
+    "key": "F203BB15",
+    "text": "Incremento potenza attacco"
+  },
+  "f2111b99": {
+    "key": "F2111B99",
+    "text": "Incremento potenza attacco"
+  },
+  "f3883729": {
+    "key": "F3883729",
+    "text": "Incremento limite danni att. standard"
+  },
+  "f3ee9a98": {
+    "key": "F3EE9A98",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "f5514f81": {
+    "key": "F5514F81",
+    "text": "Incremento salute"
+  },
+  "f581c321": {
+    "key": "F581C321",
+    "text": "Incremento danni arte celeste"
+  },
+  "f5c314a0": {
+    "key": "F5C314A0",
+    "text": "Incremento forza stordente"
+  },
+  "f80e3310": {
+    "key": "F80E3310",
+    "text": "Incremento salute"
+  },
+  "f87deeb9": {
+    "key": "F87DEEB9",
+    "text": "Incremento danni abilità"
+  },
+  "f913d839": {
+    "key": "F913D839",
+    "text": "Incremento danni raffica a catena"
+  },
+  "fa230938": {
+    "key": "FA230938",
+    "text": "Incremento potenza attacco"
+  },
+  "fa9bcf64": {
+    "key": "FA9BCF64",
+    "text": "Incremento potenza attacco"
+  },
+  "fb276afd": {
+    "key": "FB276AFD",
+    "text": "Incremento potenza attacco"
+  },
+  "fb4819d9": {
+    "key": "FB4819D9",
+    "text": "Incremento limite danni arte celeste"
+  },
+  "fc0a10f6": {
+    "key": "FC0A10F6",
+    "text": "Incremento limite danni att. standard"
+  },
+  "fc942f30": {
+    "key": "FC942F30",
+    "text": "Incremento danni raffica a catena"
+  },
+  "fe59f993": {
+    "key": "FE59F993",
+    "text": "Incremento danni abilità"
+  },
+  "fe71865d": {
+    "key": "FE71865D",
+    "text": "Incremento potenza attacco"
+  }
+}

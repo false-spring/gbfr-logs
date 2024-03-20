@@ -1,25 +1,14 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import resourcesToBackend from "i18next-resources-to-backend";
 
 import { resolveResource } from "@tauri-apps/api/path";
 import { readTextFile } from "@tauri-apps/api/fs";
 
-const loadLanguageFromPath = async (language: string) => {
-  const resourcePath = await resolveResource(`lang/${language}.json`);
+const loadLanguageFromPath = async (language: string, namespace: string) => {
+  const resourcePath = await resolveResource(`lang/${language}/${namespace}.json`);
   return JSON.parse(await readTextFile(resourcePath));
-};
-
-const en = await loadLanguageFromPath("en");
-const zhCN = await loadLanguageFromPath("zh-CN");
-const zhTW = await loadLanguageFromPath("zh-TW");
-const koKR = await loadLanguageFromPath("ko-KR");
-
-const resources = {
-  en,
-  "zh-CN": zhCN,
-  "zh-TW": zhTW,
-  "ko-KR": koKR,
 };
 
 export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
@@ -27,14 +16,31 @@ export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
   "zh-CN": "简体中文",
   "zh-TW": "繁體中文",
   "ko-KR": "한국어",
+  jp: "日本語",
+  "fr-FR": "Français",
+  bp: "Brazillian Portuguese",
+  ge: "Deutsch",
+  "es-ES": "Español",
+  "it-IT": "Italiano",
 };
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
+  .use(
+    resourcesToBackend((language, namespace, callback) => {
+      loadLanguageFromPath(language, namespace)
+        .then((res) => callback(null, res))
+        .catch((error) => callback(error, null));
+    })
+  )
   .init({
-    resources,
-    fallbackLng: ["en", "zh-CN", "zh-TW"],
+    ns: ["ui", "characters", "items", "overmasteries", "sigils", "traits", "weapons", "quests", "enemies"],
+    defaultNS: "ui",
+    fallbackLng: {
+      default: ["en"],
+      "zh-TW": ["zh-CN", "en"],
+    },
     interpolation: {
       escapeValue: false,
     },

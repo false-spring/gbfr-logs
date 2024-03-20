@@ -188,7 +188,7 @@ export const ViewPage = () => {
       return {
         rawValue: target,
         value: target.Unknown.toString(),
-        label: t([`enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
+        label: t([`enemies:${hash}.text`, `enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
       };
     }
 
@@ -344,7 +344,8 @@ export const ViewPage = () => {
                     return (
                       <Table.Td key={player.actorIndex} flex={1}>
                         <Text fw={700} size="xl">
-                          {player.displayName} ({t(`characters.${player.characterType}`)})
+                          {player.displayName} (
+                          {t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`)})
                         </Text>
                       </Table.Td>
                     );

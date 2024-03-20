@@ -31,7 +31,8 @@
         "readFile": true,
         "scope": [
           "$RESOURCE/*",
-          "$RESOURCE/lang/*"
+          "$RESOURCE/lang/*",
+          "$RESOURCE/lang/*/*"
         ]
       },
       "path": {

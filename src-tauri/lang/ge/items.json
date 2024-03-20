@@ -1,0 +1,1078 @@
+{
+  "000eb8f5": {
+    "key": "ITEM_31_0090",
+    "text": "Kopfschmuck des Häuptlings"
+  },
+  "01eaa064": {
+    "key": "ITEM_16_0001",
+    "text": "Halbgottfeder"
+  },
+  "035c056d": {
+    "key": "ITEM_28_0010",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "050c5228": {
+    "key": "ITEM_01_0033",
+    "text": "Elektromagnetischer Sand"
+  },
+  "05d2cf79": {
+    "key": "ITEM_22_0020",
+    "text": "Rotdrachenschuppe"
+  },
+  "0657f403": {
+    "key": "ITEM_35_1000",
+    "text": "Meisterschaftspunkte"
+  },
+  "0692327c": {
+    "key": "ITEM_31_0011",
+    "text": "Öder Armschutz"
+  },
+  "09370a3a": {
+    "key": "ITEM_21_0000",
+    "text": "Schnickschnack-Gutschein"
+  },
+  "09c7a73e": {
+    "key": "ITEM_01_0053",
+    "text": "Blütenschwertgriff"
+  },
+  "09f9339e": {
+    "key": "ITEM_32_0056",
+    "text": "Horn des Abgrunds"
+  },
+  "0b8d0865": {
+    "key": "ITEM_27_9999",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "0f479fa7": {
+    "key": "ITEM_16_0000",
+    "text": "Heliotropenurne"
+  },
+  "0f6b4a1f": {
+    "key": "ITEM_09_0012",
+    "text": "Silberwolf-Clovis"
+  },
+  "11722a61": {
+    "key": "ITEM_18_0001",
+    "text": "Tränen der Apokalypse"
+  },
+  "11a0f065": {
+    "key": "ITEM_16_0010",
+    "text": "Protokollfaser"
+  },
+  "11a1b6b3": {
+    "key": "ITEM_25_0011",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "131a4636": {
+    "key": "ITEM_50_0008",
+    "text": "Schillernde Bildnishülle"
+  },
+  "13fcf405": {
+    "key": "ITEM_05_0001",
+    "text": "Excavallion-Omega-Anima"
+  },
+  "141ef3a7": {
+    "key": "ITEM_02_0001",
+    "text": "Windkugel"
+  },
+  "147ef70a": {
+    "key": "ITEM_34_3000",
+    "text": "Glitzerkristall"
+  },
+  "1544fb8a": {
+    "key": "ITEM_27_1001",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "15c3f606": {
+    "key": "ITEM_02_0052",
+    "text": "Glanzkugel"
+  },
+  "173851d4": {
+    "key": "ITEM_04_0002",
+    "text": "Abgetrennte Mähne"
+  },
+  "176436f3": {
+    "key": "ITEM_28_1002",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "181381e5": {
+    "key": "ITEM_16_0004",
+    "text": "Fessel der Göttlichkeit"
+  },
+  "19b187d7": {
+    "key": "ITEM_28_0001",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "1a114b03": {
+    "key": "ITEM_04_0001",
+    "text": "Managarmr-Omega-Anima"
+  },
+  "1aa4382d": {
+    "key": "ITEM_02_0012",
+    "text": "Frostkugel"
+  },
+  "1c67e865": {
+    "key": "ITEM_01_0011",
+    "text": "Beschädigte Heckflosse"
+  },
+  "1cf9a666": {
+    "key": "ITEM_01_0022",
+    "text": "Frostblume"
+  },
+  "1da0a639": {
+    "key": "ITEM_32_0031",
+    "text": "Ukharkern"
+  },
+  "1e133aac": {
+    "key": "ITEM_18_0000",
+    "text": "Dunkler Rest"
+  },
+  "20612b0a": {
+    "key": "ITEM_31_0020",
+    "text": "Fegefeuerknochen"
+  },
+  "206c6ec1": {
+    "key": "ITEM_01_0030",
+    "text": "Wüstenasche"
+  },
+  "208fa9e4": {
+    "key": "ITEM_02_0041",
+    "text": "Dunkelkugel"
+  },
+  "21b32140": {
+    "key": "ITEM_31_0042",
+    "text": "Horn der Landbestie"
+  },
+  "21dad920": {
+    "key": "ITEM_26_9999",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "23c59c51": {
+    "key": "ITEM_31_0075",
+    "text": "Zacken des Richtspruchs"
+  },
+  "23f2e797": {
+    "key": "ITEM_14_0013",
+    "text": "Regenbogen-Prisma"
+  },
+  "24725515": {
+    "key": "ITEM_15_0003",
+    "text": "Außergewöhnliches Refinium"
+  },
+  "2492ecc9": {
+    "key": "ITEM_27_1002",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "24df54ee": {
+    "key": "ITEM_10_0003",
+    "text": "Stärkekristall (G)"
+  },
+  "26fa7da3": {
+    "key": "ITEM_01_0042",
+    "text": "Zinnrotes Pulver"
+  },
+  "28592cb2": {
+    "key": "ITEM_02_0022",
+    "text": "Donnerkugel"
+  },
+  "29a7eec9": {
+    "key": "ITEM_16_0011",
+    "text": "Manakreis"
+  },
+  "29bba035": {
+    "key": "ITEM_50_0001",
+    "text": "Bestienschutz-Stock"
+  },
+  "2a2ea603": {
+    "key": "ITEM_25_0030",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "2c8fa06c": {
+    "key": "ITEM_25_9999",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "2cdfa192": {
+    "key": "ITEM_26_0012",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "2d007309": {
+    "key": "ITEM_32_0070",
+    "text": "Bahamuts Horn"
+  },
+  "2d510205": {
+    "key": "ITEM_01_0021",
+    "text": "Schneekissen"
+  },
+  "2e94d39a": {
+    "key": "ITEM_14_0022",
+    "text": "Legendensiegel"
+  },
+  "3031e3e4": {
+    "key": "ITEM_01_0061",
+    "text": "Dunkle Flüssigkeit"
+  },
+  "3048daa9": {
+    "key": "ITEM_31_0092",
+    "text": "Kaputtes Barbarenschwert"
+  },
+  "30e31afe": {
+    "key": "ITEM_34_2000",
+    "text": "Glitzerstein (G)"
+  },
+  "33e663d0": {
+    "key": "ITEM_26_0010",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "354d4683": {
+    "key": "ITEM_31_0060",
+    "text": "Klaue der Flammenbestie"
+  },
+  "35c7fba0": {
+    "key": "ITEM_23_0000",
+    "text": "Crewmitgliedskarte"
+  },
+  "38d2ecd0": {
+    "key": "ITEM_02_0032",
+    "text": "Höllenkugel"
+  },
+  "3916849c": {
+    "key": "ITEM_13_0000",
+    "text": "Grüner Trank"
+  },
+  "3e0269bd": {
+    "key": "ITEM_26_0030",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "3f8f4efd": {
+    "key": "ITEM_16_0002",
+    "text": "Schreckensurne"
+  },
+  "41776dfd": {
+    "key": "ITEM_30_0000",
+    "text": "Illusionsmunition"
+  },
+  "41e92f0a": {
+    "key": "ITEM_16_0003",
+    "text": "Dorn der Wirklichkeit"
+  },
+  "4325ab79": {
+    "key": "ITEM_14_0011",
+    "text": "Defektes Prisma"
+  },
+  "434c567f": {
+    "key": "ITEM_07_0000",
+    "text": "Angra Mainyu-Anima"
+  },
+  "43915122": {
+    "key": "ITEM_08_0000",
+    "text": "Damaskusbarren"
+  },
+  "451f7d7a": {
+    "key": "ITEM_06_0000",
+    "text": "Volkan Bolla-Anima"
+  },
+  "463abc2d": {
+    "key": "ITEM_28_0000",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "4ac30d94": {
+    "key": "ITEM_19_0003",
+    "text": "Kuriosität"
+  },
+  "4be41ec1": {
+    "key": "ITEM_26_1003",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "4c4caa77": {
+    "key": "ITEM_06_0002",
+    "text": "Schreckensschwanz"
+  },
+  "4c9be4de": {
+    "key": "ITEM_31_0062",
+    "text": "Horn der Flammenbestie"
+  },
+  "4d16fcab": {
+    "key": "ITEM_27_0020",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "4e3989b8": {
+    "key": "ITEM_25_0012",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "4f1e4c13": {
+    "key": "ITEM_03_0001",
+    "text": "Furkan-Omega-Anima"
+  },
+  "51355c28": {
+    "key": "ITEM_22_0031",
+    "text": "Eisdrachenjuwel"
+  },
+  "514d7aa0": {
+    "key": "ITEM_01_0040",
+    "text": "Magmawurm"
+  },
+  "52bb246c": {
+    "key": "ITEM_31_0041",
+    "text": "Panzer der Landbestie"
+  },
+  "541d3800": {
+    "key": "ITEM_15_0001",
+    "text": "Standard Refinium"
+  },
+  "54fc643a": {
+    "key": "ITEM_17_0000",
+    "text": "Furkan Nihil-Kern"
+  },
+  "552d70ed": {
+    "key": "ITEM_26_0000",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "559e221d": {
+    "key": "ITEM_26_1002",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "55d1b23f": {
+    "key": "ITEM_25_1003",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "5942c5fb": {
+    "key": "ITEM_70_0005",
+    "text": "Rebellenkleidung"
+  },
+  "5a5fa153": {
+    "key": "ITEM_32_0050",
+    "text": "Antike Hohlspitze"
+  },
+  "5c07839a": {
+    "key": "ITEM_14_0032",
+    "text": "Golddahlienabzeichen"
+  },
+  "5ceadfbc": {
+    "key": "ITEM_02_0002",
+    "text": "Wirbelsturmkugel"
+  },
+  "5d7078cd": {
+    "key": "ITEM_14_0030",
+    "text": "Kupferdahlienabzeichen"
+  },
+  "5e2d3d63": {
+    "key": "ITEM_07_0002",
+    "text": "Unheilshand"
+  },
+  "6096c6bf": {
+    "key": "ITEM_16_0012",
+    "text": "Chronoskern"
+  },
+  "60fd93bd": {
+    "key": "ITEM_27_0030",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "6198f427": {
+    "key": "ITEM_19_0002",
+    "text": "Kuriosität"
+  },
+  "644536df": {
+    "key": "ITEM_10_0001",
+    "text": "Stärkekristall (K)"
+  },
+  "64473a6a": {
+    "key": "ITEM_22_0060",
+    "text": "Weißdrachenschuppe"
+  },
+  "648cda74": {
+    "key": "ITEM_11_0001",
+    "text": "Silber-Zauberbuch"
+  },
+  "65c8078d": {
+    "key": "ITEM_09_0022",
+    "text": "Zahn des Halsabschneiders"
+  },
+  "65d98a52": {
+    "key": "ITEM_31_0032",
+    "text": "Riesiger Schnabel"
+  },
+  "67e3f274": {
+    "key": "ITEM_32_0030",
+    "text": "Tayu’itar-Kopfteil"
+  },
+  "687733c4": {
+    "key": "ITEM_10_0000",
+    "text": "Stärkesplitter"
+  },
+  "68b1ae43": {
+    "key": "ITEM_26_0020",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "68ff3a08": {
+    "key": "ITEM_31_0022",
+    "text": "Sengende Streitaxt"
+  },
+  "6b4e2182": {
+    "key": "ITEM_09_0001",
+    "text": "Id-Anamnese"
+  },
+  "6bdf6669": {
+    "key": "ITEM_02_0051",
+    "text": "Lichtkugel"
+  },
+  "6d876fab": {
+    "key": "ITEM_32_0051",
+    "text": "Purpurhorn"
+  },
+  "6e49a111": {
+    "key": "ITEM_01_0063",
+    "text": "Sternenmaterie"
+  },
+  "6f1fabe6": {
+    "key": "ITEM_14_0021",
+    "text": "Herrschaftssiegel"
+  },
+  "71bc9232": {
+    "key": "ITEM_70_0006",
+    "text": "Elpis, das Seelensiegel"
+  },
+  "726575ff": {
+    "key": "ITEM_01_0050",
+    "text": "Kaputte Gliederpuppe"
+  },
+  "729d7fb0": {
+    "key": "ITEM_03_0002",
+    "text": "Huf der Lebenskraft"
+  },
+  "745fd287": {
+    "key": "ITEM_32_0054",
+    "text": "Taifun-Horn"
+  },
+  "759850ca": {
+    "key": "ITEM_01_0041",
+    "text": "Salamander-Ei"
+  },
+  "76079579": {
+    "key": "ITEM_19_0004",
+    "text": "Kuriosität"
+  },
+  "771d9272": {
+    "key": "ITEM_70_0009",
+    "text": "Avia-Forschungsprotokolle"
+  },
+  "778897f4": {
+    "key": "ITEM_70_0003",
+    "text": "Stück der Himmelskarte"
+  },
+  "77df2f30": {
+    "key": "ITEM_31_0082",
+    "text": "Krönende Kappe"
+  },
+  "786407f5": {
+    "key": "ITEM_32_0055",
+    "text": "Glänzendes Horn"
+  },
+  "78fe6e2c": {
+    "key": "ITEM_80_0000",
+    "text": "Silberschlüssel"
+  },
+  "7948de7d": {
+    "key": "ITEM_10_0002",
+    "text": "Stärkekristall (M)"
+  },
+  "7992b6f0": {
+    "key": "ITEM_01_0060",
+    "text": "Bunte Reflexion"
+  },
+  "79c247f6": {
+    "key": "ITEM_01_0052",
+    "text": "Patalena-Glas"
+  },
+  "79e48056": {
+    "key": "ITEM_70_0015",
+    "text": "Charakterfarbenpaket 3"
+  },
+  "7a1cf760": {
+    "key": "ITEM_28_0020",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "7b600740": {
+    "key": "ITEM_17_0001",
+    "text": "Nihil-Gussschwert"
+  },
+  "7cfa41fc": {
+    "key": "ITEM_14_0012",
+    "text": "Makelloses Prisma"
+  },
+  "7e7999b3": {
+    "key": "ITEM_31_0031",
+    "text": "Greifenkralle"
+  },
+  "7eb26854": {
+    "key": "ITEM_31_0072",
+    "text": "Ätherbatterie"
+  },
+  "7f695b76": {
+    "key": "ITEM_50_0003",
+    "text": "Immergrüner Kristall"
+  },
+  "815b2ee4": {
+    "key": "ITEM_04_0000",
+    "text": "Managarmr-Anima"
+  },
+  "817a2cc1": {
+    "key": "ITEM_27_0011",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "81bf605c": {
+    "key": "ITEM_14_0031",
+    "text": "Silberdahlienabzeichen"
+  },
+  "82619167": {
+    "key": "ITEM_33_0003",
+    "text": "Vallion-Erinnerungsmünze"
+  },
+  "82c111c8": {
+    "key": "ITEM_32_0053",
+    "text": "Terra-Horn"
+  },
+  "8682c2ac": {
+    "key": "ITEM_80_0001",
+    "text": "Goldschlüssel"
+  },
+  "86b12abc": {
+    "key": "ITEM_80_0002",
+    "text": "Platinschlüssel"
+  },
+  "8816adc5": {
+    "key": "ITEM_14_0010",
+    "text": "Prisma-Chip"
+  },
+  "8b75e58a": {
+    "key": "ITEM_02_0011",
+    "text": "Wasserkugel"
+  },
+  "8bef5254": {
+    "key": "ITEM_31_0012",
+    "text": "Froststreitaxt"
+  },
+  "8c44f0ab": {
+    "key": "ITEM_28_0030",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "8d101b82": {
+    "key": "ITEM_25_1002",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "8db0b117": {
+    "key": "ITEM_28_9999",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "8e1cb52d": {
+    "key": "ITEM_02_0020",
+    "text": "Erdsplitter"
+  },
+  "8e5a0c09": {
+    "key": "ITEM_35_0000",
+    "text": "Rupien"
+  },
+  "8ffe7300": {
+    "key": "ITEM_22_0010",
+    "text": "Drachenflügel"
+  },
+  "90df952a": {
+    "key": "ITEM_14_0003",
+    "text": "Silberzentrum"
+  },
+  "91ccbc0f": {
+    "key": "ITEM_22_0051",
+    "text": "Winddrachenjuwel"
+  },
+  "926d4ae9": {
+    "key": "ITEM_01_0031",
+    "text": "Rotglühender Kaktus"
+  },
+  "92781b4b": {
+    "key": "ITEM_02_0031",
+    "text": "Feuerkugel"
+  },
+  "9282abbe": {
+    "key": "ITEM_31_0051",
+    "text": "Panzer der Frostbestie"
+  },
+  "9352ded3": {
+    "key": "ITEM_02_0010",
+    "text": "Wassersplitter"
+  },
+  "9371081e": {
+    "key": "ITEM_17_0020",
+    "text": "Volkan Bolla Nihil-Kern"
+  },
+  "94132ae1": {
+    "key": "ITEM_13_0001",
+    "text": "Mega-Trank"
+  },
+  "94dd261d": {
+    "key": "ITEM_22_0021",
+    "text": "Feuerdrachenjuwel"
+  },
+  "9519f56a": {
+    "key": "ITEM_02_0000",
+    "text": "Windsplitter"
+  },
+  "95bf2c6f": {
+    "key": "ITEM_26_0011",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "9738c87a": {
+    "key": "ITEM_14_0020",
+    "text": "Ehrensiegel"
+  },
+  "981c29bd": {
+    "key": "ITEM_70_0011",
+    "text": "Fragment eines Immergrünen Kristalls"
+  },
+  "98e75fcb": {
+    "key": "ITEM_22_0061",
+    "text": "Weißdrachenjuwel"
+  },
+  "99307633": {
+    "key": "ITEM_09_0011",
+    "text": "Gallanza-Anamnese"
+  },
+  "99d6247e": {
+    "key": "ITEM_15_0002",
+    "text": "Hochwertiges Refinium"
+  },
+  "99f44080": {
+    "key": "ITEM_31_0081",
+    "text": "Golem-Felsenkiefer"
+  },
+  "9b442642": {
+    "key": "ITEM_12_0000",
+    "text": "Ambrosia"
+  },
+  "9ba6e51d": {
+    "key": "ITEM_32_0052",
+    "text": "Gefrorenes Horn"
+  },
+  "9be7982b": {
+    "key": "ITEM_31_0021",
+    "text": "Fegefeuer-Armschutz"
+  },
+  "9c694865": {
+    "key": "ITEM_02_0021",
+    "text": "Erdkugel"
+  },
+  "9d598751": {
+    "key": "ITEM_22_0040",
+    "text": "Braundrachenschuppe"
+  },
+  "9e0ffa73": {
+    "key": "ITEM_31_0091",
+    "text": "Langschild-Fragment"
+  },
+  "9e75a958": {
+    "key": "ITEM_22_0071",
+    "text": "Schwarzdrachenjuwel"
+  },
+  "9f548db0": {
+    "key": "ITEM_22_0070",
+    "text": "Schwarzdrachenschuppe"
+  },
+  "9fc6585e": {
+    "key": "ITEM_50_0009",
+    "text": "Mitternachtssonnenbernstein"
+  },
+  "a062b3e4": {
+    "key": "ITEM_26_1000",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "a23f4f46": {
+    "key": "ITEM_27_0010",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "a7c72f41": {
+    "key": "ITEM_34_1000",
+    "text": "Glitzerstein (K)"
+  },
+  "a84ca7e9": {
+    "key": "ITEM_13_0002",
+    "text": "Blauer Trank"
+  },
+  "a90975b8": {
+    "key": "ITEM_25_1000",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "aa4626f6": {
+    "key": "ITEM_25_0020",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "aab4c91a": {
+    "key": "ITEM_28_0012",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "aae10c28": {
+    "key": "ITEM_25_0010",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "aba63a29": {
+    "key": "ITEM_02_0040",
+    "text": "Dunkelsplitter"
+  },
+  "ad856c0c": {
+    "key": "ITEM_11_0002",
+    "text": "Gold-Zauberbuch"
+  },
+  "ad9737a9": {
+    "key": "ITEM_27_1000",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "b2045655": {
+    "key": "ITEM_14_0000",
+    "text": "Pracht des Azurits"
+  },
+  "b451e459": {
+    "key": "ITEM_01_0003",
+    "text": "Talblüte"
+  },
+  "b4693222": {
+    "key": "ITEM_09_0021",
+    "text": "Maglielle-Anamnese"
+  },
+  "b5eeea35": {
+    "key": "ITEM_50_0011",
+    "text": "Fragment eines Immergrünen Kristalls"
+  },
+  "b763e7ac": {
+    "key": "ITEM_31_0071",
+    "text": "Säge der Verdammnis"
+  },
+  "b78ac87f": {
+    "key": "ITEM_02_0030",
+    "text": "Feuersplitter"
+  },
+  "b79139fb": {
+    "key": "ITEM_26_1001",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "b83b6b1d": {
+    "key": "ITEM_31_0010",
+    "text": "Öder Knochen"
+  },
+  "ba78c0b2": {
+    "key": "ITEM_27_0012",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "ba799e24": {
+    "key": "ITEM_05_0002",
+    "text": "Verstärkte Feuerstelle"
+  },
+  "bb579caf": {
+    "key": "ITEM_17_0010",
+    "text": "Managarmr Nihil-Kern"
+  },
+  "bb731907": {
+    "key": "ITEM_25_0000",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "bc413b80": {
+    "key": "ITEM_05_0000",
+    "text": "Excavallion-Anima"
+  },
+  "bee8897d": {
+    "key": "ITEM_22_0000",
+    "text": "Drachenschuppe"
+  },
+  "c05ca6a1": {
+    "key": "ITEM_09_0000",
+    "text": "Stolz des Beschützers"
+  },
+  "c1481583": {
+    "key": "ITEM_25_0001",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "c1dcb7ae": {
+    "key": "ITEM_32_0081",
+    "text": "Mondzelle"
+  },
+  "c263ccdc": {
+    "key": "ITEM_01_0043",
+    "text": "Phondam-Schwefel"
+  },
+  "c2e4d287": {
+    "key": "ITEM_01_0051",
+    "text": "Avia-Gebetsbuch"
+  },
+  "c3d96c52": {
+    "key": "ITEM_01_0013",
+    "text": "Hochwertiger Schrott"
+  },
+  "c48004dd": {
+    "key": "ITEM_70_0014",
+    "text": "Charakterfarbenpaket 2"
+  },
+  "c5406bba": {
+    "key": "ITEM_31_0074",
+    "text": "Drehkanone"
+  },
+  "c783f39d": {
+    "key": "ITEM_09_0010",
+    "text": "Mut des Alphawolfs"
+  },
+  "c96755a7": {
+    "key": "ITEM_31_0040",
+    "text": "Klaue der Landbestie"
+  },
+  "cb0781ef": {
+    "key": "ITEM_70_0001",
+    "text": "Lebenssymbiose"
+  },
+  "cb1e804f": {
+    "key": "ITEM_27_0000",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "cb39e0fc": {
+    "key": "ITEM_50_0000",
+    "text": "Windschopf"
+  },
+  "cd298cc8": {
+    "key": "ITEM_31_0030",
+    "text": "Greifenfeder"
+  },
+  "cd6af550": {
+    "key": "ITEM_50_0006",
+    "text": "Zwielichtkugel"
+  },
+  "cdde3137": {
+    "key": "ITEM_22_0041",
+    "text": "Erddrachenjuwel"
+  },
+  "ce0b379e": {
+    "key": "ITEM_50_0010",
+    "text": "Wüstenöl"
+  },
+  "d15091d9": {
+    "key": "ITEM_03_0000",
+    "text": "Furkan-Anima"
+  },
+  "d1d832c0": {
+    "key": "ITEM_32_0080",
+    "text": "Mond-Detektor"
+  },
+  "d27ace64": {
+    "key": "ITEM_70_0012",
+    "text": "Schleierarmet"
+  },
+  "d2c1330f": {
+    "key": "ITEM_28_1000",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "d465046a": {
+    "key": "ITEM_31_0070",
+    "text": "Mithrilrad"
+  },
+  "d47f792a": {
+    "key": "ITEM_31_0000",
+    "text": "Seltsamer Flügel"
+  },
+  "d5af421a": {
+    "key": "ITEM_31_0080",
+    "text": "Golemfinger"
+  },
+  "d5e89bc8": {
+    "key": "ITEM_01_0001",
+    "text": "Kringelpilz"
+  },
+  "d6cc00d6": {
+    "key": "ITEM_31_0050",
+    "text": "Klaue der Frostbestie"
+  },
+  "d7db4607": {
+    "key": "ITEM_31_0073",
+    "text": "Erweiterungsarmschiene"
+  },
+  "d93d7206": {
+    "key": "ITEM_17_0011",
+    "text": "Abgeworfenes Nihil-Horn"
+  },
+  "d943bee6": {
+    "key": "ITEM_31_0052",
+    "text": "Horn der Frostbestie"
+  },
+  "d9d98ed6": {
+    "key": "ITEM_17_0021",
+    "text": "Nihil-getränkte Dunkelmat."
+  },
+  "db1d4f35": {
+    "key": "ITEM_01_0000",
+    "text": "Pflasterstein"
+  },
+  "dd3f9978": {
+    "key": "ITEM_01_0023",
+    "text": "Ewige Schneeflocke"
+  },
+  "de302978": {
+    "key": "ITEM_15_0000",
+    "text": "Rafale-Münze"
+  },
+  "deed762b": {
+    "key": "ITEM_01_0002",
+    "text": "Gewitterstein"
+  },
+  "df18535c": {
+    "key": "ITEM_09_0020",
+    "text": "Schachzug der Klingenruferin"
+  },
+  "e0937c5b": {
+    "key": "ITEM_01_0020",
+    "text": "Eisnadel"
+  },
+  "e35076b2": {
+    "key": "ITEM_09_0002",
+    "text": "Destrudo"
+  },
+  "e379e863": {
+    "key": "ITEM_11_0000",
+    "text": "Kupfer-Zauberbuch"
+  },
+  "e3adb298": {
+    "key": "ITEM_25_1001",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "e4070e98": {
+    "key": "ITEM_31_0002",
+    "text": "Schauriges Dämonenauge"
+  },
+  "e5481168": {
+    "key": "ITEM_06_0001",
+    "text": "Volkan Bolla-Omega-Anima"
+  },
+  "e578bb85": {
+    "key": "ITEM_70_0008",
+    "text": "Dehgs Katalysatorstein"
+  },
+  "e600be75": {
+    "key": "ITEM_50_0002",
+    "text": "Gebrauchte Gartengeräte"
+  },
+  "e68da071": {
+    "key": "ITEM_32_0060",
+    "text": "Katastrophen-Korkenzieher"
+  },
+  "e6e075e8": {
+    "key": "ITEM_13_0003",
+    "text": "Trank der Wiederbelebung"
+  },
+  "e82861b1": {
+    "key": "ITEM_22_0050",
+    "text": "Gründrachenschuppe"
+  },
+  "e8c461ca": {
+    "key": "ITEM_50_0004",
+    "text": "Himmelblauer Edelstein"
+  },
+  "eac2d7ab": {
+    "key": "ITEM_50_0007",
+    "text": "Kaleidosphäre"
+  },
+  "eb0a1dc8": {
+    "key": "ITEM_01_0032",
+    "text": "Fornax-Stein"
+  },
+  "eb0ccd8d": {
+    "key": "ITEM_01_0010",
+    "text": "Verkohltes Holz"
+  },
+  "eb9c99e5": {
+    "key": "ITEM_28_1001",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "ed3b872d": {
+    "key": "ITEM_07_0001",
+    "text": "Angra Mainyu-Omega-Anima"
+  },
+  "ed91fe58": {
+    "key": "ITEM_31_0001",
+    "text": "Seltsame Eisklaue"
+  },
+  "ee2559c6": {
+    "key": "ITEM_60_0000",
+    "text": "Kleinzangen"
+  },
+  "eeb19bec": {
+    "key": "ITEM_27_0001",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "eed2f9d3": {
+    "key": "ITEM_27_1003",
+    "text": "Lichtstein (Verstärkung)"
+  },
+  "eedfa4e4": {
+    "key": "ITEM_70_0013",
+    "text": "Charakterfarbenpaket 1"
+  },
+  "f147229b": {
+    "key": "ITEM_70_0002",
+    "text": "Lyrias Tagebuch"
+  },
+  "f384e322": {
+    "key": "ITEM_50_0005",
+    "text": "Tränen der Reue"
+  },
+  "f42d8c01": {
+    "key": "ITEM_19_0001",
+    "text": "Kuriosität"
+  },
+  "f430b195": {
+    "key": "ITEM_01_0012",
+    "text": "Maschineneinheit"
+  },
+  "f53ae497": {
+    "key": "ITEM_26_0001",
+    "text": "Lichtstein (Lebenskraft)"
+  },
+  "f58676d3": {
+    "key": "ITEM_70_0010",
+    "text": "Rolans Notizen"
+  },
+  "f6155395": {
+    "key": "ITEM_28_1003",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "f692f716": {
+    "key": "ITEM_34_4000",
+    "text": "Glitzerkristallbündel"
+  },
+  "f6ee4068": {
+    "key": "ITEM_02_0042",
+    "text": "Abgrund-Kugel"
+  },
+  "f82726d9": {
+    "key": "ITEM_31_0061",
+    "text": "Panzer der Flammenbestie"
+  },
+  "f8f91f7e": {
+    "key": "ITEM_36_0000",
+    "text": "Goldenes Abzeichenticket"
+  },
+  "f90a5398": {
+    "key": "ITEM_22_0030",
+    "text": "Blaudrachenschuppe"
+  },
+  "f9d46ad2": {
+    "key": "ITEM_28_0011",
+    "text": "Lichtstein (Abgeschiedenheit)"
+  },
+  "fa674fbd": {
+    "key": "ITEM_70_0004",
+    "text": "Rolans Empfänger"
+  },
+  "fa737b89": {
+    "key": "ITEM_02_0050",
+    "text": "Lichtsplitter"
+  },
+  "feeafccf": {
+    "key": "ITEM_01_0062",
+    "text": "Desaster-Erz"
+  },
+  "ff1a207a": {
+    "key": "ITEM_70_0007",
+    "text": "Goldene Krabbenstatue"
+  }
+}

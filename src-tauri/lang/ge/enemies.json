@@ -1,0 +1,574 @@
+{
+  "00012bcd": {
+    "key": "EM0003",
+    "text": "Goblin-Bogenschütze"
+  },
+  "0178bc98": {
+    "key": "EM0603",
+    "text": "König Silberschleimchen"
+  },
+  "044bbc73": {
+    "key": "EM1800",
+    "text": "Urtürmlicher Drache"
+  },
+  "06d40674": {
+    "key": "WE2112",
+    "text": "Caduceus"
+  },
+  "095c118f": {
+    "key": "EM0900",
+    "text": "Feuergeist"
+  },
+  "0c9d3c34": {
+    "key": "EM2300",
+    "text": "Id"
+  },
+  "0cab680e": {
+    "key": "BH2005",
+    "text": "Kontrolleinheit"
+  },
+  "0d24bc0b": {
+    "key": "WE7011",
+    "text": "Fotia"
+  },
+  "0dbfc18a": {
+    "key": "EM7401",
+    "text": "Talus-Reaktor"
+  },
+  "0e0a8d33": {
+    "key": "EM0100",
+    "text": "Skelett"
+  },
+  "0e3d1703": {
+    "key": "EM1805",
+    "text": "Weißer Drache Radis"
+  },
+  "0ee3e67f": {
+    "key": "EM0902",
+    "text": "Wassergeist"
+  },
+  "0f7062bc": {
+    "key": "WE7004",
+    "text": "Anemos"
+  },
+  "119d4d01": {
+    "key": "EM0400",
+    "text": "Wyvern"
+  },
+  "1343cb82": {
+    "key": "EM00A1",
+    "text": "Goblin-Hexendoktor"
+  },
+  "17576f75": {
+    "key": "EM2000",
+    "text": "Gallanza"
+  },
+  "181b3a5b": {
+    "key": "EM1804",
+    "text": "Winddrache Elusious"
+  },
+  "1943ed28": {
+    "key": "EM7530",
+    "text": "Aka Manah"
+  },
+  "1b7264b0": {
+    "key": "EM00A4",
+    "text": "Goblin-Soldat"
+  },
+  "20037267": {
+    "key": "BA7200",
+    "text": "Wächter"
+  },
+  "22102ccd": {
+    "key": "WE7003",
+    "text": "Edafos"
+  },
+  "22e188a1": {
+    "key": "EM7406",
+    "text": "Atlasdübel"
+  },
+  "269529e2": {
+    "key": "WE7002",
+    "text": "Hydor"
+  },
+  "2b31654b": {
+    "key": "EM7700",
+    "text": "Lucilius"
+  },
+  "2bd7220b": {
+    "key": "WE7701",
+    "text": "Schwert des Verstoßes"
+  },
+  "2c800d3a": {
+    "key": "WE7000",
+    "text": "Skotadi"
+  },
+  "2d1e3cc6": {
+    "key": "EM0604",
+    "text": "König Goldschleimchen"
+  },
+  "3165aaba": {
+    "key": "EM1001",
+    "text": "Avia-Lancier"
+  },
+  "363f9b5c": {
+    "key": "EM1003",
+    "text": "Avia-Fahnenträger"
+  },
+  "3a0ea858": {
+    "key": "EM0102",
+    "text": "Gerasene"
+  },
+  "3a1c16f4": {
+    "key": "EM1005",
+    "text": "Schnitter Avalan"
+  },
+  "3d05eb17": {
+    "key": "EM0002",
+    "text": "Goblin-Brecher"
+  },
+  "3f7f9a35": {
+    "key": "EM1500",
+    "text": "Steingolem"
+  },
+  "427e32fe": {
+    "key": "EM0000",
+    "text": "Goblin-Stürmer"
+  },
+  "44a72d4b": {
+    "key": "EM0001",
+    "text": "Goblin-Hexendoktor"
+  },
+  "4698f258": {
+    "key": "EM0201",
+    "text": "Goblin-Wolfsreiter"
+  },
+  "48ebace1": {
+    "key": "EM1000",
+    "text": "Avia-Säbelrassler"
+  },
+  "4a299e62": {
+    "key": "EM1801",
+    "text": "Feuerdrache Vrazarek"
+  },
+  "4d2202ae": {
+    "key": "EM7404",
+    "text": "Wirbelsäulenkern"
+  },
+  "4d2d2ef6": {
+    "key": "EM7402",
+    "text": "Excavallion"
+  },
+  "4fdad2ca": {
+    "key": "EM7526",
+    "text": "Daeva"
+  },
+  "4fdb94bb": {
+    "key": "EM3100",
+    "text": "Pyet-A"
+  },
+  "4ff6785b": {
+    "key": "EM00A2",
+    "text": "Goblin-Brecher"
+  },
+  "563b59b1": {
+    "key": "BH2002",
+    "text": "Automatisches 20-mm-Äther-Geschütz"
+  },
+  "578e0df2": {
+    "key": "WE7024",
+    "text": "Anemos"
+  },
+  "584b39dc": {
+    "key": "EM7524",
+    "text": "Daeva"
+  },
+  "5e316d49": {
+    "key": "EM7603",
+    "text": "Bahamut-Kern"
+  },
+  "5fb90ec9": {
+    "key": "EM0501",
+    "text": "Eisdil"
+  },
+  "6056b80a": {
+    "key": "EM2600",
+    "text": "Kobra"
+  },
+  "635fffb6": {
+    "key": "WE7702",
+    "text": "Schwert des Verzichts"
+  },
+  "6409b2a8": {
+    "key": "EM1900",
+    "text": "Tayu’itar"
+  },
+  "65c26889": {
+    "key": "EM1806",
+    "text": "Schwarzer Drache Evyl"
+  },
+  "677f73cd": {
+    "key": "EM7409",
+    "text": "Brust-Reaktor"
+  },
+  "6782b537": {
+    "key": "EM0600",
+    "text": "Schleimchen"
+  },
+  "69bb1528": {
+    "key": "WE7022",
+    "text": "Hydor"
+  },
+  "6d5ba989": {
+    "key": "EM0701",
+    "text": "Cyaegha"
+  },
+  "6ef4d20b": {
+    "key": "WE7021",
+    "text": "Fotia"
+  },
+  "6f92396e": {
+    "key": "EM7520",
+    "text": "Daeva"
+  },
+  "703b6906": {
+    "key": "WE2113",
+    "text": "Gae Bolga"
+  },
+  "7044a13d": {
+    "key": "WE3100",
+    "text": "Glühwürmchen"
+  },
+  "745da8b4": {
+    "key": "EM7211",
+    "text": "Furkan Nihil"
+  },
+  "75a3867c": {
+    "key": "EM7300",
+    "text": "Managarmr"
+  },
+  "777abf6d": {
+    "key": "EM0200",
+    "text": "Wolfsbestie"
+  },
+  "7d71c604": {
+    "key": "EM1600",
+    "text": "Greif"
+  },
+  "7ef65e6d": {
+    "key": "EM7525",
+    "text": "Daeva"
+  },
+  "80b7eeff": {
+    "key": "EM0602",
+    "text": "Goldschleimchen"
+  },
+  "84abcd3e": {
+    "key": "EM7529",
+    "text": "Daeva"
+  },
+  "84fdd7b5": {
+    "key": "EM0005",
+    "text": "Goblinkrieger"
+  },
+  "8b964be7": {
+    "key": "EM2800",
+    "text": "Unheimliche Form"
+  },
+  "8c3adb57": {
+    "key": "EM7100",
+    "text": "Volkan Bolla"
+  },
+  "8eaf20fb": {
+    "key": "EM0804",
+    "text": "Lichtwirbel"
+  },
+  "90793b2e": {
+    "key": "BA7211",
+    "text": "Unheilvolles Tor"
+  },
+  "938a4bdf": {
+    "key": "EM7310",
+    "text": "Managarmr Nihil"
+  },
+  "95ecf6ab": {
+    "key": "EM7540",
+    "text": "Daeva"
+  },
+  "96316442": {
+    "key": "EM7110",
+    "text": "Volkan Bolla Nihil"
+  },
+  "966b47a8": {
+    "key": "EM7527",
+    "text": "Daeva"
+  },
+  "974772c3": {
+    "key": "BH0002",
+    "text": "Fracht des Händlers"
+  },
+  "9a7dfec3": {
+    "key": "EM7522",
+    "text": "Daeva"
+  },
+  "9ac78d6f": {
+    "key": "EM1002",
+    "text": "Avia-Bogenschütze"
+  },
+  "9af5d7f5": {
+    "key": "EM7405",
+    "text": "Excavallion"
+  },
+  "9beb4c14": {
+    "key": "WE7023",
+    "text": "Edafos"
+  },
+  "9ff822ce": {
+    "key": "EM7528",
+    "text": "Daeva"
+  },
+  "a379ac65": {
+    "key": "EM2700",
+    "text": "Sir Barrold"
+  },
+  "a3af9e04": {
+    "key": "BH0004",
+    "text": "Barrikade"
+  },
+  "a51ba796": {
+    "key": "EM7407",
+    "text": "Deltamuskel-Reaktor"
+  },
+  "a63de428": {
+    "key": "EM0300",
+    "text": "Hornvogel"
+  },
+  "a685791c": {
+    "key": "EM7403",
+    "text": "Excavallion"
+  },
+  "a81f6dca": {
+    "key": "EM0101",
+    "text": "Frostknochen"
+  },
+  "a86498c5": {
+    "key": "EM7610",
+    "text": "Versa-Bahamut Magnifik"
+  },
+  "ad9c4174": {
+    "key": "EM7505",
+    "text": "Angra Mainyu"
+  },
+  "ae3325e8": {
+    "key": "WE7001",
+    "text": "Fotia"
+  },
+  "afeb2d7e": {
+    "key": "EM1803",
+    "text": "Erddrache Corvell"
+  },
+  "b12f9db1": {
+    "key": "WE2110",
+    "text": "Freikugel"
+  },
+  "b2efc09d": {
+    "key": "EM0801",
+    "text": "Wasserwirbel"
+  },
+  "b31ee30a": {
+    "key": "EM0706",
+    "text": "Nazarbonju"
+  },
+  "b3704145": {
+    "key": "EM00A0",
+    "text": "Goblin-Stürmer"
+  },
+  "b39eeab5": {
+    "key": "EM2400",
+    "text": "Lilith"
+  },
+  "b4aed02d": {
+    "key": "EM7600",
+    "text": "Versa-Bahamut"
+  },
+  "b50fcb1d": {
+    "key": "BA7201",
+    "text": "Beobachter"
+  },
+  "b624c0be": {
+    "key": "EM0605",
+    "text": "Regenbogen-Schleimchen"
+  },
+  "b67bc0ca": {
+    "key": "WE7014",
+    "text": "Anemos"
+  },
+  "b69dd953": {
+    "key": "EM0103",
+    "text": "Scarmiglione"
+  },
+  "b6e8888a": {
+    "key": "EM7400",
+    "text": "Excavallion"
+  },
+  "b71014c5": {
+    "key": "EM0500",
+    "text": "Steindil"
+  },
+  "b74037ea": {
+    "key": "WE7013",
+    "text": "Edafos"
+  },
+  "b81ca4b7": {
+    "key": "WE7012",
+    "text": "Hydor"
+  },
+  "ba320eeb": {
+    "key": "EM0502",
+    "text": "Flammdil"
+  },
+  "bc7e01a9": {
+    "key": "BA2103",
+    "text": "Enterhaken"
+  },
+  "bcef1ee2": {
+    "key": "EM1100",
+    "text": "Schwertschleier-Verb."
+  },
+  "bdc484a5": {
+    "key": "EM1303",
+    "text": "Droita-Balsam"
+  },
+  "bdf271c2": {
+    "key": "EM7601",
+    "text": "Versa-Bahamut"
+  },
+  "c3089918": {
+    "key": "EM2500",
+    "text": "Schere"
+  },
+  "c3c58c76": {
+    "key": "EM7200",
+    "text": "Furkan"
+  },
+  "ca4091c8": {
+    "key": "EM0004",
+    "text": "Goblin-Soldat"
+  },
+  "cdaa9205": {
+    "key": "EM7504",
+    "text": "Angra Mainyu"
+  },
+  "d09c5b2e": {
+    "key": "EM7201",
+    "text": "Furkan"
+  },
+  "d4950d74": {
+    "key": "WE7700",
+    "text": "Schwert der Widerlegung"
+  },
+  "d4eebb52": {
+    "key": "EM7531",
+    "text": "Aka Manah"
+  },
+  "d622ed34": {
+    "key": "EM0800",
+    "text": "Flammenwirbel"
+  },
+  "dbca3857": {
+    "key": "EM7000",
+    "text": "Proto-Bahamut"
+  },
+  "dea8e6e6": {
+    "key": "EM7523",
+    "text": "Daeva"
+  },
+  "df348320": {
+    "key": "EM7001",
+    "text": "Proto-Bahamut"
+  },
+  "e07acd74": {
+    "key": "WE7300",
+    "text": "Nereide"
+  },
+  "e121c79f": {
+    "key": "EM00A3",
+    "text": "Goblin-Bogenschütze"
+  },
+  "e170f036": {
+    "key": "EM1802",
+    "text": "Eisdrache Wilinus"
+  },
+  "e25b6346": {
+    "key": "BA7210",
+    "text": "Unheilvolle Spuren"
+  },
+  "e4c12a94": {
+    "key": "EM2100",
+    "text": "Maglielle"
+  },
+  "e556d1bf": {
+    "key": "EM7210",
+    "text": "Furkan Nihil"
+  },
+  "e57a72bc": {
+    "key": "WE2111",
+    "text": "Mjölnir"
+  },
+  "e7576708": {
+    "key": "EM7500",
+    "text": "Angra Mainyu"
+  },
+  "e7767ba1": {
+    "key": "EM0805",
+    "text": "Dunkelwirbel"
+  },
+  "e777f247": {
+    "key": "EM0802",
+    "text": "Erdwirbel"
+  },
+  "e7f7fc6d": {
+    "key": "EM7503",
+    "text": "Angra Mainyu"
+  },
+  "e873d0f9": {
+    "key": "EM7501",
+    "text": "Angra Mainyu"
+  },
+  "eab390a0": {
+    "key": "EM2200",
+    "text": "Id"
+  },
+  "f45a0b6d": {
+    "key": "EM1301",
+    "text": "Droita-Mutter"
+  },
+  "f740812d": {
+    "key": "EM7502",
+    "text": "Angra Mainyu"
+  },
+  "f83b508a": {
+    "key": "EM0601",
+    "text": "Silberschleimchen"
+  },
+  "f946d055": {
+    "key": "EM7408",
+    "text": "Coxa-Reaktor"
+  },
+  "fac02e60": {
+    "key": "EM7521",
+    "text": "Daeva"
+  },
+  "fb16498e": {
+    "key": "WE3101",
+    "text": "Hutchinson-Generator"
+  },
+  "fd6d4bab": {
+    "key": "EM1004",
+    "text": "Inquisitor Rook"
+  },
+  "fdfb322b": {
+    "key": "BH0003",
+    "text": "Geheiligter Boden"
+  }
+}

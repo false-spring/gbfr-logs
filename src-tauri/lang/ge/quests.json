@@ -1,0 +1,1006 @@
+{
+  "105002": {
+    "key": "TXT_QR_105002_05",
+    "text": "Kämpfe gegen die Streitkräfte der Avia"
+  },
+  "200000": {
+    "key": "TXT_QR_200000",
+    "text": "Ein anhaltendes Bedauern"
+  },
+  "200001": {
+    "key": "TXT_QR_200001",
+    "text": "Rette die Krustentiere"
+  },
+  "200002": {
+    "key": "TXT_QR_200002",
+    "text": "Wunderpilze"
+  },
+  "200003": {
+    "key": "TXT_QR_200003",
+    "text": "Nervige Nachbarn"
+  },
+  "200100": {
+    "key": "TXT_QR_200100",
+    "text": "Ergebnisse garantiert"
+  },
+  "200101": {
+    "key": "TXT_QR_200101",
+    "text": "Perfekte Kieselsteine"
+  },
+  "200102": {
+    "key": "TXT_QR_200102",
+    "text": "Verseuchte Luftwege"
+  },
+  "200103": {
+    "key": "TXT_QR_200103",
+    "text": "Aufsteigender Traum"
+  },
+  "200104": {
+    "key": "TXT_QR_200104",
+    "text": "Lange nicht repariert"
+  },
+  "200200": {
+    "key": "TXT_QR_200200",
+    "text": "Eisige Erinnerungen"
+  },
+  "200201": {
+    "key": "TXT_QR_200201",
+    "text": "Gefährliche Nächte"
+  },
+  "200400": {
+    "key": "TXT_QR_200400",
+    "text": "Der Weg des Gourmets"
+  },
+  "200401": {
+    "key": "TXT_QR_200401",
+    "text": "Neues Material"
+  },
+  "201002": {
+    "key": "TXT_QR_201002",
+    "text": "Ein kurioser Zauber"
+  },
+  "201005": {
+    "key": "TXT_QR_201005",
+    "text": "Luftschiff-Probleme"
+  },
+  "201006": {
+    "key": "TXT_QR_201006",
+    "text": "Unterstütze unsere Truppen"
+  },
+  "201007": {
+    "key": "TXT_QR_201007",
+    "text": "Auf der Spitze meines Splitters"
+  },
+  "201102": {
+    "key": "TXT_QR_201102",
+    "text": "Ent-Raubvogelt"
+  },
+  "202002": {
+    "key": "TXT_QR_202002",
+    "text": "Aktive Forschung"
+  },
+  "202005": {
+    "key": "TXT_QR_202005",
+    "text": "Vergiss mich nicht"
+  },
+  "202006": {
+    "key": "TXT_QR_202006",
+    "text": "Alles in Maßen"
+  },
+  "202007": {
+    "key": "TXT_QR_202007",
+    "text": "Götterstein-Sammlung"
+  },
+  "202010": {
+    "key": "TXT_QR_202010",
+    "text": "Reinigung der Toten"
+  },
+  "203006": {
+    "key": "TXT_QR_203006",
+    "text": "Sicherung der Heimstatt"
+  },
+  "203007": {
+    "key": "TXT_QR_203007",
+    "text": "Gefüllte Lagerbestände"
+  },
+  "203011": {
+    "key": "TXT_QR_203011",
+    "text": "Formfeuer"
+  },
+  "203111": {
+    "key": "TXT_QR_203111",
+    "text": "Formeis"
+  },
+  "203211": {
+    "key": "TXT_QR_203211",
+    "text": "Formerde"
+  },
+  "203311": {
+    "key": "TXT_QR_203311",
+    "text": "Formwind"
+  },
+  "204005": {
+    "key": "TXT_QR_204005",
+    "text": "Ein schöner Anblick zu viel"
+  },
+  "204006": {
+    "key": "TXT_QR_204006",
+    "text": "Tage des Ruhms"
+  },
+  "204007": {
+    "key": "TXT_QR_204007",
+    "text": "Hilf deinem Mitfahrer"
+  },
+  "204011": {
+    "key": "TXT_QR_204011",
+    "text": "Fragwürdige Literatur"
+  },
+  "204012": {
+    "key": "TXT_QR_204012",
+    "text": "Merkwürdig spezifische Anfrage"
+  },
+  "204013": {
+    "key": "TXT_QR_204013",
+    "text": "Rache für die Toten"
+  },
+  "204106": {
+    "key": "TXT_QR_204106",
+    "text": "Zukunftssicherer Handel"
+  },
+  "204107": {
+    "key": "TXT_QR_204107",
+    "text": "Gegenwartssichere Investition"
+  },
+  "204113": {
+    "key": "TXT_QR_204113",
+    "text": "Eisige Bedrohung"
+  },
+  "210220": {
+    "key": "TXT_QR_210220",
+    "text": "Der verbotene Geist"
+  },
+  "210221": {
+    "key": "TXT_QR_210221",
+    "text": "Eisiges Interieur"
+  },
+  "210223": {
+    "key": "TXT_QR_210223",
+    "text": "Noch einmal wirbeln"
+  },
+  "210225": {
+    "key": "TXT_QR_210225",
+    "text": "Probieren geht über Studieren"
+  },
+  "210227": {
+    "key": "TXT_QR_210227",
+    "text": "Familienbericht"
+  },
+  "210228": {
+    "key": "TXT_QR_210228",
+    "text": "Wölfe vor der Tür"
+  },
+  "210229": {
+    "key": "TXT_QR_210229",
+    "text": "Hilfe aus der Ferne"
+  },
+  "210420": {
+    "key": "TXT_QR_210420",
+    "text": "Käferjagd"
+  },
+  "210421": {
+    "key": "TXT_QR_210421",
+    "text": "Mein eigener Barrold"
+  },
+  "210423": {
+    "key": "TXT_QR_210423",
+    "text": "Rotglühender Verkäufer"
+  },
+  "210425": {
+    "key": "TXT_QR_210425",
+    "text": "Aus schlangenhafter Boshaftigkeit"
+  },
+  "210427": {
+    "key": "TXT_QR_210427",
+    "text": "Requiem der Gewalt"
+  },
+  "210428": {
+    "key": "TXT_QR_210428",
+    "text": "Zorn des Schwertschleiers"
+  },
+  "211021": {
+    "key": "TXT_QR_211021",
+    "text": "Wie du mir, so ich dir"
+  },
+  "211023": {
+    "key": "TXT_QR_211023",
+    "text": "Abscheuliche Flügel"
+  },
+  "211025": {
+    "key": "TXT_QR_211025",
+    "text": "Klüger schmieden"
+  },
+  "211027": {
+    "key": "TXT_QR_211027",
+    "text": "Kühlende Knochen"
+  },
+  "211030": {
+    "key": "TXT_QR_211030",
+    "text": "Magi-Morphose"
+  },
+  "211121": {
+    "key": "TXT_QR_211121",
+    "text": "Sensible Technologie"
+  },
+  "211123": {
+    "key": "TXT_QR_211123",
+    "text": "Seele der Maschine"
+  },
+  "211125": {
+    "key": "TXT_QR_211125",
+    "text": "Klebrige Forschung"
+  },
+  "211130": {
+    "key": "TXT_QR_211130",
+    "text": "Verborgene Lektion"
+  },
+  "211230": {
+    "key": "TXT_QR_211230",
+    "text": "Ins Unbekannte"
+  },
+  "211330": {
+    "key": "TXT_QR_211330",
+    "text": "Wissenschaft im Klassenzimmer"
+  },
+  "211430": {
+    "key": "TXT_QR_211430",
+    "text": "Das Erwartete erwarten"
+  },
+  "211530": {
+    "key": "TXT_QR_211530",
+    "text": "Windige Erinnerungen"
+  },
+  "212021": {
+    "key": "TXT_QR_212021",
+    "text": "Schwerer erster Schritt"
+  },
+  "212024": {
+    "key": "TXT_QR_212024",
+    "text": "Zerstören, zerkleinern, recyceln"
+  },
+  "212026": {
+    "key": "TXT_QR_212026",
+    "text": "Eiswasservorräte"
+  },
+  "212030": {
+    "key": "TXT_QR_212030",
+    "text": "Hitziger Handel"
+  },
+  "212031": {
+    "key": "TXT_QR_212031",
+    "text": "Schattenhafter Albtraum"
+  },
+  "212130": {
+    "key": "TXT_QR_212130",
+    "text": "Licht und Schatten"
+  },
+  "212230": {
+    "key": "TXT_QR_212230",
+    "text": "Sorgfältiges Lernen"
+  },
+  "212330": {
+    "key": "TXT_QR_212330",
+    "text": "Mutter Wasser"
+  },
+  "212430": {
+    "key": "TXT_QR_212430",
+    "text": "Aus dem Boden"
+  },
+  "212530": {
+    "key": "TXT_QR_212530",
+    "text": "Wenn der Wind weht"
+  },
+  "212630": {
+    "key": "TXT_QR_212630",
+    "text": "Weich liegt die Krone"
+  },
+  "213021": {
+    "key": "TXT_QR_213021",
+    "text": "Wieder und wieder versuchen"
+  },
+  "213022": {
+    "key": "TXT_QR_213022",
+    "text": "Unglaublich stark"
+  },
+  "213024": {
+    "key": "TXT_QR_213024",
+    "text": "Vision der Pforten"
+  },
+  "213026": {
+    "key": "TXT_QR_213026",
+    "text": "Vision der Lebenskraft"
+  },
+  "213032": {
+    "key": "TXT_QR_213032",
+    "text": "Vision der Abgeschiedenheit"
+  },
+  "213033": {
+    "key": "TXT_QR_213033",
+    "text": "Vision der Befestigungsanlage"
+  },
+  "213034": {
+    "key": "TXT_QR_213034",
+    "text": "Vision des Grauens"
+  },
+  "214024": {
+    "key": "TXT_QR_214024",
+    "text": "Klebrige Angelegenheit"
+  },
+  "214026": {
+    "key": "TXT_QR_214026",
+    "text": "Guter Geschäftssinn"
+  },
+  "214027": {
+    "key": "TXT_QR_214027",
+    "text": "Dynamisches Design"
+  },
+  "214030": {
+    "key": "TXT_QR_214030",
+    "text": "Inmitten der flackernden Flamme"
+  },
+  "214033": {
+    "key": "TXT_QR_214033",
+    "text": "Symbol der Horden"
+  },
+  "214034": {
+    "key": "TXT_QR_214034",
+    "text": "Reue und Buße"
+  },
+  "214035": {
+    "key": "TXT_QR_214035",
+    "text": "Zur Verteidigung der Stadt"
+  },
+  "214130": {
+    "key": "TXT_QR_214130",
+    "text": "Beleuchtung aller Schöpfungen"
+  },
+  "214135": {
+    "key": "TXT_QR_214135",
+    "text": "Lang verlorene Künste"
+  },
+  "214230": {
+    "key": "TXT_QR_214230",
+    "text": "Jenseits der Leere"
+  },
+  "214330": {
+    "key": "TXT_QR_214330",
+    "text": "Absoluter Nullpunkt"
+  },
+  "214430": {
+    "key": "TXT_QR_214430",
+    "text": "Die Schatzjagd der Erde"
+  },
+  "214530": {
+    "key": "TXT_QR_214530",
+    "text": "Wechselnde Winde"
+  },
+  "214630": {
+    "key": "TXT_QR_214630",
+    "text": "Immer wieder Schleimchen"
+  },
+  "290002": {
+    "key": "TXT_QR_290002",
+    "text": "Rette die Krustentiere Teil Deux"
+  },
+  "290003": {
+    "key": "TXT_QR_290003",
+    "text": "Rette die Krustentiere die Dritte"
+  },
+  "290004": {
+    "key": "TXT_QR_290004",
+    "text": "Rette die Krustentiere Reloaded"
+  },
+  "290005": {
+    "key": "TXT_QR_290005",
+    "text": "Rette die Krustentiere Jenseits"
+  },
+  "290006": {
+    "key": "TXT_QR_290006",
+    "text": "Rette die Krustentiere Neo"
+  },
+  "290007": {
+    "key": "TXT_QR_290007",
+    "text": "Rette die Krustentiere Rückkehr"
+  },
+  "290008": {
+    "key": "TXT_QR_290008",
+    "text": "Rette die Krustentiere Prime"
+  },
+  "290009": {
+    "key": "TXT_QR_290009",
+    "text": "Rette die Krustentiere Neue Ära"
+  },
+  "290010": {
+    "key": "TXT_QR_290010",
+    "text": "Rette die Krustentiere Chroniken"
+  },
+  "290011": {
+    "key": "TXT_QR_290011",
+    "text": "Rette die Krustentiere Ursprünge"
+  },
+  "290012": {
+    "key": "TXT_QR_290012",
+    "text": "Rette d. Krustent. Vorherrschaft"
+  },
+  "290013": {
+    "key": "TXT_QR_290013",
+    "text": "Rette d. Krustent. Unendlichkeit"
+  },
+  "290014": {
+    "key": "TXT_QR_290014",
+    "text": "Rette die Krustentiere Erhebt sich"
+  },
+  "290015": {
+    "key": "TXT_QR_290015",
+    "text": "Rette die Krustentiere Finale"
+  },
+  "300000": {
+    "key": "TXT_QR_300000",
+    "text": "Ich halte dir den Rücken frei"
+  },
+  "300002": {
+    "key": "TXT_QR_300002",
+    "text": "Die Familie geht über alles"
+  },
+  "300003": {
+    "key": "TXT_QR_300003",
+    "text": "Am Boden, aber nicht geschlagen"
+  },
+  "300004": {
+    "key": "TXT_QR_300004",
+    "text": "Es ist nur eine Phase"
+  },
+  "300005": {
+    "key": "TXT_QR_300005",
+    "text": "Unausgesprochenes"
+  },
+  "300006": {
+    "key": "TXT_QR_300006",
+    "text": "Ungeladene Gäste"
+  },
+  "300007": {
+    "key": "TXT_QR_300007",
+    "text": "Herzliche Fäden"
+  },
+  "300008": {
+    "key": "TXT_QR_300008",
+    "text": "Ludwin und Hans"
+  },
+  "300009": {
+    "key": "TXT_QR_300009",
+    "text": "Vane, der Knappe"
+  },
+  "300010": {
+    "key": "TXT_QR_300010",
+    "text": "Der Schwung der Veränderung"
+  },
+  "300011": {
+    "key": "TXT_QR_300011",
+    "text": "Die Streitkräfte Saatholms"
+  },
+  "300012": {
+    "key": "TXT_QR_300012",
+    "text": "Der hinterlistige Edelmann"
+  },
+  "300013": {
+    "key": "TXT_QR_300013",
+    "text": "Die angesagteste Stelle zum Angeln"
+  },
+  "300014": {
+    "key": "TXT_QR_300014",
+    "text": "Der Weg, den Narumea wählte"
+  },
+  "300015": {
+    "key": "TXT_QR_300015",
+    "text": "Ein-Mann-Armee"
+  },
+  "300016": {
+    "key": "TXT_QR_300016",
+    "text": "Ein bescheidenes Geschenk"
+  },
+  "300017": {
+    "key": "TXT_QR_300017",
+    "text": "Die Frau, die nach dem Tod schmachtet"
+  },
+  "300018": {
+    "key": "TXT_QR_300018",
+    "text": "Der Schmerz einer Künstlerin"
+  },
+  "300019": {
+    "key": "TXT_QR_300019",
+    "text": "Im Angesicht der Vergangenheit"
+  },
+  "301000": {
+    "key": "TXT_QR_301000",
+    "text": "Der Vorstoß"
+  },
+  "301002": {
+    "key": "TXT_QR_301002",
+    "text": "Geisterschwingen-Eier"
+  },
+  "301003": {
+    "key": "TXT_QR_301003",
+    "text": "Steh auf und schwing dich in die Lüfte"
+  },
+  "301004": {
+    "key": "TXT_QR_301004",
+    "text": "Gesinnungswandel"
+  },
+  "301005": {
+    "key": "TXT_QR_301005",
+    "text": "Solange wir noch atmen"
+  },
+  "301006": {
+    "key": "TXT_QR_301006",
+    "text": "Kristall der Verstärkung"
+  },
+  "301007": {
+    "key": "TXT_QR_301007",
+    "text": "Die Suche nach dem Glück"
+  },
+  "301008": {
+    "key": "TXT_QR_301008",
+    "text": "Gemeinsam lernen"
+  },
+  "301009": {
+    "key": "TXT_QR_301009",
+    "text": "Verlorener Ritter"
+  },
+  "301010": {
+    "key": "TXT_QR_301010",
+    "text": "Die größte Prüfung für die Truppe"
+  },
+  "301011": {
+    "key": "TXT_QR_301011",
+    "text": "Ein wenig Hilfe von den Schatten"
+  },
+  "301012": {
+    "key": "TXT_QR_301012",
+    "text": "Schmittlauchs Falle"
+  },
+  "301013": {
+    "key": "TXT_QR_301013",
+    "text": "Die Stimmen sind da"
+  },
+  "301014": {
+    "key": "TXT_QR_301014",
+    "text": "Ein größeres Ganzes"
+  },
+  "301015": {
+    "key": "TXT_QR_301015",
+    "text": "Ein Duell für die Ewigkeit"
+  },
+  "301016": {
+    "key": "TXT_QR_301016",
+    "text": "Karminrot und Tiefschwarz"
+  },
+  "301017": {
+    "key": "TXT_QR_301017",
+    "text": "Spuren"
+  },
+  "301018": {
+    "key": "TXT_QR_301018",
+    "text": "Geschwisterliches Gezänk"
+  },
+  "301019": {
+    "key": "TXT_QR_301019",
+    "text": "Tag der Abrechnung"
+  },
+  "401301": {
+    "key": "TXT_QR_401301",
+    "text": "Macht unseren Himmel wieder sicher"
+  },
+  "401303": {
+    "key": "TXT_QR_401303",
+    "text": "Sorgen um Papa"
+  },
+  "401305": {
+    "key": "TXT_QR_401305",
+    "text": "Burg-Ausräucherung"
+  },
+  "401306": {
+    "key": "TXT_QR_401306",
+    "text": "Besiege – *keuch* – Goblin-Boss"
+  },
+  "401310": {
+    "key": "TXT_QR_401310",
+    "text": "Besiege die Goblin-Horden"
+  },
+  "401311": {
+    "key": "TXT_QR_401311",
+    "text": "Bewache unsere Heimatstadt"
+  },
+  "401315": {
+    "key": "TXT_QR_401315",
+    "text": "Beschütze unsere Wälder"
+  },
+  "401316": {
+    "key": "TXT_QR_401316",
+    "text": "Die Gebete von morgen"
+  },
+  "402301": {
+    "key": "TXT_QR_402301",
+    "text": "Rilla hat’s getan"
+  },
+  "402302": {
+    "key": "TXT_QR_402302",
+    "text": "Golemologie 101: Wüsten-Golems"
+  },
+  "402304": {
+    "key": "TXT_QR_402304",
+    "text": "An den Frontlinien"
+  },
+  "402306": {
+    "key": "TXT_QR_402306",
+    "text": "Ich sehe eine grüne Vision"
+  },
+  "402308": {
+    "key": "TXT_QR_402308",
+    "text": "Untersuche den Vulkan"
+  },
+  "402309": {
+    "key": "TXT_QR_402309",
+    "text": "Die Sage geht weiter: Feuer"
+  },
+  "402310": {
+    "key": "TXT_QR_402310",
+    "text": "Dagger hat’s wirklich getan"
+  },
+  "402312": {
+    "key": "TXT_QR_402312",
+    "text": "Die Sage geht weiter: Eis"
+  },
+  "402313": {
+    "key": "TXT_QR_402313",
+    "text": "Saga Grande: Der Beginn"
+  },
+  "402314": {
+    "key": "TXT_QR_402314",
+    "text": "Schone die Angelrute, verwöhne das Tal"
+  },
+  "402315": {
+    "key": "TXT_QR_402315",
+    "text": "Ich habe ein Problem"
+  },
+  "402316": {
+    "key": "TXT_QR_402316",
+    "text": "Nur du kannst Waldflieger verhindern"
+  },
+  "403201": {
+    "key": "TXT_QR_403201",
+    "text": "Deltamuskeln unseres Lebens"
+  },
+  "403202": {
+    "key": "TXT_QR_403202",
+    "text": "Schickes Versteckspiel"
+  },
+  "403301": {
+    "key": "TXT_QR_403301",
+    "text": "Herrsche über den Himmel"
+  },
+  "403302": {
+    "key": "TXT_QR_403302",
+    "text": "Der Saft der Eifersucht"
+  },
+  "403303": {
+    "key": "TXT_QR_403303",
+    "text": "Verstärkung der Truppen"
+  },
+  "403307": {
+    "key": "TXT_QR_403307",
+    "text": "Beschütze die Vertretung"
+  },
+  "403308": {
+    "key": "TXT_QR_403308",
+    "text": "Die Auswahl des Sammlers"
+  },
+  "403309": {
+    "key": "TXT_QR_403309",
+    "text": "Drohender Turm, schielendes Auge"
+  },
+  "403311": {
+    "key": "TXT_QR_403311",
+    "text": "Ich sehe eine lodernde Vision"
+  },
+  "403312": {
+    "key": "TXT_QR_403312",
+    "text": "Greifenkeulen"
+  },
+  "404101": {
+    "key": "TXT_QR_404101",
+    "text": "Schwingen des Altertums"
+  },
+  "404204": {
+    "key": "TXT_QR_404204",
+    "text": "Dunkler Refrain"
+  },
+  "404309": {
+    "key": "TXT_QR_404309",
+    "text": "Niemand mag Überreste"
+  },
+  "404310": {
+    "key": "TXT_QR_404310",
+    "text": "Ich sehe eine tödliche Vision"
+  },
+  "404311": {
+    "key": "TXT_QR_404311",
+    "text": "Das nächste heiße Eisen"
+  },
+  "404313": {
+    "key": "TXT_QR_404313",
+    "text": "Golemologie 102: Vulkan-Golems"
+  },
+  "404315": {
+    "key": "TXT_QR_404315",
+    "text": "Ärger säen"
+  },
+  "404316": {
+    "key": "TXT_QR_404316",
+    "text": "Ein Knochen zum Gipfel"
+  },
+  "404317": {
+    "key": "TXT_QR_404317",
+    "text": "Absolut keine Unbefugten!"
+  },
+  "405101": {
+    "key": "TXT_QR_405101",
+    "text": "Lizenz zu begeistern"
+  },
+  "405201": {
+    "key": "TXT_QR_405201",
+    "text": "Illustrierte Saga: Der Beginn"
+  },
+  "405202": {
+    "key": "TXT_QR_405202",
+    "text": "Aus der Vergangenheit lernen"
+  },
+  "405203": {
+    "key": "TXT_QR_405203",
+    "text": "Illustrierte Saga: Inferno"
+  },
+  "405205": {
+    "key": "TXT_QR_405205",
+    "text": "Das Unverständliche verstehen"
+  },
+  "405206": {
+    "key": "TXT_QR_405206",
+    "text": "Allgemeine Untersuchung: Gallanza"
+  },
+  "405207": {
+    "key": "TXT_QR_405207",
+    "text": "Allgemeine Untersuchung: Maglielle"
+  },
+  "405208": {
+    "key": "TXT_QR_405208",
+    "text": "Allgemeine Untersuchung: Id"
+  },
+  "405302": {
+    "key": "TXT_QR_405302",
+    "text": "Schwingen der Feuersbrunst"
+  },
+  "405303": {
+    "key": "TXT_QR_405303",
+    "text": "Schwingen des Aufruhrs"
+  },
+  "405304": {
+    "key": "TXT_QR_405304",
+    "text": "Schwingen des Sturms"
+  },
+  "405305": {
+    "key": "TXT_QR_405305",
+    "text": "Schwingen des Reims"
+  },
+  "405309": {
+    "key": "TXT_QR_405309",
+    "text": "Angriffsformation!"
+  },
+  "405310": {
+    "key": "TXT_QR_405310",
+    "text": "Große Feuergoblins"
+  },
+  "405311": {
+    "key": "TXT_QR_405311",
+    "text": "Licht auf die Säule werfen"
+  },
+  "406101": {
+    "key": "TXT_QR_406101",
+    "text": "Zurück ins Land, das vom Schicksal bestimmt ist"
+  },
+  "406323": {
+    "key": "TXT_QR_406323",
+    "text": "Ich sehe eine farbige Vision"
+  },
+  "406324": {
+    "key": "TXT_QR_406324",
+    "text": "Rache der Horden"
+  },
+  "406325": {
+    "key": "TXT_QR_406325",
+    "text": "Hoffnung der Maschine"
+  },
+  "406327": {
+    "key": "TXT_QR_406327",
+    "text": "Geheiligt werde dein Boden"
+  },
+  "406330": {
+    "key": "TXT_QR_406330",
+    "text": "Die Sage geht weiter: Erde"
+  },
+  "406331": {
+    "key": "TXT_QR_406331",
+    "text": "Die Sage geht weiter: Wind"
+  },
+  "406332": {
+    "key": "TXT_QR_406332",
+    "text": "Illustrierte Saga: Kristall"
+  },
+  "406333": {
+    "key": "TXT_QR_406333",
+    "text": "Illustrierte Saga: Höllenfeuer"
+  },
+  "406334": {
+    "key": "TXT_QR_406334",
+    "text": "Die Sage geht weiter: Silber"
+  },
+  "406335": {
+    "key": "TXT_QR_406335",
+    "text": "Illustrierte Saga: Schleier"
+  },
+  "406337": {
+    "key": "TXT_QR_406337",
+    "text": "Id erträgt Wiederholungen"
+  },
+  "406338": {
+    "key": "TXT_QR_406338",
+    "text": "Saga Grande: Bis an ihr seliges Ende"
+  },
+  "406351": {
+    "key": "TXT_QR_406351",
+    "text": "Logieren und herrschen"
+  },
+  "406352": {
+    "key": "TXT_QR_406352",
+    "text": "Der Boss will es erledigt haben"
+  },
+  "406353": {
+    "key": "TXT_QR_406353",
+    "text": "Kenne deinen Feind"
+  },
+  "406354": {
+    "key": "TXT_QR_406354",
+    "text": "Ruhe auf dem Berg"
+  },
+  "406355": {
+    "key": "TXT_QR_406355",
+    "text": "Golemologie 103: Wald-Golems"
+  },
+  "406356": {
+    "key": "TXT_QR_406356",
+    "text": "Eine neue Spezies"
+  },
+  "406357": {
+    "key": "TXT_QR_406357",
+    "text": "Tod, Steuern und Goblins"
+  },
+  "406358": {
+    "key": "TXT_QR_406358",
+    "text": "Eisiges Auge auf der heiligen Belohnung"
+  },
+  "406359": {
+    "key": "TXT_QR_406359",
+    "text": "Zoff in der Wüste"
+  },
+  "406360": {
+    "key": "TXT_QR_406360",
+    "text": "Ich sehe eine düstere Vision"
+  },
+  "406361": {
+    "key": "TXT_QR_406361",
+    "text": "Schleimvasion"
+  },
+  "406364": {
+    "key": "TXT_QR_406364",
+    "text": "Wirf einem Schmied einen Knochen zu"
+  },
+  "406365": {
+    "key": "TXT_QR_406365",
+    "text": "Rüstung wird am besten kalt serviert"
+  },
+  "406366": {
+    "key": "TXT_QR_406366",
+    "text": "Eine hitzige Rivalität"
+  },
+  "407101": {
+    "key": "TXT_QR_407101",
+    "text": "Der letzte Bericht"
+  },
+  "407301": {
+    "key": "TXT_QR_407301",
+    "text": "Lodernde Prüfung"
+  },
+  "407302": {
+    "key": "TXT_QR_407302",
+    "text": "Prüfung am Boden"
+  },
+  "407303": {
+    "key": "TXT_QR_407303",
+    "text": "Stürmische Prüfung"
+  },
+  "407304": {
+    "key": "TXT_QR_407304",
+    "text": "Kühle Prüfung"
+  },
+  "407305": {
+    "key": "TXT_QR_407305",
+    "text": "Schlimmster Urlaub überhaupt"
+  },
+  "407306": {
+    "key": "TXT_QR_407306",
+    "text": "Handelsbarrieren"
+  },
+  "407307": {
+    "key": "TXT_QR_407307",
+    "text": "Schmelztiegel der Feindseligkeit"
+  },
+  "407308": {
+    "key": "TXT_QR_407308",
+    "text": "Bankett aus Eis und Leichen"
+  },
+  "407309": {
+    "key": "TXT_QR_407309",
+    "text": "Für ein freieres Folca"
+  },
+  "407310": {
+    "key": "TXT_QR_407310",
+    "text": "Eine Quest von Feuer und Erde"
+  },
+  "407311": {
+    "key": "TXT_QR_407311",
+    "text": "Eine Quest von Feuer und Sturm"
+  },
+  "407312": {
+    "key": "TXT_QR_407312",
+    "text": "Der Wolf und der Schleier"
+  },
+  "407313": {
+    "key": "TXT_QR_407313",
+    "text": "Das leibhaftige Unglück"
+  },
+  "407314": {
+    "key": "TXT_QR_407314",
+    "text": "So stark wie der Silberwolf"
+  },
+  "407315": {
+    "key": "TXT_QR_407315",
+    "text": "Erinnerungen an Feuer"
+  },
+  "407316": {
+    "key": "TXT_QR_407316",
+    "text": "Donner und Blitz"
+  },
+  "407317": {
+    "key": "TXT_QR_407317",
+    "text": "In den Abgrund"
+  },
+  "407318": {
+    "key": "TXT_QR_407318",
+    "text": "Das Märchen von Bahamuts Zorn"
+  },
+  "407319": {
+    "key": "TXT_QR_407319",
+    "text": "Der Automagott schlägt zurück"
+  },
+  "407320": {
+    "key": "TXT_QR_407320",
+    "text": "Die letzte Vision"
+  }
+}
