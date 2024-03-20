@@ -19,7 +19,7 @@ export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
   jp: "日本語",
   "fr-FR": "Français",
   bp: "Brazillian Portuguese",
-  "de-DE": "Deutsch",
+  ge: "Deutsch",
   "es-ES": "Español",
   "it-IT": "Italiano",
 };
