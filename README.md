@@ -9,6 +9,12 @@
 
 Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the reverse engineering work from [naoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT).
 
+## How to install
+
+- Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
+- Download the latest .msi installer and run it.
+- Open GBFR Logs after the game is already running.
+
 ## Screenshots
 
 ### DPS Overlay
@@ -34,12 +40,6 @@ Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the revers
 ### Multi-language Support
 
 ![Simplified Chinese](./docs/screenshots/simplified-chinese.png)
-
-## How to install
-
-- Go to [Releases](https://github.com/false-spring/gbfr-logs/releases)
-- Download the latest .msi installer and run it.
-- Open GBFR Logs after the game is already running.
 
 ## Frequently Asked Questions
 
@@ -70,6 +70,10 @@ You can uninstall GBFR Logs the normal way through the Control Panel or by runni
 > Q: My issue isn't listed here, or I have a suggestion.
 
 Feel free to create a [new GitHub issue](https://github.com/false-spring/gbfr-logs/issues) or [join the Discord server](https://discord.gg/GR4r9zrqJj).
+
+> Q: How do I add/edit my language?
+
+Read [src-tauri/lang/README.md](./src-tauri/lang/README.md) for more information on how to add/edit language support!
 
 ## For Developers
 
