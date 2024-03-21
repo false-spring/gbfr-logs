@@ -325,7 +325,25 @@ export const translateSigilId = (id: number | null): string => {
   return t([`sigils:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
+export const translateItemId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+  return t([`items:${hash}.text`, "ui.unknown"], { id: hash });
+};
+
+export const translateOvermasteryId = (id: number | null): string => {
+  if (id === null) return "";
+  if (id === EMPTY_ID) return "";
+
+  const hash = id.toString(16).padStart(8, "0");
+
+  return t([`overmasteries:${hash}.text`, "ui.unknown"], { id: hash });
+};
+
 export const toHash = (num: number): string => num.toString(16);
+export const toHashString = (num: number | undefined): string => (num ? num.toString(16).padStart(8, "0") : "");
 
 export const usePrevious = <T>(value: T): T | undefined => {
   const ref = useRef<T>();
