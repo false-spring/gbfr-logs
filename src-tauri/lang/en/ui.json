@@ -25,7 +25,7 @@
     "show-player-names": "Show Player Names",
     "weapon": "Weapon",
     "player-stats": "Player Stats",
-    "player-overmastery": "Overmastery",
+    "player-overmasteries": "Overmasteries",
     "logs": {
       "saved-count_zero": "No logs saved",
       "saved-count_one": "{{count}} log saved",

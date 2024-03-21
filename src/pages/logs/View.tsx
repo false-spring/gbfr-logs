@@ -427,35 +427,36 @@ export const ViewPage = () => {
                     );
                   })}
                 </Table.Tr>
-                {Array.from(Array(4).keys()).map((overmasteryIndex) => (
-                  <Table.Tr key={`overmastery:${overmasteryIndex}`}>
-                    {playerData.map((player) => {
-                      const overmasteries = player.overmasteryInfo?.overmasteries || [];
-                      const overmastery = overmasteries[overmasteryIndex];
+                <Table.Tr>
+                  {playerData.map((player) => {
+                    const overmasteries = player.overmasteryInfo?.overmasteries || [];
 
-                      if (!overmastery) {
-                        return (
-                          <Table.Td key={player.actorIndex}>
-                            <Text size="xs" fw={300}>
-                              ---
+                    return (
+                      <Table.Td key={player.actorIndex}>
+                        <Text size="xs" fw={700}>
+                          {t("ui.player-overmasteries")}
+                        </Text>
+                        {Array.from(Array(4).keys()).map((overmasteryIndex) => {
+                          const overmastery = overmasteries[overmasteryIndex];
+
+                          if (!overmastery) {
+                            return (
+                              <Text key={overmasteryIndex} size="xs" fw={300}>
+                                ---
+                              </Text>
+                            );
+                          }
+
+                          return (
+                            <Text key={overmasteryIndex} size="xs" fs="italic" fw={300}>
+                              {formatOvermastery(overmastery)}
                             </Text>
-                          </Table.Td>
-                        );
-                      }
-
-                      return (
-                        <Table.Td key={player.actorIndex}>
-                          <Text size="xs" fw={700}>
-                            {t("ui.player-overmastery")}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {formatOvermastery(overmastery)}
-                          </Text>
-                        </Table.Td>
-                      );
-                    })}
-                  </Table.Tr>
-                ))}
+                          );
+                        })}
+                      </Table.Td>
+                    );
+                  })}
+                </Table.Tr>
                 <Table.Tr>
                   {playerData.map((player) => {
                     return (
