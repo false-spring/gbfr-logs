@@ -23,6 +23,8 @@
     "player-4-color": "Bar Color - Player 4",
     "meter-transparency": "Background Transparency",
     "show-player-names": "Show Player Names",
+    "streamer-mode": "Streamer Mode",
+    "streamer-mode-description": "Only shows your damage in the meter.",
     "weapon": "Weapon",
     "player-stats": "Player Stats",
     "player-overmasteries": "Overmasteries",
