@@ -13,6 +13,7 @@ import {
   ColorInput,
   Slider,
   Checkbox,
+  Tooltip,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Gear, House } from "@phosphor-icons/react";
@@ -152,7 +153,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
 }));
 
 const SettingsPage = () => {
-  const { color_1, color_2, color_3, color_4, transparency, show_display_names, setMeterSettings } =
+  const { color_1, color_2, color_3, color_4, transparency, show_display_names, streamer_mode, setMeterSettings } =
     useMeterSettingsStore((state) => ({
       color_1: state.color_1,
       color_2: state.color_2,
@@ -160,6 +161,7 @@ const SettingsPage = () => {
       color_4: state.color_4,
       transparency: state.transparency,
       show_display_names: state.show_display_names,
+      streamer_mode: state.streamer_mode,
       setMeterSettings: state.set,
     }));
 
@@ -223,6 +225,13 @@ const SettingsPage = () => {
             checked={show_display_names}
             onChange={(event) => setMeterSettings({ show_display_names: event.currentTarget.checked })}
           />
+          <Tooltip label={t("ui.streamer-mode-description")}>
+            <Checkbox
+              label={t("ui.streamer-mode")}
+              checked={streamer_mode}
+              onChange={(event) => setMeterSettings({ streamer_mode: event.currentTarget.checked })}
+            />
+          </Tooltip>
         </Stack>
       </Fieldset>
     </Box>

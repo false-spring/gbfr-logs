@@ -1,3 +1,5 @@
+import { useShallow } from "zustand/react/shallow";
+import { useMeterSettingsStore } from "../Store";
 import { ComputedPlayerState, EncounterState, PlayerData, SortDirection, SortType } from "../types";
 import { formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";
@@ -17,8 +19,14 @@ export const Table = ({
   setSortType: (sortType: SortType) => void;
   setSortDirection: (sortDirection: SortDirection) => void;
 }) => {
+  const { streamerMode } = useMeterSettingsStore(
+    useShallow((state) => ({
+      streamerMode: state.streamer_mode,
+    }))
+  );
+
   const partyOrderPlayers = formatInPartyOrder(encounterState.party);
-  const players: Array<ComputedPlayerState> = partyOrderPlayers.map((playerData) => {
+  let players: Array<ComputedPlayerState> = partyOrderPlayers.map((playerData) => {
     return {
       ...playerData,
       percentage: (playerData.totalDamage / encounterState.totalDamage) * 100,
@@ -27,6 +35,14 @@ export const Table = ({
 
   // Sort players by the selected sort type and direction
   sortPlayers(players, sortType, sortDirection);
+
+  players = players.filter((player) => {
+    const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+
+    // If streamer mode is ON, then only show the first party slot (the streamer's character)
+    // Otherwise, show all players.
+    return streamerMode ? partySlotIndex === 0 : true;
+  });
 
   const toggleSort = (newSortType: SortType) => {
     if (sortType === newSortType) {
