@@ -23,6 +23,9 @@
     "player-4-color": "Bar Color - Player 4",
     "meter-transparency": "Background Transparency",
     "show-player-names": "Show Player Names",
+    "weapon": "Weapon",
+    "player-stats": "Player Stats",
+    "player-overmastery": "Overmastery",
     "logs": {
       "saved-count_zero": "No logs saved",
       "saved-count_one": "{{count}} log saved",

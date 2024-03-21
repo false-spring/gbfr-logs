@@ -150,7 +150,7 @@ export type Overmastery = {
 };
 
 export type OvermasteryInfo = {
-  overmasterys: Overmastery[];
+  overmasteries: Overmastery[];
 };
 
 export type PlayerStats = {
