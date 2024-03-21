@@ -89,7 +89,12 @@
       "resources": [
         "hook.dll",
         "lang/*"
-      ]
+      ],
+      "windows": {
+        "webviewInstallMode": {
+          "type": "embedBootstrapper"
+        }
+      }
     },
     "systemTray": {
       "iconPath": "icons/32x32.png",
