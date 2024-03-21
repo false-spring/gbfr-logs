@@ -1,11 +1,11 @@
 {
-  "version": "0.0.9",
-  "notes": "Please make sure to save and exit before updating. This adds various improvements around displaying player names in the meter, as well as traditional chinese + korean language support. Check release notes on github for more details!",
-  "pub_date": "2024-03-17T02:14:58+00:00",
+  "version": "0.0.10",
+  "notes": "Please make sure to save and exit before updating. Check release notes on github for more details!",
+  "pub_date": "2024-03-21T20:02:34+00:00",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0ZiVmQwdTE2Ym9WSVlJRVcvVWxvRnNnVVNTRnJiN2tnVmh2QXEvUkEzL3oxVTdCYmRRbjlJTUdoTEJvWjlyM2syNERaMzhyZEgvaFVUMnpSUnhKU1FBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzEwNjE5NjE5CWZpbGU6R0JGUiBMb2dzXzAuMC45X3g2NF9lbi1VUy5tc2kuemlwCit5ZFF0L3ljQS9xT2F2SitTM0VGOURIWGxQVmVKcm96RGtHRC9uOVhwYm5GWisydGdTZEk4Y3VtTVNrcjBWdG5KVzBDUGg3aUJaV0hJbXFBVUhjSERBPT0K",
-      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.9/GBFR.Logs_0.0.9_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0FzWFRhOHhWZzh3SUZyZWhLaWo5UmUybHNUcnNmTXY3Y0hJT2dZNFJEUk9OZG1yaXVCNi9jMWNZZHhIVjBXVUpCczNucU1CYjZaWk1obml5alBxK0E0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExMDUwNDc0CWZpbGU6R0JGUiBMb2dzXzAuMC4xMF94NjRfZW4tVVMubXNpLnppcApwUEJlbmRUZG5WVmlHMFdTSkgybkgxNmhjc3lydW9YOStvRThTWGllVUtsQWVZMmFEUTRjRzN6SjJ4cS9zVXRma2ErTHpVK3Rsam5TeXB3TG9hR0FBUT09Cg==",
+      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.10/GBFR.Logs_0.0.10_x64_en-US.msi.zip"
     }
   }
 }
