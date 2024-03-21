@@ -51,7 +51,8 @@
         "transparent": true,
         "minWidth": 250,
         "minHeight": 120,
-        "alwaysOnTop": true
+        "alwaysOnTop": true,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --disable-gpu"
       },
       {
         "title": "Logs",
@@ -64,7 +65,8 @@
         "minHeight": 600,
         "resizable": true,
         "closable": true,
-        "decorations": true
+        "decorations": true,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --disable-gpu"
       }
     ],
     "security": {
