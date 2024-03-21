@@ -493,12 +493,22 @@ fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
     }
 }
 
+fn show_window(app: &AppHandle) {
+    let windows = app.windows();
+
+    for window in windows.values() {
+        let _ = window.show();
+    }
+}
+
 fn main() {
     // Setup the database.
     db::setup_db().expect("Failed to setup database");
 
     tauri::Builder::default()
-        .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
+        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+            show_window(app);
+        }))
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(
             tauri_plugin_log::Builder::default()
