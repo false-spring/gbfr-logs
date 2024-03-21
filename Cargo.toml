@@ -5,6 +5,5 @@ members = [
   "src-tauri"
 ]
 
-[profile.release]
+[profile.release.package.hook]
 strip = true
-lto = true
