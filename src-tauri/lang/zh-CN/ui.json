@@ -23,6 +23,11 @@
     "player-4-color": "玩家颜色 - 玩家 4",
     "meter-transparency": "背景透明度",
     "show-player-names": "显示玩家名称",
+    "streamer-mode": "主播模式",
+    "streamer-mode-description": "仅在悬浮窗上显示自己造成的伤害",
+    "weapon": "武器",
+    "player-stats": "角色数据",
+    "player-overmasteries": "上限突破",
     "logs": {
       "saved-count_zero": "还没有保存的日志",
       "saved-count_one": "已保存 {{count}} 条日志",
@@ -40,8 +45,9 @@
       "delete-selected-logs-confirmation_other": "这将从数据库中删除 {{count}} 条日志。此操作无法撤销。",
       "quest-name": "任务名称",
       "quest-elapsed-time": "IGT",
+      "quest-status": "任务状态",
       "overview": "总览",
-      "equipment": "因子配置"
+      "equipment": "角色配置"
     }
   },
   "characters": {

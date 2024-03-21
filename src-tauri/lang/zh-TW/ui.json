@@ -22,6 +22,12 @@
     "player-3-color": "玩家顏色 - 玩家 3",
     "player-4-color": "玩家顏色 - 玩家 4",
     "meter-transparency": "背景透明度",
+    "show-player-names": "顯示玩家名稱",
+    "streamer-mode": "直播模式",
+    "streamer-mode-description": "只在浮動視窗顯示自己造成的傷害",
+    "weapon": "武器",
+    "player-stats": "角色面板",
+    "player-overmasteries": "界限突破",
     "logs": {
       "saved-count_zero": "還沒有保存的紀錄",
       "saved-count_one": "已保存 {{count}} 條紀錄",
@@ -39,8 +45,9 @@
       "delete-selected-logs-confirmation_other": "這將從資料庫中删除 {{count}} 條紀錄。此操作無法反悔。",
       "quest-name": "任務名稱",
       "quest-elapsed-time": "IGT",
+      "quest-status": "任務狀態",
       "overview": "總覽",
-      "equipment": "因子配置"
+      "equipment": "角色配置"
     }
   },
   "characters": {
