@@ -15,7 +15,7 @@ fn main() {
         .expect("Could not build hook library.");
 
     // Copy the built library to the tauri app directory
-    let _ = fs::copy(hook_lib_path.join("target/release/hook.dll"), "hook.dll");
+    let _ = fs::copy("../target/release/hook.dll", "hook.dll");
 
     if cfg!(debug_assertions) {
         tauri_build::build();

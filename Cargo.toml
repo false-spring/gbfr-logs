@@ -4,3 +4,7 @@ members = [
   "src-hook",
   "src-tauri"
 ]
+
+[profile.release]
+strip = true
+lto = true

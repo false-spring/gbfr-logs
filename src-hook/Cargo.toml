@@ -14,10 +14,6 @@ OriginalFilename = "hook.dll"
 CompanyName = "False Spring"
 LegalCopyright = "Copyright (C) False Spring"
 
-[profile.release]
-strip = true
-lto = true
-
 [dependencies]
 anyhow = "1.0"
 ctor = "0.2.6"

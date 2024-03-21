@@ -21,6 +21,7 @@ serde_json = "1.0"
 tauri = { version = "1.5", features = ["path-all", "fs-read-file", "updater", "system-tray", "window-show", "window-minimize", "window-maximize", "window-start-dragging", "window-unmaximize", "window-hide", "window-unminimize", "window-close", "shell-open", "devtools", "dialog"] }
 tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+tauri-plugin-log = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 tokio = { version = "1.0", features = ["full"] }
 num_enum = "0.7.2"
 chrono = "0.4"
@@ -30,7 +31,7 @@ zstd = "0.13.0"
 strum = "0.26"
 strum_macros = "0.26"
 cbor4ii = { version = "0.3.2", features = ["use_std", "serde1"] }
+log = "^0.4"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
-log-export = []

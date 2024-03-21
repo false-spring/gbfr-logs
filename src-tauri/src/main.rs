@@ -23,6 +23,7 @@ use tauri::{
     api::dialog::blocking::FileDialogBuilder, AppHandle, CustomMenuItem, Manager, State,
     SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
 };
+use tauri_plugin_log::LogTarget;
 
 mod db;
 mod parser;
@@ -499,6 +500,11 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
         .plugin(tauri_plugin_window_state::Builder::default().build())
+        .plugin(
+            tauri_plugin_log::Builder::default()
+                .targets([LogTarget::Folder("logs".into()), LogTarget::Stdout])
+                .build(),
+        )
         .manage(AlwaysOnTop(AtomicBool::new(true)))
         .manage(ClickThrough(AtomicBool::new(false)))
         .system_tray(system_tray_with_menu())
