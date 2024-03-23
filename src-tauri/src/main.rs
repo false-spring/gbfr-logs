@@ -108,6 +108,10 @@ struct SearchResult {
     page: u32,
     page_count: u32,
     log_count: u32,
+    /// IDs of the enemies that can be filtered by.
+    enemy_ids: Vec<u32>,
+    /// IDs of the quests that can be filtered by.
+    quest_ids: Vec<u32>,
 }
 
 #[derive(Debug, Serialize)]
@@ -150,7 +154,11 @@ struct LogEntry {
 }
 
 #[tauri::command]
-fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
+fn fetch_logs(
+    page: Option<u32>,
+    filter_by_enemy_id: Option<u32>,
+    filter_by_quest_id: Option<u32>,
+) -> Result<SearchResult, String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
     let page = page.unwrap_or(1);
     let per_page = 10;
@@ -176,47 +184,97 @@ fn fetch_logs(page: Option<u32>) -> Result<SearchResult, String> {
             quest_id,
             quest_elapsed_time,
             quest_completed
-         FROM logs ORDER BY time DESC LIMIT ? OFFSET ?"#,
+         FROM logs
+         WHERE (?1 IS NULL OR primary_target = ?1)
+         AND (?2 IS NULL OR quest_id = ?2)
+         ORDER BY time DESC
+         LIMIT ?3 OFFSET ?4"#,
         )
         .map_err(|e| e.to_string())?;
 
     let logs = stmt
-        .query_map([per_page, offset], |row| {
-            Ok(LogEntry {
-                id: row.get(0)?,
-                name: row.get(1)?,
-                time: row.get(2)?,
-                duration: row.get(3)?,
-                version: row.get(4)?,
-                primary_target: row.get::<usize, Option<u32>>(5)?.map(EnemyType::from_hash),
-                p1_name: row.get(6)?,
-                p1_type: row.get(7)?,
-                p2_name: row.get(8)?,
-                p2_type: row.get(9)?,
-                p3_name: row.get(10)?,
-                p3_type: row.get(11)?,
-                p4_name: row.get(12)?,
-                p4_type: row.get(13)?,
-                quest_id: row.get(14)?,
-                quest_elapsed_time: row.get(15)?,
-                quest_completed: row.get(16)?,
-            })
-        })
+        .query_map(
+            [
+                filter_by_enemy_id,
+                filter_by_quest_id,
+                Some(per_page),
+                Some(offset),
+            ],
+            |row| {
+                Ok(LogEntry {
+                    id: row.get(0)?,
+                    name: row.get(1)?,
+                    time: row.get(2)?,
+                    duration: row.get(3)?,
+                    version: row.get(4)?,
+                    primary_target: row.get::<usize, Option<u32>>(5)?.map(EnemyType::from_hash),
+                    p1_name: row.get(6)?,
+                    p1_type: row.get(7)?,
+                    p2_name: row.get(8)?,
+                    p2_type: row.get(9)?,
+                    p3_name: row.get(10)?,
+                    p3_type: row.get(11)?,
+                    p4_name: row.get(12)?,
+                    p4_type: row.get(13)?,
+                    quest_id: row.get(14)?,
+                    quest_elapsed_time: row.get(15)?,
+                    quest_completed: row.get(16)?,
+                })
+            },
+        )
         .map_err(|e| e.to_string())?
         .collect::<Result<Vec<_>, _>>()
         .map_err(|e| e.to_string())?;
 
     let log_count: u32 = conn
-        .query_row_and_then("SELECT COUNT(*) FROM logs", [], |row| row.get(0))
+        .query_row_and_then(
+            "SELECT COUNT(*) FROM logs WHERE (?1 IS NULL OR primary_target = ?1) AND (?2 IS NULL OR quest_id = ?2)",
+            [filter_by_enemy_id, filter_by_quest_id],
+            |row| row.get(0),
+        )
         .map_err(|e| e.to_string())?;
 
     let page_count = (log_count as f64 / per_page as f64).ceil() as u32;
+
+    let mut enemy_ids = Vec::new();
+    let mut quest_ids = Vec::new();
+
+    let mut query = conn
+        .prepare("SELECT primary_target, quest_id from logs")
+        .map_err(|e| e.to_string())?;
+
+    let rows = query
+        .query_map([], |row| {
+            Ok((
+                row.get::<usize, Option<u32>>(0)?,
+                row.get::<usize, Option<u32>>(1)?,
+            ))
+        })
+        .map_err(|e| e.to_string())?;
+
+    for row in rows {
+        let (primary_target, quest_id) = row.map_err(|e| e.to_string())?;
+
+        if let Some(primary_target) = primary_target {
+            if !enemy_ids.contains(&primary_target) {
+                enemy_ids.push(primary_target);
+            }
+        }
+
+        if let Some(quest_id) = quest_id {
+            if !quest_ids.contains(&quest_id) {
+                quest_ids.push(quest_id);
+            }
+        }
+    }
 
     Ok(SearchResult {
         logs,
         page,
         page_count,
         log_count,
+        enemy_ids,
+        quest_ids,
     })
 }
 

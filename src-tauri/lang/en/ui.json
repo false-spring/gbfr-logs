@@ -28,6 +28,8 @@
     "weapon": "Weapon",
     "player-stats": "Player Stats",
     "player-overmasteries": "Overmasteries",
+    "select-enemy": "Select Enemy",
+    "select-quest": "Select Quest",
     "logs": {
       "saved-count_zero": "No logs saved",
       "saved-count_one": "{{count}} log saved",

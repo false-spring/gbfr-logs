@@ -5,11 +5,13 @@ import { Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { invoke } from "@tauri-apps/api";
 import { listen } from "@tauri-apps/api/event";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function useIndex() {
   const { t } = useTranslation();
+  const [filterByEnemyId, setEnemyIdFilter] = useState<number | null>(null);
+  const [filterByQuestId, setQuestIdFilter] = useState<number | null>(null);
 
   const {
     currentPage,
@@ -36,14 +38,14 @@ export default function useIndex() {
   }));
 
   useEffect(() => {
-    invoke("fetch_logs", { page: currentPage }).then((result) => {
+    invoke("fetch_logs", { page: currentPage, filterByEnemyId, filterByQuestId }).then((result) => {
       setSearchResult(result as SearchResult);
     });
-  }, [currentPage]);
+  }, [currentPage, filterByEnemyId, filterByQuestId]);
 
   useEffect(() => {
     const encounterSavedListener = listen("encounter-saved", () => {
-      invoke("fetch_logs", { page: currentPage }).then((result) => {
+      invoke("fetch_logs", { page: currentPage, filterByEnemyId, filterByQuestId }).then((result) => {
         setSearchResult(result as SearchResult);
       });
     });
@@ -51,7 +53,7 @@ export default function useIndex() {
     return () => {
       encounterSavedListener.then((f) => f());
     };
-  }, [currentPage]);
+  }, [currentPage, filterByEnemyId, filterByQuestId]);
 
   const confirmDeleteSelected = () =>
     modals.openConfirmModal({
@@ -75,7 +77,7 @@ export default function useIndex() {
 
   const handleSetPage = (page: number) => {
     setCurrentPage(page);
-    invoke("fetch_logs", { page }).then((result) => {
+    invoke("fetch_logs", { page, filterByEnemyId, filterByQuestId }).then((result) => {
       setSearchResult(result as SearchResult);
     });
   };
@@ -89,5 +91,9 @@ export default function useIndex() {
     confirmDeleteAll,
     handleSetPage,
     currentPage,
+    filterByEnemyId,
+    filterByQuestId,
+    setEnemyIdFilter,
+    setQuestIdFilter,
   };
 }
