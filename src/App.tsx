@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Meter } from "./pages/Meter";
 
-import Logs, { SettingsPage } from "./pages/Logs";
-import { ViewPage as LogViewPage } from "./pages/logs/View";
+import Logs from "./pages/Logs";
+import SettingsPage from "./pages/Settings";
 import { IndexPage as LogIndexPage } from "./pages/logs/Index";
+import { ViewPage as LogViewPage } from "./pages/logs/View";
 
 import "./App.css";
 

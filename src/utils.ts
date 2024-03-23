@@ -1,15 +1,15 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
 import {
-  ComputedPlayerState,
-  EncounterState,
   CharacterType,
+  ComputedPlayerState,
   ComputedSkillState,
-  PlayerState,
-  SortType,
-  SortDirection,
+  EncounterState,
   EnemyType,
   PlayerData,
+  PlayerState,
+  SortDirection,
+  SortType,
 } from "./types";
 
 import { t } from "i18next";
@@ -93,8 +93,8 @@ const tryParseInt = (intString: string | number, defaultValue = 0) => {
   return intNum;
 };
 
-// Takes a number and returns a shortened version of it that is friendlier to read.
-// For example, 1200 would be returned as 1.2k, 1200000 as 1.2m, and so on.
+/// Takes a number and returns a shortened version of it that is friendlier to read.
+/// For example, 1200 would be returned as 1.2k, 1200000 as 1.2m, and so on.
 export const humanizeNumbers = (n: number) => {
   if (n >= 1e3 && n < 1e6) return [+(n / 1e3).toFixed(1), "k"];
   if (n >= 1e6 && n < 1e9) return [+(n / 1e6).toFixed(1), "m"];
@@ -103,11 +103,13 @@ export const humanizeNumbers = (n: number) => {
   else return [tryParseInt(n).toFixed(0), ""];
 };
 
+/// Takes a number of milliseconds and returns a string in the format of MM:SS.
 export const millisecondsToElapsedFormat = (ms: number): string => {
   const date = new Date(Date.UTC(0, 0, 0, 0, 0, 0, ms));
   return `${date.getUTCMinutes().toString().padStart(2, "0")}:${date.getUTCSeconds().toString().padStart(2, "0")}`;
 };
 
+/// Captures a screenshot of the meter and copies it to the clipboard.
 export const exportScreenshotToClipboard = () => {
   const app = document.querySelector(".app") as HTMLElement;
 
@@ -125,6 +127,7 @@ export const exportScreenshotToClipboard = () => {
   });
 };
 
+/// Formats the player name and translates the player's character type.
 export const translatedPlayerName = (
   partySlotIndex: number,
   partySlotData: PlayerData | null,
@@ -154,6 +157,7 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
   });
 };
 
+/// Exports the encounter data to the clipboard in a simple format (CSV)
 export const exportSimpleEncounterToClipboard = (
   sortType: SortType,
   sortDirection: SortDirection,
@@ -211,6 +215,7 @@ export const exportSimpleEncounterToClipboard = (
   });
 };
 
+/// Exports the encounter data to the clipboard in a detailed format (CSV)
 export const exportFullEncounterToClipboard = (
   sortType: SortType,
   sortDirection: SortDirection,
@@ -291,6 +296,7 @@ export const exportFullEncounterToClipboard = (
 
 export const PLAYER_COLORS = ["#FF5630", "#FFAB00", "#36B37E", "#00B8D9", "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
 
+/// Translates the enemy type to a human-readable string.
 export const translateEnemyType = (type: EnemyType | null): string => {
   if (type === null) return "";
 
@@ -303,12 +309,14 @@ export const translateEnemyType = (type: EnemyType | null): string => {
   }
 };
 
+/// Translates the quest ID to a human-readable string.
 export const translateQuestId = (id: number | null): string => {
   if (id === null) return "";
   const hash = id.toString(16);
   return t([`quests:${hash}.text`, "quest.unknown"], { id: hash });
 };
 
+/// Translates the trait ID to a human-readable string.
 export const translateTraitId = (id: number | null): string => {
   if (id === null) return "";
   if (id === EMPTY_ID) return "";
@@ -317,6 +325,7 @@ export const translateTraitId = (id: number | null): string => {
   return t([`traits:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
+/// Translates the sigil ID to a human-readable string.
 export const translateSigilId = (id: number | null): string => {
   if (id === null) return "";
   if (id === EMPTY_ID) return "";
@@ -325,6 +334,7 @@ export const translateSigilId = (id: number | null): string => {
   return t([`sigils:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
+/// Translates the item ID to a human-readable string.
 export const translateItemId = (id: number | null): string => {
   if (id === null) return "";
   if (id === EMPTY_ID) return "";
@@ -333,6 +343,7 @@ export const translateItemId = (id: number | null): string => {
   return t([`items:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
+/// Translates the overmastery ID to a human-readable string.
 export const translateOvermasteryId = (id: number | null): string => {
   if (id === null) return "";
   if (id === EMPTY_ID) return "";
@@ -342,9 +353,13 @@ export const translateOvermasteryId = (id: number | null): string => {
   return t([`overmasteries:${hash}.text`, "ui.unknown"], { id: hash });
 };
 
+/// Converts a number to a hexadecimal string.
 export const toHash = (num: number): string => num.toString(16);
+
+/// Converts a number to a hexadecimal string and pads it to 8 characters.
 export const toHashString = (num: number | undefined): string => (num ? num.toString(16).padStart(8, "0") : "");
 
+/// Hook that returns the previous value of a variable.
 export const usePrevious = <T>(value: T): T | undefined => {
   const ref = useRef<T>();
 

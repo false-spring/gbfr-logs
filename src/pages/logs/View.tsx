@@ -1,28 +1,30 @@
+import { LineChart } from "@mantine/charts";
 import {
+  ActionIcon,
   Box,
   Button,
   Divider,
-  Text,
-  Stack,
-  NumberFormatter,
-  MultiSelect,
-  Menu,
-  ActionIcon,
   Flex,
-  Paper,
-  Tabs,
   Group,
+  Menu,
+  MultiSelect,
+  NumberFormatter,
+  Paper,
+  Stack,
   Table,
+  Tabs,
+  Text,
 } from "@mantine/core";
-import { LineChart } from "@mantine/charts";
 import { ClipboardText } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
-import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import { t } from "i18next";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link, useParams } from "react-router-dom";
 
-import { Table as MeterTable } from "../../components/Table";
+import { Table as MeterTable } from "@/components/Table";
+import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
+import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
 import {
   EMPTY_ID,
   PLAYER_COLORS,
@@ -40,9 +42,7 @@ import {
   translateSigilId,
   translateTraitId,
   translatedPlayerName,
-} from "../../utils";
-import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "../../types";
-import { useEncounterStore, EncounterStateResponse } from "../Logs";
+} from "@/utils";
 
 const formatOvermastery = (overmastery: Overmastery): string => {
   const value = overmastery.value.toFixed(0);
