@@ -434,6 +434,9 @@ export const ViewPage = () => {
                           Total Attack: {player.playerStats?.totalAttack || 1}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
+                          Critical Rate: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
+                        </Text>
+                        <Text size="xs" fs="italic" fw={300}>
                           Stun Power: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
