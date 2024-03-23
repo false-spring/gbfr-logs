@@ -24,7 +24,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { Table as MeterTable } from "@/components/Table";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
-import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
+import type { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
 import {
   EMPTY_ID,
   PLAYER_COLORS,
@@ -43,6 +43,9 @@ import {
   translateTraitId,
   translatedPlayerName,
 } from "@/utils";
+import { useTranslation } from "react-i18next";
+
+type Label = { name: string; label?: string; color: string; strokeDasharray?: string }[];
 
 const formatOvermastery = (overmastery: Overmastery): string => {
   const value = overmastery.value.toFixed(0);
@@ -116,7 +119,7 @@ export const ChartTooltip = ({ label, payload }: ChartTooltipProps) => {
         ) => (
           <Text key={item.name} fz="sm">
             <Text component="span" c={item.color}>
-              {item.name}
+              {item.name === "party" ? t("ui.logs.damage-per-second") : item.name}
             </Text>
             : {new Intl.NumberFormat("en-US").format(item.value)}
           </Text>
@@ -129,7 +132,9 @@ export const ChartTooltip = ({ label, payload }: ChartTooltipProps) => {
 const DPS_INTERVAL = 3;
 
 export const ViewPage = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
+
   const {
     encounter,
     dpsChart,
@@ -199,11 +204,13 @@ export const ViewPage = () => {
   for (let i = 0; i < chartLen; i++) {
     const datapoint: {
       timestamp?: string;
+      party?: number;
     } & { [key: string]: number } = {};
 
     const timestamp = i * (DPS_INTERVAL * 1000);
 
     datapoint["timestamp"] = millisecondsToElapsedFormat(timestamp);
+    datapoint["party"] = 0;
 
     for (const playerIndex in dpsChart) {
       const player = players.find((p) => p.index === Number(playerIndex));
@@ -219,13 +226,15 @@ export const ViewPage = () => {
       const currentValue = dpsChart[playerIndex][i] || 0;
       const averageValue = (totalLastFiveValues + currentValue) / (lastFiveValues.length + 1);
 
-      datapoint[playerName] = Math.round(averageValue / DPS_INTERVAL);
+      const value = Math.round(averageValue / DPS_INTERVAL);
+      datapoint[playerName] = value;
+      datapoint["party"] += value;
     }
 
     data.push(datapoint);
   }
 
-  const labels = players.map((player) => {
+  const labels: Label = players.map((player) => {
     const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
 
     return {
@@ -235,7 +244,12 @@ export const ViewPage = () => {
     };
   });
 
-  labels.sort((a, b) => b.damage - a.damage);
+  labels.push({
+    name: "party",
+    label: t("ui.logs.damage-per-second"),
+    color: "grey",
+    strokeDasharray: "2 2",
+  });
 
   const targetItems = targets.map((target) => {
     if (typeof target == "object" && Object.hasOwn(target, "Unknown")) {
