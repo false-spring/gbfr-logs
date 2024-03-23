@@ -458,18 +458,12 @@ export const ViewPage = () => {
                         {Array.from(Array(4).keys()).map((overmasteryIndex) => {
                           const overmastery = overmasteries[overmasteryIndex];
 
-                          if (!overmastery) {
-                            return (
-                              <Text key={overmasteryIndex} size="xs" fw={300}>
-                                ---
-                              </Text>
-                            );
-                          }
-
                           return (
-                            <Text key={overmasteryIndex} size="xs" fs="italic" fw={300}>
-                              {formatOvermastery(overmastery)}
-                            </Text>
+                            <Placeholder key={overmasteryIndex} empty={!overmastery || overmastery.value === 0}>
+                              <Text size="xs" fs="italic" fw={300}>
+                                {formatOvermastery(overmastery)}
+                              </Text>
+                            </Placeholder>
                           );
                         })}
                       </Table.Td>
@@ -500,18 +494,24 @@ export const ViewPage = () => {
                         <Text size="xs" fw={700}>
                           {translateItemId(player.weaponInfo?.wrightstoneId || EMPTY_ID)}
                         </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          - {translateTraitId(player.weaponInfo?.trait1Id || EMPTY_ID)} (Lvl.{" "}
-                          {player.weaponInfo?.trait1Level})
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          - {translateTraitId(player.weaponInfo?.trait2Id || EMPTY_ID)} (Lvl.{" "}
-                          {player.weaponInfo?.trait2Level})
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          - {translateTraitId(player.weaponInfo?.trait3Id || EMPTY_ID)} (Lvl.{" "}
-                          {player.weaponInfo?.trait3Level})
-                        </Text>
+                        <Placeholder empty={!player.weaponInfo?.trait1Id || player.weaponInfo?.trait1Level == 0}>
+                          <Text size="xs" fs="italic" fw={300}>
+                            - {translateTraitId(player.weaponInfo?.trait1Id || EMPTY_ID)} (Lvl.{" "}
+                            {player.weaponInfo?.trait1Level})
+                          </Text>
+                        </Placeholder>
+                        <Placeholder empty={!player.weaponInfo?.trait2Id || player.weaponInfo?.trait2Level == 0}>
+                          <Text size="xs" fs="italic" fw={300}>
+                            - {translateTraitId(player.weaponInfo?.trait2Id || EMPTY_ID)} (Lvl.{" "}
+                            {player.weaponInfo?.trait2Level})
+                          </Text>
+                        </Placeholder>
+                        <Placeholder empty={!player.weaponInfo?.trait3Id || player.weaponInfo?.trait3Level == 0}>
+                          <Text size="xs" fs="italic" fw={300}>
+                            - {translateTraitId(player.weaponInfo?.trait3Id || EMPTY_ID)} (Lvl.{" "}
+                            {player.weaponInfo?.trait3Level})
+                          </Text>
+                        </Placeholder>
                       </Table.Td>
                     );
                   })}
@@ -524,9 +524,7 @@ export const ViewPage = () => {
                       if (!sigil || sigil.sigilId === EMPTY_ID) {
                         return (
                           <Table.Td key={player.actorIndex}>
-                            <Text size="xs" fw={300}>
-                              ---
-                            </Text>
+                            <Placeholder empty />
                           </Table.Td>
                         );
                       }
@@ -553,3 +551,13 @@ export const ViewPage = () => {
     </Box>
   );
 };
+
+function Placeholder({ empty, children }: { empty: boolean; children?: React.ReactNode }) {
+  return empty ? (
+    <Text size="xs" fw={300}>
+      ---
+    </Text>
+  ) : (
+    children
+  );
+}
