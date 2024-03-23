@@ -1,5 +1,11 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { Minus, Camera, ClipboardText, PushPinSimple } from "@phosphor-icons/react";
+import { ActionIcon, Menu, Tooltip } from "@mantine/core";
+import { Fragment, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { invoke } from "@tauri-apps/api";
+
+import { EncounterState, PlayerData, SortDirection, SortType } from "../types";
 import {
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
@@ -7,11 +13,7 @@ import {
   humanizeNumbers,
   millisecondsToElapsedFormat,
 } from "../utils";
-import { ActionIcon, Menu, Tooltip } from "@mantine/core";
-import { EncounterState, PlayerData, SortDirection, SortType } from "../types";
-import { Fragment, useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { invoke } from "@tauri-apps/api";
+import getVersion from "../hooks/getVersion";
 
 const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
@@ -71,6 +73,7 @@ export const Titlebar = ({
   sortDirection: SortDirection;
 }) => {
   const { t } = useTranslation();
+  const { version } = getVersion();
 
   const onMinimize = () => {
     appWindow.minimize();
@@ -91,7 +94,7 @@ export const Titlebar = ({
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
         <div data-tauri-drag-region className="version">
-          GBFR Logs <span className="version-number">0.0.10</span>
+          GBFR Logs <span className="version-number">{version}</span>
         </div>
         {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       </div>
