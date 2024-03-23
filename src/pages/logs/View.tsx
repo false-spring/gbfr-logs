@@ -42,7 +42,7 @@ import {
   translatedPlayerName,
 } from "../../utils";
 import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "../../types";
-import { useEncounterStore, EncounterStateResponse } from "../Logs";
+import { useEncounterStore, EncounterStateResponse } from "@/stores/useEncounterStore";
 
 const formatOvermastery = (overmastery: Overmastery): string => {
   const value = overmastery.value.toFixed(0);

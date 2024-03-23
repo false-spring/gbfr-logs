@@ -1,12 +1,13 @@
-import { Box, Button, Divider, Group, Table, Text, Pagination, Space, Center, Checkbox } from "@mantine/core";
-import { invoke } from "@tauri-apps/api";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { listen } from "@tauri-apps/api/event";
-import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType, translateQuestId } from "../../utils";
-import { useTranslation } from "react-i18next";
-import { useLogIndexStore, useEncounterStore, SearchResult } from "../Logs";
+import { useEncounterStore } from "@/stores/useEncounterStore";
+import { SearchResult, useLogIndexStore } from "@/stores/useLogIndexStore";
+import { Box, Button, Center, Checkbox, Divider, Group, Pagination, Space, Table, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { invoke } from "@tauri-apps/api";
+import { listen } from "@tauri-apps/api/event";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType, translateQuestId } from "../../utils";
 
 export const IndexPage = () => {
   const { t } = useTranslation();

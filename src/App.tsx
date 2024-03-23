@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Meter } from "./pages/Meter";
 
-import Logs, { SettingsPage } from "./pages/Logs";
+import Logs from "./pages/Logs";
+import SettingsPage from "./pages/Settings";
 import { ViewPage as LogViewPage } from "./pages/logs/View";
 import { IndexPage as LogIndexPage } from "./pages/logs/Index";
 
