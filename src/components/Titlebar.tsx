@@ -5,15 +5,15 @@ import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { invoke } from "@tauri-apps/api";
 
-import { EncounterState, PlayerData, SortDirection, SortType } from "../types";
+import { EncounterState, PlayerData, SortDirection, SortType } from "@/types";
 import {
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
   humanizeNumbers,
   millisecondsToElapsedFormat,
-} from "../utils";
-import getVersion from "../hooks/getVersion";
+} from "@/utils";
+import getVersion from "@/hooks/getVersion";
 
 const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
