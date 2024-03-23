@@ -30,6 +30,13 @@
     "player-overmasteries": "Overmasteries",
     "select-enemy": "Select Enemy",
     "select-quest": "Select Quest",
+    "stats": {
+      "total-hp": "Total HP",
+      "total-attack": "Total Attack",
+      "critical-rate": "Critical Rate",
+      "stun-power": "Stun Power",
+      "total-power": "Total PWR"
+    },
     "logs": {
       "saved-count_zero": "No logs saved",
       "saved-count_one": "{{count}} log saved",

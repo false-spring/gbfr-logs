@@ -428,19 +428,19 @@ export const ViewPage = () => {
                           {t("ui.player-stats")}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
-                          Total HP: {player.playerStats?.totalHp || 1}
+                          {t("ui.stats.total-hp")}: {player.playerStats?.totalHp || 1}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
-                          Total Attack: {player.playerStats?.totalAttack || 1}
+                          {t("ui.stats.total-attack")}: {player.playerStats?.totalAttack || 1}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
-                          Critical Rate: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
+                          {t("ui.stats.critical-rate")}: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
-                          Stun Power: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
+                          {t("ui.stats.stun-power")}: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
-                          Total PWR: {player.playerStats?.totalPower || 1}
+                          {t("ui.stats.total-power")}: {player.playerStats?.totalPower || 1}
                         </Text>
                       </Table.Td>
                     );
