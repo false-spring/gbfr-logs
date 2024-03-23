@@ -1,4 +1,4 @@
-import { Box, Fieldset, Stack, Select, ColorInput, Text, Slider, Checkbox, Tooltip } from "@mantine/core";
+import { Box, Checkbox, ColorInput, Fieldset, Select, Slider, Stack, Text, Tooltip } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import useSettings from "./useSettings";
 

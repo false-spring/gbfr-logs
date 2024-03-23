@@ -1,15 +1,15 @@
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
 import {
-  ComputedPlayerState,
-  EncounterState,
   CharacterType,
+  ComputedPlayerState,
   ComputedSkillState,
-  PlayerState,
-  SortType,
-  SortDirection,
+  EncounterState,
   EnemyType,
   PlayerData,
+  PlayerState,
+  SortDirection,
+  SortType,
 } from "./types";
 
 import { t } from "i18next";

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { listen } from "@tauri-apps/api/event";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
-import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, PlayerData, SortDirection, SortType } from "../types";
 import { Table } from "../components/Table";
 import { Titlebar } from "../components/Titlebar";
+import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, PlayerData, SortDirection, SortType } from "../types";
 
-import "../i18n";
-import { useMeterSettingsStore } from "../Store";
 import { useShallow } from "zustand/react/shallow";
+import { useMeterSettingsStore } from "../Store";
+import "../i18n";
 import { usePrevious } from "../utils";
 
 const DEFAULT_ENCOUNTER_STATE: EncounterState = {

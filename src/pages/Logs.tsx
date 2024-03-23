@@ -3,8 +3,8 @@ import "./Logs.css";
 import { AppShell, Burger, Group, NavLink, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Gear, House } from "@phosphor-icons/react";
-import { Link, Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();

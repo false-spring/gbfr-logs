@@ -1,9 +1,9 @@
-import { Fragment, useState } from "react";
-import { CharacterType, ComputedPlayerState, ComputedSkillState, PlayerData } from "../types";
-import { humanizeNumbers, getSkillName, translatedPlayerName } from "../utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
-import { useMeterSettingsStore } from "../Store";
+import { Fragment, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
+import { useMeterSettingsStore } from "../Store";
+import { CharacterType, ComputedPlayerState, ComputedSkillState, PlayerData } from "../types";
+import { getSkillName, humanizeNumbers, translatedPlayerName } from "../utils";
 
 type Props = {
   player: ComputedPlayerState;

@@ -1,10 +1,11 @@
-import { appWindow } from "@tauri-apps/api/window";
-import { Minus, Camera, ClipboardText, PushPinSimple } from "@phosphor-icons/react";
 import { ActionIcon, Menu, Tooltip } from "@mantine/core";
+import { Camera, ClipboardText, Minus, PushPinSimple } from "@phosphor-icons/react";
+import { invoke } from "@tauri-apps/api";
+import { appWindow } from "@tauri-apps/api/window";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { invoke } from "@tauri-apps/api";
 
+import getVersion from "@/hooks/getVersion";
 import { EncounterState, PlayerData, SortDirection, SortType } from "@/types";
 import {
   exportFullEncounterToClipboard,
@@ -13,7 +14,6 @@ import {
   humanizeNumbers,
   millisecondsToElapsedFormat,
 } from "@/utils";
-import getVersion from "@/hooks/getVersion";
 
 const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
