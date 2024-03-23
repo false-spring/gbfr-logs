@@ -1,5 +1,3 @@
-import { EnemyType } from "./types";
-
 /**
  * CharacterType represents the type of character that a player can be.
  *
