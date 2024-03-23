@@ -2,36 +2,27 @@ import { invoke } from "@tauri-apps/api";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
-import { EnemyType } from "@/types";
+import { Log } from "@/types";
 
-export interface SearchResult {
+export type SearchResult = {
   logs: Log[];
   page: number;
   pageCount: number;
   logCount: number;
-}
+  enemyIds: number[];
+  questIds: number[];
+};
 
-interface Log {
-  id: number;
-  name: string;
-  time: number;
-  duration: number;
-  version: number;
-  primaryTarget: EnemyType | null;
-  p1Name: string | null;
-  p1Type: string | null;
-  p2Name: string | null;
-  p2Type: string | null;
-  p3Name: string | null;
-  p3Type: string | null;
-  p4Name: string | null;
-  p4Type: string | null;
-  questId: number | null;
-  questElapsedTime: number | null;
-  questCompleted: boolean;
-}
+const DEFAULT_SEARCH_RESULT = {
+  logs: [],
+  page: 1,
+  pageCount: 0,
+  logCount: 0,
+  enemyIds: [],
+  questIds: [],
+};
 
-interface LogIndexState {
+type LogIndexState = {
   currentPage: number;
   searchResult: SearchResult;
   selectedLogIds: number[];
@@ -40,11 +31,11 @@ interface LogIndexState {
   setSelectedLogIds: (ids: number[]) => void;
   deleteSelectedLogs: () => void;
   deleteAllLogs: () => void;
-}
+};
 
 export const useLogIndexStore = create<LogIndexState>((set, get) => ({
   currentPage: 1,
-  searchResult: { logs: [], page: 1, pageCount: 0, logCount: 0 },
+  searchResult: DEFAULT_SEARCH_RESULT,
   selectedLogIds: [],
   setCurrentPage: (page: number) => set({ currentPage: page }),
   setSearchResult: (result) => set({ searchResult: result }),
@@ -54,7 +45,7 @@ export const useLogIndexStore = create<LogIndexState>((set, get) => ({
 
     try {
       await invoke("delete_logs", { ids });
-      set({ currentPage: 1, selectedLogIds: [], searchResult: { logs: [], page: 1, pageCount: 0, logCount: 0 } });
+      set({ currentPage: 1, selectedLogIds: [], searchResult: DEFAULT_SEARCH_RESULT });
       toast.success("Logs deleted successfully.");
       const result = await invoke("fetch_logs");
       setSearchResult(result as SearchResult);
@@ -67,7 +58,7 @@ export const useLogIndexStore = create<LogIndexState>((set, get) => ({
 
     try {
       await invoke("delete_all_logs");
-      set({ currentPage: 1, selectedLogIds: [], searchResult: { logs: [], page: 1, pageCount: 0, logCount: 0 } });
+      set({ currentPage: 1, selectedLogIds: [], searchResult: DEFAULT_SEARCH_RESULT });
       toast.success("Logs deleted successfully.");
       const result = await invoke("fetch_logs");
       setSearchResult(result as SearchResult);

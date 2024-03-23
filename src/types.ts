@@ -181,3 +181,22 @@ export type PartyUpdateEvent = {
 
 export type SortType = "partyIndex" | "dps" | "damage" | "percentage";
 export type SortDirection = "asc" | "desc";
+export type Log = {
+  id: number;
+  name: string;
+  time: number;
+  duration: number;
+  version: number;
+  primaryTarget: EnemyType | null;
+  p1Name: string | null;
+  p1Type: string | null;
+  p2Name: string | null;
+  p2Type: string | null;
+  p3Name: string | null;
+  p3Type: string | null;
+  p4Name: string | null;
+  p4Type: string | null;
+  questId: number | null;
+  questElapsedTime: number | null;
+  questCompleted: boolean;
+};

@@ -309,6 +309,11 @@ export const translateEnemyType = (type: EnemyType | null): string => {
   }
 };
 
+export const translateEnemyTypeId = (id: number): string => {
+  const hash = toHashString(id);
+  return t([`enemies:${hash}.text`, `enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash });
+};
+
 /// Translates the quest ID to a human-readable string.
 export const translateQuestId = (id: number | null): string => {
   if (id === null) return "";
