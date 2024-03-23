@@ -10,6 +10,7 @@ export interface SearchResult {
   pageCount: number;
   logCount: number;
 }
+
 interface Log {
   id: number;
   name: string;
@@ -29,6 +30,7 @@ interface Log {
   questElapsedTime: number | null;
   questCompleted: boolean;
 }
+
 interface LogIndexState {
   currentPage: number;
   searchResult: SearchResult;
