@@ -1,5 +1,5 @@
 import { useShallow } from "zustand/react/shallow";
-import { useMeterSettingsStore } from "../Store";
+import { useMeterSettingsStore } from "../stores/useMeterSettingsStore";
 import { ComputedPlayerState, EncounterState, PlayerData, SortDirection, SortType } from "../types";
 import { formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";

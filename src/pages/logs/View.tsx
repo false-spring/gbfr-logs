@@ -22,9 +22,9 @@ import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 
+import { Table as MeterTable } from "@/components/Table";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
-import { Table as MeterTable } from "../../components/Table";
-import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "../../types";
+import { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
 import {
   EMPTY_ID,
   PLAYER_COLORS,
@@ -42,7 +42,7 @@ import {
   translateSigilId,
   translateTraitId,
   translatedPlayerName,
-} from "../../utils";
+} from "@/utils";
 
 const formatOvermastery = (overmastery: Overmastery): string => {
   const value = overmastery.value.toFixed(0);

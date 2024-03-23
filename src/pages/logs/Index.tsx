@@ -1,7 +1,7 @@
+import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType, translateQuestId } from "@/utils";
 import { Box, Button, Center, Checkbox, Divider, Group, Pagination, Space, Table, Text } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { epochToLocalTime, millisecondsToElapsedFormat, translateEnemyType, translateQuestId } from "../../utils";
 import useIndex from "./useIndex";
 
 export const IndexPage = () => {

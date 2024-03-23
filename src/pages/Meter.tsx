@@ -8,8 +8,8 @@ import { Titlebar } from "../components/Titlebar";
 import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, PlayerData, SortDirection, SortType } from "../types";
 
 import { useShallow } from "zustand/react/shallow";
-import { useMeterSettingsStore } from "../Store";
 import "../i18n";
+import { useMeterSettingsStore } from "../stores/useMeterSettingsStore";
 import { usePrevious } from "../utils";
 
 const DEFAULT_ENCOUNTER_STATE: EncounterState = {

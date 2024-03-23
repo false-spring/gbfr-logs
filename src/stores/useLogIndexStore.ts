@@ -2,7 +2,7 @@ import { invoke } from "@tauri-apps/api";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
-import { EnemyType } from "../types";
+import { EnemyType } from "@/types";
 
 export interface SearchResult {
   logs: Log[];

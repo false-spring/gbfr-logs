@@ -1,5 +1,5 @@
-import { useMeterSettingsStore } from "@/Store";
 import { SUPPORTED_LANGUAGES } from "@/i18n";
+import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { useTranslation } from "react-i18next";
 
 export default function useSettings() {
