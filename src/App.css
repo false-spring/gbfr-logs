@@ -103,6 +103,9 @@
   font-size: 14px;
   width: 4.5rem;
 }
+.table.full-values .header-column {
+  width: 6rem;
+}
 
 .table .header-name,
 .table .header-column {
