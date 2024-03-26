@@ -20,8 +20,11 @@ type ProcessDamageEventFunc =
 type ProcessDotEventFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
 type OnEnterAreaFunc = unsafe extern "system" fn(u32, *const usize, u8, *const usize) -> usize;
 type OnLoadPlayerFunc = unsafe extern "system" fn(*const usize) -> usize;
-type OnLoadQuestState = unsafe extern "system" fn(*const usize) -> usize;
-type OnShowResultScreen = unsafe extern "system" fn(*const usize) -> usize;
+type OnLoadQuestStateFunc = unsafe extern "system" fn(*const usize) -> usize;
+type OnShowResultScreenFunc = unsafe extern "system" fn(*const usize) -> usize;
+type OnSBAUpdateFunc = unsafe extern "system" fn(*const usize, f32, u32, u8, u32, u8) -> usize;
+type OnSBAAttemptFunc = unsafe extern "system" fn(*const usize, f32) -> usize;
+type OnCheckSBACollisionFunc = unsafe extern "system" fn(*const usize, f32) -> usize;
 
 static_detour! {
     static ProcessDamageEvent: unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
@@ -30,6 +33,9 @@ static_detour! {
     static OnLoadPlayer: unsafe extern "system" fn(*const usize) -> usize;
     static OnLoadQuestState: unsafe extern "system" fn(*const usize) -> usize;
     static OnShowResultScreen: unsafe extern "system" fn(*const usize) -> usize;
+    static OnSBAUpdate: unsafe extern "system" fn(*const usize, f32, u32, u8, u32, u8) -> usize;
+    static OnSBAAttempt: unsafe extern "system" fn(*const usize, f32) -> usize;
+    static OnCheckSBACollision: unsafe extern "system" fn(*const usize, f32) -> usize;
 }
 
 static QUEST_STATE_PTR: AtomicPtr<QuestState> = AtomicPtr::new(ptr::null_mut());
@@ -37,6 +43,7 @@ static PLAYER_DATA_OFFSET: AtomicU32 = AtomicU32::new(0);
 static WEAPON_OFFSET: AtomicU32 = AtomicU32::new(0);
 static OVERMASTERY_OFFSET: AtomicU32 = AtomicU32::new(0);
 static SIGIL_OFFSET: AtomicU32 = AtomicU32::new(0);
+static SBA_OFFSET: AtomicU32 = AtomicU32::new(0);
 
 const PROCESS_DAMAGE_EVENT_SIG: &str = "e8 $ { ' } 66 83 bc 24 ? ? ? ? ?";
 const PROCESS_DOT_EVENT_SIG: &str = "44 89 74 24 ? 48 ? ? ? ? 48 ? ? e8 $ { ' } 4c";
@@ -46,6 +53,9 @@ const ON_LOAD_QUEST_STATE: &str =
     "48 8b 0d ? ? ? ? e8 $ { ' } c5 fb 12 ? ? ? ? ? c5 f8 11 ? ? ? ? ? c5 f8 11 ? ? ? ? ? 48 83 c4 48";
 const ON_SHOW_RESULT_SCREEN_SIG: &str =
     "e8 $ { ' } b8 ? ? ? ? 23 87 ? ? 00 00 3d 00 00 60 00 0f 94 c0";
+const ON_HANDLE_SBA_UPDATE_SIG: &str = "e8 $ { ' } c5 fa 10 46 ? c5 f8 2e 86 80 00 00 00";
+const ON_ATTEMPT_SBA_SIG: &str = "e8 $ { ' } 48 8d 8e a0 9c ff ff c7 44 24 38 00 00 80 3f";
+const ON_CHECK_SBA_COLLISION_SIG: &str = "e8 $ { ' } 84 c0 0f 85 f0 00 00 ? 8b 8e a8 9c ff ff";
 
 type GetEntityHashID0x58 = unsafe extern "system" fn(*const usize, *const u32) -> *const usize;
 
@@ -588,6 +598,77 @@ fn on_load_player(tx: event::Tx, a1: *const usize) -> usize {
     ret
 }
 
+fn on_sba_attempt(tx: event::Tx, a1: *const usize, a2: f32) -> usize {
+    let ret = unsafe { OnSBAAttempt.call(a1, a2) };
+
+    let entity_ptr = unsafe { a1.byte_add(0x10).read() } as *const usize;
+    let player_index = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
+
+    #[cfg(feature = "console")]
+    println!("on sba attempt: player_index={}", player_index);
+
+    let payload = Message::OnAttemptSBA(protocol::OnAttemptSBAEvent {
+        actor_index: player_index,
+    });
+
+    let _ = tx.send(payload);
+
+    ret
+}
+
+fn on_sba_update(
+    tx: event::Tx,
+    a1: *const usize,
+    a2: f32,
+    a3: u32,
+    a4: u8,
+    a5: u32,
+    a6: u8,
+) -> usize {
+    let sba_offset = SBA_OFFSET.load(std::sync::atomic::Ordering::Relaxed);
+
+    let entity_ptr = unsafe { a1.byte_sub(sba_offset as usize) } as *const usize;
+    let sba_value_ptr = unsafe { a1.byte_add(0x7C) } as *const f32;
+
+    let old_sba_value = unsafe { sba_value_ptr.read() };
+
+    let ret = unsafe { OnSBAUpdate.call(a1, a2, a3, a4, a5, a6) };
+
+    let player_idx = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
+    let new_sba_value = unsafe { sba_value_ptr.read() };
+    let sba_added = f32::max(new_sba_value - old_sba_value, 0.0);
+
+    let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
+        actor_index: player_idx,
+        sba_value: new_sba_value,
+        sba_added,
+    });
+
+    let _ = tx.send(payload);
+
+    ret
+}
+
+fn on_check_sba_collision(tx: event::Tx, a1: *const usize, a2: f32) -> usize {
+    let ret = unsafe { OnCheckSBACollision.call(a1, a2) };
+
+    if ret != 0 {
+        let entity_ptr = unsafe { a1.byte_add(0x10).read() } as *const usize;
+        let player_index = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
+
+        #[cfg(feature = "console")]
+        println!("on perform sba: player_index={}", player_index);
+
+        let payload = Message::OnPerformSBA(protocol::OnPerformSBA {
+            actor_index: player_index,
+        });
+
+        let _ = tx.send(payload);
+    }
+
+    ret
+}
+
 pub fn init(tx: event::Tx) -> Result<()> {
     let process = Process::with_name("granblue_fantasy_relink.exe")?;
 
@@ -640,6 +721,17 @@ pub fn init(tx: event::Tx) -> Result<()> {
         player_data_offset + overmastery_offset,
         std::sync::atomic::Ordering::Relaxed,
     );
+
+    let sba_offset = search_slice::<u32>(
+        &process,
+        "7E ? C5 FA 59 81 ? ? ? ? 48 81 C1 ' ? ? ? ? C5 F8 54 0D ? ? ? ?",
+    )
+    .context("Could not find sba offset")?;
+
+    #[cfg(feature = "console")]
+    println!("sba_offset: {:x}", sba_offset);
+
+    SBA_OFFSET.store(sba_offset, std::sync::atomic::Ordering::Relaxed);
 
     // See https://github.com/nyaoouo/GBFR-ACT/blob/5801c193de2f474764b55b7c6b759c3901dc591c/injector.py#L1773-L1809
     if let Ok(process_dmg_evt) = search_address(&process, PROCESS_DAMAGE_EVENT_SIG) {
@@ -708,7 +800,7 @@ pub fn init(tx: event::Tx) -> Result<()> {
         println!("Found on load quest state");
 
         unsafe {
-            let func: OnLoadQuestState = std::mem::transmute(on_load_quest_state_original);
+            let func: OnLoadQuestStateFunc = std::mem::transmute(on_load_quest_state_original);
             OnLoadQuestState.initialize(func, move |a1| on_load_quest_state(a1))?;
             OnLoadQuestState.enable()?;
         }
@@ -724,12 +816,64 @@ pub fn init(tx: event::Tx) -> Result<()> {
         let tx = tx.clone();
 
         unsafe {
-            let func: OnShowResultScreen = std::mem::transmute(on_show_result_screen_original);
+            let func: OnShowResultScreenFunc = std::mem::transmute(on_show_result_screen_original);
             OnShowResultScreen.initialize(func, move |a1| on_show_result_screen(tx.clone(), a1))?;
             OnShowResultScreen.enable()?;
         }
     } else {
         return Err(anyhow!("Could not find on_show_result_screen"));
+    }
+
+    if let Ok(on_sba_update_original) = search_address(&process, ON_HANDLE_SBA_UPDATE_SIG) {
+        #[cfg(feature = "console")]
+        println!("found on sba update");
+
+        let tx = tx.clone();
+
+        unsafe {
+            let func: OnSBAUpdateFunc = std::mem::transmute(on_sba_update_original);
+            OnSBAUpdate.initialize(func, move |a1, a2, a3, a4, a5, a6| {
+                on_sba_update(tx.clone(), a1, a2, a3, a4, a5, a6)
+            })?;
+            OnSBAUpdate.enable()?;
+        }
+    } else {
+        return Err(anyhow!("Could not find on_sba_update"));
+    }
+
+    if let Ok(on_sba_attempt_original) = search_address(&process, ON_ATTEMPT_SBA_SIG) {
+        #[cfg(feature = "console")]
+        println!("found on sba attempt");
+
+        let tx = tx.clone();
+
+        unsafe {
+            let func: OnSBAAttemptFunc = std::mem::transmute(on_sba_attempt_original);
+            OnSBAAttempt.initialize(func, move |a1, a2| on_sba_attempt(tx.clone(), a1, a2))?;
+            OnSBAAttempt.enable()?;
+        }
+    } else {
+        return Err(anyhow!("Could not find on_sba_attempt"));
+    }
+
+    if let Ok(on_check_sba_collision_original) =
+        search_address(&process, ON_CHECK_SBA_COLLISION_SIG)
+    {
+        #[cfg(feature = "console")]
+        println!("found on check sba collision");
+
+        let tx = tx.clone();
+
+        unsafe {
+            let func: OnCheckSBACollisionFunc =
+                std::mem::transmute(on_check_sba_collision_original);
+            OnCheckSBACollision.initialize(func, move |a1, a2| {
+                on_check_sba_collision(tx.clone(), a1, a2)
+            })?;
+            OnCheckSBACollision.enable()?;
+        }
+    } else {
+        return Err(anyhow!("Could not find on_check_sba_collision"));
     }
 
     Ok(())
