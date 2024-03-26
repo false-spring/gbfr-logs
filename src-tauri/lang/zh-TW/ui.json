@@ -25,8 +25,6 @@
     "show-player-names": "顯示玩家名稱",
     "streamer-mode": "直播模式",
     "streamer-mode-description": "只在浮動視窗顯示自己造成的傷害",
-    "show-full-values": "顯示完整數值",
-    "show-full-values-description": "在浮動視窗中顯示完整數值，而不是總和",
     "weapon": "武器",
     "player-stats": "角色面板",
     "player-overmasteries": "界限突破",
