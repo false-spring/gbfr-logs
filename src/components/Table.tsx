@@ -19,9 +19,10 @@ export const Table = ({
   setSortType: (sortType: SortType) => void;
   setSortDirection: (sortDirection: SortDirection) => void;
 }) => {
-  const { streamerMode } = useMeterSettingsStore(
+  const { streamerMode, show_full_values } = useMeterSettingsStore(
     useShallow((state) => ({
       streamerMode: state.streamer_mode,
+      show_full_values: state.show_full_values,
     }))
   );
 
@@ -54,7 +55,7 @@ export const Table = ({
   };
 
   return (
-    <table className="player-table table w-full">
+    <table className={`player-table table w-full ${show_full_values ? "full-values" : ""}`}>
       <thead className="header transparent-bg">
         <tr>
           <th className="header-name" onClick={() => toggleSort("partyIndex")}>

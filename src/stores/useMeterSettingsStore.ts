@@ -9,6 +9,7 @@ interface MeterSettings {
   transparency: number;
   show_display_names: boolean;
   streamer_mode: boolean;
+  show_full_values: boolean;
 }
 
 interface MeterStateFunctions {
@@ -23,6 +24,7 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   transparency: 0.2,
   show_display_names: true,
   streamer_mode: false,
+  show_full_values: false,
 };
 
 export type StoreWithPersist<T> = Mutate<StoreApi<T>, [["zustand/persist", T]]>;

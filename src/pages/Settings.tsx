@@ -12,6 +12,7 @@ const SettingsPage = () => {
     transparency,
     show_display_names,
     streamer_mode,
+    show_full_values,
     setMeterSettings,
     languages,
     handleLanguageChange,
@@ -74,6 +75,14 @@ const SettingsPage = () => {
               label={t("ui.streamer-mode")}
               checked={streamer_mode}
               onChange={(event) => setMeterSettings({ streamer_mode: event.currentTarget.checked })}
+            />
+          </Tooltip>
+
+          <Tooltip label={t("ui.show-full-values-description")}>
+            <Checkbox
+              label={t("ui.show-full-values")}
+              checked={show_full_values}
+              onChange={(event) => setMeterSettings({ show_full_values: event.currentTarget.checked })}
             />
           </Tooltip>
         </Stack>

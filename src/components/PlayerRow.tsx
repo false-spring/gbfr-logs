@@ -19,30 +19,69 @@ const SkillRow = ({
   skill: ComputedSkillState;
   color: string;
 }) => {
+  const { show_full_values } = useMeterSettingsStore(
+    useShallow((state) => ({
+      show_full_values: state.show_full_values,
+    }))
+  );
+
   const [totalDamage, totalDamageUnit] = humanizeNumbers(skill.totalDamage);
   const [minDmg, minDmgUnit] = humanizeNumbers(skill.minDamage || 0);
   const [maxDmg, maxDmgUnit] = humanizeNumbers(skill.maxDamage || 0);
-  const [averageDmg, averageDmgUnit] = humanizeNumbers(skill.hits === 0 ? 0 : skill.totalDamage / skill.hits);
+  const avg = skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
+  const [averageDmg, averageDmgUnit] = humanizeNumbers(avg);
 
   return (
     <tr className="skill-row">
       <td className="text-left row-data">{getSkillName(characterType, skill)}</td>
       <td className="text-center row-data">{skill.hits}</td>
       <td className="text-center row-data">
-        {totalDamage}
-        <span className="unit font-sm">{totalDamageUnit}</span>
+        {skill.totalDamage ? (
+          skill.totalDamage.toLocaleString()
+        ) : (
+          <>
+            {totalDamage}
+            <span className="unit font-sm">{totalDamageUnit}</span>
+          </>
+        )}
       </td>
       <td className="text-center row-data">
-        {skill.minDamage && minDmg}
-        <span className="unit font-sm">{minDmgUnit}</span>
+        {show_full_values ? (
+          skill.minDamage ? (
+            skill.minDamage.toLocaleString()
+          ) : (
+            ""
+          )
+        ) : (
+          <>
+            {skill.minDamage && minDmg}
+            <span className="unit font-sm">{minDmgUnit}</span>
+          </>
+        )}
       </td>
       <td className="text-center row-data">
-        {skill.maxDamage && maxDmg}
-        <span className="unit font-sm">{maxDmgUnit}</span>
+        {show_full_values ? (
+          skill.maxDamage ? (
+            skill.maxDamage.toLocaleString()
+          ) : (
+            ""
+          )
+        ) : (
+          <>
+            {skill.maxDamage && maxDmg}
+            <span className="unit font-sm">{maxDmgUnit}</span>
+          </>
+        )}
       </td>
       <td className="text-center row-data">
-        {averageDmg}
-        <span className="unit font-sm">{averageDmgUnit}</span>
+        {show_full_values ? (
+          avg.toLocaleString()
+        ) : (
+          <>
+            {averageDmg}
+            <span className="unit font-sm">{averageDmgUnit}</span>
+          </>
+        )}
       </td>
       <td className="text-center row-data">
         {skill.percentage.toFixed(0)}
@@ -102,13 +141,14 @@ export const PlayerRow = ({
   player: ComputedPlayerState;
   partyData: Array<PlayerData | null>;
 }) => {
-  const { color_1, color_2, color_3, color_4, show_display_names } = useMeterSettingsStore(
+  const { color_1, color_2, color_3, color_4, show_display_names, show_full_values } = useMeterSettingsStore(
     useShallow((state) => ({
       color_1: state.color_1,
       color_2: state.color_2,
       color_3: state.color_3,
       color_4: state.color_4,
       show_display_names: state.show_display_names,
+      show_full_values: state.show_full_values,
     }))
   );
 
@@ -128,12 +168,24 @@ export const PlayerRow = ({
           {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
         </td>
         <td className="text-center row-data">
-          {totalDamage}
-          <span className="unit font-sm">{totalDamageUnit}</span>
+          {show_full_values ? (
+            (player.totalDamage | 0).toLocaleString()
+          ) : (
+            <>
+              {totalDamage}
+              <span className="unit font-sm">{totalDamageUnit}</span>
+            </>
+          )}
         </td>
         <td className="text-center row-data">
-          {dps}
-          <span className="unit font-sm">{dpsUnit}</span>
+          {show_full_values ? (
+            (player.dps | 0).toLocaleString()
+          ) : (
+            <>
+              {dps}
+              <span className="unit font-sm">{dpsUnit}</span>
+            </>
+          )}
         </td>
         <td className="text-center row-data">
           {player.percentage?.toFixed(0)}

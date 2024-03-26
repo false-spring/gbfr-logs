@@ -26,6 +26,8 @@
     "show-player-names": "Show Player Names",
     "streamer-mode": "Streamer Mode",
     "streamer-mode-description": "Only shows your damage in the meter.",
+    "show-full-values": "Show Full Values",
+    "show-full-values-description": "Show full values in the meter.",
     "weapon": "Weapon",
     "player-stats": "Player Stats",
     "player-overmasteries": "Overmasteries",
