@@ -374,3 +374,73 @@ export const usePrevious = <T>(value: T): T | undefined => {
 
   return ref.current;
 };
+
+export const checkCheating = (player: PlayerData) => {
+  const cheats = [];
+
+  // invalid wrightstone level
+  if ((player.weaponInfo?.trait1Level ?? 0) > 10) {
+    cheats.push("Wrightstone with trait level > 10");
+  }
+  if ((player.weaponInfo?.trait2Level ?? 0) > 7) {
+    cheats.push("Wrightstone with trait level > 7");
+  }
+  if ((player.weaponInfo?.trait3Level ?? 0) > 5) {
+    cheats.push("Wrightstone with trait level > 5");
+  }
+
+  // invalid wrightstone trait
+  const notAllowedWrightstone = [
+    "57ab5b10",
+    "82ce278d",
+    "1568e0e4",
+    "70395731",
+    "cd18a77d",
+    "333e5862",
+    "a8a3163b",
+    "ec1c6779",
+    "dbe1d775",
+    "8d2adb6e",
+    "5c862e13",
+    "082033cb",
+    "1b0d9897",
+    "9ad8b5e6",
+    "40223c28",
+    "74aa75d6",
+    "dc225c96",
+    "4c588c27",
+    "5e422ae5",
+    "af794a87",
+    "57ab5b10",
+  ];
+
+  const hasCheatedWrightStone =
+    notAllowedWrightstone.includes(toHashString(player.weaponInfo?.trait1Id ?? 0)) ||
+    notAllowedWrightstone.includes(toHashString(player.weaponInfo?.trait2Id ?? 0)) ||
+    notAllowedWrightstone.includes(toHashString(player.weaponInfo?.trait3Id ?? 0));
+
+  if (hasCheatedWrightStone) {
+    cheats.push("Wrightstone with invalid trait");
+  }
+
+  // check sigils
+  for (const sigil of player.sigils) {
+    if (sigil.firstTraitLevel > 15 || sigil.secondTraitLevel > 15 || sigil.sigilLevel > 15) {
+      cheats.push(`Modified sigil: over level 15`);
+    }
+    const sigilTrait1 = toHashString(sigil.firstTraitId ?? 0);
+    const sigilTrait2 = toHashString(sigil.secondTraitId ?? 0);
+
+    const isLucySigil = sigilTrait1 === "dbe1d775" || sigilTrait1 === "8d2adb6e" || sigilTrait1 === "5c862e13";
+    if (isLucySigil && sigilTrait2 !== "dc584f60") {
+      cheats.push(`Modified sigil: Lucy sigil with invalid second trait`);
+    }
+
+    const isWarElemental = sigilTrait1 === "4c588c27";
+    if (isWarElemental && sigilTrait2 !== "887ae0b0") {
+      cheats.push(`Modified sigil: War Elemental sigil with invalid second trait`);
+    }
+  }
+
+  return cheats.join("\n");
+};

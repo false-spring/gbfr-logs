@@ -1,6 +1,6 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { CharacterType, ComputedPlayerState, ComputedSkillState, PlayerData } from "@/types";
-import { getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
+import { checkCheating, getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { Fragment, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
@@ -121,11 +121,14 @@ export const PlayerRow = ({
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
   const [dps, dpsUnit] = humanizeNumbers(player.dps);
 
+  const cheating = checkCheating(partyData[partySlotIndex]!);
+
   return (
     <Fragment>
       <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
         <td className="text-left row-data">
           {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
+          {cheating ? <span title={cheating}> (⚠️ Cheating? ⚠️)</span> : null}
         </td>
         <td className="text-center row-data">
           {totalDamage}

@@ -28,6 +28,7 @@ import type { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirec
 import {
   EMPTY_ID,
   PLAYER_COLORS,
+  checkCheating,
   epochToLocalTime,
   exportFullEncounterToClipboard,
   exportSimpleEncounterToClipboard,
@@ -411,10 +412,18 @@ export const ViewPage = () => {
               <Table.Tbody>
                 <Table.Tr>
                   {playerData.map((player) => {
+                    const cheating = checkCheating(player);
                     return (
                       <Table.Td key={player.actorIndex} flex={1}>
                         <Text fw={700} size="xl">
                           {formatPlayerDisplayName(player)}
+                          {cheating ? (
+                            <>
+                              {" - "}
+                              (⚠️ Cheating ⚠️)
+                              <pre>{cheating}</pre>
+                            </>
+                          ) : null}
                         </Text>
                       </Table.Td>
                     );
