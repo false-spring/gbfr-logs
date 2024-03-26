@@ -117,7 +117,7 @@ export const Titlebar = ({
           </div>
         </Tooltip>
         <Tooltip label="Copy screenshot to clipboard" color="dark">
-          <div className="titlebar-button" id="titlebar-snapshot" onClick={exportScreenshotToClipboard}>
+          <div className="titlebar-button" id="titlebar-snapshot" onClick={() => exportScreenshotToClipboard(".app")}>
             <Camera size={16} />
           </div>
         </Tooltip>

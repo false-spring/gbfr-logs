@@ -30,6 +30,7 @@ import {
   PLAYER_COLORS,
   epochToLocalTime,
   exportFullEncounterToClipboard,
+  exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
   formatInPartyOrder,
   humanizeNumbers,
@@ -181,6 +182,10 @@ export const ViewPage = () => {
     if (encounter) exportFullEncounterToClipboard(sortType, sortDirection, encounter, playerData);
   }, [sortType, sortDirection, encounter]);
 
+  const handleScreenshotCopy = useCallback(() => {
+    exportScreenshotToClipboard(".mantine-Tabs-root");
+  }, []);
+
   const exportDamageLogToFile = useCallback(() => {
     if (id) invoke("export_damage_log_to_file", { id: Number(id), options: { targets: selectedTargets } });
   }, [id, selectedTargets]);
@@ -288,6 +293,7 @@ export const ViewPage = () => {
               <Menu.Dropdown>
                 <Menu.Item onClick={handleSimpleEncounterCopy}>{t("ui.copy-to-clipboard-simple")}</Menu.Item>
                 <Menu.Item onClick={handleFullEncounterCopy}>{t("ui.copy-to-clipboard-full")}</Menu.Item>
+                <Menu.Item onClick={handleScreenshotCopy}>{t("ui.copy-screenshot-to-clipboard")}</Menu.Item>
                 <Menu.Item onClick={exportDamageLogToFile}>{t("ui.export-damage-log")}</Menu.Item>
               </Menu.Dropdown>
             </Menu>

@@ -110,8 +110,8 @@ export const millisecondsToElapsedFormat = (ms: number): string => {
 };
 
 /// Captures a screenshot of the meter and copies it to the clipboard.
-export const exportScreenshotToClipboard = () => {
-  const app = document.querySelector(".app") as HTMLElement;
+export const exportScreenshotToClipboard = (selector = ".app") => {
+  const app = document.querySelector(selector) as HTMLElement;
 
   html2canvas(app, {
     backgroundColor: "#252525",
