@@ -16,6 +16,7 @@
     "cancel-btn": "취소",
     "copy-to-clipboard-simple": "클립보드로 복사 (심플)",
     "copy-to-clipboard-full": "클립보드로 복사 (전체)",
+    "copy-screenshot-to-clipboard": "스크린샷을 클립보드로 복사",
     "export-damage-log": "데미지 로그 파일로 자장하기",
     "player-1-color": "바 색상 - Player 1",
     "player-2-color": "바 색상 - Player 2",

@@ -16,6 +16,7 @@
     "cancel-btn": "Cancel",
     "copy-to-clipboard-simple": "Copy to Clipboard (simple)",
     "copy-to-clipboard-full": "Copy to Clipboard (full)",
+    "copy-screenshot-to-clipboard": "Copy Screenshot to Clipboard",
     "export-damage-log": "Export Damage Log to File",
     "player-1-color": "Bar Color - Player 1",
     "player-2-color": "Bar Color - Player 2",
