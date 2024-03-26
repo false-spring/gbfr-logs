@@ -13,6 +13,7 @@ use anyhow::Context;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
+use log::LevelFilter;
 use parser::{
     constants::{CharacterType, EnemyType},
     v1::{self, PlayerData},
@@ -461,6 +462,15 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::OnQuestComplete(event) => {
                                     state.on_quest_complete_event(event);
                                 }
+                                protocol::Message::OnUpdateSBA(event) => {
+                                    println!("{:?}", event);
+                                }
+                                protocol::Message::OnAttemptSBA(event) => {
+                                    println!("{:?}", event);
+                                }
+                                protocol::Message::OnPerformSBA(event) => {
+                                    println!("{:?}", event);
+                                }
                             }
                         }
                     }
@@ -594,6 +604,8 @@ fn main() {
         .plugin(
             tauri_plugin_log::Builder::default()
                 .targets([LogTarget::Folder("logs".into()), LogTarget::Stdout])
+                .level(LevelFilter::Warn)
+                .level_for("tao", LevelFilter::Error)
                 .build(),
         )
         .manage(AlwaysOnTop(AtomicBool::new(true)))

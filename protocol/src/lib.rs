@@ -157,9 +157,30 @@ pub struct QuestCompleteEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnUpdateSBAEvent {
+    pub actor_index: u32,
+    pub sba_value: f32,
+    pub sba_added: f32,
+}
+
+/// Whenever SBA is attempted, but not necessarily hit.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnAttemptSBAEvent {
+    pub actor_index: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnPerformSBA {
+    pub actor_index: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter(AreaEnterEvent),
     OnQuestComplete(QuestCompleteEvent),
     DamageEvent(DamageEvent),
+    OnUpdateSBA(OnUpdateSBAEvent),
+    OnAttemptSBA(OnAttemptSBAEvent),
+    OnPerformSBA(OnPerformSBA),
     PlayerLoadEvent(PlayerLoadEvent),
 }
