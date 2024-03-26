@@ -25,6 +25,8 @@
     "show-player-names": "显示玩家名称",
     "streamer-mode": "主播模式",
     "streamer-mode-description": "仅在悬浮窗上显示自己造成的伤害",
+    "show-full-values": "显示完整数值",
+    "show-full-values-description": "在悬浮窗上显示完整的伤害和治疗数值",
     "weapon": "武器",
     "player-stats": "角色数据",
     "player-overmasteries": "上限突破",

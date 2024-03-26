@@ -3,17 +3,27 @@ import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { useTranslation } from "react-i18next";
 
 export default function useSettings() {
-  const { color_1, color_2, color_3, color_4, transparency, show_display_names, streamer_mode, setMeterSettings } =
-    useMeterSettingsStore((state) => ({
-      color_1: state.color_1,
-      color_2: state.color_2,
-      color_3: state.color_3,
-      color_4: state.color_4,
-      transparency: state.transparency,
-      show_display_names: state.show_display_names,
-      streamer_mode: state.streamer_mode,
-      setMeterSettings: state.set,
-    }));
+  const {
+    color_1,
+    color_2,
+    color_3,
+    color_4,
+    transparency,
+    show_display_names,
+    streamer_mode,
+    show_full_values,
+    setMeterSettings,
+  } = useMeterSettingsStore((state) => ({
+    color_1: state.color_1,
+    color_2: state.color_2,
+    color_3: state.color_3,
+    color_4: state.color_4,
+    transparency: state.transparency,
+    show_display_names: state.show_display_names,
+    streamer_mode: state.streamer_mode,
+    show_full_values: state.show_full_values,
+    setMeterSettings: state.set,
+  }));
 
   const { i18n } = useTranslation();
 
@@ -31,6 +41,7 @@ export default function useSettings() {
     transparency,
     show_display_names,
     streamer_mode,
+    show_full_values,
     setMeterSettings,
     languages,
     handleLanguageChange,
