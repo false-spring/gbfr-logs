@@ -24,6 +24,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { Table as MeterTable } from "@/components/Table";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
+import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import type { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
 import {
   EMPTY_ID,
@@ -45,6 +46,7 @@ import {
   translatedPlayerName,
 } from "@/utils";
 import { useTranslation } from "react-i18next";
+import { useShallow } from "zustand/react/shallow";
 
 type Label = { name: string; label?: string; color: string; strokeDasharray?: string }[];
 
@@ -133,6 +135,16 @@ export const ChartTooltip = ({ label, payload }: ChartTooltipProps) => {
 const DPS_INTERVAL = 3;
 
 export const ViewPage = () => {
+  const { color_1, color_2, color_3, color_4 } = useMeterSettingsStore(
+    useShallow((state) => ({
+      color_1: state.color_1,
+      color_2: state.color_2,
+      color_3: state.color_3,
+      color_4: state.color_4,
+    }))
+  );
+  const playerColors = [color_1, color_2, color_3, color_4, ...PLAYER_COLORS.slice(4)];
+
   const { t } = useTranslation();
   const { id } = useParams();
 
@@ -245,7 +257,7 @@ export const ViewPage = () => {
     return {
       name: translatedPlayerName(partySlotIndex, playerData[partySlotIndex], player),
       damage: player.totalDamage,
-      color: PLAYER_COLORS[player.partyIndex],
+      color: playerColors[player.partyIndex],
     };
   });
 
