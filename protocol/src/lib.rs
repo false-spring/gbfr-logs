@@ -170,7 +170,12 @@ pub struct OnAttemptSBAEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct OnPerformSBA {
+pub struct OnPerformSBAEvent {
+    pub actor_index: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnContinueSBAChainEvent {
     pub actor_index: u32,
 }
 
@@ -181,6 +186,7 @@ pub enum Message {
     DamageEvent(DamageEvent),
     OnUpdateSBA(OnUpdateSBAEvent),
     OnAttemptSBA(OnAttemptSBAEvent),
-    OnPerformSBA(OnPerformSBA),
+    OnPerformSBA(OnPerformSBAEvent),
+    OnContinueSBAChain(OnContinueSBAChainEvent),
     PlayerLoadEvent(PlayerLoadEvent),
 }

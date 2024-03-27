@@ -9,7 +9,7 @@ use log::{info, warn};
 use tokio::sync::broadcast;
 
 mod event;
-mod hook;
+mod hooks;
 mod process;
 
 use protocol::Message;
@@ -68,7 +68,7 @@ async fn setup() {
 
     info!("Setting up hooks...");
 
-    match hook::init(tx) {
+    match hooks::setup_hooks(tx) {
         Ok(_) => info!("Hooks initialized"),
         Err(e) => warn!("Error initializing hooks: {:?}", e),
     }

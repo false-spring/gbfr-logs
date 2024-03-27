@@ -471,6 +471,9 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::OnPerformSBA(event) => {
                                     println!("{:?}", event);
                                 }
+                                protocol::Message::OnContinueSBAChain(event) => {
+                                    println!("{:?}", event);
+                                }
                             }
                         }
                     }
