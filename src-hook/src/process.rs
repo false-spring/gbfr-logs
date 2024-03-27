@@ -1,3 +1,8 @@
+use anyhow::anyhow;
+use pelite::{
+    pattern,
+    pe64::{Pe, PeView},
+};
 use thiserror::Error;
 use windows::Win32::Foundation::HMODULE;
 use windows::Win32::System::Diagnostics::ToolHelp::{
@@ -78,5 +83,49 @@ impl Process {
         }
 
         found_process.ok_or(ProcessError::ProcessNotFound)
+    }
+
+    /// Searches and returns the RVAs of the function that matches the given signature pattern.
+    pub fn search_address(&self, signature_pattern: &str) -> anyhow::Result<usize> {
+        let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
+        let scanner = view.scanner();
+        let pattern = pattern::parse(signature_pattern)?;
+
+        let mut addrs = [0; 8];
+
+        let mut matches = scanner.matches_code(&pattern);
+
+        let mut first_addr = None;
+
+        // addrs[0] = RVA of where the match was found.
+        // addrs[1] = RVA of the function being called.
+        while matches.next(&mut addrs) {
+            first_addr = Some(self.base_address + addrs[1] as usize);
+        }
+
+        first_addr.ok_or(anyhow!(
+            "Could not find match for pattern: {}",
+            signature_pattern
+        ))
+    }
+
+    /// Searches and returns the value of the type `T` that matches the given signature pattern.
+    pub fn search_slice<T>(&self, signature_pattern: &str) -> anyhow::Result<T> {
+        let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
+        let scanner = view.scanner();
+        let pattern = pattern::parse(signature_pattern)?;
+        let mut addrs = [0; 8];
+        let matches = scanner.matches_code(&pattern).next(&mut addrs);
+
+        if matches {
+            let addr = self.base_address + addrs[1] as usize;
+            let ptr = addr as *const T;
+            Ok(unsafe { ptr.read_unaligned() })
+        } else {
+            return Err(anyhow!(
+                "Could not find match for pattern: {}",
+                signature_pattern
+            ));
+        }
     }
 }
