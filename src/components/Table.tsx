@@ -5,6 +5,7 @@ import { formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";
 
 export const Table = ({
+  live = false,
   encounterState,
   partyData,
   sortType,
@@ -12,6 +13,7 @@ export const Table = ({
   setSortType,
   setSortDirection,
 }: {
+  live?: boolean;
   encounterState: EncounterState;
   partyData: Array<PlayerData | null>;
   sortType: SortType;
@@ -61,6 +63,11 @@ export const Table = ({
           <th className="header-name" onClick={() => toggleSort("partyIndex")}>
             Name
           </th>
+          {live && (
+            <th className="header-column text-center" onClick={() => toggleSort("SBA")}>
+              SBA
+            </th>
+          )}
           <th className="header-column text-center" onClick={() => toggleSort("damage")}>
             DMG
           </th>
@@ -75,7 +82,7 @@ export const Table = ({
       </thead>
       <tbody>
         {players.map((player) => (
-          <PlayerRow key={player.index} player={player} partyData={partyData} />
+          <PlayerRow live={live} key={player.index} player={player} partyData={partyData} />
         ))}
       </tbody>
     </table>

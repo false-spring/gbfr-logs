@@ -135,9 +135,11 @@ const SkillBreakdown = ({ player, color }: Props) => {
 };
 
 export const PlayerRow = ({
+  live = false,
   player,
   partyData,
 }: {
+  live?: boolean;
   player: ComputedPlayerState;
   partyData: Array<PlayerData | null>;
 }) => {
@@ -167,6 +169,18 @@ export const PlayerRow = ({
         <td className="text-left row-data">
           {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
         </td>
+        {live && (
+          <td className="text-center row-data">
+            {show_full_values ? (
+              player.sba.toFixed(4)
+            ) : (
+              <>
+                {(player.sba / 10).toFixed(2)}
+                <span className="unit font-sm">%</span>
+              </>
+            )}
+          </td>
+        )}
         <td className="text-center row-data">
           {show_full_values ? (
             (player.totalDamage | 0).toLocaleString()
