@@ -463,7 +463,7 @@ fn connect_and_run_parser(app: AppHandle) {
                                     state.on_quest_complete_event(event);
                                 }
                                 protocol::Message::OnUpdateSBA(event) => {
-                                    println!("{:?}", event);
+                                    // println!("{:?}", event);
                                 }
                                 protocol::Message::OnAttemptSBA(event) => {
                                     println!("{:?}", event);

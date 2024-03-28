@@ -12,18 +12,23 @@ type OnSBAUpdateFunc = unsafe extern "system" fn(*const usize, f32, u32, u8, u32
 type OnSBAAttemptFunc = unsafe extern "system" fn(*const usize, f32) -> usize;
 type OnCheckSBACollisionFunc = unsafe extern "system" fn(*const usize, f32) -> usize;
 type OnContinueSBAChainFunc = unsafe extern "system" fn(*const usize, *const usize) -> usize;
+type OnRemoteSBAUpdateFunc =
+    unsafe extern "system" fn(*const usize, *const usize, f32, f32) -> usize;
 
 static_detour! {
     static OnSBAUpdate: unsafe extern "system" fn(*const usize, f32, u32, u8, u32, u8) -> usize;
     static OnSBAAttempt: unsafe extern "system" fn(*const usize, f32) -> usize;
     static OnCheckSBACollision: unsafe extern "system" fn(*const usize, f32) -> usize;
     static OnContinueSBAChain: unsafe extern "system" fn(*const usize, *const usize) -> usize;
+    static OnRemoteSBAUpdate: unsafe extern "system" fn(*const usize, *const usize, f32, f32) -> usize;
 }
 
 const ON_HANDLE_SBA_UPDATE_SIG: &str = "e8 $ { ' } c5 fa 10 46 ? c5 f8 2e 86 80 00 00 00";
 const ON_ATTEMPT_SBA_SIG: &str = "e8 $ { ' } 48 8d 8e a0 9c ff ff c7 44 24 38 00 00 80 3f";
 const ON_CHECK_SBA_COLLISION_SIG: &str = "e8 $ { ' } 84 c0 0f 85 f0 00 00 ? 8b 8e a8 9c ff ff";
 const ON_CONTINUE_SBA_CHAIN_SIG: &str = "e8 $ { ' } 48 8b 53 ? 48 8d 82 ? ? ? ?";
+const ON_HANDLE_REMOTE_SBA_UPDATE_SIG: &str =
+    "48 8b 8f ? ? ? ? 4c 89 e2 e8 $ { ' } e9 ? ? ? ? 48 81 c7 ? ? ? ? 48 89 f9";
 
 /// Gets called when your SBA gauge value needs to update with a given value.
 #[derive(Clone)]
@@ -71,13 +76,24 @@ impl OnHandleSBAUpdateHook {
         let new_sba_value = unsafe { sba_value_ptr.read() };
         let sba_added = f32::max(new_sba_value - old_sba_value, 0.0);
 
-        let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
-            actor_index: player_idx,
-            sba_value: new_sba_value,
-            sba_added,
-        });
+        if new_sba_value == 0.0 {
+            #[cfg(feature = "console")]
+            println!("on perform sba: player_index={}", player_idx);
 
-        let _ = self.tx.send(payload);
+            let payload = Message::OnPerformSBA(protocol::OnPerformSBAEvent {
+                actor_index: player_idx,
+            });
+
+            let _ = self.tx.send(payload);
+        } else {
+            let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
+                actor_index: player_idx,
+                sba_value: new_sba_value,
+                sba_added,
+            });
+
+            let _ = self.tx.send(payload);
+        }
 
         ret
     }
@@ -134,6 +150,7 @@ impl OnAttemptSBAHook {
 
 /// Gets called when you're in "casting SBA state" once per game update interval until your SBA lands on
 /// the target (or you miss)
+/// ONLY WORKS FOR LOCAL.
 #[derive(Clone)]
 pub struct OnCheckSBACollisionHook {
     tx: event::Tx,
@@ -235,6 +252,75 @@ impl OnContinueSBAChainHook {
         });
 
         let _ = self.tx.send(payload);
+
+        ret
+    }
+}
+
+#[derive(Clone)]
+pub struct OnRemoteSBAUpdateHook {
+    tx: event::Tx,
+}
+
+impl OnRemoteSBAUpdateHook {
+    pub fn new(tx: event::Tx) -> Self {
+        OnRemoteSBAUpdateHook { tx }
+    }
+
+    pub fn setup(&self, process: &Process) -> Result<()> {
+        if let Ok(on_remote_sba_update_original) =
+            process.search_address(ON_HANDLE_REMOTE_SBA_UPDATE_SIG)
+        {
+            #[cfg(feature = "console")]
+            println!("found on remote sba update");
+
+            let cloned_self = self.clone();
+
+            unsafe {
+                let func: OnRemoteSBAUpdateFunc =
+                    std::mem::transmute(on_remote_sba_update_original);
+                OnRemoteSBAUpdate
+                    .initialize(func, move |a1, a2, a3, a4| cloned_self.run(a1, a2, a3, a4))?;
+                OnRemoteSBAUpdate.enable()?;
+            }
+        } else {
+            return Err(anyhow!("Could not find on_remote_sba_update"));
+        }
+
+        Ok(())
+    }
+
+    fn run(&self, player_entity: *const usize, a2: *const usize, a3: f32, a4: f32) -> usize {
+        let sba_offset = SBA_OFFSET.load(Ordering::Relaxed);
+        let sba_value_ptr =
+            unsafe { player_entity.byte_add(sba_offset as usize).byte_add(0x7C) } as *const f32;
+        let old_sba_value = unsafe { sba_value_ptr.read() };
+
+        let ret = unsafe { OnRemoteSBAUpdate.call(player_entity, a2, a3, a4) };
+
+        let player_idx = unsafe { player_entity.byte_add(0x170).read() } as u32;
+        let new_sba_value = unsafe { sba_value_ptr.read() };
+        let sba_added = f32::max(new_sba_value - old_sba_value, 0.0);
+
+        // If the SBA value is 0, then the player has performed an SBA and this is resetting their SBA.
+        if new_sba_value == 0.0 {
+            #[cfg(feature = "console")]
+            println!("on perform sba: player_index={}", player_idx);
+
+            let payload = Message::OnPerformSBA(protocol::OnPerformSBAEvent {
+                actor_index: player_idx,
+            });
+
+            let _ = self.tx.send(payload);
+        } else {
+            let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
+                actor_index: player_idx,
+                sba_value: new_sba_value,
+                sba_added,
+            });
+
+            let _ = self.tx.send(payload);
+        }
 
         ret
     }
