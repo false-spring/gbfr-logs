@@ -9,6 +9,7 @@ use self::{
     quest::{OnLoadQuestHook, OnQuestCompleteHook},
     sba::{
         OnAttemptSBAHook, OnCheckSBACollisionHook, OnContinueSBAChainHook, OnHandleSBAUpdateHook,
+        OnRemoteSBAUpdateHook,
     },
 };
 
@@ -27,13 +28,21 @@ pub fn setup_hooks(tx: event::Tx) -> Result<()> {
 
     globals::setup_globals(&process)?;
 
+    /* Damage Events */
     OnProcessDamageHook::new(tx.clone()).setup(&process)?;
     OnProcessDotHook::new(tx.clone()).setup(&process)?;
+
+    /* Player Data */
     OnLoadPlayerHook::new(tx.clone()).setup(&process)?;
+
+    /* Quest + Area Tracking */
     OnAreaEnterHook::new(tx.clone()).setup(&process)?;
     OnLoadQuestHook::new().setup(&process)?;
     OnQuestCompleteHook::new(tx.clone()).setup(&process)?;
+
+    /* SBA */
     OnHandleSBAUpdateHook::new(tx.clone()).setup(&process)?;
+    OnRemoteSBAUpdateHook::new(tx.clone()).setup(&process)?;
     OnAttemptSBAHook::new(tx.clone()).setup(&process)?;
     OnCheckSBACollisionHook::new(tx.clone()).setup(&process)?;
     OnContinueSBAChainHook::new(tx.clone()).setup(&process)?;
