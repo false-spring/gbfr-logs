@@ -30,6 +30,7 @@ export const Meter = () => {
       />
       <div className="app-content" style={{ background: `rgba(22, 22, 22, ${transparency})` }}>
         <Table
+          live
           encounterState={encounterState}
           partyData={encounterState.status === "Stopped" ? lastPartyData : partyData}
           sortType={sortType}

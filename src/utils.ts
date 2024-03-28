@@ -151,6 +151,8 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
       return sortDirection === "asc" ? a.totalDamage - b.totalDamage : b.totalDamage - a.totalDamage;
     } else if (sortType === "percentage") {
       return sortDirection === "asc" ? a?.percentage - b?.percentage : b?.percentage - a?.percentage;
+    } else if (sortType === "SBA") {
+      return sortDirection === "asc" ? a?.sba - b?.sba : b?.sba - a?.sba;
     }
 
     return 0;

@@ -2,7 +2,10 @@ use std::{collections::HashMap, io::BufReader};
 
 use anyhow::Result;
 use chrono::Utc;
-use protocol::{ActionType, AreaEnterEvent, DamageEvent, PlayerLoadEvent, QuestCompleteEvent};
+use protocol::{
+    ActionType, AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnPerformSBAEvent,
+    OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
+};
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::Window;
@@ -236,9 +239,14 @@ pub struct PlayerState {
     total_damage: u64,
     dps: f64,
     skill_breakdown: Vec<SkillState>,
+    sba: f64,
 }
 
 impl PlayerState {
+    fn set_sba(&mut self, sba: f64) {
+        self.sba = sba;
+    }
+
     fn update_dps(&mut self, now: i64, start_time: i64) {
         self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
     }
@@ -311,7 +319,12 @@ pub struct Encounter {
     pub quest_timer: Option<u32>,
     #[serde(default)]
     pub quest_completed: bool,
+
+    /// DEPRECATED: Use `self.event_log()` instead.
     pub event_log: Vec<(i64, DamageEvent)>,
+
+    #[serde(default)]
+    pub raw_event_log: Vec<(i64, Message)>,
 }
 
 impl Encounter {
@@ -329,9 +342,16 @@ impl Encounter {
         Ok(cbor4ii::serde::from_slice(&decompressed)?)
     }
 
-    /// Processes a damage event and adds it to the event log.
-    pub fn process_damage_event(&mut self, timestamp: i64, event: &DamageEvent) {
-        self.event_log.push((timestamp, event.clone()));
+    /// For older logs that don't have the event log, we need to repopulate it.
+    pub fn repopulate_event_log(&mut self) {
+        if !self.raw_event_log.is_empty() {
+            return;
+        }
+
+        for (timestamp, event) in self.event_log.iter() {
+            self.raw_event_log
+                .push((*timestamp, Message::DamageEvent(event.clone())));
+        }
     }
 
     fn reset_player_data(&mut self) {
@@ -341,6 +361,14 @@ impl Encounter {
     fn reset_quest(&mut self) {
         self.quest_id = None;
         self.quest_timer = None;
+    }
+
+    fn push_event(&mut self, timestamp: i64, event: protocol::Message) {
+        self.raw_event_log.push((timestamp, event));
+    }
+
+    pub fn event_log(&self) -> impl Iterator<Item = &(i64, Message)> {
+        self.raw_event_log.iter()
     }
 }
 
@@ -424,6 +452,7 @@ impl DerivedEncounterState {
                 character_type: CharacterType::from_hash(event.source.parent_actor_type),
                 total_damage: 0,
                 dps: 0.0,
+                sba: 0.0,
                 skill_breakdown: Vec::new(),
             });
 
@@ -480,7 +509,7 @@ impl Parser {
 
     /// Peeks at the first damage event in the log to get the start time of the encounter.
     pub fn start_time(&self) -> i64 {
-        if let Some((timestamp, _)) = self.encounter.event_log.first() {
+        if let Some((timestamp, _)) = self.encounter.raw_event_log.first() {
             *timestamp
         } else {
             1
@@ -499,7 +528,11 @@ impl Parser {
     }
 
     pub fn from_encounter_blob(blob: &[u8]) -> Result<Self> {
-        let encounter = Encounter::from_blob(blob)?;
+        let mut encounter = Encounter::from_blob(blob)?;
+
+        // Repopulate the event log if it's empty.
+        encounter.repopulate_event_log();
+
         Ok(Self::from_encounter(encounter))
     }
 
@@ -508,8 +541,13 @@ impl Parser {
         self.derived_state = Default::default();
         self.derived_state.start(self.start_time());
 
-        for (timestamp, event) in self.encounter.event_log.iter() {
-            self.derived_state.process_damage_event(*timestamp, event);
+        for (timestamp, event) in self.encounter.event_log() {
+            match event {
+                Message::DamageEvent(event) => {
+                    self.derived_state.process_damage_event(*timestamp, event);
+                }
+                _ => {}
+            }
         }
     }
 
@@ -518,13 +556,18 @@ impl Parser {
         self.derived_state = Default::default();
         self.derived_state.start(self.start_time());
 
-        for (timestamp, event) in self.encounter.event_log.iter() {
-            // If the target list is empty, then we're not filtering by target.
-            // Otherwise, we only process damage events that match the target list.
-            let target_type = EnemyType::from_hash(event.target.parent_actor_type);
+        for (timestamp, event) in self.encounter.event_log() {
+            match event {
+                Message::DamageEvent(event) => {
+                    // If the target list is empty, then we're not filtering by target.
+                    // Otherwise, we only process damage events that match the target list.
+                    let target_type = EnemyType::from_hash(event.target.parent_actor_type);
 
-            if targets.is_empty() || targets.contains(&target_type) {
-                self.derived_state.process_damage_event(*timestamp, event);
+                    if targets.is_empty() || targets.contains(&target_type) {
+                        self.derived_state.process_damage_event(*timestamp, event);
+                    }
+                }
+                _ => {}
             }
         }
     }
@@ -609,7 +652,8 @@ impl Parser {
             self.update_status(ParserStatus::InProgress);
         }
 
-        self.encounter.process_damage_event(now, &event);
+        self.encounter
+            .push_event(now, Message::DamageEvent(event.clone()));
         self.derived_state.process_damage_event(now, &event);
 
         if let Some(window) = &self.window_handle {
@@ -684,9 +728,58 @@ impl Parser {
         }
     }
 
+    /// Handles setting the SBA gauge value for a player
+    pub fn on_sba_update(&mut self, event: OnUpdateSBAEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnUpdateSBA(event.clone()),
+        );
+
+        let player_index = event.actor_index;
+        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
+            player.set_sba(event.sba_value as f64);
+        }
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self.derived_state);
+        }
+    }
+
+    pub fn on_sba_attempt(&mut self, event: OnAttemptSBAEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnAttemptSBA(event.clone()),
+        );
+
+        let player_index = event.actor_index;
+        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
+            player.set_sba(0.8);
+        }
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self.derived_state);
+        }
+    }
+
+    pub fn on_sba_perform(&mut self, event: OnPerformSBAEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnPerformSBA(event.clone()),
+        );
+
+        let player_index = event.actor_index;
+        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
+            player.set_sba(0.0);
+        }
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self.derived_state);
+        }
+    }
+
     fn reset(&mut self) {
-        self.encounter.event_log.clear();
-        self.encounter.event_log.shrink_to_fit();
+        self.encounter.raw_event_log.clear();
+        self.encounter.raw_event_log.shrink_to_fit();
         self.derived_state = Default::default();
     }
 

@@ -1,3 +1,24 @@
+/*!
+This library crate provides the event protocol that is emitted by the "hook"
+injected into the game process and consumed by the GBFR Logs parser.
+
+Keep in mind that the serialization protocol is not defined here, only the
+serializable message types.
+
+The protocol between the hook and the parser is a simple named pipe, where the
+messages are encoded as "bincode" serialized bytes. This means that the hook and
+the parser must be compiled together to ensure that the serialization format is
+the same.
+
+The parser saves these messages in a different serialization format that provides
+forward-compatibility so that old logs can still be read by newer versions of the
+parser.
+
+Because of this, any changes to the protocol must be done carefully to ensure that
+the parser can still read old logs. This is done by adding new fields to the existing
+message types, or adding new message types that are ignored by the parser
+*/
+
 use core::fmt;
 use std::{
     ffi::CString,

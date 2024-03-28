@@ -18,6 +18,7 @@ use parser::{
     constants::{CharacterType, EnemyType},
     v1::{self, PlayerData},
 };
+use protocol::Message;
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
 use tauri::{
@@ -91,28 +92,33 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     )
     .map_err(|e| e.to_string())?;
 
-    for damage_event in &parser.encounter.event_log {
-        let timestamp = damage_event.0 - parser.start_time();
-        let target_type = EnemyType::from_hash(damage_event.1.target.parent_actor_type);
-        let parent_character_type =
-            CharacterType::from_hash(damage_event.1.source.parent_actor_type);
-        let child_character_type = CharacterType::from_hash(damage_event.1.source.actor_type);
+    for (event_ts, event) in parser.encounter.event_log() {
+        match event {
+            Message::DamageEvent(damage_event) => {
+                let timestamp = event_ts - parser.start_time();
+                let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
+                let parent_character_type =
+                    CharacterType::from_hash(damage_event.source.parent_actor_type);
+                let child_character_type = CharacterType::from_hash(damage_event.source.actor_type);
 
-        if options.targets.is_empty() || options.targets.contains(&target_type) {
-            writeln!(
-                writer,
-                "{},{},{},{},{},{},{},{},{}",
-                timestamp,
-                parent_character_type,
-                child_character_type,
-                damage_event.1.source.parent_index,
-                target_type,
-                damage_event.1.target.parent_index,
-                damage_event.1.action_id,
-                damage_event.1.flags,
-                damage_event.1.damage
-            )
-            .map_err(|e| e.to_string())?;
+                if options.targets.is_empty() || options.targets.contains(&target_type) {
+                    writeln!(
+                        writer,
+                        "{},{},{},{},{},{},{},{},{}",
+                        timestamp,
+                        parent_character_type,
+                        child_character_type,
+                        damage_event.source.parent_index,
+                        target_type,
+                        damage_event.target.parent_index,
+                        damage_event.action_id,
+                        damage_event.flags,
+                        damage_event.damage
+                    )
+                    .map_err(|e| e.to_string())?;
+                }
+            }
+            _ => {}
         }
     }
 
@@ -347,19 +353,24 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     let mut targets = Vec::new();
     let start_time = parser.start_time();
 
-    for (timestamp, damage_event) in parser.encounter.event_log.iter() {
-        let index = ((timestamp - start_time) / DPS_INTERVAL) as usize;
-        let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
+    for (timestamp, event) in parser.encounter.event_log() {
+        match event {
+            Message::DamageEvent(damage_event) => {
+                let index = ((timestamp - start_time) / DPS_INTERVAL) as usize;
+                let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
 
-        if !targets.contains(&target_type) {
-            targets.push(target_type);
-        }
+                if !targets.contains(&target_type) {
+                    targets.push(target_type);
+                }
 
-        if let Some(chart) = player_dps.get_mut(&damage_event.source.parent_index) {
-            // Check to see if the target is in the list of targets to filter by.
-            if options.targets.is_empty() || options.targets.contains(&target_type) {
-                chart[index] += damage_event.damage;
+                if let Some(chart) = player_dps.get_mut(&damage_event.source.parent_index) {
+                    // Check to see if the target is in the list of targets to filter by.
+                    if options.targets.is_empty() || options.targets.contains(&target_type) {
+                        chart[index] += damage_event.damage;
+                    }
+                }
             }
+            _ => continue,
         }
     }
 
@@ -463,16 +474,16 @@ fn connect_and_run_parser(app: AppHandle) {
                                     state.on_quest_complete_event(event);
                                 }
                                 protocol::Message::OnUpdateSBA(event) => {
-                                    // println!("{:?}", event);
+                                    state.on_sba_update(event);
                                 }
                                 protocol::Message::OnAttemptSBA(event) => {
-                                    println!("{:?}", event);
+                                    state.on_sba_attempt(event);
                                 }
                                 protocol::Message::OnPerformSBA(event) => {
-                                    println!("{:?}", event);
+                                    state.on_sba_perform(event);
                                 }
-                                protocol::Message::OnContinueSBAChain(event) => {
-                                    println!("{:?}", event);
+                                protocol::Message::OnContinueSBAChain(_event) => {
+                                    // @TODO(false): Stubbed out since this only works for local player for now.
                                 }
                             }
                         }
