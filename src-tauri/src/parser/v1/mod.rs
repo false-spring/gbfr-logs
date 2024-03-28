@@ -753,7 +753,7 @@ impl Parser {
 
         let player_index = event.actor_index;
         if let Some(player) = self.derived_state.party.get_mut(&player_index) {
-            player.set_sba(0.8);
+            player.set_sba(800.0);
         }
 
         if let Some(window) = &self.window_handle {
