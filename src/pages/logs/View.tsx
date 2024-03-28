@@ -253,11 +253,12 @@ export const ViewPage = () => {
 
   const labels: Label = players.map((player) => {
     const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
+    const color = partySlotIndex !== -1 ? playerColors[partySlotIndex] : playerColors[player.partyIndex];
 
     return {
       name: translatedPlayerName(partySlotIndex, playerData[partySlotIndex], player),
       damage: player.totalDamage,
-      color: playerColors[player.partyIndex],
+      color,
     };
   });
 
