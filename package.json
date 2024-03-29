@@ -4,7 +4,7 @@
   "version": "0.0.10",
   "type": "module",
   "scripts": {
-    "dev": "cargo build --release --package hook && vite",
+    "dev": "cargo build --release --package hook --features hook/console && vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./src",

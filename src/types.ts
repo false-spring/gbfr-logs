@@ -63,6 +63,8 @@ export type PlayerState = {
   totalDamage: number;
   /** DPS over the encounter time */
   dps: number;
+  /** Amount of SBA Gauge (0.0 - 1000.0) */
+  sba: number;
   /** Time of the last damage dealt */
   lastDamageTime: number;
   /** Stats for individual skills logged */
@@ -179,7 +181,7 @@ export type PartyUpdateEvent = {
   payload: Array<PlayerData | null>;
 };
 
-export type SortType = "partyIndex" | "dps" | "damage" | "percentage";
+export type SortType = "partyIndex" | "dps" | "damage" | "percentage" | "SBA";
 export type SortDirection = "asc" | "desc";
 export type Log = {
   id: number;
