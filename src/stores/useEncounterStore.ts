@@ -4,7 +4,9 @@ import { create } from "zustand";
 interface EncounterStore {
   encounterState: EncounterState | null;
   dpsChart: Record<number, number[]>;
+  sbaChart: Record<number, number[]>;
   chartLen: number;
+  sbaChartLen: number;
   targets: EnemyType[];
   selectedTargets: EnemyType[];
   players: PlayerData[];
@@ -18,7 +20,9 @@ interface EncounterStore {
 export interface EncounterStateResponse {
   encounterState: EncounterState;
   dpsChart: Record<number, number[]>;
+  sbaChart: Record<number, number[]>;
   chartLen: number;
+  sbaChartLen: number;
   targets: EnemyType[];
   players: PlayerData[];
   questId: number | null;
@@ -29,7 +33,9 @@ export interface EncounterStateResponse {
 export const useEncounterStore = create<EncounterStore>((set) => ({
   encounterState: null,
   dpsChart: {},
+  sbaChart: {},
   chartLen: 0,
+  sbaChartLen: 0,
   targets: [],
   selectedTargets: [],
   players: [],
@@ -43,7 +49,9 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
     set({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,
+      sbaChart: response.sbaChart,
       chartLen: response.chartLen,
+      sbaChartLen: response.sbaChartLen,
       targets: response.targets,
       players: filteredPlayers,
       questId: response.questId,

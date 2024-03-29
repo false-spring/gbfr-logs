@@ -546,7 +546,9 @@ impl Parser {
                 Message::DamageEvent(event) => {
                     self.derived_state.process_damage_event(*timestamp, event);
                 }
-                _ => {}
+                _ => {
+                    self.derived_state.end_time = *timestamp;
+                }
             }
         }
     }
@@ -567,9 +569,67 @@ impl Parser {
                         self.derived_state.process_damage_event(*timestamp, event);
                     }
                 }
-                _ => {}
+                _ => {
+                    self.derived_state.end_time = *timestamp;
+                }
             }
         }
+    }
+
+    pub fn generate_sba_chart(&self, interval: i64) -> HashMap<u32, Vec<f32>> {
+        let start_time = self.start_time();
+        let duration = self.derived_state.duration();
+
+        let mut chart_values: HashMap<u32, Vec<f32>> = HashMap::new();
+
+        for player in self.derived_state.party.values() {
+            chart_values.insert(player.index, vec![0.0; (duration / interval) as usize + 1]);
+        }
+
+        let mut last_event_timestamp = start_time;
+
+        for (timestamp, event) in self.encounter.event_log() {
+            let last_index = ((last_event_timestamp - start_time) / interval) as usize;
+            let index = ((timestamp - start_time) / interval) as usize;
+
+            // Carry over the previous values to the current timeslice.
+            if last_index != index && last_index > 0 {
+                for (_, entries) in chart_values.iter_mut() {
+                    let previous_value = entries[last_index - 0];
+
+                    for i in last_index..=index {
+                        if i > 0 && i < entries.len() {
+                            entries[i] = previous_value;
+                        }
+                    }
+                }
+            }
+
+            if let Some((actor_index, sba_value)) = match event {
+                Message::OnUpdateSBA(sba_update_event) => Some((
+                    sba_update_event.actor_index,
+                    sba_update_event.sba_value as f32,
+                )),
+                Message::OnAttemptSBA(sba_attempt_event) => {
+                    Some((sba_attempt_event.actor_index, 800.0))
+                }
+                Message::OnPerformSBA(sba_perform_event) => {
+                    Some((sba_perform_event.actor_index, 0.0))
+                }
+                Message::OnContinueSBAChain(sba_continue_event) => {
+                    Some((sba_continue_event.actor_index, 0.0))
+                }
+                _ => None,
+            } {
+                if let Some(entries) = chart_values.get_mut(&actor_index) {
+                    entries[index] = sba_value;
+                }
+            }
+
+            last_event_timestamp = *timestamp;
+        }
+
+        chart_values
     }
 
     /// Handles the event when an area is entered.
