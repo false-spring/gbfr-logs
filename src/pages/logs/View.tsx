@@ -412,6 +412,7 @@ export const ViewPage = () => {
       <Tabs defaultValue="overview" variant="outline">
         <Tabs.List>
           <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
+          <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
           <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
             {t("ui.logs.equipment")}
           </Tabs.Tab>
@@ -455,23 +456,27 @@ export const ViewPage = () => {
                   content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
                 }}
               />
-              <Text size="sm">{t("ui.logs.sba-chart")}</Text>
-              <LineChart
-                h={400}
-                data={sbaData}
-                dataKey="timestamp"
-                withDots={false}
-                withLegend
-                series={sbaLabels}
-                valueFormatter={(value) => {
-                  return `${value}%`;
-                }}
-                tooltipProps={{
-                  content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-                }}
-              />
             </Stack>
           </Box>
+        </Tabs.Panel>
+        <Tabs.Panel value="sba">
+          <Group mt="20" gap="xs">
+            <Text size="sm">{t("ui.logs.sba-chart")}</Text>
+            <LineChart
+              h={400}
+              data={sbaData}
+              dataKey="timestamp"
+              withDots={false}
+              withLegend
+              series={sbaLabels}
+              valueFormatter={(value) => {
+                return `${value}%`;
+              }}
+              tooltipProps={{
+                content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
+              }}
+            />
+          </Group>
         </Tabs.Panel>
         <Tabs.Panel value="equipment">
           <Group mt="20" gap="xs">
