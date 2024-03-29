@@ -28,6 +28,8 @@
     "streamer-mode-description": "Only shows your damage in the meter.",
     "show-full-values": "Show Full Values",
     "show-full-values-description": "Show full values in the meter.",
+    "debug-mode": "Debug Mode",
+    "debug-mode-description": "Opens the developer console to view all raw event data.",
     "weapon": "Weapon",
     "player-stats": "Player Stats",
     "player-overmasteries": "Overmasteries",

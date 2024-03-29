@@ -28,6 +28,25 @@ use tauri_plugin_log::LogTarget;
 mod db;
 mod parser;
 
+struct AlwaysOnTop(AtomicBool);
+struct ClickThrough(AtomicBool);
+struct DebugMode(AtomicBool);
+
+#[tauri::command]
+fn set_debug_mode(app: AppHandle, state: State<DebugMode>, enabled: bool) {
+    println!("Setting debug mode to: {}", enabled);
+
+    if let Some(window) = app.get_window("logs") {
+        if enabled {
+            window.open_devtools()
+        } else {
+            window.close_devtools()
+        }
+    }
+
+    state.0.store(enabled, Ordering::Release);
+}
+
 #[tauri::command]
 async fn delete_all_logs() -> Result<(), String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
@@ -402,6 +421,8 @@ async fn check_and_perform_hook(app: AppHandle) {
 // Connect to the game hook event channel and listen for damage events.
 fn connect_and_run_parser(app: AppHandle) {
     let window = app.get_window("main").expect("Window not found");
+    let logs_window = app.get_window("logs").expect("Logs window not found");
+
     let database = db::connect_to_db().expect("Could not connect to database");
     let mut state = v1::Parser::new(window.clone(), database);
 
@@ -418,9 +439,15 @@ fn connect_and_run_parser(app: AppHandle) {
                             break;
                         }
 
+                        let debug_mode = app.state::<DebugMode>().0.load(Ordering::Relaxed);
+
                         if let Ok(msg) =
                             protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
                         {
+                            if debug_mode {
+                                let _ = logs_window.emit("debug-event", &msg);
+                            }
+
                             match msg {
                                 protocol::Message::DamageEvent(event) => {
                                     state.on_damage_event(event);
@@ -487,8 +514,6 @@ fn toggle_window_visibility(handle: &AppHandle, id: &str, focus: Option<bool>) {
     }
 }
 
-struct AlwaysOnTop(AtomicBool);
-
 #[tauri::command]
 fn toggle_always_on_top(window: tauri::Window, state: State<AlwaysOnTop>) {
     let always_on_top = &state.0;
@@ -506,8 +531,6 @@ fn toggle_always_on_top(window: tauri::Window, state: State<AlwaysOnTop>) {
             "Always on top"
         });
 }
-
-struct ClickThrough(AtomicBool);
 
 #[tauri::command]
 fn toggle_clickthrough(window: tauri::Window, state: State<ClickThrough>) {
@@ -575,6 +598,7 @@ fn main() {
         )
         .manage(AlwaysOnTop(AtomicBool::new(true)))
         .manage(ClickThrough(AtomicBool::new(false)))
+        .manage(DebugMode(AtomicBool::new(false)))
         .system_tray(system_tray_with_menu())
         .on_system_tray_event(menu_tray_handler)
         .on_window_event(|event| {
@@ -589,7 +613,8 @@ fn main() {
             delete_logs,
             delete_all_logs,
             toggle_always_on_top,
-            export_damage_log_to_file
+            export_damage_log_to_file,
+            set_debug_mode,
         ])
         .setup(|app| {
             // Perform the game hook check in a separate thread.

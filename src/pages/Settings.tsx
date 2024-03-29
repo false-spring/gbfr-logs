@@ -1,9 +1,13 @@
 import { Box, Checkbox, ColorInput, Fieldset, Select, Slider, Stack, Text, Tooltip } from "@mantine/core";
+import { invoke } from "@tauri-apps/api";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useSettings from "./useSettings";
 
 const SettingsPage = () => {
   const { t, i18n } = useTranslation();
+  const [debugMode, setDebugMode] = useState(false);
+
   const {
     color_1,
     color_2,
@@ -17,6 +21,13 @@ const SettingsPage = () => {
     languages,
     handleLanguageChange,
   } = useSettings();
+
+  const toggleDebugMode = () => {
+    const enabled = !debugMode;
+    setDebugMode(enabled);
+    invoke("set_debug_mode", { enabled });
+    console.log("Debug Mode:", enabled ? "Enabled" : "Disabled");
+  };
 
   return (
     <Box>
@@ -77,13 +88,15 @@ const SettingsPage = () => {
               onChange={(event) => setMeterSettings({ streamer_mode: event.currentTarget.checked })}
             />
           </Tooltip>
-
           <Tooltip label={t("ui.show-full-values-description")}>
             <Checkbox
               label={t("ui.show-full-values")}
               checked={show_full_values}
               onChange={(event) => setMeterSettings({ show_full_values: event.currentTarget.checked })}
             />
+          </Tooltip>
+          <Tooltip label={t("ui.debug-mode-description")}>
+            <Checkbox label={t("ui.debug-mode")} checked={debugMode} onChange={toggleDebugMode} />
           </Tooltip>
         </Stack>
       </Fieldset>
