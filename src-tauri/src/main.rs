@@ -13,7 +13,7 @@ use anyhow::Context;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
-use log::LevelFilter;
+use log::{info, LevelFilter};
 use parser::{
     constants::{CharacterType, EnemyType},
     v1::{self, PlayerData},
@@ -36,8 +36,6 @@ struct DebugMode(AtomicBool);
 
 #[tauri::command]
 fn set_debug_mode(app: AppHandle, state: State<DebugMode>, enabled: bool) {
-    println!("Setting debug mode to: {}", enabled);
-
     if let Some(window) = app.get_window("logs") {
         if enabled {
             window.open_devtools()
@@ -416,6 +414,8 @@ async fn check_and_perform_hook(app: AppHandle) {
                     dll_path = debug_dll_path;
                 }
 
+                info!("Found game process, injecting DLL: {:?}", dll_path);
+
                 let _ = syringe.inject(dll_path);
                 let _ = app.emit_all("success-alert", "Found game..");
 
@@ -442,7 +442,10 @@ fn connect_and_run_parser(app: AppHandle) {
         loop {
             match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
                 Ok(mut stream) => {
+                    info!("Connected to game!");
+
                     let _ = app.emit_all("success-alert", "Connnected to game!");
+
                     let mut buffer = [0; 1024];
 
                     while let Ok(msg) = stream.read(&mut buffer).await {
@@ -488,6 +491,8 @@ fn connect_and_run_parser(app: AppHandle) {
                             }
                         }
                     }
+
+                    info!("Game has closed.");
 
                     // The game has closed, so we should go back to waiting for the game to reopen.
                     let _ = app.emit_all("error-alert", "Game has closed!");
@@ -607,8 +612,12 @@ fn show_window(app: &AppHandle) {
 }
 
 fn main() {
+    info!("Starting application..");
+
     // Setup the database.
     db::setup_db().expect("Failed to setup database");
+
+    info!("Database setup complete, launching application..");
 
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {

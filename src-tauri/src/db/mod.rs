@@ -1,9 +1,12 @@
 use anyhow::Result;
+use log::info;
 use rusqlite::Connection;
 use rusqlite_migration::{Migrations, M};
 
 /// Setup database and run migrations.
 pub fn setup_db() -> Result<()> {
+    info!("Setting up the database, opening logs.db..");
+
     let mut conn = Connection::open("logs.db")?;
 
     conn.pragma_update(None, "journal_mode", "WAL")?;
@@ -32,6 +35,8 @@ pub fn setup_db() -> Result<()> {
         M::up("ALTER TABLE logs ADD COLUMN quest_elapsed_time INTEGER"),
         M::up("ALTER TABLE logs ADD COLUMN quest_completed BOOLEAN"),
     ]);
+
+    info!("Database found, running migrations..");
 
     migrations.to_latest(&mut conn)?;
 
