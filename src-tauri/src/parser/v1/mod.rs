@@ -3,8 +3,8 @@ use std::{collections::HashMap, io::BufReader};
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    ActionType, AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnPerformSBAEvent,
-    OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
+    ActionType, AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
+    OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
 };
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
@@ -765,6 +765,23 @@ impl Parser {
         self.encounter.push_event(
             Utc::now().timestamp_millis(),
             Message::OnPerformSBA(event.clone()),
+        );
+
+        let player_index = event.actor_index;
+        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
+            player.set_sba(0.0);
+        }
+
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self.derived_state);
+        }
+    }
+
+    /// @TODO(false): Note that this event only fires for the local player.
+    pub fn on_continue_sba_chain(&mut self, event: OnContinueSBAChainEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnContinueSBAChain(event.clone()),
         );
 
         let player_index = event.actor_index;

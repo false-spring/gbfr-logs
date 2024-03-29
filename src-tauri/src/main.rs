@@ -485,8 +485,8 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::OnPerformSBA(event) => {
                                     state.on_sba_perform(event);
                                 }
-                                protocol::Message::OnContinueSBAChain(_event) => {
-                                    // @TODO(false): Stubbed out since this only works for local player for now.
+                                protocol::Message::OnContinueSBAChain(event) => {
+                                    state.on_continue_sba_chain(event)
                                 }
                             }
                         }
