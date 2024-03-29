@@ -46,7 +46,7 @@
       "saved-count_zero": "No logs saved",
       "saved-count_one": "{{count}} log saved",
       "saved-count_other": "{{count}} logs saved",
-      "delete-selected-btn": "Delete Selected",
+      "delete-selected-btn": "Delete Selected ({{count}})",
       "delete-all-btn": "Delete All",
       "date": "Date",
       "name": "Name",

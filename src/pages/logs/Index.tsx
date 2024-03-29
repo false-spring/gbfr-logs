@@ -78,7 +78,7 @@ export const IndexPage = () => {
         <Box style={{ display: "flex", flexDirection: "row-reverse", flex: 1 }}>
           {selectedLogIds.length > 0 ? (
             <Button size="xs" variant="default" onClick={confirmDeleteSelected} disabled={selectedLogIds.length === 0}>
-              {t("ui.logs.delete-selected-btn")}
+              {t("ui.logs.delete-selected-btn", { count: selectedLogIds.length })}
             </Button>
           ) : (
             <Button size="xs" variant="default" onClick={confirmDeleteAll}>
@@ -97,7 +97,15 @@ export const IndexPage = () => {
           <Table striped highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th />
+                <Table.Th>
+                  <Checkbox
+                    aria-label="Select all (on page)"
+                    checked={selectedLogIds.length == searchResult.logs.length}
+                    onChange={(event) =>
+                      setSelectedLogIds(event.currentTarget.checked ? searchResult.logs.map((log) => log.id) : [])
+                    }
+                  />
+                </Table.Th>
                 <Table.Th>{t("ui.logs.date")}</Table.Th>
                 <Table.Th>{t("ui.logs.quest-name")}</Table.Th>
                 <Table.Th></Table.Th>

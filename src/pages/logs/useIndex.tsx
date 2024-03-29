@@ -77,6 +77,8 @@ export default function useIndex() {
 
   const handleSetPage = (page: number) => {
     setCurrentPage(page);
+    setSelectedLogIds([]);
+
     invoke("fetch_logs", { page, filterByEnemyId, filterByQuestId }).then((result) => {
       setSearchResult(result as SearchResult);
     });
