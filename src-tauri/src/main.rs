@@ -312,7 +312,10 @@ struct EncounterStateResponse {
     quest_completed: bool,
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
+    sba_chart: HashMap<u32, Vec<f32>>,
+    sba_events: Vec<(i64, protocol::Message)>,
     chart_len: usize,
+    sba_chart_len: usize,
 }
 
 #[derive(Debug, Deserialize)]
@@ -337,9 +340,11 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
     parser.reparse_with_options(&options.targets);
 
     let duration = parser.derived_state.duration();
+
     let mut player_dps: HashMap<u32, Vec<i32>> = HashMap::new();
 
     const DPS_INTERVAL: i64 = 3 * 1_000;
+    const SBA_INTERVAL: i64 = 1_000;
 
     for player in parser.derived_state.party.values() {
         player_dps.insert(
@@ -372,6 +377,22 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         }
     }
 
+    let sba_chart = parser.generate_sba_chart(SBA_INTERVAL);
+
+    let sba_events = parser
+        .encounter
+        .event_log()
+        .filter(|(_, e)| {
+            matches!(
+                e,
+                Message::OnContinueSBAChain(_)
+                    | Message::OnAttemptSBA(_)
+                    | Message::OnPerformSBA(_)
+            )
+        })
+        .map(|(ts, e)| (*ts - start_time, e.clone()))
+        .collect();
+
     Ok(EncounterStateResponse {
         encounter_state: parser.derived_state,
         players: parser.encounter.player_data,
@@ -379,7 +400,10 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         quest_timer: parser.encounter.quest_timer,
         quest_completed: parser.encounter.quest_completed,
         dps_chart: player_dps,
+        sba_chart: sba_chart,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
+        sba_chart_len: (duration / SBA_INTERVAL) as usize + 1,
+        sba_events,
         targets,
     })
 }

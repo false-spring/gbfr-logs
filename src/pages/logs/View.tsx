@@ -48,7 +48,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 
-type Label = { name: string; label?: string; color: string; strokeDasharray?: string }[];
+type Label = { name: string; partySlotIndex: number; label?: string; color: string; strokeDasharray?: string }[];
 
 const formatOvermastery = (overmastery: Overmastery): string => {
   const value = overmastery.value.toFixed(0);
@@ -151,7 +151,10 @@ export const ViewPage = () => {
   const {
     encounter,
     dpsChart,
+    sbaChart,
+    sbaEvents,
     chartLen,
+    sbaChartLen,
     targets,
     selectedTargets,
     questId,
@@ -163,7 +166,10 @@ export const ViewPage = () => {
   } = useEncounterStore((state) => ({
     encounter: state.encounterState,
     dpsChart: state.dpsChart,
+    sbaChart: state.sbaChart,
+    sbaEvents: state.sbaEvents,
     chartLen: state.chartLen,
+    sbaChartLen: state.sbaChartLen,
     targets: state.targets,
     selectedTargets: state.selectedTargets,
     playerData: state.players,
@@ -215,6 +221,7 @@ export const ViewPage = () => {
   }
 
   const data = [];
+  const sbaData = [];
 
   const players = formatInPartyOrder(encounter.party);
 
@@ -251,6 +258,31 @@ export const ViewPage = () => {
     data.push(datapoint);
   }
 
+  for (let i = 0; i < sbaChartLen; i++) {
+    const sbaDatapoint: {
+      timestamp?: string;
+    } & { [key: string]: number } = {};
+
+    const timestamp = i * 1_000;
+
+    sbaDatapoint["timestamp"] = millisecondsToElapsedFormat(timestamp);
+
+    for (const playerIndex in sbaChart) {
+      const player = players.find((p) => p.index === Number(playerIndex));
+      const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player?.index);
+      const playerName = translatedPlayerName(
+        partySlotIndex,
+        playerData[partySlotIndex],
+        player as ComputedPlayerState
+      );
+
+      const value = sbaChart[playerIndex][i];
+      sbaDatapoint[playerName] = value / 10.0;
+    }
+
+    sbaData.push(sbaDatapoint);
+  }
+
   const labels: Label = players.map((player) => {
     const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
     const color = partySlotIndex !== -1 ? playerColors[partySlotIndex] : playerColors[player.partyIndex];
@@ -258,12 +290,16 @@ export const ViewPage = () => {
     return {
       name: translatedPlayerName(partySlotIndex, playerData[partySlotIndex], player),
       damage: player.totalDamage,
+      partySlotIndex,
       color,
     };
   });
 
+  const sbaLabels = labels.slice().filter((label) => label.partySlotIndex !== -1);
+
   labels.push({
     name: "party",
+    partySlotIndex: -1,
     label: t("ui.logs.damage-per-second"),
     color: "grey",
     strokeDasharray: "2 2",
@@ -378,6 +414,7 @@ export const ViewPage = () => {
       <Tabs defaultValue="overview" variant="outline">
         <Tabs.List>
           <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
+          <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
           <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
             {t("ui.logs.equipment")}
           </Tabs.Tab>
@@ -423,6 +460,60 @@ export const ViewPage = () => {
               />
             </Stack>
           </Box>
+        </Tabs.Panel>
+        <Tabs.Panel value="sba">
+          <Group mt="20" gap="xs">
+            <Text size="sm">{t("ui.logs.sba-chart")}</Text>
+            <LineChart
+              h={400}
+              data={sbaData}
+              dataKey="timestamp"
+              withDots={false}
+              withLegend
+              series={sbaLabels}
+              valueFormatter={(value) => {
+                return `${value}%`;
+              }}
+              tooltipProps={{
+                content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
+              }}
+            />
+            <Table striped layout="fixed">
+              <Table.Tbody>
+                {sbaEvents.map((payload, index) => {
+                  const [timestamp, event] = payload;
+                  const eventType = Object.keys(event)[0];
+
+                  // @ts-expect-error: eventType is dynamic here.
+                  const player = players.find((p) => p.index === event[eventType].actor_index);
+
+                  const partySlotIndex = playerData.findIndex(
+                    // @ts-expect-error: eventType is dynamic here.
+                    (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
+                  );
+
+                  const playerName = translatedPlayerName(
+                    partySlotIndex,
+                    playerData[partySlotIndex],
+                    player as ComputedPlayerState
+                  );
+
+                  return (
+                    <Table.Tr key={index}>
+                      <Table.Td>
+                        <Text size="xs">{millisecondsToElapsedFormat(timestamp)}</Text>
+                      </Table.Td>
+                      <Table.Td>
+                        <Text size="xs">
+                          {playerName} - {t(`ui.sba.${eventType}`)}
+                        </Text>
+                      </Table.Td>
+                    </Table.Tr>
+                  );
+                })}
+              </Table.Tbody>
+            </Table>
+          </Group>
         </Tabs.Panel>
         <Tabs.Panel value="equipment">
           <Group mt="20" gap="xs">

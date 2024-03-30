@@ -202,3 +202,12 @@ export type Log = {
   questElapsedTime: number | null;
   questCompleted: boolean;
 };
+
+export type SBAEvent = [
+  number,
+  (
+    | { OnAttemptSBA: { actor_index: number } }
+    | { OnPerformSBA: { actor_index: number } }
+    | { OnContinueSBAChain: { actor_index: number } }
+  ),
+];

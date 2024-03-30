@@ -35,6 +35,11 @@
     "player-overmasteries": "Overmasteries",
     "select-enemy": "Select Enemy",
     "select-quest": "Select Quest",
+    "sba": {
+      "OnAttemptSBA": "Attempted SBA",
+      "OnPerformSBA": "Executed SBA",
+      "OnContinueSBAChain": "Continued SBA Chain"
+    },
     "stats": {
       "total-hp": "Total HP",
       "total-attack": "Total Attack",
@@ -59,6 +64,7 @@
       "delete-selected-logs-confirmation_other": "This will delete {{count}} logs from the database. This action cannot be undone.",
       "quest-name": "Quest",
       "quest-elapsed-time": "IGT",
+      "sba-chart": "Skybound Arts Gauge",
       "quest-status": "Status",
       "overview": "Overview",
       "equipment": "Equipment"
