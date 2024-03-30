@@ -26,6 +26,7 @@ use tauri::{
     SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
 };
 use tauri_plugin_log::LogTarget;
+use tauri_plugin_window_state::{AppHandleExt, StateFlags};
 
 mod db;
 mod parser;
@@ -620,7 +621,10 @@ fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
                 handle.get_window("main").unwrap(),
                 handle.state::<AlwaysOnTop>(),
             ),
-            "quit" => std::process::exit(0),
+            "quit" => {
+                let _ = handle.save_window_state(StateFlags::all());
+                handle.exit(0)
+            }
             _ => {}
         },
         _ => {} // Ignore rest of the events.
