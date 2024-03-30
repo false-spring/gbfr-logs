@@ -1,6 +1,6 @@
 [package]
 name = "gbfr-logs"
-version = "0.0.10"
+version = "0.0.11"
 description = "GBFR Logs"
 authors = ["you"]
 edition = "2021"
