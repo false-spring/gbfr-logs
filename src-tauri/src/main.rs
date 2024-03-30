@@ -313,6 +313,7 @@ struct EncounterStateResponse {
     targets: Vec<EnemyType>,
     dps_chart: HashMap<u32, Vec<i32>>,
     sba_chart: HashMap<u32, Vec<f32>>,
+    sba_events: Vec<(i64, protocol::Message)>,
     chart_len: usize,
     sba_chart_len: usize,
 }
@@ -378,6 +379,20 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
 
     let sba_chart = parser.generate_sba_chart(SBA_INTERVAL);
 
+    let sba_events = parser
+        .encounter
+        .event_log()
+        .filter(|(_, e)| {
+            matches!(
+                e,
+                Message::OnContinueSBAChain(_)
+                    | Message::OnAttemptSBA(_)
+                    | Message::OnPerformSBA(_)
+            )
+        })
+        .map(|(ts, e)| (*ts - start_time, e.clone()))
+        .collect();
+
     Ok(EncounterStateResponse {
         encounter_state: parser.derived_state,
         players: parser.encounter.player_data,
@@ -388,6 +403,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         sba_chart: sba_chart,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         sba_chart_len: (duration / SBA_INTERVAL) as usize + 1,
+        sba_events,
         targets,
     })
 }

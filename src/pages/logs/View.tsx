@@ -152,6 +152,7 @@ export const ViewPage = () => {
     encounter,
     dpsChart,
     sbaChart,
+    sbaEvents,
     chartLen,
     sbaChartLen,
     targets,
@@ -166,6 +167,7 @@ export const ViewPage = () => {
     encounter: state.encounterState,
     dpsChart: state.dpsChart,
     sbaChart: state.sbaChart,
+    sbaEvents: state.sbaEvents,
     chartLen: state.chartLen,
     sbaChartLen: state.sbaChartLen,
     targets: state.targets,
@@ -476,6 +478,41 @@ export const ViewPage = () => {
                 content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
               }}
             />
+            <Table striped layout="fixed">
+              <Table.Tbody>
+                {sbaEvents.map((payload, index) => {
+                  const [timestamp, event] = payload;
+                  const eventType = Object.keys(event)[0];
+
+                  // @ts-expect-error: eventType is dynamic here.
+                  const player = players.find((p) => p.index === event[eventType].actor_index);
+
+                  const partySlotIndex = playerData.findIndex(
+                    // @ts-expect-error: eventType is dynamic here.
+                    (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
+                  );
+
+                  const playerName = translatedPlayerName(
+                    partySlotIndex,
+                    playerData[partySlotIndex],
+                    player as ComputedPlayerState
+                  );
+
+                  return (
+                    <Table.Tr key={index}>
+                      <Table.Td>
+                        <Text size="xs">{millisecondsToElapsedFormat(timestamp)}</Text>
+                      </Table.Td>
+                      <Table.Td>
+                        <Text size="xs">
+                          {playerName} - {t(`ui.sba.${eventType}`)}
+                        </Text>
+                      </Table.Td>
+                    </Table.Tr>
+                  );
+                })}
+              </Table.Tbody>
+            </Table>
           </Group>
         </Tabs.Panel>
         <Tabs.Panel value="equipment">

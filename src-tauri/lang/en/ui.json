@@ -35,6 +35,11 @@
     "player-overmasteries": "Overmasteries",
     "select-enemy": "Select Enemy",
     "select-quest": "Select Quest",
+    "sba": {
+      "OnAttemptSBA": "Attempted SBA",
+      "OnPerformSBA": "Executed SBA",
+      "OnContinueSBAChain": "Continued SBA Chain"
+    },
     "stats": {
       "total-hp": "Total HP",
       "total-attack": "Total Attack",

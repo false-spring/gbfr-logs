@@ -1,10 +1,11 @@
-import { EncounterState, EnemyType, PlayerData } from "@/types";
+import { EncounterState, EnemyType, PlayerData, SBAEvent } from "@/types";
 import { create } from "zustand";
 
 interface EncounterStore {
   encounterState: EncounterState | null;
   dpsChart: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
+  sbaEvents: SBAEvent[];
   chartLen: number;
   sbaChartLen: number;
   targets: EnemyType[];
@@ -21,6 +22,7 @@ export interface EncounterStateResponse {
   encounterState: EncounterState;
   dpsChart: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
+  sbaEvents: SBAEvent[];
   chartLen: number;
   sbaChartLen: number;
   targets: EnemyType[];
@@ -34,6 +36,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   encounterState: null,
   dpsChart: {},
   sbaChart: {},
+  sbaEvents: [],
   chartLen: 0,
   sbaChartLen: 0,
   targets: [],
@@ -50,6 +53,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,
       sbaChart: response.sbaChart,
+      sbaEvents: response.sbaEvents,
       chartLen: response.chartLen,
       sbaChartLen: response.sbaChartLen,
       targets: response.targets,
