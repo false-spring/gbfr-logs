@@ -3,9 +3,6 @@ use std::fs;
 use tauri_build::{Attributes, WindowsAttributes};
 
 fn main() {
-    // Build hook library
-    println!("cargo:rerun-if-changed=../src-hook/src");
-
     if cfg!(debug_assertions) {
         // Copy the built library to the tauri app directory
         let _ = fs::copy("../target/release/hook.dll", "hook.dll");

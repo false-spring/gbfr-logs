@@ -36,7 +36,7 @@ const SkillRow = ({
       <td className="text-left row-data">{getSkillName(characterType, skill)}</td>
       <td className="text-center row-data">{skill.hits}</td>
       <td className="text-center row-data">
-        {skill.totalDamage ? (
+        {show_full_values ? (
           skill.totalDamage.toLocaleString()
         ) : (
           <>
