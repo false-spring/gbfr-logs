@@ -33,6 +33,7 @@ import {
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
+  exportCharacterDataToClipboard,
   formatInPartyOrder,
   humanizeNumbers,
   millisecondsToElapsedFormat,
@@ -85,14 +86,22 @@ const formatOvermastery = (overmastery: Overmastery): string => {
   }
 };
 
-const formatPlayerDisplayName = (player: PlayerData): string => {
+const formatPlayerDisplayName = (player: PlayerData, showLevel: Boolean = true): string => {
   const displayName = player.displayName;
   const characterType = t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`);
 
+  if (showLevel) {
+    if (displayName === "") {
+      return `${characterType} Lvl. ${player.playerStats?.level || 1}`;
+    } else {
+      return `${displayName} (${characterType}) Lvl. ${player.playerStats?.level || 1}`;
+    }
+  }
+
   if (displayName === "") {
-    return `${characterType} Lvl. ${player.playerStats?.level || 1}`;
+    return `${characterType}`;
   } else {
-    return `${displayName} (${characterType}) Lvl. ${player.playerStats?.level || 1}`;
+    return `${displayName} (${characterType})`;
   }
 };
 
@@ -191,6 +200,10 @@ export const ViewPage = () => {
         toast.error(`Failed to fetch encounter state: ${e}`);
       });
   }, [id, selectedTargets]);
+
+  const handleCharacterDataCopy = useCallback((player) => {
+    if (player) exportCharacterDataToClipboard(player);
+  }, []);
 
   const handleSimpleEncounterCopy = useCallback(() => {
     if (encounter) exportSimpleEncounterToClipboard(sortType, sortDirection, encounter, playerData);
@@ -523,9 +536,14 @@ export const ViewPage = () => {
                   {playerData.map((player) => {
                     return (
                       <Table.Td key={player.actorIndex} flex={1}>
-                        <Text fw={700} size="xl">
-                          {formatPlayerDisplayName(player)}
-                        </Text>
+                        <Flex direction="row" wrap="nowrap" align="center">    
+                          <Text fw={700} size="xl" mr="5">
+                            {formatPlayerDisplayName(player, false)}
+                          </Text>
+                          <ActionIcon aria-label="Clipboard" variant="filled" color="light" onClick={() => handleCharacterDataCopy(player)}>
+                            <ClipboardText size={16} />
+                          </ActionIcon>
+                        </Flex>
                       </Table.Td>
                     );
                   })}
@@ -536,6 +554,9 @@ export const ViewPage = () => {
                       <Table.Td key={player.actorIndex}>
                         <Text size="xs" fw={700}>
                           {t("ui.player-stats")}
+                        </Text>
+                        <Text size="xs" fs="italic" fw={300}>
+                          {t("ui.stats.level")}: {player.playerStats?.level || 1}
                         </Text>
                         <Text size="xs" fs="italic" fw={300}>
                           {t("ui.stats.total-hp")}: {player.playerStats?.totalHp || 1}

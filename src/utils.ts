@@ -159,6 +159,16 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
   });
 };
 
+/// Exports the character data to the clipboard in a detailed format (JSON)
+export const exportCharacterDataToClipboard = (
+  playerData: PlayerData,
+) => {
+  navigator.clipboard.writeText(JSON.stringify(playerData)).then(() => {
+    toast.success("Copied character data to clipboard!");
+  });
+};
+
+
 /// Exports the encounter data to the clipboard in a simple format (CSV)
 export const exportSimpleEncounterToClipboard = (
   sortType: SortType,

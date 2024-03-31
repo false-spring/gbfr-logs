@@ -41,6 +41,7 @@
       "OnContinueSBAChain": "Continued SBA Chain"
     },
     "stats": {
+      "level": "Level",
       "total-hp": "Total HP",
       "total-attack": "Total Attack",
       "critical-rate": "Critical Rate",
