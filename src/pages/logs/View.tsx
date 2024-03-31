@@ -14,6 +14,7 @@ import {
   Table,
   Tabs,
   Text,
+  Tooltip,
 } from "@mantine/core";
 import { ClipboardText } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
@@ -30,10 +31,10 @@ import {
   EMPTY_ID,
   PLAYER_COLORS,
   epochToLocalTime,
+  exportCharacterDataToClipboard,
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
-  exportCharacterDataToClipboard,
   formatInPartyOrder,
   humanizeNumbers,
   millisecondsToElapsedFormat,
@@ -536,13 +537,20 @@ export const ViewPage = () => {
                   {playerData.map((player) => {
                     return (
                       <Table.Td key={player.actorIndex} flex={1}>
-                        <Flex direction="row" wrap="nowrap" align="center">    
+                        <Flex direction="row" wrap="nowrap" align="center">
                           <Text fw={700} size="xl" mr="5">
                             {formatPlayerDisplayName(player, false)}
                           </Text>
-                          <ActionIcon aria-label="Clipboard" variant="filled" color="light" onClick={() => handleCharacterDataCopy(player)}>
-                            <ClipboardText size={16} />
-                          </ActionIcon>
+                          <Tooltip label={t("ui.copy-character-data-to-clipboard")} color="dark">
+                            <ActionIcon
+                              aria-label="Clipboard"
+                              variant="filled"
+                              color="light"
+                              onClick={() => handleCharacterDataCopy(player)}
+                            >
+                              <ClipboardText size={16} />
+                            </ActionIcon>
+                          </Tooltip>
                         </Flex>
                       </Table.Td>
                     );
