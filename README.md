@@ -7,7 +7,7 @@
 
 <a href="https://www.buymeacoffee.com/false.spring" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the reverse engineering work from [naoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT).
+Overlay DPS parser/meter for Granblue Fantasy: Relink, based initially on the reverse engineering work from [naoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT).
 
 ## How to install
 
@@ -33,9 +33,13 @@ Experimental overlay DPS meter for Granblue Fantasy: Relink, based on the revers
 
 ![Charts](./docs/screenshots/charting.png)
 
-### Sigil Tracking
+### SBA Tracking
 
-![Sigil Tracking](./docs/screenshots/sigil-tracking.png)
+![SBA Tracking](./docs/screenshots/sba-tracking.png)
+
+### Equipment Tracking
+
+![Equipment Loadouts](./docs/screenshots/equipment-tracking.png)
 
 ### Multi-language Support
 
@@ -119,3 +123,7 @@ This project would not have been possible without the following folks:
 
 - [nyaoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT) for the original reverse engineering work.
 - [Harkain](https://github.com/Harkains) for their work on formatting and translating skills to friendly English names.
+
+## Disclaimer
+
+Please keep in mind that this tool is meant to improve the experience that Cygames has provided us and is not meant to cause them or anyone other players damage. GBFR Logs modifies your running game client and is not guaranteed to work after game patches, in which case you may experience instability or crashes.
