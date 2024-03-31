@@ -84,6 +84,16 @@ export default function useIndex() {
     });
   };
 
+  const handleSetEnemyIdFilter = (enemyId: number | null) => {
+    setCurrentPage(1);
+    setEnemyIdFilter(enemyId);
+  };
+
+  const handleSetQuestIdFilter = (questId: number | null) => {
+    setCurrentPage(1);
+    setQuestIdFilter(questId);
+  };
+
   return {
     searchResult,
     selectedLogIds,
@@ -95,7 +105,7 @@ export default function useIndex() {
     currentPage,
     filterByEnemyId,
     filterByQuestId,
-    setEnemyIdFilter,
-    setQuestIdFilter,
+    setEnemyIdFilter: handleSetEnemyIdFilter,
+    setQuestIdFilter: handleSetQuestIdFilter,
   };
 }
