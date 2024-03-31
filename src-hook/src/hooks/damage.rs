@@ -4,7 +4,7 @@ use retour::static_detour;
 
 use crate::{event, process::Process};
 
-use super::{actor_idx, actor_type_id};
+use super::{actor_idx, actor_type_id, get_source_parent};
 
 type ProcessDamageEventFunc =
     unsafe extern "system" fn(*const usize, *const usize, *const usize, u8) -> usize;
@@ -214,49 +214,5 @@ impl OnProcessDotHook {
         let _ = self.tx.send(event);
 
         original_value
-    }
-}
-
-// Returns the specified instance of the parent entity.
-// ptr+offset: Entity
-// *(ptr+offset) + 0x70: m_pSpecifiedInstance (Pl0700, Pl1200, etc.)
-fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> Option<*const usize> {
-    unsafe {
-        let info = (actor_ptr.byte_add(offset) as *const *const *const usize).read_unaligned();
-
-        if info == std::ptr::null() {
-            return None;
-        }
-
-        Some(info.byte_add(0x70).read())
-    }
-}
-
-// Returns the parent entity of the source entity if necessary.
-fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, u32)> {
-    match source_type_id {
-        // Pl0700Ghost -> Pl0700
-        0x2AF678E8 => {
-            let parent_instance = parent_specified_instance_at(source, 0xE48)?;
-
-            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
-        }
-        // Pl0700GhostSatellite -> Pl0700
-        0x8364C8BC => {
-            let parent_instance = parent_specified_instance_at(source, 0x508)?;
-
-            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
-        }
-        // Wp1890: Cagliostro's Ouroboros Dragon Sled -> Pl1800
-        0xC9F45042 => {
-            let parent_instance = parent_specified_instance_at(source, 0x578)?;
-            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
-        }
-        // Pl2000: Id's Dragon Form -> Pl1900
-        0xF5755C0E => {
-            let parent_instance = parent_specified_instance_at(source, 0xD138)?;
-            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
-        }
-        _ => None,
     }
 }

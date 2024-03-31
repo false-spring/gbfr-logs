@@ -87,7 +87,7 @@ const formatOvermastery = (overmastery: Overmastery): string => {
   }
 };
 
-const formatPlayerDisplayName = (player: PlayerData, showLevel: Boolean = true): string => {
+const formatPlayerDisplayName = (player: PlayerData, showLevel: boolean = true): string => {
   const displayName = player.displayName;
   const characterType = t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`);
 
@@ -202,7 +202,7 @@ export const ViewPage = () => {
       });
   }, [id, selectedTargets]);
 
-  const handleCharacterDataCopy = useCallback((player) => {
+  const handleCharacterDataCopy = useCallback((player: PlayerData) => {
     if (player) exportCharacterDataToClipboard(player);
   }, []);
 
