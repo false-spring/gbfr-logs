@@ -6,7 +6,9 @@ use retour::static_detour;
 
 use crate::{event, process::Process};
 
-use super::globals::SBA_OFFSET;
+use super::{
+    actor_idx, actor_type_id, get_source_parent, globals::SBA_OFFSET, parent_specified_instance_at,
+};
 
 type OnSBAUpdateFunc = unsafe extern "system" fn(*const usize, f32, u32, u8, u32, u8) -> usize;
 type OnSBAAttemptFunc = unsafe extern "system" fn(*const usize, f32) -> usize;
@@ -66,28 +68,32 @@ impl OnHandleSBAUpdateHook {
         let sba_offset = SBA_OFFSET.load(Ordering::Relaxed);
 
         let entity_ptr = unsafe { a1.byte_sub(sba_offset as usize) } as *const usize;
-        let sba_value_ptr = unsafe { a1.byte_add(0x7C) } as *const f32;
 
+        let source_idx = actor_idx(entity_ptr);
+        let source_type_id = actor_type_id(entity_ptr);
+        let (_, source_parent_idx) =
+            get_source_parent(source_type_id, entity_ptr).unwrap_or((source_type_id, source_idx));
+
+        let sba_value_ptr = unsafe { a1.byte_add(0x7C) } as *const f32;
         let old_sba_value = unsafe { sba_value_ptr.read() };
 
         let ret = unsafe { OnSBAUpdate.call(a1, a2, a3, a4, a5, a6) };
 
-        let player_idx = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
         let new_sba_value = unsafe { sba_value_ptr.read() };
         let sba_added = f32::max(new_sba_value - old_sba_value, 0.0);
 
         if new_sba_value == 0.0 {
             #[cfg(feature = "console")]
-            println!("on perform sba: player_index={}", player_idx);
+            println!("on perform sba: player_index={}", source_parent_idx);
 
             let payload = Message::OnPerformSBA(protocol::OnPerformSBAEvent {
-                actor_index: player_idx,
+                actor_index: source_parent_idx,
             });
 
             let _ = self.tx.send(payload);
         } else {
             let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
-                actor_index: player_idx,
+                actor_index: source_parent_idx,
                 sba_value: new_sba_value,
                 sba_added,
             });
@@ -133,13 +139,17 @@ impl OnAttemptSBAHook {
         let ret = unsafe { OnSBAAttempt.call(a1, a2) };
 
         let entity_ptr = unsafe { a1.byte_add(0x10).read() } as *const usize;
-        let player_index = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
+
+        let source_idx = actor_idx(entity_ptr);
+        let source_type_id = actor_type_id(entity_ptr);
+        let (_, source_parent_idx) =
+            get_source_parent(source_type_id, entity_ptr).unwrap_or((source_type_id, source_idx));
 
         #[cfg(feature = "console")]
-        println!("on sba attempt: player_index={}", player_index);
+        println!("on sba attempt: player_index={}", source_parent_idx);
 
         let payload = Message::OnAttemptSBA(protocol::OnAttemptSBAEvent {
-            actor_index: player_index,
+            actor_index: source_parent_idx,
         });
 
         let _ = self.tx.send(payload);
@@ -188,13 +198,17 @@ impl OnCheckSBACollisionHook {
 
         if ret != 0 {
             let entity_ptr = unsafe { a1.byte_add(0x10).read() } as *const usize;
-            let player_index = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
+
+            let source_idx = actor_idx(entity_ptr);
+            let source_type_id = actor_type_id(entity_ptr);
+            let (_, source_parent_idx) = get_source_parent(source_type_id, entity_ptr)
+                .unwrap_or((source_type_id, source_idx));
 
             #[cfg(feature = "console")]
-            println!("on perform sba: player_index={}", player_index);
+            println!("on perform sba: player_index={}", source_parent_idx);
 
             let payload = Message::OnPerformSBA(protocol::OnPerformSBAEvent {
-                actor_index: player_index,
+                actor_index: source_parent_idx,
             });
 
             let _ = self.tx.send(payload);
@@ -245,10 +259,14 @@ impl OnContinueSBAChainHook {
         );
 
         let ret = unsafe { OnContinueSBAChain.call(player_entity, a2) };
-        let player_index = unsafe { player_entity.byte_add(0x170).read() } as u32;
+
+        let source_idx = actor_idx(player_entity);
+        let source_type_id = actor_type_id(player_entity);
+        let (_, source_parent_idx) = get_source_parent(source_type_id, player_entity)
+            .unwrap_or((source_type_id, source_idx));
 
         let payload = Message::OnContinueSBAChain(protocol::OnContinueSBAChainEvent {
-            actor_index: player_index,
+            actor_index: source_parent_idx,
         });
 
         let _ = self.tx.send(payload);
@@ -298,23 +316,27 @@ impl OnRemoteSBAUpdateHook {
 
         let ret = unsafe { OnRemoteSBAUpdate.call(player_entity, a2, a3, a4) };
 
-        let player_idx = unsafe { player_entity.byte_add(0x170).read() } as u32;
+        let source_idx = actor_idx(player_entity);
+        let source_type_id = actor_type_id(player_entity);
+        let (_, source_parent_idx) = get_source_parent(source_type_id, player_entity)
+            .unwrap_or((source_type_id, source_idx));
+
         let new_sba_value = unsafe { sba_value_ptr.read() };
         let sba_added = f32::max(new_sba_value - old_sba_value, 0.0);
 
         // If the SBA value is 0, then the player has performed an SBA and this is resetting their SBA.
         if new_sba_value == 0.0 {
             #[cfg(feature = "console")]
-            println!("on perform sba: player_index={}", player_idx);
+            println!("on perform sba: player_index={}", source_parent_idx);
 
             let payload = Message::OnPerformSBA(protocol::OnPerformSBAEvent {
-                actor_index: player_idx,
+                actor_index: source_parent_idx,
             });
 
             let _ = self.tx.send(payload);
         } else {
             let payload = Message::OnUpdateSBA(protocol::OnUpdateSBAEvent {
-                actor_index: player_idx,
+                actor_index: source_parent_idx,
                 sba_value: new_sba_value,
                 sba_added,
             });
