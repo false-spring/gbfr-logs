@@ -6,9 +6,7 @@ use retour::static_detour;
 
 use crate::{event, process::Process};
 
-use super::{
-    actor_idx, actor_type_id, get_source_parent, globals::SBA_OFFSET, parent_specified_instance_at,
-};
+use super::{actor_idx, actor_type_id, get_source_parent, globals::SBA_OFFSET};
 
 type OnSBAUpdateFunc = unsafe extern "system" fn(*const usize, f32, u32, u8, u32, u8) -> usize;
 type OnSBAAttemptFunc = unsafe extern "system" fn(*const usize, f32) -> usize;

@@ -1,7 +1,7 @@
 {
   "name": "gbfr-logs",
   "private": true,
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
   "scripts": {
     "dev": "cargo build --release --package hook --features hook/console && vite",
