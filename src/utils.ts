@@ -120,7 +120,7 @@ export const exportScreenshotToClipboard = (selector = ".app") => {
       if (blob) {
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]).then(() => {
-          toast.success("Screenshot copied to clipboard!");
+          toast.success(t("ui.copied-to-clipboard"));
         });
       }
     });
@@ -156,6 +156,13 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
     }
 
     return 0;
+  });
+};
+
+/// Exports the character data to the clipboard in a detailed format (JSON)
+export const exportCharacterDataToClipboard = (playerData: PlayerData) => {
+  navigator.clipboard.writeText(JSON.stringify(playerData)).then(() => {
+    toast.success(t("ui.copied-to-clipboard"));
   });
 };
 
@@ -213,7 +220,7 @@ export const exportSimpleEncounterToClipboard = (
     .join("\n");
 
   navigator.clipboard.writeText([encounterData, playerHeader, playerData].join("\n")).then(() => {
-    toast.success("Copied text to clipboard!");
+    toast.success(t("ui.copied-to-clipboard"));
   });
 };
 
@@ -292,7 +299,7 @@ export const exportFullEncounterToClipboard = (
     .join("\n");
 
   navigator.clipboard.writeText([encounterData, playerData].join("\n")).then(() => {
-    toast.success("Copied text to clipboard!");
+    toast.success(t("ui.copied-to-clipboard"));
   });
 };
 
