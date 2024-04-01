@@ -181,8 +181,17 @@ export type PartyUpdateEvent = {
   payload: Array<PlayerData | null>;
 };
 
-export type SortType = "partyIndex" | "dps" | "damage" | "percentage" | "SBA";
+export enum MeterColumns {
+  Name = "name",
+  DPS = "dps",
+  TotalDamage = "damage",
+  DamagePercentage = "damage-percentage",
+  SBA = "sba",
+}
+
+export type SortType = MeterColumns;
 export type SortDirection = "asc" | "desc";
+
 export type Log = {
   id: number;
   name: string;

@@ -1,6 +1,7 @@
+import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 import { useMeterSettingsStore } from "../stores/useMeterSettingsStore";
-import { ComputedPlayerState, EncounterState, PlayerData, SortDirection, SortType } from "../types";
+import { ComputedPlayerState, EncounterState, MeterColumns, PlayerData, SortDirection, SortType } from "../types";
 import { formatInPartyOrder, sortPlayers } from "../utils";
 import { PlayerRow } from "./PlayerRow";
 
@@ -21,10 +22,12 @@ export const Table = ({
   setSortType: (sortType: SortType) => void;
   setSortDirection: (sortDirection: SortDirection) => void;
 }) => {
-  const { streamerMode, show_full_values } = useMeterSettingsStore(
+  const { t } = useTranslation();
+  const { streamerMode, show_full_values, overlay_columns } = useMeterSettingsStore(
     useShallow((state) => ({
       streamerMode: state.streamer_mode,
       show_full_values: state.show_full_values,
+      overlay_columns: state.overlay_columns,
     }))
   );
 
@@ -56,28 +59,21 @@ export const Table = ({
     }
   };
 
+  // If the meter is in live mode, only show the overlay columns that are enabled, otherwise show all columns.
+  const columns = live ? overlay_columns : [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage];
+
   return (
     <table className={`player-table table w-full ${show_full_values ? "full-values" : ""}`}>
       <thead className="header transparent-bg">
         <tr>
-          <th className="header-name" onClick={() => toggleSort("partyIndex")}>
+          <th className="header-name" onClick={() => toggleSort(MeterColumns.Name)}>
             Name
           </th>
-          {live && (
-            <th className="header-column text-center" onClick={() => toggleSort("SBA")}>
-              SBA
+          {columns.map((column) => (
+            <th key={column} className="header-column text-center" onClick={() => toggleSort(column)}>
+              {t(`ui.meter-columns.${column}`)}
             </th>
-          )}
-          <th className="header-column text-center" onClick={() => toggleSort("damage")}>
-            DMG
-          </th>
-          <th className="header-column text-center" onClick={() => toggleSort("dps")}>
-            DPS
-          </th>
-          <th className="header-column text-center" onClick={() => toggleSort("percentage")}>
-            %
-          </th>
-          <th className="header-column text-center dropdown" style={{ width: "2em" }}></th>
+          ))}
         </tr>
       </thead>
       <tbody>

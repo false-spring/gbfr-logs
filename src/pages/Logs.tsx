@@ -14,7 +14,7 @@ const Layout = () => {
 
   useEffect(() => {
     const debugListener = listen("debug-event", (event: { payload: unknown }) => {
-      console.log(JSON.stringify(event.payload));
+      console.info(JSON.stringify(event.payload));
     });
 
     return () => {

@@ -6,6 +6,7 @@ import {
   ComputedSkillState,
   EncounterState,
   EnemyType,
+  MeterColumns,
   PlayerData,
   PlayerState,
   SortDirection,
@@ -143,15 +144,15 @@ export const translatedPlayerName = (
 
 export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, sortDirection: SortDirection) => {
   players.sort((a, b) => {
-    if (sortType === "partyIndex") {
+    if (sortType === MeterColumns.Name) {
       return sortDirection === "asc" ? a.partyIndex - b.partyIndex : b.partyIndex - a.partyIndex;
-    } else if (sortType === "dps") {
+    } else if (sortType === MeterColumns.DPS) {
       return sortDirection === "asc" ? a.dps - b.dps : b.dps - a.dps;
-    } else if (sortType === "damage") {
+    } else if (sortType === MeterColumns.TotalDamage) {
       return sortDirection === "asc" ? a.totalDamage - b.totalDamage : b.totalDamage - a.totalDamage;
-    } else if (sortType === "percentage") {
+    } else if (sortType === MeterColumns.DamagePercentage) {
       return sortDirection === "asc" ? a?.percentage - b?.percentage : b?.percentage - a?.percentage;
-    } else if (sortType === "SBA") {
+    } else if (sortType === MeterColumns.SBA) {
       return sortDirection === "asc" ? a?.sba - b?.sba : b?.sba - a?.sba;
     }
 

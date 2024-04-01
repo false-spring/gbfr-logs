@@ -1,4 +1,21 @@
-import { Box, Checkbox, ColorInput, Fieldset, Select, Slider, Stack, Text, Tooltip } from "@mantine/core";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Checkbox,
+  ColorInput,
+  Divider,
+  Fieldset,
+  Flex,
+  Menu,
+  Select,
+  Slider,
+  Stack,
+  Text,
+  Tooltip,
+} from "@mantine/core";
+import { DotsSixVertical } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,13 +37,18 @@ const SettingsPage = () => {
     setMeterSettings,
     languages,
     handleLanguageChange,
+    overlay_columns,
+    handleReorderOverlayColumns,
+    availableOverlayColumns,
+    addOverlayColumn,
+    removeOverlayColumn,
   } = useSettings();
 
   const toggleDebugMode = () => {
     const enabled = !debugMode;
     setDebugMode(enabled);
     invoke("set_debug_mode", { enabled });
-    console.log("Debug Mode:", enabled ? "Enabled" : "Disabled");
+    console.info("Debug Mode:", enabled ? "Enabled" : "Disabled");
   };
 
   return (
@@ -98,6 +120,58 @@ const SettingsPage = () => {
           <Tooltip label={t("ui.debug-mode-description")}>
             <Checkbox label={t("ui.debug-mode")} checked={debugMode} onChange={toggleDebugMode} />
           </Tooltip>
+          <Divider />
+          <Text size="sm">Customize Overlay Meter Columns</Text>
+          <Menu shadow="md" trigger="hover" openDelay={100} closeDelay={400}>
+            <Menu.Target>
+              <Button>Add column</Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              {availableOverlayColumns.map((item) => (
+                <Menu.Item key={item} onClick={() => addOverlayColumn(item)}>
+                  {t(`ui.meter-columns.${item}`)} - {t(`ui.meter-columns.${item}-description`)}
+                </Menu.Item>
+              ))}
+            </Menu.Dropdown>
+          </Menu>
+          <DragDropContext onDragEnd={handleReorderOverlayColumns}>
+            <Droppable droppableId="overlay-columns">
+              {(droppableProvided) => (
+                <Stack ref={droppableProvided.innerRef}>
+                  {overlay_columns.map((item, index) => (
+                    <Draggable key={item} draggableId={item} index={index}>
+                      {(draggableProvided) => (
+                        <Box
+                          bg="var(--mantine-color-dark-8)"
+                          display="flex"
+                          p={10}
+                          ref={draggableProvided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          {...draggableProvided.dragHandleProps}
+                        >
+                          <Flex align="center" flex={1}>
+                            <DotsSixVertical size={16} style={{ cursor: "grab", marginRight: "0.5em" }} />
+                            {t(`ui.meter-columns.${item}`)} - {t(`ui.meter-columns.${item}-description`)}
+                          </Flex>
+                          <Flex align="center">
+                            <ActionIcon
+                              aria-label="Remove column"
+                              variant="transparent"
+                              color="gray"
+                              onClick={() => removeOverlayColumn(item)}
+                            >
+                              x
+                            </ActionIcon>
+                          </Flex>
+                        </Box>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvided.placeholder}
+                </Stack>
+              )}
+            </Droppable>
+          </DragDropContext>
         </Stack>
       </Fieldset>
     </Box>

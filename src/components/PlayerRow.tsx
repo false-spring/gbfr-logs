@@ -1,5 +1,5 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { CharacterType, ComputedPlayerState, ComputedSkillState, PlayerData } from "@/types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData } from "@/types";
 import { getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { Fragment, useState } from "react";
@@ -134,6 +134,11 @@ const SkillBreakdown = ({ player, color }: Props) => {
   );
 };
 
+export type ColumnValue = {
+  value: string | number;
+  unit?: string | number;
+};
+
 export const PlayerRow = ({
   live = false,
   player,
@@ -143,16 +148,18 @@ export const PlayerRow = ({
   player: ComputedPlayerState;
   partyData: Array<PlayerData | null>;
 }) => {
-  const { color_1, color_2, color_3, color_4, show_display_names, show_full_values } = useMeterSettingsStore(
-    useShallow((state) => ({
-      color_1: state.color_1,
-      color_2: state.color_2,
-      color_3: state.color_3,
-      color_4: state.color_4,
-      show_display_names: state.show_display_names,
-      show_full_values: state.show_full_values,
-    }))
-  );
+  const { color_1, color_2, color_3, color_4, show_display_names, show_full_values, overlay_columns } =
+    useMeterSettingsStore(
+      useShallow((state) => ({
+        color_1: state.color_1,
+        color_2: state.color_2,
+        color_3: state.color_3,
+        color_4: state.color_4,
+        show_display_names: state.show_display_names,
+        show_full_values: state.show_full_values,
+        overlay_columns: state.overlay_columns,
+      }))
+    );
 
   const playerColors = [color_1, color_2, color_3, color_4, "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
   const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
@@ -163,48 +170,50 @@ export const PlayerRow = ({
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
   const [dps, dpsUnit] = humanizeNumbers(player.dps);
 
+  const matchColumnTypeToValue = (showFullValues: boolean, column: MeterColumns): ColumnValue => {
+    switch (column) {
+      case MeterColumns.TotalDamage:
+        return showFullValues
+          ? { value: player.totalDamage.toLocaleString() }
+          : { value: totalDamage, unit: totalDamageUnit };
+      case MeterColumns.DPS:
+        return showFullValues ? { value: player.dps.toLocaleString() } : { value: dps, unit: dpsUnit };
+      case MeterColumns.DamagePercentage:
+        return { value: player.percentage.toFixed(0), unit: "%" };
+      case MeterColumns.SBA:
+        return showFullValues
+          ? { value: (player.sba / 10).toFixed(2) }
+          : { value: (player.sba / 10).toFixed(2), unit: "%" };
+      default:
+        return { value: "" };
+    }
+  };
+
+  // If the meter is in live mode, only show the overlay columns that are enabled, otherwise show all columns.
+  const columns = live ? overlay_columns : [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage];
+
   return (
     <Fragment>
       <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
         <td className="text-left row-data">
           {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
         </td>
-        {live && (
-          <td className="text-center row-data">
-            {show_full_values ? (
-              player.sba.toFixed(4)
-            ) : (
-              <>
-                {(player.sba / 10).toFixed(2)}
-                <span className="unit font-sm">%</span>
-              </>
-            )}
-          </td>
-        )}
-        <td className="text-center row-data">
-          {show_full_values ? (
-            (player.totalDamage | 0).toLocaleString()
-          ) : (
-            <>
-              {totalDamage}
-              <span className="unit font-sm">{totalDamageUnit}</span>
-            </>
-          )}
-        </td>
-        <td className="text-center row-data">
-          {show_full_values ? (
-            (player.dps | 0).toLocaleString()
-          ) : (
-            <>
-              {dps}
-              <span className="unit font-sm">{dpsUnit}</span>
-            </>
-          )}
-        </td>
-        <td className="text-center row-data">
-          {player.percentage?.toFixed(0)}
-          <span className="unit font-sm">%</span>
-        </td>
+        {columns.map((column) => {
+          const columnValue = matchColumnTypeToValue(show_full_values, column);
+
+          return (
+            <td key={column} className="text-center row-data">
+              {show_full_values ? (
+                columnValue.value
+              ) : (
+                <>
+                  {columnValue.value}
+                  <span className="unit font-sm">{columnValue.unit}</span>
+                </>
+              )}
+            </td>
+          );
+        })}
         <td className="text-center row-button">{isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}</td>
         <div className="damage-bar" style={{ backgroundColor: color, width: `${player.percentage}%` }} />
       </tr>
