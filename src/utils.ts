@@ -132,9 +132,11 @@ export const exportScreenshotToClipboard = (selector = ".app") => {
 export const translatedPlayerName = (
   partySlotIndex: number,
   partySlotData: PlayerData | null,
-  player: ComputedPlayerState,
+  player?: ComputedPlayerState,
   show_display_names: boolean = true
 ) => {
+  if (!player) return "Guest";
+
   const characterType = t(`characters:${player.characterType}`, `ui:characters.${player.characterType}`);
   const displayName = `${partySlotData?.displayName} (${characterType})`;
   const name = show_display_names && partySlotData?.displayName ? displayName : characterType;
