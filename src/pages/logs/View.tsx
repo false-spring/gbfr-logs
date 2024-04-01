@@ -26,7 +26,15 @@ import { Link, useParams } from "react-router-dom";
 import { Table as MeterTable } from "@/components/Table";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import type { ComputedPlayerState, EnemyType, Overmastery, PlayerData, SortDirection, SortType } from "@/types";
+import {
+  MeterColumns,
+  type ComputedPlayerState,
+  type EnemyType,
+  type Overmastery,
+  type PlayerData,
+  type SortDirection,
+  type SortType,
+} from "@/types";
 import {
   EMPTY_ID,
   PLAYER_COLORS,
@@ -189,7 +197,7 @@ export const ViewPage = () => {
     setSelectedTargets: state.setSelectedTargets,
     loadFromResponse: state.loadFromResponse,
   }));
-  const [sortType, setSortType] = useState<SortType>("damage");
+  const [sortType, setSortType] = useState<SortType>(MeterColumns.TotalDamage);
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
   useEffect(() => {

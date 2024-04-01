@@ -1,5 +1,13 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { EncounterState, EncounterUpdateEvent, PartyUpdateEvent, PlayerData, SortDirection, SortType } from "@/types";
+import {
+  EncounterState,
+  EncounterUpdateEvent,
+  MeterColumns,
+  PartyUpdateEvent,
+  PlayerData,
+  SortDirection,
+  SortType,
+} from "@/types";
 import { usePrevious } from "@mantine/hooks";
 import { listen } from "@tauri-apps/api/event";
 import { useEffect, useState } from "react";
@@ -26,7 +34,7 @@ export default function useMeter() {
 
   const previousStatus = usePrevious(encounterState.status);
 
-  const [sortType, setSortType] = useState<SortType>("damage");
+  const [sortType, setSortType] = useState<SortType>(MeterColumns.TotalDamage);
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
   const { transparency } = useMeterSettingsStore(
     useShallow((state) => ({

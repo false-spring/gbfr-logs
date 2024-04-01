@@ -1,3 +1,4 @@
+import { MeterColumns } from "@/types";
 import { Mutate, StoreApi, create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -10,6 +11,7 @@ interface MeterSettings {
   show_display_names: boolean;
   streamer_mode: boolean;
   show_full_values: boolean;
+  overlay_columns: MeterColumns[];
 }
 
 interface MeterStateFunctions {
@@ -25,6 +27,7 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   show_display_names: true,
   streamer_mode: false,
   show_full_values: false,
+  overlay_columns: [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage],
 };
 
 export type StoreWithPersist<T> = Mutate<StoreApi<T>, [["zustand/persist", T]]>;

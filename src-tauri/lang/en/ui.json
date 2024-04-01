@@ -42,6 +42,17 @@
       "OnPerformSBA": "Executed SBA",
       "OnContinueSBAChain": "Continued SBA Chain"
     },
+    "meter-columns": {
+      "name": "Name",
+      "dps": "DPS",
+      "dps-description": "Damage Per Second",
+      "damage": "DMG",
+      "damage-description": "Total Damage",
+      "damage-percentage": "%",
+      "damage-percentage-description": "Total Damage in Percentage",
+      "sba": "SBA",
+      "sba-description": "Skybound Arts Gauge"
+    },
     "stats": {
       "level": "Level",
       "total-hp": "Total HP",
