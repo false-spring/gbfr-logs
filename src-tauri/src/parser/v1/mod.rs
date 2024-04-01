@@ -595,7 +595,7 @@ impl Parser {
             // Carry over the previous values to the current timeslice.
             if last_index != index && last_index > 0 {
                 for (_, entries) in chart_values.iter_mut() {
-                    let previous_value = entries[last_index - 0];
+                    let previous_value = entries[last_index];
 
                     for i in last_index..=index {
                         if i > 0 && i < entries.len() {
@@ -606,10 +606,9 @@ impl Parser {
             }
 
             if let Some((actor_index, sba_value)) = match event {
-                Message::OnUpdateSBA(sba_update_event) => Some((
-                    sba_update_event.actor_index,
-                    sba_update_event.sba_value as f32,
-                )),
+                Message::OnUpdateSBA(sba_update_event) => {
+                    Some((sba_update_event.actor_index, sba_update_event.sba_value))
+                }
                 Message::OnAttemptSBA(sba_attempt_event) => {
                     Some((sba_attempt_event.actor_index, 800.0))
                 }

@@ -101,8 +101,6 @@ pub enum EnemyType {
 
 impl EnemyType {
     pub fn from_hash(hash: u32) -> Self {
-        match hash {
-            _ => EnemyType::Unknown(hash),
-        }
+        EnemyType::Unknown(hash)
     }
 }

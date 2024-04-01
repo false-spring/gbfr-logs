@@ -36,8 +36,10 @@ impl Process {
             let snapshot_handle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0)
                 .map_err(ProcessError::ProcessSnapshotError)?;
 
-            let mut process = PROCESSENTRY32W::default();
-            process.dwSize = std::mem::size_of::<PROCESSENTRY32W>() as u32;
+            let mut process = PROCESSENTRY32W {
+                dwSize: std::mem::size_of::<PROCESSENTRY32W>() as u32,
+                ..PROCESSENTRY32W::default()
+            };
 
             if Process32FirstW(snapshot_handle, &mut process).is_ok() {
                 loop {
@@ -52,8 +54,11 @@ impl Process {
                                 process.th32ProcessID,
                             )
                             .map_err(ProcessError::ModuleSnapshotError)?;
-                            let mut module_entry = MODULEENTRY32W::default();
-                            module_entry.dwSize = std::mem::size_of::<MODULEENTRY32W>() as u32;
+
+                            let mut module_entry = MODULEENTRY32W {
+                                dwSize: std::mem::size_of::<MODULEENTRY32W>() as u32,
+                                ..MODULEENTRY32W::default()
+                            };
 
                             if Module32FirstW(module_snapshot, &mut module_entry).is_ok() {
                                 let module_name = String::from_utf16_lossy(&process.szExeFile)
@@ -122,10 +127,10 @@ impl Process {
             let ptr = addr as *const T;
             Ok(unsafe { ptr.read_unaligned() })
         } else {
-            return Err(anyhow!(
+            Err(anyhow!(
                 "Could not find match for pattern: {}",
                 signature_pattern
-            ));
+            ))
         }
     }
 }

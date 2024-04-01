@@ -107,7 +107,7 @@ fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> Optio
     unsafe {
         let info = (actor_ptr.byte_add(offset) as *const *const *const usize).read_unaligned();
 
-        if info == std::ptr::null() {
+        if info.is_null() {
             return None;
         }
 

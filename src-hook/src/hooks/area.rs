@@ -52,7 +52,7 @@ impl OnAreaEnterHook {
 
         let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
-        if quest_state_ptr != std::ptr::null_mut() {
+        if !quest_state_ptr.is_null() {
             let quest_state = unsafe { quest_state_ptr.read() };
 
             let quest_id = quest_state.quest_id;
@@ -69,8 +69,6 @@ impl OnAreaEnterHook {
             }));
         }
 
-        let ret = unsafe { OnEnterArea.call(a1, a2, a3, a4) };
-
-        ret
+        unsafe { OnEnterArea.call(a1, a2, a3, a4) }
     }
 }

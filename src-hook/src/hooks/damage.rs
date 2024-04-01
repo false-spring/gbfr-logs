@@ -31,7 +31,7 @@ impl OnProcessDamageHook {
     pub fn setup(&self, process: &Process) -> Result<()> {
         let cloned_self = self.clone();
 
-        if let Ok(process_dmg_evt) = process.search_address(&PROCESS_DAMAGE_EVENT_SIG) {
+        if let Ok(process_dmg_evt) = process.search_address(PROCESS_DAMAGE_EVENT_SIG) {
             #[cfg(feature = "console")]
             println!("Found process dmg event");
 
@@ -62,14 +62,13 @@ impl OnProcessDamageHook {
 
         // @TODO(false): For some reason, online + Ferry's Umlauf skill pet can return a null pointer here.
         // Possible data race with online?
-        if source_entity_ptr == std::ptr::null() {
+        if source_entity_ptr.is_null() {
             return original_value;
         }
 
         // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
         // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
-        let source_specified_instance_ptr: usize =
-            unsafe { *(source_entity_ptr.byte_add(0x70) as *const usize) };
+        let source_specified_instance_ptr: usize = unsafe { *(source_entity_ptr.byte_add(0x70)) };
         let damage: i32 = unsafe { (a2.byte_add(0xD0) as *const i32).read() };
 
         if original_value == 0 || damage <= 0 {
@@ -171,14 +170,14 @@ impl OnProcessDotHook {
         let target_info = unsafe { dot_instance.byte_add(0x18).read() } as *const usize;
         let source_info = unsafe { dot_instance.byte_add(0x30).read() } as *const usize;
 
-        if target_info == std::ptr::null() || source_info == std::ptr::null() {
+        if target_info.is_null() || source_info.is_null() {
             return original_value;
         }
 
         let target = unsafe { target_info.byte_add(0x70).read() } as *const usize;
         let source = unsafe { source_info.byte_add(0x70).read() } as *const usize;
 
-        if target == std::ptr::null() || source == std::ptr::null() {
+        if target.is_null() || source.is_null() {
             return original_value;
         }
 

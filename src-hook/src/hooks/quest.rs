@@ -58,7 +58,7 @@ impl OnLoadQuestHook {
         let ret = unsafe { OnLoadQuestState.call(a1) };
         let quest_state_ptr = unsafe { a1.byte_add(0x1D8) } as *mut QuestState;
 
-        if quest_state_ptr == std::ptr::null_mut() {
+        if quest_state_ptr.is_null() {
             return ret;
         }
 
@@ -104,7 +104,7 @@ impl OnQuestCompleteHook {
 
         let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
-        if quest_state_ptr != std::ptr::null_mut() {
+        if !quest_state_ptr.is_null() {
             let quest_state = unsafe { quest_state_ptr.read() };
             let quest_id = quest_state.quest_id;
             let timer = quest_state.elapsed_time;
@@ -117,8 +117,6 @@ impl OnQuestCompleteHook {
                 }));
         }
 
-        let ret = unsafe { OnShowResultScreen.call(a1) };
-
-        ret
+        unsafe { OnShowResultScreen.call(a1) }
     }
 }

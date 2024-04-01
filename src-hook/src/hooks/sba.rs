@@ -65,7 +65,7 @@ impl OnHandleSBAUpdateHook {
     fn run(&self, a1: *const usize, a2: f32, a3: u32, a4: u8, a5: u32, a6: u8) -> usize {
         let sba_offset = SBA_OFFSET.load(Ordering::Relaxed);
 
-        let entity_ptr = unsafe { a1.byte_sub(sba_offset as usize) } as *const usize;
+        let entity_ptr = unsafe { a1.byte_sub(sba_offset as usize) };
 
         let source_idx = actor_idx(entity_ptr);
         let source_type_id = actor_type_id(entity_ptr);

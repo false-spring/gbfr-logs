@@ -92,32 +92,29 @@ fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), Strin
     .map_err(|e| e.to_string())?;
 
     for (event_ts, event) in parser.encounter.event_log() {
-        match event {
-            Message::DamageEvent(damage_event) => {
-                let timestamp = event_ts - parser.start_time();
-                let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
-                let parent_character_type =
-                    CharacterType::from_hash(damage_event.source.parent_actor_type);
-                let child_character_type = CharacterType::from_hash(damage_event.source.actor_type);
+        if let Message::DamageEvent(damage_event) = event {
+            let timestamp = event_ts - parser.start_time();
+            let target_type = EnemyType::from_hash(damage_event.target.parent_actor_type);
+            let parent_character_type =
+                CharacterType::from_hash(damage_event.source.parent_actor_type);
+            let child_character_type = CharacterType::from_hash(damage_event.source.actor_type);
 
-                if options.targets.is_empty() || options.targets.contains(&target_type) {
-                    writeln!(
-                        writer,
-                        "{},{},{},{},{},{},{},{},{}",
-                        timestamp,
-                        parent_character_type,
-                        child_character_type,
-                        damage_event.source.parent_index,
-                        target_type,
-                        damage_event.target.parent_index,
-                        damage_event.action_id,
-                        damage_event.flags,
-                        damage_event.damage
-                    )
-                    .map_err(|e| e.to_string())?;
-                }
+            if options.targets.is_empty() || options.targets.contains(&target_type) {
+                writeln!(
+                    writer,
+                    "{},{},{},{},{},{},{},{},{}",
+                    timestamp,
+                    parent_character_type,
+                    child_character_type,
+                    damage_event.source.parent_index,
+                    target_type,
+                    damage_event.target.parent_index,
+                    damage_event.action_id,
+                    damage_event.flags,
+                    damage_event.damage
+                )
+                .map_err(|e| e.to_string())?;
             }
-            _ => {}
         }
     }
 
@@ -401,9 +398,9 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         quest_timer: parser.encounter.quest_timer,
         quest_completed: parser.encounter.quest_completed,
         dps_chart: player_dps,
-        sba_chart: sba_chart,
         chart_len: (duration / DPS_INTERVAL) as usize + 1,
         sba_chart_len: (duration / SBA_INTERVAL) as usize + 1,
+        sba_chart,
         sba_events,
         targets,
     })
