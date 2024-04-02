@@ -60,7 +60,9 @@ import { useShallow } from "zustand/react/shallow";
 
 type Label = { name: string; partySlotIndex: number; label?: string; color: string; strokeDasharray?: string }[];
 
-const formatOvermastery = (overmastery: Overmastery): string => {
+const formatOvermastery = (overmastery: Overmastery | undefined): string => {
+  if (!overmastery) return "";
+
   const value = overmastery.value.toFixed(0);
   const translation = translateOvermasteryId(overmastery.id);
   const regularNumbers = [
