@@ -70,13 +70,13 @@ However, you may have an out-of-date or missing "Webview2 Runtime":
 
 > Q: Is this safe? My antivirus is marking the installation as a virus / malware.
 
-You can ignore these as false positives. There are reasons why it can give alerts:
+As always, this is up to you to trust GBFR Logs. The program can trigger false positive flags. There are reasons why it can give such alerts:
 
-- GBFR Logs does code injection into the running game process which can look like a virus-like program.
-- GBFR Logs reads game memory and initializes code hooks in order to receive damage data.
-- I recommend adding an exception / whitelisting for the installation folder for the best experience, but you may not need to do so if you haven't ran into this issue.
+- GBFR Logs does code DLL injection into the running game process which can look like a virus-like program.
+- GBFR Logs reads game memory and modifies game code at runtime in order to receive parser data.
+- I recommend adding an exception / whitelisting for the installation folder so that your anti-virus does not delete it while your game is running, but you may not need to do so if you haven't ran into this issue.
 
-Windows Defender: https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26
+See [how to add an exclusion to Windows Defender](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26).
 
 > Q: How do I update?
 
