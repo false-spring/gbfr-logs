@@ -1,11 +1,11 @@
 {
-  "version": "0.0.12",
+  "version": "0.0.13",
   "notes": "Please make sure to save and exit before updating. Check release notes on github for more details!",
-  "pub_date": "2024-03-31T21:39:21+00:00",
+  "pub_date": "2024-04-03T01:35:46+00:00",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0xmTG9pd2VpTHpRdXZZRlZSMWNadmRCYlZUbnJ5dmQ1NnUzKzJDRzM2N3Nnd2NURlJzcTIwbG1USWxkeFpZSnFtWmFidVE0Z1dmZ0hsOUV4Y2ZaWVFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExOTIxMjc5CWZpbGU6R0JGUiBMb2dzXzAuMC4xMl94NjRfZW4tVVMubXNpLnppcApndkZQVXFRNFlieVl4RFNER1FOWWVxK2FsSmhnR3JyVDhNdVkvb1NLblladHNpQVFKSEVMMFlEUnpjQmxFVUpXZFlwOVpCTm1najhrdUMyYXRKeXlEdz09Cg==",
-      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.12/GBFR.Logs_0.0.12_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSElJbVBnZEcyM0ZCUHB3VHFkNngrWHdtcmcwNHowejlCRkNlT0U1bHUwN3dRY1NjcHJUeWVoTGtCT3NraGVDT2xhMnViRWEwcGJ3dXVvbnhObTgra0FVeFVNK1Q2Y2dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzEyMDMyNzczCWZpbGU6R0JGUiBMb2dzXzAuMC4xM194NjRfZW4tVVMubXNpLnppcApXdGFPajQ2YkpMb3UzMCtldmQ5VDRNWVVtb04xZEdNZHJtbUZFMkV1eU4zUUZJS2ZQRDA0OStMUngxS0pENC9yNC9TMWE3SXFnWFJscVc5enNOQ2xBUT09Cg==",
+      "url": "https://github.com/false-spring/gbfr-logs/releases/download/0.0.13/GBFR.Logs_0.0.13_x64_en-US.msi.zip"
     }
   }
 }
