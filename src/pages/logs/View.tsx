@@ -225,7 +225,7 @@ export const ViewPage = () => {
   }, [sortType, sortDirection, encounter]);
 
   const handleScreenshotCopy = useCallback(() => {
-    exportScreenshotToClipboard(".mantine-Tabs-root");
+    exportScreenshotToClipboard("#log-view-page");
   }, []);
 
   const exportDamageLogToFile = useCallback(() => {
@@ -376,327 +376,329 @@ export const ViewPage = () => {
 
       <Divider my="sm" />
 
-      <Box>
-        {questId && (
+      <Box id="log-view-page">
+        <Box>
+          {questId && (
+            <Box display="flex">
+              <Text size="sm" fw={800}>
+                {t("ui.logs.quest-name")}:
+              </Text>
+              <Text size="sm" ml={4}>
+                {translateQuestId(questId)} ({toHash(questId)}){" "}
+              </Text>
+            </Box>
+          )}
+          {questId && (
+            <Box display="flex">
+              <Text size="sm" fw={800}>
+                {t("ui.logs.quest-status")}:
+              </Text>
+              <Text size="sm" fs="italic" ml={4}>
+                {questCompleted ? "✅" : "❌"}
+              </Text>
+            </Box>
+          )}
           <Box display="flex">
             <Text size="sm" fw={800}>
-              {t("ui.logs.quest-name")}:
-            </Text>
-            <Text size="sm" ml={4}>
-              {translateQuestId(questId)} ({toHash(questId)}){" "}
-            </Text>
-          </Box>
-        )}
-        {questId && (
-          <Box display="flex">
-            <Text size="sm" fw={800}>
-              {t("ui.logs.quest-status")}:
+              {t("ui.logs.date")}:
             </Text>
             <Text size="sm" fs="italic" ml={4}>
-              {questCompleted ? "✅" : "❌"}
+              {epochToLocalTime(encounter.startTime)}
             </Text>
           </Box>
-        )}
-        <Box display="flex">
-          <Text size="sm" fw={800}>
-            {t("ui.logs.date")}:
-          </Text>
-          <Text size="sm" fs="italic" ml={4}>
-            {epochToLocalTime(encounter.startTime)}
-          </Text>
-        </Box>
-        <Box display="flex">
-          <Text size="sm" fw={800}>
-            {t("ui.logs.duration")}:
-          </Text>
-          <Text size="sm" fs="italic" ml={4}>
-            {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
-          </Text>
-        </Box>
-        {questTimer && (
           <Box display="flex">
             <Text size="sm" fw={800}>
-              {t("ui.logs.quest-elapsed-time")}:
+              {t("ui.logs.duration")}:
             </Text>
             <Text size="sm" fs="italic" ml={4}>
-              {millisecondsToElapsedFormat(questTimer * 1000)}
+              {millisecondsToElapsedFormat(encounter.endTime - encounter.startTime)}
             </Text>
           </Box>
-        )}
-        <Box display="flex">
-          <Text size="sm" fw={800}>
-            {t("ui.logs.total-damage")}:
-          </Text>
-          <Text size="sm" fs="italic" ml={4}>
-            <NumberFormatter thousandSeparator value={encounter.totalDamage} />
-          </Text>
+          {questTimer && (
+            <Box display="flex">
+              <Text size="sm" fw={800}>
+                {t("ui.logs.quest-elapsed-time")}:
+              </Text>
+              <Text size="sm" fs="italic" ml={4}>
+                {millisecondsToElapsedFormat(questTimer * 1000)}
+              </Text>
+            </Box>
+          )}
+          <Box display="flex">
+            <Text size="sm" fw={800}>
+              {t("ui.logs.total-damage")}:
+            </Text>
+            <Text size="sm" fs="italic" ml={4}>
+              <NumberFormatter thousandSeparator value={encounter.totalDamage} />
+            </Text>
+          </Box>
         </Box>
-      </Box>
 
-      <Divider my="sm" />
+        <Divider my="sm" />
 
-      <Tabs defaultValue="overview" variant="outline">
-        <Tabs.List>
-          <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
-          <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
-          <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
-            {t("ui.logs.equipment")}
-          </Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="overview">
-          <Box mt="md">
-            <Stack>
-              <MultiSelect
-                data={targetItems}
-                placeholder="All"
-                clearable
-                onChange={(value) => {
-                  const targets = value
-                    .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
-                    .filter((v) => v !== undefined) as EnemyType[];
+        <Tabs defaultValue="overview" variant="outline">
+          <Tabs.List>
+            <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
+            <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
+            <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
+              {t("ui.logs.equipment")}
+            </Tabs.Tab>
+          </Tabs.List>
+          <Tabs.Panel value="overview">
+            <Box mt="md">
+              <Stack>
+                <MultiSelect
+                  data={targetItems}
+                  placeholder="All"
+                  clearable
+                  onChange={(value) => {
+                    const targets = value
+                      .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
+                      .filter((v) => v !== undefined) as EnemyType[];
 
-                  setSelectedTargets(targets);
-                }}
-              />
-              <MeterTable
-                encounterState={encounter}
-                sortType={sortType}
-                sortDirection={sortDirection}
-                setSortType={setSortType}
-                setSortDirection={setSortDirection}
-                partyData={playerData}
-              />
-              <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
+                    setSelectedTargets(targets);
+                  }}
+                />
+                <MeterTable
+                  encounterState={encounter}
+                  sortType={sortType}
+                  sortDirection={sortDirection}
+                  setSortType={setSortType}
+                  setSortDirection={setSortDirection}
+                  partyData={playerData}
+                />
+                <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
+                <LineChart
+                  h={400}
+                  data={data}
+                  dataKey="timestamp"
+                  withDots={false}
+                  withLegend
+                  series={labels}
+                  valueFormatter={(value) => {
+                    const [num, suffix] = humanizeNumbers(value);
+                    return `${num}${suffix}`;
+                  }}
+                  tooltipProps={{
+                    content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
+                  }}
+                />
+              </Stack>
+            </Box>
+          </Tabs.Panel>
+          <Tabs.Panel value="sba">
+            <Group mt="20" gap="xs">
+              <Text size="sm">{t("ui.logs.sba-chart")}</Text>
               <LineChart
                 h={400}
-                data={data}
+                data={sbaData}
                 dataKey="timestamp"
                 withDots={false}
                 withLegend
-                series={labels}
+                series={sbaLabels}
                 valueFormatter={(value) => {
-                  const [num, suffix] = humanizeNumbers(value);
-                  return `${num}${suffix}`;
+                  return `${value}%`;
                 }}
                 tooltipProps={{
                   content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
                 }}
               />
-            </Stack>
-          </Box>
-        </Tabs.Panel>
-        <Tabs.Panel value="sba">
-          <Group mt="20" gap="xs">
-            <Text size="sm">{t("ui.logs.sba-chart")}</Text>
-            <LineChart
-              h={400}
-              data={sbaData}
-              dataKey="timestamp"
-              withDots={false}
-              withLegend
-              series={sbaLabels}
-              valueFormatter={(value) => {
-                return `${value}%`;
-              }}
-              tooltipProps={{
-                content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-              }}
-            />
-            <Table striped layout="fixed">
-              <Table.Tbody>
-                {sbaEvents.map((payload, index) => {
-                  const [timestamp, event] = payload;
-                  const eventType = Object.keys(event)[0];
+              <Table striped layout="fixed">
+                <Table.Tbody>
+                  {sbaEvents.map((payload, index) => {
+                    const [timestamp, event] = payload;
+                    const eventType = Object.keys(event)[0];
 
-                  // @ts-expect-error: eventType is dynamic here.
-                  const player = players.find((p) => p.index === event[eventType].actor_index);
-
-                  const partySlotIndex = playerData.findIndex(
                     // @ts-expect-error: eventType is dynamic here.
-                    (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
-                  );
+                    const player = players.find((p) => p.index === event[eventType].actor_index);
 
-                  const playerName = translatedPlayerName(
-                    partySlotIndex,
-                    playerData[partySlotIndex],
-                    player as ComputedPlayerState
-                  );
+                    const partySlotIndex = playerData.findIndex(
+                      // @ts-expect-error: eventType is dynamic here.
+                      (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
+                    );
 
-                  return (
-                    <Table.Tr key={index}>
-                      <Table.Td>
-                        <Text size="xs">{millisecondsToElapsedFormat(timestamp)}</Text>
-                      </Table.Td>
-                      <Table.Td>
-                        <Text size="xs">
-                          {playerName} - {t(`ui.sba.${eventType}`)}
-                        </Text>
-                      </Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table>
-          </Group>
-        </Tabs.Panel>
-        <Tabs.Panel value="equipment">
-          <Group mt="20" gap="xs">
-            <Table striped layout="fixed">
-              <Table.Tbody>
-                <Table.Tr>
-                  {playerData.map((player) => {
-                    return (
-                      <Table.Td key={player.actorIndex} flex={1}>
-                        <Flex direction="row" wrap="nowrap" align="center">
-                          <Text fw={700} size="xl" mr="5">
-                            {formatPlayerDisplayName(player, false)}
-                          </Text>
-                          <Tooltip label={t("ui.copy-character-data-to-clipboard")} color="dark">
-                            <ActionIcon
-                              aria-label="Clipboard"
-                              variant="filled"
-                              color="light"
-                              onClick={() => handleCharacterDataCopy(player)}
-                            >
-                              <ClipboardText size={16} />
-                            </ActionIcon>
-                          </Tooltip>
-                        </Flex>
-                      </Table.Td>
+                    const playerName = translatedPlayerName(
+                      partySlotIndex,
+                      playerData[partySlotIndex],
+                      player as ComputedPlayerState
                     );
-                  })}
-                </Table.Tr>
-                <Table.Tr>
-                  {playerData.map((player) => {
-                    return (
-                      <Table.Td key={player.actorIndex}>
-                        <Text size="xs" fw={700}>
-                          {t("ui.player-stats")}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.level")}: {player.playerStats?.level || 1}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.total-hp")}: {player.playerStats?.totalHp || 1}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.total-attack")}: {player.playerStats?.totalAttack || 1}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.critical-rate")}: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.stun-power")}: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t("ui.stats.total-power")}: {player.playerStats?.totalPower || 1}
-                        </Text>
-                      </Table.Td>
-                    );
-                  })}
-                </Table.Tr>
-                <Table.Tr>
-                  {playerData.map((player) => {
-                    const overmasteries = player.overmasteryInfo?.overmasteries || [];
 
                     return (
-                      <Table.Td key={player.actorIndex}>
-                        <Text size="xs" fw={700}>
-                          {t("ui.player-overmasteries")}
-                        </Text>
-                        {Array.from(Array(4).keys()).map((overmasteryIndex) => {
-                          const overmastery = overmasteries[overmasteryIndex];
-
-                          return (
-                            <Placeholder key={overmasteryIndex} empty={!overmastery || overmastery.value === 0}>
-                              <Text size="xs" fs="italic" fw={300}>
-                                {formatOvermastery(overmastery)}
-                              </Text>
-                            </Placeholder>
-                          );
-                        })}
-                      </Table.Td>
+                      <Table.Tr key={index}>
+                        <Table.Td>
+                          <Text size="xs">{millisecondsToElapsedFormat(timestamp)}</Text>
+                        </Table.Td>
+                        <Table.Td>
+                          <Text size="xs">
+                            {playerName} - {t(`ui.sba.${eventType}`)}
+                          </Text>
+                        </Table.Td>
+                      </Table.Tr>
                     );
                   })}
-                </Table.Tr>
-                <Table.Tr>
-                  {playerData.map((player) => {
-                    return (
-                      <Table.Td key={player.actorIndex}>
-                        <Text size="xs" fw={700}>
-                          {t("ui.weapon")}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {createWeaponStars(player.weaponInfo?.starLevel || 0)}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          {t([`weapons:${toHashString(player.weaponInfo?.weaponId)}.text`, "unknown"])} +
-                          {player.weaponInfo?.plusMarks}
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          Awakening {player.weaponInfo?.awakeningLevel || 0}/10
-                        </Text>
-                        <Text size="xs" fs="italic" fw={300}>
-                          Lvl {player.weaponInfo?.weaponLevel || 0} / ATK {player.weaponInfo?.weaponAttack || 0} / HP{" "}
-                          {player.weaponInfo?.weaponHp || 0}
-                        </Text>
-                        <Text size="xs" fw={700}>
-                          {translateItemId(player.weaponInfo?.wrightstoneId || EMPTY_ID)}
-                        </Text>
-                        <Placeholder empty={!player.weaponInfo?.trait1Id || player.weaponInfo?.trait1Level == 0}>
-                          <Text size="xs" fs="italic" fw={300}>
-                            - {translateTraitId(player.weaponInfo?.trait1Id || EMPTY_ID)} (Lvl.{" "}
-                            {player.weaponInfo?.trait1Level})
-                          </Text>
-                        </Placeholder>
-                        <Placeholder empty={!player.weaponInfo?.trait2Id || player.weaponInfo?.trait2Level == 0}>
-                          <Text size="xs" fs="italic" fw={300}>
-                            - {translateTraitId(player.weaponInfo?.trait2Id || EMPTY_ID)} (Lvl.{" "}
-                            {player.weaponInfo?.trait2Level})
-                          </Text>
-                        </Placeholder>
-                        <Placeholder empty={!player.weaponInfo?.trait3Id || player.weaponInfo?.trait3Level == 0}>
-                          <Text size="xs" fs="italic" fw={300}>
-                            - {translateTraitId(player.weaponInfo?.trait3Id || EMPTY_ID)} (Lvl.{" "}
-                            {player.weaponInfo?.trait3Level})
-                          </Text>
-                        </Placeholder>
-                      </Table.Td>
-                    );
-                  })}
-                </Table.Tr>
-                {Array.from(Array(12).keys()).map((sigilIndex) => (
-                  <Table.Tr key={sigilIndex}>
+                </Table.Tbody>
+              </Table>
+            </Group>
+          </Tabs.Panel>
+          <Tabs.Panel value="equipment">
+            <Group mt="20" gap="xs">
+              <Table striped layout="fixed">
+                <Table.Tbody>
+                  <Table.Tr>
                     {playerData.map((player) => {
-                      const sigil = player.sigils[sigilIndex];
-
-                      if (!sigil || sigil.sigilId === EMPTY_ID) {
-                        return (
-                          <Table.Td key={player.actorIndex}>
-                            <Placeholder empty />
-                          </Table.Td>
-                        );
-                      }
-
+                      return (
+                        <Table.Td key={player.actorIndex} flex={1}>
+                          <Flex direction="row" wrap="nowrap" align="center">
+                            <Text fw={700} size="xl" mr="5">
+                              {formatPlayerDisplayName(player, false)}
+                            </Text>
+                            <Tooltip label={t("ui.copy-character-data-to-clipboard")} color="dark">
+                              <ActionIcon
+                                aria-label="Clipboard"
+                                variant="filled"
+                                color="light"
+                                onClick={() => handleCharacterDataCopy(player)}
+                              >
+                                <ClipboardText size={16} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Flex>
+                        </Table.Td>
+                      );
+                    })}
+                  </Table.Tr>
+                  <Table.Tr>
+                    {playerData.map((player) => {
                       return (
                         <Table.Td key={player.actorIndex}>
                           <Text size="xs" fw={700}>
-                            {translateSigilId(sigil.sigilId)} (Lvl. {sigil.sigilLevel})
+                            {t("ui.player-stats")}
                           </Text>
                           <Text size="xs" fs="italic" fw={300}>
-                            {translateTraitId(sigil.firstTraitId)}
-                            {sigil.secondTraitId !== EMPTY_ID && ` / ${translateTraitId(sigil.secondTraitId)}`}
+                            {t("ui.stats.level")}: {player.playerStats?.level || 1}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t("ui.stats.total-hp")}: {player.playerStats?.totalHp || 1}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t("ui.stats.total-attack")}: {player.playerStats?.totalAttack || 1}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t("ui.stats.critical-rate")}: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t("ui.stats.stun-power")}: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t("ui.stats.total-power")}: {player.playerStats?.totalPower || 1}
                           </Text>
                         </Table.Td>
                       );
                     })}
                   </Table.Tr>
-                ))}
-              </Table.Tbody>
-            </Table>
-          </Group>
-        </Tabs.Panel>
-      </Tabs>
+                  <Table.Tr>
+                    {playerData.map((player) => {
+                      const overmasteries = player.overmasteryInfo?.overmasteries || [];
+
+                      return (
+                        <Table.Td key={player.actorIndex}>
+                          <Text size="xs" fw={700}>
+                            {t("ui.player-overmasteries")}
+                          </Text>
+                          {Array.from(Array(4).keys()).map((overmasteryIndex) => {
+                            const overmastery = overmasteries[overmasteryIndex];
+
+                            return (
+                              <Placeholder key={overmasteryIndex} empty={!overmastery || overmastery.value === 0}>
+                                <Text size="xs" fs="italic" fw={300}>
+                                  {formatOvermastery(overmastery)}
+                                </Text>
+                              </Placeholder>
+                            );
+                          })}
+                        </Table.Td>
+                      );
+                    })}
+                  </Table.Tr>
+                  <Table.Tr>
+                    {playerData.map((player) => {
+                      return (
+                        <Table.Td key={player.actorIndex}>
+                          <Text size="xs" fw={700}>
+                            {t("ui.weapon")}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {createWeaponStars(player.weaponInfo?.starLevel || 0)}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            {t([`weapons:${toHashString(player.weaponInfo?.weaponId)}.text`, "unknown"])} +
+                            {player.weaponInfo?.plusMarks}
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            Awakening {player.weaponInfo?.awakeningLevel || 0}/10
+                          </Text>
+                          <Text size="xs" fs="italic" fw={300}>
+                            Lvl {player.weaponInfo?.weaponLevel || 0} / ATK {player.weaponInfo?.weaponAttack || 0} / HP{" "}
+                            {player.weaponInfo?.weaponHp || 0}
+                          </Text>
+                          <Text size="xs" fw={700}>
+                            {translateItemId(player.weaponInfo?.wrightstoneId || EMPTY_ID)}
+                          </Text>
+                          <Placeholder empty={!player.weaponInfo?.trait1Id || player.weaponInfo?.trait1Level == 0}>
+                            <Text size="xs" fs="italic" fw={300}>
+                              - {translateTraitId(player.weaponInfo?.trait1Id || EMPTY_ID)} (Lvl.{" "}
+                              {player.weaponInfo?.trait1Level})
+                            </Text>
+                          </Placeholder>
+                          <Placeholder empty={!player.weaponInfo?.trait2Id || player.weaponInfo?.trait2Level == 0}>
+                            <Text size="xs" fs="italic" fw={300}>
+                              - {translateTraitId(player.weaponInfo?.trait2Id || EMPTY_ID)} (Lvl.{" "}
+                              {player.weaponInfo?.trait2Level})
+                            </Text>
+                          </Placeholder>
+                          <Placeholder empty={!player.weaponInfo?.trait3Id || player.weaponInfo?.trait3Level == 0}>
+                            <Text size="xs" fs="italic" fw={300}>
+                              - {translateTraitId(player.weaponInfo?.trait3Id || EMPTY_ID)} (Lvl.{" "}
+                              {player.weaponInfo?.trait3Level})
+                            </Text>
+                          </Placeholder>
+                        </Table.Td>
+                      );
+                    })}
+                  </Table.Tr>
+                  {Array.from(Array(12).keys()).map((sigilIndex) => (
+                    <Table.Tr key={sigilIndex}>
+                      {playerData.map((player) => {
+                        const sigil = player.sigils[sigilIndex];
+
+                        if (!sigil || sigil.sigilId === EMPTY_ID) {
+                          return (
+                            <Table.Td key={player.actorIndex}>
+                              <Placeholder empty />
+                            </Table.Td>
+                          );
+                        }
+
+                        return (
+                          <Table.Td key={player.actorIndex}>
+                            <Text size="xs" fw={700}>
+                              {translateSigilId(sigil.sigilId)} (Lvl. {sigil.sigilLevel})
+                            </Text>
+                            <Text size="xs" fs="italic" fw={300}>
+                              {translateTraitId(sigil.firstTraitId)}
+                              {sigil.secondTraitId !== EMPTY_ID && ` / ${translateTraitId(sigil.secondTraitId)}`}
+                            </Text>
+                          </Table.Td>
+                        );
+                      })}
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
+            </Group>
+          </Tabs.Panel>
+        </Tabs>
+      </Box>
     </Box>
   );
 };
