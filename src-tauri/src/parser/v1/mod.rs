@@ -274,12 +274,8 @@ impl PlayerState {
             // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
             PET_NORMAL
         } else if is_ferry_pet_skill {
-            // An attempt to fix misattribution for pet skills that work in the background
-            // it can still misattribute one pet skill for another depending on how you cancel your skills
-            // but it should no longer attribute a pet skill to dodging or your Launch attack
-            // only complete fix I see would be to classify skill damage by pet name rather than skill name (e.g. Beppo - Skill vs. Strafe)
             match self.last_known_pet_skill {
-                None => PET_NORMAL,  // May be good to have a separate "pet skill" backup
+                None => PET_NORMAL,  // May be good to instead have a separate "pet skill" backup for this case
                 Some(skill_id) => skill_id,
             }
         } else {
