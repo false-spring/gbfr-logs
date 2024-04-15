@@ -256,28 +256,23 @@ impl PlayerState {
     fn get_action_from_ferry_damage_event(&mut self, event: &DamageEvent) -> ActionType {
         // Ferry needs special handling because the action_id that comes back for pet skills is usually wrong
         // e.g. if you strafe then dodge the action_id for further hits comes back as "dodge"
-        let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
-        let child_character_type = CharacterType::from_hash(event.source.actor_type);
-
-        let is_ferry_pet = parent_character_type != child_character_type;
+        let is_ferry_pet = CharacterType::Pl0700Ghost == CharacterType::from_hash(event.source.actor_type);
         let is_ferry_pet_skill = is_ferry_pet && (event.flags & (1 << 2) != 0);  // pet skills for ferry always have this flag set
         let is_ferry_pet_normal = is_ferry_pet && !is_ferry_pet_skill && event.action_id != ActionType::LinkAttack;
+
+        // Umlauf excluded since that uses a separate actor which works correctly
         if is_ferry_pet_skill && vec![
             FerrySkillId::BlausGespenst,
-            FerrySkillId::SicEmGeeGee,
             FerrySkillId::Pendel,
             FerrySkillId::Strafe,
         ].into_iter().any(|skill_id| ActionType::Normal(skill_id as u32) == event.action_id) {
             self.last_known_pet_skill = Some(event.action_id);
         }
-        const UMLAUF: ActionType = ActionType::Normal(FerrySkillId::Umlauf as u32);
         const PET_NORMAL: ActionType = ActionType::Normal(FerrySkillId::PetNormal as u32);
         let action = if is_ferry_pet_normal {
             // Note technically the pet portion of Onslaught will count as a Pet normal, but I think that's fine since
             // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
             PET_NORMAL
-        } else if is_ferry_pet_skill && event.action_id == UMLAUF {  // Umlauf is the one skill that has working damage attribution
-            UMLAUF
         } else if is_ferry_pet_skill {
             // An attempt to fix misattribution for pet skills that work in the background
             // it can still misattribute one pet skill for another depending on how you cancel your skills

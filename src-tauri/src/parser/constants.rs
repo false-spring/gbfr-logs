@@ -110,9 +110,7 @@ impl EnemyType {
 pub enum FerrySkillId {
     PetNormal = 65u32,
     BlausGespenst = 1100u32,
-    SicEmGeeGee = 1210u32,
     Pendel = 1400u32,
     Strafe = 1500u32,
-    Umlauf = 1700u32,
 }
 
