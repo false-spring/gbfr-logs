@@ -18,6 +18,7 @@
     "copy-to-clipboard-full": "Copy to Clipboard (full)",
     "copy-screenshot-to-clipboard": "Copy Screenshot to Clipboard",
     "copy-character-data-to-clipboard": "Copy Character Data to Clipboard (JSON)",
+    "open-damage-calculator": "Open Damage Calculator with Build",
     "copied-to-clipboard": "Copied to clipboard",
     "export-damage-log": "Export Damage Log to File",
     "player-1-color": "Bar Color - Player 1",

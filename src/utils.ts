@@ -1,4 +1,6 @@
+import { open } from "@tauri-apps/api/shell";
 import html2canvas from "html2canvas";
+import * as jsurl from "jsurl";
 import toast from "react-hot-toast";
 import {
   CharacterType,
@@ -167,6 +169,13 @@ export const exportCharacterDataToClipboard = (playerData: PlayerData) => {
   navigator.clipboard.writeText(JSON.stringify(playerData)).then(() => {
     toast.success(t("ui.copied-to-clipboard"));
   });
+};
+
+/// Exports the character data to the the Relink Damage Calculator application.
+export const openDamageCalculator = (playerData: PlayerData) => {
+  const data = jsurl.stringify(playerData);
+
+  open(`https://relink-damage.vercel.app/?logsdata=${data}`);
 };
 
 /// Exports the encounter data to the clipboard in a simple format (CSV)

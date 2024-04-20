@@ -16,7 +16,7 @@ import {
   Text,
   Tooltip,
 } from "@mantine/core";
-import { ClipboardText } from "@phosphor-icons/react";
+import { Calculator, ClipboardText } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
@@ -46,6 +46,7 @@ import {
   formatInPartyOrder,
   humanizeNumbers,
   millisecondsToElapsedFormat,
+  openDamageCalculator,
   toHash,
   toHashString,
   translateItemId,
@@ -214,6 +215,10 @@ export const ViewPage = () => {
 
   const handleCharacterDataCopy = useCallback((player: PlayerData) => {
     if (player) exportCharacterDataToClipboard(player);
+  }, []);
+
+  const handleOpenDamageCalculator = useCallback((player: PlayerData) => {
+    if (player) openDamageCalculator(player);
   }, []);
 
   const handleSimpleEncounterCopy = useCallback(() => {
@@ -560,6 +565,16 @@ export const ViewPage = () => {
                                 onClick={() => handleCharacterDataCopy(player)}
                               >
                                 <ClipboardText size={16} />
+                              </ActionIcon>
+                            </Tooltip>
+                            <Tooltip label={t("ui.open-damage-calculator")} color="dark">
+                              <ActionIcon
+                                aria-label="Open build"
+                                variant="filled"
+                                color="light"
+                                onClick={() => handleOpenDamageCalculator(player)}
+                              >
+                                <Calculator size={16} />
                               </ActionIcon>
                             </Tooltip>
                           </Flex>
