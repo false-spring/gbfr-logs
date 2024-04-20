@@ -22,8 +22,8 @@ use protocol::Message;
 use rusqlite::params_from_iter;
 use serde::{Deserialize, Serialize};
 use tauri::{
-    api::dialog::blocking::FileDialogBuilder, AppHandle, CustomMenuItem, Manager, State,
-    SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
+    api::dialog::blocking::FileDialogBuilder, AppHandle, CustomMenuItem, LogicalSize, Manager,
+    Size, State, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
 };
 use tauri_plugin_log::LogTarget;
 use tauri_plugin_window_state::{AppHandleExt, StateFlags};
@@ -537,6 +537,7 @@ fn system_tray_with_menu() -> SystemTray {
     let logs = CustomMenuItem::new("open_logs", "Open Logs");
     let always_on_top = CustomMenuItem::new("always_on_top", "Always on top ✓");
     let toggle_clickthrough = CustomMenuItem::new("toggle_clickthrough", "Clickthrough");
+    let reset_windows = CustomMenuItem::new("reset_windows", "Reset Windows");
     let quit = CustomMenuItem::new("quit", "Quit");
 
     let menu = SystemTrayMenu::new()
@@ -544,6 +545,7 @@ fn system_tray_with_menu() -> SystemTray {
         .add_item(logs)
         .add_item(always_on_top)
         .add_item(toggle_clickthrough)
+        .add_item(reset_windows)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
 
@@ -618,6 +620,25 @@ fn menu_tray_handler(handle: &AppHandle, event: SystemTrayEvent) {
                 handle.get_window("main").unwrap(),
                 handle.state::<AlwaysOnTop>(),
             ),
+            "reset_windows" => {
+                if let Some(window) = handle.get_window("main") {
+                    let _ = window.show();
+                    let _ = window.unminimize();
+                    let _ = window.set_size(Size::Logical(LogicalSize {
+                        width: 500.0,
+                        height: 350.0,
+                    }));
+                }
+
+                if let Some(window) = handle.get_window("logs") {
+                    let _ = window.show();
+                    let _ = window.unminimize();
+                    let _ = window.set_size(Size::Logical(LogicalSize {
+                        width: 800.0,
+                        height: 600.0,
+                    }));
+                }
+            }
             "quit" => {
                 let _ = handle.save_window_state(StateFlags::all());
                 handle.exit(0)
