@@ -1,4 +1,5 @@
 use std::ffi::OsStr;
+use std::io::Write;
 use std::path::PathBuf;
 
 use anyhow::{Context, Result};
@@ -75,6 +76,8 @@ async fn setup() {
 
     #[cfg(feature = "console")]
     println!("Hook library initialized");
+
+    let _ = std::io::stdout().flush();
 
     server.run().await;
 }
