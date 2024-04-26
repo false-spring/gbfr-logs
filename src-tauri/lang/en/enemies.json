@@ -151,6 +151,10 @@
     "key": "EM1801",
     "text": "Vrazarek Firewyrm"
   },
+  "4a9e6f56": {
+    "key": "EM1700",
+    "text": "Behemoth"
+  },
   "4d2202ae": {
     "key": "EM7404",
     "text": "Spinal Core"
@@ -490,6 +494,10 @@
   "d622ed34": {
     "key": "EM0800",
     "text": "Flame Gyre"
+  },
+  "d9e45318": {
+    "key": "EM0705",
+    "text": "Ahriman"
   },
   "dbca3857": {
     "key": "EM7000",

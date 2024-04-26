@@ -27,9 +27,17 @@
     "key": "SKILL_126_00",
     "text": "Talento dello spadaccino"
   },
+  "0e42be1b": {
+    "key": "SKILL_118_02",
+    "text": "Sentiero del veterano"
+  },
   "0ead65e0": {
     "key": "SKILL_103_00",
     "text": "Difese naturali"
+  },
+  "0f026cf0": {
+    "key": "SKILL_128_02",
+    "text": "Sentiero della Furia perpetua"
   },
   "0fba47e8": {
     "key": "SKILL_133_00",
@@ -78,6 +86,10 @@
   "24883af3": {
     "key": "SKILL_073_00",
     "text": "Scorta di pozioni"
+  },
+  "281214ab": {
+    "key": "SKILL_171_03",
+    "text": "Frontiera delle due corone"
   },
   "29b07beb": {
     "key": "SKILL_127_00",
@@ -135,6 +147,10 @@
     "key": "SKILL_128_01",
     "text": "Etica della Furia perpetua"
   },
+  "48a95b8d": {
+    "key": "SKILL_166_00",
+    "text": "Egida suprema"
+  },
   "4bf2e191": {
     "key": "SKILL_138_00",
     "text": "Resistenza ATT↓"
@@ -142,6 +158,10 @@
   "4c588c27": {
     "key": "SKILL_146_00",
     "text": "Elementale della guerra"
+  },
+  "4f135217": {
+    "key": "SKILL_131_02",
+    "text": "Sentiero cremisi"
   },
   "4f1a3683": {
     "key": "SKILL_029_00",
@@ -187,6 +207,10 @@
     "key": "SKILL_066_00",
     "text": "Rigenerazione"
   },
+  "6316cbeb": {
+    "key": "SKILL_121_02",
+    "text": "Sentiero del Drago Bianco"
+  },
   "66de60b1": {
     "key": "SKILL_139_00",
     "text": "Resistenza DIF↓"
@@ -223,9 +247,17 @@
     "key": "SKILL_144_00",
     "text": "Fortezza"
   },
+  "77c809f5": {
+    "key": "SKILL_170_00",
+    "text": "Adunata dello spirito"
+  },
   "7ad0c010": {
     "key": "SKILL_130_01",
     "text": "Accensione di Alteris"
+  },
+  "7b4fc47a": {
+    "key": "SKILL_170_02",
+    "text": "Sentiero dello spirito"
   },
   "7c2e4d64": {
     "key": "SKILL_064_00",
@@ -243,6 +275,10 @@
     "key": "SKILL_109_00",
     "text": "Collera precisa"
   },
+  "81b293d9": {
+    "key": "SKILL_171_02",
+    "text": "Sentiero della cacciatrice"
+  },
   "82ce278d": {
     "key": "SKILL_152_00",
     "text": "Parsimonia"
@@ -250,6 +286,14 @@
   "84078cb0": {
     "key": "SKILL_111_00",
     "text": "Carica veloce"
+  },
+  "8519ad4a": {
+    "key": "SKILL_119_02",
+    "text": "Sentiero della rosa"
+  },
+  "8572b8af": {
+    "key": "SKILL_171_01",
+    "text": "Picco della cacciatrice"
   },
   "86cbcdc4": {
     "key": "SKILL_124_00",
@@ -283,6 +327,10 @@
     "key": "SKILL_118_01",
     "text": "Visione del veterano"
   },
+  "9230e3f5": {
+    "key": "SKILL_170_01",
+    "text": "Furia dello spirito"
+  },
   "9389cc06": {
     "key": "SKILL_065_00",
     "text": "Cura migliorata"
@@ -311,6 +359,10 @@
     "key": "SKILL_142_00",
     "text": "Settima rete"
   },
+  "9afdfa9e": {
+    "key": "SKILL_115_02",
+    "text": "Sentiero della guardiana"
+  },
   "a1a8e39d": {
     "key": "SKILL_044_00",
     "text": "Cuore impavido"
@@ -318,6 +370,10 @@
   "a2fa9685": {
     "key": "SKILL_086_00",
     "text": "Resistenza Rallentamento"
+  },
+  "a339d642": {
+    "key": "SKILL_120_02",
+    "text": "Sentiero della fantasma"
   },
   "a374fdf0": {
     "key": "SKILL_116_01",
@@ -367,6 +423,10 @@
     "key": "SKILL_150_00",
     "text": "Intoccabile"
   },
+  "b064a634": {
+    "key": "SKILL_130_02",
+    "text": "Cuore di Alteris"
+  },
   "b360801d": {
     "key": "SKILL_018_00",
     "text": "Fuoco concentrato"
@@ -383,6 +443,18 @@
     "key": "SKILL_087_00",
     "text": "Postura salda"
   },
+  "b85202bc": {
+    "key": "SKILL_125_02",
+    "text": "Sentiero della paladina"
+  },
+  "ba504607": {
+    "key": "SKILL_123_02",
+    "text": "Sentiero del signore"
+  },
+  "c00163b3": {
+    "key": "SKILL_117_02",
+    "text": "Sentiero della maga"
+  },
   "c0979a17": {
     "key": "SKILL_013_00",
     "text": "Danni critici"
@@ -394,6 +466,10 @@
   "c35b111b": {
     "key": "SKILL_028_00",
     "text": "Carica fortunata"
+  },
+  "c7d379f1": {
+    "key": "SKILL_124_02",
+    "text": "Sentiero dello sterminadraghi"
   },
   "c86f3082": {
     "key": "SKILL_080_00",
@@ -431,13 +507,37 @@
     "key": "SKILL_106_00",
     "text": "Assalto fulmineo"
   },
+  "d3b8c21f": {
+    "key": "SKILL_164_00",
+    "text": "Ammirazione del granchio"
+  },
   "d54f8ca7": {
     "key": "SKILL_051_00",
     "text": "Resistenza Insabbiamento"
   },
+  "d76f4d24": {
+    "key": "SKILL_116_02",
+    "text": "Sentiero del timoniere"
+  },
+  "d7f9bb88": {
+    "key": "SKILL_132_02",
+    "text": "Sentiero d'ebano"
+  },
+  "d8f66c1c": {
+    "key": "SKILL_122_02",
+    "text": "Sentiero dell'eroe"
+  },
   "d908223d": {
     "key": "SKILL_120_00",
     "text": "Concordia spettrale"
+  },
+  "dade14dc": {
+    "key": "SKILL_114_02",
+    "text": "Cuore intrepido"
+  },
+  "daefbb27": {
+    "key": "SKILL_126_02",
+    "text": "Sentiero dello spadaccino"
   },
   "dbe1d775": {
     "key": "SKILL_160_00",
@@ -471,9 +571,17 @@
     "key": "SKILL_045_00",
     "text": "Coraggio"
   },
+  "e6b92e34": {
+    "key": "SKILL_129_02",
+    "text": "Sentiero della fondatrice"
+  },
   "e6cdba9c": {
     "key": "SKILL_036_00",
     "text": "Presidio"
+  },
+  "e85ff8e0": {
+    "key": "SKILL_171_00",
+    "text": "Raffica della cacciatrice"
   },
   "eae321eb": {
     "key": "SKILL_083_00",
@@ -486,6 +594,10 @@
   "ec3cf174": {
     "key": "SKILL_129_00",
     "text": "Strategia fondante"
+  },
+  "ef05ec4d": {
+    "key": "SKILL_170_03",
+    "text": "Frontiera delle sette stelle"
   },
   "f17850b9": {
     "key": "SKILL_024_00",
@@ -503,6 +615,10 @@
     "key": "SKILL_079_00",
     "text": "Apprendimento veloce"
   },
+  "f71f8997": {
+    "key": "SKILL_167_00",
+    "text": "Pozione automatica"
+  },
   "f8496336": {
     "key": "SKILL_115_01",
     "text": "Onore della guardiana"
@@ -510,5 +626,9 @@
   "fb572681": {
     "key": "SKILL_052_00",
     "text": "Resistenza Glaciazione"
+  },
+  "fdd1ad24": {
+    "key": "SKILL_127_02",
+    "text": "Sentiero della farfalla"
   }
 }

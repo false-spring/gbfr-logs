@@ -151,6 +151,10 @@
     "key": "EM1801",
     "text": "Drake de feu Vrazarek"
   },
+  "4a9e6f56": {
+    "key": "EM1700",
+    "text": "Béhémoth"
+  },
   "4d2202ae": {
     "key": "EM7404",
     "text": "Noyau vertébral"
@@ -474,6 +478,10 @@
   "d622ed34": {
     "key": "EM0800",
     "text": "Noyau enflammé"
+  },
+  "d9e45318": {
+    "key": "EM0705",
+    "text": "Ahriman"
   },
   "dbca3857": {
     "key": "EM7000",
