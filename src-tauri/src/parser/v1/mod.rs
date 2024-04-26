@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 use tauri::Window;
 
 use super::{
-    constants::{CharacterType, EnemyType},
+    constants::{CharacterType, EnemyType, FerrySkillId},
     v0,
 };
 
@@ -237,6 +237,7 @@ pub struct PlayerState {
     pub index: u32,
     character_type: CharacterType,
     total_damage: u64,
+    last_known_pet_skill: Option<ActionType>,  // used for Ferry's skills that don't keep track of where they came from
     dps: f64,
     skill_breakdown: Vec<SkillState>,
     sba: f64,
@@ -251,16 +252,49 @@ impl PlayerState {
         self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
     }
 
+    // @todo(false): maybe Ferry specific stuff can be removed/abstracted if some extra flags are found or the attribution is fixed
+    fn get_action_from_ferry_damage_event(&mut self, event: &DamageEvent) -> ActionType {
+        // Ferry needs special handling because the action_id that comes back for pet skills is usually wrong
+        // e.g. if you strafe then dodge the action_id for further hits comes back as "dodge"
+        let is_ferry_pet = CharacterType::Pl0700Ghost == CharacterType::from_hash(event.source.actor_type);
+        let is_ferry_pet_skill = is_ferry_pet && (event.flags & (1 << 2) != 0);  // pet skills for ferry always have this flag set
+        let is_ferry_pet_normal = is_ferry_pet && !is_ferry_pet_skill && event.action_id != ActionType::LinkAttack;
+
+        // Umlauf excluded since that uses a separate actor which works correctly
+        if is_ferry_pet_skill && vec![
+            FerrySkillId::BlausGespenst,
+            FerrySkillId::Pendel,
+            FerrySkillId::Strafe,
+        ].into_iter().any(|skill_id| ActionType::Normal(skill_id as u32) == event.action_id) {
+            self.last_known_pet_skill = Some(event.action_id);
+        }
+        const PET_NORMAL: ActionType = ActionType::Normal(FerrySkillId::PetNormal as u32);
+        let action = if is_ferry_pet_normal {
+            // Note technically the pet portion of Onslaught will count as a Pet normal, but I think that's fine since
+            // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
+            PET_NORMAL
+        } else if is_ferry_pet_skill {
+            match self.last_known_pet_skill {
+                None => PET_NORMAL,  // May be good to instead have a separate "pet skill" backup for this case
+                Some(skill_id) => skill_id,
+            }
+        } else {
+            event.action_id
+        };
+        return action;
+    }
+
     fn update_from_damage_event(&mut self, event: &DamageEvent) {
         self.total_damage += event.damage as u64;
 
         let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
+        let child_character_type = CharacterType::from_hash(event.source.actor_type);
 
-        // @TODO(false): This is temporarily fixing Ferry's pets overwriting Ferry's actions.
-        let child_character_type = if parent_character_type == CharacterType::Pl0700 {
-            parent_character_type
+        // for ferry defer to special function to handle the weird way her pets work
+        let action = if parent_character_type == CharacterType::Pl0700 {
+            self.get_action_from_ferry_damage_event(event)
         } else {
-            CharacterType::from_hash(event.source.actor_type)
+            event.action_id
         };
 
         // If the skill is already being tracked, update it.
@@ -270,7 +304,7 @@ impl PlayerState {
                 skill.action_type,
                 protocol::ActionType::SupplementaryDamage(_)
             ) && matches!(
-                event.action_id,
+                action,
                 protocol::ActionType::SupplementaryDamage(_)
             ) {
                 skill.update_from_damage_event(event);
@@ -278,7 +312,7 @@ impl PlayerState {
             }
 
             // If the skill is already being tracked, update it.
-            if skill.action_type == event.action_id
+            if skill.action_type == action
                 && skill.child_character_type == child_character_type
             {
                 skill.update_from_damage_event(event);
@@ -287,7 +321,7 @@ impl PlayerState {
         }
 
         // Otherwise, create a new skill and track it.
-        let mut skill = SkillState::new(event.action_id, child_character_type);
+        let mut skill = SkillState::new(action, child_character_type);
 
         skill.update_from_damage_event(event);
         self.skill_breakdown.push(skill);
@@ -454,6 +488,7 @@ impl DerivedEncounterState {
                 dps: 0.0,
                 sba: 0.0,
                 skill_breakdown: Vec::new(),
+                last_known_pet_skill: None,
             });
 
         // Update player stats from damage event.
