@@ -43,6 +43,10 @@
     "key": "ITEM_27_9999",
     "text": "Pietraforgia della fortificazione"
   },
+  "0f34eabc": {
+    "key": "ITEM_32_0042",
+    "text": "Corona del lamento"
+  },
   "0f479fa7": {
     "key": "ITEM_16_0000",
     "text": "Urna di eliotropio"
@@ -239,6 +243,14 @@
     "key": "ITEM_13_0000",
     "text": "Pozione verde"
   },
+  "3ae09b39": {
+    "key": "ITEM_32_0043",
+    "text": "Lancia del rancore"
+  },
+  "3c3b449f": {
+    "key": "ITEM_32_0041",
+    "text": "Ala del portento"
+  },
   "3e0269bd": {
     "key": "ITEM_26_0030",
     "text": "Pietraforgia della prosperità"
@@ -343,6 +355,10 @@
     "key": "ITEM_32_0050",
     "text": "Puntacava antica"
   },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Pacchetto colori 4"
+  },
   "5c07839a": {
     "key": "ITEM_14_0032",
     "text": "Stemma di Dalia d'oro"
@@ -363,6 +379,10 @@
     "key": "ITEM_16_0012",
     "text": "Nucleo di Chronos"
   },
+  "60cb5ea6": {
+    "key": "ITEM_14_0050",
+    "text": "Medaglione redivivo"
+  },
   "60fd93bd": {
     "key": "ITEM_27_0030",
     "text": "Pietraforgia della fortificazione"
@@ -382,6 +402,10 @@
   "648cda74": {
     "key": "ITEM_11_0001",
     "text": "Manuale di magia d'argento"
+  },
+  "659230f4": {
+    "key": "ITEM_14_0051",
+    "text": "Essenza di arma suprema"
   },
   "65c8078d": {
     "key": "ITEM_09_0022",
@@ -530,6 +554,10 @@
   "82c111c8": {
     "key": "ITEM_32_0053",
     "text": "Corno terrestre"
+  },
+  "8572b2ce": {
+    "key": "ITEM_23_0001",
+    "text": "Carta compagno: Seofon"
   },
   "8682c2ac": {
     "key": "ITEM_80_0001",
@@ -778,6 +806,10 @@
   "bee8897d": {
     "key": "ITEM_22_0000",
     "text": "Scaglia di drago"
+  },
+  "c037d7f0": {
+    "key": "ITEM_32_0040",
+    "text": "Unghia della morte"
   },
   "c05ca6a1": {
     "key": "ITEM_09_0000",
@@ -1066,6 +1098,10 @@
   "fa737b89": {
     "key": "ITEM_02_0050",
     "text": "Scheggia di luce"
+  },
+  "fe52f7cb": {
+    "key": "ITEM_23_0002",
+    "text": "Carta compagno: Tweyen"
   },
   "feeafccf": {
     "key": "ITEM_01_0062",

@@ -43,6 +43,10 @@
     "key": "ITEM_27_9999",
     "text": "Pedra-artífice da Fortificação"
   },
+  "0f34eabc": {
+    "key": "ITEM_32_0042",
+    "text": "Coroa do Lamento"
+  },
   "0f479fa7": {
     "key": "ITEM_16_0000",
     "text": "Urna de Heliotrópio"
@@ -61,7 +65,7 @@
   },
   "11a1b6b3": {
     "key": "ITEM_25_0011",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "131a4636": {
     "key": "ITEM_50_0008",
@@ -185,11 +189,11 @@
   },
   "2a2ea603": {
     "key": "ITEM_25_0030",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "2c8fa06c": {
     "key": "ITEM_25_9999",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "2cdfa192": {
     "key": "ITEM_26_0012",
@@ -238,6 +242,14 @@
   "3916849c": {
     "key": "ITEM_13_0000",
     "text": "Poção Verde"
+  },
+  "3ae09b39": {
+    "key": "ITEM_32_0043",
+    "text": "Chifre Rancoroso"
+  },
+  "3c3b449f": {
+    "key": "ITEM_32_0041",
+    "text": "Asa de Portento"
   },
   "3e0269bd": {
     "key": "ITEM_26_0030",
@@ -297,7 +309,7 @@
   },
   "4e3989b8": {
     "key": "ITEM_25_0012",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "4f1e4c13": {
     "key": "ITEM_03_0001",
@@ -333,7 +345,7 @@
   },
   "55d1b23f": {
     "key": "ITEM_25_1003",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "5942c5fb": {
     "key": "ITEM_70_0005",
@@ -342,6 +354,10 @@
   "5a5fa153": {
     "key": "ITEM_32_0050",
     "text": "Cornamenta Ancestral"
+  },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Pacote de Cor de Personagem 4"
   },
   "5c07839a": {
     "key": "ITEM_14_0032",
@@ -363,6 +379,10 @@
     "key": "ITEM_16_0012",
     "text": "Núcleo de Chronos"
   },
+  "60cb5ea6": {
+    "key": "ITEM_14_0050",
+    "text": "Medalhão Espectral"
+  },
   "60fd93bd": {
     "key": "ITEM_27_0030",
     "text": "Pedra-artífice da Fortificação"
@@ -382,6 +402,10 @@
   "648cda74": {
     "key": "ITEM_11_0001",
     "text": "Grimório de Prata"
+  },
+  "659230f4": {
+    "key": "ITEM_14_0051",
+    "text": "Essência da Arma Suprema"
   },
   "65c8078d": {
     "key": "ITEM_09_0022",
@@ -531,6 +555,10 @@
     "key": "ITEM_32_0053",
     "text": "Chifre da Terra"
   },
+  "8572b2ce": {
+    "key": "ITEM_23_0001",
+    "text": "Cartão de Tripulação: Seofon"
+  },
   "8682c2ac": {
     "key": "ITEM_80_0001",
     "text": "Chave de Lazulita"
@@ -557,7 +585,7 @@
   },
   "8d101b82": {
     "key": "ITEM_25_1002",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "8db0b117": {
     "key": "ITEM_28_9999",
@@ -581,7 +609,7 @@
   },
   "91ccbc0f": {
     "key": "ITEM_22_0051",
-    "text": "Orbe de Serpe do Vento"
+    "text": "Orbe de Serpe de Vento"
   },
   "926d4ae9": {
     "key": "ITEM_01_0031",
@@ -697,11 +725,11 @@
   },
   "a90975b8": {
     "key": "ITEM_25_1000",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "aa4626f6": {
     "key": "ITEM_25_0020",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "aab4c91a": {
     "key": "ITEM_28_0012",
@@ -709,7 +737,7 @@
   },
   "aae10c28": {
     "key": "ITEM_25_0010",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "aba63a29": {
     "key": "ITEM_02_0040",
@@ -769,7 +797,7 @@
   },
   "bb731907": {
     "key": "ITEM_25_0000",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "bc413b80": {
     "key": "ITEM_05_0000",
@@ -779,13 +807,17 @@
     "key": "ITEM_22_0000",
     "text": "Escama de Dragão"
   },
+  "c037d7f0": {
+    "key": "ITEM_32_0040",
+    "text": "Garra da Morte"
+  },
   "c05ca6a1": {
     "key": "ITEM_09_0000",
     "text": "Orgulho do Protetor"
   },
   "c1481583": {
     "key": "ITEM_25_0001",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "c1dcb7ae": {
     "key": "ITEM_32_0081",
@@ -841,7 +873,7 @@
   },
   "cdde3137": {
     "key": "ITEM_22_0041",
-    "text": "Orbe de Serpe da Terra"
+    "text": "Orbe de Serpe de Terra"
   },
   "ce0b379e": {
     "key": "ITEM_50_0010",
@@ -897,7 +929,7 @@
   },
   "d9d98ed6": {
     "key": "ITEM_17_0021",
-    "text": "Material Sombrio Fundido de Nihilla"
+    "text": "Plasma Sombrio de Nihilla"
   },
   "db1d4f35": {
     "key": "ITEM_01_0000",
@@ -933,7 +965,7 @@
   },
   "e3adb298": {
     "key": "ITEM_25_1001",
-    "text": "Pedra-artífice do Medo"
+    "text": "Pedra-artífice do Terror"
   },
   "e4070e98": {
     "key": "ITEM_31_0002",
@@ -1066,6 +1098,10 @@
   "fa737b89": {
     "key": "ITEM_02_0050",
     "text": "Fragmento de Luz"
+  },
+  "fe52f7cb": {
+    "key": "ITEM_23_0002",
+    "text": "Cartão de Tripulação: Tweyen"
   },
   "feeafccf": {
     "key": "ITEM_01_0062",

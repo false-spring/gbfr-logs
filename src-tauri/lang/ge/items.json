@@ -1,7 +1,7 @@
 {
   "000eb8f5": {
     "key": "ITEM_31_0090",
-    "text": "Kopfschmuck des Häuptlings"
+    "text": "Zopf des Häuptlings"
   },
   "01eaa064": {
     "key": "ITEM_16_0001",
@@ -42,6 +42,10 @@
   "0b8d0865": {
     "key": "ITEM_27_9999",
     "text": "Lichtstein (Verstärkung)"
+  },
+  "0f34eabc": {
+    "key": "ITEM_32_0042",
+    "text": "Krone der Klage"
   },
   "0f479fa7": {
     "key": "ITEM_16_0000",
@@ -239,6 +243,14 @@
     "key": "ITEM_13_0000",
     "text": "Grüner Trank"
   },
+  "3ae09b39": {
+    "key": "ITEM_32_0043",
+    "text": "Boshaftes Horn"
+  },
+  "3c3b449f": {
+    "key": "ITEM_32_0041",
+    "text": "Schwingen der Vorahnung"
+  },
   "3e0269bd": {
     "key": "ITEM_26_0030",
     "text": "Lichtstein (Lebenskraft)"
@@ -343,6 +355,10 @@
     "key": "ITEM_32_0050",
     "text": "Antike Hohlspitze"
   },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Charakterfarbenpaket 4"
+  },
   "5c07839a": {
     "key": "ITEM_14_0032",
     "text": "Golddahlienabzeichen"
@@ -363,6 +379,10 @@
     "key": "ITEM_16_0012",
     "text": "Chronoskern"
   },
+  "60cb5ea6": {
+    "key": "ITEM_14_0050",
+    "text": "Wiedergänger-Medaillon"
+  },
   "60fd93bd": {
     "key": "ITEM_27_0030",
     "text": "Lichtstein (Verstärkung)"
@@ -382,6 +402,10 @@
   "648cda74": {
     "key": "ITEM_11_0001",
     "text": "Silber-Zauberbuch"
+  },
+  "659230f4": {
+    "key": "ITEM_14_0051",
+    "text": "Überlegene Waffenessenz"
   },
   "65c8078d": {
     "key": "ITEM_09_0022",
@@ -530,6 +554,10 @@
   "82c111c8": {
     "key": "ITEM_32_0053",
     "text": "Terra-Horn"
+  },
+  "8572b2ce": {
+    "key": "ITEM_23_0001",
+    "text": "Crewmitgliedskarte: Seofon"
   },
   "8682c2ac": {
     "key": "ITEM_80_0001",
@@ -778,6 +806,10 @@
   "bee8897d": {
     "key": "ITEM_22_0000",
     "text": "Drachenschuppe"
+  },
+  "c037d7f0": {
+    "key": "ITEM_32_0040",
+    "text": "Todesnagel"
   },
   "c05ca6a1": {
     "key": "ITEM_09_0000",
@@ -1066,6 +1098,10 @@
   "fa737b89": {
     "key": "ITEM_02_0050",
     "text": "Lichtsplitter"
+  },
+  "fe52f7cb": {
+    "key": "ITEM_23_0002",
+    "text": "Crewmitgliedskarte: Tweyen"
   },
   "feeafccf": {
     "key": "ITEM_01_0062",

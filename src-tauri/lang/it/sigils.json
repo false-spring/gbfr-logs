@@ -873,7 +873,7 @@
   },
   "57b6d9a5": {
     "key": "GEEN_058_03",
-    "text": "Protezione AC sigillata IV"
+    "text": "Resistenza AC sigillata IV"
   },
   "57d2caf2": {
     "key": "GEEN_154_22",
@@ -1477,7 +1477,7 @@
   },
   "94b33570": {
     "key": "GEEN_058_01",
-    "text": "Protezione AC sigillata II"
+    "text": "Resistenza AC sigillata II"
   },
   "94c2d5b3": {
     "key": "GEEN_145_02",
@@ -1649,7 +1649,7 @@
   },
   "a1e5c919": {
     "key": "GEEN_058_00",
-    "text": "Protezione AC sigillata I"
+    "text": "Resistenza AC sigillata I"
   },
   "a224a830": {
     "key": "GEEN_036_04",
@@ -2305,7 +2305,7 @@
   },
   "df4a666e": {
     "key": "GEEN_058_04",
-    "text": "Protezione AC sigillata V"
+    "text": "Resistenza AC sigillata V"
   },
   "df8a52fb": {
     "key": "GEEN_136_01",
@@ -2449,7 +2449,7 @@
   },
   "e9d3b6ca": {
     "key": "GEEN_058_02",
-    "text": "Protezione AC sigillata III"
+    "text": "Resistenza AC sigillata III"
   },
   "eaa911b2": {
     "key": "GEEN_130_92",

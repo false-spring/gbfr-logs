@@ -43,6 +43,10 @@
     "key": "ITEM_27_9999",
     "text": "Cristal de fortification"
   },
+  "0f34eabc": {
+    "key": "ITEM_32_0042",
+    "text": "Diadème de lamentation"
+  },
   "0f479fa7": {
     "key": "ITEM_16_0000",
     "text": "Urne d'héliotrope"
@@ -239,6 +243,14 @@
     "key": "ITEM_13_0000",
     "text": "Potion verte"
   },
+  "3ae09b39": {
+    "key": "ITEM_32_0043",
+    "text": "Pointe de rancœur"
+  },
+  "3c3b449f": {
+    "key": "ITEM_32_0041",
+    "text": "Aile sinistre"
+  },
   "3e0269bd": {
     "key": "ITEM_26_0030",
     "text": "Cristal de vitalité"
@@ -343,6 +355,10 @@
     "key": "ITEM_32_0050",
     "text": "Corne du vieux dragon"
   },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Pack de couleurs personnage 4"
+  },
   "5c07839a": {
     "key": "ITEM_14_0032",
     "text": "Insigne de Dalia en or"
@@ -363,6 +379,10 @@
     "key": "ITEM_16_0012",
     "text": "Noyau de Chronos"
   },
+  "60cb5ea6": {
+    "key": "ITEM_14_0050",
+    "text": "Médaillon éthéré"
+  },
   "60fd93bd": {
     "key": "ITEM_27_0030",
     "text": "Cristal de fortification"
@@ -382,6 +402,10 @@
   "648cda74": {
     "key": "ITEM_11_0001",
     "text": "Grimoire d'argent"
+  },
+  "659230f4": {
+    "key": "ITEM_14_0051",
+    "text": "Essence d'arme suprême"
   },
   "65c8078d": {
     "key": "ITEM_09_0022",
@@ -530,6 +554,10 @@
   "82c111c8": {
     "key": "ITEM_32_0053",
     "text": "Corne terrestre"
+  },
+  "8572b2ce": {
+    "key": "ITEM_23_0001",
+    "text": "Carte de coéquipier : Seofon"
   },
   "8682c2ac": {
     "key": "ITEM_80_0001",
@@ -779,6 +807,10 @@
     "key": "ITEM_22_0000",
     "text": "Écaille de dragon"
   },
+  "c037d7f0": {
+    "key": "ITEM_32_0040",
+    "text": "Griffe sinistre"
+  },
   "c05ca6a1": {
     "key": "ITEM_09_0000",
     "text": "Fierté du protecteur"
@@ -945,7 +977,7 @@
   },
   "e578bb85": {
     "key": "ITEM_70_0008",
-    "text": "Pierre catalyseur de Dehg"
+    "text": "Pierre-catalyseur de Dehg"
   },
   "e600be75": {
     "key": "ITEM_50_0002",
@@ -1066,6 +1098,10 @@
   "fa737b89": {
     "key": "ITEM_02_0050",
     "text": "Fragment de lumière"
+  },
+  "fe52f7cb": {
+    "key": "ITEM_23_0002",
+    "text": "Carte de coéquipier : Tweyen"
   },
   "feeafccf": {
     "key": "ITEM_01_0062",

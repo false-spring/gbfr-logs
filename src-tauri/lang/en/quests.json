@@ -519,6 +519,14 @@
     "key": "TXT_QR_300019",
     "text": "Confronted by the Past"
   },
+  "300022": {
+    "key": "TXT_QR_300022",
+    "text": "Ticking Time Bomb"
+  },
+  "300023": {
+    "key": "TXT_QR_300023",
+    "text": "A Dragon in Sheep's Clothing"
+  },
   "301000": {
     "key": "TXT_QR_301000",
     "text": "Pushing Forward"
@@ -594,6 +602,14 @@
   "301019": {
     "key": "TXT_QR_301019",
     "text": "Day of Reckoning"
+  },
+  "301022": {
+    "key": "TXT_QR_301022",
+    "text": "Righteous Execution"
+  },
+  "301023": {
+    "key": "TXT_QR_301023",
+    "text": "Clash of the Titans"
   },
   "401301": {
     "key": "TXT_QR_401301",
@@ -799,6 +815,10 @@
     "key": "TXT_QR_405305",
     "text": "Wings of Rime"
   },
+  "405308": {
+    "key": "TXT_QR_405308",
+    "text": "Gulp... So These Are the Rumored Monsters"
+  },
   "405309": {
     "key": "TXT_QR_405309",
     "text": "Assault Formation!"
@@ -1002,5 +1022,9 @@
   "407320": {
     "key": "TXT_QR_407320",
     "text": "The Final Vision"
+  },
+  "407322": {
+    "key": "TXT_QR_407322",
+    "text": "Lock Horns"
   }
 }

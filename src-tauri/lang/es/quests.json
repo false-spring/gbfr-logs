@@ -519,6 +519,14 @@
     "key": "TXT_QR_300019",
     "text": "Enfrentado al pasado"
   },
+  "300022": {
+    "key": "TXT_QR_300022",
+    "text": "Bomba de relojería"
+  },
+  "300023": {
+    "key": "TXT_QR_300023",
+    "text": "Dragón con piel de cordero"
+  },
   "301000": {
     "key": "TXT_QR_301000",
     "text": "A prueba"
@@ -594,6 +602,14 @@
   "301019": {
     "key": "TXT_QR_301019",
     "text": "El día del juicio final"
+  },
+  "301022": {
+    "key": "TXT_QR_301022",
+    "text": "Ejecución piadosa"
+  },
+  "301023": {
+    "key": "TXT_QR_301023",
+    "text": "Duelo de titanes"
   },
   "401301": {
     "key": "TXT_QR_401301",
@@ -799,6 +815,10 @@
     "key": "TXT_QR_405305",
     "text": "Alas de la escarcha"
   },
+  "405308": {
+    "key": "TXT_QR_405308",
+    "text": "No podemos hacer la vista gorda"
+  },
   "405309": {
     "key": "TXT_QR_405309",
     "text": "¡Formación de asalto!"
@@ -1002,5 +1022,9 @@
   "407320": {
     "key": "TXT_QR_407320",
     "text": "La última visión"
+  },
+  "407322": {
+    "key": "TXT_QR_407322",
+    "text": "Enfrentamiento"
   }
 }

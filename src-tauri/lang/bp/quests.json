@@ -519,6 +519,14 @@
     "key": "TXT_QR_300019",
     "text": "Confronto com o passado"
   },
+  "300022": {
+    "key": "TXT_QR_300022",
+    "text": "Bomba-relógio"
+  },
+  "300023": {
+    "key": "TXT_QR_300023",
+    "text": "Dragão em pele de cordeiro"
+  },
   "301000": {
     "key": "TXT_QR_301000",
     "text": "Sempre avançar"
@@ -594,6 +602,14 @@
   "301019": {
     "key": "TXT_QR_301019",
     "text": "Dia do acerto de contas"
+  },
+  "301022": {
+    "key": "TXT_QR_301022",
+    "text": "Execução justa"
+  },
+  "301023": {
+    "key": "TXT_QR_301023",
+    "text": "Embate dos titãs"
   },
   "401301": {
     "key": "TXT_QR_401301",
@@ -799,6 +815,10 @@
     "key": "TXT_QR_405305",
     "text": "Asas da Geada"
   },
+  "405308": {
+    "key": "TXT_QR_405308",
+    "text": "Estamos sendo observados"
+  },
   "405309": {
     "key": "TXT_QR_405309",
     "text": "Formação de ataque!"
@@ -1002,5 +1022,9 @@
   "407320": {
     "key": "TXT_QR_407320",
     "text": "A Última Visão"
+  },
+  "407322": {
+    "key": "TXT_QR_407322",
+    "text": "Cabeçada"
   }
 }
