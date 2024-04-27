@@ -174,12 +174,12 @@ export const PlayerRow = ({
     switch (column) {
       case MeterColumns.TotalDamage:
         return showFullValues
-          ? { value: player.totalDamage.toLocaleString() }
+          ? { value: (player.totalDamage || 0).toLocaleString() }
           : { value: totalDamage, unit: totalDamageUnit };
       case MeterColumns.DPS:
-        return showFullValues ? { value: player.dps.toLocaleString() } : { value: dps, unit: dpsUnit };
+        return showFullValues ? { value: (player.dps || 0).toLocaleString() } : { value: dps, unit: dpsUnit };
       case MeterColumns.DamagePercentage:
-        return { value: player.percentage.toFixed(0), unit: "%" };
+        return { value: (player.percentage || 0).toFixed(0), unit: "%" };
       case MeterColumns.SBA:
         return showFullValues
           ? { value: (player.sba / 10).toFixed(2) }
