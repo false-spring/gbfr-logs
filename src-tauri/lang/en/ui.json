@@ -740,21 +740,15 @@
       "120": "Power Strike 2",
       "121": "Finisher 2",
       "130": "Power Strike 3",
+      "131": "Finisher 3",
       "140": "Attack 3 (After P-Strike 1)",
       "141": "Attack 4 (After P-Strike 2)",
-
-      "131": "Finisher 3",
       "300": "Aerial Attack 1",
       "301": "Aerial Attack 2",
       "302": "Aerial Attack 3",
       "303": "Aerial Finisher",
       "400": "Launch",
       "410": "Aerial Barrage",
-
-
-
-
-
       "900": "Attack 1 (Avatar)",
       "901": "Attack 2 (Avatar)",
       "902": "Attack 3 (Avatar)",
@@ -777,8 +771,7 @@
       "3001": "Rotura (Avatar)",
       "6000": "Despedazar",
       "6001": "Despedazar (Avatar)",
-
-      "10000": "Spirit Swords (Projectiles)",
+      "10000": "Spirit Swords (Projectiles)"
     },
     "Pl2300": {
       "100": "Attack 1",
