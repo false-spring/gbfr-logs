@@ -279,6 +279,10 @@
     "key": "GEEN_024_03",
     "text": "Potenciador de combo IV"
   },
+  "1834c3aa": {
+    "key": "GEEN_221_94",
+    "text": "Límite de daño V+"
+  },
   "190c656d": {
     "key": "GEEN_151_13",
     "text": "Daño adicional IV+"
@@ -535,6 +539,10 @@
     "key": "GEEN_110_04",
     "text": "Desesperación V"
   },
+  "35637b96": {
+    "key": "GEEN_210_94",
+    "text": "Égida V+"
+  },
   "3564aa4d": {
     "key": "GEEN_110_12",
     "text": "Desesperación III+"
@@ -646,6 +654,10 @@
   "3c4e2fcf": {
     "key": "GEEN_003_12",
     "text": "Probabilidad de crítico III+"
+  },
+  "3d5e4678": {
+    "key": "GEEN_171_04",
+    "text": "Salva de la cazadora umbría"
   },
   "3d8d9109": {
     "key": "GEEN_122_64",
@@ -1038,6 +1050,10 @@
   "65150a03": {
     "key": "GEEN_068_00",
     "text": "Revivir automáticamente I"
+  },
+  "65b73b3f": {
+    "key": "GEEN_222_94",
+    "text": "Botica V+"
   },
   "6674c639": {
     "key": "GEEN_131_64",
@@ -1507,6 +1523,10 @@
     "key": "GEEN_028_03",
     "text": "Carga afortunada IV"
   },
+  "8ecbb0a3": {
+    "key": "GEEN_171_90",
+    "text": "Despertar de cazadora umbría+"
+  },
   "8f0329fc": {
     "key": "GEEN_008_12",
     "text": "Ataque cargado III+"
@@ -1723,6 +1743,10 @@
     "key": "GEEN_024_22",
     "text": "Potenciador de combo III+"
   },
+  "9e79aa31": {
+    "key": "GEEN_213_94",
+    "text": "Protección mejorada V+"
+  },
   "9f08f697": {
     "key": "GEEN_116_91",
     "text": "Pericia de timonel+"
@@ -1902,6 +1926,10 @@
   "abfa79f2": {
     "key": "GEEN_133_02",
     "text": "Perla fortificante"
+  },
+  "ac2ed9a4": {
+    "key": "GEEN_220_94",
+    "text": "Retirada estratégica+"
   },
   "ac7822a4": {
     "key": "GEEN_047_04",
@@ -2278,6 +2306,10 @@
   "ce16d68b": {
     "key": "GEEN_128_90",
     "text": "Despertar de la Furia eterna+"
+  },
+  "ce8aa073": {
+    "key": "GEEN_212_94",
+    "text": "Daño adicional V+"
   },
   "cee9dd46": {
     "key": "GEEN_153_02",
@@ -2798,6 +2830,10 @@
   "fa3db1e3": {
     "key": "GEEN_017_01",
     "text": "Remate de combo II"
+  },
+  "fa9ff841": {
+    "key": "GEEN_211_94",
+    "text": "Regeneración V+"
   },
   "fb0f9037": {
     "key": "GEEN_132_91",
