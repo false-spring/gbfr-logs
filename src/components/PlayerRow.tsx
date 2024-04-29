@@ -1,5 +1,5 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData, SkillState } from "@/types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData } from "@/types";
 import { getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { Fragment, useState } from "react";
