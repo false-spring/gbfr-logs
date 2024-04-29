@@ -111,7 +111,7 @@ const SkillBreakdown = ({ player, color}: Props) => {
 
   if (useCondensedSkills) {
     const mergedSkillMap:Map<string, ComputedSkillState> = new Map();
-    const matchRegex = /^([^(0-9]+).*/  // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
+    const matchRegex = /(.+?)(Lvl [0-9]+|[0-9]|\().*/  // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
     const groupingFn = (skillName: string) => (skillName.match(matchRegex)?.[1] ?? skillName).trim();
     computedSkills.forEach((skill) => {
       const shortName = groupingFn(skill.groupName);
