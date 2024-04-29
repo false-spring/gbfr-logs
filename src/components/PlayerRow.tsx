@@ -10,14 +10,7 @@ type Props = {
   color: string;
 };
 
-const SkillRow = ({
-  skill,
-  color,
-}: {
-  characterType: CharacterType;
-  skill: ComputedSkillState;
-  color: string;
-}) => {
+const SkillRow = ({ skill, color }: { characterType: CharacterType; skill: ComputedSkillState; color: string }) => {
   const { show_full_values } = useMeterSettingsStore(
     useShallow((state) => ({
       show_full_values: state.show_full_values,
@@ -91,8 +84,8 @@ const SkillRow = ({
   );
 };
 
-const SkillBreakdown = ({ player, color}: Props) => {
-  const {useCondensedSkills} = useMeterSettingsStore(
+const SkillBreakdown = ({ player, color }: Props) => {
+  const { useCondensedSkills } = useMeterSettingsStore(
     useShallow((state) => ({
       useCondensedSkills: state.use_condensed_skills,
     }))
@@ -110,12 +103,12 @@ const SkillBreakdown = ({ player, color}: Props) => {
   let skillsToShow = computedSkills;
 
   if (useCondensedSkills) {
-    const mergedSkillMap:Map<string, ComputedSkillState> = new Map();
-    const matchRegex = /(.+?)(Lvl [0-9]+|[0-9]|\().*/  // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
+    const mergedSkillMap: Map<string, ComputedSkillState> = new Map();
+    const matchRegex = /(.+?)(Lvl [0-9]+|[0-9]|\().*/; // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
     const groupingFn = (skillName: string) => (skillName.match(matchRegex)?.[1] ?? skillName).trim();
     computedSkills.forEach((skill) => {
       const shortName = groupingFn(skill.groupName);
-      const existing: ComputedSkillState | undefined= mergedSkillMap.get(shortName);
+      const existing: ComputedSkillState | undefined = mergedSkillMap.get(shortName);
       mergedSkillMap.set(shortName, {
         groupName: shortName,
         minDamage: Math.min(existing?.totalDamage ?? Number.MAX_VALUE, skill.minDamage ?? Number.MAX_VALUE),
@@ -123,12 +116,12 @@ const SkillBreakdown = ({ player, color}: Props) => {
         hits: (existing?.hits ?? 0) + skill.hits,
         totalDamage: (existing?.totalDamage ?? 0) + skill.totalDamage,
         percentage: (existing?.percentage ?? 0) + skill.percentage,
-        
+
         // Just take the first childCharacterType and actionType since there is no good way to merge them
         childCharacterType: existing?.childCharacterType ?? skill.childCharacterType,
         actionType: existing?.actionType ?? skill.actionType,
-      })
-    })
+      });
+    });
     skillsToShow = [...mergedSkillMap.values()];
   }
 
