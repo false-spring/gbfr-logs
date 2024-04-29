@@ -11,6 +11,10 @@
     "key": "WEP_PL1500_04_01",
     "text": "Poings dorés d'Ura"
   },
+  "02e70de2": {
+    "key": "WEP_PL2200_07_03",
+    "text": "Lame stellaire, Sept éclats"
+  },
   "05b4630a": {
     "key": "WEP_PL1800_03_02",
     "text": "Tome de transmigration"
@@ -114,6 +118,10 @@
   "1bcd26bc": {
     "key": "WEP_PL0600_02",
     "text": "Brise-lame"
+  },
+  "1c963180": {
+    "key": "WEP_PL2200_07_01",
+    "text": "Lame stellaire"
   },
   "1d0e9a84": {
     "key": "WEP_PL1200_03_03",
@@ -359,6 +367,10 @@
     "key": "WEP_PL0800_05_03",
     "text": "Chevalier glacial, l'éclair d'argent"
   },
+  "4cba06d8": {
+    "key": "WEP_PL2300_07",
+    "text": "Arc royal de désolation"
+  },
   "4ce111fe": {
     "key": "WEP_PL1400_05",
     "text": "Lame de purification"
@@ -407,6 +419,10 @@
     "key": "WEP_PL0000_04",
     "text": "Lame Albacore"
   },
+  "5800cfd6": {
+    "key": "WEP_PL2200_07_02",
+    "text": "Lame stellaire"
+  },
   "5a744ce3": {
     "key": "WEP_PL0500_06_01",
     "text": "Feu draconique"
@@ -422,6 +438,10 @@
   "5f751a07": {
     "key": "WEP_PL0500_06_02",
     "text": "Feu draconique"
+  },
+  "60372bef": {
+    "key": "WEP_PL2300_07_01",
+    "text": "Arc royal de désolation"
   },
   "606c0c73": {
     "key": "WEP_PL0200_06_01",
@@ -479,6 +499,10 @@
     "key": "WEP_PL1800_03_03",
     "text": "Tome de transmigration, l'infini"
   },
+  "6c8f9232": {
+    "key": "WEP_PL2300_01",
+    "text": "Arc d'éviction"
+  },
   "6de3c01c": {
     "key": "WEP_PL0300_05",
     "text": "Nuage noir"
@@ -534,6 +558,10 @@
   "7c88222e": {
     "key": "WEP_PL1800_06_02",
     "text": "Zosimos"
+  },
+  "7dd506a3": {
+    "key": "WEP_PL2300_07_03",
+    "text": "Arc royal de désolation, Fiel"
   },
   "7f31e0d6": {
     "key": "WEP_PL0000_03_01",
@@ -666,6 +694,10 @@
   "b03ea930": {
     "key": "WEP_PL1700_01",
     "text": "Grynoth"
+  },
+  "b25574f8": {
+    "key": "WEP_PL2300_07_02",
+    "text": "Arc royal de désolation"
   },
   "b29038db": {
     "key": "WEP_PL0700_01",
@@ -871,6 +903,10 @@
     "key": "WEP_PL1400_01",
     "text": "Nakamaki Nodachi"
   },
+  "db8ed674": {
+    "key": "WEP_PL2200_01",
+    "text": "Sette di Spade"
+  },
   "dc144611": {
     "key": "WEP_PL1500_06_01",
     "text": "Perce-ciel"
@@ -994,6 +1030,10 @@
   "f7c7b5dc": {
     "key": "WEP_PL0900_03_03",
     "text": "Treuer Krieger, l'intrépide"
+  },
+  "fa5f32d5": {
+    "key": "WEP_PL2200_07",
+    "text": "Lame stellaire"
   },
   "fb5818e6": {
     "key": "WEP_PL0400_03_02",

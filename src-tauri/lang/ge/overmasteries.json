@@ -331,6 +331,10 @@
     "key": "524492E2",
     "text": "Erhöhte Kritische Trefferrate"
   },
+  "52a207b5": {
+    "key": "52A207B5",
+    "text": "Erhöhte Gesundheit"
+  },
   "5382923d": {
     "key": "5382923D",
     "text": "Erhöhte Angriffskraft"
@@ -747,6 +751,10 @@
     "key": "C40A90DF",
     "text": "Erhöhte Fähigk.-Schadensoberg."
   },
+  "c4925bd7": {
+    "key": "C4925BD7",
+    "text": "Erhöhte Angriffskraft"
+  },
   "c4b86ed7": {
     "key": "C4B86ED7",
     "text": "Erhöhte Kritische Trefferrate"
@@ -1022,13 +1030,5 @@
   "fe71865d": {
     "key": "FE71865D",
     "text": "Erhöhte Angriffskraft"
-  },
-  "med_eff_atk01": {
-    "key": "MED_EFF_ATK01",
-    "text": "Erhöhte Angriffskraft"
-  },
-  "med_eff_hp01": {
-    "key": "MED_EFF_HP01",
-    "text": "Erhöhte Gesundheit"
   }
 }

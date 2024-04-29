@@ -331,6 +331,10 @@
     "key": "524492E2",
     "text": "Maior Chance de Acerto Crít."
   },
+  "52a207b5": {
+    "key": "52A207B5",
+    "text": "Vida Aumentada"
+  },
   "5382923d": {
     "key": "5382923D",
     "text": "Poder de Ataque Aumentado"
@@ -747,6 +751,10 @@
     "key": "C40A90DF",
     "text": "Limite de Dano de Habilidade"
   },
+  "c4925bd7": {
+    "key": "C4925BD7",
+    "text": "Poder de Ataque Aumentado"
+  },
   "c4b86ed7": {
     "key": "C4B86ED7",
     "text": "Maior Chance de Acerto Crít."
@@ -1022,13 +1030,5 @@
   "fe71865d": {
     "key": "FE71865D",
     "text": "Poder de Ataque Aumentado"
-  },
-  "med_eff_atk01": {
-    "key": "MED_EFF_ATK01",
-    "text": "Poder de Ataque Aumentado"
-  },
-  "med_eff_hp01": {
-    "key": "MED_EFF_HP01",
-    "text": "Vida Aumentada"
   }
 }
