@@ -698,6 +698,7 @@
       "102": "Attack 3",
       "103": "Attack Finisher",
       "110": "Combo Finisher",
+      "120": "Power Strike (Godmight)",
       "200": "Lunge 1",
       "201": "Lunge 2",
       "202": "Lunge 3",
@@ -715,6 +716,7 @@
       "508": "Power Strike 5",
       "509": "Power Strike 6",
       "510": "Power Strike 7",
+      "515": "Godmight Finisher Explosion (Outer)",
       "damage-over-time": "Darkflame (DoT)"
     },
     "Pl2000": {
