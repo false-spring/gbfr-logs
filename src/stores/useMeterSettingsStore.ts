@@ -11,6 +11,7 @@ interface MeterSettings {
   show_display_names: boolean;
   streamer_mode: boolean;
   show_full_values: boolean;
+  use_condensed_skills: boolean;
   overlay_columns: MeterColumns[];
 }
 
@@ -27,6 +28,7 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   show_display_names: true,
   streamer_mode: false,
   show_full_values: false,
+  use_condensed_skills: false,
   overlay_columns: [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage],
 };
 

@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 import {
   CharacterType,
   ComputedPlayerState,
-  ComputedSkillState,
   EncounterState,
   EnemyType,
   MeterColumns,
   PlayerData,
   PlayerState,
+  SkillState,
   SortDirection,
   SortType,
 } from "./types";
@@ -46,7 +46,7 @@ export const epochToLocalTime = (epoch: number): string => {
   }).format(utc);
 };
 
-export const getSkillName = (characterType: CharacterType, skill: ComputedSkillState) => {
+export const getSkillName = (characterType: CharacterType, skill: SkillState) => {
   switch (true) {
     case skill.actionType === "LinkAttack":
       return t([`skills.${characterType}.link-attack`, "skills.default.link-attack"]);

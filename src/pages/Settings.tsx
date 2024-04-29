@@ -34,6 +34,7 @@ const SettingsPage = () => {
     show_display_names,
     streamer_mode,
     show_full_values,
+    use_condensed_skills,
     setMeterSettings,
     languages,
     handleLanguageChange,
@@ -115,6 +116,13 @@ const SettingsPage = () => {
               label={t("ui.show-full-values")}
               checked={show_full_values}
               onChange={(event) => setMeterSettings({ show_full_values: event.currentTarget.checked })}
+            />
+          </Tooltip>
+          <Tooltip label={t("ui.use-condensed-skills-description")}>
+            <Checkbox
+              label={t("ui.use-condensed-skills")}
+              checked={use_condensed_skills}
+              onChange={(event) => setMeterSettings({ use_condensed_skills: event.currentTarget.checked })}
             />
           </Tooltip>
           <Tooltip label={t("ui.debug-mode-description")}>

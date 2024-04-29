@@ -1,5 +1,5 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData } from "@/types";
+import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData, SkillState } from "@/types";
 import { getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { Fragment, useState } from "react";
@@ -11,7 +11,6 @@ type Props = {
 };
 
 const SkillRow = ({
-  characterType,
   skill,
   color,
 }: {
@@ -33,7 +32,7 @@ const SkillRow = ({
 
   return (
     <tr className="skill-row">
-      <td className="text-left row-data">{getSkillName(characterType, skill)}</td>
+      <td className="text-left row-data">{skill.groupName}</td>
       <td className="text-center row-data">{skill.hits}</td>
       <td className="text-center row-data">
         {show_full_values ? (
@@ -92,16 +91,48 @@ const SkillRow = ({
   );
 };
 
-const SkillBreakdown = ({ player, color }: Props) => {
+const SkillBreakdown = ({ player, color}: Props) => {
+  const {useCondensedSkills} = useMeterSettingsStore(
+    useShallow((state) => ({
+      useCondensedSkills: state.use_condensed_skills,
+    }))
+  );
+
   const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
   const computedSkills = player.skillBreakdown.map((skill) => {
     return {
       percentage: (skill.totalDamage / totalDamage) * 100,
+      groupName: getSkillName(player.characterType, skill),
       ...skill,
     };
   });
 
-  computedSkills.sort((a, b) => b.totalDamage - a.totalDamage);
+  let skillsToShow = computedSkills;
+
+  if (useCondensedSkills) {
+    const mergedSkillMap:Map<string, ComputedSkillState> = new Map();
+    const matchRegex = /^([^(0-9]+).*/  // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
+    const groupingFn = (skillName: string) => (skillName.match(matchRegex)?.[1] ?? skillName).trim();
+    computedSkills.forEach((skill) => {
+      const shortName = groupingFn(skill.groupName);
+      const existing: ComputedSkillState | undefined= mergedSkillMap.get(shortName);
+      mergedSkillMap.set(shortName, {
+        groupName: shortName,
+        minDamage: Math.min(existing?.totalDamage ?? Number.MAX_VALUE, skill.minDamage ?? Number.MAX_VALUE),
+        maxDamage: Math.max(existing?.totalDamage ?? Number.MIN_VALUE, skill.maxDamage ?? Number.MIN_VALUE),
+        hits: (existing?.hits ?? 0) + skill.hits,
+        totalDamage: (existing?.totalDamage ?? 0) + skill.totalDamage,
+        percentage: (existing?.percentage ?? 0) + skill.percentage,
+        
+        // Just take the first childCharacterType and actionType since there is no good way to merge them
+        childCharacterType: existing?.childCharacterType ?? skill.childCharacterType,
+        actionType: existing?.actionType ?? skill.actionType,
+      })
+    })
+    skillsToShow = [...mergedSkillMap.values()];
+  }
+
+  skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);
 
   return (
     <tr className="skill-table">
@@ -119,9 +150,9 @@ const SkillBreakdown = ({ player, color }: Props) => {
             </tr>
           </thead>
           <tbody className="transparent-bg">
-            {computedSkills.map((skill) => (
+            {skillsToShow.map((skill) => (
               <SkillRow
-                key={`${skill.childCharacterType}-${getSkillName(player.characterType, skill)}`}
+                key={`${skill.childCharacterType}-${skill.groupName}`}
                 characterType={player.characterType}
                 skill={skill}
                 color={color}

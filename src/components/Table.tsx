@@ -25,6 +25,7 @@ export const Table = ({
   const { t } = useTranslation();
   const { streamerMode, show_full_values, overlay_columns } = useMeterSettingsStore(
     useShallow((state) => ({
+      useCondensedSkills: state.use_condensed_skills,
       streamerMode: state.streamer_mode,
       show_full_values: state.show_full_values,
       overlay_columns: state.overlay_columns,
