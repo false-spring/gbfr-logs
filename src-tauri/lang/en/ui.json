@@ -298,7 +298,9 @@
     },
     "Pl0500": {
       "1": "Sumrak",
-      "2": "Detonator",
+      "2": "Detonator (No Charge)",
+      "22": "Detonator (Half Charge)",
+      "32": "Detonator (Full Charge)",
       "3": "Intercept",
       "4": "Armor-Piercing Round",
       "5": "Venom Grenade",
