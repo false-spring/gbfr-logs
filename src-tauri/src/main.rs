@@ -56,8 +56,6 @@ async fn delete_all_logs() -> Result<(), String> {
     Ok(())
 }
 
-// @TODO(false): Swap these results to return a proper error type, instead of stringified errors.
-
 #[tauri::command]
 fn export_damage_log_to_file(id: u32, options: ParseOptions) -> Result<(), String> {
     let file_path = FileDialogBuilder::new()
