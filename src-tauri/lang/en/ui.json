@@ -163,7 +163,19 @@
       "2410": "Dispel (Arts I)",
       "2411": "Dispel (Arts II)",
       "2412": "Dispel (Arts III)",
-      "2413": "Dispel (Arts IV)"
+      "2413": "Dispel (Arts IV)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "power-raise": "Power Raise",
+        "power-strike": "Power Strike",
+        "aerial-attack": "Aerial Attack",
+        "overdrive-surge": "Overdrive Surge",
+        "decimate": "Decimate",
+        "rain-of-arrows": "Rain of Arrows",
+        "armor-break": "Armor Break",
+        "reginleiv": "Reginleiv",
+        "dispel": "Dispel"
+      }
     },
     "Pl0100": {
       "100": "Attack 1",
@@ -213,7 +225,19 @@
       "2410": "Dispel (Arts I)",
       "2411": "Dispel (Arts II)",
       "2412": "Dispel (Arts III)",
-      "2413": "Dispel (Arts IV)"
+      "2413": "Dispel (Arts IV)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "power-raise": "Power Raise",
+        "power-strike": "Power Strike",
+        "aerial-attack": "Aerial Attack",
+        "overdrive-surge": "Overdrive Surge",
+        "decimate": "Decimate",
+        "rain-of-arrows": "Rain of Arrows",
+        "armor-break": "Armor Break",
+        "reginleiv": "Reginleiv",
+        "dispel": "Dispel"
+      }
     },
     "Pl0200": {
       "100": "Attack 1",
@@ -253,7 +277,14 @@
       "4": "Sacred Winds",
       "5": "Azure Sword",
       "6": "Light Wall",
-      "7": "Frost Blade"
+      "7": "Frost Blade",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "finisher": "Finisher",
+        "oathsworn-blade": "Oathsworn Blade",
+        "pactstrike": "Pactstrike",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl0300": {
       "1": "Spitfire",
@@ -269,7 +300,10 @@
       "301": "Aerial Attack 2",
       "302": "Aerial Attack 3",
       "400": "Launch Attack",
-      "410": "Aerial Barrage"
+      "410": "Aerial Barrage",
+      "skill-groups": {
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl0400": {
       "100": "Attack 1",
@@ -296,7 +330,15 @@
       "8200": "Lightning (Mystic Vortex 0)",
       "8201": "Lightning (Mystic Vortex 1)",
       "8202": "Lightning (Mystic Vortex 2)",
-      "8203": "Lightning (Mystic Vortex 3)"
+      "8203": "Lightning (Mystic Vortex 3)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "stargaze": "Stargaze",
+        "aerial-attack": "Aerial Attack",
+        "flower-seven": "Flowery Seven",
+        "gravity-well": "Gravity Well",
+        "lightning": "Lightning"
+      }
     },
     "Pl0500": {
       "1": "Sumrak",
@@ -319,7 +361,13 @@
       "302": "Aerial Attack 3",
       "400": "Launch",
       "410": "Aerial Barrage",
-      "215": "GrenadeOverkill2"
+      "215": "GrenadeOverkill2",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "aerial-attack": "Aerial Attack",
+        "detonator": "Detonator",
+        "grenade": "Grenade"
+      }
     },
     "Pl0600": {
       "100": "Attack 1",
@@ -348,7 +396,14 @@
       "6": "Lost Love",
       "16": "Lost Love Lvl 2",
       "26": "Lost Love Lvl 3",
-      "36": "Lost Love Lvl 4"
+      "36": "Lost Love Lvl 4",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "aerial-attack": "Aerial Attack",
+        "rose-attack": "Rose Attack",
+        "spiral-rose": "Spiral Rose",
+        "lost-love": "Lost Love"
+      }
     },
     "Pl0700": {
       "65": "Pets",
@@ -374,7 +429,11 @@
       "1400": "Pendel",
       "1500": "Strafe",
       "1640": "Hinrichten",
-      "1700": "Umlauf"
+      "1700": "Umlauf",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl0800": {
       "100": "Attack 1",
@@ -398,7 +457,12 @@
       "1200": "Lawinenstrum",
       "1100": "Kaltzwinger",
       "1400": "Turbulentz",
-      "1500": "Southern Cross"
+      "1500": "Southern Cross",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "aerial-attack": "Aerial Attack",
+        "stiller-glantz": "Stiller Glantz"
+      }
     },
     "Pl0900": {
       "100": "Attack 1",
@@ -423,7 +487,14 @@
       "1100": "Rift Divider",
       "1300": "Arm Destruction",
       "1400": "Heroic Beat",
-      "1600": "Energy Destruction"
+      "1600": "Energy Destruction",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "power-strike": "Power Strike",
+        "finisher": "Finisher",
+        "heavy-swing": "Heavy Swing",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1000": {
       "1": "Feuerangriff",
@@ -441,7 +512,12 @@
       "310": "Aerial Attack 2",
       "320": "Aerial Attack 3",
       "400": "Launch Attack",
-      "410": "Aerial Barrage"
+      "410": "Aerial Barrage",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "schlaht": "Schlaht",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1100": {
       "100": "Attack 1",
@@ -476,7 +552,13 @@
       "1000": "Uwe",
       "1100": "L'Ombre d'Hier",
       "1300": "Nelah Nav",
-      "1600": "Vendrängen"
+      "1600": "Vendrängen",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "combo-finisher": "Combo Finisher",
+        "lunge": "Lunge",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1200": {
       "100": "Attack 1",
@@ -502,7 +584,15 @@
       "1200": "Rising Cut",
       "1600": "Sword of Lumiel (Hold)",
       "1610": "Sword of Lumiel",
-      "1700": "Holy Ladder"
+      "1700": "Holy Ladder",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "noble-stance": "Noble Stance",
+        "yellow-power-strike": "Yellow Power Strike",
+        "power-strike": "Power Strike",
+        "aerial-attack": "Aerial Attack",
+        "sword-of-lumiel": "Sword of Lumiel"
+      }
     },
     "Pl1300": {
       "1": "Awakening",
@@ -532,7 +622,14 @@
       "302": "Aerial Attack 3",
       "303": "Aerial Attack 4",
       "400": "Launch",
-      "410": "Aerial Barrage"
+      "410": "Aerial Barrage",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "flashing-void": "Flashing Void",
+        "sharpened-focus": "Sharpened Focus",
+        "finisher": "Finisher",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1400": {
       "100": "Attack 1 (Freeflutter/Blue)",
@@ -575,7 +672,16 @@
       "10": "Apex Counter 1",
       "11": "Apex Counter 2",
       "5": "Transient (Freeflutter/Blue)",
-      "1005": "Transient (Dawnfly/Pink)"
+      "1005": "Transient (Dawnfly/Pink)",
+      "skill-groups": {
+        "freeflutter-attack": "Freeflutter/Blue Attack",
+        "freeflutter-aerial-attack": "Freeflutter/Blue Aerial Attack",
+        "dawnfly-attack": "Dawnfly/Pink Attack",
+        "freeflutter-finisher": "Freeflutter/Blue Finisher",
+        "dawnfly-charged-attack": "Dawnfly/Pink Charged Attack",
+        "apex": "Apex",
+        "transient": "Transient"
+      }
     },
     "Pl1500": {
       "100": "Attack 1",
@@ -602,7 +708,13 @@
       "1000": "Arhat Skybreaker",
       "1100": "Branding Palm",
       "1200": "Iron Shoulder",
-      "1500": "Infernal Stomp"
+      "1500": "Infernal Stomp",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "combo-finisher": "Combo Finisher",
+        "aerial-attack": "Aerial Attack",
+        "aerial-finisher": "Aerial Finisher"
+      }
     },
     "Pl1600": {
       "100": "Attack 1",
@@ -627,7 +739,13 @@
       "1610": "Thousand Flames",
       "1700": "Realm's Majesty",
       "1702": "Realm's Majesty Counter 1",
-      "1703": "Realm's Majesty Counter 2"
+      "1703": "Realm's Majesty Counter 2",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "loop-combo": "Loop Combo",
+        "aerial-attack": "Aerial Attack",
+        "realms-majesty": "Realm's Majesty"
+      }
     },
     "Pl1700": {
       "100": "Attack 1",
@@ -656,7 +774,13 @@
       "1200": "Great Scythe Grynoth",
       "1500": "Damnation",
       "1600": "Umbral Eclipse",
-      "1700": "Netherwrath"
+      "1700": "Netherwrath",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "power-strike": "Power Strike",
+        "finisher": "Finisher",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1800": {
       "100": "Attack 1",
@@ -684,7 +808,14 @@
       "1110": "Mehen",
       "1410": "Distruption",
       "1700": "Alexandria",
-      "1800": "Pain Train"
+      "1800": "Pain Train",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "power-strike": "Power Strike",
+        "finisher": "Finisher",
+        "enhanced-collapse": "Enhanced Collapse",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl1900": {
       "1": "Regliniv Recidiv",
@@ -719,7 +850,13 @@
       "509": "Power Strike 6",
       "510": "Power Strike 7",
       "515": "Godmight Finisher Explosion (Outer)",
-      "damage-over-time": "Darkflame (DoT)"
+      "damage-over-time": "Darkflame (DoT)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "lunge": "Lunge",
+        "power-strike": "Power Strike",
+        "aerial-attack": "Aerial Attack"
+      }
     },
     "Pl2000": {
       "0": "Light Blast (Enter Dragonform)",
@@ -747,7 +884,11 @@
       "302": "Aerial Attack 3",
       "400": "Launch",
       "410": "Aerial Barrage",
-      "900": "Transformation"
+      "900": "Transformation",
+      "skill-groups": {
+        "normal-attack": "Normal Attack (Dragonform)",
+        "aerial-attack": "Aerial Attack (Dragonform)"
+      }
     },
     "Pl2200": {
       "100": "Attack 1",
@@ -791,7 +932,16 @@
       "3001": "Rotura (Avatar)",
       "6000": "Despedazar",
       "6001": "Despedazar (Avatar)",
-      "10000": "Spirit Swords (Projectiles)"
+      "10000": "Spirit Swords (Projectiles)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "finisher": "Finisher",
+        "power-strike": "Power Strike",
+        "aerial-attack": "Aerial Attack",
+        "avatar-attack": "Normal Attack (Avatar)",
+        "avatar-finisher": "Finisher (Avatar)",
+        "avatar-power-strike": "Power Strike (Avatar)"
+      }
     },
     "Pl2300": {
       "100": "Attack 1",
@@ -822,7 +972,16 @@
       "1400": "Wheel of Death",
       "1510": "Lethal Rain",
       "1700": "Two-Crown's Strife 1",
-      "1701": "Two-Crown's Strife 2"
+      "1701": "Two-Crown's Strife 2",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "charged-normal-attack": "Normal Attack (Charged)",
+        "combo-finisher": "Combo Finisher",
+        "charged-combo-finisher": "Combo Finisher (Charged)",
+        "power-finisher": "Power Finisher",
+        "aerial-attack": "Aerial Attack",
+        "two-crown-strike": "Two-Crown's Strife"
+      }
     },
     "default": {
       "700": "Guard (?)",
