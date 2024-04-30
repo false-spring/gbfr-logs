@@ -31,6 +31,8 @@
     "streamer-mode-description": "Only shows your damage in the meter.",
     "show-full-values": "Show Full Values",
     "show-full-values-description": "Show full values in the meter.",
+    "use-condensed-skills": "Use Condensed Skill Names",
+    "use-condensed-skills-description": "Groups various skills into one entry (e.g. Attack 1, Attack 2 would condense into just \"Attack\")",
     "debug-mode": "Debug Mode",
     "debug-mode-description": "Opens the developer console to view all raw event data.",
     "weapon": "Weapon",

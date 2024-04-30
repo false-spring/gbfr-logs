@@ -52,6 +52,8 @@ export type SkillState = {
 export type ComputedSkillState = SkillState & {
   /** Damage contribution as a percentage of the total */
   percentage: number;
+  /** name for grouped skills (e.g. Charged Shot 1 might be under the Charged Shot group) */
+  groupName: string;
 };
 
 export type PlayerState = {

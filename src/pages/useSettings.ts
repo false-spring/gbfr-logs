@@ -22,6 +22,7 @@ export default function useSettings() {
     show_display_names,
     streamer_mode,
     show_full_values,
+    use_condensed_skills,
     overlay_columns,
     setMeterSettings,
   } = useMeterSettingsStore((state) => ({
@@ -33,6 +34,7 @@ export default function useSettings() {
     show_display_names: state.show_display_names,
     streamer_mode: state.streamer_mode,
     show_full_values: state.show_full_values,
+    use_condensed_skills: state.use_condensed_skills,
     setMeterSettings: state.set,
     overlay_columns: state.overlay_columns,
   }));
@@ -80,6 +82,7 @@ export default function useSettings() {
     show_display_names,
     streamer_mode,
     show_full_values,
+    use_condensed_skills,
     setMeterSettings,
     languages,
     overlay_columns,
