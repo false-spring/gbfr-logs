@@ -1,167 +1,11 @@
-import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { CharacterType, ComputedPlayerState, ComputedSkillState, MeterColumns, PlayerData } from "@/types";
-import { getSkillName, humanizeNumbers, translatedPlayerName } from "@/utils";
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
-import { Fragment, useState } from "react";
-import { useShallow } from "zustand/react/shallow";
+import { Fragment } from "react";
 
-type Props = {
-  player: ComputedPlayerState;
-  color: string;
-};
+import { ComputedPlayerState, PlayerData } from "@/types";
+import { translatedPlayerName } from "@/utils";
 
-const SkillRow = ({ skill, color }: { characterType: CharacterType; skill: ComputedSkillState; color: string }) => {
-  const { show_full_values } = useMeterSettingsStore(
-    useShallow((state) => ({
-      show_full_values: state.show_full_values,
-    }))
-  );
-
-  const [totalDamage, totalDamageUnit] = humanizeNumbers(skill.totalDamage);
-  const [minDmg, minDmgUnit] = humanizeNumbers(skill.minDamage || 0);
-  const [maxDmg, maxDmgUnit] = humanizeNumbers(skill.maxDamage || 0);
-  const avg = skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
-  const [averageDmg, averageDmgUnit] = humanizeNumbers(avg);
-
-  return (
-    <tr className="skill-row">
-      <td className="text-left row-data">{skill.groupName}</td>
-      <td className="text-center row-data">{skill.hits}</td>
-      <td className="text-center row-data">
-        {show_full_values ? (
-          skill.totalDamage.toLocaleString()
-        ) : (
-          <>
-            {totalDamage}
-            <span className="unit font-sm">{totalDamageUnit}</span>
-          </>
-        )}
-      </td>
-      <td className="text-center row-data">
-        {show_full_values ? (
-          skill.minDamage ? (
-            skill.minDamage.toLocaleString()
-          ) : (
-            ""
-          )
-        ) : (
-          <>
-            {skill.minDamage && minDmg}
-            <span className="unit font-sm">{minDmgUnit}</span>
-          </>
-        )}
-      </td>
-      <td className="text-center row-data">
-        {show_full_values ? (
-          skill.maxDamage ? (
-            skill.maxDamage.toLocaleString()
-          ) : (
-            ""
-          )
-        ) : (
-          <>
-            {skill.maxDamage && maxDmg}
-            <span className="unit font-sm">{maxDmgUnit}</span>
-          </>
-        )}
-      </td>
-      <td className="text-center row-data">
-        {show_full_values ? (
-          avg.toLocaleString()
-        ) : (
-          <>
-            {averageDmg}
-            <span className="unit font-sm">{averageDmgUnit}</span>
-          </>
-        )}
-      </td>
-      <td className="text-center row-data">
-        {skill.percentage.toFixed(0)}
-        <span className="unit font-sm">%</span>
-      </td>
-      <div className="damage-bar" style={{ backgroundColor: color, width: `${skill.percentage}%` }} />
-    </tr>
-  );
-};
-
-const SkillBreakdown = ({ player, color }: Props) => {
-  const { useCondensedSkills } = useMeterSettingsStore(
-    useShallow((state) => ({
-      useCondensedSkills: state.use_condensed_skills,
-    }))
-  );
-
-  const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
-  const computedSkills = player.skillBreakdown.map((skill) => {
-    return {
-      percentage: (skill.totalDamage / totalDamage) * 100,
-      groupName: getSkillName(player.characterType, skill),
-      ...skill,
-    };
-  });
-
-  let skillsToShow = computedSkills;
-
-  if (useCondensedSkills) {
-    const mergedSkillMap: Map<string, ComputedSkillState> = new Map();
-    const matchRegex = /(.+?)(Lvl [0-9]+|[0-9]|\().*/; // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
-    const groupingFn = (skillName: string) => (skillName.match(matchRegex)?.[1] ?? skillName).trim();
-    computedSkills.forEach((skill) => {
-      const shortName = groupingFn(skill.groupName);
-      const existing: ComputedSkillState | undefined = mergedSkillMap.get(shortName);
-      mergedSkillMap.set(shortName, {
-        groupName: shortName,
-        minDamage: Math.min(existing?.totalDamage ?? Number.MAX_VALUE, skill.minDamage ?? Number.MAX_VALUE),
-        maxDamage: Math.max(existing?.totalDamage ?? Number.MIN_VALUE, skill.maxDamage ?? Number.MIN_VALUE),
-        hits: (existing?.hits ?? 0) + skill.hits,
-        totalDamage: (existing?.totalDamage ?? 0) + skill.totalDamage,
-        percentage: (existing?.percentage ?? 0) + skill.percentage,
-
-        // Just take the first childCharacterType and actionType since there is no good way to merge them
-        childCharacterType: existing?.childCharacterType ?? skill.childCharacterType,
-        actionType: existing?.actionType ?? skill.actionType,
-      });
-    });
-    skillsToShow = [...mergedSkillMap.values()];
-  }
-
-  skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);
-
-  return (
-    <tr className="skill-table">
-      <td colSpan={100}>
-        <table className="table w-full">
-          <thead className="header transparent-bg">
-            <tr>
-              <th className="header-name">Skill</th>
-              <th className="header-column text-center">Hits</th>
-              <th className="header-column text-center">Total</th>
-              <th className="header-column text-center">Min</th>
-              <th className="header-column text-center">Max</th>
-              <th className="header-column text-center">Avg</th>
-              <th className="header-column text-center">%</th>
-            </tr>
-          </thead>
-          <tbody className="transparent-bg">
-            {skillsToShow.map((skill) => (
-              <SkillRow
-                key={`${skill.childCharacterType}-${skill.groupName}`}
-                characterType={player.characterType}
-                skill={skill}
-                color={color}
-              />
-            ))}
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  );
-};
-
-export type ColumnValue = {
-  value: string | number;
-  unit?: string | number;
-};
+import { SkillBreakdown } from "./SkillBreakdown";
+import { usePlayerRow } from "./usePlayerRow";
 
 export const PlayerRow = ({
   live = false,
@@ -172,62 +16,29 @@ export const PlayerRow = ({
   player: ComputedPlayerState;
   partyData: Array<PlayerData | null>;
 }) => {
-  const { color_1, color_2, color_3, color_4, show_display_names, show_full_values, overlay_columns } =
-    useMeterSettingsStore(
-      useShallow((state) => ({
-        color_1: state.color_1,
-        color_2: state.color_2,
-        color_3: state.color_3,
-        color_4: state.color_4,
-        show_display_names: state.show_display_names,
-        show_full_values: state.show_full_values,
-        overlay_columns: state.overlay_columns,
-      }))
-    );
-
-  const playerColors = [color_1, color_2, color_3, color_4, "#9BCF53", "#380E7F", "#416D19", "#2C568D"];
-  const partySlotIndex = partyData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
-  const color = partySlotIndex !== -1 ? playerColors[partySlotIndex] : playerColors[player.partyIndex];
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
-  const [dps, dpsUnit] = humanizeNumbers(player.dps);
-
-  const matchColumnTypeToValue = (showFullValues: boolean, column: MeterColumns): ColumnValue => {
-    switch (column) {
-      case MeterColumns.TotalDamage:
-        return showFullValues
-          ? { value: (player.totalDamage || 0).toLocaleString() }
-          : { value: totalDamage, unit: totalDamageUnit };
-      case MeterColumns.DPS:
-        return showFullValues ? { value: (player.dps || 0).toLocaleString() } : { value: dps, unit: dpsUnit };
-      case MeterColumns.DamagePercentage:
-        return { value: (player.percentage || 0).toFixed(0), unit: "%" };
-      case MeterColumns.SBA:
-        return showFullValues
-          ? { value: (player.sba / 10).toFixed(2) }
-          : { value: (player.sba / 10).toFixed(2), unit: "%" };
-      default:
-        return { value: "" };
-    }
-  };
-
-  // If the meter is in live mode, only show the overlay columns that are enabled, otherwise show all columns.
-  const columns = live ? overlay_columns : [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage];
+  const {
+    color,
+    columns,
+    isOpen,
+    setIsOpen,
+    partySlotIndex,
+    showDisplayNames,
+    showFullValues,
+    matchColumnTypeToValue,
+  } = usePlayerRow(live, player, partyData);
 
   return (
     <Fragment>
       <tr className={`player-row ${isOpen ? "transparent-bg" : ""}`} onClick={() => setIsOpen(!isOpen)}>
         <td className="text-left row-data">
-          {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, show_display_names)}
+          {translatedPlayerName(partySlotIndex, partyData[partySlotIndex], player, showDisplayNames)}
         </td>
         {columns.map((column) => {
-          const columnValue = matchColumnTypeToValue(show_full_values, column);
+          const columnValue = matchColumnTypeToValue(showFullValues, column);
 
           return (
             <td key={column} className="text-center row-data">
-              {show_full_values ? (
+              {showFullValues ? (
                 columnValue.value
               ) : (
                 <>
