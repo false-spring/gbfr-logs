@@ -74,6 +74,18 @@ export const getSkillName = (characterType: CharacterType, skill: SkillState) =>
         { id: skillID }
       );
     }
+    case typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "Group"): {
+      const actionType = skill.actionType as { Group: string };
+
+      return t(
+        [
+          `skills.${characterType}.skill-groups.${actionType.Group}`,
+          `skills.default.skill-groups.${actionType.Group}`,
+          `skills.default.unknown-skill`,
+        ],
+        { id: actionType.Group }
+      );
+    }
     default:
       return t("ui.unknown");
   }

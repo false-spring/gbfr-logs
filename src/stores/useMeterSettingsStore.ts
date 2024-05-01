@@ -28,7 +28,7 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   show_display_names: true,
   streamer_mode: false,
   show_full_values: false,
-  use_condensed_skills: false,
+  use_condensed_skills: true,
   overlay_columns: [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage],
 };
 

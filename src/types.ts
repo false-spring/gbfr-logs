@@ -32,7 +32,8 @@ export type ActionType =
   | "SBA"
   | { SupplementaryAttack: number }
   | { DamageOverTime: number }
-  | { Normal: number };
+  | { Normal: number }
+  | { Group: string };
 
 export type SkillState = {
   /** ActionType of the skill */
@@ -52,8 +53,25 @@ export type SkillState = {
 export type ComputedSkillState = SkillState & {
   /** Damage contribution as a percentage of the total */
   percentage: number;
-  /** name for grouped skills (e.g. Charged Shot 1 might be under the Charged Shot group) */
-  groupName: string;
+};
+
+export type ComputedSkillGroup = {
+  /** ActionType of the skill */
+  actionType: ActionType;
+  /** For some characters, the skill can be a child of another character type. */
+  childCharacterType: CharacterType;
+  /** Number of total hits of the skill */
+  hits: number;
+  /** Minimum damage of the skill */
+  minDamage: number | null;
+  /** Maximum damage of the skill */
+  maxDamage: number | null;
+  /** Total damage of the skill */
+  totalDamage: number;
+  /** Damage contribution as a percentage of the total */
+  percentage: number;
+  /** Skills */
+  skills?: ComputedSkillState[];
 };
 
 export type PlayerState = {

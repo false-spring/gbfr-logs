@@ -1,7 +1,8 @@
 import { useShallow } from "zustand/react/shallow";
 
+import SkillGroupMapping from "@/assets/skill-groups";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { ComputedPlayerState, ComputedSkillState } from "@/types";
+import { ComputedPlayerState, ComputedSkillGroup, ComputedSkillState } from "@/types";
 import { getSkillName } from "@/utils";
 
 export const useSkillBreakdown = (player: ComputedPlayerState) => {
@@ -12,7 +13,7 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
   );
 
   const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
-  const computedSkills = player.skillBreakdown.map((skill) => {
+  const computedSkills = player.skillBreakdown.map<ComputedSkillState>((skill) => {
     return {
       percentage: (skill.totalDamage / totalDamage) * 100,
       groupName: getSkillName(player.characterType, skill),
@@ -20,31 +21,75 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
     };
   });
 
-  let skillsToShow = computedSkills;
+  let skillsToShow: Array<ComputedSkillGroup | ComputedSkillState> = computedSkills;
 
-  if (useCondensedSkills) {
-    const mergedSkillMap: Map<string, ComputedSkillState> = new Map();
-    const matchRegex = /(.+?)(Lvl [0-9]+|[0-9]|\().*/; // Will match "Attack 1" and "Attack 2" to just "Attack ". Assumes skill names won't have numbers in them otherwise
-    const groupingFn = (skillName: string) => (skillName.match(matchRegex)?.[1] ?? skillName).trim();
+  if (useCondensedSkills && typeof player.characterType == "string") {
+    const skills: Array<ComputedSkillGroup | ComputedSkillGroup> = [];
 
-    computedSkills.forEach((skill) => {
-      const shortName = groupingFn(skill.groupName);
-      const existing: ComputedSkillState | undefined = mergedSkillMap.get(shortName);
-      mergedSkillMap.set(shortName, {
-        groupName: shortName,
-        minDamage: Math.min(existing?.totalDamage ?? Number.MAX_VALUE, skill.minDamage ?? Number.MAX_VALUE),
-        maxDamage: Math.max(existing?.totalDamage ?? Number.MIN_VALUE, skill.maxDamage ?? Number.MIN_VALUE),
-        hits: (existing?.hits ?? 0) + skill.hits,
-        totalDamage: (existing?.totalDamage ?? 0) + skill.totalDamage,
-        percentage: (existing?.percentage ?? 0) + skill.percentage,
+    for (const skill of computedSkills) {
+      if (typeof skill.childCharacterType != "string") continue;
 
-        // Just take the first childCharacterType and actionType since there is no good way to merge them
-        childCharacterType: existing?.childCharacterType ?? skill.childCharacterType,
-        actionType: existing?.actionType ?? skill.actionType,
-      });
-    });
+      const skillGroupMapping = SkillGroupMapping[skill.childCharacterType] || {};
 
-    skillsToShow = [...mergedSkillMap.values()];
+      if (typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "Normal")) {
+        const actionType = skill.actionType as { Normal: number };
+        let wasGroupedSkill = false;
+
+        for (const group in skillGroupMapping) {
+          const groupActionType = { Group: group };
+          const skillBelongsToGroup = skillGroupMapping[group].skills.includes(actionType.Normal);
+
+          if (skillBelongsToGroup) {
+            const skillGroupIndex = skills.findIndex((skillGroup) => {
+              if (typeof skillGroup.actionType === "object" && Object.hasOwn(skillGroup.actionType, "Group")) {
+                const actionType = skillGroup.actionType as { Group: string };
+
+                return actionType.Group == group && skillGroup.childCharacterType == skill.childCharacterType;
+              } else {
+                return false;
+              }
+            });
+
+            if (skillGroupIndex >= 0) {
+              const skillGroup = skills[skillGroupIndex] as ComputedSkillGroup;
+
+              skills[skillGroupIndex] = {
+                ...skillGroup,
+                hits: skillGroup.hits + skill.hits,
+                percentage: skillGroup.percentage + skill.percentage,
+                totalDamage: skillGroup.totalDamage + skill.totalDamage,
+                minDamage: Math.min(skillGroup?.minDamage || 0, skill.minDamage || 0),
+                maxDamage: Math.max(skillGroup?.maxDamage ?? Number.MIN_VALUE, skill.maxDamage || 0),
+                skills: [...(skillGroup.skills || []), skill],
+              };
+            } else {
+              skills.push({
+                actionType: groupActionType,
+                childCharacterType: skill.childCharacterType,
+                hits: skill.hits,
+                totalDamage: skill.totalDamage,
+                minDamage: skill.minDamage,
+                maxDamage: skill.maxDamage,
+                percentage: skill.percentage,
+                skills: [skill],
+              });
+            }
+
+            wasGroupedSkill = true;
+
+            break;
+          }
+        }
+
+        if (!wasGroupedSkill) {
+          skills.push(skill);
+        }
+      } else {
+        skills.push(skill);
+      }
+    }
+
+    skillsToShow = skills;
   }
 
   skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);

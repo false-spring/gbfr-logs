@@ -158,6 +158,10 @@
   overflow: hidden;
 }
 
+.skill-row .row-data.nested {
+  padding: 0 6px 0 12px;
+}
+
 .row-button {
   width: 1em;
 }
@@ -185,6 +189,10 @@
 
 .font-sm {
   font-size: 12px;
+}
+
+.p4 {
+  padding: 4px;
 }
 
 @media only screen and (max-width: 325px) {
