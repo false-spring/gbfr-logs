@@ -6,19 +6,27 @@ import { Gear, House } from "@phosphor-icons/react";
 import { listen } from "@tauri-apps/api/event";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Layout = () => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const debugListener = listen("debug-event", (event: { payload: unknown }) => {
       console.info(JSON.stringify(event.payload));
     });
 
+    const saveListener = listen("encounter-saved", (event: { payload: number | null }) => {
+      if (event.payload) {
+        navigate(`/logs/${event.payload}`);
+      }
+    });
+
     return () => {
       debugListener.then((f) => f());
+      saveListener.then((f) => f());
     };
   });
 

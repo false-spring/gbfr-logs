@@ -8,7 +8,7 @@ use protocol::{
 };
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
-use tauri::Window;
+use tauri::{AppHandle, Manager, Window};
 
 use super::{
     constants::{CharacterType, EnemyType, FerrySkillId},
@@ -534,6 +534,10 @@ pub struct Parser {
 
     /// The window handle for the parser, used to send messages to the front-end
     #[serde(skip)]
+    app: Option<AppHandle>,
+
+    /// The window handle for the parser, used to send messages to the front-end
+    #[serde(skip)]
     window_handle: Option<Window>,
 
     /// The database connection for the parser, used to save the encounter
@@ -542,8 +546,9 @@ pub struct Parser {
 }
 
 impl Parser {
-    pub fn new(window: Window, db: Connection) -> Self {
+    pub fn new(app: AppHandle, window: Window, db: Connection) -> Self {
         Self {
+            app: Some(app),
             db: Some(db),
             window_handle: Some(window),
             ..Default::default()
@@ -686,14 +691,14 @@ impl Parser {
 
             if self.has_damage() {
                 match self.save_encounter_to_db() {
-                    Ok(_) => {
-                        if let Some(window) = &self.window_handle {
-                            let _ = window.emit("encounter-saved", "");
+                    Ok(id) => {
+                        if let Some(app) = &self.app {
+                            let _ = app.emit_all("encounter-saved", id);
                         }
                     }
                     Err(e) => {
-                        if let Some(window) = &self.window_handle {
-                            let _ = window.emit("encounter-saved-error", e.to_string());
+                        if let Some(app) = &self.app {
+                            let _ = app.emit_all("encounter-saved-error", e.to_string());
                         }
                     }
                 }
@@ -720,9 +725,9 @@ impl Parser {
 
             if self.has_damage() {
                 match self.save_encounter_to_db() {
-                    Ok(_) => {
+                    Ok(id) => {
                         if let Some(window) = &self.window_handle {
-                            let _ = window.emit("encounter-saved", "");
+                            let _ = window.emit("encounter-saved", id);
                         }
                     }
                     Err(e) => {
@@ -933,7 +938,7 @@ impl Parser {
         false
     }
 
-    fn save_encounter_to_db(&mut self) -> Result<()> {
+    fn save_encounter_to_db(&mut self) -> Result<Option<i64>> {
         let duration_in_millis = self.derived_state.duration();
         let start_datetime = self.derived_state.utc_start_time()?;
 
@@ -996,9 +1001,13 @@ impl Parser {
                     self.encounter.quest_completed
                 ],
             )?;
+
+            let id = conn.last_insert_rowid();
+
+            return Ok(Some(id));
         }
 
-        Ok(())
+        Ok(None)
     }
 }
 
