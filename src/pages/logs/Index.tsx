@@ -1,3 +1,4 @@
+import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { Log } from "@/types";
 import {
   epochToLocalTime,
@@ -10,6 +11,7 @@ import { Box, Button, Center, Checkbox, Divider, Group, Pagination, Select, Spac
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useShallow } from "zustand/react/shallow";
 import useIndex from "./useIndex";
 
 export const IndexPage = () => {
@@ -26,6 +28,13 @@ export const IndexPage = () => {
     setEnemyIdFilter,
     setQuestIdFilter,
   } = useIndex();
+
+  const { streamer_mode, show_display_names } = useMeterSettingsStore(
+    useShallow((state) => ({
+      show_display_names: state.show_display_names,
+      streamer_mode: state.streamer_mode,
+    }))
+  );
 
   const rows = searchResult.logs.map((log) => {
     const primaryTarget = translateEnemyType(log.primaryTarget);
@@ -47,6 +56,9 @@ export const IndexPage = () => {
         .filter((player) => player.name || player.type)
         .map((player) => {
           if (!player.name) return t(`characters:${player.type}`, `ui:characters.${player.type}`);
+          if (!show_display_names) return t(`characters:${player.type}`, `ui:characters.${player.type}`);
+          if (streamer_mode) return t(`characters:${player.type}`, `ui:characters.${player.type}`);
+
           return `${player.name} (${t(`characters:${player.type}`, `ui:characters.${player.type}`)})`;
         })
         .join(", ");
