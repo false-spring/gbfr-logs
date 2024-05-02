@@ -31,7 +31,7 @@ export const SkillGroupRow = ({ characterType, group, color }: SkillRowProps) =>
     <>
       <tr className="skill-row group" onClick={() => setExpanded(!expanded)}>
         <td className="text-left row-data">
-          <span>{getSkillName(characterType, group)}</span>
+          <span>{getSkillName(group.childCharacterType, group)}</span>
           <span className="p4">{expanded ? <CaretUp size={12} /> : <CaretDown size={12} />}</span>
         </td>
         <td className="text-center row-data">{group.hits}</td>
