@@ -24,7 +24,7 @@ export const SkillRow = ({ characterType, skill, color, nested }: SkillRowProps)
   } = useSkillRow(skill);
 
   return (
-    <tr className="skill-row">
+    <tr className={`skill-row ${nested ? "nested" : ""}`}>
       {nested ? (
         <td className="text-left row-data nested">{getSkillName(characterType, skill)}</td>
       ) : (
