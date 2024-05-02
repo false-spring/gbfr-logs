@@ -456,7 +456,7 @@ fn connect_and_run_parser(app: AppHandle) {
     let logs_window = app.get_window("logs").expect("Logs window not found");
 
     let database = db::connect_to_db().expect("Could not connect to database");
-    let mut state = v1::Parser::new(window.clone(), database);
+    let mut state = v1::Parser::new(app.clone(), window.clone(), database);
 
     tauri::async_runtime::spawn(async move {
         loop {
