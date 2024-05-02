@@ -123,6 +123,14 @@
   background: rgba(51, 51, 51, 0.8);
 }
 
+.skill-row.nested .damage-bar {
+  filter: brightness(0.5);
+}
+
+.skill-row.nested .row-data {
+  color: #cccccc;
+}
+
 .table .player-row:hover {
   box-shadow:
     0 5px 3px 0 rgb(0 0 0 / 0.1),
@@ -158,6 +166,10 @@
   overflow: hidden;
 }
 
+.skill-row .row-data.nested {
+  padding: 0 6px 0 12px;
+}
+
 .row-button {
   width: 1em;
 }
@@ -185,6 +197,10 @@
 
 .font-sm {
   font-size: 12px;
+}
+
+.p4 {
+  padding: 4px;
 }
 
 @media only screen and (max-width: 325px) {
