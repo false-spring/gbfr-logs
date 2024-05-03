@@ -210,6 +210,8 @@ export enum MeterColumns {
 }
 
 export type SortType = MeterColumns;
+
+export type LogSortType = "time" | "duration" | "quest-elapsed-time";
 export type SortDirection = "asc" | "desc";
 
 export type Log = {

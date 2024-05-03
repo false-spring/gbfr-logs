@@ -3,6 +3,8 @@ use log::info;
 use rusqlite::Connection;
 use rusqlite_migration::{Migrations, M};
 
+pub mod logs;
+
 /// Setup database and run migrations.
 pub fn setup_db() -> Result<()> {
     info!("Setting up the database, opening logs.db..");

@@ -10,6 +10,7 @@ use std::{
 };
 
 use anyhow::Context;
+use db::logs::LogEntry;
 use dll_syringe::{process::OwnedProcess, Syringe};
 use futures::io::AsyncReadExt;
 use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
@@ -127,50 +128,11 @@ struct SearchResult {
     logs: Vec<LogEntry>,
     page: u32,
     page_count: u32,
-    log_count: u32,
+    log_count: i32,
     /// IDs of the enemies that can be filtered by.
     enemy_ids: Vec<u32>,
     /// IDs of the quests that can be filtered by.
     quest_ids: Vec<u32>,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct LogEntry {
-    /// The ID of the log entry.
-    id: u64,
-    /// The name of the log.
-    name: String,
-    /// Milliseconds since UNIX epoch.
-    time: i64,
-    /// Duration of the encounter in milliseconds.
-    duration: i64,
-    /// The version of the parser used
-    version: u8,
-    /// Primary enemy target
-    primary_target: Option<EnemyType>,
-    /// Player 1 display name
-    p1_name: Option<String>,
-    /// Player 1 character type
-    p1_type: Option<String>,
-    /// Player 2 display name
-    p2_name: Option<String>,
-    /// Player 2 character type
-    p2_type: Option<String>,
-    /// Player 3 display name
-    p3_name: Option<String>,
-    /// Player 3 character type
-    p3_type: Option<String>,
-    /// Player 4 display name
-    p4_name: Option<String>,
-    /// Player 4 character type
-    p4_type: Option<String>,
-    /// Quest ID
-    quest_id: Option<u32>,
-    /// Quest elapsed time
-    quest_elapsed_time: Option<u32>,
-    /// Was quest completed?
-    quest_completed: Option<bool>,
 }
 
 #[tauri::command]
@@ -178,81 +140,50 @@ fn fetch_logs(
     page: Option<u32>,
     filter_by_enemy_id: Option<u32>,
     filter_by_quest_id: Option<u32>,
+    sort_direction: Option<String>,
+    sort_type: Option<String>,
+    quest_completed: Option<bool>,
 ) -> Result<SearchResult, String> {
     let conn = db::connect_to_db().map_err(|e| e.to_string())?;
     let page = page.unwrap_or(1);
     let per_page = 10;
     let offset = page.saturating_sub(1) * per_page;
 
-    let mut stmt = conn
-        .prepare(
-            r#"SELECT
-            id,
-            name,
-            time,
-            duration,
-            version,
-            primary_target,
-            p1_name,
-            p1_type,
-            p2_name,
-            p2_type,
-            p3_name,
-            p3_type,
-            p4_name,
-            p4_type,
-            quest_id,
-            quest_elapsed_time,
-            quest_completed
-         FROM logs
-         WHERE (?1 IS NULL OR primary_target = ?1)
-         AND (?2 IS NULL OR quest_id = ?2)
-         ORDER BY time DESC
-         LIMIT ?3 OFFSET ?4"#,
-        )
-        .map_err(|e| e.to_string())?;
+    let sort_type_param = sort_type
+        .map(|s| match s.as_str() {
+            "time" => db::logs::SortType::Time,
+            "duration" => db::logs::SortType::Duration,
+            "quest-elapsed-time" => db::logs::SortType::QuestElapsedTime,
+            _ => db::logs::SortType::Time,
+        })
+        .unwrap_or(db::logs::SortType::Time);
 
-    let logs = stmt
-        .query_map(
-            [
-                filter_by_enemy_id,
-                filter_by_quest_id,
-                Some(per_page),
-                Some(offset),
-            ],
-            |row| {
-                Ok(LogEntry {
-                    id: row.get(0)?,
-                    name: row.get(1)?,
-                    time: row.get(2)?,
-                    duration: row.get(3)?,
-                    version: row.get(4)?,
-                    primary_target: row.get::<usize, Option<u32>>(5)?.map(EnemyType::from_hash),
-                    p1_name: row.get(6)?,
-                    p1_type: row.get(7)?,
-                    p2_name: row.get(8)?,
-                    p2_type: row.get(9)?,
-                    p3_name: row.get(10)?,
-                    p3_type: row.get(11)?,
-                    p4_name: row.get(12)?,
-                    p4_type: row.get(13)?,
-                    quest_id: row.get(14)?,
-                    quest_elapsed_time: row.get(15)?,
-                    quest_completed: row.get(16)?,
-                })
-            },
-        )
-        .map_err(|e| e.to_string())?
-        .collect::<Result<Vec<_>, _>>()
-        .map_err(|e| e.to_string())?;
+    let sort_direction_param = sort_direction
+        .map(|s| match s.as_str() {
+            "asc" => db::logs::SortDirection::Ascending,
+            _ => db::logs::SortDirection::Descending,
+        })
+        .unwrap_or(db::logs::SortDirection::Descending);
 
-    let log_count: u32 = conn
-        .query_row_and_then(
-            "SELECT COUNT(*) FROM logs WHERE (?1 IS NULL OR primary_target = ?1) AND (?2 IS NULL OR quest_id = ?2)",
-            [filter_by_enemy_id, filter_by_quest_id],
-            |row| row.get(0),
-        )
-        .map_err(|e| e.to_string())?;
+    let logs = db::logs::get_logs(
+        &conn,
+        filter_by_enemy_id,
+        filter_by_quest_id,
+        per_page,
+        offset,
+        &sort_type_param,
+        &sort_direction_param,
+        quest_completed,
+    )
+    .map_err(|e| e.to_string())?;
+
+    let log_count = db::logs::get_logs_count(
+        &conn,
+        filter_by_enemy_id,
+        filter_by_quest_id,
+        quest_completed,
+    )
+    .map_err(|e| e.to_string())?;
 
     let page_count = (log_count as f64 / per_page as f64).ceil() as u32;
 

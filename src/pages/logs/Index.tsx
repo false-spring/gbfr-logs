@@ -1,5 +1,5 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { Log } from "@/types";
+import { Log, LogSortType, SortDirection } from "@/types";
 import {
   epochToLocalTime,
   millisecondsToElapsedFormat,
@@ -7,7 +7,21 @@ import {
   translateEnemyTypeId,
   translateQuestId,
 } from "@/utils";
-import { Box, Button, Center, Checkbox, Divider, Group, Pagination, Select, Space, Table, Text } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Center,
+  Checkbox,
+  Divider,
+  Flex,
+  Group,
+  Pagination,
+  Select,
+  Space,
+  Table,
+  Text,
+  UnstyledButton,
+} from "@mantine/core";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -27,6 +41,11 @@ export const IndexPage = () => {
     currentPage,
     setEnemyIdFilter,
     setQuestIdFilter,
+    toggleSort,
+    sortType,
+    sortDirection,
+    questCompletedFilter,
+    setQuestCompletedFilter,
   } = useIndex();
 
   const { streamer_mode, show_display_names } = useMeterSettingsStore(
@@ -102,6 +121,10 @@ export const IndexPage = () => {
       <Group>
         <SelectableEnemy targetIds={searchResult.enemyIds} setSelectedTarget={setEnemyIdFilter} />
         <SelectableQuest questIds={searchResult.questIds} setSelectedQuest={setQuestIdFilter} />
+        <SelectableQuestCompletion
+          questCompletedFilter={questCompletedFilter}
+          setQuestCompletionFilter={setQuestCompletedFilter}
+        />
       </Group>
       {searchResult.logs.length === 0 && <BlankTable />}
       {searchResult.logs.length > 0 && (
@@ -118,12 +141,39 @@ export const IndexPage = () => {
                     }
                   />
                 </Table.Th>
-                <Table.Th>{t("ui.logs.date")}</Table.Th>
+                <Table.Th>
+                  <SortableColumn
+                    column="time"
+                    sortType={sortType}
+                    sortDirection={sortDirection}
+                    onClick={() => toggleSort("time")}
+                  >
+                    {t("ui.logs.date")}
+                  </SortableColumn>
+                </Table.Th>
                 <Table.Th>{t("ui.logs.quest-name")}</Table.Th>
                 <Table.Th></Table.Th>
                 <Table.Th>{t("ui.logs.primary-target")}</Table.Th>
-                <Table.Th>{t("ui.logs.duration")}</Table.Th>
-                <Table.Th>{t("ui.logs.quest-elapsed-time")}</Table.Th>
+                <Table.Th>
+                  <SortableColumn
+                    column="duration"
+                    sortType={sortType}
+                    sortDirection={sortDirection}
+                    onClick={() => toggleSort("duration")}
+                  >
+                    {t("ui.logs.duration")}
+                  </SortableColumn>
+                </Table.Th>
+                <Table.Th>
+                  <SortableColumn
+                    column="quest-elapsed-time"
+                    sortType={sortType}
+                    sortDirection={sortDirection}
+                    onClick={() => toggleSort("quest-elapsed-time")}
+                  >
+                    {t("ui.logs.quest-elapsed-time")}
+                  </SortableColumn>
+                </Table.Th>
                 <Table.Th>{t("ui.logs.name")}</Table.Th>
                 <Table.Th></Table.Th>
               </Table.Tr>
@@ -137,6 +187,35 @@ export const IndexPage = () => {
     </Box>
   );
 };
+
+function SortableColumn({
+  children,
+  column,
+  sortType,
+  sortDirection,
+  onClick,
+}: {
+  children: React.ReactNode;
+  column: LogSortType;
+  sortType: LogSortType;
+  sortDirection: SortDirection;
+  onClick: () => void;
+}) {
+  const isBeingSorted = sortType === column;
+
+  return (
+    <UnstyledButton onClick={onClick} variant="transparent">
+      <Flex>
+        {children}
+        {isBeingSorted && (
+          <Text size="xs" style={{ marginLeft: "0.25rem", marginTop: "0.20rem" }}>
+            {sortDirection === "asc" ? "▲" : "▼"}
+          </Text>
+        )}
+      </Flex>
+    </UnstyledButton>
+  );
+}
 
 function LogEntry({
   log,
@@ -259,6 +338,30 @@ function SelectableQuest({
       data={questOptions}
       onChange={(value) => setSelectedQuest(value ? Number(value) : null)}
       placeholder={t("ui.select-quest")}
+      searchable
+      clearable
+    />
+  );
+}
+
+function SelectableQuestCompletion({
+  questCompletedFilter,
+  setQuestCompletionFilter,
+}: {
+  questCompletedFilter: boolean | null;
+  setQuestCompletionFilter: (value: boolean | null) => void;
+}) {
+  return (
+    <Select
+      data={[
+        { value: "null", label: "All" },
+        { value: "true", label: "Completed" },
+        { value: "false", label: "Failed" },
+      ]}
+      onChange={(value) => setQuestCompletionFilter(value === "null" ? null : value === "true")}
+      placeholder="Quest Completion"
+      value={questCompletedFilter === null ? "null" : questCompletedFilter ? "true" : "false"}
+      onClear={() => setQuestCompletionFilter(null)}
       searchable
       clearable
     />
