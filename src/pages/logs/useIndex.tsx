@@ -1,5 +1,6 @@
 import { useEncounterStore } from "@/stores/useEncounterStore";
 import { SearchResult, useLogIndexStore } from "@/stores/useLogIndexStore";
+import { LogSortType } from "@/types";
 
 import { Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
@@ -12,6 +13,9 @@ export default function useIndex() {
   const { t } = useTranslation();
   const [filterByEnemyId, setEnemyIdFilter] = useState<number | null>(null);
   const [filterByQuestId, setQuestIdFilter] = useState<number | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [sortType, setSortType] = useState<LogSortType>("time");
+  const [questCompletedFilter, setQuestCompletedFilter] = useState<boolean | null>(null);
 
   const {
     currentPage,
@@ -38,14 +42,28 @@ export default function useIndex() {
   }));
 
   useEffect(() => {
-    invoke("fetch_logs", { page: currentPage, filterByEnemyId, filterByQuestId }).then((result) => {
+    invoke("fetch_logs", {
+      page: currentPage,
+      filterByEnemyId,
+      filterByQuestId,
+      sortDirection,
+      sortType,
+      questCompleted: questCompletedFilter,
+    }).then((result) => {
       setSearchResult(result as SearchResult);
     });
-  }, [currentPage, filterByEnemyId, filterByQuestId]);
+  }, [currentPage, filterByEnemyId, filterByQuestId, sortDirection, sortType, questCompletedFilter]);
 
   useEffect(() => {
     const encounterSavedListener = listen("encounter-saved", () => {
-      invoke("fetch_logs", { page: currentPage, filterByEnemyId, filterByQuestId }).then((result) => {
+      invoke("fetch_logs", {
+        page: currentPage,
+        filterByEnemyId,
+        filterByQuestId,
+        sortDirection,
+        sortType,
+        questCompleted: questCompletedFilter,
+      }).then((result) => {
         setSearchResult(result as SearchResult);
       });
     });
@@ -53,7 +71,7 @@ export default function useIndex() {
     return () => {
       encounterSavedListener.then((f) => f());
     };
-  }, [currentPage, filterByEnemyId, filterByQuestId]);
+  }, [currentPage, filterByEnemyId, filterByQuestId, sortDirection, sortType, questCompletedFilter]);
 
   const confirmDeleteSelected = () =>
     modals.openConfirmModal({
@@ -79,7 +97,14 @@ export default function useIndex() {
     setCurrentPage(page);
     setSelectedLogIds([]);
 
-    invoke("fetch_logs", { page, filterByEnemyId, filterByQuestId }).then((result) => {
+    invoke("fetch_logs", {
+      page,
+      filterByEnemyId,
+      filterByQuestId,
+      sortDirection,
+      sortType,
+      questCompleted: questCompletedFilter,
+    }).then((result) => {
       setSearchResult(result as SearchResult);
     });
   };
@@ -92,6 +117,22 @@ export default function useIndex() {
   const handleSetQuestIdFilter = (questId: number | null) => {
     setCurrentPage(1);
     setQuestIdFilter(questId);
+  };
+
+  const handleSetQuestCompletedFilter = (completed: boolean | null) => {
+    setCurrentPage(1);
+    setQuestCompletedFilter(completed);
+  };
+
+  const toggleSort = (newSortType: LogSortType) => {
+    setCurrentPage(1);
+
+    if (sortType === newSortType) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortType(newSortType);
+      setSortDirection("asc");
+    }
   };
 
   return {
@@ -107,5 +148,10 @@ export default function useIndex() {
     filterByQuestId,
     setEnemyIdFilter: handleSetEnemyIdFilter,
     setQuestIdFilter: handleSetQuestIdFilter,
+    setQuestCompletedFilter: handleSetQuestCompletedFilter,
+    questCompletedFilter,
+    toggleSort,
+    sortType,
+    sortDirection,
   };
 }
