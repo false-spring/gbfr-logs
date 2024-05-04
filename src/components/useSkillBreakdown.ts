@@ -27,9 +27,8 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
     const skills: Array<ComputedSkillGroup | ComputedSkillGroup> = [];
 
     for (const skill of computedSkills) {
-      if (typeof skill.childCharacterType != "string") continue;
-
-      const skillGroupMapping = SkillGroupMapping[skill.childCharacterType] || {};
+      const skillGroupIndex = typeof skill.childCharacterType !== "string" ? -1 : skill.childCharacterType;
+      const skillGroupMapping = SkillGroupMapping[skillGroupIndex] || {};
 
       if (typeof skill.actionType == "object" && Object.hasOwn(skill.actionType, "Normal")) {
         const actionType = skill.actionType as { Normal: number };
@@ -91,6 +90,8 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
 
     skillsToShow = skills;
   }
+
+  console.log(skillsToShow);
 
   skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);
 
