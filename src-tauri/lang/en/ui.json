@@ -33,6 +33,8 @@
     "show-full-values-description": "Show full values in the meter.",
     "use-condensed-skills": "Use Condensed Skill Names",
     "use-condensed-skills-description": "Groups various skills into one entry (e.g. Attack 1, Attack 2 would condense into just \"Attack\")",
+    "open-log-on-save": "Open Log on Save",
+    "open-log-on-save-description": "Automatically open the log after saving an encounter.",
     "debug-mode": "Debug Mode",
     "debug-mode-description": "Opens the developer console to view all raw event data.",
     "weapon": "Weapon",

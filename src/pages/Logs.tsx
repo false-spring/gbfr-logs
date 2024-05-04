@@ -1,3 +1,4 @@
+import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import "./Logs.css";
 
 import { AppShell, Burger, Group, NavLink, Text } from "@mantine/core";
@@ -11,6 +12,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 const Layout = () => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(false);
+  const { open_log_on_save } = useMeterSettingsStore((state) => ({ open_log_on_save: state.open_log_on_save }));
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +22,7 @@ const Layout = () => {
     });
 
     const saveListener = listen("encounter-saved", (event: { payload: number | null }) => {
-      if (event.payload) {
+      if (event.payload && open_log_on_save) {
         navigate(`/logs/${event.payload}`);
       }
     });
@@ -28,7 +31,7 @@ const Layout = () => {
       debugListener.then((f) => f());
       saveListener.then((f) => f());
     };
-  });
+  }, [open_log_on_save]);
 
   return (
     <div className="log-window">

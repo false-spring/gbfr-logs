@@ -43,6 +43,7 @@ const SettingsPage = () => {
     availableOverlayColumns,
     addOverlayColumn,
     removeOverlayColumn,
+    open_log_on_save,
   } = useSettings();
 
   const toggleDebugMode = () => {
@@ -123,6 +124,13 @@ const SettingsPage = () => {
               label={t("ui.use-condensed-skills")}
               checked={use_condensed_skills}
               onChange={(event) => setMeterSettings({ use_condensed_skills: event.currentTarget.checked })}
+            />
+          </Tooltip>
+          <Tooltip label={t("ui.open-log-on-save-description")}>
+            <Checkbox
+              label={t("ui.open-log-on-save")}
+              checked={open_log_on_save}
+              onChange={(event) => setMeterSettings({ open_log_on_save: event.currentTarget.checked })}
             />
           </Tooltip>
           <Tooltip label={t("ui.debug-mode-description")}>
