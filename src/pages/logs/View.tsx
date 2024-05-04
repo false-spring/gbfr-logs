@@ -710,8 +710,9 @@ export const ViewPage = () => {
                               {translateSigilId(sigil.sigilId)} (Lvl. {sigil.sigilLevel})
                             </Text>
                             <Text size="xs" fs="italic" fw={300}>
-                              {translateTraitId(sigil.firstTraitId)}
-                              {sigil.secondTraitId !== EMPTY_ID && ` / ${translateTraitId(sigil.secondTraitId)}`}
+                              {translateTraitId(sigil.firstTraitId)} (Lvl. {sigil.firstTraitLevel})
+                              {sigil.secondTraitId !== EMPTY_ID &&
+                                ` / ${translateTraitId(sigil.secondTraitId)} (Lvl. ${sigil.secondTraitLevel})`}
                             </Text>
                           </Table.Td>
                         );
