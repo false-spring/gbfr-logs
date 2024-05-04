@@ -91,8 +91,6 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
     skillsToShow = skills;
   }
 
-  console.log(skillsToShow);
-
   skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);
 
   return {
