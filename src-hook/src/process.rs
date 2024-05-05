@@ -21,8 +21,6 @@ pub enum ProcessError {
 }
 
 pub struct Process {
-    pub pid: u32,
-    pub name: String,
     pub base_address: usize,
     pub module_handle: HMODULE,
 }
@@ -70,8 +68,6 @@ impl Process {
                                     let module_handle = module_entry.hModule;
 
                                     found_process = Some(Process {
-                                        pid: process.th32ProcessID,
-                                        name: process_name,
                                         base_address,
                                         module_handle,
                                     });
