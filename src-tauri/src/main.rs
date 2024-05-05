@@ -12,8 +12,7 @@ use std::{
 use anyhow::Context;
 use db::logs::LogEntry;
 use dll_syringe::{process::OwnedProcess, Syringe};
-use futures::io::AsyncReadExt;
-use interprocess::os::windows::named_pipe::tokio::MsgReaderPipeStream;
+use interprocess::os::windows::named_pipe::tokio::RecvPipeStream;
 use log::{info, LevelFilter};
 use parser::{
     constants::{CharacterType, EnemyType},
@@ -28,6 +27,8 @@ use tauri::{
 };
 use tauri_plugin_log::LogTarget;
 use tauri_plugin_window_state::{AppHandleExt, StateFlags};
+use tokio_stream::StreamExt;
+use tokio_util::codec::FramedRead;
 
 mod db;
 mod parser;
@@ -391,25 +392,24 @@ fn connect_and_run_parser(app: AppHandle) {
 
     tauri::async_runtime::spawn(async move {
         loop {
-            match MsgReaderPipeStream::connect(protocol::PIPE_NAME) {
-                Ok(mut stream) => {
+            match RecvPipeStream::connect_by_path(protocol::PIPE_NAME).await {
+                Ok(stream) => {
                     info!("Connected to game!");
 
                     let _ = app.emit_all("success-alert", "Connnected to game!");
 
-                    let mut buffer = [0; 1024];
+                    let decoder = tokio_util::codec::LengthDelimitedCodec::new();
+                    let mut reader = FramedRead::new(stream, decoder);
 
-                    while let Ok(msg) = stream.read(&mut buffer).await {
+                    while let Some(Ok(msg)) = reader.next().await {
                         // Handle EOF when the game closes.
-                        if msg == 0 {
+                        if msg.len() == 0 {
                             break;
                         }
 
                         let debug_mode = app.state::<DebugMode>().0.load(Ordering::Relaxed);
 
-                        if let Ok(msg) =
-                            protocol::bincode::deserialize::<protocol::Message>(&buffer[..msg])
-                        {
+                        if let Ok(msg) = protocol::bincode::deserialize::<protocol::Message>(&msg) {
                             if debug_mode {
                                 let _ = logs_window.emit("debug-event", &msg);
                             }

@@ -72,6 +72,7 @@ pub fn actor_idx(actor_ptr: *const usize) -> u32 {
 }
 
 // Returns the parent entity of the source entity if necessary.
+#[inline(always)]
 pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, u32)> {
     match source_type_id {
         // Pl0700Ghost -> Pl0700
@@ -101,6 +102,11 @@ pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u
             let parent_instance = parent_specified_instance_at(source, 0x500)?;
             Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
+        // Pl0600PlantRose
+        0x69C0CA71 => {
+            let parent_instance = parent_specified_instance_at(source, 0x7E0)?;
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
+        }
         _ => None,
     }
 }
@@ -108,6 +114,7 @@ pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u
 // Returns the specified instance of the parent entity.
 // ptr+offset: Entity
 // *(ptr+offset) + 0x70: m_pSpecifiedInstance (Pl0700, Pl1200, etc.)
+#[inline(always)]
 fn parent_specified_instance_at(actor_ptr: *const usize, offset: usize) -> Option<*const usize> {
     unsafe {
         let info = (actor_ptr.byte_add(offset) as *const *const *const usize).read_unaligned();
