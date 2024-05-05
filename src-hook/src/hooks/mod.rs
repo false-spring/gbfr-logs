@@ -101,6 +101,11 @@ pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u
             let parent_instance = parent_specified_instance_at(source, 0x500)?;
             Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
+        // Pl0600PlantRose
+        0x69C0CA71 => {
+            let parent_instance = parent_specified_instance_at(source, 0x7E0)?;
+            Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
+        }
         _ => None,
     }
 }
