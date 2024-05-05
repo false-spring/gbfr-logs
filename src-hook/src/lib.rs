@@ -1,11 +1,10 @@
-use std::ffi::OsStr;
 use std::io::Write;
 use std::path::PathBuf;
 
 use anyhow::{Context, Result};
-use futures::io::AsyncWriteExt;
-use interprocess::os::windows::named_pipe::tokio::{ByteWriterPipeStream, PipeListenerOptionsExt};
-use interprocess::os::windows::named_pipe::{PipeListenerOptions, PipeMode};
+use futures::sink::SinkExt;
+use interprocess::os::windows::named_pipe::tokio::{PipeListenerOptionsExt, SendPipeStream};
+use interprocess::os::windows::named_pipe::{pipe_mode, PipeListenerOptions, PipeMode};
 use log::{info, warn};
 use tokio::sync::broadcast;
 
@@ -14,11 +13,15 @@ mod hooks;
 mod process;
 
 use protocol::Message;
+use tokio_util::codec::{FramedWrite, LengthDelimitedCodec};
 
-async fn handle_client(mut stream: ByteWriterPipeStream, mut rx: event::Rx) -> Result<()> {
+async fn handle_client(
+    mut stream: FramedWrite<SendPipeStream<pipe_mode::Bytes>, LengthDelimitedCodec>,
+    mut rx: event::Rx,
+) -> Result<()> {
     while let Ok(msg) = rx.recv().await {
         let bytes = protocol::bincode::serialize(&msg)?;
-        stream.write_all(&bytes).await?;
+        stream.send(bytes.into()).await?;
     }
 
     Ok(())
@@ -37,10 +40,10 @@ impl Server {
 
     async fn run(&self) {
         if let Ok(listener) = PipeListenerOptions::new()
-            .name(OsStr::new(protocol::PIPE_NAME))
+            .path(protocol::PIPE_NAME)
             .mode(PipeMode::Bytes)
             .accept_remote(false)
-            .create_tokio::<ByteWriterPipeStream>()
+            .create_tokio_send_only()
         {
             loop {
                 let read_pipe = listener.accept().await;
@@ -48,7 +51,10 @@ impl Server {
                     Ok(stream) => {
                         let rx = self.tx.subscribe();
                         tokio::spawn(async move {
-                            let _ = handle_client(stream, rx).await;
+                            let encoder = LengthDelimitedCodec::new();
+                            let writer = FramedWrite::new(stream, encoder);
+
+                            let _ = handle_client(writer, rx).await;
                         });
                     }
                     Err(e) => {
