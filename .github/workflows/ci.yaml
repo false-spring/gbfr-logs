@@ -1,5 +1,9 @@
 name: Lint and Format
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
   typescript:
     name: Typescript
@@ -55,5 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: cargo build --release --package hook
       - run: cargo build --verbose
       - run: cargo test --verbose
