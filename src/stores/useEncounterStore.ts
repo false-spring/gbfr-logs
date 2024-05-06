@@ -49,6 +49,8 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   loadFromResponse: (response: EncounterStateResponse) => {
     const filteredPlayers = response.players.filter((player) => player !== null);
 
+    console.log(response.encounterState);
+
     set({
       encounterState: response.encounterState,
       dpsChart: response.dpsChart,

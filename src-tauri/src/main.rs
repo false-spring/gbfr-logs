@@ -403,7 +403,7 @@ fn connect_and_run_parser(app: AppHandle) {
 
                     while let Some(Ok(msg)) = reader.next().await {
                         // Handle EOF when the game closes.
-                        if msg.len() == 0 {
+                        if msg.is_empty() {
                             break;
                         }
 
@@ -438,6 +438,9 @@ fn connect_and_run_parser(app: AppHandle) {
                                 }
                                 protocol::Message::OnContinueSBAChain(event) => {
                                     state.on_continue_sba_chain(event)
+                                }
+                                protocol::Message::ItemGiveEvent(event) => {
+                                    state.on_item_give_event(event);
                                 }
                             }
                         }
