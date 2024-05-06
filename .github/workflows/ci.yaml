@@ -1,5 +1,9 @@
 name: Lint and Format
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
   typescript:
     name: Typescript
@@ -34,3 +38,27 @@ jobs:
       - run: npm ci
       - name: Prettier
         run: npm run format-check
+  vitest:
+    name: Typescript - Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Vitest
+        run: npm test
+  cargo_test:
+    name: Rust - Cargo Test
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        toolchain:
+          - nightly
+    steps:
+      - uses: actions/checkout@v3
+      - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: cargo build --release --package hook
+      - run: cargo build --verbose
+      - run: cargo test --verbose

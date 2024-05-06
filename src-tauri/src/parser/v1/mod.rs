@@ -3,7 +3,7 @@ use std::{collections::HashMap, io::BufReader};
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    ActionType, AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
+    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
     OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
 };
 use rusqlite::{params, Connection};
@@ -11,9 +11,14 @@ use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Manager, Window};
 
 use super::{
-    constants::{CharacterType, EnemyType, FerrySkillId},
+    constants::{CharacterType, EnemyType},
     v0,
 };
+
+mod player_state;
+mod skill_state;
+
+use player_state::PlayerState;
 
 /// Equippable sigil for a character
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -180,160 +185,6 @@ pub struct PlayerData {
     overmastery_info: Option<OvermasteryInfo>,
     /// Player stats for this player
     player_stats: Option<PlayerStats>,
-}
-
-/// Derived stat breakdown of a particular skill
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct SkillState {
-    /// Type of action ID that this skill is
-    action_type: ActionType,
-    /// Child character this skill belongs to (pet, Id's dragonform, etc.)
-    child_character_type: CharacterType,
-    /// Number of hits this skill has done
-    hits: u32,
-    /// Minimum damage done by this skill
-    min_damage: Option<u64>,
-    /// Maximum damage done by this skill
-    max_damage: Option<u64>,
-    /// Total damage done by this skill
-    total_damage: u64,
-}
-
-impl SkillState {
-    fn new(action_type: ActionType, child_character_type: CharacterType) -> Self {
-        Self {
-            action_type,
-            child_character_type,
-            hits: 0,
-            min_damage: None,
-            max_damage: None,
-            total_damage: 0,
-        }
-    }
-
-    fn update_from_damage_event(&mut self, event: &DamageEvent) {
-        self.hits += 1;
-        self.total_damage += event.damage as u64;
-
-        if let Some(min_damage) = self.min_damage {
-            self.min_damage = Some(min_damage.min(event.damage as u64));
-        } else {
-            self.min_damage = Some(event.damage as u64);
-        }
-
-        if let Some(max_damage) = self.max_damage {
-            self.max_damage = Some(max_damage.max(event.damage as u64));
-        } else {
-            self.max_damage = Some(event.damage as u64);
-        }
-    }
-}
-
-/// Derived stat breakdown for a player
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerState {
-    pub index: u32,
-    character_type: CharacterType,
-    total_damage: u64,
-    last_known_pet_skill: Option<ActionType>, // used for Ferry's skills that don't keep track of where they came from
-    dps: f64,
-    skill_breakdown: Vec<SkillState>,
-    sba: f64,
-}
-
-impl PlayerState {
-    fn set_sba(&mut self, sba: f64) {
-        self.sba = sba;
-    }
-
-    fn update_dps(&mut self, now: i64, start_time: i64) {
-        self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
-    }
-
-    // @todo(false): maybe Ferry specific stuff can be removed/abstracted if some extra flags are found or the attribution is fixed
-    fn get_action_from_ferry_damage_event(&mut self, event: &DamageEvent) -> ActionType {
-        // Ferry needs special handling because the action_id that comes back for pet skills is usually wrong
-        // e.g. if you strafe then dodge the action_id for further hits comes back as "dodge"
-        let is_ferry_pet =
-            CharacterType::Pl0700Ghost == CharacterType::from_hash(event.source.actor_type);
-        let is_ferry_pet_skill = is_ferry_pet && (event.flags & (1 << 2) != 0); // pet skills for ferry always have this flag set
-        let is_ferry_pet_normal =
-            is_ferry_pet && !is_ferry_pet_skill && event.action_id != ActionType::LinkAttack;
-
-        // Umlauf excluded since that uses a separate actor which works correctly
-        if is_ferry_pet_skill
-            && vec![
-                FerrySkillId::BlausGespenst,
-                FerrySkillId::Pendel,
-                FerrySkillId::Strafe,
-            ]
-            .into_iter()
-            .any(|skill_id| ActionType::Normal(skill_id as u32) == event.action_id)
-        {
-            self.last_known_pet_skill = Some(event.action_id);
-        }
-        const PET_NORMAL: ActionType = ActionType::Normal(FerrySkillId::PetNormal as u32);
-        let action = if is_ferry_pet_normal {
-            // Note technically the pet portion of Onslaught will count as a Pet normal, but I think that's fine since
-            // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
-            PET_NORMAL
-        } else if is_ferry_pet_skill {
-            match self.last_known_pet_skill {
-                None => PET_NORMAL, // May be good to instead have a separate "pet skill" backup for this case
-                Some(skill_id) => skill_id,
-            }
-        } else {
-            event.action_id
-        };
-        return action;
-    }
-
-    fn update_from_damage_event(&mut self, event: &DamageEvent) {
-        self.total_damage += event.damage as u64;
-
-        let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
-
-        // @TODO(false): Collapse all skill IDs from Seofon's avatar into his own.
-        let child_character_type = if parent_character_type == CharacterType::Pl2200 {
-            parent_character_type
-        } else {
-            CharacterType::from_hash(event.source.actor_type)
-        };
-
-        // for ferry defer to special function to handle the weird way her pets work
-        let action = if parent_character_type == CharacterType::Pl0700 {
-            self.get_action_from_ferry_damage_event(event)
-        } else {
-            event.action_id
-        };
-
-        // If the skill is already being tracked, update it.
-        for skill in self.skill_breakdown.iter_mut() {
-            // Aggregate all supplementary damage events into the same skill instance.
-            if matches!(
-                skill.action_type,
-                protocol::ActionType::SupplementaryDamage(_)
-            ) && matches!(action, protocol::ActionType::SupplementaryDamage(_))
-            {
-                skill.update_from_damage_event(event);
-                return;
-            }
-
-            // If the skill is already being tracked, update it.
-            if skill.action_type == action && skill.child_character_type == child_character_type {
-                skill.update_from_damage_event(event);
-                return;
-            }
-        }
-
-        // Otherwise, create a new skill and track it.
-        let mut skill = SkillState::new(action, child_character_type);
-
-        skill.update_from_damage_event(event);
-        self.skill_breakdown.push(skill);
-    }
 }
 
 /// Derived breakdown for an enemy target
@@ -1024,5 +875,101 @@ impl From<v0::Parser> for Parser {
             status: ParserStatus::Stopped,
             ..Default::default()
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use protocol::{ActionType, Actor};
+
+    use super::*;
+
+    #[test]
+    fn can_create_parser() {
+        let parser = Parser::default();
+
+        assert_eq!(parser.status, ParserStatus::Waiting);
+        assert_eq!(parser.start_time(), 1);
+    }
+
+    #[test]
+    fn start_time_depends_on_first_event() {
+        let mut parser = Parser::default();
+
+        parser.encounter.raw_event_log.push((
+            1_000,
+            Message::DamageEvent(DamageEvent {
+                source: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                target: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                damage: 0,
+                flags: 0,
+                action_id: ActionType::Normal(0),
+            }),
+        ));
+
+        assert_eq!(parser.start_time(), 1_000);
+    }
+
+    #[test]
+    fn duration_calculated_from_start_to_current_event() {
+        let mut parser = Parser::default();
+
+        parser.encounter.raw_event_log.push((
+            1_000,
+            Message::DamageEvent(DamageEvent {
+                source: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                target: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                damage: 0,
+                flags: 0,
+                action_id: ActionType::Normal(0),
+            }),
+        ));
+
+        parser.encounter.raw_event_log.push((
+            5_000,
+            Message::DamageEvent(DamageEvent {
+                source: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                target: Actor {
+                    index: 0,
+                    actor_type: 0,
+                    parent_actor_type: 0,
+                    parent_index: 0,
+                },
+                damage: 0,
+                flags: 0,
+                action_id: ActionType::Normal(0),
+            }),
+        ));
+
+        parser.reparse();
+
+        assert_eq!(parser.derived_state.start_time, 1_000);
+        assert_eq!(parser.derived_state.end_time, 5_000);
+        assert_eq!(parser.derived_state.duration(), 4_000);
     }
 }
