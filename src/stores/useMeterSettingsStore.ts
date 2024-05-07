@@ -38,6 +38,10 @@ export type StoreWithPersist<T> = Mutate<StoreApi<T>, [["zustand/persist", T]]>;
 
 export const withStorageDOMEvents = <T>(store: StoreWithPersist<T>) => {
   const storageEventCallback = (e: StorageEvent) => {
+    if (e.key === "i18nextLng" && window.i18n) {
+      window.i18n.changeLanguage(e.newValue);
+    }
+
     if (e.key === store.persist?.getOptions().name && e.newValue) {
       store.persist.rehydrate();
     }

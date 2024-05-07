@@ -45,6 +45,7 @@ i18n
       escapeValue: false,
     },
     react: {
+      bindI18n: "languageChanged loaded",
       bindI18nStore: "added",
     },
   });
