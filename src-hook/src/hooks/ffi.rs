@@ -44,8 +44,8 @@ pub struct SigilList {
     pub character_name: [u8; 16], //0x01E8
     padding_1f8: [u8; 16],        //0x01F8
     pub display_name: [u8; 16],   //0x0208
-    padding_218: [u8; 24],        //0x0218
-    pub party_index: u32,         //0x0230
+    padding_218: [u8; 20],        //0x0218
+    pub party_index: u32,         //0x022C
 }
 
 #[derive(Debug)]
