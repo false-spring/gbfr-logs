@@ -155,6 +155,18 @@
     "key": "TXT_QR_204113",
     "text": "Minaccia glaciale"
   },
+  "205000": {
+    "key": "TXT_QR_205000",
+    "text": "Ma Siero come fa?"
+  },
+  "205001": {
+    "key": "TXT_QR_205001",
+    "text": "Appunti di ricerca astrale"
+  },
+  "205002": {
+    "key": "TXT_QR_205002",
+    "text": "La leggenda attende"
+  },
   "210220": {
     "key": "TXT_QR_210220",
     "text": "Lo spirito dimenticato"
@@ -519,6 +531,10 @@
     "key": "TXT_QR_300019",
     "text": "Affrontare il passato"
   },
+  "300021": {
+    "key": "TXT_QR_300021",
+    "text": "Vento"
+  },
   "300022": {
     "key": "TXT_QR_300022",
     "text": "Bomba a orologeria"
@@ -602,6 +618,10 @@
   "301019": {
     "key": "TXT_QR_301019",
     "text": "Resa dei conti"
+  },
+  "301021": {
+    "key": "TXT_QR_301021",
+    "text": "Illusione"
   },
   "301022": {
     "key": "TXT_QR_301022",
@@ -1023,8 +1043,24 @@
     "key": "TXT_QR_407320",
     "text": "Visione finale"
   },
+  "407321": {
+    "key": "TXT_QR_407321",
+    "text": "Zero"
+  },
   "407322": {
     "key": "TXT_QR_407322",
     "text": "Scontro frontale"
+  },
+  "407323": {
+    "key": "TXT_QR_407323",
+    "text": "Incubo dello spadaccino"
+  },
+  "407324": {
+    "key": "TXT_QR_407324",
+    "text": "Spettacolo di forza e magia"
+  },
+  "407325": {
+    "key": "TXT_QR_407325",
+    "text": "\"Volontari\" di Zathba"
   }
 }

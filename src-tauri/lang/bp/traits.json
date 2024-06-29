@@ -59,9 +59,17 @@
     "key": "SKILL_153_00",
     "text": "Dianteira"
   },
+  "15806dfc": {
+    "key": "SKILL_172_01",
+    "text": "Nimbus do Arcanjo Supremo"
+  },
   "16eff868": {
     "key": "SKILL_122_01",
     "text": "Determinação Heroica"
+  },
+  "1a2ef59e": {
+    "key": "SKILL_172_03",
+    "text": "Ain"
   },
   "1b0d9897": {
     "key": "SKILL_141_00",
@@ -127,6 +135,10 @@
     "key": "SKILL_061_00",
     "text": "Retribuição de Guarda"
   },
+  "3d8153a1": {
+    "key": "SKILL_234_00",
+    "text": "Espartano"
+  },
   "3f2c482e": {
     "key": "SKILL_100_00",
     "text": "Suplementos"
@@ -159,6 +171,10 @@
     "key": "SKILL_146_00",
     "text": "Elemental de Guerra"
   },
+  "4e5f6706": {
+    "key": "SKILL_172_02",
+    "text": "Ímpeto do Arcanjo Supremo"
+  },
   "4f135217": {
     "key": "SKILL_131_02",
     "text": "Ímpeto Escarlate"
@@ -174,6 +190,10 @@
   "50b453dd": {
     "key": "SKILL_057_00",
     "text": "Resistência a Hab. Selada"
+  },
+  "51c115d2": {
+    "key": "SKILL_235_00",
+    "text": "Esquiva Perf. Super Suprema"
   },
   "522e2388": {
     "key": "SKILL_125_01",
@@ -505,11 +525,15 @@
   },
   "d2c8e10a": {
     "key": "SKILL_106_00",
-    "text": "Massacre Ágil"
+    "text": "Ataque Ágil"
   },
   "d3b8c21f": {
     "key": "SKILL_164_00",
     "text": "Admiração Crustácea"
+  },
+  "d40d1e9b": {
+    "key": "SKILL_172_00",
+    "text": "Esplen. do Arcanjo Supremo"
   },
   "d54f8ca7": {
     "key": "SKILL_051_00",
@@ -594,6 +618,10 @@
   "ec3cf174": {
     "key": "SKILL_129_00",
     "text": "Estratégia da Fundadora"
+  },
+  "ee85cd1f": {
+    "key": "SKILL_233_00",
+    "text": "Frenesi"
   },
   "ef05ec4d": {
     "key": "SKILL_170_03",

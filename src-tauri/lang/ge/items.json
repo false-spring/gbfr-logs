@@ -35,6 +35,10 @@
     "key": "ITEM_01_0053",
     "text": "Blütenschwertgriff"
   },
+  "09e6f629": {
+    "key": "ITEM_25_0131",
+    "text": "Lichtstein (Schrecken)"
+  },
   "09f9339e": {
     "key": "ITEM_32_0056",
     "text": "Horn des Abgrunds"
@@ -42,6 +46,10 @@
   "0b8d0865": {
     "key": "ITEM_27_9999",
     "text": "Lichtstein (Verstärkung)"
+  },
+  "0bd373a4": {
+    "key": "ITEM_28_0130",
+    "text": "Lichtstein (Abgeschiedenheit)"
   },
   "0f34eabc": {
     "key": "ITEM_32_0042",
@@ -130,6 +138,10 @@
   "1e133aac": {
     "key": "ITEM_18_0000",
     "text": "Dunkler Rest"
+  },
+  "202a0db9": {
+    "key": "ITEM_28_0131",
+    "text": "Lichtstein (Abgeschiedenheit)"
   },
   "20612b0a": {
     "key": "ITEM_31_0020",
@@ -259,6 +271,10 @@
     "key": "ITEM_26_0030",
     "text": "Lichtstein (Lebenskraft)"
   },
+  "3ef6def5": {
+    "key": "ITEM_26_0130",
+    "text": "Lichtstein (Lebenskraft)"
+  },
   "3f8f4efd": {
     "key": "ITEM_16_0002",
     "text": "Schreckensurne"
@@ -359,6 +375,14 @@
     "key": "ITEM_32_0050",
     "text": "Antike Hohlspitze"
   },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Charakterfarbenpaket 5"
+  },
+  "5b5b8603": {
+    "key": "ITEM_23_0003",
+    "text": "Crewmitgliedskarte: Sandalphon"
+  },
   "5c07839a": {
     "key": "ITEM_14_0032",
     "text": "Golddahlienabzeichen"
@@ -415,6 +439,10 @@
     "key": "ITEM_31_0032",
     "text": "Riesiger Schnabel"
   },
+  "667ee1d3": {
+    "key": "ITEM_27_0131",
+    "text": "Lichtstein (Verstärkung)"
+  },
   "67e3f274": {
     "key": "ITEM_32_0030",
     "text": "Tayu’itar-Kopfteil"
@@ -450,6 +478,10 @@
   "6f1fabe6": {
     "key": "ITEM_14_0021",
     "text": "Herrschaftssiegel"
+  },
+  "71173866": {
+    "key": "ITEM_26_0131",
+    "text": "Lichtstein (Lebenskraft)"
   },
   "71bc9232": {
     "key": "ITEM_70_0006",
@@ -727,6 +759,10 @@
     "key": "ITEM_25_1000",
     "text": "Lichtstein (Schrecken)"
   },
+  "a9cbb5af": {
+    "key": "ITEM_18_0002",
+    "text": "Kanaan-Weißblüte"
+  },
   "aa4626f6": {
     "key": "ITEM_25_0020",
     "text": "Lichtstein (Schrecken)"
@@ -802,6 +838,14 @@
   "bc413b80": {
     "key": "ITEM_05_0000",
     "text": "Excavallion-Anima"
+  },
+  "bcdbc4b6": {
+    "key": "ITEM_25_0130",
+    "text": "Lichtstein (Schrecken)"
+  },
+  "be6124ad": {
+    "key": "ITEM_27_0130",
+    "text": "Lichtstein (Verstärkung)"
   },
   "bee8897d": {
     "key": "ITEM_22_0000",

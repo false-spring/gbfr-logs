@@ -7,6 +7,10 @@
     "key": "GEEN_028_01",
     "text": "Lucky Charge II"
   },
+  "00612b10": {
+    "key": "GEEN_146_24",
+    "text": "War Elemental+"
+  },
   "0114dd91": {
     "key": "GEEN_151_02",
     "text": "Supplementary Damage III"
@@ -71,6 +75,10 @@
     "key": "GEEN_124_04",
     "text": "Dragonslayer's Dominance"
   },
+  "0713d928": {
+    "key": "GEEN_114_93",
+    "text": "Fearless Heart+"
+  },
   "07703a8a": {
     "key": "GEEN_072_02",
     "text": "Uplift III"
@@ -98,6 +106,10 @@
   "0b3a6cc9": {
     "key": "GEEN_067_01",
     "text": "Drain II"
+  },
+  "0b456def": {
+    "key": "GEEN_094_24",
+    "text": "Steady Focus V+"
   },
   "0bb4ccda": {
     "key": "GEEN_153_14",
@@ -263,6 +275,10 @@
     "key": "GEEN_088_04",
     "text": "Blight Resistance V"
   },
+  "176fe02c": {
+    "key": "GEEN_046_24",
+    "text": "Poison Resistance V+"
+  },
   "1791546f": {
     "key": "GEEN_116_64",
     "text": "Helmsman's Warpath"
@@ -290,6 +306,10 @@
   "197818b7": {
     "key": "GEEN_055_03",
     "text": "Paralysis Resistance IV"
+  },
+  "19cb4eb9": {
+    "key": "GEEN_057_24",
+    "text": "Skill Sealed Resistance V+"
   },
   "19f0455d": {
     "key": "GEEN_009_04",
@@ -359,6 +379,10 @@
     "key": "GEEN_004_01",
     "text": "Stun Power II"
   },
+  "1e69c3d0": {
+    "key": "GEEN_066_24",
+    "text": "Regen V+"
+  },
   "1fc0c1a5": {
     "key": "GEEN_085_94",
     "text": "Aegis V+"
@@ -379,6 +403,10 @@
     "key": "GEEN_063_04",
     "text": "Improved Dodge"
   },
+  "20bcdb1b": {
+    "key": "GEEN_054_24",
+    "text": "Dizzy Resistance V+"
+  },
   "212b81f5": {
     "key": "GEEN_120_54",
     "text": "Phantasm's Harmony"
@@ -386,6 +414,10 @@
   "21e10eb7": {
     "key": "GEEN_119_92",
     "text": "Rose's Profusion+"
+  },
+  "22115f71": {
+    "key": "GEEN_086_24",
+    "text": "Slow Resistance V+"
   },
   "22319f27": {
     "key": "GEEN_087_01",
@@ -398,6 +430,14 @@
   "237caa21": {
     "key": "GEEN_136_00",
     "text": "Held Under Resistance I"
+  },
+  "23c84e82": {
+    "key": "GEEN_073_24",
+    "text": "Potion Hoarder V+"
+  },
+  "23e7990d": {
+    "key": "GEEN_168_04",
+    "text": "Enhanced Damage V"
   },
   "248c0116": {
     "key": "GEEN_054_00",
@@ -415,9 +455,17 @@
     "key": "GEEN_070_03",
     "text": "Cascade IV"
   },
+  "26ddcd39": {
+    "key": "GEEN_044_24",
+    "text": "Stout Heart+"
+  },
   "27c62352": {
     "key": "GEEN_051_02",
     "text": "Sandtomb Resistance III"
+  },
+  "27f0408a": {
+    "key": "GEEN_047_24",
+    "text": "Burn Resistance V+"
   },
   "28089a97": {
     "key": "GEEN_130_04",
@@ -426,6 +474,10 @@
   "28a30205": {
     "key": "GEEN_017_12",
     "text": "Combo Finisher III+"
+  },
+  "295219f9": {
+    "key": "GEEN_106_24",
+    "text": "Nimble Onslaught V+"
   },
   "29be4772": {
     "key": "GEEN_051_00",
@@ -471,6 +523,10 @@
     "key": "GEEN_096_04",
     "text": "Steel Nerves V"
   },
+  "2d5f3437": {
+    "key": "GEEN_068_24",
+    "text": "Autorevive V+"
+  },
   "2d637d25": {
     "key": "GEEN_154_04",
     "text": "Berserker V"
@@ -478,6 +534,10 @@
   "2d7f2e70": {
     "key": "GEEN_000_24",
     "text": "Attack Power V+"
+  },
+  "2e3351e3": {
+    "key": "GEEN_147_24",
+    "text": "Path to Mastery V+"
   },
   "2f06ac30": {
     "key": "GEEN_150_04",
@@ -490,6 +550,10 @@
   "2fd5965c": {
     "key": "GEEN_151_22",
     "text": "Supplementary Damage III+"
+  },
+  "3069c2fe": {
+    "key": "GEEN_128_93",
+    "text": "Eternal Rage's Warpath+"
   },
   "30a3f2ea": {
     "key": "GEEN_115_92",
@@ -511,6 +575,10 @@
     "key": "GEEN_124_54",
     "text": "Dragonslayer's Ingenuity"
   },
+  "332e9b30": {
+    "key": "GEEN_233_24",
+    "text": "Berserker Echo+"
+  },
   "3332e18d": {
     "key": "GEEN_057_04",
     "text": "Skill Sealed Resistance V"
@@ -530,6 +598,10 @@
   "342143d7": {
     "key": "GEEN_030_02",
     "text": "Overdrive Assassin III"
+  },
+  "346edd73": {
+    "key": "GEEN_234_04",
+    "text": "Spartan Echo"
   },
   "34c77091": {
     "key": "GEEN_125_64",
@@ -671,6 +743,10 @@
     "key": "GEEN_047_03",
     "text": "Burn Resistance IV"
   },
+  "3ea4134b": {
+    "key": "GEEN_172_91",
+    "text": "Supreme Primarch's Awe+"
+  },
   "3edd4c1f": {
     "key": "GEEN_066_02",
     "text": "Regen III"
@@ -699,6 +775,10 @@
     "key": "GEEN_151_04",
     "text": "Supplementary Damage V"
   },
+  "43088191": {
+    "key": "GEEN_168_02",
+    "text": "Enhanced Damage III"
+  },
   "430df884": {
     "key": "GEEN_028_00",
     "text": "Lucky Charge I"
@@ -718,6 +798,10 @@
   "43dde5dd": {
     "key": "GEEN_171_74",
     "text": "Two-Crown Boundary+"
+  },
+  "43f26a91": {
+    "key": "GEEN_117_93",
+    "text": "Mage's Warpath+"
   },
   "4438676e": {
     "key": "GEEN_162_04",
@@ -751,6 +835,10 @@
     "key": "GEEN_027_13",
     "text": "Tyranny IV+"
   },
+  "464099cd": {
+    "key": "GEEN_058_24",
+    "text": "SBA Sealed Resistance V+"
+  },
   "46aba3c0": {
     "key": "GEEN_109_04",
     "text": "Precise Wrath V"
@@ -770,6 +858,10 @@
   "4840c322": {
     "key": "GEEN_008_03",
     "text": "Charged Attack IV"
+  },
+  "4872d685": {
+    "key": "2DB5D969",
+    "text": "Enhanced Damage V"
   },
   "49651c89": {
     "key": "GEEN_126_92",
@@ -795,6 +887,10 @@
     "key": "GEEN_046_03",
     "text": "Poison Resistance IV"
   },
+  "4aa48417": {
+    "key": "GEEN_156_24",
+    "text": "Potent Greens+"
+  },
   "4b754d3a": {
     "key": "GEEN_083_00",
     "text": "Skilled Assault I"
@@ -806,6 +902,10 @@
   "4ba4e4ac": {
     "key": "GEEN_006_14",
     "text": "Stamina V+"
+  },
+  "4c28585a": {
+    "key": "GEEN_125_93",
+    "text": "Holy Knight's Warpath+"
   },
   "4c6ad990": {
     "key": "GEEN_131_04",
@@ -822,6 +922,10 @@
   "4cc5031d": {
     "key": "GEEN_137_04",
     "text": "Darkflame Resistance V"
+  },
+  "4cdce25b": {
+    "key": "GEEN_123_93",
+    "text": "Lord's Warpath+"
   },
   "4d7c8632": {
     "key": "GEEN_123_64",
@@ -863,6 +967,10 @@
     "key": "GEEN_027_12",
     "text": "Tyranny III+"
   },
+  "5048c546": {
+    "key": "GEEN_139_24",
+    "text": "Defense Down Resistance V+"
+  },
   "50b05700": {
     "key": "GEEN_077_04",
     "text": "Low Profile V"
@@ -870,6 +978,10 @@
   "5144fe4d": {
     "key": "GEEN_031_14",
     "text": "Break Assassin V+"
+  },
+  "515e693c": {
+    "key": "GEEN_119_93",
+    "text": "Rose's Warpath+"
   },
   "522004ab": {
     "key": "GEEN_115_91",
@@ -971,6 +1083,10 @@
     "key": "GEEN_145_13",
     "text": "Power Hungry IV+"
   },
+  "5d592fdd": {
+    "key": "GEEN_172_93",
+    "text": "Supreme Primarch's Warpath+"
+  },
   "5dcc1f70": {
     "key": "GEEN_004_22",
     "text": "Stun Power III+"
@@ -1019,6 +1135,10 @@
     "key": "GEEN_085_01",
     "text": "Aegis II"
   },
+  "614fb550": {
+    "key": "GEEN_051_24",
+    "text": "Sandtomb Resistance V+"
+  },
   "6151f5f6": {
     "key": "GEEN_158_23",
     "text": "Glass Cannon IV+"
@@ -1051,6 +1171,10 @@
     "key": "GEEN_068_00",
     "text": "Autorevive I"
   },
+  "65909e04": {
+    "key": "GEEN_069_24",
+    "text": "Quick Cooldown V+"
+  },
   "65b73b3f": {
     "key": "GEEN_222_94",
     "text": "Potion Hoarder V+"
@@ -1058,6 +1182,10 @@
   "6674c639": {
     "key": "GEEN_131_64",
     "text": "Crimson's Warpath"
+  },
+  "66f1b128": {
+    "key": "GEEN_129_93",
+    "text": "Founder's Warpath+"
   },
   "673c5d8f": {
     "key": "GEEN_122_90",
@@ -1111,6 +1239,10 @@
     "key": "GEEN_080_03",
     "text": "Rupie Tycoon IV"
   },
+  "6ac327a2": {
+    "key": "GEEN_055_24",
+    "text": "Paralysis Resistance V+"
+  },
   "6b59242a": {
     "key": "GEEN_156_04",
     "text": "Potent Greens"
@@ -1150,6 +1282,10 @@
   "6f4749ad": {
     "key": "GEEN_153_03",
     "text": "Head Start IV"
+  },
+  "6fd12e61": {
+    "key": "GEEN_070_24",
+    "text": "Cascade V+"
   },
   "70336d00": {
     "key": "GEEN_069_00",
@@ -1195,6 +1331,10 @@
     "key": "GEEN_066_00",
     "text": "Regen I"
   },
+  "7291a3f9": {
+    "key": "GEEN_138_24",
+    "text": "Attack Down Resistance V+"
+  },
   "72946a51": {
     "key": "GEEN_057_03",
     "text": "Skill Sealed Resistance IV"
@@ -1210,6 +1350,10 @@
   "735769a7": {
     "key": "GEEN_069_01",
     "text": "Quick Cooldown II"
+  },
+  "73b77d4f": {
+    "key": "GEEN_168_03",
+    "text": "Enhanced Damage IV"
   },
   "73e5554f": {
     "key": "GEEN_036_00",
@@ -1262,6 +1406,10 @@
   "76c7eb69": {
     "key": "GEEN_060_01",
     "text": "Improved Guard II"
+  },
+  "76d4716b": {
+    "key": "GEEN_126_93",
+    "text": "Swordmaster's Warpath+"
   },
   "772601d4": {
     "key": "GEEN_151_01",
@@ -1351,6 +1499,14 @@
     "key": "GEEN_139_01",
     "text": "Defense Down Resistance II"
   },
+  "7e13a72d": {
+    "key": "GEEN_065_24",
+    "text": "Improved Healing V+"
+  },
+  "7e3a52a3": {
+    "key": "GEEN_172_92",
+    "text": "Supreme Primarch's Nimbus+"
+  },
   "7e76f58d": {
     "key": "GEEN_078_02",
     "text": "Provoke III"
@@ -1435,6 +1591,10 @@
     "key": "GEEN_164_00",
     "text": "Crabmiration"
   },
+  "83111a4b": {
+    "key": "GEEN_168_01",
+    "text": "Enhanced Damage II"
+  },
   "83e5006e": {
     "key": "GEEN_154_24",
     "text": "Berserker V+"
@@ -1483,6 +1643,10 @@
     "key": "GEEN_154_01",
     "text": "Berserker II"
   },
+  "8a3819c0": {
+    "key": "GEEN_121_93",
+    "text": "White Dragon's Warpath+"
+  },
   "8a3dcab1": {
     "key": "GEEN_006_12",
     "text": "Stamina III+"
@@ -1502,6 +1666,10 @@
   "8b66775a": {
     "key": "GEEN_061_02",
     "text": "Guard Payback III"
+  },
+  "8bf28309": {
+    "key": "GEEN_168_23",
+    "text": "Enhanced Damage IV+"
   },
   "8ca7d9c1": {
     "key": "GEEN_012_14",
@@ -1563,6 +1731,10 @@
     "key": "GEEN_111_23",
     "text": "Quick Charge IV+"
   },
+  "91ac1ddd": {
+    "key": "GEEN_045_24",
+    "text": "Guts V+"
+  },
   "91cc46c0": {
     "key": "GEEN_024_01",
     "text": "Combo Booster II"
@@ -1586,6 +1758,14 @@
   "936dfe00": {
     "key": "GEEN_114_54",
     "text": "Fearless Spirit"
+  },
+  "938db625": {
+    "key": "GEEN_234_24",
+    "text": "Spartan Echo+"
+  },
+  "9393d637": {
+    "key": "GEEN_235_04",
+    "text": "Super Ultimate Perfect Dodge"
   },
   "93d9774f": {
     "key": "GEEN_008_01",
@@ -1623,6 +1803,10 @@
     "key": "GEEN_008_22",
     "text": "Charged Attack III+"
   },
+  "95c88e4f": {
+    "key": "GEEN_067_24",
+    "text": "Drain V+"
+  },
   "961b274c": {
     "key": "GEEN_003_23",
     "text": "Critical Hit Rate IV+"
@@ -1638,6 +1822,10 @@
   "978255ef": {
     "key": "GEEN_060_00",
     "text": "Improved Guard I"
+  },
+  "97cf485d": {
+    "key": "GEEN_151_94",
+    "text": "Potent Greens+"
   },
   "9814e19b": {
     "key": "GEEN_012_22",
@@ -1674,6 +1862,10 @@
   "98e88fdf": {
     "key": "GEEN_057_02",
     "text": "Skill Sealed Resistance III"
+  },
+  "98e9e6ef": {
+    "key": "GEEN_130_93",
+    "text": "Versalis Heart+"
   },
   "99a4b2a7": {
     "key": "GEEN_080_00",
@@ -1723,6 +1915,10 @@
     "key": "GEEN_013_24",
     "text": "Critical Damage V+"
   },
+  "9d4f66d7": {
+    "key": "GEEN_167_24",
+    "text": "Auto Potion+"
+  },
   "9d5bc5bf": {
     "key": "GEEN_122_91",
     "text": "Hero's Creed+"
@@ -1743,6 +1939,10 @@
     "key": "GEEN_024_22",
     "text": "Combo Booster III+"
   },
+  "9e62759d": {
+    "key": "GEEN_080_24",
+    "text": "Rupie Tycoon V+"
+  },
   "9e79aa31": {
     "key": "GEEN_213_94",
     "text": "Improved Guard V+"
@@ -1750,6 +1950,10 @@
   "9f08f697": {
     "key": "GEEN_116_91",
     "text": "Helmsman's Navigation+"
+  },
+  "9f72bae0": {
+    "key": "GEEN_170_93",
+    "text": "Spirit Edge's Warpath+"
   },
   "9f741115": {
     "key": "GEEN_060_02",
@@ -1831,6 +2035,10 @@
     "key": "GEEN_083_14",
     "text": "Skilled Assault V+"
   },
+  "a490badf": {
+    "key": "GEEN_122_93",
+    "text": "Hero's Warpath+"
+  },
   "a492ffac": {
     "key": "GEEN_027_24",
     "text": "Tyranny V+"
@@ -1903,6 +2111,10 @@
     "key": "GEEN_130_64",
     "text": "Versalis Heart"
   },
+  "aa45cd2d": {
+    "key": "GEEN_088_24",
+    "text": "Blight Resistance V+"
+  },
   "aa793de2": {
     "key": "GEEN_054_03",
     "text": "Dizzy Resistance IV"
@@ -1914,6 +2126,10 @@
   "aac7a219": {
     "key": "GEEN_151_03",
     "text": "Supplementary Damage IV"
+  },
+  "ab4f7d56": {
+    "key": "GEEN_172_54",
+    "text": "Supreme Primarch's Nimbus"
   },
   "ab835493": {
     "key": "GEEN_124_90",
@@ -1927,6 +2143,10 @@
     "key": "GEEN_133_02",
     "text": "Fortifying Vigor"
   },
+  "ac175924": {
+    "key": "GEEN_115_93",
+    "text": "Guardian's Warpath+"
+  },
   "ac2ed9a4": {
     "key": "GEEN_220_94",
     "text": "Flight over Fight+"
@@ -1935,9 +2155,17 @@
     "key": "GEEN_047_04",
     "text": "Burn Resistance V"
   },
+  "aca7fb5a": {
+    "key": "GEEN_168_00",
+    "text": "Enhanced Damage"
+  },
   "ad0a2ae1": {
     "key": "GEEN_070_01",
     "text": "Cascade II"
+  },
+  "ad8caefb": {
+    "key": "GEEN_171_93",
+    "text": "Dark Huntress's Warpath+"
   },
   "ae5d5a4f": {
     "key": "GEEN_031_12",
@@ -2003,6 +2231,10 @@
     "key": "GEEN_119_64",
     "text": "Rose's Warpath"
   },
+  "b1ccc211": {
+    "key": "GEEN_087_24",
+    "text": "Firm Stance V+"
+  },
   "b1d40170": {
     "key": "GEEN_157_24",
     "text": "Roll of the Die+"
@@ -2027,6 +2259,10 @@
     "key": "GEEN_069_03",
     "text": "Quick Cooldown IV"
   },
+  "b3ab43f3": {
+    "key": "GEEN_132_93",
+    "text": "Ebony's Warpath+"
+  },
   "b441275d": {
     "key": "GEEN_120_90",
     "text": "Phantasm's Awakening+"
@@ -2034,6 +2270,10 @@
   "b4adddc5": {
     "key": "GEEN_012_24",
     "text": "Throw V+"
+  },
+  "b5170056": {
+    "key": "GEEN_168_24",
+    "text": "Enhanced Damage V+"
   },
   "b570d9ca": {
     "key": "GEEN_013_00",
@@ -2099,6 +2339,10 @@
     "key": "GEEN_080_04",
     "text": "Rupie Tycoon V"
   },
+  "b8c44d5e": {
+    "key": "GEEN_172_90",
+    "text": "Supreme Primarch's Awakening+"
+  },
   "b98a0f22": {
     "key": "GEEN_130_91",
     "text": "Versalis Foundation+"
@@ -2115,6 +2359,10 @@
     "key": "GEEN_018_23",
     "text": "Concentrated Fire IV+"
   },
+  "bbe831b2": {
+    "key": "GEEN_235_24",
+    "text": "Super Ultimate Perfect Dodge+"
+  },
   "bbf1566e": {
     "key": "GEEN_115_04",
     "text": "Guardian's Conviction"
@@ -2123,6 +2371,10 @@
     "key": "GEEN_009_14",
     "text": "Linked Together V+"
   },
+  "bc53ce24": {
+    "key": "GEEN_116_93",
+    "text": "Helmsman's Warpath+"
+  },
   "bc795189": {
     "key": "GEEN_012_13",
     "text": "Throw IV+"
@@ -2130,6 +2382,10 @@
   "bcedf060": {
     "key": "GEEN_124_92",
     "text": "Dragonslayer's Ingenuity+"
+  },
+  "bcf91f80": {
+    "key": "GEEN_233_04",
+    "text": "Berserker Echo"
   },
   "bd2cf495": {
     "key": "GEEN_006_03",
@@ -2174,6 +2430,10 @@
   "bfaa447e": {
     "key": "GEEN_014_24",
     "text": "Exploiter V+"
+  },
+  "bfdf838c": {
+    "key": "GEEN_131_93",
+    "text": "Crimson's Warpath+"
   },
   "c02e6bea": {
     "key": "GEEN_166_04",
@@ -2235,6 +2495,10 @@
     "key": "GEEN_013_23",
     "text": "Critical Damage IV+"
   },
+  "c63c8ddf": {
+    "key": "GEEN_078_24",
+    "text": "Provoke V+"
+  },
   "c64737e7": {
     "key": "GEEN_107_00",
     "text": "Precise Resilience I"
@@ -2254,6 +2518,10 @@
   "c6b1bbe6": {
     "key": "GEEN_020_00",
     "text": "Damage Cap I"
+  },
+  "c6b50fea": {
+    "key": "GEEN_168_22",
+    "text": "Enhanced Damage III+"
   },
   "c6e71d09": {
     "key": "GEEN_111_13",
@@ -2275,6 +2543,14 @@
     "key": "GEEN_066_04",
     "text": "Regen V"
   },
+  "c9d8bd97": {
+    "key": "GEEN_172_04",
+    "text": "Supreme Primarch's Awe"
+  },
+  "caae3f9c": {
+    "key": "GEEN_118_93",
+    "text": "Veteran's Warpath+"
+  },
   "cb5f29c1": {
     "key": "GEEN_044_04",
     "text": "Stout Heart"
@@ -2295,6 +2571,10 @@
     "key": "GEEN_086_04",
     "text": "Slow Resistance V"
   },
+  "cce507e7": {
+    "key": "GEEN_172_64",
+    "text": "Supreme Primarch's Warpath"
+  },
   "cd4b83c7": {
     "key": "GEEN_136_04",
     "text": "Held Under Resistance V"
@@ -2307,6 +2587,10 @@
     "key": "GEEN_128_90",
     "text": "Eternal Rage's Awakening+"
   },
+  "ce6c62cf": {
+    "key": "GEEN_109_24",
+    "text": "Precise Wrath V+"
+  },
   "ce8aa073": {
     "key": "GEEN_212_94",
     "text": "Supplementary Damage V+"
@@ -2314,6 +2598,10 @@
   "cee9dd46": {
     "key": "GEEN_153_02",
     "text": "Head Start III"
+  },
+  "cef31894": {
+    "key": "GEEN_127_93",
+    "text": "Butterfly's Warpath+"
   },
   "d038f852": {
     "key": "GEEN_018_14",
@@ -2342,6 +2630,10 @@
   "d2740e3b": {
     "key": "GEEN_055_00",
     "text": "Paralysis Resistance I"
+  },
+  "d3071d85": {
+    "key": "GEEN_137_24",
+    "text": "Darkflame Resistance V+"
   },
   "d32c0caf": {
     "key": "GEEN_003_02",
@@ -2430,6 +2722,10 @@
   "d77efbc6": {
     "key": "GEEN_046_02",
     "text": "Poison Resistance III"
+  },
+  "d7abbdca": {
+    "key": "GEEN_079_24",
+    "text": "Fast Learner V+"
   },
   "d7c37871": {
     "key": "GEEN_052_01",
@@ -2527,6 +2823,10 @@
     "key": "GEEN_079_04",
     "text": "Fast Learner V"
   },
+  "e21a4170": {
+    "key": "GEEN_124_93",
+    "text": "Dragonslayer's Warpath+"
+  },
   "e255fad2": {
     "key": "GEEN_031_00",
     "text": "Break Assassin I"
@@ -2550,6 +2850,10 @@
   "e405aca0": {
     "key": "GEEN_107_02",
     "text": "Precise Resilience III"
+  },
+  "e496d882": {
+    "key": "GEEN_120_93",
+    "text": "Phantasm's Warpath+"
   },
   "e4f986d9": {
     "key": "GEEN_132_90",
@@ -2582,6 +2886,10 @@
   "e5b58127": {
     "key": "GEEN_080_02",
     "text": "Rupie Tycoon III"
+  },
+  "e5c9f685": {
+    "key": "GEEN_072_24",
+    "text": "Uplift V+"
   },
   "e5d96666": {
     "key": "GEEN_018_13",
@@ -2687,9 +2995,21 @@
     "key": "GEEN_030_04",
     "text": "Overdrive Assassin V"
   },
+  "ef5d0d16": {
+    "key": "GEEN_136_24",
+    "text": "Held Under Resistance V+"
+  },
+  "ef70ca76": {
+    "key": "GEEN_052_24",
+    "text": "Glaciate Resistance V+"
+  },
   "f04c2cdc": {
     "key": "GEEN_024_23",
     "text": "Combo Booster IV+"
+  },
+  "f1267035": {
+    "key": "GEEN_172_74",
+    "text": "Ain+"
   },
   "f127d45f": {
     "key": "GEEN_012_23",
@@ -2882,6 +3202,10 @@
   "feee9198": {
     "key": "GEEN_153_23",
     "text": "Head Start IV+"
+  },
+  "ff2cbcd0": {
+    "key": "GEEN_077_24",
+    "text": "Low Profile V+"
   },
   "ff580af6": {
     "key": "GEEN_118_04",

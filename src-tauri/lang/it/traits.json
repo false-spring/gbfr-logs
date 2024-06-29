@@ -59,9 +59,17 @@
     "key": "SKILL_153_00",
     "text": "Vantaggio"
   },
+  "15806dfc": {
+    "key": "SKILL_172_01",
+    "text": "Nembo del primarca supremo"
+  },
   "16eff868": {
     "key": "SKILL_122_01",
     "text": "Volontà dell'eroe"
+  },
+  "1a2ef59e": {
+    "key": "SKILL_172_03",
+    "text": "Ain"
   },
   "1b0d9897": {
     "key": "SKILL_141_00",
@@ -97,7 +105,7 @@
   },
   "29b292a8": {
     "key": "SKILL_107_00",
-    "text": "Resistenza precisa"
+    "text": "Resilienza precisa"
   },
   "2e65a774": {
     "key": "SKILL_122_00",
@@ -126,6 +134,10 @@
   "3c2b57b0": {
     "key": "SKILL_061_00",
     "text": "Vendetta difensiva"
+  },
+  "3d8153a1": {
+    "key": "SKILL_234_00",
+    "text": "Spartano"
   },
   "3f2c482e": {
     "key": "SKILL_100_00",
@@ -159,6 +171,10 @@
     "key": "SKILL_146_00",
     "text": "Elementale della guerra"
   },
+  "4e5f6706": {
+    "key": "SKILL_172_02",
+    "text": "Sentiero del primarca supremo"
+  },
   "4f135217": {
     "key": "SKILL_131_02",
     "text": "Sentiero cremisi"
@@ -174,6 +190,10 @@
   "50b453dd": {
     "key": "SKILL_057_00",
     "text": "Resistenza abilità sigillata"
+  },
+  "51c115d2": {
+    "key": "SKILL_235_00",
+    "text": "Schivata perfetta potere supremo"
   },
   "522e2388": {
     "key": "SKILL_125_01",
@@ -511,6 +531,10 @@
     "key": "SKILL_164_00",
     "text": "Ammirazione del granchio"
   },
+  "d40d1e9b": {
+    "key": "SKILL_172_00",
+    "text": "Splendore del primarca supremo"
+  },
   "d54f8ca7": {
     "key": "SKILL_051_00",
     "text": "Resistenza Insabbiamento"
@@ -595,13 +619,17 @@
     "key": "SKILL_129_00",
     "text": "Strategia fondante"
   },
+  "ee85cd1f": {
+    "key": "SKILL_233_00",
+    "text": "Frenesia"
+  },
   "ef05ec4d": {
     "key": "SKILL_170_03",
     "text": "Frontiera delle sette stelle"
   },
   "f17850b9": {
     "key": "SKILL_024_00",
-    "text": "Incremento combo"
+    "text": "Bonus combo"
   },
   "f1d5dbd0": {
     "key": "SKILL_131_01",

@@ -135,6 +135,10 @@
     "key": "WEP_PL1200_03_01",
     "text": "Claidheamh Soluis"
   },
+  "1e8011eb": {
+    "key": "WEP_PL2100_07_03",
+    "text": "Exterminador de mundos aciago"
+  },
   "1e90adb4": {
     "key": "WEP_PL0100_03_03",
     "text": "Espada de Eos, la llave estelar"
@@ -165,7 +169,7 @@
   },
   "241b6d32": {
     "key": "WEP_PL0800_05_01",
-    "text": "Caballero Helado"
+    "text": "Caballero de Hielo"
   },
   "24c815ab": {
     "key": "WEP_PL0100_03_01",
@@ -365,7 +369,7 @@
   },
   "4ca01db9": {
     "key": "WEP_PL0800_05_03",
-    "text": "Caballero Helado, brillo plata"
+    "text": "Caballero de Hielo, brillo de plata"
   },
   "4cba06d8": {
     "key": "WEP_PL2300_07",
@@ -513,7 +517,7 @@
   },
   "72aae787": {
     "key": "WEP_PL0800_05",
-    "text": "Caballero Helado"
+    "text": "Caballero de Hielo"
   },
   "73263fe6": {
     "key": "WEP_PL0700_02",
@@ -599,6 +603,10 @@
     "key": "WEP_PL1300_02",
     "text": "Asura"
   },
+  "8e2e15eb": {
+    "key": "WEP_PL2100_07_01",
+    "text": "Exterminador de mundos"
+  },
   "90a18c66": {
     "key": "WEP_PL1200_03_02",
     "text": "Claidheamh Soluis"
@@ -683,6 +691,10 @@
     "key": "WEP_PL1500_05",
     "text": "Arkab"
   },
+  "ad915067": {
+    "key": "WEP_PL2100_07",
+    "text": "Exterminador de mundos"
+  },
   "aed9ebf8": {
     "key": "WEP_PL0600_03_01",
     "text": "Amor Eterno"
@@ -694,6 +706,10 @@
   "b03ea930": {
     "key": "WEP_PL1700_01",
     "text": "Gran guadaña Grynoth"
+  },
+  "b1c0e0c2": {
+    "key": "WEP_PL2100_A0",
+    "text": "Aprendiz"
   },
   "b25574f8": {
     "key": "WEP_PL2300_07_02",
@@ -859,6 +875,10 @@
     "key": "WEP_PL1700_02",
     "text": "Alsarav"
   },
+  "d21f4078": {
+    "key": "WEP_PL2100_07_02",
+    "text": "Exterminador de mundos"
+  },
   "d2dfbe87": {
     "key": "WEP_PL1000_A0",
     "text": "Flamígera"
@@ -913,7 +933,7 @@
   },
   "dc75ce8a": {
     "key": "WEP_PL0800_05_02",
-    "text": "Caballero Helado"
+    "text": "Caballero de Hielo"
   },
   "dc959f74": {
     "key": "WEP_PL1000_06_01",
@@ -1030,6 +1050,10 @@
   "f7c7b5dc": {
     "key": "WEP_PL0900_03_03",
     "text": "Treuer Krieger, la osadía"
+  },
+  "f7d69475": {
+    "key": "WEP_PL2100_01",
+    "text": "Aprendiz"
   },
   "fa5f32d5": {
     "key": "WEP_PL2200_07",

@@ -35,6 +35,10 @@
     "key": "ITEM_01_0053",
     "text": "Cabo da Espadaflor"
   },
+  "09e6f629": {
+    "key": "ITEM_25_0131",
+    "text": "Pedra-artífice do Terror"
+  },
   "09f9339e": {
     "key": "ITEM_32_0056",
     "text": "Chifre Abissal"
@@ -42,6 +46,10 @@
   "0b8d0865": {
     "key": "ITEM_27_9999",
     "text": "Pedra-artífice da Fortificação"
+  },
+  "0bd373a4": {
+    "key": "ITEM_28_0130",
+    "text": "Pedra-artífice do Isolamento"
   },
   "0f34eabc": {
     "key": "ITEM_32_0042",
@@ -130,6 +138,10 @@
   "1e133aac": {
     "key": "ITEM_18_0000",
     "text": "Resíduo Sombrio"
+  },
+  "202a0db9": {
+    "key": "ITEM_28_0131",
+    "text": "Pedra-artífice do Isolamento"
   },
   "20612b0a": {
     "key": "ITEM_31_0020",
@@ -259,6 +271,10 @@
     "key": "ITEM_26_0030",
     "text": "Pedra-artífice da Vitalidade"
   },
+  "3ef6def5": {
+    "key": "ITEM_26_0130",
+    "text": "Pedra-artífice da Vitalidade"
+  },
   "3f8f4efd": {
     "key": "ITEM_16_0002",
     "text": "Urna do Terror"
@@ -359,6 +375,14 @@
     "key": "ITEM_32_0050",
     "text": "Cornamenta Ancestral"
   },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Pacote de Cor de Personagem 5"
+  },
+  "5b5b8603": {
+    "key": "ITEM_23_0003",
+    "text": "Cartão de Tripul.: Sandalphon"
+  },
   "5c07839a": {
     "key": "ITEM_14_0032",
     "text": "Emblema de Dalia de Ouro"
@@ -415,6 +439,10 @@
     "key": "ITEM_31_0032",
     "text": "Bico Gigante"
   },
+  "667ee1d3": {
+    "key": "ITEM_27_0131",
+    "text": "Pedra-artífice da Fortificação"
+  },
   "67e3f274": {
     "key": "ITEM_32_0030",
     "text": "Cabeça de Tayu'itar"
@@ -450,6 +478,10 @@
   "6f1fabe6": {
     "key": "ITEM_14_0021",
     "text": "Prova de Campeão"
+  },
+  "71173866": {
+    "key": "ITEM_26_0131",
+    "text": "Pedra-artífice da Vitalidade"
   },
   "71bc9232": {
     "key": "ITEM_70_0006",
@@ -727,6 +759,10 @@
     "key": "ITEM_25_1000",
     "text": "Pedra-artífice do Terror"
   },
+  "a9cbb5af": {
+    "key": "ITEM_18_0002",
+    "text": "Florescer de Canaã"
+  },
   "aa4626f6": {
     "key": "ITEM_25_0020",
     "text": "Pedra-artífice do Terror"
@@ -802,6 +838,14 @@
   "bc413b80": {
     "key": "ITEM_05_0000",
     "text": "Anima de Excavallion"
+  },
+  "bcdbc4b6": {
+    "key": "ITEM_25_0130",
+    "text": "Pedra-artífice do Terror"
+  },
+  "be6124ad": {
+    "key": "ITEM_27_0130",
+    "text": "Pedra-artífice da Fortificação"
   },
   "bee8897d": {
     "key": "ITEM_22_0000",
