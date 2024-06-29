@@ -537,8 +537,8 @@
       "163": "Attack 4 (1st Perfect)",
       "124": "Combo Finisher (Mistimed)",
       "150": "Combo Finisher (Perfect)",
-      "164": "Combo Finisher 0 (Perfect)",
-      "114": "Combo Finisher 2 (Perfects)",
+      "164": "Combo Finisher (0 Perfect)",
+      "114": "Combo Finisher (2 Perfects)",
       "170": "Perfect Execution",
       "200": "Lunge 1",
       "201": "Lunge 2",
@@ -891,6 +891,37 @@
       "skill-groups": {
         "normal-attack": "Normal Attack (Dragonform)",
         "aerial-attack": "Aerial Attack (Dragonform)"
+      }
+    },
+    "Pl2100": {
+      "100": "Attack 1",
+      "101": "Attack 2",
+      "102": "Attack 3",
+      "111": "Attack 2 (Perfect)",
+      "112": "Attack 3 (Perfect)",
+      "122": "Attack 3 (Mistimed)",
+      "114": "Attack 4 (Perfect)",
+      "115": "Attack 5 (Perfect)",
+      "116": "Combo B Finisher (Perfect)",
+      "117": "Combo A Finisher (Mistimed)",
+      "150": "Combo Finisher",
+      "6000": "Combo Finisher (Swords)",
+      "2200": "Ecliptica",
+      "2100": "No Way Out",
+      "2400": "Revontulet",
+      "2500": "Alone in Heaven (No Counter)",
+      "2520": "Alone in Heaven (Countered)",
+      "2600": "Talviyö (Initial)",
+      "2601": "Talviyö (Perfect Continuation)",
+      "2603": "Talviyö (Finisher)",
+      "2604": "Talviyö (Finisher Swords)",
+      "2700": "Ethereal Prison",
+      "210": "Chromatic Wings (Transformation)",
+      "220": "Zohar Strike (End Transformation)",
+      "skill-groups": {
+        "normal-attack": "Normal Attack",
+        "finisher": "Finisher",
+        "talviyo": "Talviyö"
       }
     },
     "Pl2200": {

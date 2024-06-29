@@ -346,6 +346,17 @@ const SkillGroups: SkillGroupMapping = {
       skills: [300, 301, 302],
     },
   },
+  Pl2100: {
+    "normal-attack": {
+      skills: [100, 101, 102, 111, 112, 122, 114, 115],
+    },
+    finisher: {
+      skills: [116, 117, 150, 6000],
+    },
+    talviyo: {
+      skills: [2600, 2601, 2603, 2604],
+    },
+  },
   Pl2200: {
     "normal-attack": {
       skills: [100, 101, 102, 103, 140, 141],
