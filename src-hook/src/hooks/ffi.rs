@@ -4,8 +4,8 @@ use std::ffi::CString;
 #[repr(C)]
 pub struct QuestState {
     pub quest_id: u32,        // 0x00
-    padding_640: [u8; 0x644], // 0x004 - 0x648
-    pub elapsed_time: u32,    // 0x648
+    padding_640: [u8; 0x648], // 0x004 - 0x64C
+    pub elapsed_time: u32,    // 0x64C
 }
 
 #[derive(Debug)]
