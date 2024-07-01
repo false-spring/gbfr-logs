@@ -201,6 +201,12 @@ pub struct OnContinueSBAChainEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ItemGiveEvent {
+    pub item_id: u32,
+    pub count: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter(AreaEnterEvent),
     OnQuestComplete(QuestCompleteEvent),
@@ -210,4 +216,5 @@ pub enum Message {
     OnPerformSBA(OnPerformSBAEvent),
     OnContinueSBAChain(OnContinueSBAChainEvent),
     PlayerLoadEvent(PlayerLoadEvent),
+    ItemGiveEvent(ItemGiveEvent),
 }

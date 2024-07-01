@@ -49,8 +49,10 @@ impl PlayerState {
         {
             self.last_known_pet_skill = Some(event.action_id);
         }
+
         const PET_NORMAL: ActionType = ActionType::Normal(FerrySkillId::PetNormal as u32);
-        let action = if is_ferry_pet_normal {
+
+        if is_ferry_pet_normal {
             // Note technically the pet portion of Onslaught will count as a Pet normal, but I think that's fine since
             // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
             PET_NORMAL
@@ -61,8 +63,7 @@ impl PlayerState {
             }
         } else {
             event.action_id
-        };
-        return action;
+        }
     }
 
     pub fn update_from_damage_event(&mut self, event: &DamageEvent) {

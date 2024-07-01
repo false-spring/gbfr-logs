@@ -3,8 +3,9 @@ use std::{collections::HashMap, io::BufReader};
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
-    OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
+    AreaEnterEvent, DamageEvent, ItemGiveEvent, Message, OnAttemptSBAEvent,
+    OnContinueSBAChainEvent, OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent,
+    QuestCompleteEvent,
 };
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
@@ -203,6 +204,13 @@ impl EnemyState {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ItemDrop {
+    item_id: u32,
+    count: i32,
+}
+
 /// The necessary details of an encounter that can be used to recreate the state at any point in time.
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
@@ -210,6 +218,7 @@ pub struct Encounter {
     pub player_data: [Option<PlayerData>; 4],
     pub quest_id: Option<u32>,
     pub quest_timer: Option<u32>,
+
     #[serde(default)]
     pub quest_completed: bool,
 
@@ -293,6 +302,8 @@ pub struct DerivedEncounterState {
     pub party: HashMap<u32, PlayerState>,
     /// Derived target stats, damage done to each target.
     targets: HashMap<u32, EnemyState>,
+    /// Derived item drops
+    pub item_drops: Vec<ItemDrop>,
 }
 
 impl Default for DerivedEncounterState {
@@ -305,6 +316,7 @@ impl Default for DerivedEncounterState {
             status: ParserStatus::Waiting,
             party: HashMap::new(),
             targets: HashMap::new(),
+            item_drops: Vec::new(),
         }
     }
 }
@@ -369,6 +381,26 @@ impl DerivedEncounterState {
         // Update everyone's DPS
         for player in self.party.values_mut() {
             player.update_dps(now, self.start_time);
+        }
+    }
+
+    fn process_item_event(&mut self, event: &ItemGiveEvent) {
+        // @TODO(false): Negative item counts are counted as item usage, can track potion usage.
+        if event.count > 0 {
+            // Find and update the item drop count if it exists, otherwise add a new item drop.
+            let existing_item = self
+                .item_drops
+                .iter_mut()
+                .find(|item| item.item_id == event.item_id);
+
+            if let Some(existing_item) = existing_item {
+                existing_item.count += event.count;
+            } else {
+                self.item_drops.push(ItemDrop {
+                    item_id: event.item_id,
+                    count: event.count,
+                });
+            }
         }
     }
 }
@@ -445,6 +477,9 @@ impl Parser {
                 Message::DamageEvent(event) => {
                     self.derived_state.process_damage_event(*timestamp, event);
                 }
+                Message::ItemGiveEvent(event) => {
+                    self.derived_state.process_item_event(event);
+                }
                 _ => {
                     self.derived_state.end_time = *timestamp;
                 }
@@ -468,6 +503,9 @@ impl Parser {
                         self.derived_state.process_damage_event(*timestamp, event);
                     }
                 }
+                Message::ItemGiveEvent(event) => {
+                    self.derived_state.process_item_event(event);
+                }
                 _ => {
                     self.derived_state.end_time = *timestamp;
                 }
@@ -487,7 +525,11 @@ impl Parser {
 
         let mut last_event_timestamp = start_time;
 
-        for (timestamp, event) in self.encounter.event_log() {
+        for (timestamp, event) in self
+            .encounter
+            .event_log()
+            .filter(|(_, event)| !matches!(event, Message::ItemGiveEvent(_)))
+        {
             let last_index = ((last_event_timestamp - start_time) / interval) as usize;
             let index = ((timestamp - start_time) / interval) as usize;
 
@@ -570,29 +612,6 @@ impl Parser {
         self.encounter.quest_id = Some(event.quest_id);
         self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
         self.encounter.quest_completed = true;
-
-        if self.status == ParserStatus::InProgress {
-            self.update_status(ParserStatus::Stopped);
-
-            if self.has_damage() {
-                match self.save_encounter_to_db() {
-                    Ok(id) => {
-                        if let Some(window) = &self.window_handle {
-                            let _ = window.emit("encounter-saved", id);
-                        }
-                    }
-                    Err(e) => {
-                        if let Some(window) = &self.window_handle {
-                            let _ = window.emit("encounter-saved-error", e.to_string());
-                        }
-                    }
-                }
-            }
-
-            if let Some(window) = &self.window_handle {
-                let _ = window.emit("encounter-update", &self.derived_state);
-            }
-        }
     }
 
     // Called when a damage event is received from the game.
@@ -855,10 +874,26 @@ impl Parser {
 
             let id = conn.last_insert_rowid();
 
+            for item_drop in self.derived_state.item_drops.iter() {
+                conn.execute(
+                    r#"INSERT INTO item_drops (log_id, item_id, item_count, time) VALUES (?, ?, ?, ?)"#,
+                    params![id, item_drop.item_id, item_drop.count, start_datetime.timestamp_millis()],
+                )?;
+            }
+
             return Ok(Some(id));
         }
 
         Ok(None)
+    }
+
+    pub fn on_item_give_event(&mut self, event: ItemGiveEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::ItemGiveEvent(event.clone()),
+        );
+
+        self.derived_state.process_item_event(&event);
     }
 }
 

@@ -5,6 +5,7 @@ use crate::{event, process::Process};
 use self::{
     area::OnAreaEnterHook,
     damage::{OnProcessDamageHook, OnProcessDotHook},
+    item::OnItemGiveHook,
     player::OnLoadPlayerHook,
     quest::{OnLoadQuestHook, OnQuestCompleteHook},
     sba::{
@@ -17,6 +18,7 @@ mod area;
 mod damage;
 mod ffi;
 mod globals;
+mod item;
 mod player;
 mod quest;
 mod sba;
@@ -46,6 +48,9 @@ pub fn setup_hooks(tx: event::Tx) -> Result<()> {
     OnAttemptSBAHook::new(tx.clone()).setup(&process)?;
     OnCheckSBACollisionHook::new(tx.clone()).setup(&process)?;
     OnContinueSBAChainHook::new(tx.clone()).setup(&process)?;
+
+    /* Item Drops */
+    OnItemGiveHook::new(tx.clone()).setup(&process)?;
 
     Ok(())
 }

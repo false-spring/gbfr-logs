@@ -86,7 +86,8 @@
       "sba-chart": "Skybound Arts Gauge",
       "quest-status": "Status",
       "overview": "Overview",
-      "equipment": "Equipment"
+      "equipment": "Equipment",
+      "item-drops": "Item Drops"
     }
   },
   "characters": {

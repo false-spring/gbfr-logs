@@ -22,6 +22,7 @@ const DEFAULT_ENCOUNTER_STATE: EncounterState = {
   endTime: 1,
   party: {},
   targets: {},
+  itemDrops: [],
   status: "Waiting",
 };
 
