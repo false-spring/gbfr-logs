@@ -35,6 +35,10 @@
     "key": "ITEM_01_0053",
     "text": "Elsa di fiorispada"
   },
+  "09e6f629": {
+    "key": "ITEM_25_0131",
+    "text": "Pietraforgia del terrore"
+  },
   "09f9339e": {
     "key": "ITEM_32_0056",
     "text": "Corno abissale"
@@ -42,6 +46,10 @@
   "0b8d0865": {
     "key": "ITEM_27_9999",
     "text": "Pietraforgia della fortificazione"
+  },
+  "0bd373a4": {
+    "key": "ITEM_28_0130",
+    "text": "Pietraforgia della reclusione"
   },
   "0f34eabc": {
     "key": "ITEM_32_0042",
@@ -130,6 +138,10 @@
   "1e133aac": {
     "key": "ITEM_18_0000",
     "text": "Residuo oscuro"
+  },
+  "202a0db9": {
+    "key": "ITEM_28_0131",
+    "text": "Pietraforgia della reclusione"
   },
   "20612b0a": {
     "key": "ITEM_31_0020",
@@ -259,6 +271,10 @@
     "key": "ITEM_26_0030",
     "text": "Pietraforgia della prosperità"
   },
+  "3ef6def5": {
+    "key": "ITEM_26_0130",
+    "text": "Pietraforgia della prosperità"
+  },
   "3f8f4efd": {
     "key": "ITEM_16_0002",
     "text": "Urna del terrore"
@@ -321,7 +337,7 @@
   },
   "51355c28": {
     "key": "ITEM_22_0031",
-    "text": "Sfera di criodrago"
+    "text": "Gioiello del Drago del Ghiaccio"
   },
   "514d7aa0": {
     "key": "ITEM_01_0040",
@@ -358,6 +374,14 @@
   "5a5fa153": {
     "key": "ITEM_32_0050",
     "text": "Puntacava antica"
+  },
+  "5af14960": {
+    "key": "ITEM_70_0017",
+    "text": "Pacchetto colori 5"
+  },
+  "5b5b8603": {
+    "key": "ITEM_23_0003",
+    "text": "Carta compagno: Sandalphon"
   },
   "5c07839a": {
     "key": "ITEM_14_0032",
@@ -415,6 +439,10 @@
     "key": "ITEM_31_0032",
     "text": "Becco gigante"
   },
+  "667ee1d3": {
+    "key": "ITEM_27_0131",
+    "text": "Pietraforgia della fortificazione"
+  },
   "67e3f274": {
     "key": "ITEM_32_0030",
     "text": "Unità di testa Tayu'itar"
@@ -450,6 +478,10 @@
   "6f1fabe6": {
     "key": "ITEM_14_0021",
     "text": "Merito supremo"
+  },
+  "71173866": {
+    "key": "ITEM_26_0131",
+    "text": "Pietraforgia della prosperità"
   },
   "71bc9232": {
     "key": "ITEM_70_0006",
@@ -609,7 +641,7 @@
   },
   "91ccbc0f": {
     "key": "ITEM_22_0051",
-    "text": "Sfera di zefirodrago"
+    "text": "Gioiello del Drago del Vento"
   },
   "926d4ae9": {
     "key": "ITEM_01_0031",
@@ -637,7 +669,7 @@
   },
   "94dd261d": {
     "key": "ITEM_22_0021",
-    "text": "Sfera di pirodrago"
+    "text": "Gioiello del Drago del Fuoco"
   },
   "9519f56a": {
     "key": "ITEM_02_0000",
@@ -657,7 +689,7 @@
   },
   "98e75fcb": {
     "key": "ITEM_22_0061",
-    "text": "Sfera di biancodrago"
+    "text": "Gioiello del Drago Bianco"
   },
   "99307633": {
     "key": "ITEM_09_0011",
@@ -697,7 +729,7 @@
   },
   "9e75a958": {
     "key": "ITEM_22_0071",
-    "text": "Sfera di nerodrago"
+    "text": "Gioiello del Drago Nero"
   },
   "9f548db0": {
     "key": "ITEM_22_0070",
@@ -726,6 +758,10 @@
   "a90975b8": {
     "key": "ITEM_25_1000",
     "text": "Pietraforgia del terrore"
+  },
+  "a9cbb5af": {
+    "key": "ITEM_18_0002",
+    "text": "Biancofiore di Canaan"
   },
   "aa4626f6": {
     "key": "ITEM_25_0020",
@@ -803,6 +839,14 @@
     "key": "ITEM_05_0000",
     "text": "Anima di Excavallion"
   },
+  "bcdbc4b6": {
+    "key": "ITEM_25_0130",
+    "text": "Pietraforgia del terrore"
+  },
+  "be6124ad": {
+    "key": "ITEM_27_0130",
+    "text": "Pietraforgia della fortificazione"
+  },
   "bee8897d": {
     "key": "ITEM_22_0000",
     "text": "Scaglia di drago"
@@ -873,7 +917,7 @@
   },
   "cdde3137": {
     "key": "ITEM_22_0041",
-    "text": "Sfera di terradrago"
+    "text": "Gioiello del Drago della Terra"
   },
   "ce0b379e": {
     "key": "ITEM_50_0010",

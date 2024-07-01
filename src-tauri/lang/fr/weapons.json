@@ -135,6 +135,10 @@
     "key": "WEP_PL1200_03_01",
     "text": "Claidheamh Soluis"
   },
+  "1e8011eb": {
+    "key": "WEP_PL2100_07_03",
+    "text": "Ruine, la lame du destin"
+  },
   "1e90adb4": {
     "key": "WEP_PL0100_03_03",
     "text": "Épée d'Eos, la clé des étoiles"
@@ -599,6 +603,10 @@
     "key": "WEP_PL1300_02",
     "text": "Asura"
   },
+  "8e2e15eb": {
+    "key": "WEP_PL2100_07_01",
+    "text": "Ruine"
+  },
   "90a18c66": {
     "key": "WEP_PL1200_03_02",
     "text": "Claidheamh Soluis"
@@ -683,6 +691,10 @@
     "key": "WEP_PL1500_05",
     "text": "Arkab"
   },
+  "ad915067": {
+    "key": "WEP_PL2100_07",
+    "text": "Ruine"
+  },
   "aed9ebf8": {
     "key": "WEP_PL0600_03_01",
     "text": "Amour éternel"
@@ -694,6 +706,10 @@
   "b03ea930": {
     "key": "WEP_PL1700_01",
     "text": "Grynoth"
+  },
+  "b1c0e0c2": {
+    "key": "WEP_PL2100_A0",
+    "text": "Apprentis"
   },
   "b25574f8": {
     "key": "WEP_PL2300_07_02",
@@ -858,6 +874,10 @@
   "d055a41e": {
     "key": "WEP_PL1700_02",
     "text": "Alsarav"
+  },
+  "d21f4078": {
+    "key": "WEP_PL2100_07_02",
+    "text": "Ruine"
   },
   "d2dfbe87": {
     "key": "WEP_PL1000_A0",
@@ -1030,6 +1050,10 @@
   "f7c7b5dc": {
     "key": "WEP_PL0900_03_03",
     "text": "Treuer Krieger, l'intrépide"
+  },
+  "f7d69475": {
+    "key": "WEP_PL2100_01",
+    "text": "Apprentis"
   },
   "fa5f32d5": {
     "key": "WEP_PL2200_07",

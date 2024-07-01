@@ -148,11 +148,11 @@
     "text": "Más prob. de crítico"
   },
   "2906f3ed": {
-    "key": "2906F3ED",
+    "key": "LBP_EFF_CRITICAL01",
     "text": "Más prob. de crítico"
   },
   "2989cae9": {
-    "key": "2989CAE9",
+    "key": "LBP_EFF_BURST_DMG01",
     "text": "Más daño de ráfagas en cadena"
   },
   "29938b25": {
@@ -256,7 +256,7 @@
     "text": "Más vitalidad"
   },
   "43b7581d": {
-    "key": "43B7581D",
+    "key": "MED_EFF_ATTACK_LIMIT01",
     "text": "Más límite daño ataques norm."
   },
   "43d71e8f": {
@@ -276,7 +276,7 @@
     "text": "Más prob. de crítico"
   },
   "45c65767": {
-    "key": "45C65767",
+    "key": "MED_EFF_CRITICAL01",
     "text": "Más prob. de crítico"
   },
   "49089d4f": {
@@ -284,7 +284,7 @@
     "text": "Más poder de ataque"
   },
   "4a4c093d": {
-    "key": "4A4C093D",
+    "key": "MED_EFF_ARTS_LIMIT01",
     "text": "Más límite de daño de arcanos"
   },
   "4ab91ea7": {
@@ -316,7 +316,7 @@
     "text": "Más poder de ataque"
   },
   "4e42646b": {
-    "key": "4E42646B",
+    "key": "MED_EFF_ARTS_DAMAGE01",
     "text": "Más daño de arcanos"
   },
   "4fc7db58": {
@@ -332,7 +332,7 @@
     "text": "Más prob. de crítico"
   },
   "52a207b5": {
-    "key": "52A207B5",
+    "key": "MED_EFF_HP01",
     "text": "Más vitalidad"
   },
   "5382923d": {
@@ -344,7 +344,7 @@
     "text": "Más poder de ataque"
   },
   "54929589": {
-    "key": "54929589",
+    "key": "MED_EFF_RECOVERY_LIMIT01",
     "text": "Más límite de curación"
   },
   "563f7784": {
@@ -360,19 +360,19 @@
     "text": "Más vitalidad"
   },
   "57bbc478": {
-    "key": "57BBC478",
+    "key": "MED_EFF_HP01_02",
     "text": "Más vitalidad"
   },
   "59dce1e8": {
-    "key": "59DCE1E8",
+    "key": "MED_EFF_ATK01_04",
     "text": "Más poder de ataque"
   },
   "59fbb7d8": {
-    "key": "59FBB7D8",
+    "key": "MED_EFF_BREAK01_03",
     "text": "Más prob. de aturdir"
   },
   "5a51f0cb": {
-    "key": "5A51F0CB",
+    "key": "MED_EFF_HP01_03",
     "text": "Más vitalidad"
   },
   "5a57dc07": {
@@ -424,7 +424,7 @@
     "text": "Más límite de daño de arcanos"
   },
   "68b39018": {
-    "key": "68B39018",
+    "key": "MED_EFF_BURST_DAMAGE01",
     "text": "Más daño de ráfagas en cadena"
   },
   "699c6476": {
@@ -432,7 +432,7 @@
     "text": "Más prob. de crítico"
   },
   "6cb38ef3": {
-    "key": "6CB38EF3",
+    "key": "MED_EFF_BREAK01",
     "text": "Más prob. de aturdir"
   },
   "6e13df92": {
@@ -544,7 +544,7 @@
     "text": "Más límite de daño de habilidades"
   },
   "8e4af42a": {
-    "key": "8E4AF42A",
+    "key": "LBP_EFF_AB_DMG01",
     "text": "Más daño de habilidades"
   },
   "8e66b68c": {
@@ -592,7 +592,7 @@
     "text": "Más vitalidad"
   },
   "9a97c049": {
-    "key": "9A97C049",
+    "key": "MED_EFF_ABILITY_DAMAGE01",
     "text": "Más daño de habilidades"
   },
   "9b6f164c": {
@@ -608,7 +608,7 @@
     "text": "Más poder de ataque"
   },
   "9c555433": {
-    "key": "9C555433",
+    "key": "MED_EFF_ABILITY_LIMIT01",
     "text": "Más límite de daño de habilidades"
   },
   "9c6272cf": {
@@ -616,7 +616,7 @@
     "text": "Más límite de daño de habilidades"
   },
   "9c6375cf": {
-    "key": "9C6375CF",
+    "key": "MED_EFF_HP01_04",
     "text": "Más vitalidad"
   },
   "9ee4105a": {
@@ -644,7 +644,7 @@
     "text": "Más poder de ataque"
   },
   "a3545ca1": {
-    "key": "A3545CA1",
+    "key": "MED_EFF_BREAK01_02",
     "text": "Más prob. de aturdir"
   },
   "a5a1b56b": {
@@ -680,7 +680,7 @@
     "text": "Más vitalidad"
   },
   "aba0fedd": {
-    "key": "ABA0FEDD",
+    "key": "LBP_EFF_ATK_LIMIT01",
     "text": "Más límite daño ataques norm."
   },
   "accbece1": {
@@ -728,7 +728,7 @@
     "text": "Más poder de ataque"
   },
   "bf44c20b": {
-    "key": "BF44C20B",
+    "key": "LBP_EFF_HP01",
     "text": "Más vitalidad"
   },
   "c11fdfbd": {
@@ -752,11 +752,11 @@
     "text": "Más límite de daño de habilidades"
   },
   "c4925bd7": {
-    "key": "C4925BD7",
+    "key": "MED_EFF_ATK01",
     "text": "Más poder de ataque"
   },
   "c4b86ed7": {
-    "key": "C4B86ED7",
+    "key": "MED_EFF_CRITICAL01_02",
     "text": "Más prob. de crítico"
   },
   "c52d2245": {
@@ -784,7 +784,7 @@
     "text": "Más prob. de crítico"
   },
   "cac0beb6": {
-    "key": "CAC0BEB6",
+    "key": "LBP_EFF_AB_LIMIT01",
     "text": "Más límite de daño de habilidades"
   },
   "cb43ff8e": {
@@ -792,7 +792,7 @@
     "text": "Más poder de ataque"
   },
   "cb63be55": {
-    "key": "CB63BE55",
+    "key": "MED_EFF_ATK01_02",
     "text": "Más poder de ataque"
   },
   "cb6bb434": {
@@ -820,7 +820,7 @@
     "text": "Más poder de ataque"
   },
   "cd6542f5": {
-    "key": "CD6542F5",
+    "key": "LBP_EFF_ARTS_DMG01",
     "text": "Más daño de arcanos"
   },
   "ce775676": {
@@ -828,7 +828,7 @@
     "text": "Más límite de daño de habilidades"
   },
   "ceb0dbd2": {
-    "key": "CEB0DBD2",
+    "key": "MED_EFF_CRITICAL01_03",
     "text": "Más prob. de crítico"
   },
   "cf24e1a2": {
@@ -852,7 +852,7 @@
     "text": "Más límite de daño de habilidades"
   },
   "d5169339": {
-    "key": "D5169339",
+    "key": "LBP_EFF_BREAK01",
     "text": "Más prob. de aturdir"
   },
   "d51958d1": {
@@ -872,7 +872,7 @@
     "text": "Más poder de ataque"
   },
   "dcbd8423": {
-    "key": "DCBD8423",
+    "key": "MED_EFF_ATK01_03",
     "text": "Más poder de ataque"
   },
   "ddc29837": {
@@ -956,11 +956,11 @@
     "text": "Más poder de ataque"
   },
   "f004e9f2": {
-    "key": "F004E9F2",
+    "key": "MED_EFF_HP01_05",
     "text": "Más vitalidad"
   },
   "f203bb15": {
-    "key": "F203BB15",
+    "key": "MED_EFF_ATK01_05",
     "text": "Más poder de ataque"
   },
   "f2111b99": {
@@ -1000,7 +1000,7 @@
     "text": "Más daño de ráfagas en cadena"
   },
   "fa230938": {
-    "key": "FA230938",
+    "key": "LBP_EFF_ATK01",
     "text": "Más poder de ataque"
   },
   "fa9bcf64": {
@@ -1012,7 +1012,7 @@
     "text": "Más poder de ataque"
   },
   "fb4819d9": {
-    "key": "FB4819D9",
+    "key": "LBP_EFF_ARTS_LIMIT01",
     "text": "Más límite de daño de arcanos"
   },
   "fc0a10f6": {

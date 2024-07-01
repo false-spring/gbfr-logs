@@ -148,11 +148,11 @@
     "text": "Maior Chance de Acerto Crít."
   },
   "2906f3ed": {
-    "key": "2906F3ED",
+    "key": "LBP_EFF_CRITICAL01",
     "text": "Maior Chance de Acerto Crít."
   },
   "2989cae9": {
-    "key": "2989CAE9",
+    "key": "LBP_EFF_BURST_DMG01",
     "text": "Maior Dano de Combo Breaker"
   },
   "29938b25": {
@@ -256,7 +256,7 @@
     "text": "Vida Aumentada"
   },
   "43b7581d": {
-    "key": "43B7581D",
+    "key": "MED_EFF_ATTACK_LIMIT01",
     "text": "Maior Lim. de Dano de ATQ Normal"
   },
   "43d71e8f": {
@@ -276,7 +276,7 @@
     "text": "Maior Chance de Acerto Crít."
   },
   "45c65767": {
-    "key": "45C65767",
+    "key": "MED_EFF_CRITICAL01",
     "text": "Maior Chance de Acerto Crít."
   },
   "49089d4f": {
@@ -284,7 +284,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "4a4c093d": {
-    "key": "4A4C093D",
+    "key": "MED_EFF_ARTS_LIMIT01",
     "text": "Maior Limite de Dano de AC"
   },
   "4ab91ea7": {
@@ -316,7 +316,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "4e42646b": {
-    "key": "4E42646B",
+    "key": "MED_EFF_ARTS_DAMAGE01",
     "text": "Maior Dano de Arte Celestial"
   },
   "4fc7db58": {
@@ -332,7 +332,7 @@
     "text": "Maior Chance de Acerto Crít."
   },
   "52a207b5": {
-    "key": "52A207B5",
+    "key": "MED_EFF_HP01",
     "text": "Vida Aumentada"
   },
   "5382923d": {
@@ -344,7 +344,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "54929589": {
-    "key": "54929589",
+    "key": "MED_EFF_RECOVERY_LIMIT01",
     "text": "Limite de Cura Aumentado"
   },
   "563f7784": {
@@ -360,19 +360,19 @@
     "text": "Vida Aumentada"
   },
   "57bbc478": {
-    "key": "57BBC478",
+    "key": "MED_EFF_HP01_02",
     "text": "Vida Aumentada"
   },
   "59dce1e8": {
-    "key": "59DCE1E8",
+    "key": "MED_EFF_ATK01_04",
     "text": "Poder de Ataque Aumentado"
   },
   "59fbb7d8": {
-    "key": "59FBB7D8",
+    "key": "MED_EFF_BREAK01_03",
     "text": "Maior Poder de Atordoamento"
   },
   "5a51f0cb": {
-    "key": "5A51F0CB",
+    "key": "MED_EFF_HP01_03",
     "text": "Vida Aumentada"
   },
   "5a57dc07": {
@@ -424,7 +424,7 @@
     "text": "Maior Limite de Dano de AC"
   },
   "68b39018": {
-    "key": "68B39018",
+    "key": "MED_EFF_BURST_DAMAGE01",
     "text": "Maior Dano de Combo Breaker"
   },
   "699c6476": {
@@ -432,7 +432,7 @@
     "text": "Maior Chance de Acerto Crít."
   },
   "6cb38ef3": {
-    "key": "6CB38EF3",
+    "key": "MED_EFF_BREAK01",
     "text": "Maior Poder de Atordoamento"
   },
   "6e13df92": {
@@ -544,7 +544,7 @@
     "text": "Limite de Dano de Habilidade"
   },
   "8e4af42a": {
-    "key": "8E4AF42A",
+    "key": "LBP_EFF_AB_DMG01",
     "text": "Maior Dano de Habilidade"
   },
   "8e66b68c": {
@@ -592,7 +592,7 @@
     "text": "Vida Aumentada"
   },
   "9a97c049": {
-    "key": "9A97C049",
+    "key": "MED_EFF_ABILITY_DAMAGE01",
     "text": "Maior Dano de Habilidade"
   },
   "9b6f164c": {
@@ -608,7 +608,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "9c555433": {
-    "key": "9C555433",
+    "key": "MED_EFF_ABILITY_LIMIT01",
     "text": "Limite de Dano de Habilidade"
   },
   "9c6272cf": {
@@ -616,7 +616,7 @@
     "text": "Limite de Dano de Habilidade"
   },
   "9c6375cf": {
-    "key": "9C6375CF",
+    "key": "MED_EFF_HP01_04",
     "text": "Vida Aumentada"
   },
   "9ee4105a": {
@@ -644,7 +644,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "a3545ca1": {
-    "key": "A3545CA1",
+    "key": "MED_EFF_BREAK01_02",
     "text": "Maior Poder de Atordoamento"
   },
   "a5a1b56b": {
@@ -680,7 +680,7 @@
     "text": "Vida Aumentada"
   },
   "aba0fedd": {
-    "key": "ABA0FEDD",
+    "key": "LBP_EFF_ATK_LIMIT01",
     "text": "Maior Lim. de Dano de ATQ Normal"
   },
   "accbece1": {
@@ -728,7 +728,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "bf44c20b": {
-    "key": "BF44C20B",
+    "key": "LBP_EFF_HP01",
     "text": "Vida Aumentada"
   },
   "c11fdfbd": {
@@ -752,11 +752,11 @@
     "text": "Limite de Dano de Habilidade"
   },
   "c4925bd7": {
-    "key": "C4925BD7",
+    "key": "MED_EFF_ATK01",
     "text": "Poder de Ataque Aumentado"
   },
   "c4b86ed7": {
-    "key": "C4B86ED7",
+    "key": "MED_EFF_CRITICAL01_02",
     "text": "Maior Chance de Acerto Crít."
   },
   "c52d2245": {
@@ -784,7 +784,7 @@
     "text": "Maior Chance de Acerto Crít."
   },
   "cac0beb6": {
-    "key": "CAC0BEB6",
+    "key": "LBP_EFF_AB_LIMIT01",
     "text": "Limite de Dano de Habilidade"
   },
   "cb43ff8e": {
@@ -792,7 +792,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "cb63be55": {
-    "key": "CB63BE55",
+    "key": "MED_EFF_ATK01_02",
     "text": "Poder de Ataque Aumentado"
   },
   "cb6bb434": {
@@ -820,7 +820,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "cd6542f5": {
-    "key": "CD6542F5",
+    "key": "LBP_EFF_ARTS_DMG01",
     "text": "Maior Dano de Arte Celestial"
   },
   "ce775676": {
@@ -828,7 +828,7 @@
     "text": "Limite de Dano de Habilidade"
   },
   "ceb0dbd2": {
-    "key": "CEB0DBD2",
+    "key": "MED_EFF_CRITICAL01_03",
     "text": "Maior Chance de Acerto Crít."
   },
   "cf24e1a2": {
@@ -852,7 +852,7 @@
     "text": "Limite de Dano de Habilidade"
   },
   "d5169339": {
-    "key": "D5169339",
+    "key": "LBP_EFF_BREAK01",
     "text": "Maior Poder de Atordoamento"
   },
   "d51958d1": {
@@ -872,7 +872,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "dcbd8423": {
-    "key": "DCBD8423",
+    "key": "MED_EFF_ATK01_03",
     "text": "Poder de Ataque Aumentado"
   },
   "ddc29837": {
@@ -956,11 +956,11 @@
     "text": "Poder de Ataque Aumentado"
   },
   "f004e9f2": {
-    "key": "F004E9F2",
+    "key": "MED_EFF_HP01_05",
     "text": "Vida Aumentada"
   },
   "f203bb15": {
-    "key": "F203BB15",
+    "key": "MED_EFF_ATK01_05",
     "text": "Poder de Ataque Aumentado"
   },
   "f2111b99": {
@@ -1000,7 +1000,7 @@
     "text": "Maior Dano de Combo Breaker"
   },
   "fa230938": {
-    "key": "FA230938",
+    "key": "LBP_EFF_ATK01",
     "text": "Poder de Ataque Aumentado"
   },
   "fa9bcf64": {
@@ -1012,7 +1012,7 @@
     "text": "Poder de Ataque Aumentado"
   },
   "fb4819d9": {
-    "key": "FB4819D9",
+    "key": "LBP_EFF_ARTS_LIMIT01",
     "text": "Maior Limite de Dano de AC"
   },
   "fc0a10f6": {

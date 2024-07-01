@@ -94,7 +94,7 @@ pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u
         }
         // Pl2000: Id's Dragon Form -> Pl1900
         0xF5755C0E => {
-            let parent_instance = parent_specified_instance_at(source, 0xD338)?;
+            let parent_instance = parent_specified_instance_at(source, 0xD488)?;
             Some((actor_type_id(parent_instance), actor_idx(parent_instance)))
         }
         // Wp2290: Seofon's Avatar

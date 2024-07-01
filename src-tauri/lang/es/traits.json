@@ -25,7 +25,7 @@
   },
   "0cd6c625": {
     "key": "SKILL_126_00",
-    "text": "Pericia de espadachín"
+    "text": "Dominio del espadachín"
   },
   "0e42be1b": {
     "key": "SKILL_118_02",
@@ -45,7 +45,7 @@
   },
   "11aae5f5": {
     "key": "SKILL_117_01",
-    "text": "Pericia de maga"
+    "text": "Pericia mágica"
   },
   "1470f860": {
     "key": "SKILL_096_00",
@@ -59,9 +59,17 @@
     "key": "SKILL_153_00",
     "text": "Iniciativa"
   },
+  "15806dfc": {
+    "key": "SKILL_172_01",
+    "text": "Aureola del arcángel"
+  },
   "16eff868": {
     "key": "SKILL_122_01",
-    "text": "Destino heroico"
+    "text": "Voluntad heroica"
+  },
+  "1a2ef59e": {
+    "key": "SKILL_172_03",
+    "text": "Ain"
   },
   "1b0d9897": {
     "key": "SKILL_141_00",
@@ -81,7 +89,7 @@
   },
   "23d0f67f": {
     "key": "SKILL_119_00",
-    "text": "Floración temprana"
+    "text": "Floración de la rosa"
   },
   "24883af3": {
     "key": "SKILL_073_00",
@@ -121,11 +129,15 @@
   },
   "3bfed918": {
     "key": "SKILL_115_00",
-    "text": "Convicción de centinela"
+    "text": "Fe de protección"
   },
   "3c2b57b0": {
     "key": "SKILL_061_00",
     "text": "Venganza de protección"
+  },
+  "3d8153a1": {
+    "key": "SKILL_234_00",
+    "text": "Espartano"
   },
   "3f2c482e": {
     "key": "SKILL_100_00",
@@ -159,6 +171,10 @@
     "key": "SKILL_146_00",
     "text": "Baza elemental"
   },
+  "4e5f6706": {
+    "key": "SKILL_172_02",
+    "text": "Hostilidad del arcángel"
+  },
   "4f135217": {
     "key": "SKILL_131_02",
     "text": "Hostilidad carmesí"
@@ -174,6 +190,10 @@
   "50b453dd": {
     "key": "SKILL_057_00",
     "text": "Resist. a anulación de habil."
+  },
+  "51c115d2": {
+    "key": "SKILL_235_00",
+    "text": "Evasión perfecta definitiva"
   },
   "522e2388": {
     "key": "SKILL_125_01",
@@ -237,7 +257,7 @@
   },
   "7351d602": {
     "key": "SKILL_120_01",
-    "text": "Armonía fantasmagórica"
+    "text": "Armonía fantasmal"
   },
   "7440e869": {
     "key": "SKILL_132_00",
@@ -253,7 +273,7 @@
   },
   "7ad0c010": {
     "key": "SKILL_130_01",
-    "text": "Poder alternativo"
+    "text": "Ignición de Alteris"
   },
   "7b4fc47a": {
     "key": "SKILL_170_02",
@@ -337,7 +357,7 @@
   },
   "93a2093c": {
     "key": "SKILL_130_00",
-    "text": "Mejora alternativa"
+    "text": "Creación de Alteris"
   },
   "95f3fa86": {
     "key": "SKILL_068_00",
@@ -385,7 +405,7 @@
   },
   "a3b49220": {
     "key": "SKILL_126_01",
-    "text": "Arte de espadachín"
+    "text": "Arte del espadachín"
   },
   "a4d6b880": {
     "key": "SKILL_134_00",
@@ -393,7 +413,7 @@
   },
   "a63b89cd": {
     "key": "SKILL_127_01",
-    "text": "Coraje de mariposa"
+    "text": "Valor de la mariposa"
   },
   "a7a45f28": {
     "key": "SKILL_017_00",
@@ -417,7 +437,7 @@
   },
   "af513a9d": {
     "key": "SKILL_129_01",
-    "text": "Verdad absoluta"
+    "text": "Realidad de la creadora"
   },
   "af794a87": {
     "key": "SKILL_150_00",
@@ -433,7 +453,7 @@
   },
   "b48eef48": {
     "key": "SKILL_117_00",
-    "text": "Aspiración de maga"
+    "text": "Aspiración mágica"
   },
   "b5ff9fd3": {
     "key": "SKILL_072_00",
@@ -461,7 +481,7 @@
   },
   "c2a4c7a9": {
     "key": "SKILL_119_01",
-    "text": "Barrera de rosas"
+    "text": "Plétora de la rosa"
   },
   "c35b111b": {
     "key": "SKILL_028_00",
@@ -501,7 +521,7 @@
   },
   "d1012d8c": {
     "key": "SKILL_121_01",
-    "text": "Orgullo del Dragón Blanco"
+    "text": "Gloria del Dragón Blanco"
   },
   "d2c8e10a": {
     "key": "SKILL_106_00",
@@ -510,6 +530,10 @@
   "d3b8c21f": {
     "key": "SKILL_164_00",
     "text": "Cangrejera"
+  },
+  "d40d1e9b": {
+    "key": "SKILL_172_00",
+    "text": "Admiración del arcángel"
   },
   "d54f8ca7": {
     "key": "SKILL_051_00",
@@ -529,7 +553,7 @@
   },
   "d908223d": {
     "key": "SKILL_120_00",
-    "text": "Vínculos fantasmagóricos"
+    "text": "Concordia fantasmal"
   },
   "dade14dc": {
     "key": "SKILL_114_02",
@@ -593,11 +617,15 @@
   },
   "ec3cf174": {
     "key": "SKILL_129_00",
-    "text": "Estrategia absoluta"
+    "text": "Estrategia de la creadora"
+  },
+  "ee85cd1f": {
+    "key": "SKILL_233_00",
+    "text": "Berserker"
   },
   "ef05ec4d": {
     "key": "SKILL_170_03",
-    "text": "Frontera de siete estrellas"
+    "text": "Frontera de Siete Estrellas"
   },
   "f17850b9": {
     "key": "SKILL_024_00",
@@ -621,7 +649,7 @@
   },
   "f8496336": {
     "key": "SKILL_115_01",
-    "text": "Honor de centinela"
+    "text": "Honor de protección"
   },
   "fb572681": {
     "key": "SKILL_052_00",

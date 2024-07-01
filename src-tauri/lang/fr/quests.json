@@ -155,6 +155,18 @@
     "key": "TXT_QR_204113",
     "text": "Menace gelée"
   },
+  "205000": {
+    "key": "TXT_QR_205000",
+    "text": "Le secret de Cielocarta"
+  },
+  "205001": {
+    "key": "TXT_QR_205001",
+    "text": "Recherches sur les Astraux"
+  },
+  "205002": {
+    "key": "TXT_QR_205002",
+    "text": "Vous êtes une légende !"
+  },
   "210220": {
     "key": "TXT_QR_210220",
     "text": "La boisson interdite"
@@ -397,7 +409,7 @@
   },
   "290004": {
     "key": "TXT_QR_290004",
-    "text": "Crust4cés en d4nger"
+    "text": "Crustacés en danger First Class"
   },
   "290005": {
     "key": "TXT_QR_290005",
@@ -519,6 +531,10 @@
     "key": "TXT_QR_300019",
     "text": "Confrontation avec le passé"
   },
+  "300021": {
+    "key": "TXT_QR_300021",
+    "text": "Vent"
+  },
   "300022": {
     "key": "TXT_QR_300022",
     "text": "Bombe à retardement"
@@ -602,6 +618,10 @@
   "301019": {
     "key": "TXT_QR_301019",
     "text": "Le jour du jugement"
+  },
+  "301021": {
+    "key": "TXT_QR_301021",
+    "text": "Illusion"
   },
   "301022": {
     "key": "TXT_QR_301022",
@@ -1023,8 +1043,24 @@
     "key": "TXT_QR_407320",
     "text": "Vision finale"
   },
+  "407321": {
+    "key": "TXT_QR_407321",
+    "text": "Zéro"
+  },
   "407322": {
     "key": "TXT_QR_407322",
     "text": "L'heure de montrer les cornes"
+  },
+  "407323": {
+    "key": "TXT_QR_407323",
+    "text": "Le cauchemar de l'épéiste sombre"
+  },
+  "407324": {
+    "key": "TXT_QR_407324",
+    "text": "Force et magie sur scène"
+  },
+  "407325": {
+    "key": "TXT_QR_407325",
+    "text": "Les « volontaires » de Zathba"
   }
 }

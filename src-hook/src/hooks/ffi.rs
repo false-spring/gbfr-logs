@@ -4,8 +4,8 @@ use std::ffi::CString;
 #[repr(C)]
 pub struct QuestState {
     pub quest_id: u32,        // 0x00
-    padding_640: [u8; 0x644], // 0x004 - 0x648
-    pub elapsed_time: u32,    // 0x648
+    padding_640: [u8; 0x648], // 0x004 - 0x64C
+    pub elapsed_time: u32,    // 0x64C
 }
 
 #[derive(Debug)]
@@ -44,8 +44,8 @@ pub struct SigilList {
     pub character_name: [u8; 16], //0x01E8
     padding_1f8: [u8; 16],        //0x01F8
     pub display_name: [u8; 16],   //0x0208
-    padding_218: [u8; 24],        //0x0218
-    pub party_index: u32,         //0x0230
+    padding_218: [u8; 20],        //0x0218
+    pub party_index: u32,         //0x022C
 }
 
 #[derive(Debug)]

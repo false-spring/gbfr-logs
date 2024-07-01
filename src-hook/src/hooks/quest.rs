@@ -105,6 +105,9 @@ impl OnQuestCompleteHook {
         let quest_state_ptr = QUEST_STATE_PTR.load(Ordering::Relaxed);
 
         if !quest_state_ptr.is_null() {
+            #[cfg(feature = "console")]
+            println!("quest_state_ptr: {:p}", quest_state_ptr);
+
             let quest_state = unsafe { quest_state_ptr.read() };
             let quest_id = quest_state.quest_id;
             let timer = quest_state.elapsed_time;

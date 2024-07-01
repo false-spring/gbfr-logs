@@ -59,9 +59,17 @@
     "key": "SKILL_153_00",
     "text": "Vorsprung"
   },
+  "15806dfc": {
+    "key": "SKILL_172_01",
+    "text": "Nimbus des Ob. Primarchen"
+  },
   "16eff868": {
     "key": "SKILL_122_01",
     "text": "Gemüt des Helden"
+  },
+  "1a2ef59e": {
+    "key": "SKILL_172_03",
+    "text": "Ain"
   },
   "1b0d9897": {
     "key": "SKILL_141_00",
@@ -127,6 +135,10 @@
     "key": "SKILL_061_00",
     "text": "Blocken-Rache"
   },
+  "3d8153a1": {
+    "key": "SKILL_234_00",
+    "text": "Spartaner"
+  },
   "3f2c482e": {
     "key": "SKILL_100_00",
     "text": "Ergänzung"
@@ -159,6 +171,10 @@
     "key": "SKILL_146_00",
     "text": "Krieg-Elementar"
   },
+  "4e5f6706": {
+    "key": "SKILL_172_02",
+    "text": "Pfad des Obersten Primarchen"
+  },
   "4f135217": {
     "key": "SKILL_131_02",
     "text": "Blutroter Pfad"
@@ -174,6 +190,10 @@
   "50b453dd": {
     "key": "SKILL_057_00",
     "text": "Fähigkeit versiegelt-Resistenz"
+  },
+  "51c115d2": {
+    "key": "SKILL_235_00",
+    "text": "Super Ult. Perf. Ausweichen"
   },
   "522e2388": {
     "key": "SKILL_125_01",
@@ -511,6 +531,10 @@
     "key": "SKILL_164_00",
     "text": "Verscherung"
   },
+  "d40d1e9b": {
+    "key": "SKILL_172_00",
+    "text": "Ehrfurcht des Ob. Primarchen"
+  },
   "d54f8ca7": {
     "key": "SKILL_051_00",
     "text": "Sandgrabresistenz"
@@ -594,6 +618,10 @@
   "ec3cf174": {
     "key": "SKILL_129_00",
     "text": "Strategie der Gründerin"
+  },
+  "ee85cd1f": {
+    "key": "SKILL_233_00",
+    "text": "Raserei"
   },
   "ef05ec4d": {
     "key": "SKILL_170_03",

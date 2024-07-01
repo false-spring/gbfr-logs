@@ -135,6 +135,10 @@
     "key": "WEP_PL1200_03_01",
     "text": "Claidheamh Soluis"
   },
+  "1e8011eb": {
+    "key": "WEP_PL2100_07_03",
+    "text": "Fine del mondo, Lama del fato"
+  },
   "1e90adb4": {
     "key": "WEP_PL0100_03_03",
     "text": "Spada di Eos, la Chiave astrale"
@@ -599,6 +603,10 @@
     "key": "WEP_PL1300_02",
     "text": "Asura"
   },
+  "8e2e15eb": {
+    "key": "WEP_PL2100_07_01",
+    "text": "Fine del mondo"
+  },
   "90a18c66": {
     "key": "WEP_PL1200_03_02",
     "text": "Claidheamh Soluis"
@@ -683,6 +691,10 @@
     "key": "WEP_PL1500_05",
     "text": "Arkab"
   },
+  "ad915067": {
+    "key": "WEP_PL2100_07",
+    "text": "Fine del mondo"
+  },
   "aed9ebf8": {
     "key": "WEP_PL0600_03_01",
     "text": "Amore eterno"
@@ -694,6 +706,10 @@
   "b03ea930": {
     "key": "WEP_PL1700_01",
     "text": "Falcione Grynoth"
+  },
+  "b1c0e0c2": {
+    "key": "WEP_PL2100_A0",
+    "text": "Apprendista"
   },
   "b25574f8": {
     "key": "WEP_PL2300_07_02",
@@ -859,6 +875,10 @@
     "key": "WEP_PL1700_02",
     "text": "Alsarav"
   },
+  "d21f4078": {
+    "key": "WEP_PL2100_07_02",
+    "text": "Fine del mondo"
+  },
   "d2dfbe87": {
     "key": "WEP_PL1000_A0",
     "text": "Flamberge"
@@ -873,7 +893,7 @@
   },
   "d5e0bf7f": {
     "key": "WEP_PL0300_03_03",
-    "text": "Benedia, munizioni azzurre"
+    "text": "Benedia, Munizioni azzurre"
   },
   "d6070a15": {
     "key": "WEP_PL0300_03_01",
@@ -1030,6 +1050,10 @@
   "f7c7b5dc": {
     "key": "WEP_PL0900_03_03",
     "text": "Treuer Krieger, l'Impavido"
+  },
+  "f7d69475": {
+    "key": "WEP_PL2100_01",
+    "text": "Apprendista"
   },
   "fa5f32d5": {
     "key": "WEP_PL2200_07",

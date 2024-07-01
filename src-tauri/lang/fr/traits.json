@@ -59,9 +59,17 @@
     "key": "SKILL_153_00",
     "text": "Longueur d'avance"
   },
+  "15806dfc": {
+    "key": "SKILL_172_01",
+    "text": "Halo de l'ange suprême"
+  },
   "16eff868": {
     "key": "SKILL_122_01",
     "text": "Volonté du héros"
+  },
+  "1a2ef59e": {
+    "key": "SKILL_172_03",
+    "text": "Eyn"
   },
   "1b0d9897": {
     "key": "SKILL_141_00",
@@ -127,6 +135,10 @@
     "key": "SKILL_061_00",
     "text": "Contre-garde"
   },
+  "3d8153a1": {
+    "key": "SKILL_234_00",
+    "text": "Spartiate"
+  },
   "3f2c482e": {
     "key": "SKILL_100_00",
     "text": "Durée Bonus"
@@ -159,6 +171,10 @@
     "key": "SKILL_146_00",
     "text": "Faveur guerrière"
   },
+  "4e5f6706": {
+    "key": "SKILL_172_02",
+    "text": "Ardeur de l'ange suprême"
+  },
   "4f135217": {
     "key": "SKILL_131_02",
     "text": "Impétuosité pourpre"
@@ -174,6 +190,10 @@
   "50b453dd": {
     "key": "SKILL_057_00",
     "text": "Rés. Compétences scellées"
+  },
+  "51c115d2": {
+    "key": "SKILL_235_00",
+    "text": "Super esquive parfaite ultime"
   },
   "522e2388": {
     "key": "SKILL_125_01",
@@ -511,6 +531,10 @@
     "key": "SKILL_164_00",
     "text": "Crabmiration"
   },
+  "d40d1e9b": {
+    "key": "SKILL_172_00",
+    "text": "Grâce de l'ange suprême"
+  },
   "d54f8ca7": {
     "key": "SKILL_051_00",
     "text": "Résistance Ensablement"
@@ -594,6 +618,10 @@
   "ec3cf174": {
     "key": "SKILL_129_00",
     "text": "Stratégie fondatrice"
+  },
+  "ee85cd1f": {
+    "key": "SKILL_233_00",
+    "text": "Écho de Berserker"
   },
   "ef05ec4d": {
     "key": "SKILL_170_03",
