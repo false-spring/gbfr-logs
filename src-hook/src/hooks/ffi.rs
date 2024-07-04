@@ -2,6 +2,21 @@ use std::ffi::CString;
 
 #[derive(Debug)]
 #[repr(C)]
+pub struct DamageInstance {
+    padding_00: [u8; 0xD0],   // 0x00 - 0xD0
+    pub damage: i32,          // 0xD0
+    pub attack_rate: f32,     // 0xD4
+    pub flags: u64,           // 0xD8
+    padding_e0: [u8; 0x08],   // 0xE0
+    pub stun_value: f32,      // 0xE8
+    padding_ec: [u8; 0x68],   // 0xEC - 0x154
+    pub action_id: u32,       // 0x154
+    padding_158: [u8; 0x10C], // 0x158 - 0x264
+    pub damage_cap: u32,      // 0x264
+}
+
+#[derive(Debug)]
+#[repr(C)]
 pub struct QuestState {
     pub quest_id: u32,        // 0x00
     padding_640: [u8; 0x648], // 0x004 - 0x64C
