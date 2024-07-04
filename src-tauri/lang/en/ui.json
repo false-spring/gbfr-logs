@@ -515,8 +515,8 @@
       "110": "Attack 2",
       "120": "Attack 3",
       "130": "Combo Finisher",
-      "200": "Schlaht",
-      "201": "Schlaht 2",
+      "200": "Schlacht",
+      "201": "Schlacht 2",
       "300": "Aerial Attack 1",
       "310": "Aerial Attack 2",
       "320": "Aerial Attack 3",
@@ -524,7 +524,7 @@
       "410": "Aerial Barrage",
       "skill-groups": {
         "normal-attack": "Normal Attack",
-        "schlaht": "Schlaht",
+        "schlaht": "Schlacht",
         "aerial-attack": "Aerial Attack"
       }
     },
