@@ -676,10 +676,10 @@
       "1411": "Aerial Finisher (Dawnfly/Pink)",
       "1": "Kyokasuigetsu",
       "2": "Setsuna",
-      "3": "Apex (No Counter)",
+      "3": "Apex of Nothingness (No Counter)",
       "4": "Crescent Moon",
-      "10": "Apex Counter 1",
-      "11": "Apex Counter 2",
+      "10": "Apex of Nothingness Counter 1",
+      "11": "Apex of Nothingness Counter 2",
       "5": "Transient (Freeflutter/Blue)",
       "1005": "Transient (Dawnfly/Pink)",
       "skill-groups": {
@@ -688,7 +688,7 @@
         "dawnfly-attack": "Dawnfly/Pink Attack",
         "freeflutter-finisher": "Freeflutter/Blue Finisher",
         "dawnfly-charged-attack": "Dawnfly/Pink Charged Attack",
-        "apex": "Apex",
+        "apex": "Apex of Nothingness",
         "transient": "Transient"
       }
     },
