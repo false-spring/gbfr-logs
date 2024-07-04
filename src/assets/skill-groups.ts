@@ -15,7 +15,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [200, 201, 202, 203, 204, 205],
     },
     "power-strike": {
-      skills: [210, 220, 230, 240],
+      skills: [210, 220, 230],
+    },
+    "combo-finisher": {
+      skills: [221, 240],
     },
     "aerial-attack": {
       skills: [300, 310, 320],
@@ -47,7 +50,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [200, 201, 202, 203, 204, 205],
     },
     "power-strike": {
-      skills: [210, 220, 230, 240],
+      skills: [210, 220, 230],
+    },
+    "combo-finisher": {
+      skills: [221, 240],
     },
     "aerial-attack": {
       skills: [300, 310, 320],
