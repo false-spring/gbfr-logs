@@ -132,10 +132,7 @@ const SkillGroups: SkillGroupMapping = {
   },
   Pl0600: {
     "normal-attack": {
-      skills: [100, 101, 102, 103, 104],
-    },
-    "combo-finisher": {
-      skills: [210, 220, 230, 240, 250],
+      skills: [100, 101, 102, 103],
     },
     "aerial-attack": {
       skills: [300, 301],
@@ -177,10 +174,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [110, 120, 103],
     },
     finisher: {
-      skills: [111, 121, 104, 105],
+      skills: [111, 121, 104],
     },
     "heavy-swing": {
-      skills: [200, 201, 202, 203, 204, 212],
+      skills: [200, 201, 202, 203, 204],
     },
     "aerial-attack": {
       skills: [300, 310, 320],
@@ -295,11 +292,8 @@ const SkillGroups: SkillGroupMapping = {
     "aerial-attack": {
       skills: [300, 301, 302, 303],
     },
-    "arvess-hammer": {
-      skills: [212, 214],
-    },
     "realms-majesty": {
-      skills: [1700, 1701, 1702, 1703],
+      skills: [1700, 1702, 1703],
     },
   },
   Pl1700: {
@@ -310,7 +304,7 @@ const SkillGroups: SkillGroupMapping = {
       skills: [112, 113, 121, 130],
     },
     finisher: {
-      skills: [280, 281, 251, 252, 257],
+      skills: [280, 281, 251, 252],
     },
     "aerial-attack": {
       skills: [300, 301],
@@ -337,14 +331,11 @@ const SkillGroups: SkillGroupMapping = {
     "normal-attack": {
       skills: [100, 101, 102],
     },
-    "lunge": {
+    lunge: {
       skills: [200, 201, 202, 203],
     },
     "aerial-attack": {
       skills: [300, 301, 302],
-    },
-    "combo-finisher": {
-      skills: [110, 130],
     },
     "power-strike": {
       skills: [503, 505, 506, 507, 508, 509],
@@ -352,15 +343,6 @@ const SkillGroups: SkillGroupMapping = {
     "reginleiv": {
       skills: [1, 10],
     },
-    "godmight-perfect-combo": {
-      skills: [522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544],
-    },
-    "godmight-mistimed-combo": {
-      skills: [550, 560, 570, 580, 590],
-    },
-    "godmight-finisher": {
-      skills: [510, 515, 551, 561, 571, 581, 591],
-    }
   },
   Pl2000: {
     "normal-attack": {
