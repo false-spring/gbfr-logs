@@ -297,14 +297,18 @@
       "100": "Attack",
       "105": "Attack (Burst-fire)",
       "200": "Bull's Eye Blast",
-      "205": "Bull's Eye Blast V",
+      "201": "Bull's Eye Blast II",
+      "202": "Bull's Eye Blast III",
+      "203": "Bull's Eye Blast IV",
+      "204": "Bull's Eye Blast V",
       "300": "Aerial Attack 1",
       "301": "Aerial Attack 2",
       "302": "Aerial Attack 3",
       "400": "Launch Attack",
       "410": "Aerial Barrage",
       "skill-groups": {
-        "aerial-attack": "Aerial Attack"
+        "aerial-attack": "Aerial Attack",
+        "bullseye-blast": "Bull's Eye Blast"
       }
     },
     "Pl0400": {

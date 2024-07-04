@@ -92,6 +92,9 @@ const SkillGroups: SkillGroupMapping = {
     "aerial-attack": {
       skills: [300, 301, 302],
     },
+    "bullseye-blast": {
+      skills: [200, 201, 202, 203, 204],
+    },
   },
   Pl0400: {
     "normal-attack": {
