@@ -338,7 +338,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [300, 301, 302],
     },
     "power-strike": {
-      skills: [503, 505, 506, 507, 508, 509, 510],
+      skills: [503, 505, 506, 507, 508, 509],
+    },
+    "reginleiv": {
+      skills: [1, 10],
     },
   },
   Pl2000: {

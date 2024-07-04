@@ -825,7 +825,7 @@
       }
     },
     "Pl1900": {
-      "1": "Regliniv Recidiv",
+      "1": "Reginleiv Recidiv",
       "2": "Unbound",
       "3": "Atonement",
       "4": "Ragnarok Form (Enter Godmight)",
@@ -833,6 +833,7 @@
       "6": "Fourfold Vengeanace",
       "7": "Never Enough",
       "8": "Arcadia",
+      "10": "Reginleiv Recidiv (Godmight)",
       "100": "Attack 1",
       "101": "Attack 2",
       "102": "Attack 3",
@@ -855,10 +856,11 @@
       "507": "Power Strike 4",
       "508": "Power Strike 5",
       "509": "Power Strike 6",
-      "510": "Power Strike 7",
+      "510": "Godmight Finisher Explosion (Inner)",
       "515": "Godmight Finisher Explosion (Outer)",
       "damage-over-time": "Darkflame (DoT)",
       "skill-groups": {
+        "reginleiv": "Reginleiv Recidiv",
         "normal-attack": "Normal Attack",
         "lunge": "Lunge",
         "power-strike": "Power Strike",
