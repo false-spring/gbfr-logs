@@ -222,10 +222,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [103, 104, 105, 106, 107],
     },
     "yellow-power-strike": {
-      skills: [120, 130],
+      skills: [110, 120, 130],
     },
     "power-strike": {
-      skills: [201, 202],
+      skills: [200, 201, 202],
     },
     "aerial-attack": {
       skills: [300, 301, 302],
