@@ -346,7 +346,7 @@ const SkillGroups: SkillGroupMapping = {
     "power-strike": {
       skills: [503, 505, 506, 507, 508, 509],
     },
-    "reginleiv": {
+    reginleiv: {
       skills: [1, 10],
     },
   },
