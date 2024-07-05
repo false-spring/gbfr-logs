@@ -56,7 +56,11 @@
       "damage-percentage": "%",
       "damage-percentage-description": "Total Damage in Percentage",
       "sba": "SBA",
-      "sba-description": "Skybound Arts Gauge"
+      "sba-description": "Skybound Arts Gauge",
+      "total-stun-value": "Total Stun",
+      "total-stun-value-description": "Total Stun Value",
+      "stun-per-second": "Stun/s",
+      "stun-per-second-description": "Stun Per Second"
     },
     "stats": {
       "level": "Level",

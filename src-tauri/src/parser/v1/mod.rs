@@ -191,8 +191,8 @@ impl PlayerData {
     pub fn stun_modifier(&self) -> f64 {
         self.player_stats
             .as_ref()
-            .and_then(|stats| Some(stats.stun_power / 100.0))
-            .unwrap_or(1.0) as f64
+            .and_then(|stats| Some(stats.stun_power))
+            .unwrap_or(10.0) as f64
     }
 }
 
@@ -359,7 +359,7 @@ impl DerivedEncounterState {
         let stun_modifier = player_data
             .and_then(|data| data.player_stats.as_ref())
             .and_then(|stats| Some(stats.stun_power / 100.0))
-            .unwrap_or(1.0) as f64;
+            .unwrap_or(10.0) as f64;
 
         // Update stun value
         self.total_stun_value += event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;

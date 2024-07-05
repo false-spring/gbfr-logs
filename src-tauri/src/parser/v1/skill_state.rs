@@ -51,7 +51,7 @@ impl SkillState {
 
         let stun_modifier = player_data
             .and_then(|data| Some(data.stun_modifier()))
-            .unwrap_or(1.0);
+            .unwrap_or(10.0);
 
         let stun_value = event.stun_value.unwrap_or(0.0) as f64;
 

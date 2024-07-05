@@ -48,6 +48,10 @@ export type SkillState = {
   maxDamage: number | null;
   /** Total damage of the skill */
   totalDamage: number;
+  /** Total stun value of the skill hits */
+  totalStunValue: number;
+  /** Maximum recorded stun value of the skill */
+  maxStunValue: number;
 };
 
 export type ComputedSkillState = SkillState & {
@@ -72,6 +76,10 @@ export type ComputedSkillGroup = {
   percentage: number;
   /** Skills */
   skills?: ComputedSkillState[];
+  /** Total stun value of the skill hits */
+  totalStunValue: number;
+  /** Maximum recorded stun value of the skill */
+  maxStunValue: number;
 };
 
 export type PlayerState = {
@@ -85,6 +93,10 @@ export type PlayerState = {
   dps: number;
   /** Amount of SBA Gauge (0.0 - 1000.0) */
   sba: number;
+  /** Total stun value */
+  totalStunValue: number;
+  /** Stun per second over the encounter time */
+  stunPerSecond: number;
   /** Time of the last damage dealt */
   lastDamageTime: number;
   /** Stats for individual skills logged */
@@ -207,6 +219,8 @@ export enum MeterColumns {
   TotalDamage = "damage",
   DamagePercentage = "damage-percentage",
   SBA = "sba",
+  TotalStunValue = "total-stun-value",
+  StunPerSecond = "stun-per-second",
 }
 
 export type SortType = MeterColumns;
