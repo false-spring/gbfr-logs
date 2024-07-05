@@ -1,8 +1,10 @@
+use std::ptr::NonNull;
+
 use anyhow::{anyhow, Result};
 use protocol::{ActionType, Actor, DamageEvent, Message};
 use retour::static_detour;
 
-use crate::{event, process::Process};
+use crate::{event, hooks::ffi::DamageInstance, process::Process};
 
 use super::{actor_idx, actor_type_id, get_source_parent};
 
@@ -69,13 +71,15 @@ impl OnProcessDamageHook {
         // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
         // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
         let source_specified_instance_ptr: usize = unsafe { *(source_entity_ptr.byte_add(0x70)) };
-        let damage: i32 = unsafe { (a2.byte_add(0xD0) as *const i32).read() };
+
+        let damage_instance = unsafe { NonNull::new(a2 as *mut DamageInstance).unwrap().as_ref() };
+        let damage: i32 = damage_instance.damage;
 
         if original_value == 0 || damage <= 0 {
             return original_value;
         }
 
-        let flags: u64 = unsafe { (a2.byte_add(0xD8) as *const u64).read() };
+        let flags: u64 = damage_instance.flags;
 
         let action_type: ActionType = if ((1 << 7 | 1 << 50) & flags) != 0 {
             ActionType::LinkAttack
@@ -119,6 +123,9 @@ impl OnProcessDamageHook {
             damage,
             flags,
             action_id: action_type,
+            attack_rate: Some(damage_instance.attack_rate),
+            stun_value: Some(damage_instance.stun_value),
+            damage_cap: Some(damage_instance.damage_cap),
         });
 
         let _ = self.tx.send(event);
@@ -208,6 +215,9 @@ impl OnProcessDotHook {
             damage: dmg,
             flags: 0,
             action_id: ActionType::DamageOverTime(0),
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         });
 
         let _ = self.tx.send(event);

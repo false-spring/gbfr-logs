@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::parser::constants::{CharacterType, FerrySkillId};
 
-use super::skill_state::SkillState;
+use super::{skill_state::SkillState, PlayerData};
 
 /// Derived stat breakdown for a player
 #[derive(Debug, Serialize, Deserialize)]
@@ -16,6 +16,8 @@ pub struct PlayerState {
     pub dps: f64,
     pub skill_breakdown: Vec<SkillState>,
     pub sba: f64,
+    pub total_stun_value: f64,
+    pub stun_per_second: f64,
 }
 
 impl PlayerState {
@@ -25,6 +27,7 @@ impl PlayerState {
 
     pub fn update_dps(&mut self, now: i64, start_time: i64) {
         self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
+        self.stun_per_second = self.total_stun_value / ((now - start_time) as f64 / 1000.0);
     }
 
     // @todo(false): maybe Ferry specific stuff can be removed/abstracted if some extra flags are found or the attribution is fixed
@@ -65,8 +68,19 @@ impl PlayerState {
         return action;
     }
 
-    pub fn update_from_damage_event(&mut self, event: &DamageEvent) {
+    pub fn update_from_damage_event(
+        &mut self,
+        event: &DamageEvent,
+        player_data: Option<&PlayerData>,
+    ) {
         self.total_damage += event.damage as u64;
+
+        let stun_modifier = player_data
+            .and_then(|data| Some(data.stun_modifier()))
+            .unwrap_or(10.0);
+
+        let stun_value = event.stun_value.unwrap_or(0.0) as f64;
+        self.total_stun_value += stun_value * stun_modifier;
 
         let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
 
@@ -92,13 +106,13 @@ impl PlayerState {
                 protocol::ActionType::SupplementaryDamage(_)
             ) && matches!(action, protocol::ActionType::SupplementaryDamage(_))
             {
-                skill.update_from_damage_event(event);
+                skill.update_from_damage_event(event, player_data);
                 return;
             }
 
             // If the skill is already being tracked, update it.
             if skill.action_type == action && skill.child_character_type == child_character_type {
-                skill.update_from_damage_event(event);
+                skill.update_from_damage_event(event, player_data);
                 return;
             }
         }
@@ -106,7 +120,7 @@ impl PlayerState {
         // Otherwise, create a new skill and track it.
         let mut skill = SkillState::new(action, child_character_type);
 
-        skill.update_from_damage_event(event);
+        skill.update_from_damage_event(event, player_data);
         self.skill_breakdown.push(skill);
     }
 }
@@ -125,6 +139,8 @@ mod tests {
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
         };
 
         player_state.update_dps(1000, 0);
@@ -142,6 +158,8 @@ mod tests {
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -160,9 +178,12 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&damage_event);
+        player_state.update_from_damage_event(&damage_event, None);
 
         assert_eq!(player_state.total_damage, 100);
         assert_eq!(player_state.skill_breakdown.len(), 1);
@@ -179,6 +200,8 @@ mod tests {
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -197,11 +220,14 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&damage_event);
-        player_state.update_from_damage_event(&damage_event);
-        player_state.update_from_damage_event(&damage_event);
+        player_state.update_from_damage_event(&damage_event, None);
+        player_state.update_from_damage_event(&damage_event, None);
+        player_state.update_from_damage_event(&damage_event, None);
 
         assert_eq!(player_state.total_damage, 300);
         assert_eq!(player_state.skill_breakdown.len(), 1);
@@ -218,6 +244,8 @@ mod tests {
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
+            stun_per_second: 0.0,
+            total_stun_value: 0.0,
         };
 
         let skill_one = DamageEvent {
@@ -236,6 +264,9 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
         let skill_two = DamageEvent {
@@ -254,11 +285,14 @@ mod tests {
             action_id: ActionType::Normal(2),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&skill_one);
-        player_state.update_from_damage_event(&skill_two);
-        player_state.update_from_damage_event(&skill_two);
+        player_state.update_from_damage_event(&skill_one, None);
+        player_state.update_from_damage_event(&skill_two, None);
+        player_state.update_from_damage_event(&skill_two, None);
 
         assert_eq!(player_state.total_damage, 300);
         assert_eq!(player_state.skill_breakdown.len(), 2);
@@ -275,6 +309,8 @@ mod tests {
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
+            stun_per_second: 0.0,
+            total_stun_value: 0.0,
         };
 
         let parent_skill = DamageEvent {
@@ -293,6 +329,9 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
         let child_skill = DamageEvent {
@@ -311,11 +350,14 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&parent_skill);
-        player_state.update_from_damage_event(&child_skill);
-        player_state.update_from_damage_event(&child_skill);
+        player_state.update_from_damage_event(&parent_skill, None);
+        player_state.update_from_damage_event(&child_skill, None);
+        player_state.update_from_damage_event(&child_skill, None);
 
         assert_eq!(player_state.total_damage, 200);
         assert_eq!(player_state.skill_breakdown.len(), 2);

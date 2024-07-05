@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::parser::constants::CharacterType;
 
+use super::PlayerData;
+
 /// Derived stat breakdown of a particular skill
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -19,6 +21,10 @@ pub struct SkillState {
     pub max_damage: Option<u64>,
     /// Total damage done by this skill
     pub total_damage: u64,
+    /// Maximum stun value done by this skill
+    pub max_stun_value: f64,
+    /// Total stun value done by this skill
+    pub total_stun_value: f64,
 }
 
 impl SkillState {
@@ -30,12 +36,27 @@ impl SkillState {
             min_damage: None,
             max_damage: None,
             total_damage: 0,
+            max_stun_value: 0.0,
+            total_stun_value: 0.0,
         }
     }
 
-    pub fn update_from_damage_event(&mut self, event: &DamageEvent) {
+    pub fn update_from_damage_event(
+        &mut self,
+        event: &DamageEvent,
+        player_data: Option<&PlayerData>,
+    ) {
         self.hits += 1;
         self.total_damage += event.damage as u64;
+
+        let stun_modifier = player_data
+            .and_then(|data| Some(data.stun_modifier()))
+            .unwrap_or(10.0);
+
+        let stun_value = event.stun_value.unwrap_or(0.0) as f64;
+
+        self.max_stun_value = self.max_stun_value.max(stun_value * stun_modifier);
+        self.total_stun_value += stun_value * stun_modifier;
 
         if let Some(min_damage) = self.min_damage {
             self.min_damage = Some(min_damage.min(event.damage as u64));
@@ -77,6 +98,9 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
         let damage_event_two = DamageEvent {
@@ -95,10 +119,13 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 1999,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        skill_state.update_from_damage_event(&damage_event);
-        skill_state.update_from_damage_event(&damage_event_two);
+        skill_state.update_from_damage_event(&damage_event, None);
+        skill_state.update_from_damage_event(&damage_event_two, None);
 
         assert_eq!(skill_state.hits, 2);
         assert_eq!(skill_state.min_damage, Some(100));

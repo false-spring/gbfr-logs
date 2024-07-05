@@ -76,6 +76,9 @@ pub struct DamageEvent {
     pub damage: i32,
     pub flags: u64,
     pub action_id: ActionType,
+    pub attack_rate: Option<f32>,
+    pub stun_value: Option<f32>,
+    pub damage_cap: Option<i32>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
