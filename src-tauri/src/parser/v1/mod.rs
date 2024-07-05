@@ -187,6 +187,15 @@ pub struct PlayerData {
     player_stats: Option<PlayerStats>,
 }
 
+impl PlayerData {
+    pub fn stun_modifier(&self) -> f64 {
+        self.player_stats
+            .as_ref()
+            .and_then(|stats| Some(stats.stun_power / 100.0))
+            .unwrap_or(1.0) as f64
+    }
+}
+
 /// Derived breakdown for an enemy target
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -287,6 +296,10 @@ pub struct DerivedEncounterState {
     total_damage: u64,
     /// The total DPS done in the encounter
     dps: f64,
+    /// The total stun value done in the encounter
+    total_stun_value: f64,
+    /// The total stun value per second done in the encounter
+    stun_per_second: f64,
     /// Status of the parser
     status: ParserStatus,
     /// Derived party stats
@@ -302,6 +315,8 @@ impl Default for DerivedEncounterState {
             end_time: 0,
             total_damage: 0,
             dps: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
             status: ParserStatus::Waiting,
             party: HashMap::new(),
             targets: HashMap::new(),
@@ -331,10 +346,24 @@ impl DerivedEncounterState {
             .max_by_key(|target| target.total_damage)
     }
 
-    fn process_damage_event(&mut self, now: i64, event: &DamageEvent) {
+    fn process_damage_event(
+        &mut self,
+        now: i64,
+        event: &DamageEvent,
+        player_data: Option<&PlayerData>,
+    ) {
         self.end_time = now;
         self.total_damage += event.damage as u64;
         self.dps = self.total_damage as f64 / ((self.duration()) as f64 / 1000.0);
+
+        let stun_modifier = player_data
+            .and_then(|data| data.player_stats.as_ref())
+            .and_then(|stats| Some(stats.stun_power / 100.0))
+            .unwrap_or(1.0) as f64;
+
+        // Update stun value
+        self.total_stun_value += event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
+        self.stun_per_second = self.total_stun_value / ((self.duration()) as f64 / 1000.0);
 
         // Add actor to party if not already present.
         let source_player = self
@@ -346,12 +375,14 @@ impl DerivedEncounterState {
                 total_damage: 0,
                 dps: 0.0,
                 sba: 0.0,
+                stun_per_second: 0.0,
+                total_stun_value: 0.0,
                 skill_breakdown: Vec::new(),
                 last_known_pet_skill: None,
             });
 
         // Update player stats from damage event.
-        source_player.update_from_damage_event(event);
+        source_player.update_from_damage_event(event, player_data);
 
         // Update target stats from damage event.
         let target = self
@@ -443,7 +474,15 @@ impl Parser {
         for (timestamp, event) in self.encounter.event_log() {
             match event {
                 Message::DamageEvent(event) => {
-                    self.derived_state.process_damage_event(*timestamp, event);
+                    let player_data = self
+                        .encounter
+                        .player_data
+                        .iter()
+                        .flatten()
+                        .find(|player| player.actor_index == event.source.parent_index);
+
+                    self.derived_state
+                        .process_damage_event(*timestamp, event, player_data);
                 }
                 _ => {
                     self.derived_state.end_time = *timestamp;
@@ -465,7 +504,15 @@ impl Parser {
                     let target_type = EnemyType::from_hash(event.target.parent_actor_type);
 
                     if targets.is_empty() || targets.contains(&target_type) {
-                        self.derived_state.process_damage_event(*timestamp, event);
+                        let player_data = self
+                            .encounter
+                            .player_data
+                            .iter()
+                            .flatten()
+                            .find(|player| player.actor_index == event.source.parent_index);
+
+                        self.derived_state
+                            .process_damage_event(*timestamp, event, player_data);
                     }
                 }
                 _ => {
@@ -612,7 +659,16 @@ impl Parser {
 
         self.encounter
             .push_event(now, Message::DamageEvent(event.clone()));
-        self.derived_state.process_damage_event(now, &event);
+
+        let player_data = self
+            .encounter
+            .player_data
+            .iter()
+            .flatten()
+            .find(|player| player.actor_index == event.source.parent_index);
+
+        self.derived_state
+            .process_damage_event(now, &event, player_data);
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);
@@ -914,6 +970,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 
@@ -942,6 +1001,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 
@@ -963,6 +1025,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 

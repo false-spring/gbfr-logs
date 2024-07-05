@@ -123,6 +123,9 @@ impl OnProcessDamageHook {
             damage,
             flags,
             action_id: action_type,
+            attack_rate: Some(damage_instance.attack_rate),
+            stun_value: Some(damage_instance.stun_value),
+            damage_cap: Some(damage_instance.damage_cap),
         });
 
         let _ = self.tx.send(event);
@@ -212,6 +215,9 @@ impl OnProcessDotHook {
             damage: dmg,
             flags: 0,
             action_id: ActionType::DamageOverTime(0),
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         });
 
         let _ = self.tx.send(event);

@@ -12,7 +12,7 @@ pub struct DamageInstance {
     padding_ec: [u8; 0x68],   // 0xEC - 0x154
     pub action_id: u32,       // 0x154
     padding_158: [u8; 0x10C], // 0x158 - 0x264
-    pub damage_cap: u32,      // 0x264
+    pub damage_cap: i32,      // 0x264
 }
 
 #[derive(Debug)]
