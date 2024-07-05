@@ -15,7 +15,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [200, 201, 202, 203, 204, 205],
     },
     "power-strike": {
-      skills: [210, 220, 230, 240],
+      skills: [210, 220, 230],
+    },
+    "combo-finisher": {
+      skills: [221, 240],
     },
     "aerial-attack": {
       skills: [300, 310, 320],
@@ -47,7 +50,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [200, 201, 202, 203, 204, 205],
     },
     "power-strike": {
-      skills: [210, 220, 230, 240],
+      skills: [210, 220, 230],
+    },
+    "combo-finisher": {
+      skills: [221, 240],
     },
     "aerial-attack": {
       skills: [300, 310, 320],
@@ -91,6 +97,9 @@ const SkillGroups: SkillGroupMapping = {
   Pl0300: {
     "aerial-attack": {
       skills: [300, 301, 302],
+    },
+    "bullseye-blast": {
+      skills: [200, 201, 202, 203, 204],
     },
   },
   Pl0400: {
@@ -213,10 +222,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [103, 104, 105, 106, 107],
     },
     "yellow-power-strike": {
-      skills: [120, 130],
+      skills: [110, 120, 130],
     },
     "power-strike": {
-      skills: [201, 202],
+      skills: [200, 201, 202],
     },
     "aerial-attack": {
       skills: [300, 301, 302],
@@ -335,7 +344,10 @@ const SkillGroups: SkillGroupMapping = {
       skills: [300, 301, 302],
     },
     "power-strike": {
-      skills: [503, 505, 506, 507, 508, 509, 510],
+      skills: [503, 505, 506, 507, 508, 509],
+    },
+    "reginleiv": {
+      skills: [1, 10],
     },
   },
   Pl2000: {
