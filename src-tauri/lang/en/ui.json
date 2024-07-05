@@ -860,6 +860,7 @@
       "509": "Power Strike 6",
       "510": "Godmight Finisher Explosion (Inner)",
       "515": "Godmight Finisher Explosion (Outer)",
+      "900": "Transformation",
       "damage-over-time": "Darkflame (DoT)",
       "skill-groups": {
         "reginleiv": "Reginleiv Recidiv",
