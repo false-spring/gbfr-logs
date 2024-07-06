@@ -36,6 +36,15 @@ pub fn setup_db() -> Result<()> {
         M::up("ALTER TABLE logs ADD COLUMN quest_id INTEGER"),
         M::up("ALTER TABLE logs ADD COLUMN quest_elapsed_time INTEGER"),
         M::up("ALTER TABLE logs ADD COLUMN quest_completed BOOLEAN"),
+        M::up(
+            r#"CREATE TABLE IF NOT EXISTS item_drops (
+            id INTEGER PRIMARY KEY,
+            log_id INTEGER NOT NULL,
+            item_id INTEGER NOT NULL,
+            item_count INTEGER NOT NULL,
+            time INTEGER NOT NULL
+        )"#,
+        ),
     ]);
 
     info!("Database found, running migrations..");

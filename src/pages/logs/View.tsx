@@ -391,7 +391,7 @@ export const ViewPage = () => {
       <Divider my="sm" />
 
       <Box id="log-view-page">
-        <Box>
+        <Flex direction="column">
           {questId && (
             <Box display="flex">
               <Text size="sm" fw={800}>
@@ -446,7 +446,7 @@ export const ViewPage = () => {
               <NumberFormatter thousandSeparator value={encounter.totalDamage} />
             </Text>
           </Box>
-        </Box>
+        </Flex>
 
         <Divider my="sm" />
 
@@ -456,6 +456,9 @@ export const ViewPage = () => {
             <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
             <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
               {t("ui.logs.equipment")}
+            </Tabs.Tab>
+            <Tabs.Tab value="item-drops" disabled={encounter.itemDrops.length === 0}>
+              {t("ui.logs.item-drops")}
             </Tabs.Tab>
           </Tabs.List>
           <Tabs.Panel value="overview">
@@ -717,6 +720,26 @@ export const ViewPage = () => {
                           </Table.Td>
                         );
                       })}
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
+            </Group>
+          </Tabs.Panel>
+          <Tabs.Panel value="item-drops">
+            <Group mt="20" gap="xs">
+              <Table striped layout="fixed">
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>{t("ui.logs.item-drops")}</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {encounter.itemDrops.map((itemDrop) => (
+                    <Table.Tr key={itemDrop.itemId}>
+                      <Table.Td>
+                        {translateItemId(itemDrop.itemId)} (x{itemDrop.count})
+                      </Table.Td>
                     </Table.Tr>
                   ))}
                 </Table.Tbody>

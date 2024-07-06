@@ -109,6 +109,11 @@ export type EnemyState = {
 
 export type EncounterStatus = "Waiting" | "InProgress" | "Stopped";
 
+export type ItemDrop = {
+  itemId: number;
+  count: number;
+};
+
 export type EncounterState = {
   /** Total damage dealt in the whole encounter */
   totalDamage: number;
@@ -124,6 +129,8 @@ export type EncounterState = {
   status: EncounterStatus;
   /** Targets for this encounter */
   targets: Record<number, EnemyState>;
+  /** Item drops for this encounter */
+  itemDrops: ItemDrop[];
 };
 
 export type EncounterUpdateEvent = {
