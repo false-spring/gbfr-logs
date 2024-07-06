@@ -363,7 +363,7 @@ const SkillGroups: SkillGroupMapping = {
       skills: [300, 310, 320],
     },
     "normal-attack": {
-      skills: [100, 101, 102, 111, 112, 122, 114, 115],
+      skills: [100, 101, 102, 111, 112, 122, 114, 115, 140],
     },
     "normal-attack-wings": {
       skills: [141, 160, 161, 162, 170, 171, 172, 173, 174, 175],
