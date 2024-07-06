@@ -107,6 +107,12 @@ impl OnProcessDamageHook {
         let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
         let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
+        let stun_value = if matches!(action_type, ActionType::SupplementaryDamage(_)) {
+            None
+        } else {
+            Some(damage_instance.stun_value)
+        };
+
         let event = Message::DamageEvent(DamageEvent {
             source: Actor {
                 index: source_idx,
@@ -124,7 +130,7 @@ impl OnProcessDamageHook {
             flags,
             action_id: action_type,
             attack_rate: Some(damage_instance.attack_rate),
-            stun_value: Some(damage_instance.stun_value),
+            stun_value: stun_value,
             damage_cap: Some(damage_instance.damage_cap),
         });
 
