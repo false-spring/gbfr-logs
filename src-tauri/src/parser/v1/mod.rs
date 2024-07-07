@@ -31,7 +31,7 @@ impl<'a> AdjustedDamageInstance<'a> {
         let stun_modifier = player_data
             .as_ref()
             .and_then(|data| data.player_stats.as_ref())
-            .map(|stats| stats.stun_power / 100.0)
+            .map(|stats| stats.stun_power)
             .unwrap_or(10.0) as f64;
 
         let stun_damage = event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
