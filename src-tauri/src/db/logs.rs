@@ -174,7 +174,7 @@ pub fn get_logs(
         })
         .collect::<rusqlite::Result<Vec<LogEntry>>>();
 
-    return Ok(rows.unwrap_or(vec![]));
+    Ok(rows.unwrap_or(vec![]))
 }
 
 pub fn get_logs_count(
@@ -214,5 +214,5 @@ pub fn get_logs_count(
 
     let row: i32 = stmt.query_row(&*params, |r| r.get(0))?;
 
-    return Ok(row);
+    Ok(row)
 }

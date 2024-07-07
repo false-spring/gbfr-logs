@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::parser::constants::{CharacterType, FerrySkillId};
 
-use super::{skill_state::SkillState, PlayerData};
+use super::{skill_state::SkillState, AdjustedDamageInstance};
 
 /// Derived stat breakdown for a player
 #[derive(Debug, Serialize, Deserialize)]
@@ -52,8 +52,10 @@ impl PlayerState {
         {
             self.last_known_pet_skill = Some(event.action_id);
         }
+
         const PET_NORMAL: ActionType = ActionType::Normal(FerrySkillId::PetNormal as u32);
-        let action = if is_ferry_pet_normal {
+
+        if is_ferry_pet_normal {
             // Note technically the pet portion of Onslaught will count as a Pet normal, but I think that's fine since
             // it does exactly as much as a pet normal. Could consider adding Onslaught (pet) as a separate category
             PET_NORMAL
@@ -64,38 +66,28 @@ impl PlayerState {
             }
         } else {
             event.action_id
-        };
-        return action;
+        }
     }
 
-    pub fn update_from_damage_event(
-        &mut self,
-        event: &DamageEvent,
-        player_data: Option<&PlayerData>,
-    ) {
-        self.total_damage += event.damage as u64;
+    pub fn update_from_damage_event(&mut self, damage_instance: &AdjustedDamageInstance) {
+        self.total_damage += damage_instance.event.damage as u64;
+        self.total_stun_value += damage_instance.stun_damage;
 
-        let stun_modifier = player_data
-            .and_then(|data| Some(data.stun_modifier()))
-            .unwrap_or(10.0);
-
-        let stun_value = event.stun_value.unwrap_or(0.0) as f64;
-        self.total_stun_value += stun_value * stun_modifier;
-
-        let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
+        let parent_character_type =
+            CharacterType::from_hash(damage_instance.event.source.parent_actor_type);
 
         // @TODO(false): Collapse all skill IDs from Seofon's avatar into his own.
         let child_character_type = if parent_character_type == CharacterType::Pl2200 {
             parent_character_type
         } else {
-            CharacterType::from_hash(event.source.actor_type)
+            CharacterType::from_hash(damage_instance.event.source.actor_type)
         };
 
         // for ferry defer to special function to handle the weird way her pets work
         let action = if parent_character_type == CharacterType::Pl0700 {
-            self.get_action_from_ferry_damage_event(event)
+            self.get_action_from_ferry_damage_event(damage_instance.event)
         } else {
-            event.action_id
+            damage_instance.event.action_id
         };
 
         // If the skill is already being tracked, update it.
@@ -106,13 +98,13 @@ impl PlayerState {
                 protocol::ActionType::SupplementaryDamage(_)
             ) && matches!(action, protocol::ActionType::SupplementaryDamage(_))
             {
-                skill.update_from_damage_event(event, player_data);
+                skill.update_from_damage_event(damage_instance);
                 return;
             }
 
             // If the skill is already being tracked, update it.
             if skill.action_type == action && skill.child_character_type == child_character_type {
-                skill.update_from_damage_event(event, player_data);
+                skill.update_from_damage_event(damage_instance);
                 return;
             }
         }
@@ -120,7 +112,7 @@ impl PlayerState {
         // Otherwise, create a new skill and track it.
         let mut skill = SkillState::new(action, child_character_type);
 
-        skill.update_from_damage_event(event, player_data);
+        skill.update_from_damage_event(damage_instance);
         self.skill_breakdown.push(skill);
     }
 }
@@ -183,7 +175,10 @@ mod tests {
             damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&damage_event, None);
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
 
         assert_eq!(player_state.total_damage, 100);
         assert_eq!(player_state.skill_breakdown.len(), 1);
@@ -225,9 +220,18 @@ mod tests {
             damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&damage_event, None);
-        player_state.update_from_damage_event(&damage_event, None);
-        player_state.update_from_damage_event(&damage_event, None);
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
 
         assert_eq!(player_state.total_damage, 300);
         assert_eq!(player_state.skill_breakdown.len(), 1);
@@ -290,9 +294,12 @@ mod tests {
             damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&skill_one, None);
-        player_state.update_from_damage_event(&skill_two, None);
-        player_state.update_from_damage_event(&skill_two, None);
+        player_state
+            .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&skill_one, None));
+        player_state
+            .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&skill_two, None));
+        player_state
+            .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&skill_two, None));
 
         assert_eq!(player_state.total_damage, 300);
         assert_eq!(player_state.skill_breakdown.len(), 2);
@@ -355,9 +362,18 @@ mod tests {
             damage_cap: None,
         };
 
-        player_state.update_from_damage_event(&parent_skill, None);
-        player_state.update_from_damage_event(&child_skill, None);
-        player_state.update_from_damage_event(&child_skill, None);
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &parent_skill,
+            None,
+        ));
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &child_skill,
+            None,
+        ));
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &child_skill,
+            None,
+        ));
 
         assert_eq!(player_state.total_damage, 200);
         assert_eq!(player_state.skill_breakdown.len(), 2);

@@ -130,8 +130,8 @@ impl OnProcessDamageHook {
             flags,
             action_id: action_type,
             attack_rate: Some(damage_instance.attack_rate),
-            stun_value: stun_value,
             damage_cap: Some(damage_instance.damage_cap),
+            stun_value,
         });
 
         let _ = self.tx.send(event);

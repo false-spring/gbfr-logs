@@ -20,6 +20,30 @@ mod skill_state;
 
 use player_state::PlayerState;
 
+pub struct AdjustedDamageInstance<'a> {
+    pub event: &'a DamageEvent,
+    pub player_data: Option<&'a PlayerData>,
+    pub stun_damage: f64,
+}
+
+impl<'a> AdjustedDamageInstance<'a> {
+    pub fn from_damage_event(event: &'a DamageEvent, player_data: Option<&'a PlayerData>) -> Self {
+        let stun_modifier = player_data
+            .as_ref()
+            .and_then(|data| data.player_stats.as_ref())
+            .map(|stats| stats.stun_power / 100.0)
+            .unwrap_or(10.0) as f64;
+
+        let stun_damage = event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
+
+        Self {
+            event,
+            player_data,
+            stun_damage,
+        }
+    }
+}
+
 /// Equippable sigil for a character
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -191,7 +215,7 @@ impl PlayerData {
     pub fn stun_modifier(&self) -> f64 {
         self.player_stats
             .as_ref()
-            .and_then(|stats| Some(stats.stun_power))
+            .map(|stats| stats.stun_power)
             .unwrap_or(10.0) as f64
     }
 }
@@ -207,8 +231,8 @@ struct EnemyState {
 }
 
 impl EnemyState {
-    fn update_from_damage_event(&mut self, event: &DamageEvent) {
-        self.total_damage += event.damage as u64;
+    fn update_from_damage_event(&mut self, damage_instance: &AdjustedDamageInstance) {
+        self.total_damage += damage_instance.event.damage as u64;
     }
 }
 
@@ -346,32 +370,24 @@ impl DerivedEncounterState {
             .max_by_key(|target| target.total_damage)
     }
 
-    fn process_damage_event(
-        &mut self,
-        now: i64,
-        event: &DamageEvent,
-        player_data: Option<&PlayerData>,
-    ) {
+    fn process_damage_event(&mut self, now: i64, damage_instance: &AdjustedDamageInstance) {
         self.end_time = now;
-        self.total_damage += event.damage as u64;
+        self.total_damage += damage_instance.event.damage as u64;
         self.dps = self.total_damage as f64 / ((self.duration()) as f64 / 1000.0);
 
-        let stun_modifier = player_data
-            .and_then(|data| data.player_stats.as_ref())
-            .and_then(|stats| Some(stats.stun_power / 100.0))
-            .unwrap_or(10.0) as f64;
-
         // Update stun value
-        self.total_stun_value += event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
+        self.total_stun_value += damage_instance.stun_damage;
         self.stun_per_second = self.total_stun_value / ((self.duration()) as f64 / 1000.0);
 
         // Add actor to party if not already present.
         let source_player = self
             .party
-            .entry(event.source.parent_index)
+            .entry(damage_instance.event.source.parent_index)
             .or_insert(PlayerState {
-                index: event.source.parent_index,
-                character_type: CharacterType::from_hash(event.source.parent_actor_type),
+                index: damage_instance.event.source.parent_index,
+                character_type: CharacterType::from_hash(
+                    damage_instance.event.source.parent_actor_type,
+                ),
                 total_damage: 0,
                 dps: 0.0,
                 sba: 0.0,
@@ -382,20 +398,20 @@ impl DerivedEncounterState {
             });
 
         // Update player stats from damage event.
-        source_player.update_from_damage_event(event, player_data);
+        source_player.update_from_damage_event(damage_instance);
 
         // Update target stats from damage event.
         let target = self
             .targets
-            .entry(event.target.parent_index)
+            .entry(damage_instance.event.target.parent_index)
             .or_insert(EnemyState {
-                index: event.target.parent_index,
-                target_type: EnemyType::from_hash(event.target.parent_actor_type),
-                raw_target_type: event.target.parent_actor_type,
+                index: damage_instance.event.target.parent_index,
+                target_type: EnemyType::from_hash(damage_instance.event.target.parent_actor_type),
+                raw_target_type: damage_instance.event.target.parent_actor_type,
                 total_damage: 0,
             });
 
-        target.update_from_damage_event(event);
+        target.update_from_damage_event(damage_instance);
 
         // Update everyone's DPS
         for player in self.party.values_mut() {
@@ -481,8 +497,11 @@ impl Parser {
                         .flatten()
                         .find(|player| player.actor_index == event.source.parent_index);
 
+                    let damage_instance =
+                        AdjustedDamageInstance::from_damage_event(event, player_data);
+
                     self.derived_state
-                        .process_damage_event(*timestamp, event, player_data);
+                        .process_damage_event(*timestamp, &damage_instance);
                 }
                 _ => {
                     self.derived_state.end_time = *timestamp;
@@ -511,8 +530,11 @@ impl Parser {
                             .flatten()
                             .find(|player| player.actor_index == event.source.parent_index);
 
+                        let damage_instance =
+                            AdjustedDamageInstance::from_damage_event(event, player_data);
+
                         self.derived_state
-                            .process_damage_event(*timestamp, event, player_data);
+                            .process_damage_event(*timestamp, &damage_instance);
                     }
                 }
                 _ => {
@@ -667,8 +689,10 @@ impl Parser {
             .flatten()
             .find(|player| player.actor_index == event.source.parent_index);
 
+        let damage_instance = AdjustedDamageInstance::from_damage_event(&event, player_data);
+
         self.derived_state
-            .process_damage_event(now, &event, player_data);
+            .process_damage_event(now, &damage_instance);
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);

@@ -403,7 +403,7 @@ fn connect_and_run_parser(app: AppHandle) {
 
                     while let Some(Ok(msg)) = reader.next().await {
                         // Handle EOF when the game closes.
-                        if msg.len() == 0 {
+                        if msg.is_empty() {
                             break;
                         }
 
