@@ -1,3 +1,4 @@
+import { FilterState } from "@/stores/useLogIndexStore";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { Log, LogSortType, SortDirection } from "@/types";
 import {
@@ -39,13 +40,9 @@ export const IndexPage = () => {
     confirmDeleteAll,
     handleSetPage,
     currentPage,
-    setEnemyIdFilter,
-    setQuestIdFilter,
     toggleSort,
-    sortType,
-    sortDirection,
-    questCompletedFilter,
-    setQuestCompletedFilter,
+    setFilters,
+    filters,
   } = useIndex();
 
   const { streamer_mode, show_display_names } = useMeterSettingsStore(
@@ -119,12 +116,9 @@ export const IndexPage = () => {
         </Box>
       </Group>
       <Group>
-        <SelectableEnemy targetIds={searchResult.enemyIds} setSelectedTarget={setEnemyIdFilter} />
-        <SelectableQuest questIds={searchResult.questIds} setSelectedQuest={setQuestIdFilter} />
-        <SelectableQuestCompletion
-          questCompletedFilter={questCompletedFilter}
-          setQuestCompletionFilter={setQuestCompletedFilter}
-        />
+        <SelectableEnemy targetIds={searchResult.enemyIds} setFilters={setFilters} filters={filters} />
+        <SelectableQuest questIds={searchResult.questIds} setFilters={setFilters} filters={filters} />
+        <SelectableQuestCompletion setFilters={setFilters} filters={filters} />
       </Group>
       {searchResult.logs.length === 0 && <BlankTable />}
       {searchResult.logs.length > 0 && (
@@ -144,8 +138,8 @@ export const IndexPage = () => {
                 <Table.Th>
                   <SortableColumn
                     column="time"
-                    sortType={sortType}
-                    sortDirection={sortDirection}
+                    sortType={filters.sortType}
+                    sortDirection={filters.sortDirection}
                     onClick={() => toggleSort("time")}
                   >
                     {t("ui.logs.date")}
@@ -157,8 +151,8 @@ export const IndexPage = () => {
                 <Table.Th>
                   <SortableColumn
                     column="duration"
-                    sortType={sortType}
-                    sortDirection={sortDirection}
+                    sortType={filters.sortType}
+                    sortDirection={filters.sortDirection}
                     onClick={() => toggleSort("duration")}
                   >
                     {t("ui.logs.duration")}
@@ -167,8 +161,8 @@ export const IndexPage = () => {
                 <Table.Th>
                   <SortableColumn
                     column="quest-elapsed-time"
-                    sortType={sortType}
-                    sortDirection={sortDirection}
+                    sortType={filters.sortType}
+                    sortDirection={filters.sortDirection}
                     onClick={() => toggleSort("quest-elapsed-time")}
                   >
                     {t("ui.logs.quest-elapsed-time")}
@@ -298,10 +292,12 @@ function BlankTable() {
 
 function SelectableEnemy({
   targetIds,
-  setSelectedTarget,
+  filters,
+  setFilters,
 }: {
   targetIds: number[];
-  setSelectedTarget: (value: number | null) => void;
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
 }) {
   const { t } = useTranslation();
   const targetOptions = useMemo(
@@ -312,7 +308,8 @@ function SelectableEnemy({
   return (
     <Select
       data={targetOptions}
-      onChange={(value) => setSelectedTarget(value ? Number(value) : null)}
+      value={filters.filterByEnemyId?.toString() ?? null}
+      onChange={(value) => setFilters({ filterByEnemyId: value ? Number(value) : null })}
       placeholder={t("ui.select-enemy")}
       searchable
       clearable
@@ -322,10 +319,12 @@ function SelectableEnemy({
 
 function SelectableQuest({
   questIds,
-  setSelectedQuest,
+  filters,
+  setFilters,
 }: {
   questIds: number[];
-  setSelectedQuest: (value: number | null) => void;
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
 }) {
   const { t } = useTranslation();
   const questOptions = useMemo(
@@ -336,7 +335,8 @@ function SelectableQuest({
   return (
     <Select
       data={questOptions}
-      onChange={(value) => setSelectedQuest(value ? Number(value) : null)}
+      value={filters.filterByQuestId?.toString() ?? null}
+      onChange={(value) => setFilters({ filterByQuestId: value ? Number(value) : null })}
       placeholder={t("ui.select-quest")}
       searchable
       clearable
@@ -345,11 +345,11 @@ function SelectableQuest({
 }
 
 function SelectableQuestCompletion({
-  questCompletedFilter,
-  setQuestCompletionFilter,
+  filters,
+  setFilters,
 }: {
-  questCompletedFilter: boolean | null;
-  setQuestCompletionFilter: (value: boolean | null) => void;
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
 }) {
   return (
     <Select
@@ -358,10 +358,10 @@ function SelectableQuestCompletion({
         { value: "true", label: "Completed" },
         { value: "false", label: "Failed" },
       ]}
-      onChange={(value) => setQuestCompletionFilter(value === "null" ? null : value === "true")}
+      onChange={(value) => setFilters({ questCompletedFilter: value === "null" ? null : value === "true" })}
       placeholder="Quest Completion"
-      value={questCompletedFilter === null ? "null" : questCompletedFilter ? "true" : "false"}
-      onClear={() => setQuestCompletionFilter(null)}
+      value={filters.questCompletedFilter === null ? "null" : filters.questCompletedFilter ? "true" : "false"}
+      onClear={() => setFilters({ questCompletedFilter: null })}
       searchable
       clearable
     />
