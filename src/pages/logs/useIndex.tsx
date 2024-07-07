@@ -79,6 +79,10 @@ export default function useIndex() {
     fetchLogs();
   };
 
+  const toggleAdvancedFilters = () => {
+    setFilters({ showAdvancedFilters: !filters.showAdvancedFilters });
+  };
+
   const toggleSort = (newSortType: LogSortType) => {
     setCurrentPage(1);
 
@@ -100,6 +104,7 @@ export default function useIndex() {
     currentPage,
     filters,
     setFilters,
+    toggleAdvancedFilters,
     toggleSort,
   };
 }

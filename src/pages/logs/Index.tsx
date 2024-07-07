@@ -43,6 +43,7 @@ export const IndexPage = () => {
     toggleSort,
     setFilters,
     filters,
+    toggleAdvancedFilters,
   } = useIndex();
 
   const { streamer_mode, show_display_names } = useMeterSettingsStore(
@@ -115,11 +116,26 @@ export const IndexPage = () => {
           )}
         </Box>
       </Group>
-      <Group>
-        <SelectableEnemy targetIds={searchResult.enemyIds} setFilters={setFilters} filters={filters} />
-        <SelectableQuest questIds={searchResult.questIds} setFilters={setFilters} filters={filters} />
-        <SelectableQuestCompletion setFilters={setFilters} filters={filters} />
-      </Group>
+      <Box py={"xs"}>
+        <Group>
+          <SelectableEnemy targetIds={searchResult.enemyIds} setFilters={setFilters} filters={filters} />
+          <SelectableQuest questIds={searchResult.questIds} setFilters={setFilters} filters={filters} />
+          <SelectableQuestCompletion setFilters={setFilters} filters={filters} />
+          <Button size="s" variant="default" onClick={toggleAdvancedFilters}>
+            {filters.showAdvancedFilters ? t("ui.logs.hide-advanced-filters") : t("ui.logs.show-advanced-filters")}
+          </Button>
+        </Group>
+      </Box>
+      <Box>
+        <Group>
+          {filters.showAdvancedFilters && (
+            <SelectablePlayer playerIds={searchResult.playerIds} setFilters={setFilters} filters={filters} />
+          )}
+          {filters.showAdvancedFilters && (
+            <SelectablePlayerType playerTypes={searchResult.playerTypes} setFilters={setFilters} filters={filters} />
+          )}
+        </Group>
+      </Box>
       {searchResult.logs.length === 0 && <BlankTable />}
       {searchResult.logs.length > 0 && (
         <Box>
@@ -362,6 +378,60 @@ function SelectableQuestCompletion({
       placeholder="Quest Completion"
       value={filters.questCompletedFilter === null ? "null" : filters.questCompletedFilter ? "true" : "false"}
       onClear={() => setFilters({ questCompletedFilter: null })}
+      searchable
+      clearable
+    />
+  );
+}
+
+function SelectablePlayer({
+  playerIds,
+  filters,
+  setFilters,
+}: {
+  playerIds: string[];
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
+}) {
+  const { t } = useTranslation();
+  const targetOptions = useMemo(
+    () => playerIds.map((id) => ({ value: id.toString(), label: id.toString() })),
+    [playerIds]
+  );
+
+  return (
+    <Select
+      data={targetOptions}
+      onChange={(value) => setFilters({ filterByPlayerId: value ? String(value) : null })}
+      placeholder={t("ui.select-player")}
+      value={filters.filterByPlayerId ?? null}
+      searchable
+      clearable
+    />
+  );
+}
+
+function SelectablePlayerType({
+  playerTypes,
+  filters,
+  setFilters,
+}: {
+  playerTypes: string[];
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
+}) {
+  const { t } = useTranslation();
+  const targetOptions = useMemo(
+    () => playerTypes.map((id) => ({ value: id.toString(), label: t(`characters:${id}`, `ui:characters.${id}`) })),
+    [playerTypes]
+  );
+
+  return (
+    <Select
+      data={targetOptions}
+      onChange={(value) => setFilters({ filterByPlayerCharacter: value ? String(value) : null })}
+      value={filters.filterByPlayerCharacter ?? null}
+      placeholder={t("ui.select-character")}
       searchable
       clearable
     />
