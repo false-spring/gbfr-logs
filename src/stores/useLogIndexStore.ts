@@ -11,6 +11,8 @@ export type SearchResult = {
   logCount: number;
   enemyIds: number[];
   questIds: number[];
+  playerIds: string[];
+  playerTypes: string[];
 };
 
 const DEFAULT_SEARCH_RESULT = {
@@ -20,6 +22,8 @@ const DEFAULT_SEARCH_RESULT = {
   logCount: 0,
   enemyIds: [],
   questIds: [],
+  playerIds: [],
+  playerTypes: [],
 };
 
 type LogIndexState = {
@@ -42,6 +46,9 @@ export type FilterState = {
   sortDirection: SortDirection;
   sortType: LogSortType;
   questCompletedFilter: boolean | null;
+  filterByPlayerId: string | null;
+  filterByPlayerCharacter: string | null;
+  showAdvancedFilters: boolean;
 };
 
 const DEFAULT_FILTERS: FilterState = {
@@ -50,6 +57,9 @@ const DEFAULT_FILTERS: FilterState = {
   sortDirection: "desc",
   sortType: "time",
   questCompletedFilter: null,
+  filterByPlayerId: null,
+  filterByPlayerCharacter: null,
+  showAdvancedFilters: false,
 };
 
 export const useLogIndexStore = create<LogIndexState>((set, get) => ({
@@ -96,6 +106,8 @@ export const useLogIndexStore = create<LogIndexState>((set, get) => ({
         page: currentPage,
         filterByEnemyId: filters.filterByEnemyId,
         filterByQuestId: filters.filterByQuestId,
+        filterByPlayerId: filters.filterByPlayerId,
+        filterByPlayerCharacter: filters.filterByPlayerCharacter,
         sortDirection: filters.sortDirection,
         sortType: filters.sortType,
         questCompleted: filters.questCompletedFilter,

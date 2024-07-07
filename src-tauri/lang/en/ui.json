@@ -42,6 +42,8 @@
     "player-overmasteries": "Overmasteries",
     "select-enemy": "Select Enemy",
     "select-quest": "Select Quest",
+    "select-player": "Select Player",
+    "select-character": "Select Character",
     "sba": {
       "OnAttemptSBA": "Attempted SBA",
       "OnPerformSBA": "Executed SBA",
@@ -76,6 +78,8 @@
       "saved-count_other": "{{count}} logs saved",
       "delete-selected-btn": "Delete Selected ({{count}})",
       "delete-all-btn": "Delete All",
+      "show-advanced-filters": "Show Advanced Filters",
+      "hide-advanced-filters": "Hide Advanced Filters",
       "date": "Date",
       "name": "Name",
       "primary-target": "Enemy",
