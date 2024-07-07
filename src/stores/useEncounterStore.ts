@@ -1,4 +1,4 @@
-import { EncounterState, EnemyType, CharacterType, PlayerData, SBAEvent } from "@/types";
+import { CharacterType, EncounterState, EnemyType, PlayerData, SBAEvent } from "@/types";
 import { create } from "zustand";
 
 interface EncounterStore {
@@ -10,14 +10,14 @@ interface EncounterStore {
   sbaChartLen: number;
   targets: EnemyType[];
   selectedTargets: EnemyType[];
-  selectedPlayers: String[];
+  selectedPlayers: string[];
   selectedPlayerTypes: EnemyType[];
   players: PlayerData[];
   questId: number | null;
   questTimer: number | null;
   questCompleted: boolean;
   setSelectedTargets: (targets: EnemyType[]) => void;
-  setSelectedPlayers: (playerNames: String[]) => void;
+  setSelectedPlayers: (playerNames: string[]) => void;
   setSelectedPlayerTypes: (playerTypes: CharacterType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
 }
@@ -52,7 +52,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   questTimer: null,
   questCompleted: false,
   setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
-  setSelectedPlayers: (playerNames: String[]) => set({ selectedPlayers: playerNames }),
+  setSelectedPlayers: (playerNames: string[]) => set({ selectedPlayers: playerNames }),
   setSelectedPlayerTypes: (playerTypes: CharacterType[]) => set({ selectedPlayerTypes: playerTypes }),
   loadFromResponse: (response: EncounterStateResponse) => {
     const filteredPlayers = response.players.filter((player) => player !== null);
