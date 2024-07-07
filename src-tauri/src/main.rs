@@ -182,7 +182,7 @@ fn fetch_logs(
         &sort_direction_param,
         quest_completed,
         &filter_by_player_id,
-        &filter_by_player_character
+        &filter_by_player_character,
     )
     .map_err(|e| e.to_string())?;
 
@@ -192,7 +192,7 @@ fn fetch_logs(
         filter_by_quest_id,
         quest_completed,
         &filter_by_player_id,
-        &filter_by_player_character
+        &filter_by_player_character,
     )
     .map_err(|e| e.to_string())?;
 
@@ -210,22 +210,33 @@ fn fetch_logs(
     let rows = query
         .query_map([], |row| {
             Ok((
-                row.get::<usize, Option<u32>>(0)?,  // primary_target
-                row.get::<usize, Option<u32>>(1)?,  // quest_id
-                row.get::<usize, Option<String>>(2)?,  // p1_name
-                row.get::<usize, Option<String>>(3)?,  // p1_type
-                row.get::<usize, Option<String>>(4)?,  // p2_name
-                row.get::<usize, Option<String>>(5)?,  // p2_type
-                row.get::<usize, Option<String>>(6)?,  // p3_name
-                row.get::<usize, Option<String>>(7)?,  // p3_type
-                row.get::<usize, Option<String>>(8)?,  // p4_name
-                row.get::<usize, Option<String>>(9)?,  // p4_type
+                row.get::<usize, Option<u32>>(0)?,    // primary_target
+                row.get::<usize, Option<u32>>(1)?,    // quest_id
+                row.get::<usize, Option<String>>(2)?, // p1_name
+                row.get::<usize, Option<String>>(3)?, // p1_type
+                row.get::<usize, Option<String>>(4)?, // p2_name
+                row.get::<usize, Option<String>>(5)?, // p2_type
+                row.get::<usize, Option<String>>(6)?, // p3_name
+                row.get::<usize, Option<String>>(7)?, // p3_type
+                row.get::<usize, Option<String>>(8)?, // p4_name
+                row.get::<usize, Option<String>>(9)?, // p4_type
             ))
         })
         .map_err(|e| e.to_string())?;
 
     for row in rows {
-        let (primary_target, quest_id, p1_name, p1_type, p2_name, p2_type, p3_name, p3_type, p4_name, p4_type) = row.map_err(|e| e.to_string())?;
+        let (
+            primary_target,
+            quest_id,
+            p1_name,
+            p1_type,
+            p2_name,
+            p2_type,
+            p3_name,
+            p3_type,
+            p4_name,
+            p4_type,
+        ) = row.map_err(|e| e.to_string())?;
 
         if let Some(primary_target) = primary_target {
             if !enemy_ids.contains(&primary_target) {
@@ -238,7 +249,7 @@ fn fetch_logs(
                 quest_ids.push(quest_id);
             }
         }
-        
+
         for p_name in [p1_name, p2_name, p3_name, p4_name] {
             if let Some(p_name) = p_name {
                 if !player_ids.contains(&p_name) {
@@ -246,7 +257,7 @@ fn fetch_logs(
                 }
             }
         }
-                
+
         for p_type in [p1_type, p2_type, p3_type, p4_type] {
             if let Some(p_type) = p_type {
                 if !player_types.contains(&p_type) {
@@ -263,8 +274,8 @@ fn fetch_logs(
         log_count,
         enemy_ids,
         quest_ids,
-        player_ids, 
-        player_types
+        player_ids,
+        player_types,
     })
 }
 
@@ -280,6 +291,7 @@ struct EncounterStateResponse {
     dps_chart: HashMap<u32, Vec<i32>>,
     sba_chart: HashMap<u32, Vec<f32>>,
     sba_events: Vec<(i64, protocol::Message)>,
+    death_events: Vec<(i64, protocol::Message)>,
     chart_len: usize,
     sba_chart_len: usize,
 }
@@ -359,6 +371,13 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         .map(|(ts, e)| (*ts - start_time, e.clone()))
         .collect();
 
+    let death_events = parser
+        .encounter
+        .event_log()
+        .filter(|(_, e)| matches!(e, Message::OnDeathEvent(_)))
+        .map(|(ts, e)| (*ts - start_time, e.clone()))
+        .collect();
+
     Ok(EncounterStateResponse {
         encounter_state: parser.derived_state,
         players: parser.encounter.player_data,
@@ -370,6 +389,7 @@ fn fetch_encounter_state(id: u64, options: ParseOptions) -> Result<EncounterStat
         sba_chart_len: (duration / SBA_INTERVAL) as usize + 1,
         sba_chart,
         sba_events,
+        death_events,
         targets,
     })
 }
@@ -475,7 +495,10 @@ fn connect_and_run_parser(app: AppHandle) {
                                     state.on_sba_perform(event);
                                 }
                                 protocol::Message::OnContinueSBAChain(event) => {
-                                    state.on_continue_sba_chain(event)
+                                    state.on_continue_sba_chain(event);
+                                }
+                                protocol::Message::OnDeathEvent(event) => {
+                                    state.on_death_event(event);
                                 }
                             }
                         }

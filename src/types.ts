@@ -256,3 +256,5 @@ export type SBAEvent = [
     | { OnContinueSBAChain: { actor_index: number } }
   ),
 ];
+
+export type DeathEvent = [number, { OnDeathEvent: { actor_index: number; death_counter: number } }];

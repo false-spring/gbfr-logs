@@ -3,7 +3,7 @@ use std::{collections::HashMap, io::BufReader};
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
+    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent, OnDeathEvent,
     OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
 };
 use rusqlite::{params, Connection};
@@ -830,6 +830,13 @@ impl Parser {
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);
         }
+    }
+
+    pub fn on_death_event(&mut self, event: OnDeathEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnDeathEvent(event.clone()),
+        );
     }
 
     fn reset(&mut self) {
