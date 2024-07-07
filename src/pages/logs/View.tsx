@@ -176,6 +176,7 @@ export const ViewPage = () => {
     dpsChart,
     sbaChart,
     sbaEvents,
+    deathEvents,
     chartLen,
     sbaChartLen,
     targets,
@@ -191,6 +192,7 @@ export const ViewPage = () => {
     dpsChart: state.dpsChart,
     sbaChart: state.sbaChart,
     sbaEvents: state.sbaEvents,
+    deathEvents: state.deathEvents,
     chartLen: state.chartLen,
     sbaChartLen: state.sbaChartLen,
     targets: state.targets,
@@ -361,6 +363,33 @@ export const ViewPage = () => {
     };
   });
 
+  const referenceLines = deathEvents.map((payload) => {
+    const [timestamp, event] = payload;
+    const closestTimestep = timestamp - (timestamp % (DPS_INTERVAL * 1000));
+
+    const eventType = Object.keys(event)[0];
+
+    // @ts-expect-error: eventType is dynamic here.
+    const player = players.find((p) => p.index === event[eventType].actor_index);
+
+    const partySlotIndex = playerData.findIndex(
+      // @ts-expect-error: eventType is dynamic here.
+      (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
+    );
+
+    const playerName = translatedPlayerName(
+      partySlotIndex,
+      playerData[partySlotIndex],
+      player as ComputedPlayerState,
+      show_display_names && !streamer_mode
+    );
+
+    return {
+      x: millisecondsToElapsedFormat(closestTimestep),
+      label: `💀 ${playerName}`,
+    };
+  });
+
   return (
     <Box>
       <Text>
@@ -487,6 +516,7 @@ export const ViewPage = () => {
                   data={data}
                   dataKey="timestamp"
                   withDots={false}
+                  referenceLines={referenceLines}
                   withLegend
                   series={labels}
                   valueFormatter={(value) => {

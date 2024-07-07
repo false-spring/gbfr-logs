@@ -204,6 +204,12 @@ pub struct OnContinueSBAChainEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnDeathEvent {
+    pub actor_index: u32,
+    pub death_counter: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter(AreaEnterEvent),
     OnQuestComplete(QuestCompleteEvent),
@@ -213,4 +219,5 @@ pub enum Message {
     OnPerformSBA(OnPerformSBAEvent),
     OnContinueSBAChain(OnContinueSBAChainEvent),
     PlayerLoadEvent(PlayerLoadEvent),
+    OnDeathEvent(OnDeathEvent),
 }

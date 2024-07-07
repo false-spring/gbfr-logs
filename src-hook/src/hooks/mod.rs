@@ -1,4 +1,5 @@
 use anyhow::Result;
+use death::OnDeathHook;
 
 use crate::{event, process::Process};
 
@@ -15,6 +16,7 @@ use self::{
 
 mod area;
 mod damage;
+mod death;
 mod ffi;
 mod globals;
 mod player;
@@ -31,6 +33,7 @@ pub fn setup_hooks(tx: event::Tx) -> Result<()> {
     /* Damage Events */
     OnProcessDamageHook::new(tx.clone()).setup(&process)?;
     OnProcessDotHook::new(tx.clone()).setup(&process)?;
+    OnDeathHook::new(tx.clone()).setup(&process)?;
 
     /* Player Data */
     OnLoadPlayerHook::new(tx.clone()).setup(&process)?;

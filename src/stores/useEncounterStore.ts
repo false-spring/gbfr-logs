@@ -1,4 +1,4 @@
-import { CharacterType, EncounterState, EnemyType, PlayerData, SBAEvent } from "@/types";
+import { CharacterType, DeathEvent, EncounterState, EnemyType, PlayerData, SBAEvent } from "@/types";
 import { create } from "zustand";
 
 interface EncounterStore {
@@ -6,6 +6,7 @@ interface EncounterStore {
   dpsChart: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
   sbaEvents: SBAEvent[];
+  deathEvents: DeathEvent[];
   chartLen: number;
   sbaChartLen: number;
   targets: EnemyType[];
@@ -27,6 +28,7 @@ export interface EncounterStateResponse {
   dpsChart: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
   sbaEvents: SBAEvent[];
+  deathEvents: DeathEvent[];
   chartLen: number;
   sbaChartLen: number;
   targets: EnemyType[];
@@ -41,6 +43,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
   dpsChart: {},
   sbaChart: {},
   sbaEvents: [],
+  deathEvents: [],
   chartLen: 0,
   sbaChartLen: 0,
   targets: [],
@@ -62,6 +65,7 @@ export const useEncounterStore = create<EncounterStore>((set) => ({
       dpsChart: response.dpsChart,
       sbaChart: response.sbaChart,
       sbaEvents: response.sbaEvents,
+      deathEvents: response.deathEvents,
       chartLen: response.chartLen,
       sbaChartLen: response.sbaChartLen,
       targets: response.targets,
