@@ -32,7 +32,9 @@
         "scope": [
           "$RESOURCE/*",
           "$RESOURCE/lang/*",
-          "$RESOURCE/lang/*/*"
+          "$RESOURCE/lang/*/*",
+          "$RESOURCE/assets/*",
+          "$RESOURCE/assets/*/*"
         ]
       },
       "path": {
@@ -90,6 +92,7 @@
       ],
       "resources": [
         "hook.dll",
+        "assets/*",
         "lang/*"
       ],
       "windows": {
