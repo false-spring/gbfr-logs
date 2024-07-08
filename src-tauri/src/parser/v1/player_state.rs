@@ -119,6 +119,8 @@ impl PlayerState {
 
 #[cfg(test)]
 mod tests {
+    use crate::parser::v1::{PlayerData, PlayerStats};
+
     use super::*;
 
     #[test]
@@ -307,6 +309,7 @@ mod tests {
         assert_eq!(player_state.skill_breakdown[1].total_damage, 200);
     }
 
+    #[test]
     fn skills_from_children_are_tracked_separately() {
         let mut player_state = PlayerState {
             index: 0,
@@ -375,9 +378,116 @@ mod tests {
             None,
         ));
 
-        assert_eq!(player_state.total_damage, 200);
+        assert_eq!(player_state.total_damage, 300);
         assert_eq!(player_state.skill_breakdown.len(), 2);
         assert_eq!(player_state.skill_breakdown[0].total_damage, 100);
         assert_eq!(player_state.skill_breakdown[1].total_damage, 200);
+    }
+
+    #[test]
+    fn stun_is_tracked_with_player_stats() {
+        let mut player_state = PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 0,
+            last_known_pet_skill: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
+        };
+
+        let damage_event = DamageEvent {
+            source: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            target: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            action_id: ActionType::Normal(1),
+            damage: 100,
+            flags: 0,
+            attack_rate: None,
+            stun_value: Some(5.0),
+            damage_cap: None,
+        };
+
+        let player_data = PlayerData {
+            actor_index: 0,
+            character_type: CharacterType::Pl0000,
+            display_name: "Test".to_string(),
+            character_name: "Test".to_string(),
+            sigils: Vec::new(),
+            is_online: false,
+            weapon_info: None,
+            overmastery_info: None,
+            player_stats: Some(PlayerStats {
+                level: 100,
+                total_hp: 10000,
+                total_attack: 1000,
+                stun_power: 130.0,
+                critical_rate: 100.0,
+                total_power: 1000,
+            }),
+        };
+
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            Some(&player_data),
+        ));
+
+        // actual_stun_value = stun_value * stun_power
+        assert_eq!(player_state.total_stun_value, 5.0 * 130.0);
+    }
+
+    #[test]
+    fn stun_value_without_player_stats() {
+        let mut player_state = PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 0,
+            last_known_pet_skill: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
+        };
+
+        let damage_event = DamageEvent {
+            source: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            target: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            action_id: ActionType::Normal(1),
+            damage: 100,
+            flags: 0,
+            attack_rate: None,
+            stun_value: Some(5.0),
+            damage_cap: None,
+        };
+
+        player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
+
+        // actual_stun_value = stun_value * stun_power
+        assert_eq!(player_state.total_stun_value, 5.0 * 100.0);
     }
 }
