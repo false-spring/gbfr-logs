@@ -29,10 +29,8 @@ pub struct AdjustedDamageInstance<'a> {
 impl<'a> AdjustedDamageInstance<'a> {
     pub fn from_damage_event(event: &'a DamageEvent, player_data: Option<&'a PlayerData>) -> Self {
         let stun_modifier = player_data
-            .as_ref()
-            .and_then(|data| data.player_stats.as_ref())
-            .map(|stats| stats.stun_power / 100.0)
-            .unwrap_or(10.0) as f64;
+            .map(|data| data.stun_modifier())
+            .unwrap_or(100.0) as f64;
 
         let stun_damage = event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
 
@@ -216,7 +214,7 @@ impl PlayerData {
         self.player_stats
             .as_ref()
             .map(|stats| stats.stun_power)
-            .unwrap_or(10.0) as f64
+            .unwrap_or(100.0) as f64
     }
 }
 
