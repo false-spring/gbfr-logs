@@ -73,14 +73,14 @@ export const useLogIndexStore = create<LogIndexState>((set, get) => ({
     set((state) => ({ currentPage: 1, filters: { ...state.filters, ...filters } })),
   setSelectedLogIds: (ids) => set({ selectedLogIds: ids }),
   deleteSelectedLogs: async () => {
-    const { setSearchResult, selectedLogIds: ids } = get();
+    const { currentPage, searchResult, fetchLogs, selectedLogIds: ids } = get();
 
     try {
       await invoke("delete_logs", { ids });
-      set({ currentPage: 1, selectedLogIds: [], searchResult: DEFAULT_SEARCH_RESULT });
       toast.success("Logs deleted successfully.");
-      const result = await invoke("fetch_logs");
-      setSearchResult(result as SearchResult);
+      const newPage = Math.min(currentPage, searchResult.pageCount - 1);
+      set({ currentPage: newPage, selectedLogIds: [] });
+      await fetchLogs();
     } catch (e) {
       toast.error(`Failed to delete logs: ${e}`);
     }
