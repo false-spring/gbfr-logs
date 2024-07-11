@@ -486,6 +486,8 @@ impl Parser {
         self.derived_state.start(self.start_time());
 
         for (timestamp, event) in self.encounter.event_log() {
+            self.derived_state.end_time = *timestamp;
+
             match event {
                 Message::DamageEvent(event) => {
                     let player_data = self
@@ -501,9 +503,7 @@ impl Parser {
                     self.derived_state
                         .process_damage_event(*timestamp, &damage_instance);
                 }
-                _ => {
-                    self.derived_state.end_time = *timestamp;
-                }
+                _ => {}
             }
         }
     }
@@ -514,6 +514,8 @@ impl Parser {
         self.derived_state.start(self.start_time());
 
         for (timestamp, event) in self.encounter.event_log() {
+            self.derived_state.end_time = *timestamp;
+
             match event {
                 Message::DamageEvent(event) => {
                     // If the target list is empty, then we're not filtering by target.
@@ -535,9 +537,7 @@ impl Parser {
                             .process_damage_event(*timestamp, &damage_instance);
                     }
                 }
-                _ => {
-                    self.derived_state.end_time = *timestamp;
-                }
+                _ => {}
             }
         }
     }
