@@ -443,8 +443,7 @@ mod tests {
             Some(&player_data),
         ));
 
-        // actual_stun_value = stun_value * stun_power
-        assert_eq!(player_state.total_stun_value, 5.0 * 130.0);
+        assert_eq!(player_state.total_stun_value, 5.0);
     }
 
     #[test]
@@ -487,7 +486,6 @@ mod tests {
             None,
         ));
 
-        // actual_stun_value = stun_value * stun_power
-        assert_eq!(player_state.total_stun_value, 5.0 * 100.0);
+        assert_eq!(player_state.total_stun_value, 5.0);
     }
 }

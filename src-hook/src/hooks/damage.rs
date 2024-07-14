@@ -53,11 +53,24 @@ impl OnProcessDamageHook {
     }
 
     fn run(&self, a1: *const usize, a2: *const usize, a3: *const usize, a4: u8) -> usize {
-        let original_value = unsafe { ProcessDamageEvent.call(a1, a2, a3, a4) };
-
         // Target is the instance of the actor being damaged.
         // For example: Instance of the Em2700 class.
         let target_specified_instance_ptr: usize = unsafe { *(*a1.byte_add(0x08) as *const usize) };
+
+        let previous_stun_value = unsafe {
+            (target_specified_instance_ptr as *const f32)
+                .byte_add(0xA70)
+                .read()
+        };
+
+        let original_value = unsafe { ProcessDamageEvent.call(a1, a2, a3, a4) };
+
+        let current_stun_value = unsafe {
+            (target_specified_instance_ptr as *const f32)
+                .byte_add(0xA70)
+                .read()
+        };
+        let added_stun_value = (current_stun_value - previous_stun_value).max(0.0);
 
         // This points to the first Entity instance in the 'a2' entity list.
         let source_entity_ptr = unsafe { (a2.byte_add(0x18) as *const *const usize).read() };
@@ -110,7 +123,7 @@ impl OnProcessDamageHook {
         let stun_value = if matches!(action_type, ActionType::SupplementaryDamage(_)) {
             None
         } else {
-            Some(damage_instance.stun_value)
+            Some(added_stun_value)
         };
 
         let event = Message::DamageEvent(DamageEvent {

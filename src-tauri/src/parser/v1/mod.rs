@@ -28,11 +28,7 @@ pub struct AdjustedDamageInstance<'a> {
 
 impl<'a> AdjustedDamageInstance<'a> {
     pub fn from_damage_event(event: &'a DamageEvent, player_data: Option<&'a PlayerData>) -> Self {
-        let stun_modifier = player_data
-            .map(|data| data.stun_modifier())
-            .unwrap_or(100.0) as f64;
-
-        let stun_damage = event.stun_value.unwrap_or(0.0) as f64 * stun_modifier;
+        let stun_damage = event.stun_value.unwrap_or(0.0) as f64;
 
         Self {
             event,
@@ -207,15 +203,6 @@ pub struct PlayerData {
     overmastery_info: Option<OvermasteryInfo>,
     /// Player stats for this player
     player_stats: Option<PlayerStats>,
-}
-
-impl PlayerData {
-    pub fn stun_modifier(&self) -> f64 {
-        self.player_stats
-            .as_ref()
-            .map(|stats| stats.stun_power)
-            .unwrap_or(100.0) as f64
-    }
 }
 
 /// Derived breakdown for an enemy target
