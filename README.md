@@ -21,11 +21,11 @@ Overlay DPS parser/meter for Granblue Fantasy: Relink, based initially on the re
 
 ![Meter](./docs/screenshots/meter.png)
 
-### Skill Tracking
+### Skill Tracking (with skill grouping)
 
 ![Meter](./docs/screenshots/skill-tracking.png)
 
-### Historical Logs
+### Historical Logs (with filtering)
 
 ![Logs](./docs/screenshots/log-history.png)
 
@@ -44,6 +44,10 @@ Overlay DPS parser/meter for Granblue Fantasy: Relink, based initially on the re
 ### Multi-language Support
 
 ![Simplified Chinese](./docs/screenshots/simplified-chinese.png)
+
+## Settings / Customization
+
+![Settings](./docs/screenshots/settings.png)
 
 ## Frequently Asked Questions
 
