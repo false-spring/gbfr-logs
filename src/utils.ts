@@ -170,6 +170,10 @@ export const sortPlayers = (players: ComputedPlayerState[], sortType: SortType, 
       return sortDirection === "asc" ? a?.percentage - b?.percentage : b?.percentage - a?.percentage;
     } else if (sortType === MeterColumns.SBA) {
       return sortDirection === "asc" ? a?.sba - b?.sba : b?.sba - a?.sba;
+    } else if (sortType === MeterColumns.TotalStunValue) {
+      return sortDirection === "asc" ? a?.totalStunValue - b?.totalStunValue : b?.totalStunValue - a?.totalStunValue;
+    } else if (sortType === MeterColumns.StunPerSecond) {
+      return sortDirection === "asc" ? a?.stunPerSecond - b?.stunPerSecond : b?.stunPerSecond - a?.stunPerSecond;
     }
 
     return 0;

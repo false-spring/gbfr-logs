@@ -32,6 +32,7 @@ export const usePlayerRow = (live: boolean, player: ComputedPlayerState, partyDa
 
   const [totalDamage, totalDamageUnit] = humanizeNumbers(player.totalDamage);
   const [dps, dpsUnit] = humanizeNumbers(player.dps);
+  const [totalStunValue, totalStunValueUnit] = humanizeNumbers(player.totalStunValue);
 
   // Function for matching the column type to the value to display in the table.
   const matchColumnTypeToValue = (showFullValues: boolean, column: MeterColumns): ColumnValue => {
@@ -48,13 +49,27 @@ export const usePlayerRow = (live: boolean, player: ComputedPlayerState, partyDa
         return showFullValues
           ? { value: (player.sba / 10).toFixed(2) }
           : { value: (player.sba / 10).toFixed(2), unit: "%" };
+      case MeterColumns.StunPerSecond:
+        return { value: (player.stunPerSecond || 0).toLocaleString() };
+      case MeterColumns.TotalStunValue:
+        return showFullValues
+          ? { value: (player.totalStunValue || 0).toLocaleString() }
+          : { value: totalStunValue, unit: totalStunValueUnit };
       default:
         return { value: "" };
     }
   };
 
   // If the meter is in live mode, only show the overlay columns that are enabled, otherwise show all columns.
-  const columns = live ? overlay_columns : [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage];
+  const columns = live
+    ? overlay_columns
+    : [
+        MeterColumns.TotalDamage,
+        MeterColumns.DPS,
+        MeterColumns.TotalStunValue,
+        MeterColumns.StunPerSecond,
+        MeterColumns.DamagePercentage,
+      ];
 
   return {
     columns,

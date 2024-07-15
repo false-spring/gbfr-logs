@@ -1,8 +1,10 @@
+use std::ptr::NonNull;
+
 use anyhow::{anyhow, Result};
 use protocol::{ActionType, Actor, DamageEvent, Message};
 use retour::static_detour;
 
-use crate::{event, process::Process};
+use crate::{event, hooks::ffi::DamageInstance, process::Process};
 
 use super::{actor_idx, actor_type_id, get_source_parent};
 
@@ -51,11 +53,24 @@ impl OnProcessDamageHook {
     }
 
     fn run(&self, a1: *const usize, a2: *const usize, a3: *const usize, a4: u8) -> usize {
-        let original_value = unsafe { ProcessDamageEvent.call(a1, a2, a3, a4) };
-
         // Target is the instance of the actor being damaged.
         // For example: Instance of the Em2700 class.
         let target_specified_instance_ptr: usize = unsafe { *(*a1.byte_add(0x08) as *const usize) };
+
+        let previous_stun_value = unsafe {
+            (target_specified_instance_ptr as *const f32)
+                .byte_add(0xA70)
+                .read()
+        };
+
+        let original_value = unsafe { ProcessDamageEvent.call(a1, a2, a3, a4) };
+
+        let current_stun_value = unsafe {
+            (target_specified_instance_ptr as *const f32)
+                .byte_add(0xA70)
+                .read()
+        };
+        let added_stun_value = (current_stun_value - previous_stun_value).max(0.0);
 
         // This points to the first Entity instance in the 'a2' entity list.
         let source_entity_ptr = unsafe { (a2.byte_add(0x18) as *const *const usize).read() };
@@ -69,13 +84,15 @@ impl OnProcessDamageHook {
         // entity->m_pSpecifiedInstance, offset 0x70 from entity pointer.
         // Returns the specific class instance of the source entity. (e.g. Instance of Pl1200 / Pl0700Ghost)
         let source_specified_instance_ptr: usize = unsafe { *(source_entity_ptr.byte_add(0x70)) };
-        let damage: i32 = unsafe { (a2.byte_add(0xD0) as *const i32).read() };
+
+        let damage_instance = unsafe { NonNull::new(a2 as *mut DamageInstance).unwrap().as_ref() };
+        let damage: i32 = damage_instance.damage;
 
         if original_value == 0 || damage <= 0 {
             return original_value;
         }
 
-        let flags: u64 = unsafe { (a2.byte_add(0xD8) as *const u64).read() };
+        let flags: u64 = damage_instance.flags;
 
         let action_type: ActionType = if ((1 << 7 | 1 << 50) & flags) != 0 {
             ActionType::LinkAttack
@@ -103,6 +120,12 @@ impl OnProcessDamageHook {
         let target_type_id: u32 = actor_type_id(target_specified_instance_ptr as *const usize);
         let target_idx = actor_idx(target_specified_instance_ptr as *const usize);
 
+        let stun_value = if matches!(action_type, ActionType::SupplementaryDamage(_)) {
+            None
+        } else {
+            Some(added_stun_value)
+        };
+
         let event = Message::DamageEvent(DamageEvent {
             source: Actor {
                 index: source_idx,
@@ -119,6 +142,9 @@ impl OnProcessDamageHook {
             damage,
             flags,
             action_id: action_type,
+            attack_rate: Some(damage_instance.attack_rate),
+            damage_cap: Some(damage_instance.damage_cap),
+            stun_value,
         });
 
         let _ = self.tx.send(event);
@@ -208,6 +234,9 @@ impl OnProcessDotHook {
             damage: dmg,
             flags: 0,
             action_id: ActionType::DamageOverTime(0),
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         });
 
         let _ = self.tx.send(event);

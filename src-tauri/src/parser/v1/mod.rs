@@ -3,7 +3,7 @@ use std::{collections::HashMap, io::BufReader};
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
+    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent, OnDeathEvent,
     OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
 };
 use rusqlite::{params, Connection};
@@ -19,6 +19,24 @@ mod player_state;
 mod skill_state;
 
 use player_state::PlayerState;
+
+pub struct AdjustedDamageInstance<'a> {
+    pub event: &'a DamageEvent,
+    pub player_data: Option<&'a PlayerData>,
+    pub stun_damage: f64,
+}
+
+impl<'a> AdjustedDamageInstance<'a> {
+    pub fn from_damage_event(event: &'a DamageEvent, player_data: Option<&'a PlayerData>) -> Self {
+        let stun_damage = event.stun_value.unwrap_or(0.0) as f64;
+
+        Self {
+            event,
+            player_data,
+            stun_damage,
+        }
+    }
+}
 
 /// Equippable sigil for a character
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -198,8 +216,8 @@ struct EnemyState {
 }
 
 impl EnemyState {
-    fn update_from_damage_event(&mut self, event: &DamageEvent) {
-        self.total_damage += event.damage as u64;
+    fn update_from_damage_event(&mut self, damage_instance: &AdjustedDamageInstance) {
+        self.total_damage += damage_instance.event.damage as u64;
     }
 }
 
@@ -287,6 +305,10 @@ pub struct DerivedEncounterState {
     total_damage: u64,
     /// The total DPS done in the encounter
     dps: f64,
+    /// The total stun value done in the encounter
+    total_stun_value: f64,
+    /// The total stun value per second done in the encounter
+    stun_per_second: f64,
     /// Status of the parser
     status: ParserStatus,
     /// Derived party stats
@@ -302,6 +324,8 @@ impl Default for DerivedEncounterState {
             end_time: 0,
             total_damage: 0,
             dps: 0.0,
+            total_stun_value: 0.0,
+            stun_per_second: 0.0,
             status: ParserStatus::Waiting,
             party: HashMap::new(),
             targets: HashMap::new(),
@@ -331,40 +355,48 @@ impl DerivedEncounterState {
             .max_by_key(|target| target.total_damage)
     }
 
-    fn process_damage_event(&mut self, now: i64, event: &DamageEvent) {
+    fn process_damage_event(&mut self, now: i64, damage_instance: &AdjustedDamageInstance) {
         self.end_time = now;
-        self.total_damage += event.damage as u64;
+        self.total_damage += damage_instance.event.damage as u64;
         self.dps = self.total_damage as f64 / ((self.duration()) as f64 / 1000.0);
+
+        // Update stun value
+        self.total_stun_value += damage_instance.stun_damage;
+        self.stun_per_second = self.total_stun_value / ((self.duration()) as f64 / 1000.0);
 
         // Add actor to party if not already present.
         let source_player = self
             .party
-            .entry(event.source.parent_index)
+            .entry(damage_instance.event.source.parent_index)
             .or_insert(PlayerState {
-                index: event.source.parent_index,
-                character_type: CharacterType::from_hash(event.source.parent_actor_type),
+                index: damage_instance.event.source.parent_index,
+                character_type: CharacterType::from_hash(
+                    damage_instance.event.source.parent_actor_type,
+                ),
                 total_damage: 0,
                 dps: 0.0,
                 sba: 0.0,
+                stun_per_second: 0.0,
+                total_stun_value: 0.0,
                 skill_breakdown: Vec::new(),
                 last_known_pet_skill: None,
             });
 
         // Update player stats from damage event.
-        source_player.update_from_damage_event(event);
+        source_player.update_from_damage_event(damage_instance);
 
         // Update target stats from damage event.
         let target = self
             .targets
-            .entry(event.target.parent_index)
+            .entry(damage_instance.event.target.parent_index)
             .or_insert(EnemyState {
-                index: event.target.parent_index,
-                target_type: EnemyType::from_hash(event.target.parent_actor_type),
-                raw_target_type: event.target.parent_actor_type,
+                index: damage_instance.event.target.parent_index,
+                target_type: EnemyType::from_hash(damage_instance.event.target.parent_actor_type),
+                raw_target_type: damage_instance.event.target.parent_actor_type,
                 total_damage: 0,
             });
 
-        target.update_from_damage_event(event);
+        target.update_from_damage_event(damage_instance);
 
         // Update everyone's DPS
         for player in self.party.values_mut() {
@@ -441,13 +473,24 @@ impl Parser {
         self.derived_state.start(self.start_time());
 
         for (timestamp, event) in self.encounter.event_log() {
+            self.derived_state.end_time = *timestamp;
+
             match event {
                 Message::DamageEvent(event) => {
-                    self.derived_state.process_damage_event(*timestamp, event);
+                    let player_data = self
+                        .encounter
+                        .player_data
+                        .iter()
+                        .flatten()
+                        .find(|player| player.actor_index == event.source.parent_index);
+
+                    let damage_instance =
+                        AdjustedDamageInstance::from_damage_event(event, player_data);
+
+                    self.derived_state
+                        .process_damage_event(*timestamp, &damage_instance);
                 }
-                _ => {
-                    self.derived_state.end_time = *timestamp;
-                }
+                _ => {}
             }
         }
     }
@@ -458,6 +501,8 @@ impl Parser {
         self.derived_state.start(self.start_time());
 
         for (timestamp, event) in self.encounter.event_log() {
+            self.derived_state.end_time = *timestamp;
+
             match event {
                 Message::DamageEvent(event) => {
                     // If the target list is empty, then we're not filtering by target.
@@ -465,12 +510,21 @@ impl Parser {
                     let target_type = EnemyType::from_hash(event.target.parent_actor_type);
 
                     if targets.is_empty() || targets.contains(&target_type) {
-                        self.derived_state.process_damage_event(*timestamp, event);
+                        let player_data = self
+                            .encounter
+                            .player_data
+                            .iter()
+                            .flatten()
+                            .find(|player| player.actor_index == event.source.parent_index);
+
+                        let damage_instance =
+                            AdjustedDamageInstance::from_damage_event(event, player_data);
+
+                        self.derived_state
+                            .process_damage_event(*timestamp, &damage_instance);
                     }
                 }
-                _ => {
-                    self.derived_state.end_time = *timestamp;
-                }
+                _ => {}
             }
         }
     }
@@ -612,7 +666,18 @@ impl Parser {
 
         self.encounter
             .push_event(now, Message::DamageEvent(event.clone()));
-        self.derived_state.process_damage_event(now, &event);
+
+        let player_data = self
+            .encounter
+            .player_data
+            .iter()
+            .flatten()
+            .find(|player| player.actor_index == event.source.parent_index);
+
+        let damage_instance = AdjustedDamageInstance::from_damage_event(&event, player_data);
+
+        self.derived_state
+            .process_damage_event(now, &damage_instance);
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);
@@ -750,6 +815,13 @@ impl Parser {
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-update", &self.derived_state);
         }
+    }
+
+    pub fn on_death_event(&mut self, event: OnDeathEvent) {
+        self.encounter.push_event(
+            Utc::now().timestamp_millis(),
+            Message::OnDeathEvent(event.clone()),
+        );
     }
 
     fn reset(&mut self) {
@@ -914,6 +986,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 
@@ -942,6 +1017,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 
@@ -963,6 +1041,9 @@ mod tests {
                 damage: 0,
                 flags: 0,
                 action_id: ActionType::Normal(0),
+                attack_rate: None,
+                stun_value: None,
+                damage_cap: None,
             }),
         ));
 

@@ -61,7 +61,15 @@ export const Table = ({
   };
 
   // If the meter is in live mode, only show the overlay columns that are enabled, otherwise show all columns.
-  const columns = live ? overlay_columns : [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage];
+  const columns = live
+    ? overlay_columns
+    : [
+        MeterColumns.TotalDamage,
+        MeterColumns.DPS,
+        MeterColumns.TotalStunValue,
+        MeterColumns.StunPerSecond,
+        MeterColumns.DamagePercentage,
+      ];
 
   return (
     <table className={`player-table table w-full ${show_full_values ? "full-values" : ""}`}>

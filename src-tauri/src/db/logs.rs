@@ -1,6 +1,6 @@
 use anyhow::Result;
 use rusqlite::Connection;
-use sea_query::{Expr, Iden, Order, Query, SqliteQueryBuilder};
+use sea_query::{Expr, Condition, Iden, Order, Query, SqliteQueryBuilder};
 use sea_query_rusqlite::RusqliteBinder;
 use serde::Serialize;
 
@@ -87,6 +87,8 @@ pub fn get_logs(
     sort_by: &SortType,
     sort_direction: &SortDirection,
     cleared: Option<bool>,
+    filter_by_player_id: &Option<String>,
+    filter_by_player_character: &Option<String>
 ) -> anyhow::Result<Vec<LogEntry>> {
     let sort_column = match sort_by {
         SortType::Time => Logs::Time,
@@ -141,6 +143,56 @@ pub fn get_logs(
             },
             |_| {},
         )
+        .conditions(
+            filter_by_player_id.is_some() && filter_by_player_character.is_some(),
+            |q| {
+                let player_id = filter_by_player_id.as_ref().unwrap();
+                let player_character = filter_by_player_character.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P1Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P2Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P2Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P3Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P3Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P4Name).eq(player_id)
+                                .and(Expr::col(Logs::P4Type).eq(player_character))),
+                );
+            },
+            |_| {},
+        )
+        .conditions(
+            filter_by_player_id.is_some() && filter_by_player_character.is_none(),
+            |q| {
+                let player_id = filter_by_player_id.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P2Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P3Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P4Name).eq(player_id)),
+                );
+            },
+            |_| {},
+        )
+        .conditions(
+            filter_by_player_id.is_none() && filter_by_player_character.is_some(),
+            |q| {
+                let player_character = filter_by_player_character.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P2Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P3Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P4Type).eq(player_character)),
+                );
+            },
+            |_| {},
+        )
         .order_by_with_nulls(sort_column, order, sea_query::NullOrdering::Last)
         .limit(per_page.into())
         .offset(offset.into())
@@ -174,7 +226,7 @@ pub fn get_logs(
         })
         .collect::<rusqlite::Result<Vec<LogEntry>>>();
 
-    return Ok(rows.unwrap_or(vec![]));
+    Ok(rows.unwrap_or(vec![]))
 }
 
 pub fn get_logs_count(
@@ -182,6 +234,8 @@ pub fn get_logs_count(
     filter_by_enemy_id: Option<u32>,
     filter_by_quest_id: Option<u32>,
     cleared: Option<bool>,
+    filter_by_player_id: &Option<String>,
+    filter_by_player_character: &Option<String>
 ) -> Result<i32> {
     let (sql, values) = Query::select()
         .expr(Expr::col(Logs::Id).count())
@@ -207,6 +261,56 @@ pub fn get_logs_count(
             },
             |_| {},
         )
+        .conditions(
+            filter_by_player_id.is_some() && filter_by_player_character.is_some(),
+            |q| {
+                let player_id = filter_by_player_id.as_ref().unwrap();
+                let player_character = filter_by_player_character.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P1Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P2Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P2Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P3Name).eq(player_id.clone())
+                                .and(Expr::col(Logs::P3Type).eq(player_character.clone())))
+                        .add(Expr::col(Logs::P4Name).eq(player_id)
+                                .and(Expr::col(Logs::P4Type).eq(player_character))),
+                );
+            },
+            |_| {},
+        )
+        .conditions(
+            filter_by_player_id.is_some() && filter_by_player_character.is_none(),
+            |q| {
+                let player_id = filter_by_player_id.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P2Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P3Name).eq(player_id.clone()))
+                        .add(Expr::col(Logs::P4Name).eq(player_id)),
+                );
+            },
+            |_| {},
+        )
+        .conditions(
+            filter_by_player_id.is_none() && filter_by_player_character.is_some(),
+            |q| {
+                let player_character = filter_by_player_character.as_ref().unwrap();
+        
+                q.cond_where(
+                    Condition::any()
+                        .add(Expr::col(Logs::P1Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P2Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P3Type).eq(player_character.clone()))
+                        .add(Expr::col(Logs::P4Type).eq(player_character)),
+                );
+            },
+            |_| {},
+        )
         .build_rusqlite(SqliteQueryBuilder);
 
     let mut stmt = conn.prepare(&sql).unwrap();
@@ -214,5 +318,5 @@ pub fn get_logs_count(
 
     let row: i32 = stmt.query_row(&*params, |r| r.get(0))?;
 
-    return Ok(row);
+    Ok(row)
 }

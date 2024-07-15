@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "GBFR Logs",
-    "version": "1.7.0"
+    "version": "1.8.0"
   },
   "tauri": {
     "allowlist": {
@@ -32,7 +32,9 @@
         "scope": [
           "$RESOURCE/*",
           "$RESOURCE/lang/*",
-          "$RESOURCE/lang/*/*"
+          "$RESOURCE/lang/*/*",
+          "$RESOURCE/assets/*",
+          "$RESOURCE/assets/*/*"
         ]
       },
       "path": {
@@ -90,6 +92,7 @@
       ],
       "resources": [
         "hook.dll",
+        "assets/*",
         "lang/*"
       ],
       "windows": {

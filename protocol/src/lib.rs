@@ -76,6 +76,9 @@ pub struct DamageEvent {
     pub damage: i32,
     pub flags: u64,
     pub action_id: ActionType,
+    pub attack_rate: Option<f32>,
+    pub stun_value: Option<f32>,
+    pub damage_cap: Option<i32>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -201,6 +204,12 @@ pub struct OnContinueSBAChainEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OnDeathEvent {
+    pub actor_index: u32,
+    pub death_counter: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter(AreaEnterEvent),
     OnQuestComplete(QuestCompleteEvent),
@@ -210,4 +219,5 @@ pub enum Message {
     OnPerformSBA(OnPerformSBAEvent),
     OnContinueSBAChain(OnContinueSBAChainEvent),
     PlayerLoadEvent(PlayerLoadEvent),
+    OnDeathEvent(OnDeathEvent),
 }

@@ -256,7 +256,7 @@ export const ViewPage = () => {
 
   const players = formatInPartyOrder(encounter.party);
 
-  for (let i = 0; i < chartLen; i++) {
+  for (let i = 0; i < chartLen + 1; i++) {
     const datapoint: {
       timestamp?: string;
       party?: number;

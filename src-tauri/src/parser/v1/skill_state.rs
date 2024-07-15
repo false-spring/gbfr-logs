@@ -1,7 +1,9 @@
-use protocol::{ActionType, DamageEvent};
+use protocol::ActionType;
 use serde::{Deserialize, Serialize};
 
 use crate::parser::constants::CharacterType;
+
+use super::AdjustedDamageInstance;
 
 /// Derived stat breakdown of a particular skill
 #[derive(Debug, Serialize, Deserialize)]
@@ -19,6 +21,10 @@ pub struct SkillState {
     pub max_damage: Option<u64>,
     /// Total damage done by this skill
     pub total_damage: u64,
+    /// Maximum stun value done by this skill
+    pub max_stun_value: f64,
+    /// Total stun value done by this skill
+    pub total_stun_value: f64,
 }
 
 impl SkillState {
@@ -30,30 +36,34 @@ impl SkillState {
             min_damage: None,
             max_damage: None,
             total_damage: 0,
+            max_stun_value: 0.0,
+            total_stun_value: 0.0,
         }
     }
 
-    pub fn update_from_damage_event(&mut self, event: &DamageEvent) {
+    pub fn update_from_damage_event(&mut self, damage_instance: &AdjustedDamageInstance) {
         self.hits += 1;
-        self.total_damage += event.damage as u64;
+        self.total_damage += damage_instance.event.damage as u64;
+        self.max_stun_value = self.max_stun_value.max(damage_instance.stun_damage);
+        self.total_stun_value += damage_instance.stun_damage;
 
         if let Some(min_damage) = self.min_damage {
-            self.min_damage = Some(min_damage.min(event.damage as u64));
+            self.min_damage = Some(min_damage.min(damage_instance.event.damage as u64));
         } else {
-            self.min_damage = Some(event.damage as u64);
+            self.min_damage = Some(damage_instance.event.damage as u64);
         }
 
         if let Some(max_damage) = self.max_damage {
-            self.max_damage = Some(max_damage.max(event.damage as u64));
+            self.max_damage = Some(max_damage.max(damage_instance.event.damage as u64));
         } else {
-            self.max_damage = Some(event.damage as u64);
+            self.max_damage = Some(damage_instance.event.damage as u64);
         }
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use protocol::Actor;
+    use protocol::{Actor, DamageEvent};
 
     use super::*;
 
@@ -77,6 +87,9 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 100,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
         let damage_event_two = DamageEvent {
@@ -95,10 +108,19 @@ mod tests {
             action_id: ActionType::Normal(1),
             damage: 1999,
             flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
         };
 
-        skill_state.update_from_damage_event(&damage_event);
-        skill_state.update_from_damage_event(&damage_event_two);
+        skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event,
+            None,
+        ));
+        skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
+            &damage_event_two,
+            None,
+        ));
 
         assert_eq!(skill_state.hits, 2);
         assert_eq!(skill_state.min_damage, Some(100));
