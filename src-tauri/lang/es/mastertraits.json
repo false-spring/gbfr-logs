@@ -1,0 +1,350 @@
+{
+  "3a583a9c": {
+    "key": "SBE_PL0000_SP000",
+    "text": "Ascensión: nivel de artes"
+  },
+  "ec41afa1": {
+    "key": "SBE_PL0000_SP100",
+    "text": "Esencia: hab. de curación"
+  },
+  "7c26d0c4": {
+    "key": "SBE_PL0000_SP200",
+    "text": "Valía: Remplazo"
+  },
+  "23f3c22e": {
+    "key": "SBE_PL0100_SP000",
+    "text": "Ascensión: nivel de artes"
+  },
+  "db71c42a": {
+    "key": "SBE_PL0100_SP100",
+    "text": "Esencia: hab. de curación"
+  },
+  "6017b9b5": {
+    "key": "SBE_PL0100_SP200",
+    "text": "Valía: Remplazo"
+  },
+  "ecd375f1": {
+    "key": "SBE_PL0200_SP000",
+    "text": "Ascensión: duración de Ares"
+  },
+  "da587cb6": {
+    "key": "SBE_PL0200_SP100",
+    "text": "Esencia: asalto de Ares"
+  },
+  "e6193e09": {
+    "key": "SBE_PL0200_SP200",
+    "text": "Valía: filo celeste"
+  },
+  "dc249afd": {
+    "key": "SBE_PL0300_SP000",
+    "text": "Ascensión: Tiro certero"
+  },
+  "1bdadfec": {
+    "key": "SBE_PL0300_SP100",
+    "text": "Esencia: Sepulturero"
+  },
+  "c8b3ff29": {
+    "key": "SBE_PL0300_SP200",
+    "text": "Valía: Daño colateral"
+  },
+  "3785ee72": {
+    "key": "SBE_PL0400_SP000",
+    "text": "Ascensión: Concentración"
+  },
+  "09bdc3a0": {
+    "key": "SBE_PL0400_SP100",
+    "text": "Esencia: magia en cadena"
+  },
+  "9ff0b805": {
+    "key": "SBE_PL0400_SP200",
+    "text": "Valía: Siete flores"
+  },
+  "a56678a9": {
+    "key": "SBE_PL0500_SP000",
+    "text": "Ascensión: vista de francotir."
+  },
+  "0a225055": {
+    "key": "SBE_PL0500_SP100",
+    "text": "Esencia: granadas de choque"
+  },
+  "96fde7fd": {
+    "key": "SBE_PL0500_SP200",
+    "text": "Valía: Granada venenosa"
+  },
+  "2a1e9175": {
+    "key": "SBE_PL0600_SP000",
+    "text": "Ascensión: réquiem de rosas"
+  },
+  "dddb9201": {
+    "key": "SBE_PL0600_SP100",
+    "text": "Esencia: beneficios y perjuicios"
+  },
+  "960314a6": {
+    "key": "SBE_PL0600_SP200",
+    "text": "Valía: rosas"
+  },
+  "60700621": {
+    "key": "SBE_PL0700_SP000",
+    "text": "Ascensión: mascotas"
+  },
+  "97f24c90": {
+    "key": "SBE_PL0700_SP100",
+    "text": "Esencia: fantasma solitaria"
+  },
+  "8796ea21": {
+    "key": "SBE_PL0700_SP200",
+    "text": "Valía: apoyo"
+  },
+  "d95eb781": {
+    "key": "SBE_PL0800_SP000",
+    "text": "Ascensión: remates perfectos"
+  },
+  "fbbe6baf": {
+    "key": "SBE_PL0800_SP100",
+    "text": "Esencia: evasión"
+  },
+  "321ee2fa": {
+    "key": "SBE_PL0800_SP200",
+    "text": "Valía: habilidades de daño"
+  },
+  "164b5647": {
+    "key": "SBE_PL0900_SP000",
+    "text": "Ascensión: Animosidad +"
+  },
+  "c7ba5829": {
+    "key": "SBE_PL0900_SP100",
+    "text": "Esencia: pujanza para todos"
+  },
+  "725ec346": {
+    "key": "SBE_PL0900_SP200",
+    "text": "Valía: determinación"
+  },
+  "19b5f235": {
+    "key": "SBE_PL1000_SP000",
+    "text": "Ascensión: ataques cargados"
+  },
+  "9553b16e": {
+    "key": "SBE_PL1000_SP100",
+    "text": "Esencia: hoja incandescente"
+  },
+  "45f93675": {
+    "key": "SBE_PL1000_SP200",
+    "text": "Valía: rechace cargado"
+  },
+  "4ce38b11": {
+    "key": "SBE_PL1100_SP000",
+    "text": "Ascensión: ataques perfectos"
+  },
+  "944c385d": {
+    "key": "SBE_PL1100_SP100",
+    "text": "Esencia: habilidades de daño"
+  },
+  "15e1e269": {
+    "key": "SBE_PL1100_SP200",
+    "text": "Valía: hoja mortífera"
+  },
+  "9abaf95f": {
+    "key": "SBE_PL1200_SP000",
+    "text": "Ascensión: Postura noble"
+  },
+  "4ce67126": {
+    "key": "SBE_PL1200_SP100",
+    "text": "Esencia: lucha sin refreno"
+  },
+  "caa980bb": {
+    "key": "SBE_PL1200_SP200",
+    "text": "Valía: Invencible"
+  },
+  "394ebac1": {
+    "key": "SBE_PL1300_SP000",
+    "text": "Ascensión: saber de Triple velo"
+  },
+  "a3c64b2c": {
+    "key": "SBE_PL1300_SP100",
+    "text": "Esencia: ritmo veloz"
+  },
+  "f88599c1": {
+    "key": "SBE_PL1300_SP200",
+    "text": "Valía: contrataque"
+  },
+  "13ccf9f5": {
+    "key": "SBE_PL1400_SP000",
+    "text": "Ascensión: cambio de postura"
+  },
+  "bd7d2d0a": {
+    "key": "SBE_PL1400_SP100",
+    "text": "Esencia: ataque letal"
+  },
+  "485bb574": {
+    "key": "SBE_PL1400_SP200",
+    "text": "Valía: Devoción extrema"
+  },
+  "058bbcd0": {
+    "key": "SBE_PL1500_SP000",
+    "text": "Ascensión: Puño de la furia"
+  },
+  "6481eb8c": {
+    "key": "SBE_PL1500_SP100",
+    "text": "Esencia: Postura de león"
+  },
+  "cbf2fa02": {
+    "key": "SBE_PL1500_SP200",
+    "text": "Valía: puño de guerra"
+  },
+  "971aa4ef": {
+    "key": "SBE_PL1600_SP000",
+    "text": "Ascensión: combos con pirueta"
+  },
+  "9d221a4b": {
+    "key": "SBE_PL1600_SP100",
+    "text": "Esencia: habilidades de daño"
+  },
+  "3e799f4a": {
+    "key": "SBE_PL1600_SP200",
+    "text": "Valía: contrataque"
+  },
+  "48253f09": {
+    "key": "SBE_PL1700_SP000",
+    "text": "Ascensión: combos completos"
+  },
+  "abbd6fea": {
+    "key": "SBE_PL1700_SP100",
+    "text": "Esencia: ataques cargados"
+  },
+  "d3de43c1": {
+    "key": "SBE_PL1700_SP200",
+    "text": "Valía: rechace cargado"
+  },
+  "6bf584f8": {
+    "key": "SBE_PL1800_SP000",
+    "text": "Ascensión: comb. con perjuicios"
+  },
+  "67e999f5": {
+    "key": "SBE_PL1800_SP100",
+    "text": "Esencia: Derrumbe"
+  },
+  "72e2ef88": {
+    "key": "SBE_PL1800_SP200",
+    "text": "Valía: apoyo de curación"
+  },
+  "65eb5b0d": {
+    "key": "SBE_PL1900_SP000",
+    "text": "Ascensión: Fuerza divina"
+  },
+  "62b36c64": {
+    "key": "SBE_PL1900_SP100",
+    "text": "Esencia: forma dragón"
+  },
+  "ca8c0eff": {
+    "key": "SBE_PL1900_SP200",
+    "text": "Valía: Vendetta cuádruple"
+  },
+  "874a1bde": {
+    "key": "SBE_PL2100_SP000",
+    "text": "Ascensión: alas prometidas"
+  },
+  "0067b812": {
+    "key": "SBE_PL2100_SP100",
+    "text": "Esencia: protec. resplandeciente"
+  },
+  "9239f96a": {
+    "key": "SBE_PL2100_SP200",
+    "text": "Valía: campana del juicio"
+  },
+  "24d6f865": {
+    "key": "SBE_PL2200_SP000",
+    "text": "Ascensión: barra de avatar"
+  },
+  "7e9626ef": {
+    "key": "SBE_PL2200_SP100",
+    "text": "Esencia: lluvia de espadas"
+  },
+  "d728f964": {
+    "key": "SBE_PL2200_SP200",
+    "text": "Valía: cambio de modo"
+  },
+  "7e36b21a": {
+    "key": "SBE_PL2300_SP000",
+    "text": "Ascensión: Aluvión múltiple"
+  },
+  "34f96e76": {
+    "key": "SBE_PL2300_SP100",
+    "text": "Esencia: Factor decisivo"
+  },
+  "b2845904": {
+    "key": "SBE_PL2300_SP200",
+    "text": "Valía: Choque de diarcas"
+  },
+  "e3ea15a1": {
+    "key": "SBE_PL2400_SP000",
+    "text": "Ascensión: Destrozaarmaduras"
+  },
+  "f9ad080c": {
+    "key": "SBE_PL2400_SP100",
+    "text": "Esencia: Gran molino"
+  },
+  "a77be1b3": {
+    "key": "SBE_PL2400_SP200",
+    "text": "Valía: escaramuza"
+  },
+  "678e3771": {
+    "key": "SBE_PL2500_SP000",
+    "text": "Ascensión: Danza de espadas"
+  },
+  "78a786b7": {
+    "key": "SBE_PL2500_SP100",
+    "text": "Esencia: armas sublimes"
+  },
+  "efa2d23e": {
+    "key": "SBE_PL2500_SP200",
+    "text": "Valía: barrera del Velo"
+  },
+  "d8c19249": {
+    "key": "SBE_PL2600_SP000",
+    "text": "Ascensión: Devor. causalidad"
+  },
+  "9467c71a": {
+    "key": "SBE_PL2600_SP100",
+    "text": "Esencia: Reloj delta"
+  },
+  "a86cbc27": {
+    "key": "SBE_PL2600_SP200",
+    "text": "Valía: habilidades en cadena"
+  },
+  "99f6460d": {
+    "key": "SBE_PL2700_SP000",
+    "text": "Ascensión: tiros a corta dist."
+  },
+  "d994808e": {
+    "key": "SBE_PL2700_SP100",
+    "text": "Esencia: relámpago tronador"
+  },
+  "edb9d7fc": {
+    "key": "SBE_PL2700_SP200",
+    "text": "Valía: disparo perfecto"
+  },
+  "df550c8b": {
+    "key": "SBE_PL2800_SP000",
+    "text": "Ascensión: posiciones"
+  },
+  "567ebb0a": {
+    "key": "SBE_PL2800_SP100",
+    "text": "Esencia: fuerza resplandeciente"
+  },
+  "881a8207": {
+    "key": "SBE_PL2800_SP200",
+    "text": "Valía: tentación diabólica"
+  },
+  "0ed7e526": {
+    "key": "SBE_PL2900_SP000",
+    "text": "Ascensión: remates de combo"
+  },
+  "cd8aa9e7": {
+    "key": "SBE_PL2900_SP100",
+    "text": "Esencia: corrosión azabache"
+  },
+  "15690516": {
+    "key": "SBE_PL2900_SP200",
+    "text": "Valía: calamidad oscura"
+  }
+}

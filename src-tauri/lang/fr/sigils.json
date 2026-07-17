@@ -37,7 +37,7 @@
   },
   "02c67f5e": {
     "key": "GEEN_008_24",
-    "text": "Ogi V+"
+    "text": "Attaque chargée V+"
   },
   "035a4ddd": {
     "key": "GEEN_151_24",
@@ -353,7 +353,7 @@
   },
   "1ca872e7": {
     "key": "GEEN_008_14",
-    "text": "Ogi V+"
+    "text": "Attaque chargée V+"
   },
   "1cd1d367": {
     "key": "GEEN_151_14",
@@ -729,7 +729,7 @@
   },
   "3d5e4678": {
     "key": "GEEN_171_04",
-    "text": "Salve de la chasse funeste"
+    "text": "Salve de la chasseuse"
   },
   "3d8d9109": {
     "key": "GEEN_122_64",
@@ -745,7 +745,7 @@
   },
   "3ea4134b": {
     "key": "GEEN_172_91",
-    "text": "Grâce de l'ange suprême+"
+    "text": "Grâce du chef des anges+"
   },
   "3edd4c1f": {
     "key": "GEEN_066_02",
@@ -857,7 +857,7 @@
   },
   "4840c322": {
     "key": "GEEN_008_03",
-    "text": "Ogi IV"
+    "text": "Attaque chargée IV"
   },
   "4872d685": {
     "key": "2DB5D969",
@@ -1085,7 +1085,7 @@
   },
   "5d592fdd": {
     "key": "GEEN_172_93",
-    "text": "Ardeur de l'ange suprême+"
+    "text": "Ardeur du chef des anges+"
   },
   "5dcc1f70": {
     "key": "GEEN_004_22",
@@ -1505,7 +1505,7 @@
   },
   "7e3a52a3": {
     "key": "GEEN_172_92",
-    "text": "Halo de l'ange suprême+"
+    "text": "Halo du chef des anges+"
   },
   "7e76f58d": {
     "key": "GEEN_078_02",
@@ -1625,7 +1625,7 @@
   },
   "872d3af9": {
     "key": "GEEN_171_54",
-    "text": "Essor de la chasse funeste"
+    "text": "Essor de la chasseuse"
   },
   "883380d4": {
     "key": "GEEN_072_04",
@@ -1693,11 +1693,11 @@
   },
   "8ecbb0a3": {
     "key": "GEEN_171_90",
-    "text": "Éveil de la chasse funeste+"
+    "text": "Éveil de la chasseuse+"
   },
   "8f0329fc": {
     "key": "GEEN_008_12",
-    "text": "Ogi III+"
+    "text": "Attaque chargée III+"
   },
   "8f1b4dc4": {
     "key": "GEEN_018_03",
@@ -1769,7 +1769,7 @@
   },
   "93d9774f": {
     "key": "GEEN_008_01",
-    "text": "Ogi II"
+    "text": "Attaque chargée II"
   },
   "946481a5": {
     "key": "GEEN_036_03",
@@ -1801,7 +1801,7 @@
   },
   "95a41365": {
     "key": "GEEN_008_22",
-    "text": "Ogi III+"
+    "text": "Attaque chargée III+"
   },
   "95c88e4f": {
     "key": "GEEN_067_24",
@@ -2129,7 +2129,7 @@
   },
   "ab4f7d56": {
     "key": "GEEN_172_54",
-    "text": "Halo de l'ange suprême"
+    "text": "Halo du chef des anges"
   },
   "ab835493": {
     "key": "GEEN_124_90",
@@ -2165,7 +2165,7 @@
   },
   "ad8caefb": {
     "key": "GEEN_171_93",
-    "text": "Impétuosité de la chasse funeste+"
+    "text": "Impétuosité de la chasseuse+"
   },
   "ae5d5a4f": {
     "key": "GEEN_031_12",
@@ -2201,7 +2201,7 @@
   },
   "b0634504": {
     "key": "GEEN_171_64",
-    "text": "Impétuosité de la chasse funeste"
+    "text": "Impétuosité de la chasseuse"
   },
   "b06c66a6": {
     "key": "GEEN_104_23",
@@ -2341,7 +2341,7 @@
   },
   "b8c44d5e": {
     "key": "GEEN_172_90",
-    "text": "Éveil de l'ange suprême +"
+    "text": "Éveil du chef des anges+"
   },
   "b98a0f22": {
     "key": "GEEN_130_91",
@@ -2545,7 +2545,7 @@
   },
   "c9d8bd97": {
     "key": "GEEN_172_04",
-    "text": "Grâce de l'ange suprême"
+    "text": "Grâce du chef des anges"
   },
   "caae3f9c": {
     "key": "GEEN_118_93",
@@ -2565,7 +2565,7 @@
   },
   "cc5db833": {
     "key": "GEEN_008_02",
-    "text": "Ogi III"
+    "text": "Attaque chargée III"
   },
   "ccd29b2b": {
     "key": "GEEN_086_04",
@@ -2573,7 +2573,7 @@
   },
   "cce507e7": {
     "key": "GEEN_172_64",
-    "text": "Ardeur de l'ange suprême"
+    "text": "Ardeur du chef des anges"
   },
   "cd4b83c7": {
     "key": "GEEN_136_04",
@@ -2609,7 +2609,7 @@
   },
   "d0b43ca0": {
     "key": "GEEN_008_13",
-    "text": "Ogi IV+"
+    "text": "Attaque chargée IV+"
   },
   "d0d61caa": {
     "key": "GEEN_070_00",
@@ -2621,7 +2621,7 @@
   },
   "d1b747c5": {
     "key": "GEEN_008_23",
-    "text": "Ogi IV+"
+    "text": "Attaque chargée IV+"
   },
   "d259d5d7": {
     "key": "GEEN_029_22",
@@ -2713,7 +2713,7 @@
   },
   "d6738e0f": {
     "key": "GEEN_008_00",
-    "text": "Ogi I"
+    "text": "Attaque chargée I"
   },
   "d6c28e35": {
     "key": "GEEN_060_04",
@@ -2749,7 +2749,7 @@
   },
   "dbe503c7": {
     "key": "GEEN_171_92",
-    "text": "Essor de la chasse funeste+"
+    "text": "Essor de la chasseuse+"
   },
   "dbebfdad": {
     "key": "GEEN_036_01",
@@ -2953,7 +2953,7 @@
   },
   "eb4ad96d": {
     "key": "GEEN_171_91",
-    "text": "Salve de la chasse funeste+"
+    "text": "Salve de la chasseuse+"
   },
   "eb5f28e0": {
     "key": "GEEN_083_22",
@@ -3009,7 +3009,7 @@
   },
   "f1267035": {
     "key": "GEEN_172_74",
-    "text": "Eyn +"
+    "text": "Eyn+"
   },
   "f127d45f": {
     "key": "GEEN_012_23",
@@ -3017,7 +3017,7 @@
   },
   "f12b5464": {
     "key": "GEEN_166_00",
-    "text": "Égide suprême"
+    "text": "Égide suprême I"
   },
   "f142a66c": {
     "key": "GEEN_067_03",
@@ -3165,7 +3165,7 @@
   },
   "fb8c743f": {
     "key": "GEEN_008_04",
-    "text": "Ogi V"
+    "text": "Attaque chargée V"
   },
   "fb9b6dd5": {
     "key": "GEEN_122_92",
@@ -3218,5 +3218,913 @@
   "ffba8af0": {
     "key": "GEEN_029_02",
     "text": "Effet spécial Malus III"
+  },
+  "be4c13a6": {
+    "key": "GEEN_173_04",
+    "text": "Passion du loup alpha"
+  },
+  "b1683add": {
+    "key": "GEEN_173_54",
+    "text": "Grande toupie du loup alpha"
+  },
+  "4597a8a8": {
+    "key": "GEEN_173_64",
+    "text": "Impétuosité du loup alpha"
+  },
+  "9184f37b": {
+    "key": "GEEN_174_04",
+    "text": "Sérénade Reine des lames"
+  },
+  "247a41f3": {
+    "key": "GEEN_174_54",
+    "text": "Ronde Reine des lames"
+  },
+  "6b920da2": {
+    "key": "GEEN_174_64",
+    "text": "Impétuosité Reine des lames"
+  },
+  "d594d945": {
+    "key": "GEEN_175_04",
+    "text": "Éclair d’épée ultramarine"
+  },
+  "e3cd2935": {
+    "key": "GEEN_175_54",
+    "text": "Adversité ultramarine"
+  },
+  "b4ece7bc": {
+    "key": "GEEN_175_64",
+    "text": "Impétuosité ultramarine"
+  },
+  "01bb436b": {
+    "key": "GEEN_176_04",
+    "text": "Munition du loup de foudre"
+  },
+  "99194505": {
+    "key": "GEEN_176_54",
+    "text": "Vision du loup de foudre"
+  },
+  "61a1a299": {
+    "key": "GEEN_176_64",
+    "text": "Impétuosité du loup de foudre"
+  },
+  "7a06c7fb": {
+    "key": "GEEN_177_04",
+    "text": "Grâce de réincarnation"
+  },
+  "5cb2445f": {
+    "key": "GEEN_177_54",
+    "text": "Élan de réincarnation"
+  },
+  "db05a865": {
+    "key": "GEEN_177_64",
+    "text": "Impétuosité de réincarnation"
+  },
+  "9978c657": {
+    "key": "GEEN_178_04",
+    "text": "Sceau maudit noir"
+  },
+  "94dc820e": {
+    "key": "GEEN_178_54",
+    "text": "Bond noir"
+  },
+  "4119f09b": {
+    "key": "GEEN_178_64",
+    "text": "Impétuosité noire"
+  },
+  "49434696": {
+    "key": "GEEN_301_00",
+    "text": "Crabe de jais redoutable"
+  },
+  "65f0420a": {
+    "key": "GEEN_302_00",
+    "text": "Concorde aux yeux de jais"
+  },
+  "b289a9ad": {
+    "key": "GEEN_303_00",
+    "text": "Force du sumo"
+  },
+  "cd6bb486": {
+    "key": "GEEN_320_00",
+    "text": "Affûtage astral I"
+  },
+  "74eedc99": {
+    "key": "GEEN_320_01",
+    "text": "Affûtage astral II"
+  },
+  "72c5a23d": {
+    "key": "GEEN_320_02",
+    "text": "Affûtage astral III"
+  },
+  "5f097193": {
+    "key": "GEEN_320_03",
+    "text": "Affûtage astral IV"
+  },
+  "56d196c5": {
+    "key": "GEEN_320_04",
+    "text": "Affûtage astral V"
+  },
+  "4b86cc01": {
+    "key": "GEEN_321_00",
+    "text": "Éclat astral I"
+  },
+  "b3c0c93d": {
+    "key": "GEEN_321_01",
+    "text": "Éclat astral II"
+  },
+  "12789216": {
+    "key": "GEEN_321_02",
+    "text": "Éclat astral III"
+  },
+  "90176d85": {
+    "key": "GEEN_321_03",
+    "text": "Éclat astral IV"
+  },
+  "7300a967": {
+    "key": "GEEN_321_04",
+    "text": "Éclat astral V"
+  },
+  "840c419a": {
+    "key": "GEEN_322_00",
+    "text": "Terre astrale I"
+  },
+  "abf24655": {
+    "key": "GEEN_322_01",
+    "text": "Terre astrale II"
+  },
+  "8ff568f7": {
+    "key": "GEEN_322_02",
+    "text": "Terre astrale III"
+  },
+  "1a743e14": {
+    "key": "GEEN_322_03",
+    "text": "Terre astrale IV"
+  },
+  "87658a6f": {
+    "key": "GEEN_322_04",
+    "text": "Terre astrale V"
+  },
+  "cc7dde55": {
+    "key": "GEEN_323_00",
+    "text": "Flamme astrale I"
+  },
+  "a99085f7": {
+    "key": "GEEN_323_01",
+    "text": "Flamme astrale II"
+  },
+  "96390ecf": {
+    "key": "GEEN_323_02",
+    "text": "Flamme astrale III"
+  },
+  "22dc8701": {
+    "key": "GEEN_323_03",
+    "text": "Flamme astrale IV"
+  },
+  "5536ee62": {
+    "key": "GEEN_323_04",
+    "text": "Flamme astrale V"
+  },
+  "3dd38511": {
+    "key": "GEEN_324_00",
+    "text": "Neige astrale I"
+  },
+  "19c4348e": {
+    "key": "GEEN_324_01",
+    "text": "Neige astrale II"
+  },
+  "590715d9": {
+    "key": "GEEN_324_02",
+    "text": "Neige astrale III"
+  },
+  "d28011a6": {
+    "key": "GEEN_324_03",
+    "text": "Neige astrale IV"
+  },
+  "8ce18579": {
+    "key": "GEEN_324_04",
+    "text": "Neige astrale V"
+  },
+  "53bd323f": {
+    "key": "GEEN_325_00",
+    "text": "Rebelle des cieux I"
+  },
+  "85e85d91": {
+    "key": "GEEN_325_01",
+    "text": "Rebelle des cieux II"
+  },
+  "dce00ddb": {
+    "key": "GEEN_325_02",
+    "text": "Rebelle des cieux III"
+  },
+  "e4815918": {
+    "key": "GEEN_325_03",
+    "text": "Rebelle des cieux IV"
+  },
+  "501973ce": {
+    "key": "GEEN_325_04",
+    "text": "Rebelle des cieux V"
+  },
+  "83b5463b": {
+    "key": "GEEN_326_00",
+    "text": "Paix astrale I"
+  },
+  "a14ba9ce": {
+    "key": "GEEN_326_01",
+    "text": "Paix astrale II"
+  },
+  "b2420cbe": {
+    "key": "GEEN_326_02",
+    "text": "Paix astrale III"
+  },
+  "7f4f38ef": {
+    "key": "GEEN_326_03",
+    "text": "Paix astrale IV"
+  },
+  "33006fc3": {
+    "key": "GEEN_326_04",
+    "text": "Paix astrale V"
+  },
+  "e18cc78f": {
+    "key": "GEEN_327_00",
+    "text": "Divergence I"
+  },
+  "00277247": {
+    "key": "GEEN_327_01",
+    "text": "Divergence II"
+  },
+  "bd8ba705": {
+    "key": "GEEN_327_02",
+    "text": "Divergence III"
+  },
+  "7ac9dc94": {
+    "key": "GEEN_327_03",
+    "text": "Divergence IV"
+  },
+  "a8533ce3": {
+    "key": "GEEN_327_04",
+    "text": "Divergence V"
+  },
+  "43cdd1fc": {
+    "key": "43CDD1FC",
+    "text": "Limite de dégâts V+"
+  },
+  "c856d9a9": {
+    "key": "C856D9A9",
+    "text": "Limite de dégâts V+"
+  },
+  "36e1c7fc": {
+    "key": "36E1C7FC",
+    "text": "Limite de dégâts V+"
+  },
+  "9c309b7a": {
+    "key": "9C309B7A",
+    "text": "Limite de dégâts V+"
+  },
+  "c42e609c": {
+    "key": "C42E609C",
+    "text": "Limite de dégâts V+"
+  },
+  "abc0b11b": {
+    "key": "ABC0B11B",
+    "text": "Tyrannie V+"
+  },
+  "98a07ee2": {
+    "key": "98A07EE2",
+    "text": "Pugnacité V+"
+  },
+  "335da2a5": {
+    "key": "335DA2A5",
+    "text": "Pugnacité V+"
+  },
+  "425056c4": {
+    "key": "425056C4",
+    "text": "Résistance Brûlure V+"
+  },
+  "28b71e53": {
+    "key": "28B71E53",
+    "text": "Résistance Ensablement V+"
+  },
+  "e5e2ad4b": {
+    "key": "E5E2AD4B",
+    "text": "Esquive améliorée+"
+  },
+  "748dd213": {
+    "key": "748DD213",
+    "text": "Esquive améliorée+"
+  },
+  "02c1d304": {
+    "key": "02C1D304",
+    "text": "Esquive améliorée+"
+  },
+  "f39b8fe1": {
+    "key": "F39B8FE1",
+    "text": "Auto-réanimation V+"
+  },
+  "e87b1975": {
+    "key": "E87B1975",
+    "text": "Cascade V+"
+  },
+  "490f7304": {
+    "key": "490F7304",
+    "text": "Réserve de potions V+"
+  },
+  "b12e3029": {
+    "key": "B12E3029",
+    "text": "Bastion V+"
+  },
+  "297d03f7": {
+    "key": "297D03F7",
+    "text": "Bastion V+"
+  },
+  "e0294510": {
+    "key": "E0294510",
+    "text": "Dégâts supplémentaires V+"
+  },
+  "1e2ebc39": {
+    "key": "1E2EBC39",
+    "text": "Dégâts supplémentaires V+"
+  },
+  "90822db1": {
+    "key": "90822DB1",
+    "text": "Dégâts supplémentaires V+"
+  },
+  "73e4c05e": {
+    "key": "73E4C05E",
+    "text": "Égide suprême V+"
+  },
+  "2ac47940": {
+    "key": "2AC47940",
+    "text": "Écho de Berserker+"
+  },
+  "05fe0351": {
+    "key": "05FE0351",
+    "text": "Spartiate+"
+  },
+  "426ad20e": {
+    "key": "GEEN_300_11",
+    "text": "Crabe éternel+"
+  },
+  "3d0bf8cb": {
+    "key": "3D0BF8CB",
+    "text": "Faveur guerrière+"
+  },
+  "ce8c3c96": {
+    "key": "CE8C3C96",
+    "text": "Faveur guerrière+"
+  },
+  "6efcd286": {
+    "key": "6EFCD286",
+    "text": "Faveur guerrière+"
+  },
+  "6ff3308a": {
+    "key": "6FF3308A",
+    "text": "Faveur guerrière+"
+  },
+  "66cb28ba": {
+    "key": "GEEN_301_10",
+    "text": "Crabe de jais redoutable+"
+  },
+  "76786869": {
+    "key": "GEEN_302_10",
+    "text": "Concorde aux yeux de jais+"
+  },
+  "186407ed": {
+    "key": "186407ED",
+    "text": "Affûtage astral III+"
+  },
+  "b0ce994b": {
+    "key": "B0CE994B",
+    "text": "Affûtage astral IV+"
+  },
+  "40214c38": {
+    "key": "40214C38",
+    "text": "Affûtage astral V+"
+  },
+  "ff5f3079": {
+    "key": "FF5F3079",
+    "text": "Affûtage astral V+"
+  },
+  "de19a583": {
+    "key": "DE19A583",
+    "text": "Affûtage astral V+"
+  },
+  "b1b79be4": {
+    "key": "B1B79BE4",
+    "text": "Affûtage astral V+"
+  },
+  "73db3bd3": {
+    "key": "73DB3BD3",
+    "text": "Éclat astral III+"
+  },
+  "2b2401ef": {
+    "key": "2B2401EF",
+    "text": "Éclat astral IV+"
+  },
+  "99926ea8": {
+    "key": "99926EA8",
+    "text": "Éclat astral V+"
+  },
+  "9a250027": {
+    "key": "9A250027",
+    "text": "Éclat astral V+"
+  },
+  "1e7796e1": {
+    "key": "1E7796E1",
+    "text": "Éclat astral V+"
+  },
+  "c2c979fc": {
+    "key": "C2C979FC",
+    "text": "Éclat astral V+"
+  },
+  "c4c213bd": {
+    "key": "C4C213BD",
+    "text": "Terre astrale III+"
+  },
+  "36360691": {
+    "key": "36360691",
+    "text": "Terre astrale IV+"
+  },
+  "006e474e": {
+    "key": "006E474E",
+    "text": "Terre astrale V+"
+  },
+  "7bf56b6f": {
+    "key": "7BF56B6F",
+    "text": "Terre astrale V+"
+  },
+  "52abe046": {
+    "key": "52ABE046",
+    "text": "Terre astrale V+"
+  },
+  "7ce4d81c": {
+    "key": "7CE4D81C",
+    "text": "Terre astrale V+"
+  },
+  "1c500ab2": {
+    "key": "1C500AB2",
+    "text": "Flamme astrale III+"
+  },
+  "eae396e1": {
+    "key": "EAE396E1",
+    "text": "Flamme astrale IV+"
+  },
+  "d7d2f16e": {
+    "key": "D7D2F16E",
+    "text": "Flamme astrale V+"
+  },
+  "65b7e5c8": {
+    "key": "65B7E5C8",
+    "text": "Flamme astrale V+"
+  },
+  "1147543e": {
+    "key": "1147543E",
+    "text": "Neige astrale III+"
+  },
+  "a70c5270": {
+    "key": "A70C5270",
+    "text": "Neige astrale IV+"
+  },
+  "fbb1778f": {
+    "key": "FBB1778F",
+    "text": "Neige astrale V+"
+  },
+  "fc19bf26": {
+    "key": "FC19BF26",
+    "text": "Neige astrale V+"
+  },
+  "b242510c": {
+    "key": "B242510C",
+    "text": "Rebelle des cieux III+"
+  },
+  "5119e3f4": {
+    "key": "5119E3F4",
+    "text": "Rebelle des cieux IV+"
+  },
+  "04bd9f6b": {
+    "key": "04BD9F6B",
+    "text": "Rebelle des cieux V+"
+  },
+  "1a5f39d2": {
+    "key": "1A5F39D2",
+    "text": "Rebelle des cieux V+"
+  },
+  "2a2304e2": {
+    "key": "2A2304E2",
+    "text": "Rebelle des cieux V+"
+  },
+  "9bd2b40e": {
+    "key": "9BD2B40E",
+    "text": "Paix astrale III+"
+  },
+  "7d720227": {
+    "key": "7D720227",
+    "text": "Paix astrale IV+"
+  },
+  "7009517b": {
+    "key": "7009517B",
+    "text": "Paix astrale V+"
+  },
+  "89538be0": {
+    "key": "89538BE0",
+    "text": "Paix astrale V+"
+  },
+  "d5cf6765": {
+    "key": "D5CF6765",
+    "text": "Paix astrale V+"
+  },
+  "61c49c10": {
+    "key": "61C49C10",
+    "text": "Paix astrale V+"
+  },
+  "0898bb55": {
+    "key": "0898BB55",
+    "text": "Divergence III+"
+  },
+  "a266e055": {
+    "key": "A266E055",
+    "text": "Divergence IV+"
+  },
+  "f1d8f754": {
+    "key": "F1D8F754",
+    "text": "Divergence V+"
+  },
+  "80cfc2f1": {
+    "key": "80CFC2F1",
+    "text": "Divergence V+"
+  },
+  "e59bbe0a": {
+    "key": "E59BBE0A",
+    "text": "Divergence V+"
+  },
+  "2d85102a": {
+    "key": "GEEN_146_34",
+    "text": "Faveur guerrière+"
+  },
+  "49ebebeb": {
+    "key": "49EBEBEB",
+    "text": "Intouchable+"
+  },
+  "9a60fbf0": {
+    "key": "9A60FBF0",
+    "text": "Puissance curative+"
+  },
+  "6db307d5": {
+    "key": "6DB307D5",
+    "text": "Coup du sort+"
+  },
+  "8e20b20c": {
+    "key": "8E20B20C",
+    "text": "Repli stratégique+"
+  },
+  "3c0f5461": {
+    "key": "3C0F5461",
+    "text": "Potion automatique+"
+  },
+  "99e8b892": {
+    "key": "GEEN_233_34",
+    "text": "Écho de Berserker+"
+  },
+  "4ae72c9e": {
+    "key": "GEEN_234_34",
+    "text": "Spartiate+"
+  },
+  "113035d8": {
+    "key": "113035D8",
+    "text": "Super esquive parfaite ultime+"
+  },
+  "f94e0066": {
+    "key": "GEEN_320_22",
+    "text": "Affûtage astral III+"
+  },
+  "50996321": {
+    "key": "GEEN_320_23",
+    "text": "Affûtage astral IV+"
+  },
+  "8b8085c0": {
+    "key": "GEEN_320_24",
+    "text": "Affûtage astral V+"
+  },
+  "90e42e35": {
+    "key": "GEEN_321_22",
+    "text": "Éclat astral III+"
+  },
+  "231ebaa2": {
+    "key": "GEEN_321_23",
+    "text": "Éclat astral IV+"
+  },
+  "20492635": {
+    "key": "GEEN_321_24",
+    "text": "Éclat astral V+"
+  },
+  "07a3abd9": {
+    "key": "GEEN_322_22",
+    "text": "Terre astrale III+"
+  },
+  "8b9c3d0f": {
+    "key": "GEEN_322_23",
+    "text": "Terre astrale IV+"
+  },
+  "d29cd8e0": {
+    "key": "GEEN_322_24",
+    "text": "Terre astrale V+"
+  },
+  "15f618b1": {
+    "key": "GEEN_323_22",
+    "text": "Flamme astrale III+"
+  },
+  "53b1458d": {
+    "key": "GEEN_323_23",
+    "text": "Flamme astrale IV+"
+  },
+  "74061b0c": {
+    "key": "GEEN_323_24",
+    "text": "Flamme astrale V+"
+  },
+  "35ae024e": {
+    "key": "GEEN_324_22",
+    "text": "Neige astrale III+"
+  },
+  "abaefe36": {
+    "key": "GEEN_324_23",
+    "text": "Neige astrale IV+"
+  },
+  "e14e1598": {
+    "key": "GEEN_324_24",
+    "text": "Neige astrale V+"
+  },
+  "2767b7e2": {
+    "key": "GEEN_325_22",
+    "text": "Rebelle des cieux III+"
+  },
+  "a6aac25f": {
+    "key": "GEEN_325_23",
+    "text": "Rebelle des cieux IV+"
+  },
+  "5bf84fd1": {
+    "key": "GEEN_325_24",
+    "text": "Rebelle des cieux V+"
+  },
+  "81b3962d": {
+    "key": "GEEN_326_22",
+    "text": "Paix astrale III+"
+  },
+  "4a25d812": {
+    "key": "GEEN_326_23",
+    "text": "Paix astrale IV+"
+  },
+  "9300fadb": {
+    "key": "GEEN_326_24",
+    "text": "Paix astrale V+"
+  },
+  "908d5612": {
+    "key": "GEEN_327_22",
+    "text": "Divergence III+"
+  },
+  "4d52c35c": {
+    "key": "GEEN_327_23",
+    "text": "Divergence IV+"
+  },
+  "7b4aab30": {
+    "key": "GEEN_327_24",
+    "text": "Divergence V+"
+  },
+  "bb49c8f6": {
+    "key": "BB49C8F6",
+    "text": "Pugnacité V+"
+  },
+  "ba16f729": {
+    "key": "BA16F729",
+    "text": "Soins améliorés V+"
+  },
+  "837b3d64": {
+    "key": "837B3D64",
+    "text": "Régénération V+"
+  },
+  "3ba37635": {
+    "key": "3BA37635",
+    "text": "Absorption V+"
+  },
+  "d340651c": {
+    "key": "D340651C",
+    "text": "Auto-réanimation V+"
+  },
+  "ab70208c": {
+    "key": "AB70208C",
+    "text": "Recharge rapide V+"
+  },
+  "6cba6b0d": {
+    "key": "6CBA6B0D",
+    "text": "Cascade V+"
+  },
+  "04ac2281": {
+    "key": "04AC2281",
+    "text": "Exaltation V+"
+  },
+  "3ed16fb2": {
+    "key": "3ED16FB2",
+    "text": "Réserve de potions V+"
+  },
+  "33ac7f74": {
+    "key": "33AC7F74",
+    "text": "Furtivité V+"
+  },
+  "0890cd68": {
+    "key": "0890CD68",
+    "text": "Provocation V+"
+  },
+  "1c166abc": {
+    "key": "1C166ABC",
+    "text": "Assimilation rapide V+"
+  },
+  "98e33f8e": {
+    "key": "98E33F8E",
+    "text": "Gain de rupis V+"
+  },
+  "b506b258": {
+    "key": "B506B258",
+    "text": "Focalisation V+"
+  },
+  "2679a4f0": {
+    "key": "2679A4F0",
+    "text": "Sérénité V+"
+  },
+  "80c94a24": {
+    "key": "80C94A24",
+    "text": "Courroux V+"
+  },
+  "70051799": {
+    "key": "70051799",
+    "text": "Voie de maîtrise V+"
+  },
+  "895abbf6": {
+    "key": "GEEN_173_90",
+    "text": "Éveil du loup alpha+"
+  },
+  "d8a464f1": {
+    "key": "GEEN_174_90",
+    "text": "Éveil Reine des lames+"
+  },
+  "95cc3cb8": {
+    "key": "GEEN_175_90",
+    "text": "Éveil de l'ultramarine+"
+  },
+  "23953fd4": {
+    "key": "GEEN_176_90",
+    "text": "Éveil du loup de foudre+"
+  },
+  "5a360ea8": {
+    "key": "GEEN_177_90",
+    "text": "Éveil de réincarnation+"
+  },
+  "a8a0cbff": {
+    "key": "GEEN_178_90",
+    "text": "Éveil noir+"
+  },
+  "282dbff0": {
+    "key": "GEEN_173_91",
+    "text": "Passion du loup alpha+"
+  },
+  "f21404b1": {
+    "key": "GEEN_173_92",
+    "text": "Grande toupie du loup alpha+"
+  },
+  "41ac1082": {
+    "key": "GEEN_173_93",
+    "text": "Impétuosité du loup alpha+"
+  },
+  "ec9ffe77": {
+    "key": "GEEN_174_91",
+    "text": "Sérénade Reine des lames+"
+  },
+  "96d6fe5e": {
+    "key": "GEEN_174_92",
+    "text": "Ronde Reine des lames+"
+  },
+  "eb766d87": {
+    "key": "GEEN_174_93",
+    "text": "Impétuosité Reine des lames+"
+  },
+  "9ec6c56d": {
+    "key": "GEEN_175_91",
+    "text": "Éclair d’épée ultramarine+"
+  },
+  "d4117ff3": {
+    "key": "GEEN_175_92",
+    "text": "Adversité ultramarine+"
+  },
+  "51e98a7c": {
+    "key": "GEEN_175_93",
+    "text": "Impétuosité ultramarine+"
+  },
+  "f964a4ca": {
+    "key": "GEEN_176_91",
+    "text": "Munition du loup de foudre+"
+  },
+  "1a359b67": {
+    "key": "GEEN_176_92",
+    "text": "Vision du loup de foudre+"
+  },
+  "d8c61507": {
+    "key": "GEEN_176_93",
+    "text": "Impétuosité du loup de foudre+"
+  },
+  "64301e91": {
+    "key": "GEEN_177_91",
+    "text": "Grâce de réincarnation+"
+  },
+  "ba28c81c": {
+    "key": "GEEN_177_92",
+    "text": "Élan de réincarnation+"
+  },
+  "2d70c37d": {
+    "key": "GEEN_177_93",
+    "text": "Impétuosité de réincarnation+"
+  },
+  "0523a202": {
+    "key": "GEEN_178_91",
+    "text": "Sceau maudit noir+"
+  },
+  "0723f7ec": {
+    "key": "GEEN_178_92",
+    "text": "Bond noir+"
+  },
+  "9abd2da5": {
+    "key": "GEEN_178_93",
+    "text": "Impétuosité noire+"
+  },
+  "ed715e85": {
+    "key": "ED715E85",
+    "text": "Santé V+"
+  },
+  "a21005e9": {
+    "key": "A21005E9",
+    "text": "Taux critique V+"
+  },
+  "688ab21c": {
+    "key": "688AB21C",
+    "text": "Étourdissement V+"
+  },
+  "c3a4c1ec": {
+    "key": "C3A4C1EC",
+    "text": "Animosité V+"
+  },
+  "eded0b97": {
+    "key": "EDED0B97",
+    "text": "Endurance V+"
+  },
+  "cc5ff698": {
+    "key": "CC5FF698",
+    "text": "Limite de dégâts V+"
+  },
+  "bb6dee38": {
+    "key": "BB6DEE38",
+    "text": "Tyrannie V+"
+  },
+  "612b6458": {
+    "key": "612B6458",
+    "text": "Pugnacité V+"
+  },
+  "edef9eb0": {
+    "key": "EDEF9EB0",
+    "text": "Esquive améliorée+"
+  },
+  "e365b951": {
+    "key": "E365B951",
+    "text": "Régénération V+"
+  },
+  "329c4e1c": {
+    "key": "329C4E1C",
+    "text": "Absorption V+"
+  },
+  "9eb767bb": {
+    "key": "9EB767BB",
+    "text": "Auto-réanimation V+"
+  },
+  "b09e9d63": {
+    "key": "B09E9D63",
+    "text": "Cascade V+"
+  },
+  "edd3770b": {
+    "key": "EDD3770B",
+    "text": "Exaltation V+"
+  },
+  "79495b88": {
+    "key": "79495B88",
+    "text": "Réserve de potions V+"
+  },
+  "e71b5cd5": {
+    "key": "E71B5CD5",
+    "text": "Égide V+"
+  },
+  "041d7b20": {
+    "key": "041D7B20",
+    "text": "Nerfs d'acier V+"
+  },
+  "1f012233": {
+    "key": "1F012233",
+    "text": "Concentration spirituelle V+"
+  },
+  "59de6187": {
+    "key": "59DE6187",
+    "text": "Sérénité V+"
   }
 }

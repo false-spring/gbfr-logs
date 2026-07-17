@@ -6,9 +6,20 @@ import { initReactI18next } from "react-i18next";
 import { readTextFile } from "@tauri-apps/api/fs";
 import { resolveResource } from "@tauri-apps/api/path";
 
+import { applyEnemyNameOverrides } from "@/assets/enemy-name-overrides";
+
 const loadLanguageFromPath = async (language: string, namespace: string) => {
   const resourcePath = await resolveResource(`lang/${language}/${namespace}.json`);
-  return JSON.parse(await readTextFile(resourcePath));
+  const parsed = JSON.parse(await readTextFile(resourcePath));
+
+  if (namespace === "enemies") {
+    const { unmatched } = applyEnemyNameOverrides(parsed);
+    if (unmatched.length > 0 && import.meta.env.DEV) {
+      console.warn(`[i18n] enemy name overrides matched no ${language} row: ${unmatched.join(", ")}`);
+    }
+  }
+
+  return parsed;
 };
 
 export const SUPPORTED_LANGUAGES: { [key: string]: string } = {
@@ -35,7 +46,22 @@ i18n
     })
   )
   .init({
-    ns: ["ui", "characters", "items", "overmasteries", "sigils", "traits", "weapons", "quests", "enemies"],
+    ns: [
+      "ui",
+      "characters",
+      "items",
+      "overmasteries",
+      "sigils",
+      "traits",
+      "weapons",
+      "quests",
+      "enemies",
+      "summons",
+      "mastertraits",
+      "skills",
+      "mastertraitdetails",
+      "summonbonuses",
+    ],
     defaultNS: "ui",
     fallbackLng: {
       default: ["en"],

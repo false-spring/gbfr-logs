@@ -1,0 +1,1034 @@
+{
+  "bad9baa3": {
+    "key": "AB_PL0000_01",
+    "text": "Dizimar"
+  },
+  "538572d0": {
+    "key": "AB_PL0000_02",
+    "text": "Destruidor de Armaduras"
+  },
+  "dbe960dd": {
+    "key": "AB_PL0000_03",
+    "text": "Falange"
+  },
+  "e5598482": {
+    "key": "AB_PL0000_04",
+    "text": "Curar Todos"
+  },
+  "967964c1": {
+    "key": "AB_PL0000_05",
+    "text": "Chuva de Flechas"
+  },
+  "42d185d5": {
+    "key": "AB_PL0000_06",
+    "text": "Névoa Miserável"
+  },
+  "fb1526c3": {
+    "key": "AB_PL0000_07",
+    "text": "Ira"
+  },
+  "b2f74994": {
+    "key": "AB_PL0000_08",
+    "text": "Explosão de Energia"
+  },
+  "1e4c06ec": {
+    "key": "AB_PL0000_09",
+    "text": "Limpeza"
+  },
+  "6fd0843a": {
+    "key": "AB_PL0000_10",
+    "text": "Reginleiv"
+  },
+  "fc0562ec": {
+    "key": "AB_PL0000_11",
+    "text": "Atrasar"
+  },
+  "66b7cf9c": {
+    "key": "AB_PL0000_12",
+    "text": "Reviver"
+  },
+  "f9492778": {
+    "key": "AB_PL0000_13",
+    "text": "Véu"
+  },
+  "f4bb441f": {
+    "key": "AB_PL0000_14",
+    "text": "Anulação"
+  },
+  "abfe9091": {
+    "key": "AB_PL0000_15",
+    "text": "Condução"
+  },
+  "4f634ad4": {
+    "key": "AB_PL0000_16",
+    "text": "Substituir"
+  },
+  "aa949a9e": {
+    "key": "AB_PL0100_01",
+    "text": "Dizimar"
+  },
+  "faff8838": {
+    "key": "AB_PL0100_02",
+    "text": "Destruidor de Armaduras"
+  },
+  "ef2108b4": {
+    "key": "AB_PL0100_03",
+    "text": "Falange"
+  },
+  "3111fe5e": {
+    "key": "AB_PL0100_04",
+    "text": "Curar Todos"
+  },
+  "fad51809": {
+    "key": "AB_PL0100_05",
+    "text": "Chuva de Flechas"
+  },
+  "c908857c": {
+    "key": "AB_PL0100_06",
+    "text": "Névoa Miserável"
+  },
+  "3c5a7509": {
+    "key": "AB_PL0100_07",
+    "text": "Ira"
+  },
+  "401ab759": {
+    "key": "AB_PL0100_08",
+    "text": "Explosão de Energia"
+  },
+  "ccec1035": {
+    "key": "AB_PL0100_09",
+    "text": "Limpeza"
+  },
+  "4257541b": {
+    "key": "AB_PL0100_10",
+    "text": "Reginleiv"
+  },
+  "2a8ef6c4": {
+    "key": "AB_PL0100_11",
+    "text": "Atrasar"
+  },
+  "eb16fd99": {
+    "key": "AB_PL0100_12",
+    "text": "Reviver"
+  },
+  "7ef53ff4": {
+    "key": "AB_PL0100_13",
+    "text": "Véu"
+  },
+  "8e2bfc26": {
+    "key": "AB_PL0100_14",
+    "text": "Anulação"
+  },
+  "531dd853": {
+    "key": "AB_PL0100_15",
+    "text": "Condução"
+  },
+  "d064b37f": {
+    "key": "AB_PL0100_16",
+    "text": "Substituir"
+  },
+  "9fed6cf3": {
+    "key": "AB_PL0200_01",
+    "text": "Terras Encantadas"
+  },
+  "e224a3d2": {
+    "key": "AB_PL0200_02",
+    "text": "Chuva de Inverno"
+  },
+  "66e797cc": {
+    "key": "AB_PL0200_03",
+    "text": "Curar"
+  },
+  "79a07d8e": {
+    "key": "AB_PL0200_04",
+    "text": "Ventos Sagrados"
+  },
+  "87288538": {
+    "key": "AB_PL0200_05",
+    "text": "Espada Azul-celeste"
+  },
+  "71b81b9c": {
+    "key": "AB_PL0200_06",
+    "text": "Muro de Luz"
+  },
+  "9f1539d2": {
+    "key": "AB_PL0200_07",
+    "text": "Lâmina de Gelo"
+  },
+  "ed04d44b": {
+    "key": "AB_PL0200_08",
+    "text": "Escudo de Esmeralda"
+  },
+  "5c1519f8": {
+    "key": "AB_PL0300_01",
+    "text": "Bola de Fogo"
+  },
+  "7c63d77a": {
+    "key": "AB_PL0300_02",
+    "text": "Saraivada de Balas"
+  },
+  "d712d990": {
+    "key": "AB_PL0300_03",
+    "text": "Toque Duplo"
+  },
+  "a5f5e86c": {
+    "key": "AB_PL0300_04",
+    "text": "Duração"
+  },
+  "099abf09": {
+    "key": "AB_PL0300_05",
+    "text": "Fabricante de Caixões"
+  },
+  "243ecbfc": {
+    "key": "AB_PL0300_06",
+    "text": "Cano Quente"
+  },
+  "4d598bbd": {
+    "key": "AB_PL0300_07",
+    "text": "Tiro de Escória"
+  },
+  "f07b5a9d": {
+    "key": "AB_PL0300_08",
+    "text": "Dano Colateral"
+  },
+  "3d4193db": {
+    "key": "AB_PL0400_01",
+    "text": "Ventos Curativos"
+  },
+  "1c7aa5cc": {
+    "key": "AB_PL0400_02",
+    "text": "Congelamento"
+  },
+  "32b4a16e": {
+    "key": "AB_PL0400_03",
+    "text": "Relâmpago"
+  },
+  "200663cb": {
+    "key": "AB_PL0400_04",
+    "text": "Poço de Gravidade"
+  },
+  "64a6c124": {
+    "key": "AB_PL0400_05",
+    "text": "Fogo"
+  },
+  "65083f2d": {
+    "key": "AB_PL0400_06",
+    "text": "Concentração"
+  },
+  "d4c45d64": {
+    "key": "AB_PL0400_07",
+    "text": "Os Sete Floridos"
+  },
+  "b40ccd9c": {
+    "key": "AB_PL0400_08",
+    "text": "Vórtice Místico"
+  },
+  "d0768c6b": {
+    "key": "AB_PL0500_01",
+    "text": "Sumrak"
+  },
+  "3cf50957": {
+    "key": "AB_PL0500_02",
+    "text": "Detonador"
+  },
+  "772fa1d5": {
+    "key": "AB_PL0500_03",
+    "text": "Interceptação"
+  },
+  "b54c90e4": {
+    "key": "AB_PL0500_04",
+    "text": "Projétil Perfurante"
+  },
+  "2ea1b3db": {
+    "key": "AB_PL0500_05",
+    "text": "Granada Peçonhenta"
+  },
+  "c3ccadf8": {
+    "key": "AB_PL0500_06",
+    "text": "Bala Paralisante"
+  },
+  "2246eec2": {
+    "key": "AB_PL0500_07",
+    "text": "Bala Curativa"
+  },
+  "d457585d": {
+    "key": "AB_PL0500_08",
+    "text": "Disruptor"
+  },
+  "00f6213e": {
+    "key": "AB_PL0600_01",
+    "text": "Rastros"
+  },
+  "3eb33877": {
+    "key": "AB_PL0600_02",
+    "text": "Rosa Magnata"
+  },
+  "c7db192c": {
+    "key": "AB_PL0600_03",
+    "text": "Fascinar"
+  },
+  "8c4d811c": {
+    "key": "AB_PL0600_04",
+    "text": "Rosa Espiral"
+  },
+  "cd6940de": {
+    "key": "AB_PL0600_05",
+    "text": "Dama de Ferro"
+  },
+  "395e4823": {
+    "key": "AB_PL0600_06",
+    "text": "Amor Perdido"
+  },
+  "cf0b171b": {
+    "key": "AB_PL0600_07",
+    "text": "Barreira de Rosas"
+  },
+  "8f187f08": {
+    "key": "AB_PL0600_08",
+    "text": "Buquê"
+  },
+  "a44b77a1": {
+    "key": "AB_PL0700_01",
+    "text": "Purgar Espíritos"
+  },
+  "ceebae4a": {
+    "key": "AB_PL0700_02",
+    "text": "Blaues Gespenst "
+  },
+  "03e4d1bc": {
+    "key": "AB_PL0700_03",
+    "text": "Pega, Geegee!"
+  },
+  "512cba53": {
+    "key": "AB_PL0700_04",
+    "text": "Bênção"
+  },
+  "8cbe0423": {
+    "key": "AB_PL0700_05",
+    "text": "Pendel"
+  },
+  "94da6b12": {
+    "key": "AB_PL0700_06",
+    "text": "Bombardear"
+  },
+  "82695b1e": {
+    "key": "AB_PL0700_07",
+    "text": "Hinrichten"
+  },
+  "5ce11765": {
+    "key": "AB_PL0700_08",
+    "text": "Umlauf"
+  },
+  "7eb5a896": {
+    "key": "AB_PL0800_01",
+    "text": "Impulso da Lâmina"
+  },
+  "920dd8b3": {
+    "key": "AB_PL0800_02",
+    "text": "Kaltzwinger"
+  },
+  "282fd588": {
+    "key": "AB_PL0800_03",
+    "text": "Lawinensturm"
+  },
+  "5d19bbe2": {
+    "key": "AB_PL0800_04",
+    "text": "Blauer Dolch"
+  },
+  "511571ee": {
+    "key": "AB_PL0800_05",
+    "text": "Turbulenz"
+  },
+  "2ecb1f0b": {
+    "key": "AB_PL0800_06",
+    "text": "Cruzeiro do Sul"
+  },
+  "05359b18": {
+    "key": "AB_PL0800_07",
+    "text": "Schwertgeist"
+  },
+  "a4d546ab": {
+    "key": "AB_PL0800_08",
+    "text": "Luftspiegelung"
+  },
+  "12f12cac": {
+    "key": "AB_PL0900_01",
+    "text": "Baluarte"
+  },
+  "fbef06f2": {
+    "key": "AB_PL0900_02",
+    "text": "Divisor de Fissura"
+  },
+  "1dd6b65d": {
+    "key": "AB_PL0900_03",
+    "text": "Ruptura"
+  },
+  "050ddce6": {
+    "key": "AB_PL0900_04",
+    "text": "Destruição de Braço"
+  },
+  "b9e9ed9f": {
+    "key": "AB_PL0900_05",
+    "text": "Batida Heroica"
+  },
+  "bd38e05b": {
+    "key": "AB_PL0900_06",
+    "text": "Erupção da Alma"
+  },
+  "bc4ebf36": {
+    "key": "AB_PL0900_07",
+    "text": "Destruição de Energia"
+  },
+  "88bcd098": {
+    "key": "AB_PL0900_08",
+    "text": "Drachenstolz"
+  },
+  "caeeda5d": {
+    "key": "AB_PL1000_01",
+    "text": "Feuerangriff"
+  },
+  "98e1b356": {
+    "key": "AB_PL1000_02",
+    "text": "Flammenmarsch"
+  },
+  "01439452": {
+    "key": "AB_PL1000_03",
+    "text": "X-Seele"
+  },
+  "70fe4df6": {
+    "key": "AB_PL1000_04",
+    "text": "Zerreißen"
+  },
+  "6891463e": {
+    "key": "AB_PL1000_05",
+    "text": "Träumerei"
+  },
+  "8b70dd12": {
+    "key": "AB_PL1000_06",
+    "text": "Macht"
+  },
+  "01051e0b": {
+    "key": "AB_PL1000_07",
+    "text": "Autoridade Real"
+  },
+  "241e1792": {
+    "key": "AB_PL1000_08",
+    "text": "Roter Wirbel"
+  },
+  "62aab75d": {
+    "key": "AB_PL1100_01",
+    "text": "Uwe"
+  },
+  "00aace55": {
+    "key": "AB_PL1100_02",
+    "text": "L'Ombre d'Hier"
+  },
+  "94b29689": {
+    "key": "AB_PL1100_03",
+    "text": "Manigance"
+  },
+  "a662c045": {
+    "key": "AB_PL1100_04",
+    "text": "Nelah Nav"
+  },
+  "c6f4ccb1": {
+    "key": "AB_PL1100_05",
+    "text": "Salvador"
+  },
+  "eff4746c": {
+    "key": "AB_PL1100_06",
+    "text": "Miragem"
+  },
+  "5a356634": {
+    "key": "AB_PL1100_07",
+    "text": "Verdrangen"
+  },
+  "75d65667": {
+    "key": "AB_PL1100_08",
+    "text": "Libertação Dracônica"
+  },
+  "ed00c663": {
+    "key": "AB_PL1200_01",
+    "text": "Königsschild"
+  },
+  "bd038b68": {
+    "key": "AB_PL1200_02",
+    "text": "Massacre Cintilante"
+  },
+  "24b19804": {
+    "key": "AB_PL1200_03",
+    "text": "Corte Ascendente"
+  },
+  "05ce9ce6": {
+    "key": "AB_PL1200_04",
+    "text": "Postura Valorosa"
+  },
+  "c07a8e90": {
+    "key": "AB_PL1200_05",
+    "text": "Ataque Sagrado"
+  },
+  "69fcecc3": {
+    "key": "AB_PL1200_06",
+    "text": "Invencível"
+  },
+  "d696964e": {
+    "key": "AB_PL1200_07",
+    "text": "Espada de Lumiel"
+  },
+  "58e10372": {
+    "key": "AB_PL1200_08",
+    "text": "Escadaria Sagrada"
+  },
+  "1deeb111": {
+    "key": "AB_PL1300_01",
+    "text": "Despertar"
+  },
+  "5d39ff76": {
+    "key": "AB_PL1300_02",
+    "text": "Bruma Vazia"
+  },
+  "19a55d74": {
+    "key": "AB_PL1300_03",
+    "text": "Lâmina Tripla"
+  },
+  "fe554ce1": {
+    "key": "AB_PL1300_04",
+    "text": "Rotação Perpétua"
+  },
+  "167179d2": {
+    "key": "AB_PL1300_05",
+    "text": "Olho por Olho"
+  },
+  "5acc7a93": {
+    "key": "AB_PL1300_06",
+    "text": "Hino das Centenas"
+  },
+  "d7cc0564": {
+    "key": "AB_PL1300_07",
+    "text": "Vácuo Cintilante"
+  },
+  "512ddb88": {
+    "key": "AB_PL1300_08",
+    "text": "Estilhaça-céus"
+  },
+  "1d6f5c2d": {
+    "key": "AB_PL1400_01",
+    "text": "Kyokasuigetsu"
+  },
+  "f74b3c5b": {
+    "key": "AB_PL1400_02",
+    "text": "Setsuna"
+  },
+  "b28d2735": {
+    "key": "AB_PL1400_03",
+    "text": "Ápice do Nada"
+  },
+  "0adac47b": {
+    "key": "AB_PL1400_04",
+    "text": "Lua Crescente"
+  },
+  "390a6ec6": {
+    "key": "AB_PL1400_05",
+    "text": "Transitória"
+  },
+  "41e3c434": {
+    "key": "AB_PL1400_06",
+    "text": "Dança das Pétalas Rosas"
+  },
+  "3614971b": {
+    "key": "AB_PL1400_07",
+    "text": "Dança das Pétalas Azuis"
+  },
+  "3cad2dd9": {
+    "key": "AB_PL1400_08",
+    "text": "Devoção Completa"
+  },
+  "bcb4c311": {
+    "key": "AB_PL1500_01",
+    "text": "Arhat Fendecéus"
+  },
+  "abd5990a": {
+    "key": "AB_PL1500_02",
+    "text": "Palma Marcante"
+  },
+  "088a1d08": {
+    "key": "AB_PL1500_03",
+    "text": "Ombro de Ferro"
+  },
+  "ee1ed3e4": {
+    "key": "AB_PL1500_04",
+    "text": "Avidya Real"
+  },
+  "6b54f359": {
+    "key": "AB_PL1500_05",
+    "text": "Postura do Leão"
+  },
+  "0f41d9b0": {
+    "key": "AB_PL1500_06",
+    "text": "Pisada do Inferno"
+  },
+  "967c9abc": {
+    "key": "AB_PL1500_07",
+    "text": "Ira Eterna"
+  },
+  "84174bdd": {
+    "key": "AB_PL1500_08",
+    "text": "Dhyana"
+  },
+  "95e40e12": {
+    "key": "AB_PL1600_01",
+    "text": "Maravilhas Infinitas"
+  },
+  "67270513": {
+    "key": "AB_PL1600_02",
+    "text": "Chuva da Fúria"
+  },
+  "974342aa": {
+    "key": "AB_PL1600_03",
+    "text": "Lança de Arvess"
+  },
+  "52e3eed1": {
+    "key": "AB_PL1600_04",
+    "text": "Explosão Simbólica"
+  },
+  "2ae2fa9d": {
+    "key": "AB_PL1600_05",
+    "text": "Corta-asas"
+  },
+  "8c3c7ddc": {
+    "key": "AB_PL1600_06",
+    "text": "Chamas Vingativas"
+  },
+  "33028d0b": {
+    "key": "AB_PL1600_07",
+    "text": "Mil Chamas"
+  },
+  "a8dd5b10": {
+    "key": "AB_PL1600_08",
+    "text": "Majestade do Mundo"
+  },
+  "3b5c9f6d": {
+    "key": "AB_PL1700_01",
+    "text": "Batalhões do Medo"
+  },
+  "ec775337": {
+    "key": "AB_PL1700_02",
+    "text": "Sombras Violentas"
+  },
+  "8121f2bf": {
+    "key": "AB_PL1700_03",
+    "text": "Grande Foice Grynoth"
+  },
+  "3a6c7767": {
+    "key": "AB_PL1700_04",
+    "text": "Dor Imortal"
+  },
+  "d71a616c": {
+    "key": "AB_PL1700_05",
+    "text": "Contos Esquecidos"
+  },
+  "7ea722fc": {
+    "key": "AB_PL1700_06",
+    "text": "Danação"
+  },
+  "ce6a60cf": {
+    "key": "AB_PL1700_07",
+    "text": "Eclipse Umbral"
+  },
+  "90c49270": {
+    "key": "AB_PL1700_08",
+    "text": "Fúria do Submundo"
+  },
+  "75043b52": {
+    "key": "AB_PL1800_01",
+    "text": "Boneca Imitadora"
+  },
+  "12a18828": {
+    "key": "AB_PL1800_02",
+    "text": "Mehen"
+  },
+  "2e064364": {
+    "key": "AB_PL1800_03",
+    "text": "Fantasmagoria"
+  },
+  "85c06563": {
+    "key": "AB_PL1800_04",
+    "text": "Reforçar"
+  },
+  "ee45b7ef": {
+    "key": "AB_PL1800_05",
+    "text": "Distúrbio"
+  },
+  "b97bd8d4": {
+    "key": "AB_PL1800_06",
+    "text": "Rhizomata"
+  },
+  "ed1219cc": {
+    "key": "AB_PL1800_07",
+    "text": "Alexandria"
+  },
+  "5b42826c": {
+    "key": "AB_PL1800_08",
+    "text": "Trem da Dor"
+  },
+  "e2dc99d9": {
+    "key": "AB_PL1900_01",
+    "text": "Reginleiv: Recidive"
+  },
+  "c1d7660c": {
+    "key": "AB_PL1900_02",
+    "text": "Desatado"
+  },
+  "0af90b6d": {
+    "key": "AB_PL1900_03",
+    "text": "Expiação"
+  },
+  "98309953": {
+    "key": "AB_PL1900_04",
+    "text": "Forma de Ragnarok"
+  },
+  "38b12f6a": {
+    "key": "AB_PL1900_05",
+    "text": "Flagelo"
+  },
+  "b132100b": {
+    "key": "AB_PL1900_06",
+    "text": "Vingança Quadruplicada"
+  },
+  "968220fa": {
+    "key": "AB_PL1900_07",
+    "text": "Jamais Basta"
+  },
+  "c516d104": {
+    "key": "AB_PL1900_08",
+    "text": "Arcádia"
+  },
+  "18784cf8": {
+    "key": "AB_PL2000_01",
+    "text": "Reginleiv: Recidive"
+  },
+  "f8f512dc": {
+    "key": "AB_PL2000_02",
+    "text": "Flagelo"
+  },
+  "5f4c5757": {
+    "key": "AB_PL2000_03",
+    "text": "Jamais Basta"
+  },
+  "3f4b5c9e": {
+    "key": "AB_PL2000_04",
+    "text": "Arcádia"
+  },
+  "542f400f": {
+    "key": "AB_PL2100_01",
+    "text": "Sopro da Vida"
+  },
+  "da860bd8": {
+    "key": "AB_PL2100_02",
+    "text": "Sem Saída"
+  },
+  "34222ea5": {
+    "key": "AB_PL2100_03",
+    "text": "Eclíptica"
+  },
+  "eb81f079": {
+    "key": "AB_PL2100_04",
+    "text": "O Poder de Um"
+  },
+  "31e089b9": {
+    "key": "AB_PL2100_05",
+    "text": "Aurora Boreal"
+  },
+  "0b1bb3fb": {
+    "key": "AB_PL2100_06",
+    "text": "Solidão no Paraíso"
+  },
+  "1031dbd0": {
+    "key": "AB_PL2100_07",
+    "text": "Noite Invernal"
+  },
+  "a7c5a324": {
+    "key": "AB_PL2100_08",
+    "text": "Prisão Etérea"
+  },
+  "d99ad2ad": {
+    "key": "AB_PL2200_01",
+    "text": "Barrido"
+  },
+  "a7eb9e69": {
+    "key": "AB_PL2200_02",
+    "text": "Infinito Creare"
+  },
+  "6e8e210a": {
+    "key": "AB_PL2200_03",
+    "text": "Rotura"
+  },
+  "705a6a63": {
+    "key": "AB_PL2200_04",
+    "text": "Ispirazione"
+  },
+  "0bd7b2e1": {
+    "key": "AB_PL2200_05",
+    "text": "Prisión de Armas"
+  },
+  "abab2642": {
+    "key": "AB_PL2200_06",
+    "text": "Despedazar"
+  },
+  "c6629ae0": {
+    "key": "AB_PL2200_07",
+    "text": "Tempesta"
+  },
+  "3bb98b51": {
+    "key": "AB_PL2200_08",
+    "text": "Brilho das 7 Estrelas"
+  },
+  "7f683594": {
+    "key": "AB_PL2300_01",
+    "text": "Luz Mercurial"
+  },
+  "7c0f49fb": {
+    "key": "AB_PL2300_02",
+    "text": "Depravação"
+  },
+  "bba467c0": {
+    "key": "AB_PL2300_03",
+    "text": "Decisão"
+  },
+  "da816022": {
+    "key": "AB_PL2300_04",
+    "text": "Giro Valoroso"
+  },
+  "bb425ac9": {
+    "key": "AB_PL2300_05",
+    "text": "Roda da Morte"
+  },
+  "a6b54953": {
+    "key": "AB_PL2300_06",
+    "text": "Chuva Letal"
+  },
+  "d95b6aba": {
+    "key": "AB_PL2300_07",
+    "text": "Olho Inigualável"
+  },
+  "2189f8ba": {
+    "key": "AB_PL2300_08",
+    "text": "Conflito de 2 Coroas"
+  },
+  "966f4a6f": {
+    "key": "AB_PL2400_01",
+    "text": "Ponta da Lança"
+  },
+  "430f5db4": {
+    "key": "AB_PL2400_02",
+    "text": "Mergulho Explosivo"
+  },
+  "915b5131": {
+    "key": "AB_PL2400_03",
+    "text": "Empalamento"
+  },
+  "bcc01262": {
+    "key": "AB_PL2400_04",
+    "text": "Lança Marcial"
+  },
+  "642b9935": {
+    "key": "AB_PL2400_05",
+    "text": "Olho da Tempestade"
+  },
+  "4c13102e": {
+    "key": "AB_PL2400_06",
+    "text": "Lanceiro Ousado"
+  },
+  "4bc55ee0": {
+    "key": "AB_PL2400_07",
+    "text": "Ciclone Parte-Crânio"
+  },
+  "6aa831f7": {
+    "key": "AB_PL2400_08",
+    "text": "Final do Mata-Mata"
+  },
+  "bc2ef1d8": {
+    "key": "AB_PL2400_09",
+    "text": "Ponto de Fusão"
+  },
+  "b9c33c89": {
+    "key": "AB_PL2500_01",
+    "text": "Cajado da Divindade"
+  },
+  "91d8e40b": {
+    "key": "AB_PL2500_02",
+    "text": "Martelo do Trovão"
+  },
+  "55aedf7b": {
+    "key": "AB_PL2500_03",
+    "text": "Pistola dos Demônios"
+  },
+  "e69d5c9c": {
+    "key": "AB_PL2500_04",
+    "text": "Lança das Lendas"
+  },
+  "547c38ae": {
+    "key": "AB_PL2500_05",
+    "text": "Égide Peânica"
+  },
+  "d6403105": {
+    "key": "AB_PL2500_06",
+    "text": "Nachtmusik"
+  },
+  "6b21afbb": {
+    "key": "AB_PL2500_07",
+    "text": "Sostenuto"
+  },
+  "d5d1bd18": {
+    "key": "AB_PL2500_08",
+    "text": "Hino de Batalha"
+  },
+  "9887f9a4": {
+    "key": "AB_PL2600_01",
+    "text": "Caminho Livre"
+  },
+  "f1e56fb1": {
+    "key": "AB_PL2600_02",
+    "text": "Caçadora de Estrelas"
+  },
+  "267ff179": {
+    "key": "AB_PL2600_03",
+    "text": "Espada Embrasque"
+  },
+  "24b49fe8": {
+    "key": "AB_PL2600_04",
+    "text": "Laço Eterno"
+  },
+  "746f18a4": {
+    "key": "AB_PL2600_05",
+    "text": "Corações em Chamas"
+  },
+  "b85aa34f": {
+    "key": "AB_PL2600_06",
+    "text": "Pássaro do Trovão"
+  },
+  "d16eeeea": {
+    "key": "AB_PL2600_07",
+    "text": "Liberta"
+  },
+  "2a60f8ca": {
+    "key": "AB_PL2600_08",
+    "text": "Nova Ascendente"
+  },
+  "017117e8": {
+    "key": "AB_PL2700_01",
+    "text": "Abate Lento"
+  },
+  "aa6e61e5": {
+    "key": "AB_PL2700_02",
+    "text": "Para Sempre Seu"
+  },
+  "e1410c7b": {
+    "key": "AB_PL2700_03",
+    "text": "Brincando com Fogo"
+  },
+  "9abfc62c": {
+    "key": "AB_PL2700_04",
+    "text": "Uivo Furioso"
+  },
+  "9ac21d84": {
+    "key": "AB_PL2700_05",
+    "text": "Via Rápida"
+  },
+  "0026ab65": {
+    "key": "AB_PL2700_06",
+    "text": "Rendição Jamais"
+  },
+  "a5391991": {
+    "key": "AB_PL2700_07",
+    "text": "Trovão de Flamek"
+  },
+  "aea6d151": {
+    "key": "AB_PL2700_08",
+    "text": "Desabamento do Céu"
+  },
+  "355b0df9": {
+    "key": "AB_PL2800_01",
+    "text": "Todos Caem"
+  },
+  "6fb5fbda": {
+    "key": "AB_PL2800_02",
+    "text": "Pesadelo Carmesim"
+  },
+  "484b29f5": {
+    "key": "AB_PL2800_03",
+    "text": "Indominus"
+  },
+  "530600d2": {
+    "key": "AB_PL2800_04",
+    "text": "Surge Uma Oportunidade"
+  },
+  "44f5c74f": {
+    "key": "AB_PL2800_05",
+    "text": "Pouso do Peso Morto"
+  },
+  "10fae6ab": {
+    "key": "AB_PL2800_06",
+    "text": "Chuta-Cara"
+  },
+  "87d51ba4": {
+    "key": "AB_PL2800_07",
+    "text": "Esplendor"
+  },
+  "0b84f88d": {
+    "key": "AB_PL2800_08",
+    "text": "Central Elétrica"
+  },
+  "8f4e9d6f": {
+    "key": "AB_PL2900_01",
+    "text": "Rompe-Alma"
+  },
+  "981a10bc": {
+    "key": "AB_PL2900_02",
+    "text": "Garras da Reversão"
+  },
+  "b2795ca0": {
+    "key": "AB_PL2900_03",
+    "text": "Signo da Calamidade"
+  },
+  "c3c3d59a": {
+    "key": "AB_PL2900_04",
+    "text": "Bênção da Sombria"
+  },
+  "724636a8": {
+    "key": "AB_PL2900_05",
+    "text": "Medo Primordial"
+  },
+  "b09eac4c": {
+    "key": "AB_PL2900_06",
+    "text": "Funeral Amaldiçoado"
+  },
+  "d113989a": {
+    "key": "AB_PL2900_07",
+    "text": "Abismo Miasmático"
+  },
+  "b1c60cab": {
+    "key": "AB_PL2900_08",
+    "text": "Esfera da Reversão"
+  },
+  "0b04fd2a": {
+    "key": "AB_NP0000_01",
+    "text": "Água Curativa"
+  },
+  "869bd124": {
+    "key": "AB_NP0000_02",
+    "text": "Terra Duradoura"
+  },
+  "d08a0a37": {
+    "key": "AB_NP0000_03",
+    "text": "Barreira Azul"
+  },
+  "fb52815e": {
+    "key": "AB_NP0300_01",
+    "text": "Atamento Divino"
+  },
+  "8aea1313": {
+    "key": "AB_NP0300_02",
+    "text": "Gêiser Sagrado"
+  }
+}

@@ -1154,5 +1154,337 @@
   "ff1a207a": {
     "key": "ITEM_70_0007",
     "text": "Golden Crab Statue"
+  },
+  "4a41482c": {
+    "key": "ITEM_03_0003",
+    "text": "Vitality Lush Hoof"
+  },
+  "b0782428": {
+    "key": "ITEM_04_0003",
+    "text": "Sequestered Flood Mane"
+  },
+  "35f709e3": {
+    "key": "ITEM_06_0003",
+    "text": "Dreaded Temper Tail"
+  },
+  "456d2bb3": {
+    "key": "ITEM_09_0003",
+    "text": "Mortido"
+  },
+  "6e13e372": {
+    "key": "ITEM_09_0013",
+    "text": "Silver Wolf Trefoil"
+  },
+  "4c21dc42": {
+    "key": "ITEM_09_0023",
+    "text": "Fellowship Fang"
+  },
+  "8d888638": {
+    "key": "ITEM_09_0030",
+    "text": "Blue-Sky Spirit"
+  },
+  "9a3dc719": {
+    "key": "ITEM_09_0050",
+    "text": "Blue-Sky Flare"
+  },
+  "20c742de": {
+    "key": "ITEM_14_0001",
+    "text": "Azurite Shard"
+  },
+  "c043bac9": {
+    "key": "ITEM_14_0023",
+    "text": "Daybreak Merit"
+  },
+  "537cb6d9": {
+    "key": "ITEM_14_0061",
+    "text": "Ragnite (Defender)"
+  },
+  "86fb2ee1": {
+    "key": "ITEM_14_0062",
+    "text": "Ragnite (Stunner)"
+  },
+  "654fa095": {
+    "key": "ITEM_14_0063",
+    "text": "Ragnite (Ascension)"
+  },
+  "1f4bae8c": {
+    "key": "ITEM_14_0064",
+    "text": "Ragnite (Stinger)"
+  },
+  "54732298": {
+    "key": "ITEM_14_0065",
+    "text": "Ragnite (Executioner)"
+  },
+  "1c195d33": {
+    "key": "ITEM_14_0066",
+    "text": "Ragnite (Terminus)"
+  },
+  "8c4fc319": {
+    "key": "ITEM_14_0074",
+    "text": "Chaos Refinium"
+  },
+  "65063e17": {
+    "key": "ITEM_14_0076",
+    "text": "Mythic Artifact"
+  },
+  "0eb683cd": {
+    "key": "ITEM_15_0010",
+    "text": "Grand Refinium I"
+  },
+  "98cdb46f": {
+    "key": "ITEM_15_0011",
+    "text": "Grand Refinium II"
+  },
+  "64a63fbc": {
+    "key": "ITEM_15_0012",
+    "text": "Grand Refinium III"
+  },
+  "5392dee6": {
+    "key": "ITEM_16_0005",
+    "text": "Divine Blightplume"
+  },
+  "831f31ff": {
+    "key": "ITEM_16_0007",
+    "text": "Sown Emptiness"
+  },
+  "df713fa9": {
+    "key": "ITEM_16_0009",
+    "text": "Ultimate Memory"
+  },
+  "03a19196": {
+    "key": "ITEM_16_0013",
+    "text": "Era Core"
+  },
+  "68bafc37": {
+    "key": "ITEM_16_0105",
+    "text": "Forgotten Azureplume"
+  },
+  "c1563862": {
+    "key": "ITEM_16_0106",
+    "text": "Divinity's Crimsonplume"
+  },
+  "fd1dc09a": {
+    "key": "ITEM_16_0901",
+    "text": "Primeval Firestorm Node"
+  },
+  "25165316": {
+    "key": "ITEM_16_0902",
+    "text": "Primeval Aquashade Node"
+  },
+  "686f12ad": {
+    "key": "ITEM_16_0903",
+    "text": "Primeval Galewing Node"
+  },
+  "53a9d491": {
+    "key": "ITEM_16_0904",
+    "text": "Primeval Landslide Node"
+  },
+  "0311b2de": {
+    "key": "ITEM_18_0003",
+    "text": "Sparks of the Apocalypse"
+  },
+  "6f38afe1": {
+    "key": "ITEM_19_0010",
+    "text": "World Idean"
+  },
+  "85f40d79": {
+    "key": "ITEM_19_0012",
+    "text": "Chaotic Signum"
+  },
+  "8a08f64e": {
+    "key": "ITEM_19_0013",
+    "text": "Auroral Signum"
+  },
+  "d147a1ba": {
+    "key": "ITEM_19_0020",
+    "text": "Abyssal Wings"
+  },
+  "05474649": {
+    "key": "ITEM_19_0022",
+    "text": "Provenance Crystal"
+  },
+  "f7dc6ed9": {
+    "key": "ITEM_19_0023",
+    "text": "Hexachrome Quartz"
+  },
+  "58fc9b99": {
+    "key": "ITEM_21_0001",
+    "text": "Transmarvel Voucher"
+  },
+  "d0f04d9f": {
+    "key": "ITEM_22_0022",
+    "text": "Primordial Fire"
+  },
+  "a2452b7c": {
+    "key": "ITEM_22_0032",
+    "text": "Primordial Water"
+  },
+  "89406db0": {
+    "key": "ITEM_22_0042",
+    "text": "Primordial Earth"
+  },
+  "a1ead2c2": {
+    "key": "ITEM_22_0052",
+    "text": "Primordial Wind"
+  },
+  "882f94a7": {
+    "key": "ITEM_22_0062",
+    "text": "Primordial Light"
+  },
+  "c83f9e36": {
+    "key": "ITEM_22_0072",
+    "text": "Primordial Darkness"
+  },
+  "faf93bcc": {
+    "key": "ITEM_22_0121",
+    "text": "Blaze of the Wedges"
+  },
+  "eb707ea7": {
+    "key": "ITEM_23_0004",
+    "text": "Crewmate Card: Gallanza"
+  },
+  "e8926145": {
+    "key": "ITEM_23_0005",
+    "text": "Crewmate Card: Maglielle"
+  },
+  "41e4c8ce": {
+    "key": "ITEM_23_0006",
+    "text": "Crewmate Card: Fraux"
+  },
+  "06e5185f": {
+    "key": "ITEM_23_0007",
+    "text": "Crewmate Card: Fediel"
+  },
+  "17f349ba": {
+    "key": "ITEM_31_0003",
+    "text": "Vile Demon Eye"
+  },
+  "6837efc6": {
+    "key": "ITEM_31_0013",
+    "text": "Extinction War Axe"
+  },
+  "19871bf3": {
+    "key": "ITEM_31_0023",
+    "text": "Excoriation War Axe"
+  },
+  "0e7cbc8e": {
+    "key": "ITEM_31_0033",
+    "text": "Majestic Beak"
+  },
+  "25289584": {
+    "key": "ITEM_31_0043",
+    "text": "Landbeast Grimspike"
+  },
+  "7500c5d9": {
+    "key": "ITEM_31_0053",
+    "text": "Frostbeast Grimspike"
+  },
+  "695ea716": {
+    "key": "ITEM_31_0063",
+    "text": "Flamebeast Grimspike"
+  },
+  "04c18eec": {
+    "key": "ITEM_31_0077",
+    "text": "Carnage Pulse Unit"
+  },
+  "f7f9a658": {
+    "key": "ITEM_31_0078",
+    "text": "Sinister Prongs"
+  },
+  "d4ee7fc3": {
+    "key": "ITEM_31_0085",
+    "text": "Blood Ruby"
+  },
+  "2a5548a9": {
+    "key": "ITEM_31_0086",
+    "text": "Fool's Fractured Jaw"
+  },
+  "381526a4": {
+    "key": "ITEM_31_0095",
+    "text": "Blood-Soaked Helm"
+  },
+  "bdbf43ee": {
+    "key": "ITEM_32_0044",
+    "text": "Spiteband of Lament"
+  },
+  "adffe24e": {
+    "key": "ITEM_32_0046",
+    "text": "Bestial Ritual Stone"
+  },
+  "f74a6a4d": {
+    "key": "ITEM_32_1000",
+    "text": "Fan-Fave Crown"
+  },
+  "7388fe67": {
+    "key": "ITEM_33_0002",
+    "text": "Sephira Luster"
+  },
+  "68eadaa9": {
+    "key": "ITEM_35_2000",
+    "text": "Conflux Point"
+  },
+  "2657283e": {
+    "key": "ITEM_35_3000",
+    "text": "Resonance Point"
+  },
+  "9fba96d1": {
+    "key": "ITEM_60_0001",
+    "text": "Dark Wee Pincer"
+  },
+  "076a9f41": {
+    "key": "ITEM_70_0018",
+    "text": "Jet-Black Crab Statue"
+  },
+  "06c0d0a1": {
+    "key": "ITEM_70_0019",
+    "text": "Golden Albacore Statue"
+  },
+  "6c375d99": {
+    "key": "ITEM_70_0020",
+    "text": "Sky Memory: Infinitesimal and Infinite"
+  },
+  "2c0b5a82": {
+    "key": "ITEM_70_0021",
+    "text": "Sky Memory: Manifestation"
+  },
+  "96a00c42": {
+    "key": "ITEM_70_0022",
+    "text": "Sky Memory: Love's Legacy"
+  },
+  "e3abc397": {
+    "key": "ITEM_70_0023",
+    "text": "Sky Memory: The War"
+  },
+  "0943913b": {
+    "key": "ITEM_70_0024",
+    "text": "Sky Memory: The Girl in Blue"
+  },
+  "c57a5fe9": {
+    "key": "ITEM_70_0025",
+    "text": "Sky Memory: Divided Skies"
+  },
+  "4249436e": {
+    "key": "ITEM_70_0026",
+    "text": "Sky Memory: Sundered God"
+  },
+  "74201317": {
+    "key": "ITEM_70_0027",
+    "text": "Sky Memory: Rebirthed Genesis"
+  },
+  "d11baafc": {
+    "key": "ITEM_70_0028",
+    "text": "Concept Art Color Pack"
+  },
+  "c93e2fdd": {
+    "key": "ITEM_90_0000",
+    "text": "Child of Darkness and Flames"
+  },
+  "8bf58697": {
+    "key": "ITEM_90_0001",
+    "text": "Wings from the Boundary"
+  },
+  "cf24b2f6": {
+    "key": "ITEM_90_0002",
+    "text": "Colossus of Fortification"
   }
 }

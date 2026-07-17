@@ -1,0 +1,350 @@
+{
+  "3a583a9c": {
+    "key": "SBE_PL0000_SP000",
+    "text": "Risveglio: Livello arti +"
+  },
+  "ec41afa1": {
+    "key": "SBE_PL0000_SP100",
+    "text": "Essenza: Cura +"
+  },
+  "7c26d0c4": {
+    "key": "SBE_PL0000_SP200",
+    "text": "Anima: Sostituzione"
+  },
+  "23f3c22e": {
+    "key": "SBE_PL0100_SP000",
+    "text": "Risveglio: Livello arti +"
+  },
+  "db71c42a": {
+    "key": "SBE_PL0100_SP100",
+    "text": "Essenza: Cura +"
+  },
+  "6017b9b5": {
+    "key": "SBE_PL0100_SP200",
+    "text": "Anima: Sostituzione"
+  },
+  "ecd375f1": {
+    "key": "SBE_PL0200_SP000",
+    "text": "Risveglio: Estensore Ares"
+  },
+  "da587cb6": {
+    "key": "SBE_PL0200_SP100",
+    "text": "Essenza: Assalto Ares"
+  },
+  "e6193e09": {
+    "key": "SBE_PL0200_SP200",
+    "text": "Anima: Lama celeste"
+  },
+  "dc249afd": {
+    "key": "SBE_PL0300_SP000",
+    "text": "Risveglio: Detonabersaglio +"
+  },
+  "1bdadfec": {
+    "key": "SBE_PL0300_SP100",
+    "text": "Essenza: Becchino +"
+  },
+  "c8b3ff29": {
+    "key": "SBE_PL0300_SP200",
+    "text": "Anima: Danni collaterali"
+  },
+  "3785ee72": {
+    "key": "SBE_PL0400_SP000",
+    "text": "Risveglio: Focalizzazione +"
+  },
+  "09bdc3a0": {
+    "key": "SBE_PL0400_SP100",
+    "text": "Essenza: Catena magica"
+  },
+  "9ff0b805": {
+    "key": "SBE_PL0400_SP200",
+    "text": "Anima: Sette fiori"
+  },
+  "a56678a9": {
+    "key": "SBE_PL0500_SP000",
+    "text": "Risveglio: Vista da cecchino +"
+  },
+  "0a225055": {
+    "key": "SBE_PL0500_SP100",
+    "text": "Essenza: Pugno granata"
+  },
+  "96fde7fd": {
+    "key": "SBE_PL0500_SP200",
+    "text": "Anima: Granata velenosa +"
+  },
+  "2a1e9175": {
+    "key": "SBE_PL0600_SP000",
+    "text": "Risveglio: Requiem floreale"
+  },
+  "dddb9201": {
+    "key": "SBE_PL0600_SP100",
+    "text": "Essenza: Potenziamenti e malus"
+  },
+  "960314a6": {
+    "key": "SBE_PL0600_SP200",
+    "text": "Anima: Rose potenziate"
+  },
+  "60700621": {
+    "key": "SBE_PL0700_SP000",
+    "text": "Risveglio: Cuccioli inarrestabili"
+  },
+  "97f24c90": {
+    "key": "SBE_PL0700_SP100",
+    "text": "Essenza: Fantasma solitario"
+  },
+  "8796ea21": {
+    "key": "SBE_PL0700_SP200",
+    "text": "Anima: Supporto"
+  },
+  "d95eb781": {
+    "key": "SBE_PL0800_SP000",
+    "text": "Risveglio: Colpi finali perfetti"
+  },
+  "fbbe6baf": {
+    "key": "SBE_PL0800_SP100",
+    "text": "Essenza: Schivate +"
+  },
+  "321ee2fa": {
+    "key": "SBE_PL0800_SP200",
+    "text": "Anima: Abilità di danno +"
+  },
+  "164b5647": {
+    "key": "SBE_PL0900_SP000",
+    "text": "Risveglio: Ostilità +"
+  },
+  "c7ba5829": {
+    "key": "SBE_PL0900_SP100",
+    "text": "Essenza: Per il bene di tutti"
+  },
+  "725ec346": {
+    "key": "SBE_PL0900_SP200",
+    "text": "Anima: Incrollabile"
+  },
+  "19b5f235": {
+    "key": "SBE_PL1000_SP000",
+    "text": "Risveglio: Attacco caricato +"
+  },
+  "9553b16e": {
+    "key": "SBE_PL1000_SP100",
+    "text": "Essenza: Taglio carminio"
+  },
+  "45f93675": {
+    "key": "SBE_PL1000_SP200",
+    "text": "Anima: Parata caricata"
+  },
+  "4ce38b11": {
+    "key": "SBE_PL1100_SP000",
+    "text": "Risveglio: Attacchi perfetti"
+  },
+  "944c385d": {
+    "key": "SBE_PL1100_SP100",
+    "text": "Essenza: Abilità di danno +"
+  },
+  "15e1e269": {
+    "key": "SBE_PL1100_SP200",
+    "text": "Anima: Lama letale"
+  },
+  "9abaf95f": {
+    "key": "SBE_PL1200_SP000",
+    "text": "Risveglio: Postura nobile +"
+  },
+  "4ce67126": {
+    "key": "SBE_PL1200_SP100",
+    "text": "Essenza: Scontro a viso aperto"
+  },
+  "caa980bb": {
+    "key": "SBE_PL1200_SP200",
+    "text": "Anima: Invincibilità"
+  },
+  "394ebac1": {
+    "key": "SBE_PL1300_SP000",
+    "text": "Risveglio: Sapere dei tre manti"
+  },
+  "a3c64b2c": {
+    "key": "SBE_PL1300_SP100",
+    "text": "Essenza: Scatto fulmineo"
+  },
+  "f88599c1": {
+    "key": "SBE_PL1300_SP200",
+    "text": "Anima: Contrattacco"
+  },
+  "13ccf9f5": {
+    "key": "SBE_PL1400_SP000",
+    "text": "Risveglio: Cambio postura +"
+  },
+  "bd7d2d0a": {
+    "key": "SBE_PL1400_SP100",
+    "text": "Essenza: Fendente mortale"
+  },
+  "485bb574": {
+    "key": "SBE_PL1400_SP200",
+    "text": "Anima: Devozione assoluta"
+  },
+  "058bbcd0": {
+    "key": "SBE_PL1500_SP000",
+    "text": "Risveglio: Pugno superiore"
+  },
+  "6481eb8c": {
+    "key": "SBE_PL1500_SP100",
+    "text": "Essenza: Postura leonina"
+  },
+  "cbf2fa02": {
+    "key": "SBE_PL1500_SP200",
+    "text": "Anima: Pugno esemplare"
+  },
+  "971aa4ef": {
+    "key": "SBE_PL1600_SP000",
+    "text": "Risveglio: Combo ciclica +"
+  },
+  "9d221a4b": {
+    "key": "SBE_PL1600_SP100",
+    "text": "Essenza: Abilità di danno +"
+  },
+  "3e799f4a": {
+    "key": "SBE_PL1600_SP200",
+    "text": "Anima: Contrattacco"
+  },
+  "48253f09": {
+    "key": "SBE_PL1700_SP000",
+    "text": "Risveglio: Combo completa"
+  },
+  "abbd6fea": {
+    "key": "SBE_PL1700_SP100",
+    "text": "Essenza: Attacco caricato"
+  },
+  "d3de43c1": {
+    "key": "SBE_PL1700_SP200",
+    "text": "Anima: Parata caricata"
+  },
+  "6bf584f8": {
+    "key": "SBE_PL1800_SP000",
+    "text": "Risveglio: Combo malus potenti"
+  },
+  "67e999f5": {
+    "key": "SBE_PL1800_SP100",
+    "text": "Essenza: Collasso +"
+  },
+  "72e2ef88": {
+    "key": "SBE_PL1800_SP200",
+    "text": "Anima: Cura di Supporto +"
+  },
+  "65eb5b0d": {
+    "key": "SBE_PL1900_SP000",
+    "text": "Risveglio: Forza divina +"
+  },
+  "62b36c64": {
+    "key": "SBE_PL1900_SP100",
+    "text": "Essenza: Forma draconica +"
+  },
+  "ca8c0eff": {
+    "key": "SBE_PL1900_SP200",
+    "text": "Anima: Quadrupla vendetta"
+  },
+  "874a1bde": {
+    "key": "SBE_PL2100_SP000",
+    "text": "Risveglio: Dodici ali promesse"
+  },
+  "0067b812": {
+    "key": "SBE_PL2100_SP100",
+    "text": "Essenza: Benedizione chiara"
+  },
+  "9239f96a": {
+    "key": "SBE_PL2100_SP200",
+    "text": "Anima: Campana del verdetto"
+  },
+  "24d6f865": {
+    "key": "SBE_PL2200_SP000",
+    "text": "Risveglio: Barra avatar +"
+  },
+  "7e9626ef": {
+    "key": "SBE_PL2200_SP100",
+    "text": "Essenza: Pioggia di spade"
+  },
+  "d728f964": {
+    "key": "SBE_PL2200_SP200",
+    "text": "Anima: Cambio modalità"
+  },
+  "7e36b21a": {
+    "key": "SBE_PL2300_SP000",
+    "text": "Risveglio: Raffica multibersaglio"
+  },
+  "34f96e76": {
+    "key": "SBE_PL2300_SP100",
+    "text": "Essenza: Fattore chiave +"
+  },
+  "b2845904": {
+    "key": "SBE_PL2300_SP200",
+    "text": "Anima: Due corone"
+  },
+  "e3ea15a1": {
+    "key": "SBE_PL2400_SP000",
+    "text": "Risveglio: Corazza dispiegata +"
+  },
+  "f9ad080c": {
+    "key": "SBE_PL2400_SP100",
+    "text": "Essenza: Grande mulino +"
+  },
+  "a77be1b3": {
+    "key": "SBE_PL2400_SP200",
+    "text": "Anima: Maniere forti"
+  },
+  "678e3771": {
+    "key": "SBE_PL2500_SP000",
+    "text": "Risveglio: Spade danzanti +"
+  },
+  "78a786b7": {
+    "key": "SBE_PL2500_SP100",
+    "text": "Essenza: Armi Superlative +"
+  },
+  "efa2d23e": {
+    "key": "SBE_PL2500_SP200",
+    "text": "Anima: Scudo del Velo di Lama"
+  },
+  "d8c19249": {
+    "key": "SBE_PL2600_SP000",
+    "text": "Risveglio: Divoratrice del karma"
+  },
+  "9467c71a": {
+    "key": "SBE_PL2600_SP100",
+    "text": "Essenza: Orologio delta +"
+  },
+  "a86cbc27": {
+    "key": "SBE_PL2600_SP200",
+    "text": "Anima: Abilità a catena"
+  },
+  "99f6460d": {
+    "key": "SBE_PL2700_SP000",
+    "text": "Risveglio: Tiro ravvicinato"
+  },
+  "d994808e": {
+    "key": "SBE_PL2700_SP100",
+    "text": "Essenza: Tuono ruggente"
+  },
+  "edb9d7fc": {
+    "key": "SBE_PL2700_SP200",
+    "text": "Anima: Tiro perfetto"
+  },
+  "df550c8b": {
+    "key": "SBE_PL2800_SP000",
+    "text": "Risveglio: Posture +"
+  },
+  "567ebb0a": {
+    "key": "SBE_PL2800_SP100",
+    "text": "Essenza: Forza scintillante"
+  },
+  "881a8207": {
+    "key": "SBE_PL2800_SP200",
+    "text": "Anima: Tentazione del diavolo"
+  },
+  "0ed7e526": {
+    "key": "SBE_PL2900_SP000",
+    "text": "Risveglio: Colpo finale combo +"
+  },
+  "cd8aa9e7": {
+    "key": "SBE_PL2900_SP100",
+    "text": "Essenza: Corrosione oscura"
+  },
+  "15690516": {
+    "key": "SBE_PL2900_SP200",
+    "text": "Anima: Calamità oscura"
+  }
+}

@@ -261,7 +261,7 @@
   },
   "43d71e8f": {
     "key": "43D71E8F",
-    "text": "Erhöhte Heilungsobergrenze"
+    "text": "Heilungsobergrenze von Fähigkeiten"
   },
   "44f04a7a": {
     "key": "44F04A7A",
@@ -345,7 +345,7 @@
   },
   "54929589": {
     "key": "MED_EFF_RECOVERY_LIMIT01",
-    "text": "Erhöhte Heilungsobergrenze"
+    "text": "Heilungsobergrenze von Fähigkeiten"
   },
   "563f7784": {
     "key": "563F7784",
@@ -473,7 +473,7 @@
   },
   "76c83bfd": {
     "key": "76C83BFD",
-    "text": "Erhöhte Heilungsobergrenze"
+    "text": "Heilungsobergrenze von Fähigkeiten"
   },
   "776adca4": {
     "key": "776ADCA4",
@@ -945,7 +945,7 @@
   },
   "ec3b22ff": {
     "key": "EC3B22FF",
-    "text": "Erhöhte Heilungsobergrenze"
+    "text": "Heilungsobergrenze von Fähigkeiten"
   },
   "ee6100ca": {
     "key": "EE6100CA",
@@ -1030,5 +1030,569 @@
   "fe71865d": {
     "key": "FE71865D",
     "text": "Erhöhte Angriffskraft"
+  },
+  "e55c2b23": {
+    "key": "E55C2B23",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "2e2bb439": {
+    "key": "2E2BB439",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "443ee079": {
+    "key": "443EE079",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "b6af9b8e": {
+    "key": "B6AF9B8E",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "eed855f9": {
+    "key": "EED855F9",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "db4eb256": {
+    "key": "DB4EB256",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "72117bf2": {
+    "key": "72117BF2",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "c8cf021b": {
+    "key": "C8CF021B",
+    "text": "Erhöhte Gesundheit"
+  },
+  "3fcffbb6": {
+    "key": "3FCFFBB6",
+    "text": "Erhöhte Gesundheit"
+  },
+  "4e0ff036": {
+    "key": "4E0FF036",
+    "text": "Erhöhte Gesundheit"
+  },
+  "aabf46bf": {
+    "key": "AABF46BF",
+    "text": "Erhöhte Gesundheit"
+  },
+  "00ffc38d": {
+    "key": "00FFC38D",
+    "text": "Erhöhte Gesundheit"
+  },
+  "59a8fcaf": {
+    "key": "59A8FCAF",
+    "text": "Erhöhte Kritische Trefferrate"
+  },
+  "ce96759f": {
+    "key": "CE96759F",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "82d08fb1": {
+    "key": "82D08FB1",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "e931b514": {
+    "key": "E931B514",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "da1e7c1c": {
+    "key": "DA1E7C1C",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "3e27f90f": {
+    "key": "3E27F90F",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "03a22a3a": {
+    "key": "03A22A3A",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "f57786e2": {
+    "key": "F57786E2",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "498d63f2": {
+    "key": "498D63F2",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "371b114f": {
+    "key": "371B114F",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "eb7be8f6": {
+    "key": "EB7BE8F6",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "28e99d17": {
+    "key": "28E99D17",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "22e80215": {
+    "key": "22E80215",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "853edb6a": {
+    "key": "853EDB6A",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "93eadf27": {
+    "key": "93EADF27",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "1da164b8": {
+    "key": "1DA164B8",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "27156f24": {
+    "key": "27156F24",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "c774a784": {
+    "key": "C774A784",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "13091d82": {
+    "key": "13091D82",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "c44bf623": {
+    "key": "C44BF623",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "d4cf0f5e": {
+    "key": "D4CF0F5E",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "83ec4e8e": {
+    "key": "83EC4E8E",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "947b7406": {
+    "key": "947B7406",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "ffb88765": {
+    "key": "FFB88765",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "b41d04c9": {
+    "key": "B41D04C9",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "5dd07f50": {
+    "key": "5DD07F50",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "aa849114": {
+    "key": "AA849114",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "dfc1d004": {
+    "key": "DFC1D004",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "864746c5": {
+    "key": "864746C5",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "c07f498c": {
+    "key": "C07F498C",
+    "text": "Erhöhte Angriffskraft"
+  },
+  "4eb53013": {
+    "key": "4EB53013",
+    "text": "Erhöhte Gesundheit"
+  },
+  "603840ce": {
+    "key": "603840CE",
+    "text": "Erhöhte Gesundheit"
+  },
+  "f39f8114": {
+    "key": "F39F8114",
+    "text": "Erhöhte Gesundheit"
+  },
+  "b309e5e6": {
+    "key": "B309E5E6",
+    "text": "Erhöhte Gesundheit"
+  },
+  "c8353e24": {
+    "key": "C8353E24",
+    "text": "Erhöhte Gesundheit"
+  },
+  "94f139c9": {
+    "key": "94F139C9",
+    "text": "Erhöhte Gesundheit"
+  },
+  "c3c9e540": {
+    "key": "C3C9E540",
+    "text": "Erhöhte Gesundheit"
+  },
+  "78fa278a": {
+    "key": "78FA278A",
+    "text": "Erhöhte Gesundheit"
+  },
+  "f878dcc2": {
+    "key": "F878DCC2",
+    "text": "Erhöhte Gesundheit"
+  },
+  "7bd6879a": {
+    "key": "7BD6879A",
+    "text": "Erhöhte Gesundheit"
+  },
+  "625ada52": {
+    "key": "625ADA52",
+    "text": "Erhöhte Gesundheit"
+  },
+  "fabd6177": {
+    "key": "FABD6177",
+    "text": "Erhöhte Gesundheit"
+  },
+  "ba9210a7": {
+    "key": "BA9210A7",
+    "text": "Erhöhte Gesundheit"
+  },
+  "ead60da1": {
+    "key": "EAD60DA1",
+    "text": "Erhöhte Gesundheit"
+  },
+  "22803e42": {
+    "key": "22803E42",
+    "text": "Erhöhte Gesundheit"
+  },
+  "174abc16": {
+    "key": "174ABC16",
+    "text": "Erhöhte Gesundheit"
+  },
+  "4c5fb53d": {
+    "key": "4C5FB53D",
+    "text": "Erhöhte Gesundheit"
+  },
+  "f3b1b4cc": {
+    "key": "F3B1B4CC",
+    "text": "Erhöhte Gesundheit"
+  },
+  "29503ca1": {
+    "key": "29503CA1",
+    "text": "Erhöhte Gesundheit"
+  },
+  "0469aeb2": {
+    "key": "0469AEB2",
+    "text": "Erhöhte Gesundheit"
+  },
+  "e8d3af6b": {
+    "key": "E8D3AF6B",
+    "text": "Erhöhte Gesundheit"
+  },
+  "f2be9395": {
+    "key": "F2BE9395",
+    "text": "Erhöhte Gesundheit"
+  },
+  "0b5dfa34": {
+    "key": "0B5DFA34",
+    "text": "Erhöhte Gesundheit"
+  },
+  "ea3ea970": {
+    "key": "EA3EA970",
+    "text": "Erhöhte Gesundheit"
+  },
+  "adaa8f29": {
+    "key": "ADAA8F29",
+    "text": "Erhöhte Gesundheit"
+  },
+  "217e62e2": {
+    "key": "217E62E2",
+    "text": "Erhöhte Gesundheit"
+  },
+  "57ea2e2c": {
+    "key": "57EA2E2C",
+    "text": "Erhöhte Kritische Trefferrate"
+  },
+  "9c360784": {
+    "key": "9C360784",
+    "text": "Erhöhte Kritische Trefferrate"
+  },
+  "d7737b35": {
+    "key": "D7737B35",
+    "text": "Erhöhte Kritische Trefferrate"
+  },
+  "89d08caf": {
+    "key": "89D08CAF",
+    "text": "Erhöhte Kritische Trefferrate"
+  },
+  "79909f31": {
+    "key": "79909F31",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "5d4e91a3": {
+    "key": "5D4E91A3",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "ded4178f": {
+    "key": "DED4178F",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "3e0e3aa2": {
+    "key": "3E0E3AA2",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "b32fe60f": {
+    "key": "B32FE60F",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "29f5b171": {
+    "key": "29F5B171",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "d61624cb": {
+    "key": "D61624CB",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "9311ee44": {
+    "key": "9311EE44",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "34997da4": {
+    "key": "34997DA4",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "ce2652af": {
+    "key": "CE2652AF",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "1010438a": {
+    "key": "1010438A",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "97add052": {
+    "key": "97ADD052",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "628e9930": {
+    "key": "628E9930",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "8c0422e5": {
+    "key": "8C0422E5",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "08cc60b1": {
+    "key": "08CC60B1",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "8db159d0": {
+    "key": "8DB159D0",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "15cb5b17": {
+    "key": "15CB5B17",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "5e04b4e2": {
+    "key": "5E04B4E2",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "86071b01": {
+    "key": "86071B01",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "ca8661c1": {
+    "key": "CA8661C1",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "59d32481": {
+    "key": "59D32481",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "ccf0d107": {
+    "key": "CCF0D107",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "1f64c35c": {
+    "key": "1F64C35C",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "25773382": {
+    "key": "25773382",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "e51a0846": {
+    "key": "E51A0846",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "375e03d0": {
+    "key": "375E03D0",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "3ff3b1e1": {
+    "key": "3FF3B1E1",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "bb5cf95b": {
+    "key": "BB5CF95B",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "b08713ea": {
+    "key": "B08713EA",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "ba1190c7": {
+    "key": "BA1190C7",
+    "text": "Erhöhte Betäubungskraft"
+  },
+  "f1baeea2": {
+    "key": "F1BAEEA2",
+    "text": "Erhöhte Betäubungskraft"
+  },
+  "965de284": {
+    "key": "965DE284",
+    "text": "Erhöhte Betäubungskraft"
+  },
+  "db12aef4": {
+    "key": "DB12AEF4",
+    "text": "Erhöhte Betäubungskraft"
+  },
+  "47ab30fc": {
+    "key": "47AB30FC",
+    "text": "Erhöhte Betäubungskraft"
+  },
+  "d1edbb0a": {
+    "key": "D1EDBB0A",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "2e7ca1bb": {
+    "key": "2E7CA1BB",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "3129cd4d": {
+    "key": "3129CD4D",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "88cc6e3b": {
+    "key": "88CC6E3B",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "630875ed": {
+    "key": "630875ED",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "d7de9bb5": {
+    "key": "D7DE9BB5",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "5f18a702": {
+    "key": "5F18A702",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "4587531d": {
+    "key": "4587531D",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "074abe50": {
+    "key": "074ABE50",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "9ddb8898": {
+    "key": "9DDB8898",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "77dd1cc7": {
+    "key": "77DD1CC7",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "95911f77": {
+    "key": "95911F77",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "3ab34e99": {
+    "key": "3AB34E99",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "001c675c": {
+    "key": "001C675C",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "d9c51308": {
+    "key": "D9C51308",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "5510c86b": {
+    "key": "5510C86B",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "da078751": {
+    "key": "DA078751",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "e3e9d634": {
+    "key": "E3E9D634",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "15ba9804": {
+    "key": "15BA9804",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "1fb03ebb": {
+    "key": "1FB03EBB",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "1345cce9": {
+    "key": "1345CCE9",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "893b7fe9": {
+    "key": "893B7FE9",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "c0aab186": {
+    "key": "C0AAB186",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "c83bed8b": {
+    "key": "C83BED8B",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "23052d2b": {
+    "key": "23052D2B",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "19705526": {
+    "key": "19705526",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "e956bbd9": {
+    "key": "E956BBD9",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "6997fbb0": {
+    "key": "6997FBB0",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "ca090c54": {
+    "key": "CA090C54",
+    "text": "Erhöhte Stand.ang.-Schadensoberg."
+  },
+  "19eb9aa0": {
+    "key": "19EB9AA0",
+    "text": "Erhöhte Fähigk.-Schadensoberg."
+  },
+  "026c427e": {
+    "key": "026C427E",
+    "text": "Erhöhte Him. Künste-Schadensoberg."
+  },
+  "d5c6407a": {
+    "key": "D5C6407A",
+    "text": "Heilungsobergrenze von Fähigkeiten"
+  },
+  "fde0318d": {
+    "key": "FDE0318D",
+    "text": "Heilungsobergrenze von Fähigkeiten"
+  },
+  "3d184640": {
+    "key": "3D184640",
+    "text": "Erhöhte Gesundheit"
+  },
+  "385be72c": {
+    "key": "385BE72C",
+    "text": "Erhöhte Gesundheit"
   }
 }

@@ -1093,7 +1093,7 @@
   },
   "f42d8c01": {
     "key": "ITEM_19_0001",
-    "text": "Curiosità"
+    "text": "Reliquia"
   },
   "f430b195": {
     "key": "ITEM_01_0012",
@@ -1154,5 +1154,337 @@
   "ff1a207a": {
     "key": "ITEM_70_0007",
     "text": "Statua del granchio d'oro"
+  },
+  "4a41482c": {
+    "key": "ITEM_03_0003",
+    "text": "Zoccolo verde della prosperità"
+  },
+  "b0782428": {
+    "key": "ITEM_04_0003",
+    "text": "Criniera blu della segregazione"
+  },
+  "35f709e3": {
+    "key": "ITEM_06_0003",
+    "text": "Coda resistente del terrore"
+  },
+  "456d2bb3": {
+    "key": "ITEM_09_0003",
+    "text": "Mortido"
+  },
+  "6e13e372": {
+    "key": "ITEM_09_0013",
+    "text": "Altalama dei Lupi Argentei"
+  },
+  "4c21dc42": {
+    "key": "ITEM_09_0023",
+    "text": "Tripudio del Velo"
+  },
+  "8d888638": {
+    "key": "ITEM_09_0030",
+    "text": "Anima del cielo blu"
+  },
+  "9a3dc719": {
+    "key": "ITEM_09_0050",
+    "text": "Lume del cielo blu"
+  },
+  "20c742de": {
+    "key": "ITEM_14_0001",
+    "text": "Azzurrite imperfetta"
+  },
+  "c043bac9": {
+    "key": "ITEM_14_0023",
+    "text": "Merito dell'alba"
+  },
+  "537cb6d9": {
+    "key": "ITEM_14_0061",
+    "text": "Ragnalite (Difensore)"
+  },
+  "86fb2ee1": {
+    "key": "ITEM_14_0062",
+    "text": "Ragnalite (Storditore)"
+  },
+  "654fa095": {
+    "key": "ITEM_14_0063",
+    "text": "Ragnalite (Ascensione)"
+  },
+  "1f4bae8c": {
+    "key": "ITEM_14_0064",
+    "text": "Ragnalite (Perforatore)"
+  },
+  "54732298": {
+    "key": "ITEM_14_0065",
+    "text": "Ragnalite (Boia)"
+  },
+  "1c195d33": {
+    "key": "ITEM_14_0066",
+    "text": "Ragnalite (Terminus)"
+  },
+  "8c4fc319": {
+    "key": "ITEM_14_0074",
+    "text": "Refinio caotico"
+  },
+  "65063e17": {
+    "key": "ITEM_14_0076",
+    "text": "Reperto dell'epoca divina"
+  },
+  "0eb683cd": {
+    "key": "ITEM_15_0010",
+    "text": "Granrefinio I"
+  },
+  "98cdb46f": {
+    "key": "ITEM_15_0011",
+    "text": "Granrefinio II"
+  },
+  "64a63fbc": {
+    "key": "ITEM_15_0012",
+    "text": "Granrefinio III"
+  },
+  "5392dee6": {
+    "key": "ITEM_16_0005",
+    "text": "Piuma suprema della divinità"
+  },
+  "831f31ff": {
+    "key": "ITEM_16_0007",
+    "text": "Spina del vuoto"
+  },
+  "df713fa9": {
+    "key": "ITEM_16_0009",
+    "text": "Ultimo ricordo"
+  },
+  "03a19196": {
+    "key": "ITEM_16_0013",
+    "text": "Nucleo della fine"
+  },
+  "68bafc37": {
+    "key": "ITEM_16_0105",
+    "text": "Piuma blu dimenticata"
+  },
+  "c1563862": {
+    "key": "ITEM_16_0106",
+    "text": "Piuma purpurea della divinità"
+  },
+  "fd1dc09a": {
+    "key": "ITEM_16_0901",
+    "text": "Nodo originale rovente"
+  },
+  "25165316": {
+    "key": "ITEM_16_0902",
+    "text": "Nodo originale dell'onda"
+  },
+  "686f12ad": {
+    "key": "ITEM_16_0903",
+    "text": "Nodo originale del vento"
+  },
+  "53a9d491": {
+    "key": "ITEM_16_0904",
+    "text": "Nodo originale della frana"
+  },
+  "0311b2de": {
+    "key": "ITEM_18_0003",
+    "text": "Altocristallo dell'apocalisse"
+  },
+  "6f38afe1": {
+    "key": "ITEM_19_0010",
+    "text": "Idea del mondo"
+  },
+  "85f40d79": {
+    "key": "ITEM_19_0012",
+    "text": "Segno del caos"
+  },
+  "8a08f64e": {
+    "key": "ITEM_19_0013",
+    "text": "Segno dell'aurora"
+  },
+  "d147a1ba": {
+    "key": "ITEM_19_0020",
+    "text": "Scheggia oscura"
+  },
+  "05474649": {
+    "key": "ITEM_19_0022",
+    "text": "Cristallo dell'inoppugnabilità"
+  },
+  "f7dc6ed9": {
+    "key": "ITEM_19_0023",
+    "text": "Esacristallo dell'inoppugnabilità"
+  },
+  "58fc9b99": {
+    "key": "ITEM_21_0001",
+    "text": "Coupon trasmeraviglia"
+  },
+  "d0f04d9f": {
+    "key": "ITEM_22_0022",
+    "text": "Fiamma primordiale"
+  },
+  "a2452b7c": {
+    "key": "ITEM_22_0032",
+    "text": "Acqua primordiale"
+  },
+  "89406db0": {
+    "key": "ITEM_22_0042",
+    "text": "Terra primordiale"
+  },
+  "a1ead2c2": {
+    "key": "ITEM_22_0052",
+    "text": "Vento primordiale"
+  },
+  "882f94a7": {
+    "key": "ITEM_22_0062",
+    "text": "Luce primordiale"
+  },
+  "c83f9e36": {
+    "key": "ITEM_22_0072",
+    "text": "Tenebra primordiale"
+  },
+  "faf93bcc": {
+    "key": "ITEM_22_0121",
+    "text": "Fiamma dei pilastri"
+  },
+  "eb707ea7": {
+    "key": "ITEM_23_0004",
+    "text": "Carta compagno: Gallanza"
+  },
+  "e8926145": {
+    "key": "ITEM_23_0005",
+    "text": "Carta compagno: Maglielle"
+  },
+  "41e4c8ce": {
+    "key": "ITEM_23_0006",
+    "text": "Carta compagno: Fraux"
+  },
+  "06e5185f": {
+    "key": "ITEM_23_0007",
+    "text": "Carta compagno: Fediel"
+  },
+  "17f349ba": {
+    "key": "ITEM_31_0003",
+    "text": "Occhio di demone mostruoso"
+  },
+  "6837efc6": {
+    "key": "ITEM_31_0013",
+    "text": "Ascia da guerra glaciale"
+  },
+  "19871bf3": {
+    "key": "ITEM_31_0023",
+    "text": "Ascia da guerra incandescente"
+  },
+  "0e7cbc8e": {
+    "key": "ITEM_31_0033",
+    "text": "Rostro robusto glorioso"
+  },
+  "25289584": {
+    "key": "ITEM_31_0043",
+    "text": "Lucicorno di belva terrestre"
+  },
+  "7500c5d9": {
+    "key": "ITEM_31_0053",
+    "text": "Lucicorno di belva dei ghiacci"
+  },
+  "695ea716": {
+    "key": "ITEM_31_0063",
+    "text": "Lucicorno di belva del fuoco"
+  },
+  "04c18eec": {
+    "key": "ITEM_31_0077",
+    "text": "Motore dell'impulso massacrante"
+  },
+  "f7f9a658": {
+    "key": "ITEM_31_0078",
+    "text": "Forca sinistra"
+  },
+  "d4ee7fc3": {
+    "key": "ITEM_31_0085",
+    "text": "Ematorubino"
+  },
+  "2a5548a9": {
+    "key": "ITEM_31_0086",
+    "text": "Mandibola niellata"
+  },
+  "381526a4": {
+    "key": "ITEM_31_0095",
+    "text": "Elmo del demone"
+  },
+  "bdbf43ee": {
+    "key": "ITEM_32_0044",
+    "text": "Coacervo del lamento"
+  },
+  "adffe24e": {
+    "key": "ITEM_32_0046",
+    "text": "Magatama della bestia spietata"
+  },
+  "f74a6a4d": {
+    "key": "ITEM_32_1000",
+    "text": "Corno del granchio del sumo"
+  },
+  "7388fe67": {
+    "key": "ITEM_33_0002",
+    "text": "Lucore di Sephira"
+  },
+  "68eadaa9": {
+    "key": "ITEM_35_2000",
+    "text": "Punti Avernus"
+  },
+  "2657283e": {
+    "key": "ITEM_35_3000",
+    "text": "Punti risonanza"
+  },
+  "9fba96d1": {
+    "key": "ITEM_60_0001",
+    "text": "Piccola tenaglia nera"
+  },
+  "076a9f41": {
+    "key": "ITEM_70_0018",
+    "text": "Statua d'onice di granchio"
+  },
+  "06c0d0a1": {
+    "key": "ITEM_70_0019",
+    "text": "Statua dorata di Alalunga"
+  },
+  "6c375d99": {
+    "key": "ITEM_70_0020",
+    "text": "Ricordo celeste: Vite incalcolabili"
+  },
+  "2c0b5a82": {
+    "key": "ITEM_70_0021",
+    "text": "Ricordo celeste: Risveglio"
+  },
+  "96a00c42": {
+    "key": "ITEM_70_0022",
+    "text": "Ricordo celeste: La scintilla dell'amore"
+  },
+  "e3abc397": {
+    "key": "ITEM_70_0023",
+    "text": "Ricordo celeste: La Guerra dei Cieli"
+  },
+  "0943913b": {
+    "key": "ITEM_70_0024",
+    "text": "Ricordo celeste: La ragazza in blu"
+  },
+  "c57a5fe9": {
+    "key": "ITEM_70_0025",
+    "text": "Ricordo celeste: Cieli frammentati"
+  },
+  "4249436e": {
+    "key": "ITEM_70_0026",
+    "text": "Ricordo celeste: La scissione dell'Onnipotente"
+  },
+  "74201317": {
+    "key": "ITEM_70_0027",
+    "text": "Ricordo celeste: Rinascita di un nuovo mondo"
+  },
+  "d11baafc": {
+    "key": "ITEM_70_0028",
+    "text": "Pacchetto colori concept art"
+  },
+  "c93e2fdd": {
+    "key": "ITEM_90_0000",
+    "text": "Evoquarzo: Progenie di tenebre e fiamme"
+  },
+  "8bf58697": {
+    "key": "ITEM_90_0001",
+    "text": "Evoquarzo: Drago argenteo della Frontiera"
+  },
+  "cf24b2f6": {
+    "key": "ITEM_90_0002",
+    "text": "Evoquarzo: Titano della fortificazione"
   }
 }
