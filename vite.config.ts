@@ -7,6 +7,7 @@ export default defineConfig(async () => ({
   plugins: [react()],
   build: {
     target: "es2022",
+    sourcemap: false,
   },
 
   resolve: {
@@ -23,13 +24,13 @@ export default defineConfig(async () => ({
     port: 1420,
     strictPort: true,
     watch: {
-      // 3. tell vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+      // 3. tell vite to ignore watching `src-tauri` and the workspace `target/`
+      //    (watching the freshly-built, locked exe dies with EBUSY on Windows)
+      ignored: ["**/src-tauri/**", "**/target/**"],
     },
   },
 
   test: {
-    global: true,
     environment: "jsdom",
   },
 }));
