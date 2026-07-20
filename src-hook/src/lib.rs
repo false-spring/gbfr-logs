@@ -1,3 +1,6 @@
+// Allows dead code under cfg(test) only
+#![cfg_attr(test, allow(dead_code))]
+
 use std::io::Write;
 use std::path::PathBuf;
 
@@ -113,6 +116,7 @@ fn initialize_logger() -> anyhow::Result<()> {
     Ok(())
 }
 
+#[cfg(not(test))]
 #[ctor::ctor]
 fn entry() {
     #[cfg(feature = "console")]
