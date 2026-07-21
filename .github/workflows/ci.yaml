@@ -4,13 +4,19 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   typescript:
     name: Typescript
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 20
       - run: npm ci
@@ -20,8 +26,10 @@ jobs:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 20
       - run: npm ci
@@ -31,8 +39,10 @@ jobs:
     name: Prettier
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 20
       - run: npm ci
@@ -42,8 +52,10 @@ jobs:
     name: Typescript - Vitest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 20
       - run: npm ci
@@ -53,12 +65,15 @@ jobs:
     name: Rust - Cargo Test
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Should not update rustup
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Install Rust toolchain (pinned by rust-toolchain.toml)
         shell: bash
-        run: rustup set auto-self-update disable
-      - run: rustup update nightly && rustup default nightly
-      - uses: Swatinem/rust-cache@v2
+        run: |
+          rustup set auto-self-update disable
+          rustup toolchain install
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
       - run: cargo build --release --package hook
       - run: cargo build --verbose
       - run: cargo test --verbose
