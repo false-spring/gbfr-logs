@@ -5,8 +5,6 @@
 [![Discord](https://img.shields.io/discord/1218833963032776774?style=flat&label=discord&color=7289da)](https://discord.gg/GR4r9zrqJj)
 [![GitHub License](https://img.shields.io/github/license/false-spring/gbfr-logs)](./LICENSE)
 
-<a href="https://www.buymeacoffee.com/false.spring" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-
 Overlay DPS parser/meter for Granblue Fantasy: Relink, based initially on the reverse engineering work from [naoouo/GBFR-ACT](https://github.com/nyaoouo/GBFR-ACT).
 
 ## How to install
@@ -116,10 +114,6 @@ This project is split up into a few subprojects:
 - `src-tauri/` - The Tauri Rust backend that communicates with the hooked process and does parsing.
 - `protocol/` - Defines the message protocol used by hook + back-end.
 - `src/` - The JS front-end used by the Tauri web app
-
-# Supporting the Project
-
-GBFR Logs will always be kept free and open-source (MIT). However, if you want to support me directly, [you can buy me a coffee!](https://www.buymeacoffee.com/false.spring) 🙇
 
 ## Credits
 
