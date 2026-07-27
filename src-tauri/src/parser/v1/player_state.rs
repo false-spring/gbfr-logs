@@ -1,9 +1,72 @@
-use protocol::{ActionType, DamageEvent};
+use protocol::{ActionType, DamageEvent, HealEvent, SbaCause};
 use serde::{Deserialize, Serialize};
 
 use crate::parser::constants::{CharacterType, FerrySkillId};
 
-use super::{skill_state::SkillState, AdjustedDamageInstance};
+use super::aura::{aura_source_of, CONFLUX_AURA_SENTINEL};
+use super::{sba_state::SbaSourceState, skill_state::SkillState, AdjustedDamageInstance};
+
+/// `HealInfo +0x0C` for the generic heal skill; every other producer passes `0xFFFFFFFF`.
+const PLAYER_HEAL_HP_ACTION_CHANNEL: u32 = 0x0001_3880;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(super) enum HealCategory {
+    Skill,
+    /// Drain and potion arrive identical at the hook, so they share one bucket.
+    SelfRecovery,
+    Regen,
+    Revive,
+    Other,
+}
+
+pub(super) fn classify_heal(event: &HealEvent) -> HealCategory {
+    if event.heal_type == 4 {
+        HealCategory::Revive
+    } else if event.channel == PLAYER_HEAL_HP_ACTION_CHANNEL {
+        HealCategory::Skill
+    } else if event.via_apply && event.heal_type == 0 {
+        HealCategory::Skill
+    } else if !event.via_apply && event.heal_type == 2 {
+        HealCategory::SelfRecovery
+    } else if !event.via_apply && event.heal_type == 1 {
+        HealCategory::Regen
+    } else {
+        HealCategory::Other
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Default, Clone, Copy)]
+#[serde(rename_all = "camelCase")]
+pub struct HealBreakdown {
+    pub skill: u64,
+    pub self_recovery: u64,
+    pub regen: u64,
+    pub revive: u64,
+    pub other: u64,
+}
+
+impl HealBreakdown {
+    pub(super) fn add(&mut self, category: HealCategory, amount: u64) {
+        match category {
+            HealCategory::Skill => self.skill += amount,
+            HealCategory::SelfRecovery => self.self_recovery += amount,
+            HealCategory::Regen => self.regen += amount,
+            HealCategory::Revive => self.revive += amount,
+            HealCategory::Other => self.other += amount,
+        }
+    }
+}
+
+pub(super) fn child_character_type_of(event: &DamageEvent) -> CharacterType {
+    let parent_character_type = CharacterType::from_hash(event.source.parent_actor_type);
+
+    // @TODO(false): Collapse all skill IDs from Seofon's avatar into his own.
+    if parent_character_type == CharacterType::Pl2200 {
+        parent_character_type
+    } else {
+        CharacterType::from_hash(event.source.actor_type)
+    }
+}
 
 /// Derived stat breakdown for a player
 #[derive(Debug, Serialize, Deserialize)]
@@ -13,11 +76,20 @@ pub struct PlayerState {
     pub character_type: CharacterType,
     pub total_damage: u64,
     pub last_known_pet_skill: Option<ActionType>, // used for Ferry's skills that don't keep track of where they came from
+    #[serde(skip)]
+    pub last_non_sentinel_action: Option<ActionType>,
     pub dps: f64,
     pub skill_breakdown: Vec<SkillState>,
     pub sba: f64,
     pub total_stun_value: f64,
     pub stun_per_second: f64,
+    pub total_damage_taken: u64,
+    pub heal_done: u64,
+    pub heal_received: u64,
+    pub heal_provided_by_type: HealBreakdown,
+    pub heal_received_by_type: HealBreakdown,
+    pub sba_breakdown: Vec<SbaSourceState>,
+    pub total_sba_added: f64,
 }
 
 impl PlayerState {
@@ -25,9 +97,38 @@ impl PlayerState {
         self.sba = sba;
     }
 
+    pub fn add_sba_gain(
+        &mut self,
+        cause: SbaCause,
+        child_character_type: Option<CharacterType>,
+        sba_added: f64,
+    ) {
+        if sba_added <= 0.0 {
+            return;
+        }
+
+        self.total_sba_added += sba_added;
+
+        for source in self.sba_breakdown.iter_mut() {
+            if source.cause == cause && source.child_character_type == child_character_type {
+                source.ticks += 1;
+                source.total_sba_added += sba_added;
+                return;
+            }
+        }
+
+        self.sba_breakdown.push(SbaSourceState {
+            cause,
+            child_character_type,
+            ticks: 1,
+            total_sba_added: sba_added,
+        });
+    }
+
     pub fn update_dps(&mut self, now: i64, start_time: i64) {
-        self.dps = self.total_damage as f64 / ((now - start_time) as f64 / 1000.0);
-        self.stun_per_second = self.total_stun_value / ((now - start_time) as f64 / 1000.0);
+        let elapsed_secs = (now - start_time).max(1) as f64 / 1000.0;
+        self.dps = self.total_damage as f64 / elapsed_secs;
+        self.stun_per_second = self.total_stun_value / elapsed_secs;
     }
 
     // @todo(false): maybe Ferry specific stuff can be removed/abstracted if some extra flags are found or the attribution is fixed
@@ -76,12 +177,7 @@ impl PlayerState {
         let parent_character_type =
             CharacterType::from_hash(damage_instance.event.source.parent_actor_type);
 
-        // @TODO(false): Collapse all skill IDs from Seofon's avatar into his own.
-        let child_character_type = if parent_character_type == CharacterType::Pl2200 {
-            parent_character_type
-        } else {
-            CharacterType::from_hash(damage_instance.event.source.actor_type)
-        };
+        let child_character_type = child_character_type_of(damage_instance.event);
 
         // for ferry defer to special function to handle the weird way her pets work
         let action = if parent_character_type == CharacterType::Pl0700 {
@@ -89,6 +185,16 @@ impl PlayerState {
         } else {
             damage_instance.event.action_id
         };
+
+        let aura_source = aura_source_of(
+            action,
+            damage_instance.event.flags,
+            self.last_non_sentinel_action,
+        );
+
+        if action != ActionType::Normal(CONFLUX_AURA_SENTINEL) {
+            self.last_non_sentinel_action = Some(action);
+        }
 
         // If the skill is already being tracked, update it.
         for skill in self.skill_breakdown.iter_mut() {
@@ -103,14 +209,17 @@ impl PlayerState {
             }
 
             // If the skill is already being tracked, update it.
-            if skill.action_type == action && skill.child_character_type == child_character_type {
+            if skill.action_type == action
+                && skill.child_character_type == child_character_type
+                && skill.aura_source == aura_source
+            {
                 skill.update_from_damage_event(damage_instance);
                 return;
             }
         }
 
         // Otherwise, create a new skill and track it.
-        let mut skill = SkillState::new(action, child_character_type);
+        let mut skill = SkillState::new(action, child_character_type, aura_source);
 
         skill.update_from_damage_event(damage_instance);
         self.skill_breakdown.push(skill);
@@ -119,7 +228,7 @@ impl PlayerState {
 
 #[cfg(test)]
 mod tests {
-    use crate::parser::v1::{PlayerData, PlayerStats};
+    use crate::parser::v1::{aura::AuraSource, dto::PlayerStats, PlayerData};
 
     use super::*;
 
@@ -130,16 +239,52 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 100,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             total_stun_value: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
         };
 
         player_state.update_dps(1000, 0);
 
         assert_eq!(player_state.dps, 100.0);
+    }
+
+    #[test]
+    fn dps_does_not_overflow_on_the_encounter_opening_hit() {
+        let mut player_state = PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 620652,
+            last_known_pet_skill: None,
+            last_non_sentinel_action: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            total_stun_value: 57.0,
+            stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
+        };
+
+        player_state.update_dps(1000, 1000);
+
+        assert!(player_state.dps.is_finite());
+        assert!(player_state.stun_per_second.is_finite());
     }
 
     #[test]
@@ -149,11 +294,19 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             total_stun_value: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -175,6 +328,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -194,11 +350,19 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             total_stun_value: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -220,6 +384,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -247,10 +414,18 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
             total_stun_value: 0.0,
         };
 
@@ -273,6 +448,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let skill_two = DamageEvent {
@@ -294,6 +472,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state
@@ -316,10 +497,18 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
             total_stun_value: 0.0,
         };
 
@@ -342,6 +531,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let child_skill = DamageEvent {
@@ -363,6 +555,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -391,11 +586,19 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             total_stun_value: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -417,6 +620,9 @@ mod tests {
             attack_rate: None,
             stun_value: Some(5.0),
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let player_data = PlayerData {
@@ -428,6 +634,11 @@ mod tests {
             is_online: false,
             weapon_info: None,
             overmastery_info: None,
+            summon_info: None,
+            skill_loadout: Vec::new(),
+            over_mastery: Vec::new(),
+            master_trait_flags: Vec::new(),
+            effective_traits: Vec::new(),
             player_stats: Some(PlayerStats {
                 level: 100,
                 total_hp: 10000,
@@ -435,7 +646,11 @@ mod tests {
                 stun_power: 130.0,
                 critical_rate: 100.0,
                 total_power: 1000,
+                dmg_cap_channels: [0.0; 3],
             }),
+            network_user_id: None,
+            network_user_name: None,
+            master_level: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -453,11 +668,19 @@ mod tests {
             character_type: CharacterType::Pl0000,
             total_damage: 0,
             last_known_pet_skill: None,
+            last_non_sentinel_action: None,
             dps: 0.0,
             skill_breakdown: vec![],
             sba: 0.0,
             total_stun_value: 0.0,
             stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
         };
 
         let damage_event = DamageEvent {
@@ -479,6 +702,9 @@ mod tests {
             attack_rate: None,
             stun_value: Some(5.0),
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -487,5 +713,216 @@ mod tests {
         ));
 
         assert_eq!(player_state.total_stun_value, 5.0);
+    }
+
+    #[test]
+    fn conflux_auras_sharing_the_sentinel_id_do_not_merge() {
+        let mut player_state = PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 0,
+            last_known_pet_skill: None,
+            last_non_sentinel_action: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
+            total_stun_value: 0.0,
+        };
+
+        let toxic_blast = aura_hit(0x1080100002020000, 100);
+        let luster = aura_hit(0x1000100002040000, 40);
+
+        for event in [&toxic_blast, &toxic_blast, &luster] {
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(event, None));
+        }
+
+        assert_eq!(player_state.skill_breakdown.len(), 2);
+        assert_eq!(player_state.total_damage, 240);
+
+        let toxic = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.aura_source == AuraSource::ToxicBlast)
+            .expect("Toxic Blast row");
+        assert_eq!(toxic.hits, 2);
+        assert_eq!(toxic.total_damage, 200);
+
+        let luster_row = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.aura_source == AuraSource::LusterOfDarkness)
+            .expect("Luster of Darkness row");
+        assert_eq!(luster_row.hits, 1);
+        assert_eq!(luster_row.total_damage, 40);
+    }
+
+    #[test]
+    fn ordinary_moves_are_unaffected_by_flags() {
+        let mut player_state = PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 0,
+            last_known_pet_skill: None,
+            last_non_sentinel_action: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
+            total_stun_value: 0.0,
+        };
+
+        for flags in [0x2020000, 0x1080100002020000, 0x1000100002040000] {
+            let event = ordinary_hit(flags);
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&event, None));
+        }
+
+        assert_eq!(player_state.skill_breakdown.len(), 1);
+        assert_eq!(player_state.skill_breakdown[0].hits, 3);
+    }
+
+    #[test]
+    fn every_tail_of_one_ice_and_fire_proc_is_attributed_to_it() {
+        let mut player_state = blank_player_state();
+
+        let ice_and_fire = DamageEvent {
+            action_id: ActionType::Normal(100008),
+            damage: 1000,
+            ..blank_event()
+        };
+        let tail = aura_hit(0x1000100002040000, 350);
+
+        for event in [&ice_and_fire, &tail, &tail] {
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(event, None));
+        }
+
+        assert_eq!(player_state.skill_breakdown.len(), 2);
+        assert!(player_state
+            .skill_breakdown
+            .iter()
+            .all(|s| s.aura_source != AuraSource::LusterOfDarkness));
+
+        let follow_up = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.aura_source == AuraSource::IceAndFireFollowUp)
+            .expect("Ice and Fire follow-up row");
+        assert_eq!(follow_up.hits, 2);
+        assert_eq!(follow_up.total_damage, 700);
+    }
+
+    #[test]
+    fn a_later_hit_releases_the_ice_and_fire_gate() {
+        let mut player_state = blank_player_state();
+
+        let ice_and_fire = DamageEvent {
+            action_id: ActionType::Normal(100008),
+            damage: 1000,
+            ..blank_event()
+        };
+        let ordinary = ordinary_hit(0x2020000);
+        let luster = aura_hit(0x1000100002040000, 350);
+
+        for event in [&ice_and_fire, &luster, &ordinary, &luster] {
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(event, None));
+        }
+
+        let follow_up = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.aura_source == AuraSource::IceAndFireFollowUp)
+            .expect("Ice and Fire follow-up row");
+        assert_eq!(follow_up.hits, 1);
+
+        let luster_row = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.aura_source == AuraSource::LusterOfDarkness)
+            .expect("Luster of Darkness row");
+        assert_eq!(luster_row.hits, 1);
+    }
+
+    fn blank_player_state() -> PlayerState {
+        PlayerState {
+            index: 0,
+            character_type: CharacterType::Pl0000,
+            total_damage: 0,
+            last_known_pet_skill: None,
+            last_non_sentinel_action: None,
+            dps: 0.0,
+            skill_breakdown: vec![],
+            sba: 0.0,
+            stun_per_second: 0.0,
+            total_damage_taken: 0,
+            heal_done: 0,
+            heal_received: 0,
+            heal_provided_by_type: HealBreakdown::default(),
+            heal_received_by_type: HealBreakdown::default(),
+            sba_breakdown: vec![],
+            total_sba_added: 0.0,
+            total_stun_value: 0.0,
+        }
+    }
+
+    fn aura_hit(flags: u64, damage: i32) -> DamageEvent {
+        DamageEvent {
+            action_id: ActionType::Normal(99999),
+            damage,
+            flags,
+            ..blank_event()
+        }
+    }
+
+    fn ordinary_hit(flags: u64) -> DamageEvent {
+        DamageEvent {
+            action_id: ActionType::Normal(200),
+            damage: 50,
+            flags,
+            ..blank_event()
+        }
+    }
+
+    fn blank_event() -> DamageEvent {
+        DamageEvent {
+            source: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            target: protocol::Actor {
+                index: 0,
+                actor_type: 0,
+                parent_actor_type: 0,
+                parent_index: 0,
+            },
+            action_id: ActionType::Normal(0),
+            damage: 0,
+            flags: 0,
+            attack_rate: None,
+            stun_value: None,
+            damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
+        }
     }
 }
