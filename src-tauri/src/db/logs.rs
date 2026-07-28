@@ -5,6 +5,11 @@ use sea_query_rusqlite::RusqliteBinder;
 use serde::Serialize;
 
 use crate::parser::constants::EnemyType;
+use crate::style_catalog;
+
+/// Rows recorded before the game version was captured store NULL; this
+/// string selects that bucket.
+pub const PRE_EXPANSION_SENTINEL: &str = "__pre_expansion__";
 
 pub enum SortType {
     Time,
@@ -37,6 +42,11 @@ enum Logs {
     QuestId,
     QuestElapsedTime,
     QuestCompleted,
+    GameVersion,
+    P1NetworkId,
+    P2NetworkId,
+    P3NetworkId,
+    P4NetworkId,
 }
 
 #[derive(Debug, Serialize)]
@@ -76,6 +86,79 @@ pub struct LogEntry {
     quest_elapsed_time: Option<u32>,
     /// Was quest completed?
     quest_completed: Option<bool>,
+    /// The game version this encounter was recorded on (NULL = "Pre-Expansion")
+    game_version: Option<String>,
+    /// Persistent PlayFab entity id; NULL for local/offline members.
+    p1_network_id: Option<String>,
+    p2_network_id: Option<String>,
+    p3_network_id: Option<String>,
+    p4_network_id: Option<String>,
+}
+
+/// Per-slot filters, AND'd within a slot then OR'd across P1..P4; all active
+/// filters must match the same party slot.
+fn player_slot_condition(
+    filter_by_player_id: &Option<String>,
+    filter_by_player_character: &Option<String>,
+    style_mask: Option<u8>,
+) -> Option<Condition> {
+    if filter_by_player_id.is_none() && filter_by_player_character.is_none() && style_mask.is_none()
+    {
+        return None;
+    }
+
+    let slots = [
+        (Logs::P1Name, Logs::P1Type, "p1_styles"),
+        (Logs::P2Name, Logs::P2Type, "p2_styles"),
+        (Logs::P3Name, Logs::P3Type, "p3_styles"),
+        (Logs::P4Name, Logs::P4Type, "p4_styles"),
+    ];
+
+    let mut cond = Condition::any();
+    for (name_col, type_col, styles_col) in slots {
+        let mut slot = Condition::all();
+        if let Some(player_id) = filter_by_player_id {
+            slot = slot.add(Expr::col(name_col).eq(player_id.clone()));
+        }
+        if let Some(player_character) = filter_by_player_character {
+            slot = slot.add(Expr::col(type_col).eq(player_character.clone()));
+        }
+        if let Some(mask) = style_mask {
+            slot = slot.add(Expr::cust_with_values(
+                format!("({styles_col} & ?) <> 0"),
+                [mask as i32],
+            ));
+        }
+        cond = cond.add(slot);
+    }
+
+    Some(cond)
+}
+
+fn game_version_condition(filter_by_game_versions: &[String]) -> Option<Condition> {
+    if filter_by_game_versions.is_empty() {
+        return None;
+    }
+
+    let mut real_versions: Vec<String> = Vec::new();
+    let mut include_null = false;
+    for v in filter_by_game_versions {
+        if v == PRE_EXPANSION_SENTINEL {
+            include_null = true;
+        } else {
+            real_versions.push(v.clone());
+        }
+    }
+
+    let mut cond = Condition::any();
+    if !real_versions.is_empty() {
+        cond = cond.add(Expr::col(Logs::GameVersion).is_in(real_versions));
+    }
+    if include_null {
+        cond = cond.add(Expr::col(Logs::GameVersion).is_null());
+    }
+
+    Some(cond)
 }
 
 pub fn get_logs(
@@ -88,8 +171,16 @@ pub fn get_logs(
     sort_direction: &SortDirection,
     cleared: Option<bool>,
     filter_by_player_id: &Option<String>,
-    filter_by_player_character: &Option<String>
+    filter_by_player_character: &Option<String>,
+    filter_by_style: &Option<String>,
+    filter_by_game_versions: &[String]
 ) -> anyhow::Result<Vec<LogEntry>> {
+    let style_mask = filter_by_style
+        .as_deref()
+        .and_then(style_catalog::style_filter_mask);
+    let slot_condition =
+        player_slot_condition(filter_by_player_id, filter_by_player_character, style_mask);
+    let version_condition = game_version_condition(filter_by_game_versions);
     let sort_column = match sort_by {
         SortType::Time => Logs::Time,
         SortType::Duration => Logs::Duration,
@@ -121,6 +212,11 @@ pub fn get_logs(
             Logs::QuestId,
             Logs::QuestElapsedTime,
             Logs::QuestCompleted,
+            Logs::GameVersion,
+            Logs::P1NetworkId,
+            Logs::P2NetworkId,
+            Logs::P3NetworkId,
+            Logs::P4NetworkId,
         ])
         .conditions(
             filter_by_enemy_id.is_some(),
@@ -144,52 +240,16 @@ pub fn get_logs(
             |_| {},
         )
         .conditions(
-            filter_by_player_id.is_some() && filter_by_player_character.is_some(),
+            slot_condition.is_some(),
             |q| {
-                let player_id = filter_by_player_id.as_ref().unwrap();
-                let player_character = filter_by_player_character.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P1Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P2Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P2Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P3Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P3Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P4Name).eq(player_id)
-                                .and(Expr::col(Logs::P4Type).eq(player_character))),
-                );
+                q.cond_where(slot_condition.clone().unwrap());
             },
             |_| {},
         )
         .conditions(
-            filter_by_player_id.is_some() && filter_by_player_character.is_none(),
+            version_condition.is_some(),
             |q| {
-                let player_id = filter_by_player_id.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P2Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P3Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P4Name).eq(player_id)),
-                );
-            },
-            |_| {},
-        )
-        .conditions(
-            filter_by_player_id.is_none() && filter_by_player_character.is_some(),
-            |q| {
-                let player_character = filter_by_player_character.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P2Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P3Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P4Type).eq(player_character)),
-                );
+                q.cond_where(version_condition.clone().unwrap());
             },
             |_| {},
         )
@@ -222,6 +282,11 @@ pub fn get_logs(
                 quest_id: row.get(14)?,
                 quest_elapsed_time: row.get(15)?,
                 quest_completed: row.get(16)?,
+                game_version: row.get(17)?,
+                p1_network_id: row.get(18)?,
+                p2_network_id: row.get(19)?,
+                p3_network_id: row.get(20)?,
+                p4_network_id: row.get(21)?,
             })
         })
         .collect::<rusqlite::Result<Vec<LogEntry>>>();
@@ -235,8 +300,17 @@ pub fn get_logs_count(
     filter_by_quest_id: Option<u32>,
     cleared: Option<bool>,
     filter_by_player_id: &Option<String>,
-    filter_by_player_character: &Option<String>
+    filter_by_player_character: &Option<String>,
+    filter_by_style: &Option<String>,
+    filter_by_game_versions: &[String]
 ) -> Result<i32> {
+    let style_mask = filter_by_style
+        .as_deref()
+        .and_then(style_catalog::style_filter_mask);
+    let slot_condition =
+        player_slot_condition(filter_by_player_id, filter_by_player_character, style_mask);
+    let version_condition = game_version_condition(filter_by_game_versions);
+
     let (sql, values) = Query::select()
         .expr(Expr::col(Logs::Id).count())
         .from(Logs::Table)
@@ -262,52 +336,16 @@ pub fn get_logs_count(
             |_| {},
         )
         .conditions(
-            filter_by_player_id.is_some() && filter_by_player_character.is_some(),
+            slot_condition.is_some(),
             |q| {
-                let player_id = filter_by_player_id.as_ref().unwrap();
-                let player_character = filter_by_player_character.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P1Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P2Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P2Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P3Name).eq(player_id.clone())
-                                .and(Expr::col(Logs::P3Type).eq(player_character.clone())))
-                        .add(Expr::col(Logs::P4Name).eq(player_id)
-                                .and(Expr::col(Logs::P4Type).eq(player_character))),
-                );
+                q.cond_where(slot_condition.clone().unwrap());
             },
             |_| {},
         )
         .conditions(
-            filter_by_player_id.is_some() && filter_by_player_character.is_none(),
+            version_condition.is_some(),
             |q| {
-                let player_id = filter_by_player_id.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P2Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P3Name).eq(player_id.clone()))
-                        .add(Expr::col(Logs::P4Name).eq(player_id)),
-                );
-            },
-            |_| {},
-        )
-        .conditions(
-            filter_by_player_id.is_none() && filter_by_player_character.is_some(),
-            |q| {
-                let player_character = filter_by_player_character.as_ref().unwrap();
-        
-                q.cond_where(
-                    Condition::any()
-                        .add(Expr::col(Logs::P1Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P2Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P3Type).eq(player_character.clone()))
-                        .add(Expr::col(Logs::P4Type).eq(player_character)),
-                );
+                q.cond_where(version_condition.clone().unwrap());
             },
             |_| {},
         )
@@ -319,4 +357,40 @@ pub fn get_logs_count(
     let row: i32 = stmt.query_row(&*params, |r| r.get(0))?;
 
     Ok(row)
+}
+
+pub fn distinct_u32(conn: &rusqlite::Connection, column: &str) -> Result<Vec<u32>, String> {
+    let sql = format!("SELECT DISTINCT {column} FROM logs WHERE {column} IS NOT NULL ORDER BY {column}");
+    let mut stmt = conn.prepare(&sql).map_err(|e| e.to_string())?;
+    let rows = stmt
+        .query_map([], |row| row.get::<usize, u32>(0))
+        .map_err(|e| e.to_string())?;
+    rows.collect::<rusqlite::Result<Vec<_>>>()
+        .map_err(|e| e.to_string())
+}
+
+pub fn distinct_text(conn: &rusqlite::Connection, column: &str) -> Result<Vec<String>, String> {
+    let sql = format!("SELECT DISTINCT {column} FROM logs WHERE {column} IS NOT NULL ORDER BY {column}");
+    let mut stmt = conn.prepare(&sql).map_err(|e| e.to_string())?;
+    let rows = stmt
+        .query_map([], |row| row.get::<usize, String>(0))
+        .map_err(|e| e.to_string())?;
+    rows.collect::<rusqlite::Result<Vec<_>>>()
+        .map_err(|e| e.to_string())
+}
+
+pub fn distinct_party_text(conn: &rusqlite::Connection, suffix: &str) -> Result<Vec<String>, String> {
+    let sql = (1..=4)
+        .map(|slot| {
+            format!("SELECT DISTINCT p{slot}_{suffix} FROM logs WHERE p{slot}_{suffix} IS NOT NULL")
+        })
+        .collect::<Vec<_>>()
+        .join(" UNION ")
+        + " ORDER BY 1";
+    let mut stmt = conn.prepare(&sql).map_err(|e| e.to_string())?;
+    let rows = stmt
+        .query_map([], |row| row.get::<usize, String>(0))
+        .map_err(|e| e.to_string())?;
+    rows.collect::<rusqlite::Result<Vec<_>>>()
+        .map_err(|e| e.to_string())
 }
