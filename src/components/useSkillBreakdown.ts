@@ -3,23 +3,29 @@ import { useShallow } from "zustand/react/shallow";
 import SkillGroupMapping from "@/assets/skill-groups";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { ComputedPlayerState, ComputedSkillGroup, ComputedSkillState } from "@/types";
-import { getSkillName } from "@/utils";
+import { maxNullable, minNullable } from "@/utils/derive";
+import { getSkillName } from "@/utils/i18n";
 
-export const useSkillBreakdown = (player: ComputedPlayerState) => {
+export const useSkillBreakdown = (player: ComputedPlayerState, metric: "damage" | "stun" = "damage") => {
   const { useCondensedSkills } = useMeterSettingsStore(
     useShallow((state) => ({
       useCondensedSkills: state.use_condensed_skills,
     }))
   );
 
-  const totalDamage = player.skillBreakdown.reduce((acc, skill) => acc + skill.totalDamage, 0);
-  const computedSkills = player.skillBreakdown.map<ComputedSkillState>((skill) => {
-    return {
-      percentage: (skill.totalDamage / totalDamage) * 100,
-      groupName: getSkillName(player.characterType, skill),
-      ...skill,
-    };
-  });
+  const skillTotal = (skill: { totalDamage: number; totalStunValue: number }) =>
+    metric === "stun" ? skill.totalStunValue : skill.totalDamage;
+
+  const totalForMetric = player.skillBreakdown.reduce((acc, skill) => acc + skillTotal(skill), 0);
+  const computedSkills = player.skillBreakdown
+    .filter((skill) => metric !== "damage" || skill.hits > 0)
+    .map<ComputedSkillState>((skill) => {
+      return {
+        percentage: totalForMetric === 0 ? 0 : (skillTotal(skill) / totalForMetric) * 100,
+        groupName: getSkillName(player.characterType, skill),
+        ...skill,
+      };
+    });
 
   let skillsToShow: Array<ComputedSkillGroup | ComputedSkillState> = computedSkills;
 
@@ -57,8 +63,12 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
                 hits: skillGroup.hits + skill.hits,
                 percentage: skillGroup.percentage + skill.percentage,
                 totalDamage: skillGroup.totalDamage + skill.totalDamage,
-                minDamage: Math.min(skillGroup?.minDamage || 0, skill.minDamage || 0),
-                maxDamage: Math.max(skillGroup?.maxDamage ?? Number.MIN_VALUE, skill.maxDamage || 0),
+                minDamage: minNullable(skillGroup.minDamage, skill.minDamage),
+                maxDamage: maxNullable(skillGroup.maxDamage, skill.maxDamage),
+                totalStunValue: skillGroup.totalStunValue + skill.totalStunValue,
+                minStunValue: minNullable(skillGroup.minStunValue, skill.minStunValue),
+                maxStunValue: maxNullable(skillGroup.maxStunValue, skill.maxStunValue),
+                stunHits: skillGroup.stunHits + skill.stunHits,
                 skills: [...(skillGroup.skills || []), skill],
               };
             } else {
@@ -71,8 +81,10 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
                 maxDamage: skill.maxDamage,
                 percentage: skill.percentage,
                 skills: [skill],
+                minStunValue: skill.minStunValue,
                 maxStunValue: skill.maxStunValue,
                 totalStunValue: skill.totalStunValue,
+                stunHits: skill.stunHits,
               });
             }
 
@@ -93,7 +105,7 @@ export const useSkillBreakdown = (player: ComputedPlayerState) => {
     skillsToShow = skills;
   }
 
-  skillsToShow.sort((a, b) => b.totalDamage - a.totalDamage);
+  skillsToShow.sort((a, b) => skillTotal(b) - skillTotal(a));
 
   return {
     skills: skillsToShow,

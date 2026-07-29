@@ -1,10 +1,14 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { ComputedSkillGroup } from "@/types";
-import { humanizeNumbers } from "@/utils";
+import { ComputedSkillGroup, SkillMeterColumns } from "@/types";
 import { useState } from "react";
 import { useShallow } from "zustand/react/shallow";
+import { getSkillColumnValue } from "./skillColumns";
 
-export const useSkillGroupRow = (group: ComputedSkillGroup) => {
+export const useSkillGroupRow = (
+  group: ComputedSkillGroup,
+  columns: SkillMeterColumns[],
+  stunPerSecondRatio: number
+) => {
   const { show_full_values } = useMeterSettingsStore(
     useShallow((state) => ({
       show_full_values: state.show_full_values,
@@ -13,25 +17,14 @@ export const useSkillGroupRow = (group: ComputedSkillGroup) => {
 
   const [expanded, setExpanded] = useState(false);
 
-  const [totalDamage, totalDamageUnit] = humanizeNumbers(group.totalDamage);
-  const [minDmg, minDmgUnit] = humanizeNumbers(group.minDamage || 0);
-  const [maxDmg, maxDmgUnit] = humanizeNumbers(group.maxDamage || 0);
-  const rawAverageDmg = group.hits === 0 ? 0 : group.totalDamage / group.hits;
-  const [averageDmg, averageDmgUnit] = humanizeNumbers(rawAverageDmg);
-
-  const sortedSkills = (group.skills || []).sort((a, b) => b.totalDamage - a.totalDamage);
+  const sortedSkills = columns.includes(SkillMeterColumns.TotalStunValue)
+    ? (group.skills || []).sort((a, b) => b.totalStunValue - a.totalStunValue)
+    : (group.skills || []).sort((a, b) => b.totalDamage - a.totalDamage);
 
   return {
     showFullValues: show_full_values,
-    totalDamage,
-    totalDamageUnit,
-    minDmg,
-    minDmgUnit,
-    maxDmg,
-    maxDmgUnit,
-    rawAverageDmg,
-    averageDmg,
-    averageDmgUnit,
+    getColumnValue: (column: SkillMeterColumns) =>
+      getSkillColumnValue(column, group, show_full_values, stunPerSecondRatio),
     expanded,
     setExpanded,
     sortedSkills,
