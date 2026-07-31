@@ -25,6 +25,7 @@ export default function useSettings() {
     use_condensed_skills,
     overlay_columns,
     open_log_on_save,
+    show_link_time,
     setMeterSettings,
   } = useMeterSettingsStore((state) => ({
     color_1: state.color_1,
@@ -37,6 +38,7 @@ export default function useSettings() {
     show_full_values: state.show_full_values,
     use_condensed_skills: state.use_condensed_skills,
     open_log_on_save: state.open_log_on_save,
+    show_link_time: state.show_link_time,
     setMeterSettings: state.set,
     overlay_columns: state.overlay_columns,
   }));
@@ -90,6 +92,7 @@ export default function useSettings() {
     overlay_columns,
     availableOverlayColumns,
     open_log_on_save,
+    show_link_time,
     handleLanguageChange,
     handleReorderOverlayColumns,
     addOverlayColumn,

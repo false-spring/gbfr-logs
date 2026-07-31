@@ -1,13 +1,10 @@
+import { UploadSelectedButton } from "@/components/UploadSelectedButton";
 import { FilterState } from "@/stores/useLogIndexStore";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import { Log, LogSortType, SortDirection } from "@/types";
-import {
-  epochToLocalTime,
-  millisecondsToElapsedFormat,
-  translateEnemyType,
-  translateEnemyTypeId,
-  translateQuestId,
-} from "@/utils";
+import { PRE_EXPANSION_VERSION } from "@/utils/constants";
+import { compareGameVersions, epochToLocalTime, millisecondsToElapsedFormat } from "@/utils/format";
+import { translateEnemyType, translateEnemyTypeId, translateQuestId } from "@/utils/i18n";
 import {
   Box,
   Button,
@@ -16,6 +13,7 @@ import {
   Divider,
   Flex,
   Group,
+  MultiSelect,
   Pagination,
   Select,
   Space,
@@ -35,7 +33,6 @@ export const IndexPage = () => {
     searchResult,
     selectedLogIds,
     setSelectedLogIds,
-    setSelectedTargets,
     confirmDeleteSelected,
     confirmDeleteAll,
     handleSetPage,
@@ -81,10 +78,6 @@ export const IndexPage = () => {
         .join(", ");
     }
 
-    const resetSelectedTargets = () => {
-      setSelectedTargets([]);
-    };
-
     return (
       <LogEntry
         key={log.id}
@@ -93,7 +86,6 @@ export const IndexPage = () => {
         setSelectedLogIds={setSelectedLogIds}
         primaryTarget={primaryTarget}
         names={names}
-        resetSelectedTargets={resetSelectedTargets}
       />
     );
   });
@@ -106,9 +98,18 @@ export const IndexPage = () => {
         </Box>
         <Box style={{ display: "flex", flexDirection: "row-reverse", flex: 1 }}>
           {selectedLogIds.length > 0 ? (
-            <Button size="xs" variant="default" onClick={confirmDeleteSelected} disabled={selectedLogIds.length === 0}>
-              {t("ui.logs.delete-selected-btn", { count: selectedLogIds.length })}
-            </Button>
+            <>
+              <Button
+                size="xs"
+                variant="default"
+                onClick={confirmDeleteSelected}
+                disabled={selectedLogIds.length === 0}
+              >
+                {t("ui.logs.delete-selected-btn", { count: selectedLogIds.length })}
+              </Button>
+              <Space w="xs" />
+              <UploadSelectedButton ids={selectedLogIds} />
+            </>
           ) : (
             <Button size="xs" variant="default" onClick={confirmDeleteAll}>
               {t("ui.logs.delete-all-btn")}
@@ -121,6 +122,7 @@ export const IndexPage = () => {
           <SelectableEnemy targetIds={searchResult.enemyIds} setFilters={setFilters} filters={filters} />
           <SelectableQuest questIds={searchResult.questIds} setFilters={setFilters} filters={filters} />
           <SelectableQuestCompletion setFilters={setFilters} filters={filters} />
+          <SelectableGameVersion gameVersions={searchResult.gameVersions} setFilters={setFilters} filters={filters} />
           <Button size="s" variant="default" onClick={toggleAdvancedFilters}>
             {filters.showAdvancedFilters ? t("ui.logs.hide-advanced-filters") : t("ui.logs.show-advanced-filters")}
           </Button>
@@ -134,6 +136,7 @@ export const IndexPage = () => {
           {filters.showAdvancedFilters && (
             <SelectablePlayerType playerTypes={searchResult.playerTypes} setFilters={setFilters} filters={filters} />
           )}
+          {filters.showAdvancedFilters && <SelectableStyle setFilters={setFilters} filters={filters} />}
         </Group>
       </Box>
       {searchResult.logs.length === 0 && <BlankTable />}
@@ -233,14 +236,12 @@ function LogEntry({
   setSelectedLogIds,
   primaryTarget,
   names,
-  resetSelectedTargets,
 }: {
   log: Log;
   selectedLogIds: number[];
   setSelectedLogIds: (ids: number[]) => void;
   primaryTarget: string;
   names: string;
-  resetSelectedTargets: () => void;
 }): JSX.Element {
   return (
     <Table.Tr key={log.id}>
@@ -275,7 +276,7 @@ function LogEntry({
         <Text size="xs">{names}</Text>
       </Table.Td>
       <Table.Td>
-        <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`} onClick={resetSelectedTargets}>
+        <Button size="xs" variant="default" component={Link} to={`/logs/${log.id}`}>
           View
         </Button>
       </Table.Td>
@@ -329,6 +330,7 @@ function SelectableEnemy({
       placeholder={t("ui.select-enemy")}
       searchable
       clearable
+      scrollAreaProps={{ type: "always", offsetScrollbars: true }}
     />
   );
 }
@@ -354,6 +356,40 @@ function SelectableQuest({
       value={filters.filterByQuestId?.toString() ?? null}
       onChange={(value) => setFilters({ filterByQuestId: value ? Number(value) : null })}
       placeholder={t("ui.select-quest")}
+      searchable
+      clearable
+      scrollAreaProps={{ type: "always", offsetScrollbars: true }}
+    />
+  );
+}
+
+function SelectableGameVersion({
+  gameVersions,
+  filters,
+  setFilters,
+}: {
+  gameVersions: string[];
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
+}) {
+  const { t } = useTranslation();
+  const versionOptions = useMemo(
+    () => [
+      ...[...gameVersions]
+        .sort(compareGameVersions)
+        .reverse()
+        .map((v) => ({ value: v, label: v })),
+      { value: PRE_EXPANSION_VERSION, label: t("ui.logs.pre-expansion") },
+    ],
+    [gameVersions, t]
+  );
+
+  return (
+    <MultiSelect
+      data={versionOptions}
+      value={filters.filterByGameVersions ?? []}
+      onChange={(value) => setFilters({ filterByGameVersions: value })}
+      placeholder={t("ui.logs.select-game-version")}
       searchable
       clearable
     />
@@ -407,6 +443,36 @@ function SelectablePlayer({
       value={filters.filterByPlayerId ?? null}
       searchable
       clearable
+      scrollAreaProps={{ type: "always", offsetScrollbars: true }}
+    />
+  );
+}
+
+function SelectableStyle({
+  filters,
+  setFilters,
+}: {
+  filters: FilterState;
+  setFilters: (filters: Partial<FilterState>) => void;
+}) {
+  const { t } = useTranslation();
+  const styleOptions = useMemo(
+    () => [
+      { value: "SB_DEF", label: t("ui.logs.style-insight", "Insight") },
+      { value: "SB_ATK", label: t("ui.logs.style-essence", "Essence") },
+      { value: "SB_LIMIT", label: t("ui.logs.style-crux", "Crux") },
+    ],
+    [t]
+  );
+
+  return (
+    <Select
+      data={styleOptions}
+      onChange={(value) => setFilters({ filterByStyle: value ? String(value) : null })}
+      value={filters.filterByStyle ?? null}
+      placeholder={t("ui.logs.filter-style", "Select style")}
+      searchable
+      clearable
     />
   );
 }
@@ -422,7 +488,10 @@ function SelectablePlayerType({
 }) {
   const { t } = useTranslation();
   const targetOptions = useMemo(
-    () => playerTypes.map((id) => ({ value: id.toString(), label: t(`characters:${id}`, `ui:characters.${id}`) })),
+    () =>
+      playerTypes
+        .map((id) => ({ value: id.toString(), label: t(`characters:${id}`, `ui:characters.${id}`) }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
     [playerTypes]
   );
 
@@ -434,6 +503,7 @@ function SelectablePlayerType({
       placeholder={t("ui.select-character")}
       searchable
       clearable
+      scrollAreaProps={{ type: "always", offsetScrollbars: true }}
     />
   );
 }
