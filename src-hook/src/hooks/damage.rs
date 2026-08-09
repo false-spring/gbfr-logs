@@ -613,6 +613,10 @@ impl OnProcessDamageHook {
             stun_fill: None,
             target_base_type,
             stun_max: None,
+            // Replicated records only reach here (the `a4 == 0` bail above), and
+            // the clamp block never runs on that path, so there is nothing to
+            // report -- the same reason `damage_cap` arrives as a sentinel.
+            hit_calc: None,
         }));
     }
 
@@ -937,6 +941,19 @@ impl OnProcessDamageHook {
             } else {
                 None
             },
+            // Only on the local-simulation path. The replicated arm skips the
+            // whole clamp block and the instance it hands us is a stack
+            // temporary the deserializer only partly fills, so every field in
+            // here would be leftovers -- see protocol::HitCalc. Read after the
+            // original call (above) because `pre_cap_damage` is written by that
+            // clamp block; the other four are inputs it never touches.
+            hit_calc: (a4 == 0).then(|| protocol::HitCalc {
+                cap_rate: damage_instance.cap_rate,
+                class_flags: damage_instance.class_flags,
+                reference_damage: damage_instance.reference_damage,
+                pre_cap_damage: damage_instance.pre_cap_damage,
+                damage_floor: damage_instance.damage_floor,
+            }),
         });
 
         if park_until_classified {
@@ -1054,6 +1071,9 @@ impl OnProcessDotHook {
             stun_fill: None,
             target_base_type,
             stun_max: None,
+            // A DoT tick has no DamageInstance at all -- this hook is handed the
+            // target and a bare damage number.
+            hit_calc: None,
         });
 
         let _ = self.tx.send(event);
@@ -1231,6 +1251,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         })
     }
 

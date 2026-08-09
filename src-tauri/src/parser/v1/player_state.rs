@@ -339,6 +339,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -395,6 +396,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -459,6 +461,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let skill_two = DamageEvent {
@@ -483,6 +486,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         player_state
@@ -542,6 +546,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let child_skill = DamageEvent {
@@ -566,6 +571,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -631,6 +637,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let player_data = PlayerData {
@@ -713,6 +720,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -991,6 +999,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }
     }
 }

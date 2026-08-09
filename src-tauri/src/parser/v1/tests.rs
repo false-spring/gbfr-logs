@@ -33,6 +33,7 @@ fn player_damage_event() -> DamageEvent {
         stun_fill: None,
         target_base_type: None,
         stun_max: None,
+        hit_calc: None,
     }
 }
 
@@ -2642,6 +2643,7 @@ fn start_time_depends_on_first_event() {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }),
     ));
 
@@ -2676,6 +2678,7 @@ fn duration_calculated_from_start_to_current_event() {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }),
     ));
 
@@ -2703,6 +2706,7 @@ fn duration_calculated_from_start_to_current_event() {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }),
     ));
 
@@ -2732,6 +2736,7 @@ fn an_event_after_the_last_hit_does_not_overrun_the_sba_chart() {
                 stun_fill: None,
                 target_base_type: None,
                 stun_max: None,
+                hit_calc: None,
             }),
         )
     };
@@ -2777,6 +2782,7 @@ fn a_status_after_the_last_hit_does_not_extend_the_encounter() {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }),
     ));
 
@@ -2804,6 +2810,7 @@ fn a_status_after_the_last_hit_does_not_extend_the_encounter() {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         }),
     ));
 
@@ -2848,6 +2855,7 @@ fn id_dragon_damage_merges_into_id_row() {
         stun_fill: None,
         target_base_type: None,
         stun_max: None,
+        hit_calc: None,
     };
 
     parser.on_damage_event(hit(PL1900_HASH, 100));
@@ -2922,6 +2930,7 @@ fn summon_hit_owned_by_the_dragon() -> DamageEvent {
         stun_fill: None,
         target_base_type: None,
         stun_max: None,
+        hit_calc: None,
     }
 }
 
@@ -3229,6 +3238,7 @@ fn stun_hit(tgt: u32, raw: f32, fill: Option<f32>, max: Option<f32>) -> DamageEv
         stun_fill: fill,
         target_base_type: None,
         stun_max: max,
+        hit_calc: None,
     }
 }
 
@@ -3496,5 +3506,90 @@ mod helper_targets {
 
         assert_eq!(parser.derived_state.total_damage, 2 * HIT as u64);
         assert_eq!(parser.derived_state.targets.len(), 2);
+    }
+}
+
+/// A saved log outlives the build that wrote it, and the one-directional
+/// compatibility that rests on -- a newer parser opening an older log -- is a
+/// property of `#[serde(default)]`, not of anything the compiler checks. Adding
+/// a field without one makes every previously-saved encounter unreadable with a
+/// missing-field error, which is not a failure any existing test would catch.
+mod saved_log_compatibility {
+    use super::*;
+    use serde::Serialize;
+
+    /// `DamageEvent` as it was written before `hit_calc` existed. Field names
+    /// have to match exactly -- CBOR keys by name, which is the whole reason
+    /// the saved direction is compatible at all.
+    #[derive(Serialize)]
+    struct DamageEventBeforeHitCalc {
+        source: Actor,
+        target: Actor,
+        damage: i32,
+        flags: u64,
+        action_id: ActionType,
+        attack_rate: Option<f32>,
+        stun_value: Option<f32>,
+        damage_cap: Option<i32>,
+        stun_fill: Option<f32>,
+        target_base_type: Option<u32>,
+        stun_max: Option<f32>,
+    }
+
+    fn actor() -> Actor {
+        Actor {
+            index: 0,
+            actor_type: 0x26A4_848A,
+            parent_index: 0,
+            parent_actor_type: 0x26A4_848A,
+        }
+    }
+
+    #[test]
+    fn a_log_saved_before_hit_calc_existed_still_opens() {
+        let old = DamageEventBeforeHitCalc {
+            source: actor(),
+            target: actor(),
+            damage: 100,
+            flags: 0,
+            action_id: ActionType::Normal(0),
+            attack_rate: Some(1.0),
+            stun_value: None,
+            damage_cap: Some(34642),
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
+        };
+
+        let blob = cbor4ii::serde::to_vec(Vec::new(), &old).unwrap();
+        let read: DamageEvent = cbor4ii::serde::from_slice(&blob).unwrap();
+
+        assert!(read.hit_calc.is_none());
+        assert_eq!(read.damage_cap, Some(34642));
+    }
+
+    /// And the new field survives its own round trip, nested struct included --
+    /// `hit_calc` is the first `Option<struct>` on this message rather than an
+    /// `Option<f32>`.
+    #[test]
+    fn a_hit_the_local_client_computed_round_trips() {
+        let mut event = player_damage_event();
+        event.hit_calc = Some(protocol::HitCalc {
+            cap_rate: 0.45,
+            class_flags: 0x1_0000,
+            reference_damage: 12_345,
+            pre_cap_damage: 40_000.0,
+            damage_floor: -1,
+        });
+
+        let blob = cbor4ii::serde::to_vec(Vec::new(), &event).unwrap();
+        let read: DamageEvent = cbor4ii::serde::from_slice(&blob).unwrap();
+        let calc = read.hit_calc.expect("hit_calc survives the round trip");
+
+        assert_eq!(calc.cap_rate, 0.45);
+        assert_eq!(calc.class_flags, 0x1_0000);
+        assert_eq!(calc.reference_damage, 12_345);
+        assert_eq!(calc.pre_cap_damage, 40_000.0);
+        assert_eq!(calc.damage_floor, -1);
     }
 }

@@ -81,6 +81,48 @@ impl Display for ActionType {
     }
 }
 
+/// What the engine computed for one hit, as opposed to what it arrived at.
+///
+/// LOCAL-SIMULATION path only: the replicated path skips the clamp block and
+/// hands the deserializer a stack temporary, so these slots hold leftovers on a
+/// peer's hits. One `Option` rather than five fields because the distinction is
+/// all-or-nothing — for a four-player log it is `None` on three rows in four.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct HitCalc {
+    /// The rate the damage-cap ladder is interpolated on (`+0xDC`): the move's
+    /// AUTHORED rate, before any runtime multiplier. NOT
+    /// `DamageEvent::attack_rate` (`+0xE0`), which is the same rate multiplied —
+    /// equal whenever no multiplier is live, silently different when one is.
+    ///
+    /// Interpolating the shipped ladder here gives `L`, and since the engine
+    /// computes `cap = trunc(trunc(L) * K/100)` for integer `K`, the summed
+    /// cap-up multiplier divides back out uniquely.
+    pub cap_rate: f32,
+    /// The damage-class flag word (`+0xF0`): `& 0x10000` = Skill,
+    /// `& 0x40000` = SBA, bit 7 = summon, otherwise Normal. NOT part of
+    /// `DamageEvent::flags` (the qword at `+0xE8`) — this is the dword after it,
+    /// and `0x10000`/`0x40000` are live positions in both.
+    ///
+    /// It alone chooses which of `PlayerStats::dmg_cap_channels`' three entries
+    /// the hit was charged against.
+    pub class_flags: u32,
+    /// Un-buffed reference damage (`+0xD0`): attack power x crit x rate, with no
+    /// buff product applied. `pre_cap_damage / reference_damage` collapses the
+    /// unlogged multiplier stack into one number per hit — divide the PRE-CAP
+    /// damage by it, never `DamageEvent::damage`, which is post-clamp and
+    /// post-multiplier and scatters meaninglessly.
+    pub reference_damage: i32,
+    /// The damage the floor and cap were applied to (`+0x2D4`), before the
+    /// post-cap multiplier chain reinflated it. The game's own cap percentage is
+    /// `pre_cap_damage / damage_cap * 100`; `damage / damage_cap` is not that
+    /// number, since the engine reinflates the clamped value without re-applying
+    /// the cap and the ratio exceeds 1.0 on most capped hits.
+    pub pre_cap_damage: f32,
+    /// The floor half of the `{floor, cap}` clamp pair (`+0x2B8`); `-1` when
+    /// unset. Carried so a hit whose damage was RAISED is identifiable.
+    pub damage_floor: i32,
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct DamageEvent {
     pub source: Actor,
@@ -105,6 +147,11 @@ pub struct DamageEvent {
     /// Used to cap amount of stun dealt for visualization after logging
     #[serde(default)]
     pub stun_max: Option<f32>,
+    /// See `HitCalc`. `None` on a hit this client received rather than
+    /// simulated, on paths with no `DamageInstance` (DoT, source-less records),
+    /// and on older logs — hence `serde(default)` and the trailing position.
+    #[serde(default)]
+    pub hit_calc: Option<HitCalc>,
 }
 
 /// For debugging (damage events from remote players that should

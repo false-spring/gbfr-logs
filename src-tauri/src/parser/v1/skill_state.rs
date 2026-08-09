@@ -147,6 +147,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let damage_event_two = DamageEvent {
@@ -171,6 +172,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -219,6 +221,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let staggering_hit = DamageEvent {
@@ -289,6 +292,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let small_stun_hit = DamageEvent {
@@ -353,6 +357,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         let hit_a = DamageEvent {
@@ -419,6 +424,7 @@ mod tests {
             stun_fill: None,
             target_base_type: None,
             stun_max: None,
+            hit_calc: None,
         };
 
         skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(

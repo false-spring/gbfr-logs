@@ -2104,6 +2104,7 @@ mod window_tests {
                     stun_fill: None,
                     target_base_type: None,
                     stun_max: None,
+                    hit_calc: None,
                 }),
             )
         };

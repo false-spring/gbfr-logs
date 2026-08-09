@@ -2,19 +2,26 @@
 #[derive(Debug)]
 #[repr(C)]
 pub struct DamageInstance {
-    padding_00: [u8; 0xD4],   // 0x000 - 0x0D4
-    pub damage: i32,          // 0x0D4
-    padding_d8: [u8; 0x08],   // 0x0D8 - 0x0E0
-    pub attack_rate: f32,     // 0x0E0
-    padding_e4: [u8; 0x04],   // 0x0E4 - 0x0E8
-    pub flags: u64,           // 0x0E8
-    padding_f0: [u8; 0x04],   // 0x0F0 - 0x0F4
+    padding_00: [u8; 0xD0],    // 0x000 - 0x0D0
+    pub reference_damage: i32, // 0x0D0
+    pub damage: i32,           // 0x0D4
+    padding_d8: [u8; 0x04],    // 0x0D8 - 0x0DC
+    pub cap_rate: f32,         // 0x0DC
+    pub attack_rate: f32,      // 0x0E0
+    padding_e4: [u8; 0x04],    // 0x0E4 - 0x0E8
+    pub flags: u64,            // 0x0E8
+    /// Bits 64..95 of the flag block `flags` covers the low half of, NOT part of
+    /// `flags`. `& 0x10000` = Skill, `& 0x40000` = SBA, bit 7 = summon, else Normal
+    pub class_flags: u32,      // 0x0F0
     /// Per-hit stun in gauge units, pre-bonus.
-    pub stun: f32,            // 0x0F4
-    padding_f8: [u8; 0x74],   // 0x0F8 - 0x16C
-    pub action_id: u32,       // 0x16C
-    padding_170: [u8; 0x14C], // 0x170 - 0x2BC
-    pub damage_cap: i32,      // 0x2BC
+    pub stun: f32,             // 0x0F4
+    padding_f8: [u8; 0x74],    // 0x0F8 - 0x16C
+    pub action_id: u32,        // 0x16C
+    padding_170: [u8; 0x148],  // 0x170 - 0x2B8
+    pub damage_floor: i32,     // 0x2B8
+    pub damage_cap: i32,       // 0x2BC
+    padding_2c0: [u8; 0x14],   // 0x2C0 - 0x2D4
+    pub pre_cap_damage: f32,   // 0x2D4
 }
 
 /// Based at the quest manager singleton itself, not at a1+0x1D8 as pre-2.0.
@@ -110,11 +117,16 @@ mod tests {
 
     #[test]
     fn damage_instance_field_offsets() {
+        assert_eq!(offset_of!(DamageInstance, reference_damage), 0xD0);
         assert_eq!(offset_of!(DamageInstance, damage), 0xD4);
+        assert_eq!(offset_of!(DamageInstance, cap_rate), 0xDC);
         assert_eq!(offset_of!(DamageInstance, attack_rate), 0xE0);
         assert_eq!(offset_of!(DamageInstance, flags), 0xE8);
+        assert_eq!(offset_of!(DamageInstance, class_flags), 0xF0);
         assert_eq!(offset_of!(DamageInstance, stun), 0xF4);
         assert_eq!(offset_of!(DamageInstance, action_id), 0x16C);
+        assert_eq!(offset_of!(DamageInstance, damage_floor), 0x2B8);
         assert_eq!(offset_of!(DamageInstance, damage_cap), 0x2BC);
+        assert_eq!(offset_of!(DamageInstance, pre_cap_damage), 0x2D4);
     }
 }
