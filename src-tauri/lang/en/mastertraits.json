@@ -1,0 +1,350 @@
+{
+  "3a583a9c": {
+    "key": "SBE_PL0000_SP000",
+    "text": "Insight: Artfully Adept"
+  },
+  "ec41afa1": {
+    "key": "SBE_PL0000_SP100",
+    "text": "Essence: Combat Healer"
+  },
+  "7c26d0c4": {
+    "key": "SBE_PL0000_SP200",
+    "text": "Crux: The Substitute"
+  },
+  "23f3c22e": {
+    "key": "SBE_PL0100_SP000",
+    "text": "Insight: Artfully Adept"
+  },
+  "db71c42a": {
+    "key": "SBE_PL0100_SP100",
+    "text": "Essence: Combat Healer"
+  },
+  "6017b9b5": {
+    "key": "SBE_PL0100_SP200",
+    "text": "Crux: The Substitute"
+  },
+  "ecd375f1": {
+    "key": "SBE_PL0200_SP000",
+    "text": "Insight: Forever Ares"
+  },
+  "da587cb6": {
+    "key": "SBE_PL0200_SP100",
+    "text": "Essence: Army of Two"
+  },
+  "e6193e09": {
+    "key": "SBE_PL0200_SP200",
+    "text": "Crux: Blade Blue"
+  },
+  "dc249afd": {
+    "key": "SBE_PL0300_SP000",
+    "text": "Insight: Precision Blasting"
+  },
+  "1bdadfec": {
+    "key": "SBE_PL0300_SP100",
+    "text": "Essence: Expert Coffinmaker"
+  },
+  "c8b3ff29": {
+    "key": "SBE_PL0300_SP200",
+    "text": "Crux: Collateral Risk"
+  },
+  "3785ee72": {
+    "key": "SBE_PL0400_SP000",
+    "text": "Insight: Pure Concentration"
+  },
+  "09bdc3a0": {
+    "key": "SBE_PL0400_SP100",
+    "text": "Essence: Magic Chain"
+  },
+  "9ff0b805": {
+    "key": "SBE_PL0400_SP200",
+    "text": "Crux: Flowery Seven Overload"
+  },
+  "a56678a9": {
+    "key": "SBE_PL0500_SP000",
+    "text": "Insight: Flawless Vision"
+  },
+  "0a225055": {
+    "key": "SBE_PL0500_SP100",
+    "text": "Essence: Grenade Punch"
+  },
+  "96fde7fd": {
+    "key": "SBE_PL0500_SP200",
+    "text": "Crux: Spitting Venom"
+  },
+  "2a1e9175": {
+    "key": "SBE_PL0600_SP000",
+    "text": "Insight: Rose Requiem"
+  },
+  "dddb9201": {
+    "key": "SBE_PL0600_SP100",
+    "text": "Essence: Battlefield Cultivator"
+  },
+  "960314a6": {
+    "key": "SBE_PL0600_SP200",
+    "text": "Crux: Fortified Roses"
+  },
+  "60700621": {
+    "key": "SBE_PL0700_SP000",
+    "text": "Insight: Phantastic Pets"
+  },
+  "97f24c90": {
+    "key": "SBE_PL0700_SP100",
+    "text": "Essence: Self-Reliant Ghost"
+  },
+  "8796ea21": {
+    "key": "SBE_PL0700_SP200",
+    "text": "Crux: Spirited Support"
+  },
+  "d95eb781": {
+    "key": "SBE_PL0800_SP000",
+    "text": "Insight: Finish with Perfection"
+  },
+  "fbbe6baf": {
+    "key": "SBE_PL0800_SP100",
+    "text": "Essence: Artful Dodger"
+  },
+  "321ee2fa": {
+    "key": "SBE_PL0800_SP200",
+    "text": "Crux: Skill Acceleration"
+  },
+  "164b5647": {
+    "key": "SBE_PL0900_SP000",
+    "text": "Insight: Growing Hostility"
+  },
+  "c7ba5829": {
+    "key": "SBE_PL0900_SP100",
+    "text": "Essence: Team Player"
+  },
+  "725ec346": {
+    "key": "SBE_PL0900_SP200",
+    "text": "Crux: Resolve"
+  },
+  "19b5f235": {
+    "key": "SBE_PL1000_SP000",
+    "text": "Insight: Charge Forth"
+  },
+  "9553b16e": {
+    "key": "SBE_PL1000_SP100",
+    "text": "Essence: Molten Edge"
+  },
+  "45f93675": {
+    "key": "SBE_PL1000_SP200",
+    "text": "Crux: Parry Me This"
+  },
+  "4ce38b11": {
+    "key": "SBE_PL1100_SP000",
+    "text": "Insight: Perfect Striker"
+  },
+  "944c385d": {
+    "key": "SBE_PL1100_SP100",
+    "text": "Essence: Skilled Slayer"
+  },
+  "15e1e269": {
+    "key": "SBE_PL1100_SP200",
+    "text": "Crux: Fueled by Pain"
+  },
+  "9abaf95f": {
+    "key": "SBE_PL1200_SP000",
+    "text": "Insight: Noblest Stance"
+  },
+  "4ce67126": {
+    "key": "SBE_PL1200_SP100",
+    "text": "Essence: Charge!"
+  },
+  "caa980bb": {
+    "key": "SBE_PL1200_SP200",
+    "text": "Crux: I Am Invincible"
+  },
+  "394ebac1": {
+    "key": "SBE_PL1300_SP000",
+    "text": "Insight: Triple Shroud Savvy"
+  },
+  "a3c64b2c": {
+    "key": "SBE_PL1300_SP100",
+    "text": "Essence: Speed Runner"
+  },
+  "f88599c1": {
+    "key": "SBE_PL1300_SP200",
+    "text": "Crux: Deft Deflection"
+  },
+  "13ccf9f5": {
+    "key": "SBE_PL1400_SP000",
+    "text": "Insight: Paradigm Shift"
+  },
+  "bd7d2d0a": {
+    "key": "SBE_PL1400_SP100",
+    "text": "Essence: One Cut, One Kill"
+  },
+  "485bb574": {
+    "key": "SBE_PL1400_SP200",
+    "text": "Crux: Devoted to Devotion"
+  },
+  "058bbcd0": {
+    "key": "SBE_PL1500_SP000",
+    "text": "Insight: Super Raging Fist"
+  },
+  "6481eb8c": {
+    "key": "SBE_PL1500_SP100",
+    "text": "Essence: Roaring Lion"
+  },
+  "cbf2fa02": {
+    "key": "SBE_PL1500_SP200",
+    "text": "Crux: Raging Technique"
+  },
+  "971aa4ef": {
+    "key": "SBE_PL1600_SP000",
+    "text": "Insight: Intense Loops"
+  },
+  "9d221a4b": {
+    "key": "SBE_PL1600_SP100",
+    "text": "Essence: One with Skills"
+  },
+  "3e799f4a": {
+    "key": "SBE_PL1600_SP200",
+    "text": "Crux: Out for Revenge"
+  },
+  "48253f09": {
+    "key": "SBE_PL1700_SP000",
+    "text": "Insight: Hooked on Combos"
+  },
+  "abbd6fea": {
+    "key": "SBE_PL1700_SP100",
+    "text": "Essence: Large and In Charge"
+  },
+  "d3de43c1": {
+    "key": "SBE_PL1700_SP200",
+    "text": "Crux: Punishing Parries"
+  },
+  "6bf584f8": {
+    "key": "SBE_PL1800_SP000",
+    "text": "Insight: Crippling Combos"
+  },
+  "67e999f5": {
+    "key": "SBE_PL1800_SP100",
+    "text": "Essence: Super Collapse"
+  },
+  "72e2ef88": {
+    "key": "SBE_PL1800_SP200",
+    "text": "Crux: Alchemedic"
+  },
+  "65eb5b0d": {
+    "key": "SBE_PL1900_SP000",
+    "text": "Insight: Faith in Godmight"
+  },
+  "62b36c64": {
+    "key": "SBE_PL1900_SP100",
+    "text": "Essence: Faith in Dragonform"
+  },
+  "ca8c0eff": {
+    "key": "SBE_PL1900_SP200",
+    "text": "Crux: Path of Vengeance"
+  },
+  "874a1bde": {
+    "key": "SBE_PL2100_SP000",
+    "text": "Insight: Promising Wings"
+  },
+  "0067b812": {
+    "key": "SBE_PL2100_SP100",
+    "text": "Essence: Finding Refuge"
+  },
+  "9239f96a": {
+    "key": "SBE_PL2100_SP200",
+    "text": "Crux: Bell Tolls for Thee"
+  },
+  "24d6f865": {
+    "key": "SBE_PL2200_SP000",
+    "text": "Insight: Fueling the Avatar"
+  },
+  "7e9626ef": {
+    "key": "SBE_PL2200_SP100",
+    "text": "Essence: Sword Tempest"
+  },
+  "d728f964": {
+    "key": "SBE_PL2200_SP200",
+    "text": "Crux: Tag Team"
+  },
+  "7e36b21a": {
+    "key": "SBE_PL2300_SP000",
+    "text": "Insight: Hail to Multilock"
+  },
+  "34f96e76": {
+    "key": "SBE_PL2300_SP100",
+    "text": "Essence: Clinching Victory"
+  },
+  "b2845904": {
+    "key": "SBE_PL2300_SP200",
+    "text": "Crux: Two-Crown's Master"
+  },
+  "e3ea15a1": {
+    "key": "SBE_PL2400_SP000",
+    "text": "Insight: Extreme Deathmatch"
+  },
+  "f9ad080c": {
+    "key": "SBE_PL2400_SP100",
+    "text": "Essence: Turbo Turbine"
+  },
+  "a77be1b3": {
+    "key": "SBE_PL2400_SP200",
+    "text": "Crux: Put On a Show"
+  },
+  "678e3771": {
+    "key": "SBE_PL2500_SP000",
+    "text": "Insight: Ardent Dancer"
+  },
+  "78a786b7": {
+    "key": "SBE_PL2500_SP100",
+    "text": "Essence: Superlative Sorcery"
+  },
+  "efa2d23e": {
+    "key": "SBE_PL2500_SP200",
+    "text": "Crux: Sword Veil Guardianship"
+  },
+  "d8c19249": {
+    "key": "SBE_PL2600_SP000",
+    "text": "Insight: Hungry for Causality"
+  },
+  "9467c71a": {
+    "key": "SBE_PL2600_SP100",
+    "text": "Essence: On the Clock"
+  },
+  "a86cbc27": {
+    "key": "SBE_PL2600_SP200",
+    "text": "Crux: Skill Chain"
+  },
+  "99f6460d": {
+    "key": "SBE_PL2700_SP000",
+    "text": "Insight: Keep Your Foes Closer"
+  },
+  "d994808e": {
+    "key": "SBE_PL2700_SP100",
+    "text": "Essence: Lightning Soldier"
+  },
+  "edb9d7fc": {
+    "key": "SBE_PL2700_SP200",
+    "text": "Crux: Perfectionist"
+  },
+  "df550c8b": {
+    "key": "SBE_PL2800_SP000",
+    "text": "Insight: Flip the Tides"
+  },
+  "567ebb0a": {
+    "key": "SBE_PL2800_SP100",
+    "text": "Essence: Allure of Strength"
+  },
+  "881a8207": {
+    "key": "SBE_PL2800_SP200",
+    "text": "Crux: A Deal with The Devil"
+  },
+  "0ed7e526": {
+    "key": "SBE_PL2900_SP000",
+    "text": "Insight: Finishing Touch"
+  },
+  "cd8aa9e7": {
+    "key": "SBE_PL2900_SP100",
+    "text": "Essence: Corrosive Black"
+  },
+  "15690516": {
+    "key": "SBE_PL2900_SP200",
+    "text": "Crux: Hands of Malice"
+  }
+}

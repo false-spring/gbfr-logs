@@ -24,7 +24,18 @@ impl OnAreaEnterHook {
         OnAreaEnterHook { tx }
     }
 
-    pub fn setup(&self, process: &Process) -> Result<()> {
+    pub fn setup(&self, _process: &Process) -> Result<()> {
+        // Disabled: on this build the signature false-matches mid-instruction,
+        // so installing the detour patches live code and crashes on area load.
+        // Encounter boundaries stay covered by the quest hooks.
+        #[cfg(feature = "console")]
+        println!("on_enter_area disabled on this build (ER signature NEEDS-RUNTIME)");
+
+        Ok(())
+    }
+
+    #[allow(dead_code)]
+    fn install(&self, process: &Process) -> Result<()> {
         if let Ok(on_enter_area_evt) = process.search_address(ON_ENTER_AREA_SIG) {
             let cloned_self = self.clone();
 

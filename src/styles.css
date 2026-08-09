@@ -47,3 +47,19 @@ td {
 *::-webkit-scrollbar-thumb:active {
   background-color: #787878;
 }
+
+/* Dropdown scrollbars.
+ *
+ * The rules above style the NATIVE scrollbar; Mantine dropdowns scroll inside a
+ * ScrollArea that draws its own, so they need styling of their own. The theme
+ * (see main.tsx) already pins these to type="always" so they do not fade in only
+ * on hover — this gives them enough contrast against the dark dropdown to
+ * actually read as a scrollbar, which is the whole point of showing them.
+ */
+.mantine-ScrollArea-scrollbar {
+  background-color: #252525;
+}
+
+.mantine-ScrollArea-thumb {
+  background-color: #787878;
+}

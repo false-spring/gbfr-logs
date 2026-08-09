@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "GBFR Logs",
-    "version": "1.8.0"
+    "version": "2.0.4-73"
   },
   "tauri": {
     "allowlist": {
@@ -46,13 +46,13 @@
         "title": "Meter",
         "label": "main",
         "fullscreen": false,
-        "width": 500,
-        "height": 350,
+        "width": 700,
+        "height": 420,
         "resizable": true,
         "decorations": false,
         "transparent": true,
-        "minWidth": 250,
-        "minHeight": 120,
+        "minWidth": 540,
+        "minHeight": 180,
         "alwaysOnTop": true,
         "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --disable-gpu"
       },
@@ -63,8 +63,8 @@
         "fullscreen": false,
         "width": 800,
         "height": 600,
-        "minWidth": 800,
-        "minHeight": 600,
+        "minWidth": 400,
+        "minHeight": 300,
         "resizable": true,
         "closable": true,
         "decorations": true,
@@ -72,7 +72,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: https://ipc.localhost https://relink.cleista.cc; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'"
     },
     "bundle": {
       "active": true,

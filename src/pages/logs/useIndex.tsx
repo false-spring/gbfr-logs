@@ -1,4 +1,3 @@
-import { useEncounterStore } from "@/stores/useEncounterStore";
 import { useLogIndexStore } from "@/stores/useLogIndexStore";
 import { LogSortType } from "@/types";
 
@@ -33,10 +32,6 @@ export default function useIndex() {
     deleteSelectedLogs: state.deleteSelectedLogs,
     deleteAllLogs: state.deleteAllLogs,
     fetchLogs: state.fetchLogs,
-  }));
-
-  const { setSelectedTargets } = useEncounterStore((state) => ({
-    setSelectedTargets: state.setSelectedTargets,
   }));
 
   useEffect(() => {
@@ -97,7 +92,6 @@ export default function useIndex() {
     searchResult,
     selectedLogIds,
     setSelectedLogIds,
-    setSelectedTargets,
     confirmDeleteSelected,
     confirmDeleteAll,
     handleSetPage,

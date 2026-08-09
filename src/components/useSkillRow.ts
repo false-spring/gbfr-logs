@@ -1,31 +1,18 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
-import { ComputedSkillState } from "@/types";
-import { humanizeNumbers } from "@/utils";
+import { ComputedSkillState, SkillMeterColumns } from "@/types";
 import { useShallow } from "zustand/react/shallow";
+import { getSkillColumnValue } from "./skillColumns";
 
-export const useSkillRow = (skill: ComputedSkillState) => {
+export const useSkillRow = (skill: ComputedSkillState, stunPerSecondRatio: number) => {
   const { show_full_values } = useMeterSettingsStore(
     useShallow((state) => ({
       show_full_values: state.show_full_values,
     }))
   );
 
-  const [totalDamage, totalDamageUnit] = humanizeNumbers(skill.totalDamage);
-  const [minDmg, minDmgUnit] = humanizeNumbers(skill.minDamage || 0);
-  const [maxDmg, maxDmgUnit] = humanizeNumbers(skill.maxDamage || 0);
-  const rawAverageDmg = skill.hits === 0 ? 0 : skill.totalDamage / skill.hits;
-  const [averageDmg, averageDmgUnit] = humanizeNumbers(rawAverageDmg);
-
   return {
     showFullValues: show_full_values,
-    totalDamage,
-    totalDamageUnit,
-    minDmg,
-    minDmgUnit,
-    maxDmg,
-    maxDmgUnit,
-    rawAverageDmg,
-    averageDmg,
-    averageDmgUnit,
+    getColumnValue: (column: SkillMeterColumns) =>
+      getSkillColumnValue(column, skill, show_full_values, stunPerSecondRatio),
   };
 };

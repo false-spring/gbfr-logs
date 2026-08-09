@@ -13,6 +13,9 @@ interface MeterSettings {
   show_full_values: boolean;
   use_condensed_skills: boolean;
   open_log_on_save: boolean;
+  show_link_time: boolean;
+  show_sba_chain: boolean;
+  show_break: boolean;
   overlay_columns: MeterColumns[];
 }
 
@@ -31,6 +34,9 @@ const DEFAULT_METER_SETTINGS: MeterSettings = {
   show_full_values: false,
   use_condensed_skills: true,
   open_log_on_save: true,
+  show_link_time: true,
+  show_sba_chain: true,
+  show_break: true,
   overlay_columns: [MeterColumns.TotalDamage, MeterColumns.DPS, MeterColumns.DamagePercentage],
 };
 

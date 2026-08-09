@@ -261,7 +261,7 @@
   },
   "43d71e8f": {
     "key": "43D71E8F",
-    "text": "Limite de Cura Aumentado"
+    "text": "Lim. de Cura de Hab. Aum."
   },
   "44f04a7a": {
     "key": "44F04A7A",
@@ -345,7 +345,7 @@
   },
   "54929589": {
     "key": "MED_EFF_RECOVERY_LIMIT01",
-    "text": "Limite de Cura Aumentado"
+    "text": "Lim. de Cura de Hab. Aum."
   },
   "563f7784": {
     "key": "563F7784",
@@ -473,7 +473,7 @@
   },
   "76c83bfd": {
     "key": "76C83BFD",
-    "text": "Limite de Cura Aumentado"
+    "text": "Lim. de Cura de Hab. Aum."
   },
   "776adca4": {
     "key": "776ADCA4",
@@ -945,7 +945,7 @@
   },
   "ec3b22ff": {
     "key": "EC3B22FF",
-    "text": "Limite de Cura Aumentado"
+    "text": "Lim. de Cura de Hab. Aum."
   },
   "ee6100ca": {
     "key": "EE6100CA",
@@ -1030,5 +1030,569 @@
   "fe71865d": {
     "key": "FE71865D",
     "text": "Poder de Ataque Aumentado"
+  },
+  "e55c2b23": {
+    "key": "E55C2B23",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "2e2bb439": {
+    "key": "2E2BB439",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "443ee079": {
+    "key": "443EE079",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "b6af9b8e": {
+    "key": "B6AF9B8E",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "eed855f9": {
+    "key": "EED855F9",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "db4eb256": {
+    "key": "DB4EB256",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "72117bf2": {
+    "key": "72117BF2",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "c8cf021b": {
+    "key": "C8CF021B",
+    "text": "Vida Aumentada"
+  },
+  "3fcffbb6": {
+    "key": "3FCFFBB6",
+    "text": "Vida Aumentada"
+  },
+  "4e0ff036": {
+    "key": "4E0FF036",
+    "text": "Vida Aumentada"
+  },
+  "aabf46bf": {
+    "key": "AABF46BF",
+    "text": "Vida Aumentada"
+  },
+  "00ffc38d": {
+    "key": "00FFC38D",
+    "text": "Vida Aumentada"
+  },
+  "59a8fcaf": {
+    "key": "59A8FCAF",
+    "text": "Maior Chance de Acerto Crít."
+  },
+  "ce96759f": {
+    "key": "CE96759F",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "82d08fb1": {
+    "key": "82D08FB1",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "e931b514": {
+    "key": "E931B514",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "da1e7c1c": {
+    "key": "DA1E7C1C",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "3e27f90f": {
+    "key": "3E27F90F",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "03a22a3a": {
+    "key": "03A22A3A",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "f57786e2": {
+    "key": "F57786E2",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "498d63f2": {
+    "key": "498D63F2",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "371b114f": {
+    "key": "371B114F",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "eb7be8f6": {
+    "key": "EB7BE8F6",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "28e99d17": {
+    "key": "28E99D17",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "22e80215": {
+    "key": "22E80215",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "853edb6a": {
+    "key": "853EDB6A",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "93eadf27": {
+    "key": "93EADF27",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "1da164b8": {
+    "key": "1DA164B8",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "27156f24": {
+    "key": "27156F24",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "c774a784": {
+    "key": "C774A784",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "13091d82": {
+    "key": "13091D82",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "c44bf623": {
+    "key": "C44BF623",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "d4cf0f5e": {
+    "key": "D4CF0F5E",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "83ec4e8e": {
+    "key": "83EC4E8E",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "947b7406": {
+    "key": "947B7406",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "ffb88765": {
+    "key": "FFB88765",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "b41d04c9": {
+    "key": "B41D04C9",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "5dd07f50": {
+    "key": "5DD07F50",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "aa849114": {
+    "key": "AA849114",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "dfc1d004": {
+    "key": "DFC1D004",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "864746c5": {
+    "key": "864746C5",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "c07f498c": {
+    "key": "C07F498C",
+    "text": "Poder de Ataque Aumentado"
+  },
+  "4eb53013": {
+    "key": "4EB53013",
+    "text": "Vida Aumentada"
+  },
+  "603840ce": {
+    "key": "603840CE",
+    "text": "Vida Aumentada"
+  },
+  "f39f8114": {
+    "key": "F39F8114",
+    "text": "Vida Aumentada"
+  },
+  "b309e5e6": {
+    "key": "B309E5E6",
+    "text": "Vida Aumentada"
+  },
+  "c8353e24": {
+    "key": "C8353E24",
+    "text": "Vida Aumentada"
+  },
+  "94f139c9": {
+    "key": "94F139C9",
+    "text": "Vida Aumentada"
+  },
+  "c3c9e540": {
+    "key": "C3C9E540",
+    "text": "Vida Aumentada"
+  },
+  "78fa278a": {
+    "key": "78FA278A",
+    "text": "Vida Aumentada"
+  },
+  "f878dcc2": {
+    "key": "F878DCC2",
+    "text": "Vida Aumentada"
+  },
+  "7bd6879a": {
+    "key": "7BD6879A",
+    "text": "Vida Aumentada"
+  },
+  "625ada52": {
+    "key": "625ADA52",
+    "text": "Vida Aumentada"
+  },
+  "fabd6177": {
+    "key": "FABD6177",
+    "text": "Vida Aumentada"
+  },
+  "ba9210a7": {
+    "key": "BA9210A7",
+    "text": "Vida Aumentada"
+  },
+  "ead60da1": {
+    "key": "EAD60DA1",
+    "text": "Vida Aumentada"
+  },
+  "22803e42": {
+    "key": "22803E42",
+    "text": "Vida Aumentada"
+  },
+  "174abc16": {
+    "key": "174ABC16",
+    "text": "Vida Aumentada"
+  },
+  "4c5fb53d": {
+    "key": "4C5FB53D",
+    "text": "Vida Aumentada"
+  },
+  "f3b1b4cc": {
+    "key": "F3B1B4CC",
+    "text": "Vida Aumentada"
+  },
+  "29503ca1": {
+    "key": "29503CA1",
+    "text": "Vida Aumentada"
+  },
+  "0469aeb2": {
+    "key": "0469AEB2",
+    "text": "Vida Aumentada"
+  },
+  "e8d3af6b": {
+    "key": "E8D3AF6B",
+    "text": "Vida Aumentada"
+  },
+  "f2be9395": {
+    "key": "F2BE9395",
+    "text": "Vida Aumentada"
+  },
+  "0b5dfa34": {
+    "key": "0B5DFA34",
+    "text": "Vida Aumentada"
+  },
+  "ea3ea970": {
+    "key": "EA3EA970",
+    "text": "Vida Aumentada"
+  },
+  "adaa8f29": {
+    "key": "ADAA8F29",
+    "text": "Vida Aumentada"
+  },
+  "217e62e2": {
+    "key": "217E62E2",
+    "text": "Vida Aumentada"
+  },
+  "57ea2e2c": {
+    "key": "57EA2E2C",
+    "text": "Maior Chance de Acerto Crít."
+  },
+  "9c360784": {
+    "key": "9C360784",
+    "text": "Maior Chance de Acerto Crít."
+  },
+  "d7737b35": {
+    "key": "D7737B35",
+    "text": "Maior Chance de Acerto Crít."
+  },
+  "89d08caf": {
+    "key": "89D08CAF",
+    "text": "Maior Chance de Acerto Crít."
+  },
+  "79909f31": {
+    "key": "79909F31",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "5d4e91a3": {
+    "key": "5D4E91A3",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "ded4178f": {
+    "key": "DED4178F",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "3e0e3aa2": {
+    "key": "3E0E3AA2",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "b32fe60f": {
+    "key": "B32FE60F",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "29f5b171": {
+    "key": "29F5B171",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "d61624cb": {
+    "key": "D61624CB",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "9311ee44": {
+    "key": "9311EE44",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "34997da4": {
+    "key": "34997DA4",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "ce2652af": {
+    "key": "CE2652AF",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "1010438a": {
+    "key": "1010438A",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "97add052": {
+    "key": "97ADD052",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "628e9930": {
+    "key": "628E9930",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "8c0422e5": {
+    "key": "8C0422E5",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "08cc60b1": {
+    "key": "08CC60B1",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "8db159d0": {
+    "key": "8DB159D0",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "15cb5b17": {
+    "key": "15CB5B17",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "5e04b4e2": {
+    "key": "5E04B4E2",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "86071b01": {
+    "key": "86071B01",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "ca8661c1": {
+    "key": "CA8661C1",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "59d32481": {
+    "key": "59D32481",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "ccf0d107": {
+    "key": "CCF0D107",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "1f64c35c": {
+    "key": "1F64C35C",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "25773382": {
+    "key": "25773382",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "e51a0846": {
+    "key": "E51A0846",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "375e03d0": {
+    "key": "375E03D0",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "3ff3b1e1": {
+    "key": "3FF3B1E1",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "bb5cf95b": {
+    "key": "BB5CF95B",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "b08713ea": {
+    "key": "B08713EA",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "ba1190c7": {
+    "key": "BA1190C7",
+    "text": "Maior Poder de Atordoamento"
+  },
+  "f1baeea2": {
+    "key": "F1BAEEA2",
+    "text": "Maior Poder de Atordoamento"
+  },
+  "965de284": {
+    "key": "965DE284",
+    "text": "Maior Poder de Atordoamento"
+  },
+  "db12aef4": {
+    "key": "DB12AEF4",
+    "text": "Maior Poder de Atordoamento"
+  },
+  "47ab30fc": {
+    "key": "47AB30FC",
+    "text": "Maior Poder de Atordoamento"
+  },
+  "d1edbb0a": {
+    "key": "D1EDBB0A",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "2e7ca1bb": {
+    "key": "2E7CA1BB",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "3129cd4d": {
+    "key": "3129CD4D",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "88cc6e3b": {
+    "key": "88CC6E3B",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "630875ed": {
+    "key": "630875ED",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "d7de9bb5": {
+    "key": "D7DE9BB5",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "5f18a702": {
+    "key": "5F18A702",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "4587531d": {
+    "key": "4587531D",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "074abe50": {
+    "key": "074ABE50",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "9ddb8898": {
+    "key": "9DDB8898",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "77dd1cc7": {
+    "key": "77DD1CC7",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "95911f77": {
+    "key": "95911F77",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "3ab34e99": {
+    "key": "3AB34E99",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "001c675c": {
+    "key": "001C675C",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "d9c51308": {
+    "key": "D9C51308",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "5510c86b": {
+    "key": "5510C86B",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "da078751": {
+    "key": "DA078751",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "e3e9d634": {
+    "key": "E3E9D634",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "15ba9804": {
+    "key": "15BA9804",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "1fb03ebb": {
+    "key": "1FB03EBB",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "1345cce9": {
+    "key": "1345CCE9",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "893b7fe9": {
+    "key": "893B7FE9",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "c0aab186": {
+    "key": "C0AAB186",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "c83bed8b": {
+    "key": "C83BED8B",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "23052d2b": {
+    "key": "23052D2B",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "19705526": {
+    "key": "19705526",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "e956bbd9": {
+    "key": "E956BBD9",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "6997fbb0": {
+    "key": "6997FBB0",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "ca090c54": {
+    "key": "CA090C54",
+    "text": "Maior Lim. de Dano de ATQ Normal"
+  },
+  "19eb9aa0": {
+    "key": "19EB9AA0",
+    "text": "Limite de Dano de Habilidade"
+  },
+  "026c427e": {
+    "key": "026C427E",
+    "text": "Maior Limite de Dano de AC"
+  },
+  "d5c6407a": {
+    "key": "D5C6407A",
+    "text": "Lim. de Cura de Hab. Aum."
+  },
+  "fde0318d": {
+    "key": "FDE0318D",
+    "text": "Lim. de Cura de Hab. Aum."
+  },
+  "3d184640": {
+    "key": "3D184640",
+    "text": "Vida Aumentada"
+  },
+  "385be72c": {
+    "key": "385BE72C",
+    "text": "Vida Aumentada"
   }
 }

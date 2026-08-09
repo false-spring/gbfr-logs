@@ -1062,5 +1062,449 @@
   "407325": {
     "key": "TXT_QR_407325",
     "text": "\"Voluntários\" de Zathba"
+  },
+  "220001": {
+    "key": "TXT_QR_220001",
+    "text": "Deuses de um Mundo Além"
+  },
+  "220002": {
+    "key": "TXT_QR_220002",
+    "text": "Um Vislumbre do Futuro"
+  },
+  "220003": {
+    "key": "TXT_QR_220003",
+    "text": "Gemas Ocultas de Áquila"
+  },
+  "220004": {
+    "key": "TXT_QR_220004",
+    "text": "Diabo Ressuscitado"
+  },
+  "220005": {
+    "key": "TXT_QR_220005",
+    "text": "No Abismo de Sephira"
+  },
+  "220101": {
+    "key": "TXT_QR_220101",
+    "text": "Mistério do Beco"
+  },
+  "220102": {
+    "key": "TXT_QR_220102",
+    "text": "Mais Coisas Estranhas"
+  },
+  "220111": {
+    "key": "TXT_QR_220111",
+    "text": "Rumores: Graal Prata"
+  },
+  "220112": {
+    "key": "TXT_QR_220112",
+    "text": "Rumores: Graal Dourado"
+  },
+  "220301": {
+    "key": "TXT_QR_220301",
+    "text": "Sem Tempo para Soneca"
+  },
+  "220302": {
+    "key": "TXT_QR_220302",
+    "text": "Emoção Despertada"
+  },
+  "220303": {
+    "key": "TXT_QR_220303",
+    "text": "Surge um Novo Despertar"
+  },
+  "220311": {
+    "key": "TXT_QR_220311",
+    "text": "Terminus 2"
+  },
+  "220312": {
+    "key": "TXT_QR_220312",
+    "text": "Eu e Minha Boca Grande"
+  },
+  "220313": {
+    "key": "TXT_QR_220313",
+    "text": "Além do Terminus"
+  },
+  "220401": {
+    "key": "TXT_QR_220401",
+    "text": "Tudo que Reluz"
+  },
+  "220411": {
+    "key": "TXT_QR_220411",
+    "text": "Arranque das Minhas Garras"
+  },
+  "230001": {
+    "key": "TXT_QR_230001",
+    "text": "Teste Vermelhão e Esmeralda"
+  },
+  "230002": {
+    "key": "TXT_QR_230002",
+    "text": "Teste Azul-Cel. e Dourado"
+  },
+  "230003": {
+    "key": "TXT_QR_230003",
+    "text": "Teste de Branco e Sombria"
+  },
+  "230004": {
+    "key": "TXT_QR_230004",
+    "text": "Mazurca da Guerra"
+  },
+  "230301": {
+    "key": "TXT_QR_230301",
+    "text": "Um: Despertar da Arma"
+  },
+  "230302": {
+    "key": "TXT_QR_230302",
+    "text": "Dois: Ascensão"
+  },
+  "230303": {
+    "key": "TXT_QR_230303",
+    "text": "Três: Ascensão Final"
+  },
+  "230311": {
+    "key": "TXT_QR_230311",
+    "text": "Um: Início do Fim"
+  },
+  "230312": {
+    "key": "TXT_QR_230312",
+    "text": "Dois: No Caminho"
+  },
+  "230313": {
+    "key": "TXT_QR_230313",
+    "text": "Três: Parada Final"
+  },
+  "230321": {
+    "key": "TXT_QR_230321",
+    "text": "Nocaute Técnico"
+  },
+  "230391": {
+    "key": "TXT_QR_230391",
+    "text": "Desafie os Limites"
+  },
+  "230401": {
+    "key": "TXT_QR_230401",
+    "text": "Requer Certa Montagem"
+  },
+  "230402": {
+    "key": "TXT_QR_230402",
+    "text": "Como Peixe Fora do Magma"
+  },
+  "230411": {
+    "key": "TXT_QR_230411",
+    "text": "A Tripulação Incansável"
+  },
+  "240121": {
+    "key": "TXT_QR_240121",
+    "text": "Rumores: Triestrelas Verm."
+  },
+  "290101": {
+    "key": "TXT_QR_290101",
+    "text": "Eureca! Elas existem mesmo!"
+  },
+  "290102": {
+    "key": "TXT_QR_290102",
+    "text": "Pega esses crustáceos escuros!"
+  },
+  "290103": {
+    "key": "TXT_QR_290103",
+    "text": "Eca! Eu não vou entrar aí!"
+  },
+  "290104": {
+    "key": "TXT_QR_290104",
+    "text": "Espere! Acho que eu vi uma!"
+  },
+  "290105": {
+    "key": "TXT_QR_290105",
+    "text": "Encerrando! Viva as pinças!"
+  },
+  "300024": {
+    "key": "TXT_QR_300024",
+    "text": "Lobos Caídos"
+  },
+  "300025": {
+    "key": "TXT_QR_300025",
+    "text": "Mentiras na Neve"
+  },
+  "300026": {
+    "key": "TXT_QR_300026",
+    "text": "Investigação Solo"
+  },
+  "300027": {
+    "key": "TXT_QR_300027",
+    "text": "Infiltração"
+  },
+  "300028": {
+    "key": "TXT_QR_300028",
+    "text": "Consertando Erros"
+  },
+  "300029": {
+    "key": "TXT_QR_300029",
+    "text": "Herdando o Passado"
+  },
+  "301024": {
+    "key": "TXT_QR_301024",
+    "text": "Banquete do Frenesi"
+  },
+  "301025": {
+    "key": "TXT_QR_301025",
+    "text": "Tragédia Sangrenta"
+  },
+  "301026": {
+    "key": "TXT_QR_301026",
+    "text": "Impasse do Véu da Espada"
+  },
+  "301027": {
+    "key": "TXT_QR_301027",
+    "text": "Verdadeiro Trovão"
+  },
+  "301028": {
+    "key": "TXT_QR_301028",
+    "text": "No Fim do Mundo"
+  },
+  "301029": {
+    "key": "TXT_QR_301029",
+    "text": "Axioma da Nossa Origem"
+  },
+  "401317": {
+    "key": "TXT_QR_401317",
+    "text": "Destrocem as hordas de goblins"
+  },
+  "401318": {
+    "key": "TXT_QR_401318",
+    "text": "Protejam meu papai"
+  },
+  "402317": {
+    "key": "TXT_QR_402317",
+    "text": "Golemologia elementar: golens do deserto"
+  },
+  "403313": {
+    "key": "TXT_QR_403313",
+    "text": "Asas da Antiguidade"
+  },
+  "408301": {
+    "key": "TXT_QR_408301",
+    "text": "Teste Com Duas Entidades"
+  },
+  "408302": {
+    "key": "TXT_QR_408302",
+    "text": "Luta pelo Título de Caranguejo Gigante"
+  },
+  "408305": {
+    "key": "TXT_QR_408305",
+    "text": "Bloqueio do Sol"
+  },
+  "408306": {
+    "key": "TXT_QR_408306",
+    "text": "Reverberação do Equipamento Cinza"
+  },
+  "408308": {
+    "key": "TXT_QR_408308",
+    "text": "Vale do Pesadelo"
+  },
+  "408310": {
+    "key": "TXT_QR_408310",
+    "text": "Assembleia Geral"
+  },
+  "408311": {
+    "key": "TXT_QR_408311",
+    "text": "Estão te Observando"
+  },
+  "408312": {
+    "key": "TXT_QR_408312",
+    "text": "Nas Profundezas da Loucura"
+  },
+  "408313": {
+    "key": "TXT_QR_408313",
+    "text": "Lança do Invencível"
+  },
+  "408314": {
+    "key": "TXT_QR_408314",
+    "text": "Peregrinos da Autodestruição"
+  },
+  "408315": {
+    "key": "TXT_QR_408315",
+    "text": "Exército de Uma Mulher Só"
+  },
+  "409302": {
+    "key": "TXT_QR_409302",
+    "text": "Terra Bestial"
+  },
+  "409303": {
+    "key": "TXT_QR_409303",
+    "text": "Adeus à Esperança"
+  },
+  "409305": {
+    "key": "TXT_QR_409305",
+    "text": "Geada Bestial"
+  },
+  "409307": {
+    "key": "TXT_QR_409307",
+    "text": "Terra Congelada"
+  },
+  "409308": {
+    "key": "TXT_QR_409308",
+    "text": "Ataque Iminente!"
+  },
+  "409309": {
+    "key": "TXT_QR_409309",
+    "text": "Brilho Sanguíneo de Sephira"
+  },
+  "409311": {
+    "key": "TXT_QR_409311",
+    "text": "Vingança do Gotejamento"
+  },
+  "409312": {
+    "key": "TXT_QR_409312",
+    "text": "Incêndio Selvagem"
+  },
+  "409313": {
+    "key": "TXT_QR_409313",
+    "text": "Chama Bestial"
+  },
+  "409314": {
+    "key": "TXT_QR_409314",
+    "text": "Sombras do Passado: Isolamento"
+  },
+  "409315": {
+    "key": "TXT_QR_409315",
+    "text": "Cortejo de Dragões"
+  },
+  "409317": {
+    "key": "TXT_QR_409317",
+    "text": "Sombras do Passado: Vitalidade"
+  },
+  "409319": {
+    "key": "TXT_QR_409319",
+    "text": "Sombras do Passado: Terror"
+  },
+  "409320": {
+    "key": "TXT_QR_409320",
+    "text": "Traga Luz ao Mundo"
+  },
+  "40a301": {
+    "key": "TXT_QR_40A301",
+    "text": "Nova Ordem Mundial"
+  },
+  "40a302": {
+    "key": "TXT_QR_40A302",
+    "text": "Sobrevivência do Mais Forte"
+  },
+  "40a303": {
+    "key": "TXT_QR_40A303",
+    "text": "Peso de Uma Lâmina"
+  },
+  "40a304": {
+    "key": "TXT_QR_40A304",
+    "text": "Marcha das Almas Perdidas"
+  },
+  "40a305": {
+    "key": "TXT_QR_40A305",
+    "text": "O Raio Cai Duas Vezes"
+  },
+  "40a306": {
+    "key": "TXT_QR_40A306",
+    "text": "Escuridão Total"
+  },
+  "40a307": {
+    "key": "TXT_QR_40A307",
+    "text": "Explosão de Sabor!"
+  },
+  "40a308": {
+    "key": "TXT_QR_40A308",
+    "text": "Labuta Eterna"
+  },
+  "40a309": {
+    "key": "TXT_QR_40A309",
+    "text": "Acerto Definitivo de Contas"
+  },
+  "40a310": {
+    "key": "TXT_QR_40A310",
+    "text": "Rubi e Dourado"
+  },
+  "40a311": {
+    "key": "TXT_QR_40A311",
+    "text": "Terror da Lua"
+  },
+  "40a312": {
+    "key": "TXT_QR_40A312",
+    "text": "Mazurca da Guerra"
+  },
+  "40a313": {
+    "key": "TXT_QR_40A313",
+    "text": "Oração pela Partida das Asas Negras"
+  },
+  "40a314": {
+    "key": "TXT_QR_40A314",
+    "text": "Que Reine o Caos"
+  },
+  "40a316": {
+    "key": "TXT_QR_40A316",
+    "text": "Céu Jamais Esquecido"
+  },
+  "40a320": {
+    "key": "TXT_QR_40A320",
+    "text": "Rugido dos Céus"
+  },
+  "40a321": {
+    "key": "TXT_QR_40A321",
+    "text": "Apetite Sobrenatural por Carne"
+  },
+  "40a322": {
+    "key": "TXT_QR_40A322",
+    "text": "Os Mitos São Reais"
+  },
+  "40a323": {
+    "key": "TXT_QR_40A323",
+    "text": "Nas Mãos Erradas"
+  },
+  "40a324": {
+    "key": "TXT_QR_40A324",
+    "text": "A Tormenta se Ergue"
+  },
+  "40a325": {
+    "key": "TXT_QR_40A325",
+    "text": "Vingança Reclusa"
+  },
+  "40a326": {
+    "key": "TXT_QR_40A326",
+    "text": "Quatro Dragões do Apocalipse"
+  },
+  "40a327": {
+    "key": "TXT_QR_40A327",
+    "text": "No Balanço das Horas"
+  },
+  "40a328": {
+    "key": "TXT_QR_40A328",
+    "text": "Um Ato do Mecadeus"
+  },
+  "40a329": {
+    "key": "TXT_QR_40A329",
+    "text": "Sob Asas Primevas"
+  },
+  "40a330": {
+    "key": "TXT_QR_40A330",
+    "text": "Orgulho Eterno"
+  },
+  "40b301": {
+    "key": "TXT_QR_40B301",
+    "text": "No Limite do Mundo"
+  },
+  "40b309": {
+    "key": "TXT_QR_40B309",
+    "text": "No Limite da Destruição"
+  },
+  "40b313": {
+    "key": "TXT_QR_40B313",
+    "text": "No Limite do Fim"
+  },
+  "40b314": {
+    "key": "TXT_QR_40B314",
+    "text": "No Limite do Caos"
+  },
+  "40b316": {
+    "key": "TXT_QR_40B316",
+    "text": "No Limite da Origem"
+  },
+  "4fe500": {
+    "key": "TXT_QR_4FE500",
+    "text": "Derrotem (*arquejo*) o goblin chefe"
   }
 }

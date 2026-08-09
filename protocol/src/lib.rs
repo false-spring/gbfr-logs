@@ -16,7 +16,9 @@ parser.
 
 Because of this, any changes to the protocol must be done carefully to ensure that
 the parser can still read old logs. This is done by adding new fields to the existing
-message types, or adding new message types that are ignored by the parser
+message types, or adding new message types that are ignored by the parser.
+
+New fields carry `#[serde(default)]` to keep the ability to open older parses.
 */
 
 use core::fmt;
@@ -30,6 +32,16 @@ pub use bincode;
 use serde::{Deserialize, Serialize};
 
 pub const PIPE_NAME: &str = r"\\.\pipe\gbfr-logs";
+
+pub const PLAYER_ID_BASE: u32 = 0x8000_0000;
+
+pub const fn party_slot_from_actor_index(actor_index: u32) -> Option<u8> {
+    if actor_index >= PLAYER_ID_BASE {
+        Some((actor_index - PLAYER_ID_BASE) as u8)
+    } else {
+        None
+    }
+}
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Actor {
@@ -69,6 +81,48 @@ impl Display for ActionType {
     }
 }
 
+/// What the engine computed for one hit, as opposed to what it arrived at.
+///
+/// LOCAL-SIMULATION path only: the replicated path skips the clamp block and
+/// hands the deserializer a stack temporary, so these slots hold leftovers on a
+/// peer's hits. One `Option` rather than five fields because the distinction is
+/// all-or-nothing — for a four-player log it is `None` on three rows in four.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct HitCalc {
+    /// The rate the damage-cap ladder is interpolated on (`+0xDC`): the move's
+    /// AUTHORED rate, before any runtime multiplier. NOT
+    /// `DamageEvent::attack_rate` (`+0xE0`), which is the same rate multiplied —
+    /// equal whenever no multiplier is live, silently different when one is.
+    ///
+    /// Interpolating the shipped ladder here gives `L`, and since the engine
+    /// computes `cap = trunc(trunc(L) * K/100)` for integer `K`, the summed
+    /// cap-up multiplier divides back out uniquely.
+    pub cap_rate: f32,
+    /// The damage-class flag word (`+0xF0`): `& 0x10000` = Skill,
+    /// `& 0x40000` = SBA, bit 7 = summon, otherwise Normal. NOT part of
+    /// `DamageEvent::flags` (the qword at `+0xE8`) — this is the dword after it,
+    /// and `0x10000`/`0x40000` are live positions in both.
+    ///
+    /// It alone chooses which of `PlayerStats::dmg_cap_channels`' three entries
+    /// the hit was charged against.
+    pub class_flags: u32,
+    /// Un-buffed reference damage (`+0xD0`): attack power x crit x rate, with no
+    /// buff product applied. `pre_cap_damage / reference_damage` collapses the
+    /// unlogged multiplier stack into one number per hit — divide the PRE-CAP
+    /// damage by it, never `DamageEvent::damage`, which is post-clamp and
+    /// post-multiplier and scatters meaninglessly.
+    pub reference_damage: i32,
+    /// The damage the floor and cap were applied to (`+0x2D4`), before the
+    /// post-cap multiplier chain reinflated it. The game's own cap percentage is
+    /// `pre_cap_damage / damage_cap * 100`; `damage / damage_cap` is not that
+    /// number, since the engine reinflates the clamped value without re-applying
+    /// the cap and the ratio exceeds 1.0 on most capped hits.
+    pub pre_cap_damage: f32,
+    /// The floor half of the `{floor, cap}` clamp pair (`+0x2B8`); `-1` when
+    /// unset. Carried so a hit whose damage was RAISED is identifiable.
+    pub damage_floor: i32,
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct DamageEvent {
     pub source: Actor,
@@ -79,6 +133,38 @@ pub struct DamageEvent {
     pub attack_rate: Option<f32>,
     pub stun_value: Option<f32>,
     pub damage_cap: Option<i32>,
+
+    /// Stun fill of target at this hit, 0..1
+    #[serde(default)]
+    pub stun_fill: Option<f32>,
+
+    /// Target's base class id, before uid-variant resolution.
+    /// Set only when it differs from `target.parent_actor_type`.
+    #[serde(default)]
+    pub target_base_type: Option<u32>,
+
+    /// Target's stun max capacity in stun units at hit time.
+    /// Used to cap amount of stun dealt for visualization after logging
+    #[serde(default)]
+    pub stun_max: Option<f32>,
+    /// See `HitCalc`. `None` on a hit this client received rather than
+    /// simulated, on paths with no `DamageInstance` (DoT, source-less records),
+    /// and on older logs — hence `serde(default)` and the trailing position.
+    #[serde(default)]
+    pub hit_calc: Option<HitCalc>,
+}
+
+/// For debugging (damage events from remote players that should
+/// get suppressed because damage is 0).
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SuppressedDuplicateDamageEvent {
+    pub source: Actor,
+    pub damage: i32,
+    pub action_id: ActionType,
+    /// Engine path: 0 = local simulation, 1 = replayed from the network.
+    pub a4: u8,
+    /// `None` = no player-shaped record to decide from.
+    pub source_is_local: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -116,17 +202,42 @@ pub struct WeaponInfo {
     pub trait_3_id: u32,
     /// Third trait level
     pub trait_3_level: u32,
+    /// Fourth trait ID (Endless Ragnarok: weapons carry up to 5 trait pairs)
+    pub trait_4_id: u32,
+    /// Fourth trait level
+    pub trait_4_level: u32,
+    /// Fifth trait ID
+    pub trait_5_id: u32,
+    /// Fifth trait level
+    pub trait_5_level: u32,
     /// Wrightstone used on the weapon
     pub wrightstone_id: u32,
     /// Current weapon level
     pub weapon_level: u32,
+    /// Transcendence level (Endless Ragnarok "rebuild"); 0 = none.
+    pub transcendence_level: u32,
+    /// Awakening level (Endless Ragnarok); 0 = none.
+    pub awakening_level_er: u32,
     /// Weapon's HP Stats (before plus marks)
     pub weapon_hp: u32,
     /// Weapon's Attack Stats (before plus marks)
     pub weapon_attack: u32,
+    /// First wrightstone trait ID (Endless Ragnarok)
+    pub wrightstone_trait_1_id: u32,
+    /// First wrightstone trait level
+    pub wrightstone_trait_1_level: u32,
+    /// Second wrightstone trait ID
+    pub wrightstone_trait_2_id: u32,
+    /// Second wrightstone trait level
+    pub wrightstone_trait_2_level: u32,
+    /// Third wrightstone trait ID
+    pub wrightstone_trait_3_id: u32,
+    /// Third wrightstone trait level
+    pub wrightstone_trait_3_level: u32,
 }
 
 /// Overmastery, also known as `limit_bonus`.
+/// Pre-2.0 shape for backwards compatibility; ER logs use `OverMasteryLine`.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Overmastery {
     /// Overmastery ID
@@ -143,6 +254,51 @@ pub struct OvermasteryInfo {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SummonSlot {
+    /// Summon ID hash (0x887AE0B0 = empty slot)
+    pub id: u32,
+    pub trait_id: u32,
+    /// Aura trait level as shown on the summon card ("T.Lvl"); -1 uninitialized.
+    pub trait_level: i32,
+    /// Equip-bonus id hash (0x887AE0B0 = none)
+    pub equip_bonus_id: u32,
+    /// 0-based index into the bonus's value ladder; -1 uninitialized.
+    pub equip_bonus_level: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SummonInfo {
+    pub summons: Vec<SummonSlot>,
+}
+
+/// ER Over Mastery bonus. The displayed number is
+/// `value` for percent params, `value` x 10 for Stun
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OverMasteryLine {
+    /// limit_bonus_param hash (MED_EFF_*); 0x887AE0B0 / 0 = empty slot.
+    pub id: u32,
+    /// Star rank 1..10; 0 = empty.
+    pub rank: u32,
+    /// Raw per-rank value (LvNValue at N = rank).
+    pub value: f32,
+}
+
+/// One Master Trait ('skillboard') flag row.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct MasterTraitFlag {
+    pub hash: u32,
+    pub on: bool,
+}
+
+/// Consolidated trait level for "Effective Traits" tab (shown in Traits tab in-game)
+/// `level` is the game's 0..99 level after all sources
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct EffectiveTrait {
+    pub hash: u32,
+    pub level: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerStats {
     pub level: u32,
     pub total_hp: u32,
@@ -150,8 +306,20 @@ pub struct PlayerStats {
     pub stun_power: f32,
     pub critical_rate: f32,
     pub total_power: u32,
+
+    /// 3 numbers = Normal ATK / Skill / SBA caps
+    ///
+    /// Includes everything from Masteries, Master Trait Rank bonus,
+    /// OMs, Weapons traits (Catastrophe), Summons, Weapon Collection,
+    /// some sigils (Fatebreaker), the +20% cap per basic sigil MT
+    ///
+    /// Does NOT include the "DMG Cap" trait and conditional cap
+    /// sigils like Celestial Lumen or most Mastery Trait nodes themselves
+    pub dmg_cap_channels: [f32; 3],
 }
 
+/// Pre-2.0 player-load payload.
+/// Deprecated; `PlayerIdentityEvent` replaces it
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerLoadEvent {
     pub sigils: Vec<Sigil>,
@@ -164,6 +332,63 @@ pub struct PlayerLoadEvent {
     pub weapon_info: WeaponInfo,
     pub overmastery_info: OvermasteryInfo,
     pub player_stats: PlayerStats,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct PlayerIdentityEvent {
+    pub sigils: Vec<Sigil>,     // Can hold 13 sigils for some reason in ER
+    pub character_name: CString,
+    pub display_name: CString,
+    pub character_type: u32,
+    pub party_index: u8,
+    pub actor_index: u32,       // Matches the source actor's `parent_index`.
+    pub is_online: bool,
+    pub weapon_info: Option<WeaponInfo>,
+    pub summon_info: Option<SummonInfo>,
+    pub over_mastery: Vec<OverMasteryLine>,
+    pub skill_loadout: Vec<u32>,
+    pub player_stats: Option<PlayerStats>,
+    pub master_trait_flags: Vec<MasterTraitFlag>,
+    pub effective_traits: Vec<EffectiveTrait>,
+
+    /// Cygames PlayFab entity id
+    #[serde(default)]
+    pub network_user_id: Option<String>,
+
+    /// Platform account name (the current Steam persona / crossplay id)
+    /// Used for authentication on the GBFR Logs DB site only
+    #[serde(default)]
+    pub network_user_name: Option<String>,
+
+    /// 0 to 55, accounts for Master Break
+    #[serde(default)]
+    pub master_level: Option<u32>,
+}
+
+pub const MASTER_LEVEL_DISPLAY_CAP: u32 = 50;
+pub const MASTER_LEVEL_MAX: u32 = 55;
+
+pub fn split_master_level(master_level: u32) -> (u32, u32) {
+    (master_level.min(MASTER_LEVEL_DISPLAY_CAP),
+     master_level.saturating_sub(MASTER_LEVEL_DISPLAY_CAP))
+}
+
+/// New event to help backfill relationship between party index and player
+/// Fixes the "[Guest] Character" entries in most cases
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct RosterMember {
+    pub party_index: u8,
+    pub character_type: u32,
+    pub display_name: CString,
+    /// Platform account name; `None` if not yet known.
+    pub network_user_name: Option<String>,
+    pub network_user_id: Option<String>,
+    pub is_online: bool,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct PartyRosterEvent {
+    pub members: Vec<RosterMember>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -181,10 +406,69 @@ pub struct QuestCompleteEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct QuestAbandonEvent {
+    pub quest_id: u32,
+    pub elapsed_time_in_secs: u32,
+}
+
+/// The reason why a player's SBA gauge moved. Emitted and used for visualization
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum SbaCause {
+    /// Legacy logs
+    #[default]
+    NotClassified,
+
+    /// Credited to an action, read directly from the causing call. The
+    /// perfect-guard and perfect-dodge counters arrive as the synthesized ids
+    /// `Normal(611)` / `Normal(610)`.
+    Action(ActionType),
+
+    /// Gauge built by taking a hit (1%/0.7% in chaos)
+    DamageTaken,
+    /// Gauge built by taking a hit (for online party members)
+    InferredDamageTaken,
+
+    /// The 10%/13% granted to party members after someone else SBAs
+    ChainGrant,
+    /// Inferred equivalent, for online party members
+    InferredChainGrant,
+    /// Gauge from calling a summon: 10% of max, or 7% at Chaos tier and above.
+    InferredSummonCall,
+
+    /// Gauge given by another player via a redistribute skill
+    InferredRedistribute,
+
+    /// When the whole party fills to 100% (Seven Star's Brilliance)
+    InferredPartyFill,
+
+    /// A remote party member's perfect-guard/perfect-dodge counter
+    Inferred(ActionType),
+
+    /// Generic remote gauge sync event with no cause
+    Remote,
+    /// Generic local gain whose call stack held none of the causes above
+    Unknown,
+
+    /// For when the attribution detours are not installed on this build
+    HookUnavailable,
+}
+
+/// A network peer's perfect-guard / perfect-dodge. `action_id` is the
+/// synthesized id: 611 for a perfect guard, 610 for a perfect dodge.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct PeerCounterEvent {
+    pub actor_index: u32,
+    pub action_id: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OnUpdateSBAEvent {
     pub actor_index: u32,
     pub sba_value: f32,
     pub sba_added: f32,
+    /// Logs saved before attribution existed default to `NotClassified`.
+    #[serde(default)]
+    pub cause: SbaCause,
 }
 
 /// Whenever SBA is attempted, but not necessarily hit.
@@ -210,6 +494,206 @@ pub struct OnDeathEvent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct LinkTimeStartEvent {}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct LinkTimeEndEvent {
+    /// The game's own second argument to the teardown function, forwarded raw.
+    /// Not interpreted, because I'm not sure what it does.
+    pub reason: u32,
+}
+
+/// One area of a Conflux survey was cleared.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ConfluxAreaClearEvent {
+    /// ID of the area that just ended (the `0x8xxxxx` family).
+    pub content_id: u32,
+    /// 1-based position of that area in the survey
+    pub area: u32,
+    pub cycle: u32,
+    pub area_count: u32,
+    pub cycle_count: u32,
+    /// Area-specific quest timer, resets per area
+    pub area_elapsed_time_in_secs: u32,
+}
+
+/// A Conflux survey advanced to its next area.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ConfluxAdvanceEvent {
+    /// ID of the area being moved into
+    pub content_id: u32,
+    /// 1-based position of that area in the survey
+    pub area: u32,
+    pub cycle: u32,
+    pub area_count: u32,
+    pub cycle_count: u32,
+}
+
+/// An enemy's HP reached zero. Tracked per target because a destroyed PART has
+/// its own HP and its own death; `actor_type` tells a part from a real enemy.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct EnemyDeathEvent {
+    pub target_index: u32,
+    pub actor_type: u32,
+}
+
+/// An enemy's Overdrive/Break state changed.
+/// Synthetic event emitted by damage events,
+/// not hooked to the real state change
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct EnemyModeChangeEvent {
+    /// The enemy this is about (`target.parent_index`).
+    pub target_index: u32,
+    pub in_overdrive: bool,
+    pub in_break: bool,
+}
+
+/// The chain-burst window opened or closed.
+/// Same sampling caveat as EnemyModeChangeEvent.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct SbaWindowChangeEvent {
+    pub active: bool,
+}
+
+/// A boss defeated inside a Conflux survey.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ConfluxBossClearEvent {
+    /// ID of the area whose boss just died.
+    pub content_id: u32,
+    /// 1-based position of that area in the survey
+    pub area: u32,
+    pub cycle: u32,
+    pub area_count: u32,
+    pub cycle_count: u32,
+}
+
+/// A link attack became available.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct LinkAttackChanceEvent {}
+
+/// A status effect was applied to an actor, or an already-held one of the same
+/// kind was refreshed in place. `status_id` is the game's raw kind id.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct StatusAppliedEvent {
+    pub actor_index: u32,
+    pub status_id: u32,
+    pub is_refresh: bool,
+
+    /// The duration this application GRANTED, in seconds. `remaining_secs` is
+    /// what is left of it.
+    #[serde(default)]
+    pub full_duration_secs: Option<f32>,
+    pub remaining_secs: f32,
+
+    /// The actor that APPLIED this status, same id space as `actor_index`.
+    /// Environmental and self-applied statuses have `None`
+    #[serde(default)]
+    pub applier_index: Option<u32>,
+
+    /// The game's own object key: same tuple + actor + kind = same object.
+    /// Element `[1]` looks like a per-ability id, but its namespace is
+    /// unconfirmed.
+    #[serde(default)]
+    pub source_ids: Option<[u32; 3]>,
+
+    #[serde(default)]
+    pub stacks: Option<u32>,
+
+    /// Whether the values are a FRACTION of a stat (0.20 = a 20% debuff)
+    /// rather than an absolute number (DoT amount, Shield HP).
+    #[serde(default)]
+    pub value_is_fraction: Option<bool>,
+
+    /// Summed magnitude of every live object of this kind on the actor,
+    /// (two DEF DOWNs at 0.10 and 0.20 act as 0.30). `None` if not numeric
+    #[serde(default)]
+    pub value_total: Option<f32>,
+
+    /// This status object's own magnitude. Note that this gets read before
+    /// the game writes the value so the buff trackers backfill based on
+    /// buff removal events
+    #[serde(default)]
+    pub value: Option<f32>,
+
+    /// True for a status with no expiry at all, an aura. The game stores a
+    /// 9999.0 sentinel in both duration fields for these.
+    #[serde(default)]
+    pub is_permanent: Option<bool>,
+}
+
+/// A status effect left an actor: natural expiry, dispel, or the bulk clear
+/// that runs on death / respawn / teardown. Carries no duration.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct StatusRemovedEvent {
+    pub actor_index: u32,
+    pub status_id: u32,
+
+    #[serde(default)]
+    pub stacks: Option<u32>,
+    #[serde(default)]
+    pub stacks_before: Option<u32>,
+    #[serde(default)]
+    pub value_total: Option<f32>,
+    #[serde(default)]
+    pub value_is_fraction: Option<bool>,
+    #[serde(default)]
+    pub applier_index: Option<u32>,
+    #[serde(default)]
+    pub source_ids: Option<[u32; 3]>,
+
+    /// This object's own magnitude at the moment it is removed
+    /// Authoritative, used for visualization
+    #[serde(default)]
+    pub value: Option<f32>,
+}
+
+/// A status's stack depth changed while the status itself stayed on the actor:
+/// a Mirror Image charge spent, a stackable debuff deepened by another cast.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct StatusStacksChangedEvent {
+    pub actor_index: u32,
+    pub status_id: u32,
+    pub stacks: u32,
+    #[serde(default)]
+    pub value_total: Option<f32>,
+    #[serde(default)]
+    pub value_is_fraction: Option<bool>,
+    #[serde(default)]
+    pub applier_index: Option<u32>,
+    #[serde(default)]
+    pub source_ids: Option<[u32; 3]>,
+    /// This object's magnitude at its new depth. A levelled status's magnitude
+    /// changes with depth, and this is the only event that reports that.
+    #[serde(default)]
+    pub value: Option<f32>,
+}
+
+/// HP was restored to an actor: a heal skill, a potion, an HP drain, a regen
+/// tick, or a revive. `amount` is the number shown on screen, EFFECTIVE HP
+/// after the overheal clamp, display-capped at 99999 per tick.
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct HealEvent {
+    /// The actor credited with the heal, same grouping id space as
+    /// `DamageEvent::source`. `None` = environmental or source-less.
+    pub source: Option<u32>,
+    pub target: u32,
+    pub amount: i32,
+    /// The game's heal-kind enum: 0 = skill/character heal or environment,
+    /// 1 = regen/auto-heal tick, 2 = drain + potion, 3 = null-source system
+    /// heal, 4 = revive/res-potion.
+    pub heal_type: u32,
+    /// Ability channel: `0x13880` tags the generic `PlayerHealHpAction` heal
+    /// skill, every other producer passes `0xFFFFFFFF`. Older logs read 0.
+    #[serde(default)]
+    pub channel: u32,
+    /// Which of the sink's two callers delivered it: `true` = the apply
+    /// primitive (skill / character heal / revive), `false` = the per-target
+    /// ledger flush (drain / potion / regen / system).
+    #[serde(default)]
+    pub via_apply: bool,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Message {
     OnAreaEnter(AreaEnterEvent),
     OnQuestComplete(QuestCompleteEvent),
@@ -220,4 +704,27 @@ pub enum Message {
     OnContinueSBAChain(OnContinueSBAChainEvent),
     PlayerLoadEvent(PlayerLoadEvent),
     OnDeathEvent(OnDeathEvent),
+    PlayerIdentityEvent(PlayerIdentityEvent),
+    OnQuestAbandon(QuestAbandonEvent),
+    PartyRoster(PartyRosterEvent),
+
+    /// Debug-Mode-only.
+    SuppressedDuplicateDamage(SuppressedDuplicateDamageEvent),
+    OnPeerCounter(PeerCounterEvent),
+    OnLinkTimeStart(LinkTimeStartEvent),
+    OnLinkTimeEnd(LinkTimeEndEvent),
+    OnLinkAttackChance(LinkAttackChanceEvent),
+
+    /// One area of a Conflux survey was cleared. A survey is a single
+    /// encounter, so this marks a seam between areas, not an end.
+    OnConfluxAreaClear(ConfluxAreaClearEvent),
+    OnConfluxAdvance(ConfluxAdvanceEvent),
+    OnConfluxBossClear(ConfluxBossClearEvent),
+    OnEnemyModeChange(EnemyModeChangeEvent),
+    OnSbaWindowChange(SbaWindowChangeEvent),
+    OnEnemyDeath(EnemyDeathEvent),
+    OnStatusApplied(StatusAppliedEvent),
+    OnStatusRemoved(StatusRemovedEvent),
+    OnStatusStacksChanged(StatusStacksChangedEvent),
+    OnHeal(HealEvent),
 }

@@ -1,4 +1,3 @@
-import { LineChart } from "@mantine/charts";
 import {
   ActionIcon,
   Box,
@@ -7,96 +6,77 @@ import {
   Flex,
   Group,
   Menu,
-  MultiSelect,
   NumberFormatter,
-  Paper,
-  Stack,
-  Table,
+  Select,
   Tabs,
   Text,
-  Tooltip,
 } from "@mantine/core";
-import { Calculator, ClipboardText } from "@phosphor-icons/react";
+import { useDisclosure } from "@mantine/hooks";
+import { ClipboardText } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 
-import { Table as MeterTable } from "@/components/Table";
+import StatusSourceNames, { StatusSourceGuesses, StatusSourceOverrides } from "@/assets/status-source-names";
+import { EffectiveTraitsTab } from "@/components/EffectiveTraitsTab";
+import { EquipmentTab } from "@/components/EquipmentTab";
+import { MasterTraitsModal } from "@/components/MasterTraitsModal";
+import { MiscTab } from "@/components/MiscTab";
+import { OverviewTab } from "@/components/OverviewTab";
+import { ReportIssueModal } from "@/components/ReportIssueModal";
+import { SbaTab } from "@/components/SbaTab";
+import { StunTab } from "@/components/StunTab";
+import { UploadLogButton } from "@/components/UploadLogButton";
+import { makeResolvePlayerName } from "@/components/chartCommon";
+import { styleBoardSourceName } from "@/models/skillboard";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import {
   MeterColumns,
-  type ComputedPlayerState,
+  type EncounterState,
   type EnemyType,
-  type Overmastery,
   type PlayerData,
   type SortDirection,
   type SortType,
 } from "@/types";
+import { PLAYER_COLORS } from "@/utils/constants";
 import {
-  EMPTY_ID,
-  PLAYER_COLORS,
-  epochToLocalTime,
+  PLAYER_ID_BASE,
+  buildEnemyGroups,
+  combineEncounterStates,
+  formatInPartyOrder,
+  resolvePartySlotIndex,
+} from "@/utils/derive";
+import {
   exportCharacterDataToClipboard,
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
-  formatInPartyOrder,
-  humanizeNumbers,
-  millisecondsToElapsedFormat,
   openDamageCalculator,
-  toHash,
-  toHashString,
-  translateItemId,
-  translateOvermasteryId,
-  translateQuestId,
-  translateSigilId,
-  translateTraitId,
-  translatedPlayerName,
-} from "@/utils";
+} from "@/utils/export";
+import { epochToLocalTime, millisecondsToElapsedFormat, toHash } from "@/utils/format";
+import { translateQuestId } from "@/utils/i18n";
+import {
+  STATUS_KINDS_WITHOUT_MAGNITUDE,
+  STATUS_SOURCE_ALL,
+  buildStatusEntityOptions,
+  buildStatusOptionGroups,
+  buildStatusSourceOptions,
+  masterTraitSourceFor,
+  resolveSelectedOption,
+  selectedStackSamples,
+  selectedStatusSources,
+  selectedStatusWindows,
+  selectedValueSamples,
+  statusSourceKey,
+  type StatusPolarity,
+} from "@/utils/status";
 import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 
-type Label = { name: string; partySlotIndex: number; label?: string; color: string; strokeDasharray?: string }[];
-
-const formatOvermastery = (overmastery: Overmastery | undefined): string => {
-  if (!overmastery) return "";
-
-  const value = overmastery.value.toFixed(0);
-  const translation = translateOvermasteryId(overmastery.id);
-  const regularNumbers = [
-    0x032a5217, 0x0781c7a2, 0x0b134a7f, 0x0cf5d0f3, 0x0db88f30, 0x0f25b474, 0x0febc993, 0x11023c6f, 0x124db819,
-    0x1268b903, 0x13c9452a, 0x155c25c3, 0x1cc2f730, 0x1e2b3db5, 0x24499a25, 0x254a08d4, 0x2d6c03eb, 0x2ea457f3,
-    0x303becc0, 0x3526fecb, 0x38f656e7, 0x394083bd, 0x3ac53494, 0x3ca4c8d5, 0x3d6600d9, 0x403be586, 0x409df671,
-    0x427b5e26, 0x437c055d, 0x44f04a7a, 0x49089d4f, 0x4ab91ea7, 0x4c0cbd32, 0x4ce64874, 0x4e2513df, 0x52a207b5,
-    0x5382923d, 0x53d358e0, 0x5767dd9f, 0x57bbc478, 0x59dce1e8, 0x5a51f0cb, 0x5a57dc07, 0x60835d4f, 0x60926b53,
-    0x61d4efa0, 0x6564c02b, 0x66092bc7, 0x67bde89b, 0x6e4f2f5e, 0x6fb47781, 0x7125942e, 0x7cbbb4e0, 0x7ccf98c5,
-    0x7e870ebe, 0x807e9e58, 0x829b8b5c, 0x834892b4, 0x85f0f318, 0x871d12cc, 0x874353d7, 0x8af65803, 0x8e66b68c,
-    0x8fe7fb0a, 0x911d4f18, 0x91265f66, 0x93572974, 0x937efb96, 0x95567556, 0x9a0988df, 0x9a29aa64, 0x9b6f164c,
-    0x9bfd4548, 0x9c6375cf, 0xa1dc63b3, 0xa257dac1, 0xa2bcf523, 0xa3460028, 0xa85b4af5, 0xaac23948, 0xab56bde3,
-    0xaccbece1, 0xaf0d8b97, 0xb83aa115, 0xbbe7992a, 0xbd488071, 0xbe8c17d4, 0xbf44c20b, 0xc1360291, 0xc265b03b,
-    0xc2d708c1, 0xc4925bd7, 0xc52d2245, 0xc5d68c62, 0xc6bdc7a6, 0xcb43ff8e, 0xcb63be55, 0xcb6bb434, 0xccef4492,
-    0xcd5d6315, 0xcf24e1a2, 0xcf6b267a, 0xd51958d1, 0xda546dfe, 0xdcbd8423, 0xddc29837, 0xde6a367a, 0xdf2cab83,
-    0xdf2eef09, 0xdfb00115, 0xe056ba80, 0xe7710898, 0xea5eaafc, 0xea99fa76, 0xee6100ca, 0xeefb4ade, 0xf004e9f2,
-    0xf203bb15, 0xf2111b99, 0xf5514f81, 0xf80e3310, 0xfa230938, 0xfa9bcf64, 0xfb276afd, 0xfe71865d, 0x2676f9d2,
-    0x2c1c933d, 0x3356dd03, 0x36f068fd, 0x3dae6494, 0x455d6a1c, 0x59fbb7d8, 0x6837e60c, 0x6cb38ef3, 0x7b05e679,
-    0x7b498c32, 0x9bf7878a, 0xa3545ca1, 0xa85495ba, 0xa901e065, 0xc11fdfbd, 0xd5169339, 0xd63dd12b, 0xf5c314a0,
-  ];
-
-  let isRegularNumber = false;
-
-  if (regularNumbers.includes(overmastery.id)) {
-    isRegularNumber = true;
-  }
-
-  if (isRegularNumber) {
-    return `${translation}: +${value}`;
-  } else {
-    return `${translation}: +${value}%`;
-  }
-};
+import { resolveEffectiveEnemy, sumChartsAcrossEnemies } from "./enemySelection";
 
 const formatPlayerDisplayName = (player: PlayerData, showName: boolean, showLevel: boolean = true): string => {
   const displayName = player.displayName;
@@ -117,46 +97,19 @@ const formatPlayerDisplayName = (player: PlayerData, showName: boolean, showLeve
   }
 };
 
-// Returns a string of stars based on the star level.
-// ★★★☆☆☆ (3 stars)
-// ★★★★★★ (6 stars)
-const createWeaponStars = (starLevel: number): string => {
-  return "★".repeat(starLevel) + "☆".repeat(6 - starLevel);
-};
-
-interface ChartTooltipProps {
-  label: string;
-  payload: Record<string, any>[] | undefined; // eslint-disable-line
-}
-
-export const ChartTooltip = ({ label, payload }: ChartTooltipProps) => {
-  if (!payload) return null;
-
-  return (
-    <Paper px="md" py="sm" withBorder shadow="md" radius="md">
-      <Text fw={500} mb={5}>
-        {label}
-      </Text>
-      {payload.map(
-        (
-          item: any // eslint-disable-line
-        ) => (
-          <Text key={item.name} fz="sm">
-            <Text component="span" c={item.color}>
-              {item.name === "party" ? t("ui.logs.damage-per-second") : item.name}
-            </Text>
-            : {new Intl.NumberFormat("en-US").format(item.value)}
-          </Text>
-        )
-      )}
-    </Paper>
-  );
-};
-
-const DPS_INTERVAL = 3;
-
 export const ViewPage = () => {
-  const { color_1, color_2, color_3, color_4, show_display_names, streamer_mode } = useMeterSettingsStore(
+  const {
+    color_1,
+    color_2,
+    color_3,
+    color_4,
+    show_display_names,
+    streamer_mode,
+    show_link_time,
+    show_sba_chain,
+    show_break,
+    setMeterSettings,
+  } = useMeterSettingsStore(
     useShallow((state) => ({
       color_1: state.color_1,
       color_2: state.color_2,
@@ -164,82 +117,144 @@ export const ViewPage = () => {
       color_4: state.color_4,
       show_display_names: state.show_display_names,
       streamer_mode: state.streamer_mode,
+      show_link_time: state.show_link_time,
+      show_sba_chain: state.show_sba_chain,
+      show_break: state.show_break,
+      setMeterSettings: state.set,
     }))
   );
   const playerColors = [color_1, color_2, color_3, color_4, ...PLAYER_COLORS.slice(4)];
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { id } = useParams();
 
   const {
-    encounter,
-    dpsChart,
+    encounterGlobal,
+    encounterStatesByEnemy,
+    dpsChartByEnemy,
+    stunChartByEnemy,
+    stunResetByEnemy,
     sbaChart,
     sbaEvents,
+    healProvidedChart,
+    healReceivedChart,
+    damageTakenChart,
+    deaths,
+    miscChartLen,
+    linkTimeWindows,
+    confluxAreaClears,
+    confluxBossClears,
+    sbaWindows,
+    breakWindows,
+    statusIntervals,
+    statusPeakStacks,
+    statusStackSeries,
+    statusValueSeries,
+    statusValueIsFraction,
+    statusSources,
     chartLen,
     sbaChartLen,
-    targets,
-    selectedTargets,
     questId,
     questTimer,
     questCompleted,
     playerData,
-    setSelectedTargets,
     loadFromResponse,
+    fetchEnemyState,
   } = useEncounterStore((state) => ({
-    encounter: state.encounterState,
-    dpsChart: state.dpsChart,
+    encounterGlobal: state.encounterState,
+    encounterStatesByEnemy: state.encounterStatesByEnemy,
+    dpsChartByEnemy: state.dpsChartByEnemy,
+    stunChartByEnemy: state.stunChartByEnemy,
+    stunResetByEnemy: state.stunResetByEnemy,
     sbaChart: state.sbaChart,
     sbaEvents: state.sbaEvents,
+    healProvidedChart: state.healProvidedChart,
+    healReceivedChart: state.healReceivedChart,
+    damageTakenChart: state.damageTakenChart,
+    deaths: state.deaths,
+    miscChartLen: state.miscChartLen,
+    linkTimeWindows: state.linkTimeWindows,
+    confluxAreaClears: state.confluxAreaClears,
+    confluxBossClears: state.confluxBossClears,
+    sbaWindows: state.sbaWindows,
+    breakWindows: state.breakWindows,
+    statusIntervals: state.statusIntervals,
+    statusPeakStacks: state.statusPeakStacks,
+    statusStackSeries: state.statusStackSeries,
+    statusValueSeries: state.statusValueSeries,
+    statusValueIsFraction: state.statusValueIsFraction,
+    statusSources: state.statusSources,
     chartLen: state.chartLen,
     sbaChartLen: state.sbaChartLen,
-    targets: state.targets,
-    selectedTargets: state.selectedTargets,
     playerData: state.players,
     questId: state.questId,
     questTimer: state.questTimer,
     questCompleted: state.questCompleted,
-    setSelectedTargets: state.setSelectedTargets,
     loadFromResponse: state.loadFromResponse,
+    fetchEnemyState: state.fetchEnemyState,
   }));
   const [sortType, setSortType] = useState<SortType>(MeterColumns.TotalDamage);
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [stunSortType, setStunSortType] = useState<SortType>(MeterColumns.TotalStunValue);
+  const [sbaSortType, setSbaSortType] = useState<SortType>(MeterColumns.TotalSbaAdded);
+  const [stunSortDirection, setStunSortDirection] = useState<SortDirection>("desc");
+  const [sbaSortDirection, setSbaSortDirection] = useState<SortDirection>("desc");
+  const [detailsOpened, detailsHandlers] = useDisclosure(false);
+  const [detailsPlayer, setDetailsPlayer] = useState<PlayerData | null>(null);
+  const [selectedEnemy, setSelectedEnemy] = useState<number | "all" | null>(null);
+  const [selectedStatusActor, setSelectedStatusActor] = useState<number | null>(null);
+  const [selectedStatusKind, setSelectedStatusKind] = useState<number | null>(null);
+  const [selectedStatusSource, setSelectedStatusSource] = useState<string>(STATUS_SOURCE_ALL);
 
   useEffect(() => {
-    invoke("fetch_encounter_state", { id: Number(id), options: { targets: selectedTargets } })
+    invoke("fetch_encounter_state", { id: Number(id) })
       .then((result) => {
         loadFromResponse(result as EncounterStateResponse);
       })
       .catch((e) => {
         toast.error(`Failed to fetch encounter state: ${e}`);
       });
-  }, [id, selectedTargets]);
+  }, [id]);
 
-  const handleCharacterDataCopy = useCallback((player: PlayerData) => {
-    if (player) exportCharacterDataToClipboard(player);
-  }, []);
+  useEffect(() => {
+    if (!encounterGlobal || id === undefined) return;
+    const groups = buildEnemyGroups(Object.values(encounterGlobal.targets));
+    const effective = resolveEffectiveEnemy(
+      selectedEnemy,
+      groups.map((group) => group.representativeIndex)
+    );
+    if (typeof effective !== "number") return;
+    const group = groups.find((g) => g.representativeIndex === effective);
+    for (const memberIndex of group?.indices ?? [effective]) fetchEnemyState(Number(id), memberIndex);
+  }, [encounterGlobal, selectedEnemy, id, fetchEnemyState]);
+
+  const setOverlayVisible = useCallback(
+    (overlay: "link-time" | "sba-chain" | "break", visible: boolean) => {
+      if (overlay === "link-time") setMeterSettings({ show_link_time: visible });
+      else if (overlay === "sba-chain") setMeterSettings({ show_sba_chain: visible });
+      else setMeterSettings({ show_break: visible });
+    },
+    [setMeterSettings]
+  );
+
+  const exportDisplayNames = show_display_names && !streamer_mode;
+
+  const handleCharacterDataCopy = useCallback(
+    (player: PlayerData) => {
+      if (player) exportCharacterDataToClipboard(player, exportDisplayNames);
+    },
+    [exportDisplayNames]
+  );
 
   const handleOpenDamageCalculator = useCallback((player: PlayerData) => {
     if (player) openDamageCalculator(player);
   }, []);
 
-  const handleSimpleEncounterCopy = useCallback(() => {
-    if (encounter) exportSimpleEncounterToClipboard(sortType, sortDirection, encounter, playerData);
-  }, [sortType, sortDirection, encounter]);
-
-  const handleFullEncounterCopy = useCallback(() => {
-    if (encounter) exportFullEncounterToClipboard(sortType, sortDirection, encounter, playerData);
-  }, [sortType, sortDirection, encounter]);
-
   const handleScreenshotCopy = useCallback(() => {
     exportScreenshotToClipboard("#log-view-page");
   }, []);
 
-  const exportDamageLogToFile = useCallback(() => {
-    if (id) invoke("export_damage_log_to_file", { id: Number(id), options: { targets: selectedTargets } });
-  }, [id, selectedTargets]);
-
-  if (!encounter) {
+  if (!encounterGlobal) {
     return (
       <Box>
         <Text>
@@ -251,126 +266,248 @@ export const ViewPage = () => {
     );
   }
 
-  const data = [];
-  const sbaData = [];
+  const enemies = Object.values(encounterGlobal.targets).sort((a, b) => b.totalDamage - a.totalDamage);
+  const enemyGroups = buildEnemyGroups(enemies);
+  const effectiveEnemy = resolveEffectiveEnemy(
+    selectedEnemy,
+    enemyGroups.map((group) => group.representativeIndex)
+  );
+  const showAllEnemies = effectiveEnemy === "all";
+  const selectedGroup =
+    typeof effectiveEnemy === "number"
+      ? enemyGroups.find((group) => group.representativeIndex === effectiveEnemy)
+      : undefined;
+  const selectedIndices = selectedGroup?.indices ?? (typeof effectiveEnemy === "number" ? [effectiveEnemy] : []);
+
+  const selectedStates = selectedIndices
+    .map((index) => encounterStatesByEnemy[index])
+    .filter((state): state is EncounterState => state !== undefined);
+
+  const encounter = showAllEnemies
+    ? encounterGlobal
+    : selectedIndices.length > 0 && selectedStates.length === selectedIndices.length
+      ? selectedStates.length === 1
+        ? selectedStates[0]
+        : combineEncounterStates(selectedStates)
+      : encounterGlobal;
+  const enemyDps = showAllEnemies
+    ? sumChartsAcrossEnemies(dpsChartByEnemy)
+    : sumChartsAcrossEnemies(dpsChartByEnemy, selectedIndices);
+  const enemyStun = showAllEnemies
+    ? sumChartsAcrossEnemies(stunChartByEnemy)
+    : sumChartsAcrossEnemies(stunChartByEnemy, selectedIndices);
+  const enemyStunResets =
+    !showAllEnemies && selectedIndices.length === 1 ? stunResetByEnemy[selectedIndices[0]] ?? [] : [];
+
+  const namedEnemy = (et: EnemyType): string | null => {
+    if (typeof et == "object" && Object.hasOwn(et, "Unknown")) {
+      const hash = et.Unknown.toString(16).padStart(8, "0");
+      return i18n.exists(`enemies:${hash}.text`) ? t(`enemies:${hash}.text`) : null;
+    }
+    return i18n.exists(`enemies.${et}`) ? t(`enemies.${et}`) : null;
+  };
+  const unknownEnemyLabel = (et: EnemyType, baseEt: EnemyType): string => {
+    const toHash = (e: EnemyType) => (typeof e == "object" ? e.Unknown.toString(16).padStart(8, "0") : String(e));
+    const hash = toHash(et);
+    const baseHash = toHash(baseEt);
+    return t([`enemies.unknown.${hash}`, `enemies.unknown.${baseHash}`, "enemies.unknown-type"], { id: hash });
+  };
+
+  const enemyItems = enemyGroups.map((group) => {
+    const enemy = group.representative;
+    const label =
+      namedEnemy(enemy.targetType) ??
+      namedEnemy(enemy.baseTargetType) ??
+      unknownEnemyLabel(enemy.targetType, enemy.baseTargetType);
+    return { value: String(group.representativeIndex), label };
+  });
+  if (enemyGroups.length > 1) {
+    enemyItems.unshift({ value: "all", label: t("ui.logs.all-enemies", "All") });
+  }
 
   const players = formatInPartyOrder(encounter.party);
+  // Gauge generation is not enemy-attributable, so the SBA tab always reads
+  // the whole-encounter state.
+  const sbaPlayers = formatInPartyOrder(encounterGlobal.party);
 
-  for (let i = 0; i < chartLen + 1; i++) {
-    const datapoint: {
-      timestamp?: string;
-      party?: number;
-    } & { [key: string]: number } = {};
+  const resolveStatusPlayerName = makeResolvePlayerName(sbaPlayers, playerData, show_display_names, streamer_mode);
+  const statusEntityLabel = (actorId: number): string => {
+    // Fail closed: a label resolver must never white-screen the page.
+    if (typeof actorId !== "number" || !Number.isFinite(actorId)) return "Unknown";
+    if (actorId >= PLAYER_ID_BASE) return resolveStatusPlayerName(actorId);
+    const target = encounterGlobal.targets[actorId];
+    if (!target) return `0x${actorId.toString(16).padStart(8, "0")}`;
+    return (
+      namedEnemy(target.targetType) ??
+      namedEnemy(target.baseTargetType) ??
+      unknownEnemyLabel(target.targetType, target.baseTargetType)
+    );
+  };
 
-    const timestamp = i * (DPS_INTERVAL * 1000);
+  const statusEntityItems = buildStatusEntityOptions(statusIntervals, statusEntityLabel);
+  const statusActor = statusEntityItems.some((item) => Number(item.value) === selectedStatusActor)
+    ? selectedStatusActor
+    : null;
+  const statusGroups = buildStatusOptionGroups(statusIntervals, statusActor, statusPeakStacks);
+  const statusKind = statusGroups.some((group) => group.items.some((item) => Number(item.value) === selectedStatusKind))
+    ? selectedStatusKind
+    : null;
 
-    datapoint["timestamp"] = millisecondsToElapsedFormat(timestamp);
-    datapoint["party"] = 0;
+  const statusSourceActionName = (
+    applierIndex: number,
+    actionId: number,
+    magnitude: number | undefined
+  ): string | null => {
+    const partySlotIndex = resolvePartySlotIndex(playerData, applierIndex);
+    const characterType = playerData[partySlotIndex]?.characterType;
 
-    for (const playerIndex in dpsChart) {
-      const player = players.find((p) => p.index === Number(playerIndex));
-      const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player?.index);
-      const playerName = translatedPlayerName(
-        partySlotIndex,
-        playerData[partySlotIndex],
-        player as ComputedPlayerState,
-        show_display_names && !streamer_mode
-      );
-
-      const lastFiveValues = dpsChart[playerIndex].slice(i - 5, i);
-      const totalLastFiveValues = lastFiveValues.reduce((a, b) => a + b, 0);
-      const currentValue = dpsChart[playerIndex][i] || 0;
-      const averageValue = (totalLastFiveValues + currentValue) / (lastFiveValues.length + 1);
-
-      const value = Math.round(averageValue / DPS_INTERVAL);
-      datapoint[playerName] = value;
-      datapoint["party"] += value;
+    if (typeof characterType === "string" && statusKind !== null) {
+      const override = StatusSourceOverrides[`${characterType.toUpperCase()}:${statusKind}:${actionId}`];
+      if (override) return override;
     }
 
-    data.push(datapoint);
-  }
-
-  for (let i = 0; i < sbaChartLen; i++) {
-    const sbaDatapoint: {
-      timestamp?: string;
-    } & { [key: string]: number } = {};
-
-    const timestamp = i * 1_000;
-
-    sbaDatapoint["timestamp"] = millisecondsToElapsedFormat(timestamp);
-
-    for (const playerIndex in sbaChart) {
-      const player = players.find((p) => p.index === Number(playerIndex));
-      const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player?.index);
-      const playerName = translatedPlayerName(
-        partySlotIndex,
-        playerData[partySlotIndex],
-        player as ComputedPlayerState,
-        show_display_names && !streamer_mode
-      );
-
-      const value = sbaChart[playerIndex][i];
-      sbaDatapoint[playerName] = value / 10.0;
+    if (characterType) {
+      const key = `skills.${characterType}.${actionId}`;
+      const name = t(key);
+      // i18next echoes the key back when there is no entry for it.
+      if (name !== key) return name;
     }
 
-    sbaData.push(sbaDatapoint);
-  }
+    if (statusKind === null) return null;
+    const pair = `${actionId}:${statusKind}`;
 
-  const labels: Label = players.map((player) => {
-    const partySlotIndex = playerData.findIndex((partyMember) => partyMember?.actorIndex === player.index);
-    const color = partySlotIndex !== -1 ? playerColors[partySlotIndex] : playerColors[player.partyIndex];
+    const confirmed = StatusSourceNames[pair];
+    if (confirmed) return confirmed;
 
-    return {
-      name: translatedPlayerName(
-        partySlotIndex,
-        playerData[partySlotIndex],
-        player,
-        show_display_names && !streamer_mode
-      ),
-      damage: player.totalDamage,
-      partySlotIndex,
-      color,
-    };
-  });
+    const guess = StatusSourceGuesses[pair];
+    if (guess) return `${guess}?`;
 
-  const sbaLabels = labels.slice().filter((label) => label.partySlotIndex !== -1);
+    const perk = masterTraitSourceFor(
+      typeof characterType === "string" ? characterType : undefined,
+      statusKind,
+      magnitude,
+      statusValueIsFraction[statusKind]
+    );
+    if (perk) return `${perk} (Master Trait)`;
 
-  labels.push({
-    name: "party",
-    partySlotIndex: -1,
-    label: t("ui.logs.damage-per-second"),
-    color: "grey",
-    strokeDasharray: "2 2",
-  });
+    return styleBoardSourceName(actionId, playerData[partySlotIndex]?.masterTraitFlags);
+  };
 
-  const targetItems = targets.map((target) => {
-    if (typeof target == "object" && Object.hasOwn(target, "Unknown")) {
-      const hash = target.Unknown.toString(16).padStart(8, "0");
+  const statusSourceList = selectedStatusSources(statusSources, statusActor, statusKind);
+  const statusSourceOptions = buildStatusSourceOptions(
+    statusSourceList,
+    statusEntityLabel,
+    t("ui.logs.status-source-all", "All"),
+    t("ui.logs.status-source-unknown", "Unknown"),
+    statusSourceActionName,
+    statusKind !== null ? statusValueIsFraction[statusKind] : undefined
+  );
+  const statusSource = resolveSelectedOption(statusSourceOptions, selectedStatusSource);
+  const pickedSource =
+    statusSource === STATUS_SOURCE_ALL
+      ? null
+      : statusSourceList.find((source) => statusSourceKey(source) === statusSource) ?? null;
 
-      return {
-        rawValue: target,
-        value: target.Unknown.toString(),
-        label: t([`enemies:${hash}.text`, `enemies.unknown.${hash}`, "enemies.unknown-type"], { id: hash }),
-      };
-    }
+  const statusWindows = pickedSource
+    ? pickedSource.windows
+    : selectedStatusWindows(statusIntervals, statusActor, statusKind);
+  const statusStackSamples = selectedStackSamples(statusStackSeries, statusActor, statusKind);
+  const statusValueSamples =
+    statusKind !== null && STATUS_KINDS_WITHOUT_MAGNITUDE.has(statusKind)
+      ? []
+      : pickedSource && pickedSource.values.length > 0
+        ? pickedSource.values
+        : selectedValueSamples(statusValueSeries, statusActor, statusKind);
 
-    return {
-      rawValue: target,
-      value: target.toString(),
-      label: t([`enemies.${target}`, "enemies.unknown-type"]),
-    };
-  });
+  const statusGroupLabels: Record<StatusPolarity, string> = {
+    buff: t("ui.logs.status-buffs", "Buffs"),
+    debuff: t("ui.logs.status-ailments", "Ailments"),
+    other: t("ui.logs.status-uncatalogued", "Uncatalogued"),
+  };
+  const statusSelect =
+    statusEntityItems.length > 0 ? (
+      <Group gap="xs" w="100%">
+        <Select
+          data={statusEntityItems}
+          value={statusActor !== null ? String(statusActor) : null}
+          onChange={(value) => {
+            setSelectedStatusActor(value !== null ? Number(value) : null);
+            setSelectedStatusKind(null);
+          }}
+          clearable
+          placeholder={t("ui.logs.select-status-entity", "Status on")}
+          maw={260}
+        />
+        <Select
+          data={statusGroups.map((group) => ({ group: statusGroupLabels[group.polarity], items: group.items }))}
+          value={statusKind !== null ? String(statusKind) : null}
+          onChange={(value) => {
+            setSelectedStatusKind(value !== null ? Number(value) : null);
+            setSelectedStatusSource(STATUS_SOURCE_ALL);
+          }}
+          clearable
+          disabled={statusActor === null}
+          placeholder={t("ui.logs.select-status", "Status effect")}
+          maw={260}
+        />
+        {statusSourceList.length > 0 ? (
+          <Select
+            data={statusSourceOptions}
+            value={statusSource}
+            onChange={(value) => setSelectedStatusSource(value ?? STATUS_SOURCE_ALL)}
+            label={undefined}
+            placeholder={t("ui.logs.select-status-source", "Applied by")}
+            style={{ flex: 1, minWidth: 0 }}
+          />
+        ) : null}
+      </Group>
+    ) : null;
+
+  // An empty target list reads as "every target" to the parser's CSV export.
+  const selectedTargetTypes = showAllEnemies
+    ? []
+    : selectedIndices
+        .map((index) => encounterGlobal.targets[index]?.targetType)
+        .filter((targetType): targetType is EnemyType => targetType !== undefined);
+
+  const handleSimpleEncounterCopy = () =>
+    exportSimpleEncounterToClipboard(sortType, sortDirection, encounter, playerData, exportDisplayNames);
+
+  const handleFullEncounterCopy = () =>
+    exportFullEncounterToClipboard(sortType, sortDirection, encounter, playerData, exportDisplayNames);
+
+  const exportDamageLogToFile = () => {
+    if (id) invoke("export_damage_log_to_file", { id: Number(id), options: { targets: selectedTargetTypes } });
+  };
+
+  const enemySelect = (
+    <Select
+      data={enemyItems}
+      value={effectiveEnemy !== null ? String(effectiveEnemy) : null}
+      onChange={(value) => setSelectedEnemy(value === "all" ? "all" : value !== null ? Number(value) : null)}
+      allowDeselect={false}
+      placeholder={t("ui.logs.select-enemy", "Select enemy")}
+      disabled={enemyItems.length === 0}
+      maw={320}
+    />
+  );
+
+  const playerNames = playerData.map((player) =>
+    formatPlayerDisplayName(player, show_display_names && !streamer_mode, false)
+  );
 
   return (
     <Box>
-      <Text>
+      <Box>
         <Box display="flex">
           <Box display="flex" flex={1}>
             <Button size="xs" variant="default" component={Link} to="/logs">
               {t("ui.back-btn")}
             </Button>
           </Box>
-          <Flex display="flex" flex={1} justify={"flex-end"}>
+          <Flex display="flex" flex={1} justify={"flex-end"} align="center" gap="xs">
+            <UploadLogButton id={id} />
+            <ReportIssueModal id={id} />
             <Menu shadow="md" trigger="hover" openDelay={100} closeDelay={400}>
               <Menu.Target>
                 <ActionIcon aria-label="Clipboard" variant="filled" color="light">
@@ -386,7 +523,7 @@ export const ViewPage = () => {
             </Menu>
           </Flex>
         </Box>
-      </Text>
+      </Box>
 
       <Divider my="sm" />
 
@@ -454,287 +591,132 @@ export const ViewPage = () => {
           <Tabs.List>
             <Tabs.Tab value="overview">{t("ui.logs.overview")}</Tabs.Tab>
             <Tabs.Tab value="sba">{t("ui.logs.sba-chart")}</Tabs.Tab>
+            <Tabs.Tab value="stun">{t("ui.logs.stun-chart", "Stun")}</Tabs.Tab>
             <Tabs.Tab value="equipment" disabled={playerData.length === 0}>
               {t("ui.logs.equipment")}
             </Tabs.Tab>
+            <Tabs.Tab
+              value="effective-traits"
+              disabled={!playerData.some((player) => (player.effectiveTraits?.length ?? 0) > 0)}
+            >
+              {t("ui.logs.effective-traits", "Effective Traits")}
+            </Tabs.Tab>
+            <Tabs.Tab value="misc">{t("ui.logs.misc", "Misc")}</Tabs.Tab>
           </Tabs.List>
           <Tabs.Panel value="overview">
-            <Box mt="md">
-              <Stack>
-                <MultiSelect
-                  data={targetItems}
-                  placeholder="All"
-                  clearable
-                  onChange={(value) => {
-                    const targets = value
-                      .map((v) => targetItems.find((t) => t.value === v)?.rawValue)
-                      .filter((v) => v !== undefined) as EnemyType[];
-
-                    setSelectedTargets(targets);
-                  }}
-                />
-                <MeterTable
-                  encounterState={encounter}
-                  sortType={sortType}
-                  sortDirection={sortDirection}
-                  setSortType={setSortType}
-                  setSortDirection={setSortDirection}
-                  partyData={playerData}
-                />
-                <Text size="sm">{t("ui.logs.damage-per-second")}</Text>
-                <LineChart
-                  h={400}
-                  data={data}
-                  dataKey="timestamp"
-                  withDots={false}
-                  withLegend
-                  series={labels}
-                  valueFormatter={(value) => {
-                    const [num, suffix] = humanizeNumbers(value);
-                    return `${num}${suffix}`;
-                  }}
-                  tooltipProps={{
-                    content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-                  }}
-                />
-              </Stack>
-            </Box>
+            <OverviewTab
+              encounter={encounter}
+              sortType={sortType}
+              sortDirection={sortDirection}
+              setSortType={setSortType}
+              setSortDirection={setSortDirection}
+              playerData={playerData}
+              players={players}
+              showDisplayNames={show_display_names}
+              streamerMode={streamer_mode}
+              playerColors={playerColors}
+              chartLen={chartLen}
+              enemyDps={enemyDps}
+              linkTimeWindows={linkTimeWindows}
+              confluxAreaClears={confluxAreaClears}
+              confluxBossClears={confluxBossClears}
+              sbaWindows={sbaWindows}
+              breakWindows={breakWindows}
+              showLinkTime={show_link_time}
+              showSbaChain={show_sba_chain}
+              showBreak={show_break}
+              setOverlayVisible={setOverlayVisible}
+              enemySelect={enemySelect}
+              statusSelect={statusSelect}
+              statusStackSamples={statusStackSamples}
+              statusValueSamples={statusValueSamples}
+              statusValueIsFraction={statusKind !== null ? statusValueIsFraction[statusKind] : undefined}
+              statusWindows={statusWindows}
+            />
           </Tabs.Panel>
           <Tabs.Panel value="sba">
-            <Group mt="20" gap="xs">
-              <Text size="sm">{t("ui.logs.sba-chart")}</Text>
-              <LineChart
-                h={400}
-                data={sbaData}
-                dataKey="timestamp"
-                withDots={false}
-                withLegend
-                series={sbaLabels}
-                valueFormatter={(value) => {
-                  return `${value}%`;
-                }}
-                tooltipProps={{
-                  content: ({ label, payload }) => <ChartTooltip label={label} payload={payload} />,
-                }}
-              />
-              <Table striped layout="fixed">
-                <Table.Tbody>
-                  {sbaEvents.map((payload, index) => {
-                    const [timestamp, event] = payload;
-                    const eventType = Object.keys(event)[0];
-
-                    // @ts-expect-error: eventType is dynamic here.
-                    const player = players.find((p) => p.index === event[eventType].actor_index);
-
-                    const partySlotIndex = playerData.findIndex(
-                      // @ts-expect-error: eventType is dynamic here.
-                      (partyMember) => partyMember?.actorIndex === event[eventType].actor_index
-                    );
-
-                    const playerName = translatedPlayerName(
-                      partySlotIndex,
-                      playerData[partySlotIndex],
-                      player as ComputedPlayerState,
-                      show_display_names && !streamer_mode
-                    );
-
-                    return (
-                      <Table.Tr key={index}>
-                        <Table.Td>
-                          <Text size="xs">{millisecondsToElapsedFormat(timestamp)}</Text>
-                        </Table.Td>
-                        <Table.Td>
-                          <Text size="xs">
-                            {playerName} - {t(`ui.sba.${eventType}`)}
-                          </Text>
-                        </Table.Td>
-                      </Table.Tr>
-                    );
-                  })}
-                </Table.Tbody>
-              </Table>
-            </Group>
+            <SbaTab
+              playerData={playerData}
+              players={sbaPlayers}
+              encounter={encounterGlobal}
+              sortType={sbaSortType}
+              sortDirection={sbaSortDirection}
+              setSortType={setSbaSortType}
+              setSortDirection={setSbaSortDirection}
+              showDisplayNames={show_display_names}
+              streamerMode={streamer_mode}
+              playerColors={playerColors}
+              sbaChartLen={sbaChartLen}
+              sbaChart={sbaChart}
+              sbaEvents={sbaEvents}
+              linkTimeWindows={linkTimeWindows}
+              confluxAreaClears={confluxAreaClears}
+              confluxBossClears={confluxBossClears}
+              sbaWindows={sbaWindows}
+              breakWindows={breakWindows}
+              showLinkTime={show_link_time}
+              showSbaChain={show_sba_chain}
+              showBreak={show_break}
+            />
+          </Tabs.Panel>
+          <Tabs.Panel value="stun">
+            <StunTab
+              encounter={encounter}
+              sortType={stunSortType}
+              sortDirection={stunSortDirection}
+              setSortType={setStunSortType}
+              setSortDirection={setStunSortDirection}
+              playerData={playerData}
+              players={players}
+              showDisplayNames={show_display_names}
+              streamerMode={streamer_mode}
+              playerColors={playerColors}
+              chartLen={chartLen}
+              enemyStun={enemyStun}
+              enemyStunResets={enemyStunResets}
+              confluxAreaClears={confluxAreaClears}
+              confluxBossClears={confluxBossClears}
+              sbaWindows={sbaWindows}
+              breakWindows={breakWindows}
+              showSbaChain={show_sba_chain}
+              showBreak={show_break}
+              enemySelect={enemySelect}
+            />
           </Tabs.Panel>
           <Tabs.Panel value="equipment">
-            <Group mt="20" gap="xs">
-              <Table striped layout="fixed">
-                <Table.Tbody>
-                  <Table.Tr>
-                    {playerData.map((player) => {
-                      return (
-                        <Table.Td key={player.actorIndex} flex={1}>
-                          <Flex direction="row" wrap="nowrap" align="center">
-                            <Text fw={700} size="xl" mr="5">
-                              {formatPlayerDisplayName(player, show_display_names && !streamer_mode, false)}
-                            </Text>
-                            <Tooltip label={t("ui.copy-character-data-to-clipboard")} color="dark">
-                              <ActionIcon
-                                aria-label="Clipboard"
-                                variant="filled"
-                                color="light"
-                                onClick={() => handleCharacterDataCopy(player)}
-                              >
-                                <ClipboardText size={16} />
-                              </ActionIcon>
-                            </Tooltip>
-                            <Tooltip label={t("ui.open-damage-calculator")} color="dark">
-                              <ActionIcon
-                                aria-label="Open build"
-                                variant="filled"
-                                color="light"
-                                onClick={() => handleOpenDamageCalculator(player)}
-                              >
-                                <Calculator size={16} />
-                              </ActionIcon>
-                            </Tooltip>
-                          </Flex>
-                        </Table.Td>
-                      );
-                    })}
-                  </Table.Tr>
-                  <Table.Tr>
-                    {playerData.map((player) => {
-                      return (
-                        <Table.Td key={player.actorIndex}>
-                          <Text size="xs" fw={700}>
-                            {t("ui.player-stats")}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.level")}: {player.playerStats?.level || 1}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.total-hp")}: {player.playerStats?.totalHp || 1}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.total-attack")}: {player.playerStats?.totalAttack || 1}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.critical-rate")}: {(player.playerStats?.criticalRate || 0).toFixed(0)}%
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.stun-power")}: {((player.playerStats?.stunPower || 0) * 10).toFixed(0)}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t("ui.stats.total-power")}: {player.playerStats?.totalPower || 1}
-                          </Text>
-                        </Table.Td>
-                      );
-                    })}
-                  </Table.Tr>
-                  <Table.Tr>
-                    {playerData.map((player) => {
-                      const overmasteries = player.overmasteryInfo?.overmasteries || [];
-
-                      return (
-                        <Table.Td key={player.actorIndex}>
-                          <Text size="xs" fw={700}>
-                            {t("ui.player-overmasteries")}
-                          </Text>
-                          {Array.from(Array(4).keys()).map((overmasteryIndex) => {
-                            const overmastery = overmasteries[overmasteryIndex];
-
-                            return (
-                              <Placeholder key={overmasteryIndex} empty={!overmastery || overmastery.value === 0}>
-                                <Text size="xs" fs="italic" fw={300}>
-                                  {formatOvermastery(overmastery)}
-                                </Text>
-                              </Placeholder>
-                            );
-                          })}
-                        </Table.Td>
-                      );
-                    })}
-                  </Table.Tr>
-                  <Table.Tr>
-                    {playerData.map((player) => {
-                      return (
-                        <Table.Td key={player.actorIndex}>
-                          <Text size="xs" fw={700}>
-                            {t("ui.weapon")}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {createWeaponStars(player.weaponInfo?.starLevel || 0)}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            {t([`weapons:${toHashString(player.weaponInfo?.weaponId)}.text`, "unknown"])} +
-                            {player.weaponInfo?.plusMarks}
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            Awakening {player.weaponInfo?.awakeningLevel || 0}/10
-                          </Text>
-                          <Text size="xs" fs="italic" fw={300}>
-                            Lvl {player.weaponInfo?.weaponLevel || 0} / ATK {player.weaponInfo?.weaponAttack || 0} / HP{" "}
-                            {player.weaponInfo?.weaponHp || 0}
-                          </Text>
-                          <Text size="xs" fw={700}>
-                            {translateItemId(player.weaponInfo?.wrightstoneId || EMPTY_ID)}
-                          </Text>
-                          <Placeholder empty={!player.weaponInfo?.trait1Id || player.weaponInfo?.trait1Level == 0}>
-                            <Text size="xs" fs="italic" fw={300}>
-                              - {translateTraitId(player.weaponInfo?.trait1Id || EMPTY_ID)} (Lvl.{" "}
-                              {player.weaponInfo?.trait1Level})
-                            </Text>
-                          </Placeholder>
-                          <Placeholder empty={!player.weaponInfo?.trait2Id || player.weaponInfo?.trait2Level == 0}>
-                            <Text size="xs" fs="italic" fw={300}>
-                              - {translateTraitId(player.weaponInfo?.trait2Id || EMPTY_ID)} (Lvl.{" "}
-                              {player.weaponInfo?.trait2Level})
-                            </Text>
-                          </Placeholder>
-                          <Placeholder empty={!player.weaponInfo?.trait3Id || player.weaponInfo?.trait3Level == 0}>
-                            <Text size="xs" fs="italic" fw={300}>
-                              - {translateTraitId(player.weaponInfo?.trait3Id || EMPTY_ID)} (Lvl.{" "}
-                              {player.weaponInfo?.trait3Level})
-                            </Text>
-                          </Placeholder>
-                        </Table.Td>
-                      );
-                    })}
-                  </Table.Tr>
-                  {Array.from(Array(12).keys()).map((sigilIndex) => (
-                    <Table.Tr key={sigilIndex}>
-                      {playerData.map((player) => {
-                        const sigil = player.sigils[sigilIndex];
-
-                        if (!sigil || sigil.sigilId === EMPTY_ID) {
-                          return (
-                            <Table.Td key={player.actorIndex}>
-                              <Placeholder empty />
-                            </Table.Td>
-                          );
-                        }
-
-                        return (
-                          <Table.Td key={player.actorIndex}>
-                            <Text size="xs" fw={700}>
-                              {translateSigilId(sigil.sigilId)} (Lvl. {sigil.sigilLevel})
-                            </Text>
-                            <Text size="xs" fs="italic" fw={300}>
-                              {translateTraitId(sigil.firstTraitId)} (Lvl. {sigil.firstTraitLevel})
-                              {sigil.secondTraitId !== EMPTY_ID &&
-                                ` / ${translateTraitId(sigil.secondTraitId)} (Lvl. ${sigil.secondTraitLevel})`}
-                            </Text>
-                          </Table.Td>
-                        );
-                      })}
-                    </Table.Tr>
-                  ))}
-                </Table.Tbody>
-              </Table>
-            </Group>
+            <EquipmentTab
+              playerData={playerData}
+              playerNames={playerNames}
+              onCopyCharacterData={handleCharacterDataCopy}
+              onOpenDamageCalculator={handleOpenDamageCalculator}
+              onShowMasterTraitsDetails={(player) => {
+                setDetailsPlayer(player);
+                detailsHandlers.open();
+              }}
+            />
+          </Tabs.Panel>
+          <Tabs.Panel value="effective-traits">
+            <EffectiveTraitsTab playerData={playerData} playerNames={playerNames} />
+          </Tabs.Panel>
+          <Tabs.Panel value="misc">
+            <MiscTab
+              playerData={playerData}
+              // Global party, not the enemy-filtered `players`: the per-enemy
+              // derived state carries no healing.
+              players={sbaPlayers}
+              showDisplayNames={show_display_names}
+              streamerMode={streamer_mode}
+              playerColors={playerColors}
+              miscChartLen={miscChartLen}
+              healProvidedChart={healProvidedChart}
+              healReceivedChart={healReceivedChart}
+              damageTakenChart={damageTakenChart}
+              deaths={deaths}
+            />
           </Tabs.Panel>
         </Tabs>
       </Box>
+      <MasterTraitsModal opened={detailsOpened} onClose={detailsHandlers.close} player={detailsPlayer} />
     </Box>
   );
 };
-
-function Placeholder({ empty, children }: { empty: boolean; children?: React.ReactNode }) {
-  return empty ? (
-    <Text size="xs" fw={300}>
-      ---
-    </Text>
-  ) : (
-    children
-  );
-}

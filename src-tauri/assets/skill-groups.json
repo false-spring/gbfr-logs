@@ -13,7 +13,7 @@
       "skills": [221, 240]
     },
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 330, 400, 410]
     },
     "overdrive-surge": {
       "skills": [1001, 1002, 1003, 1004]
@@ -48,7 +48,7 @@
       "skills": [221, 240]
     },
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 330, 400, 410]
     },
     "overdrive-surge": {
       "skills": [1001, 1002, 1003, 1004]
@@ -83,15 +83,15 @@
       "skills": [240, 241, 242, 243, 244, 245, 250, 251, 252, 253, 254, 255, 259]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302, 303]
+      "skills": [300, 301, 302, 303, 400, 410]
     }
   },
   "Pl0300": {
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     },
     "bullseye-blast": {
-      "skills": [200, 201, 202, 203, 204]
+      "skills": [200, 201, 202, 203, 204, 205, 206, 207, 208, 209]
     }
   },
   "Pl0400": {
@@ -102,10 +102,10 @@
       "skills": [210, 211, 212, 213, 214]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     },
     "flowery-seven": {
-      "skills": [4000, 4001]
+      "skills": [4000, 4001, 4100, 4101, 4102, 4103, 4104, 4105, 4106, 4200, 4201, 4202, 4203, 4204, 4205, 4206]
     },
     "gravity-well": {
       "skills": [7200, 7201, 7202, 7203]
@@ -119,13 +119,13 @@
       "skills": [100, 105, 110, 111, 112]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     },
     "detonator": {
       "skills": [2, 22, 32]
     },
     "grenade": {
-      "skills": [210, 215]
+      "skills": [210, 215, 220, 221, 222]
     }
   },
   "Pl0600": {
@@ -133,7 +133,7 @@
       "skills": [100, 101, 102, 103]
     },
     "aerial-attack": {
-      "skills": [300, 301]
+      "skills": [300, 301, 302, 400, 410]
     },
     "rose-attack": {
       "skills": [200, 201, 202, 203, 204, 1]
@@ -150,19 +150,14 @@
       "skills": [100, 102, 111, 110, 112, 101, 120, 122, 121]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     }
   },
   "Pl0800": {
-    "normal-attack": {
-      "skills": [100, 101, 102]
-    },
-    "stiller-glantz": {
-      "skills": [103, 104, 105, 106, 107, 108, 109]
-    },
-    "aerial-attack": {
-      "skills": [300, 301, 302]
-    }
+    "normal-attack": { "skills": [100, 101, 102] },
+    "stiller-glantz": { "skills": [103, 104, 105, 106, 107, 108, 109] },
+    "aerial-attack": { "skills": [300, 301, 302, 400, 410] },
+    "combo-finisher":{ "skills":[150, 151, 152] }
   },
   "Pl0900": {
     "normal-attack": {
@@ -178,7 +173,7 @@
       "skills": [200, 201, 202, 203, 204]
     },
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 400, 410]
     }
   },
   "Pl1000": {
@@ -186,7 +181,7 @@
       "skills": [100, 110, 120]
     },
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 400, 410]
     },
     "schlaht": {
       "skills": [200, 201]
@@ -203,7 +198,7 @@
       "skills": [200, 201, 202, 203]
     },
     "aerial-attack": {
-      "skills": [300, 301, 311, 312, 313]
+      "skills": [300, 301, 302, 311, 312, 313, 400, 410]
     }
   },
   "Pl1200": {
@@ -220,7 +215,7 @@
       "skills": [200, 201, 202]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     },
     "sword-of-lumiel": {
       "skills": [1600, 1610]
@@ -240,7 +235,7 @@
       "skills": [150, 151, 152, 153, 154]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302, 303]
+      "skills": [300, 301, 302, 303, 400, 410]
     }
   },
   "Pl1400": {
@@ -248,13 +243,16 @@
       "skills": [100, 101, 102, 110, 111, 112, 113, 114]
     },
     "freeflutter-aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 400, 410, 411]
     },
     "dawnfly-attack": {
       "skills": [1100, 1103, 1106, 1108]
     },
+    "dawnfly-aerial-attack": {
+      "skills": [1300, 1310, 1320, 1400, 1410, 1411]
+    },
     "freeflutter-finisher": {
-      "skills": [2000, 2001]
+      "skills": [2000, 2001, 3000]
     },
     "dawnfly-charged-attack": {
       "skills": [1109, 1150, 1151]
@@ -264,6 +262,9 @@
     },
     "transient": {
       "skills": [5, 1005]
+    },
+    "dawnfly-finisher": {
+        "skills": [1000, 4000]
     }
   },
   "Pl1500": {
@@ -274,7 +275,7 @@
       "skills": [104, 114, 124]
     },
     "aerial-attack": {
-      "skills": [300, 301, 310]
+      "skills": [300, 301, 302, 303, 310, 311, 400, 410]
     },
     "aerial-finisher": {
       "skills": [302, 303, 311]
@@ -288,7 +289,7 @@
       "skills": [110, 111, 210]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302, 303]
+      "skills": [300, 301, 302, 303, 400, 410]
     },
     "realms-majesty": {
       "skills": [1700, 1702, 1703]
@@ -305,7 +306,7 @@
       "skills": [280, 281, 251, 252]
     },
     "aerial-attack": {
-      "skills": [300, 301]
+      "skills": [300, 301, 302, 400, 410]
     }
   },
   "Pl1800": {
@@ -322,24 +323,27 @@
       "skills": [210, 220, 230]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     }
   },
   "Pl1900": {
     "normal-attack": {
-      "skills": [100, 101, 102]
+      "skills": [100, 101, 102, 1010]
     },
     "lunge": {
       "skills": [200, 201, 202, 203]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     },
     "power-strike": {
       "skills": [503, 505, 506, 507, 508, 509]
     },
     "reginleiv": {
       "skills": [1, 10]
+    },
+    "atonement": {
+      "skills": [3, 20, 21, 22, 23, 24]
     }
   },
   "Pl2000": {
@@ -347,12 +351,12 @@
       "skills": [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 400, 410]
     }
   },
   "Pl2100": {
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 400, 410]
     },
     "normal-attack": {
       "skills": [100, 101, 102, 111, 112, 122, 114, 115, 140]
@@ -381,7 +385,7 @@
       "skills": [110, 120, 130]
     },
     "aerial-attack": {
-      "skills": [300, 301, 302]
+      "skills": [300, 301, 302, 303, 400, 410]
     },
     "avatar-attack": {
       "skills": [900, 901, 902, 903, 940, 941]
@@ -391,7 +395,11 @@
     },
     "avatar-power-strike": {
       "skills": [910, 920, 930]
-    }
+    },
+    "rotura": { "skills": [3000, 3001] },
+    "despedezar": { "skills": [6000, 6001] },
+    "barrido": { "skills": [1000, 1001] },
+    "infinito-creare": { "skills": [2000, 2001] }
   },
   "Pl2300": {
     "normal-attack": {
@@ -410,10 +418,69 @@
       "skills": [155, 156, 165, 175, 176]
     },
     "aerial-attack": {
-      "skills": [300, 310, 320]
+      "skills": [300, 310, 320, 400, 410]
     },
     "two-crown-strife": {
       "skills": [1700, 1701]
     }
+  },
+  "Pl2400": {
+    "normal-attack": { "skills": [100, 101, 102, 103, 115, 125] },
+    "power-strike": { "skills": [110, 116, 120, 130] },
+    "finisher": { "skills": [104, 111, 121] },
+    "turbine-hold": { "skills": [200, 202, 203, 204, 205, 210, 220, 230, 231] },
+    "turbine-deathmatch-release": { "skills": [212, 233]},
+    "turbine-normal-release": { "skills": [201, 211, 232]},
+    "infinite-combo": { "skills": [140, 141, 142, 150] },
+    "aerial-attack": { "skills": [300, 301, 302, 310, 400, 410] },
+    "martial-spear": { "skills": [1400, 1410] }
+  },
+  "Pl2500": {
+    "normal-attack": { "skills": [100, 101, 102, 103] },
+    "combo-finisher": { "skills": [210, 220, 230, 999] },
+    "aerial-attack": { "skills": [300, 301, 302, 400, 410] }
+  },
+  "Pl2600": {
+    "normal-attack": { "skills": [100, 101, 102, 103] },
+    "power-strike": { "skills": [110, 120, 130] },
+    "finisher": { "skills": [111, 121, 131, 140] },
+    "aerial-attack": { "skills": [300, 301, 302, 310, 400, 410] },
+    "embrasque-attack": { "skills": [900, 901, 902, 903] },
+    "embrasque-power-strike": { "skills": [910, 920, 930] },
+    "embrasque-finisher": { "skills": [911, 921, 931, 940, 950, 960, 970, 980] },
+    "embrasque-aerial": { "skills": [850, 851, 852, 855, 860, 870] }
+  },
+  "Pl2700": {
+    "shot-1": { "skills": [110, 120] },
+    "shot-2": { "skills": [111, 112, 113, 121, 122, 123] },
+    "shot-3": { "skills": [114, 115, 124, 125] },
+    "shot-4": { "skills": [130, 140] },
+    "aerial-shot": { "skills": [300, 301, 302, 303, 304, 400] },
+    "acidrage-howl": { "skills": [1300, 1310] },
+    "slow-kill": { "skills": [1000, 1001, 1010, 1011] },
+    "forever-yours": { "skills": [1100, 1110, 1120] },
+    "flamek-thunder": { "skills": [1600, 1601, 1602] }
+  },
+  "Pl2800": {
+    "upright-attack": { "skills": [100, 101, 102, 110, 111, 116, 170] },
+    "upright-power-strike": { "skills": [130, 140, 150] },
+    "upright-finisher": { "skills": [120, 121, 131, 141, 151] },
+    "upright-aerial": { "skills": [300, 301, 302, 305, 400, 410] },
+    "reversed-attack": { "skills": [900, 901, 902, 910, 970] },
+    "reversed-power-strike": { "skills": [930, 940, 950] },
+    "reversed-finisher": { "skills": [920, 931, 941, 951] },
+    "reversed-aerial": { "skills": [310, 311, 312, 315, 401, 411] },
+    "dead-lands": { "skills": [5000, 5010] },
+    "kick-face": { "skills": [6000, 6001, 6002] }
+  },
+  "Pl2900": {
+    "normal-attack": { "skills": [100, 101, 102] },
+    "stomp": { "skills": [103, 110, 111, 112, 113, 120] },
+    "miasma-hands": { "skills": [150, 151, 152, 153] },
+    "voidskip": { "skills": [210, 220, 250, 260] },
+    "combo-finisher": { "skills": [950, 951, 952, 953, 954] },
+    "aerial-attack": { "skills": [300, 301, 302, 310, 400, 410] },
+    "claws-of-reversal": { "skills": [2000, 2010, 2020] },
+    "sphere-of-reversal": { "skills": [8000, 8010, 8020, 8030] }
   }
 }

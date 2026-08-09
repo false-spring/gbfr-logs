@@ -1,6 +1,6 @@
 [package]
 name = "gbfr-logs"
-version = "1.8.0"
+version = "2.0.4-73"
 description = "GBFR Logs"
 authors = ["you"]
 edition = "2021"
@@ -36,6 +36,7 @@ strum = "0.26"
 strum_macros = "0.26"
 cbor4ii = { version = "0.3.2", features = ["use_std", "serde1"] }
 log = "^0.4"
+windows = { version = "0.58", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]

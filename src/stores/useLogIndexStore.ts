@@ -13,6 +13,7 @@ export type SearchResult = {
   questIds: number[];
   playerIds: string[];
   playerTypes: string[];
+  gameVersions: string[];
 };
 
 const DEFAULT_SEARCH_RESULT = {
@@ -24,6 +25,7 @@ const DEFAULT_SEARCH_RESULT = {
   questIds: [],
   playerIds: [],
   playerTypes: [],
+  gameVersions: [],
 };
 
 type LogIndexState = {
@@ -48,6 +50,9 @@ export type FilterState = {
   questCompletedFilter: boolean | null;
   filterByPlayerId: string | null;
   filterByPlayerCharacter: string | null;
+  filterByStyle: string | null;
+  // null = not yet defaulted (see useIndex); [] = explicitly every version.
+  filterByGameVersions: string[] | null;
   showAdvancedFilters: boolean;
 };
 
@@ -59,6 +64,8 @@ const DEFAULT_FILTERS: FilterState = {
   questCompletedFilter: null,
   filterByPlayerId: null,
   filterByPlayerCharacter: null,
+  filterByStyle: null,
+  filterByGameVersions: null,
   showAdvancedFilters: false,
 };
 
@@ -108,6 +115,8 @@ export const useLogIndexStore = create<LogIndexState>((set, get) => ({
         filterByQuestId: filters.filterByQuestId,
         filterByPlayerId: filters.filterByPlayerId,
         filterByPlayerCharacter: filters.filterByPlayerCharacter,
+        filterByStyle: filters.filterByStyle,
+        filterByGameVersions: filters.filterByGameVersions ?? [],
         sortDirection: filters.sortDirection,
         sortType: filters.sortType,
         questCompleted: filters.questCompletedFilter,

@@ -1,7 +1,7 @@
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import {
-  EncounterState,
   EncounterUpdateEvent,
+  LiveEncounterState,
   MeterColumns,
   PartyUpdateEvent,
   PlayerData,
@@ -15,13 +15,12 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 
-const DEFAULT_ENCOUNTER_STATE: EncounterState = {
+const DEFAULT_ENCOUNTER_STATE: LiveEncounterState = {
   totalDamage: 0,
   dps: 0,
   startTime: 0,
   endTime: 1,
   party: {},
-  targets: {},
   status: "Waiting",
 };
 
@@ -29,7 +28,7 @@ export default function useMeter() {
   const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(0);
   const [partyData, setPartyData] = useState<Array<PlayerData | null>>([null, null, null, null]);
-  const [encounterState, setEncounterState] = useState<EncounterState>(DEFAULT_ENCOUNTER_STATE);
+  const [encounterState, setEncounterState] = useState<LiveEncounterState>(DEFAULT_ENCOUNTER_STATE);
   const [lastPartyData, setLastPartyData] = useState<Array<PlayerData | null>>([null, null, null, null]);
 
   const previousStatus = usePrevious(encounterState.status);

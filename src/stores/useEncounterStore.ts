@@ -1,78 +1,157 @@
-import { CharacterType, DeathEvent, EncounterState, EnemyType, PlayerData, SBAEvent } from "@/types";
+import {
+  EncounterState,
+  LinkTimeWindow,
+  PlayerData,
+  SBAEvent,
+  StatusIntervals,
+  StatusPeakStacks,
+  StatusSources,
+  StatusStackSeries,
+  StatusValueIsFraction,
+  StatusValueSeries,
+} from "@/types";
+import { invoke } from "@tauri-apps/api";
 import { create } from "zustand";
 
 interface EncounterStore {
   encounterState: EncounterState | null;
-  dpsChart: Record<number, number[]>;
+  encounterStatesByEnemy: Record<number, EncounterState>;
+  dpsChartByEnemy: Record<number, Record<number, number[]>>;
+  stunChartByEnemy: Record<number, Record<number, number[]>>;
+  stunResetByEnemy: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
   sbaEvents: SBAEvent[];
-  deathEvents: DeathEvent[];
+  healProvidedChart: Record<number, number[]>;
+  healReceivedChart: Record<number, number[]>;
+  damageTakenChart: Record<number, number[]>;
+  deaths: Record<number, number[]>;
+  miscChartLen: number;
+  linkTimeWindows: LinkTimeWindow[];
+  confluxAreaClears: number[];
+  confluxBossClears: number[];
+  sbaWindows: LinkTimeWindow[];
+  breakWindows: LinkTimeWindow[];
+  statusIntervals: StatusIntervals;
+  statusPeakStacks: StatusPeakStacks;
+  statusStackSeries: StatusStackSeries;
+  statusValueSeries: StatusValueSeries;
+  statusValueIsFraction: StatusValueIsFraction;
+  statusSources: StatusSources;
   chartLen: number;
   sbaChartLen: number;
-  targets: EnemyType[];
-  selectedTargets: EnemyType[];
-  selectedPlayers: string[];
-  selectedPlayerTypes: EnemyType[];
   players: PlayerData[];
   questId: number | null;
   questTimer: number | null;
   questCompleted: boolean;
-  setSelectedTargets: (targets: EnemyType[]) => void;
-  setSelectedPlayers: (playerNames: string[]) => void;
-  setSelectedPlayerTypes: (playerTypes: CharacterType[]) => void;
   loadFromResponse: (response: EncounterStateResponse) => void;
+  fetchEnemyState: (id: number, enemyIndex: number) => Promise<void>;
 }
 
 export interface EncounterStateResponse {
   encounterState: EncounterState;
-  dpsChart: Record<number, number[]>;
+  dpsChartByEnemy: Record<number, Record<number, number[]>>;
+  stunChartByEnemy: Record<number, Record<number, number[]>>;
+  stunResetByEnemy: Record<number, number[]>;
   sbaChart: Record<number, number[]>;
   sbaEvents: SBAEvent[];
-  deathEvents: DeathEvent[];
+  healProvidedChart: Record<number, number[]>;
+  healReceivedChart: Record<number, number[]>;
+  damageTakenChart: Record<number, number[]>;
+  deaths: Record<number, number[]>;
+  miscChartLen: number;
+  linkTimeWindows: LinkTimeWindow[];
+  confluxAreaClears: number[];
+  confluxBossClears: number[];
+  sbaWindows: LinkTimeWindow[];
+  breakWindows: LinkTimeWindow[];
+  statusIntervals: StatusIntervals;
+  statusPeakStacks: StatusPeakStacks;
+  statusStackSeries: StatusStackSeries;
+  statusValueSeries: StatusValueSeries;
+  statusValueIsFraction: StatusValueIsFraction;
+  statusSources: StatusSources;
   chartLen: number;
   sbaChartLen: number;
-  targets: EnemyType[];
   players: PlayerData[];
   questId: number | null;
   questTimer: number | null;
   questCompleted: boolean | null;
 }
 
-export const useEncounterStore = create<EncounterStore>((set) => ({
+export const useEncounterStore = create<EncounterStore>((set, get) => ({
   encounterState: null,
-  dpsChart: {},
+  encounterStatesByEnemy: {},
+  dpsChartByEnemy: {},
+  stunChartByEnemy: {},
+  stunResetByEnemy: {},
   sbaChart: {},
   sbaEvents: [],
-  deathEvents: [],
+  healProvidedChart: {},
+  healReceivedChart: {},
+  damageTakenChart: {},
+  deaths: {},
+  miscChartLen: 0,
+  linkTimeWindows: [],
+  confluxAreaClears: [],
+  confluxBossClears: [],
+  sbaWindows: [],
+  breakWindows: [],
+  statusIntervals: {},
+  statusPeakStacks: {},
+  statusStackSeries: {},
+  statusValueSeries: {},
+  statusValueIsFraction: {},
+  statusSources: {},
   chartLen: 0,
   sbaChartLen: 0,
-  targets: [],
-  selectedTargets: [],
-  selectedPlayers: [],
-  selectedPlayerTypes: [],
   players: [],
   questId: null,
   questTimer: null,
   questCompleted: false,
-  setSelectedTargets: (targets: EnemyType[]) => set({ selectedTargets: targets }),
-  setSelectedPlayers: (playerNames: string[]) => set({ selectedPlayers: playerNames }),
-  setSelectedPlayerTypes: (playerTypes: CharacterType[]) => set({ selectedPlayerTypes: playerTypes }),
   loadFromResponse: (response: EncounterStateResponse) => {
     const filteredPlayers = response.players.filter((player) => player !== null);
 
     set({
       encounterState: response.encounterState,
-      dpsChart: response.dpsChart,
+      encounterStatesByEnemy: {},
+      dpsChartByEnemy: response.dpsChartByEnemy ?? {},
+      stunChartByEnemy: response.stunChartByEnemy ?? {},
+      stunResetByEnemy: response.stunResetByEnemy ?? {},
       sbaChart: response.sbaChart,
       sbaEvents: response.sbaEvents,
-      deathEvents: response.deathEvents,
+      healProvidedChart: response.healProvidedChart ?? {},
+      healReceivedChart: response.healReceivedChart ?? {},
+      damageTakenChart: response.damageTakenChart ?? {},
+      deaths: response.deaths ?? {},
+      miscChartLen: response.miscChartLen ?? 0,
+      linkTimeWindows: response.linkTimeWindows ?? [],
+      confluxAreaClears: response.confluxAreaClears ?? [],
+      confluxBossClears: response.confluxBossClears ?? [],
+      sbaWindows: response.sbaWindows ?? [],
+      breakWindows: response.breakWindows ?? [],
+      statusIntervals: response.statusIntervals ?? {},
+      statusPeakStacks: response.statusPeakStacks ?? {},
+      statusStackSeries: response.statusStackSeries ?? {},
+      statusValueSeries: response.statusValueSeries ?? {},
+      statusValueIsFraction: response.statusValueIsFraction ?? {},
+      statusSources: response.statusSources ?? {},
       chartLen: response.chartLen,
       sbaChartLen: response.sbaChartLen,
-      targets: response.targets,
       players: filteredPlayers,
       questId: response.questId,
       questTimer: response.questTimer,
       questCompleted: response.questCompleted || false,
     });
+  },
+  fetchEnemyState: async (id: number, enemyIndex: number) => {
+    if (get().encounterStatesByEnemy[enemyIndex]) return;
+    try {
+      const state = await invoke("fetch_enemy_encounter_state", { id, enemyIndex });
+      set((prev) => ({
+        encounterStatesByEnemy: { ...prev.encounterStatesByEnemy, [enemyIndex]: state as EncounterState },
+      }));
+    } catch (e) {
+      console.error(`Failed to fetch enemy encounter state: ${e}`);
+    }
   },
 }));

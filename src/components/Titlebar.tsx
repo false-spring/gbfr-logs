@@ -1,21 +1,22 @@
 import { ActionIcon, Menu, Tooltip } from "@mantine/core";
-import { Camera, ClipboardText, Minus, PushPinSimple } from "@phosphor-icons/react";
+import { Camera, ClipboardText, Eye, EyeSlash, Minus, PushPinSimple } from "@phosphor-icons/react";
 import { invoke } from "@tauri-apps/api";
 import { appWindow } from "@tauri-apps/api/window";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useShallow } from "zustand/react/shallow";
 
 import getVersion from "@/hooks/getVersion";
-import { EncounterState, PlayerData, SortDirection, SortType } from "@/types";
+import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
+import { LiveEncounterState, PlayerData, SortDirection, SortType } from "@/types";
 import {
   exportFullEncounterToClipboard,
   exportScreenshotToClipboard,
   exportSimpleEncounterToClipboard,
-  humanizeNumbers,
-  millisecondsToElapsedFormat,
-} from "@/utils";
+} from "@/utils/export";
+import { humanizeNumbers, millisecondsToElapsedFormat } from "@/utils/format";
 
-const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState }) => {
+const TeamDamageStats = ({ encounterState }: { encounterState: LiveEncounterState }) => {
   const [teamDps, dpsUnit] = humanizeNumbers(encounterState.dps);
   const [totalTeamDmg, dmgUnit] = humanizeNumbers(encounterState.totalDamage);
 
@@ -33,7 +34,13 @@ const TeamDamageStats = ({ encounterState }: { encounterState: EncounterState })
   );
 };
 
-const EncounterStatus = ({ encounterState, elapsedTime }: { encounterState: EncounterState; elapsedTime: number }) => {
+const EncounterStatus = ({
+  encounterState,
+  elapsedTime,
+}: {
+  encounterState: LiveEncounterState;
+  elapsedTime: number;
+}) => {
   if (encounterState.status === "Waiting") {
     return (
       <div data-tauri-drag-region className="encounter-status item">
@@ -66,7 +73,7 @@ export const Titlebar = ({
   sortType,
   sortDirection,
 }: {
-  encounterState: EncounterState;
+  encounterState: LiveEncounterState;
   partyData: Array<PlayerData | null>;
   elapsedTime: number;
   sortType: SortType;
@@ -74,6 +81,17 @@ export const Titlebar = ({
 }) => {
   const { t } = useTranslation();
   const { version } = getVersion();
+  const { show_display_names, streamer_mode, setMeterSettings } = useMeterSettingsStore(
+    useShallow((state) => ({
+      show_display_names: state.show_display_names,
+      streamer_mode: state.streamer_mode,
+      setMeterSettings: state.set,
+    }))
+  );
+  const exportDisplayNames = show_display_names && !streamer_mode;
+  // Display-only channel; the app version itself must stay numeric (MSI requirement).
+  const buildChannel = "ER";
+  const displayVersion = `${version.replace(/-(\d+)$/, ".$1")}-${buildChannel}`;
 
   const onMinimize = () => {
     appWindow.minimize();
@@ -83,23 +101,32 @@ export const Titlebar = ({
   };
 
   const handleSimpleEncounterCopy = useCallback(() => {
-    exportSimpleEncounterToClipboard(sortType, sortDirection, encounterState, partyData);
-  }, [encounterState]);
+    exportSimpleEncounterToClipboard(sortType, sortDirection, encounterState, partyData, exportDisplayNames);
+  }, [encounterState, exportDisplayNames]);
 
   const handleFullEncounterCopy = useCallback(() => {
-    exportFullEncounterToClipboard(sortType, sortDirection, encounterState, partyData);
-  }, [encounterState]);
+    exportFullEncounterToClipboard(sortType, sortDirection, encounterState, partyData, exportDisplayNames);
+  }, [encounterState, exportDisplayNames]);
+
+  const toggleShowDisplayNames = () => {
+    setMeterSettings({ show_display_names: !show_display_names });
+  };
 
   return (
     <div data-tauri-drag-region className="titlebar transparent-bg font-sm">
       <div data-tauri-drag-region className="titlebar-left">
         <div data-tauri-drag-region className="version">
-          GBFR Logs <span className="version-number">{version}</span>
+          GBFR Logs <span className="version-number">{displayVersion}</span>
         </div>
         {encounterState.totalDamage > 0 && <TeamDamageStats encounterState={encounterState} />}
       </div>
       <div data-tauri-drag-region className="titlebar-right">
         <EncounterStatus encounterState={encounterState} elapsedTime={elapsedTime} />
+        <Tooltip label={show_display_names ? t("ui.hide-player-names") : t("ui.show-player-names")} color="dark">
+          <div className="titlebar-button" id="titlebar-toggle-names" onClick={toggleShowDisplayNames}>
+            {show_display_names ? <EyeSlash size={16} /> : <Eye size={16} />}
+          </div>
+        </Tooltip>
         <Menu shadow="md" trigger="hover" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <ActionIcon aria-label="Clipboard" variant="transparent" color="light">

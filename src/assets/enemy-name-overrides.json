@@ -1,0 +1,29 @@
+{
+  "_readme": [
+    "Hand-maintained display names for enemy actor classes the game's own name",
+    "table doesn't name, or names unhelpfully. Add one line per class:",
+    "\"<ActorClassName>\": \"<display name>\".",
+    "",
+    "Keys are the actor class name (the `key` field of a row in",
+    "src-tauri/lang/<locale>/enemies.json), matched case-insensitively, NOT the",
+    "hash. An override rewrites that row's `text` in EVERY locale — these are",
+    "community English names for actors the game leaves as raw class names, and",
+    "the non-en tables carry the same untranslated fallback, so there is nothing",
+    "to preserve by scoping to en.",
+    "",
+    "This file is the single source for both consumers. The app applies it at",
+    "namespace-load time (src/assets/enemy-name-overrides.ts, wired in",
+    "src/i18n.ts); the companion site reads THIS FILE from the gbfr checkout in",
+    "gbfr-logs-db/scripts/build_gamedata.py, so after editing run that script and",
+    "deploy. No second edit anywhere.",
+    "",
+    "A key with no matching row is a no-op (the app warns in dev): the app can",
+    "only rewrite rows that already exist, since it has no gbfr_hash to mint one.",
+    "Overriding a name the game DOES ship is allowed but rarely right — prefer it",
+    "only where the shipped name is ambiguous between two distinct actors."
+  ],
+  "overrides": {
+    "Em7700Trial8_11Crystal": "Wings of Sin (Orbs)",
+    "WE8470": "Sky Dragon's Trial"
+  }
+}

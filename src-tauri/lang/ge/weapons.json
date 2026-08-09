@@ -49,7 +49,7 @@
   },
   "0a9b7790": {
     "key": "WEP_PL1600_02",
-    "text": "Sonnenfleckspeer"
+    "text": "Sonnenfleck-Speer"
   },
   "0b1c14c1": {
     "key": "WEP_PL0900_06_02",
@@ -193,7 +193,7 @@
   },
   "288d5590": {
     "key": "WEP_PL0200_03_03",
-    "text": "Murgleis, Azurblaue Eid"
+    "text": "Murgleis, Azurblauer Eid"
   },
   "28a1c76a": {
     "key": "WEP_PL0700_06_02",
@@ -273,7 +273,7 @@
   },
   "361e2d95": {
     "key": "WEP_PL1100_03_03",
-    "text": "Ascalon, Drachenschwur"
+    "text": "Ascalon, Drachenschlächter"
   },
   "3679a543": {
     "key": "WEP_PL1000_02",
@@ -369,7 +369,7 @@
   },
   "4ca01db9": {
     "key": "WEP_PL0800_05_03",
-    "text": "Eisritter, der Silberschleier"
+    "text": "Eisritter, Silberner Schwur"
   },
   "4cba06d8": {
     "key": "WEP_PL2300_07",
@@ -389,7 +389,7 @@
   },
   "4e2093ba": {
     "key": "WEP_PL0100_04",
-    "text": "Albacoraklinge"
+    "text": "Albacoreklinge"
   },
   "515b69c7": {
     "key": "WEP_PL0900_05",
@@ -421,7 +421,7 @@
   },
   "57e95993": {
     "key": "WEP_PL0000_04",
-    "text": "Albacoraklinge"
+    "text": "Albacoreklinge"
   },
   "5800cfd6": {
     "key": "WEP_PL2200_07_02",
@@ -1086,5 +1086,369 @@
   "fff2f00f": {
     "key": "WEP_PL1400_06",
     "text": "Ameno Habakiri"
+  },
+  "2c8681f8": {
+    "key": "WEP_PL1900_10",
+    "text": "Wahrhaftiges Apokalypsenschwert"
+  },
+  "a626f67e": {
+    "key": "WEP_PL2100_04",
+    "text": "Schwert des Michael"
+  },
+  "dfbb5727": {
+    "key": "WEP_PL2100_06",
+    "text": "Efes"
+  },
+  "74804589": {
+    "key": "74804589",
+    "text": "Efes"
+  },
+  "abdf528d": {
+    "key": "ABDF528D",
+    "text": "Efes"
+  },
+  "d016feb3": {
+    "key": "D016FEB3",
+    "text": "Efes, Himmlische Rast"
+  },
+  "70fd3c94": {
+    "key": "WEP_PL2200_04",
+    "text": "Vento di spade"
+  },
+  "74d764b7": {
+    "key": "WEP_PL2200_06",
+    "text": "Schwert der Caelestier"
+  },
+  "aef15742": {
+    "key": "AEF15742",
+    "text": "Schwert der Caelestier"
+  },
+  "d5fe66a2": {
+    "key": "D5FE66A2",
+    "text": "Schwert der Caelestier"
+  },
+  "1ea819a4": {
+    "key": "1EA819A4",
+    "text": "Schwert der Caelestier, Sieben Epochen"
+  },
+  "91ddc1f1": {
+    "key": "WEP_PL2300_04",
+    "text": "Herkules"
+  },
+  "1064441e": {
+    "key": "WEP_PL2300_06",
+    "text": "Bogen der Caelestier"
+  },
+  "82ac447f": {
+    "key": "82AC447F",
+    "text": "Bogen der Caelestier"
+  },
+  "de958cdb": {
+    "key": "DE958CDB",
+    "text": "Bogen der Caelestier"
+  },
+  "40204755": {
+    "key": "40204755",
+    "text": "Bogen der Caelestier, Zwillingsreißzahn"
+  },
+  "121cd3fd": {
+    "key": "WEP_PL2400_01",
+    "text": "Negator"
+  },
+  "3c667a36": {
+    "key": "WEP_PL2400_03",
+    "text": "Drachenzerfleischer"
+  },
+  "fd6b963e": {
+    "key": "WEP_PL2400_03_01",
+    "text": "Drachenzerfleischer"
+  },
+  "de80bc37": {
+    "key": "WEP_PL2400_03_02",
+    "text": "Drachenzerfleischer"
+  },
+  "7f10010d": {
+    "key": "WEP_PL2400_03_03",
+    "text": "Drachenzerfleischer, Weltenbrecher"
+  },
+  "60720167": {
+    "key": "WEP_PL2400_04",
+    "text": "Zwei-mal-vier"
+  },
+  "10180036": {
+    "key": "WEP_PL2400_06",
+    "text": "Unbeugsam"
+  },
+  "974dbc97": {
+    "key": "974DBC97",
+    "text": "Unbeugsam"
+  },
+  "6a018933": {
+    "key": "6A018933",
+    "text": "Unbeugsam"
+  },
+  "5de1b311": {
+    "key": "5DE1B311",
+    "text": "Unbeugsam, Wolfsklaue"
+  },
+  "f76c20a2": {
+    "key": "WEP_PL2500_01",
+    "text": "Al Fine"
+  },
+  "1cc90cae": {
+    "key": "WEP_PL2500_03",
+    "text": "Excalibur"
+  },
+  "1a961ac5": {
+    "key": "1A961AC5",
+    "text": "Excalibur"
+  },
+  "4102b6ab": {
+    "key": "4102B6AB",
+    "text": "Excalibur"
+  },
+  "802b09da": {
+    "key": "802B09DA",
+    "text": "Heiliges Schwert Excalibur"
+  },
+  "eb3724b6": {
+    "key": "WEP_PL2500_04",
+    "text": "Göttliches Exo Maitrah Karuna"
+  },
+  "90f5b18f": {
+    "key": "WEP_PL2500_06",
+    "text": "Ricercar"
+  },
+  "72ab825d": {
+    "key": "72AB825D",
+    "text": "Ricercar"
+  },
+  "87e6e352": {
+    "key": "87E6E352",
+    "text": "Ricercar"
+  },
+  "860ac3bf": {
+    "key": "860AC3BF",
+    "text": "Ricercar, Schwert der Symphonie"
+  },
+  "5f516e5f": {
+    "key": "WEP_PL2600_01",
+    "text": "Embrasque"
+  },
+  "785a520a": {
+    "key": "WEP_PL2600_02",
+    "text": "Ira, der Titanenschlächter"
+  },
+  "969cf8c7": {
+    "key": "WEP_PL2600_03",
+    "text": "Gram"
+  },
+  "1154a6c6": {
+    "key": "1154A6C6",
+    "text": "Gram"
+  },
+  "84f432d7": {
+    "key": "84F432D7",
+    "text": "Gram"
+  },
+  "78544a75": {
+    "key": "78544A75",
+    "text": "Drachentöter Gram"
+  },
+  "a1c42adc": {
+    "key": "WEP_PL2600_04",
+    "text": "Onikiri Yasutsuna"
+  },
+  "78b64e9b": {
+    "key": "WEP_PL2600_05",
+    "text": "Ridill"
+  },
+  "6cff175c": {
+    "key": "WEP_PL2600_06",
+    "text": "Schrödinger"
+  },
+  "51f70303": {
+    "key": "51F70303",
+    "text": "Schrödinger"
+  },
+  "b2931faa": {
+    "key": "B2931FAA",
+    "text": "Schrödinger"
+  },
+  "a716d1f2": {
+    "key": "A716D1F2",
+    "text": "Schrödinger, Ordnungsbrecher"
+  },
+  "daa4d559": {
+    "key": "WEP_PL2700_01",
+    "text": "Flamek-Donner"
+  },
+  "09cc74cf": {
+    "key": "WEP_PL2700_02",
+    "text": "Sephiras Smaragdpistole"
+  },
+  "14b3ae92": {
+    "key": "WEP_PL2700_03",
+    "text": "Stratomisator"
+  },
+  "6d381177": {
+    "key": "6D381177",
+    "text": "Stratomisator"
+  },
+  "e15ba40e": {
+    "key": "E15BA40E",
+    "text": "Stratomisator"
+  },
+  "4fee9341": {
+    "key": "4FEE9341",
+    "text": "Stratomisator, Kometenschweif"
+  },
+  "8f6fa5d0": {
+    "key": "WEP_PL2700_04",
+    "text": "Nebukadnezar"
+  },
+  "3897a020": {
+    "key": "WEP_PL2700_05",
+    "text": "Omega"
+  },
+  "6eea0d21": {
+    "key": "WEP_PL2700_06",
+    "text": "Hraesvelgr"
+  },
+  "7e092ccd": {
+    "key": "7E092CCD",
+    "text": "Hraesvelgr"
+  },
+  "e3b35c0d": {
+    "key": "E3B35C0D",
+    "text": "Hraesvelgr"
+  },
+  "ded16fcf": {
+    "key": "DED16FCF",
+    "text": "Hraesvelgr, blitzschneller Adler"
+  },
+  "75ec54d0": {
+    "key": "WEP_PL2800_01",
+    "text": "Walzer des Mephistopheles"
+  },
+  "6ec326d3": {
+    "key": "WEP_PL2800_03",
+    "text": "Leuchtende Schläppchen"
+  },
+  "1826996a": {
+    "key": "1826996A",
+    "text": "Leuchtende Schläppchen"
+  },
+  "a14b98d8": {
+    "key": "A14B98D8",
+    "text": "Leuchtende Schläppchen"
+  },
+  "64705e7b": {
+    "key": "64705E7B",
+    "text": "Leuchtende Schläppchen, Weißer Teufel"
+  },
+  "b927fca5": {
+    "key": "WEP_PL2800_04",
+    "text": "Scheherazade"
+  },
+  "d5eb1dee": {
+    "key": "WEP_PL2800_06",
+    "text": "Scheideweg"
+  },
+  "82e85115": {
+    "key": "82E85115",
+    "text": "Scheideweg"
+  },
+  "9ae66fbd": {
+    "key": "9AE66FBD",
+    "text": "Scheideweg"
+  },
+  "ad99e05e": {
+    "key": "AD99E05E",
+    "text": "Scheideweg, Höllenfeuer"
+  },
+  "9240d597": {
+    "key": "WEP_PL2900_01",
+    "text": "Ranken"
+  },
+  "1eb2b398": {
+    "key": "WEP_PL2900_03",
+    "text": "Seuchenblume"
+  },
+  "165f82f5": {
+    "key": "165F82F5",
+    "text": "Seuchenblume"
+  },
+  "280ea816": {
+    "key": "280EA816",
+    "text": "Seuchenblume"
+  },
+  "219ee448": {
+    "key": "219EE448",
+    "text": "Seuchenblume, Blütezeit "
+  },
+  "f7128b85": {
+    "key": "WEP_PL2900_04",
+    "text": "Sonnenbrand"
+  },
+  "cdb13688": {
+    "key": "WEP_PL2900_06",
+    "text": "Stygisches Ornament"
+  },
+  "18b8476c": {
+    "key": "18B8476C",
+    "text": "Stygisches Ornament"
+  },
+  "32b5dc17": {
+    "key": "32B5DC17",
+    "text": "Stygisches Ornament"
+  },
+  "f0b8cf77": {
+    "key": "F0B8CF77",
+    "text": "Stygisches Ornament, Düsteranker"
+  },
+  "095082ab": {
+    "key": "WEP_PL0200_A0",
+    "text": "Rukalsa"
+  },
+  "e180dadb": {
+    "key": "WEP_PL0800_A0",
+    "text": "Altachiara"
+  },
+  "76265aa7": {
+    "key": "WEP_PL2200_A0",
+    "text": "Sette di Spade"
+  },
+  "6e59b0dd": {
+    "key": "WEP_PL1600_A0",
+    "text": "Arvess-Speer"
+  },
+  "08de4f36": {
+    "key": "WEP_PL2700_A0",
+    "text": "Flamek-Donner"
+  },
+  "08cee33c": {
+    "key": "WEP_PL0000_A1",
+    "text": "Schwert von Eos"
+  },
+  "1b0f29bf": {
+    "key": "WEP_PL0100_A1",
+    "text": "Schwert von Eos"
+  },
+  "90cda5f3": {
+    "key": "WEP_PL0300_A0",
+    "text": "Flintstachel"
+  },
+  "ee1ebc2e": {
+    "key": "WEP_PL0400_A0",
+    "text": "Kleines Hexenzepter"
+  },
+  "cd19623a": {
+    "key": "WEP_PL2800_A0",
+    "text": "Walzer des Mephistopheles"
+  },
+  "e45ed17f": {
+    "key": "WEP_PL2900_A0",
+    "text": "Ranken"
   }
 }

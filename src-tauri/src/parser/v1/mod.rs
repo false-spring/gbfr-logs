@@ -1,29 +1,172 @@
-use std::{collections::HashMap, io::BufReader};
+use std::collections::{HashMap, HashSet};
 
 use anyhow::Result;
 use chrono::Utc;
 use protocol::{
-    AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent, OnDeathEvent,
-    OnPerformSBAEvent, OnUpdateSBAEvent, PlayerLoadEvent, QuestCompleteEvent,
+    ActionType, AreaEnterEvent, DamageEvent, Message, OnAttemptSBAEvent, OnContinueSBAChainEvent,
+    OnDeathEvent, OnPerformSBAEvent, OnUpdateSBAEvent, PlayerIdentityEvent, QuestAbandonEvent,
+    QuestCompleteEvent, SbaCause,
 };
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Manager, Window};
 
 use super::{
-    constants::{CharacterType, EnemyType},
+    constants::{self, CharacterType, EnemyType},
     v0,
 };
+use crate::style_catalog;
 
+mod aura;
+mod counter_grant;
+mod dto;
+mod encounter;
+mod ether_gun;
 mod player_state;
+mod retro;
+pub mod sba_inference;
+mod sba_state;
 mod skill_state;
+mod stun;
+#[cfg(test)]
+mod tests;
 
-use player_state::PlayerState;
+use dto::Sigil;
+pub use dto::{EffectiveTrait, MasterTraitFlag, PlayerData};
+use encounter::ParserStatus;
+pub use encounter::{DerivedEncounterState, Encounter};
+use player_state::{child_character_type_of, PlayerState};
+pub use stun::StunReconstructor;
+
+const SAVE_DEBOUNCE_MILLIS: i64 = 1500;
+
+/// One display frame between live `encounter-update` emits.
+pub const LIVE_EMIT_INTERVAL_MILLIS: i64 = 16;
+
+#[derive(Debug, Default)]
+struct LiveEmitGate {
+    last_emit: i64,
+    dirty: bool,
+}
+
+impl LiveEmitGate {
+    fn should_emit(&mut self, now: i64) -> bool {
+        if now - self.last_emit >= LIVE_EMIT_INTERVAL_MILLIS {
+            self.emitted(now);
+            true
+        } else {
+            self.dirty = true;
+            false
+        }
+    }
+
+    fn emitted(&mut self, now: i64) {
+        self.last_emit = now;
+        self.dirty = false;
+    }
+
+    fn take_pending(&mut self, now: i64) -> bool {
+        if self.dirty {
+            self.emitted(now);
+            true
+        } else {
+            false
+        }
+    }
+}
+
+/// An SBA attempt costs 200 of the 1000 max, landed or not.
+const SBA_ATTEMPT_LEVEL: f64 = 800.0;
+
+fn is_damage_taken(event: &DamageEvent) -> bool {
+    event.target.parent_index >= protocol::PLAYER_ID_BASE
+}
+
+pub fn attributed_source_index(player_data: &[Option<PlayerData>; 4], event: &DamageEvent) -> u32 {
+    let named = event.source.parent_index;
+    if named >= protocol::PLAYER_ID_BASE {
+        return named;
+    }
+
+    let character_type = canonical_character_type(event.source.parent_actor_type);
+    if matches!(character_type, CharacterType::Unknown(_)) {
+        return named;
+    }
+
+    let mut members = player_data
+        .iter()
+        .flatten()
+        .filter(|player| player.character_type == character_type);
+
+    match (members.next(), members.next()) {
+        (Some(only), None) => only.actor_index,
+        _ => named,
+    }
+}
+
+fn is_helper_target(event: &DamageEvent) -> bool {
+    constants::is_helper_actor(event.target.actor_type)
+        || constants::is_helper_actor(event.target.parent_actor_type)
+}
+
+pub(super) fn capped_damage(damage: i32, cap: Option<u64>) -> u64 {
+    let d = damage.max(0) as u64;
+    match cap {
+        Some(c) if c > 0 => d.min(c),
+        _ => d,
+    }
+}
+
+const REVIVE_HEAL_TYPE: u32 = 4;
+
+pub struct MiscCharts {
+    pub heal_provided: HashMap<u32, Vec<u64>>,
+    pub heal_received: HashMap<u32, Vec<u64>>,
+    pub damage_taken: HashMap<u32, Vec<u64>>,
+    /// Death offsets (ms from encounter start) for the skull markers.
+    pub deaths: HashMap<u32, Vec<i64>>,
+}
+
+/// Id's dragon form (Pl2000) is the same player as his human form (Pl1900).
+fn canonical_character_type(hash: u32) -> CharacterType {
+    match CharacterType::from_hash(hash) {
+        CharacterType::Pl2000 => CharacterType::Pl1900,
+        character_type => character_type,
+    }
+}
+
+static CHARACTER_NAMES: std::sync::OnceLock<HashMap<String, String>> = std::sync::OnceLock::new();
+
+fn character_name_for(character_type: CharacterType) -> Option<&'static str> {
+    if matches!(character_type, CharacterType::Unknown(_)) {
+        return None;
+    }
+
+    CHARACTER_NAMES
+        .get_or_init(|| {
+            serde_json::from_str(include_str!("../../../lang/en/characters.json"))
+                .unwrap_or_default()
+        })
+        .get(&character_type.to_string())
+        .map(String::as_str)
+}
+
+/// The `p*_name` column for a party slot. A damage-seeded row (see
+/// `Encounter::ensure_player_slot`) knows the character but not who was playing
+/// them, and "unknown" is NULL in this column, not `""`. The logs list already
+/// falls back to the character when the name is absent, so such a slot reads as
+/// its character rather than as an empty entry.
+fn name_column(player: Option<&PlayerData>) -> Option<&str> {
+    player
+        .map(|player| player.display_name.as_str())
+        .filter(|name| !name.is_empty())
+}
 
 pub struct AdjustedDamageInstance<'a> {
     pub event: &'a DamageEvent,
     pub player_data: Option<&'a PlayerData>,
     pub stun_damage: f64,
+    pub source_index: u32,
 }
 
 impl<'a> AdjustedDamageInstance<'a> {
@@ -34,374 +177,29 @@ impl<'a> AdjustedDamageInstance<'a> {
             event,
             player_data,
             stun_damage,
+            source_index: event.source.parent_index,
         }
     }
-}
 
-/// Equippable sigil for a character
-#[derive(Debug, Serialize, Deserialize, Clone)]
-#[serde(rename_all = "camelCase")]
-struct WeaponInfo {
-    /// Weapon ID Hash
-    pub weapon_id: u32,
-    /// How many uncap stars the weapon has
-    pub star_level: u32,
-    /// Number of plus marks on the weapon
-    pub plus_marks: u32,
-    /// Weapon's awakening level
-    pub awakening_level: u32,
-    /// First trait ID
-    pub trait_1_id: u32,
-    /// First trait level
-    pub trait_1_level: u32,
-    /// Second trait ID
-    pub trait_2_id: u32,
-    /// Second trait level
-    pub trait_2_level: u32,
-    /// Third trait ID
-    pub trait_3_id: u32,
-    /// Third trait level
-    pub trait_3_level: u32,
-    /// Wrightstone used on the weapon
-    pub wrightstone_id: u32,
-    /// Current weapon level
-    pub weapon_level: u32,
-    /// Weapon's HP Stats (before plus marks)
-    pub weapon_hp: u32,
-    /// Weapon's Attack Stats (before plus marks)
-    pub weapon_attack: u32,
-}
-
-impl From<protocol::WeaponInfo> for WeaponInfo {
-    fn from(info: protocol::WeaponInfo) -> Self {
+    pub fn with_reconstructed_stun(
+        event: &'a DamageEvent,
+        player_data: Option<&'a PlayerData>,
+        stun_damage: f64,
+    ) -> Self {
         Self {
-            weapon_id: info.weapon_id,
-            star_level: info.star_level,
-            plus_marks: info.plus_marks,
-            awakening_level: info.awakening_level,
-            trait_1_id: info.trait_1_id,
-            trait_1_level: info.trait_1_level,
-            trait_2_id: info.trait_2_id,
-            trait_2_level: info.trait_2_level,
-            trait_3_id: info.trait_3_id,
-            trait_3_level: info.trait_3_level,
-            wrightstone_id: info.wrightstone_id,
-            weapon_level: info.weapon_level,
-            weapon_hp: info.weapon_hp,
-            weapon_attack: info.weapon_attack,
-        }
-    }
-}
-
-/// Overmastery, also known as `limit_bonus`.
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Overmastery {
-    /// Overmastery ID
-    pub id: u32,
-    /// Flags
-    pub flags: u32,
-    /// Value
-    pub value: f32,
-}
-
-impl From<protocol::Overmastery> for Overmastery {
-    fn from(info: protocol::Overmastery) -> Self {
-        Self {
-            id: info.id,
-            flags: info.flags,
-            value: info.value,
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct OvermasteryInfo {
-    pub overmasteries: Vec<Overmastery>,
-}
-
-impl From<protocol::OvermasteryInfo> for OvermasteryInfo {
-    fn from(info: protocol::OvermasteryInfo) -> Self {
-        Self {
-            overmasteries: info
-                .overmasteries
-                .into_iter()
-                .map(Overmastery::from)
-                .collect(),
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerStats {
-    pub level: u32,
-    pub total_hp: u32,
-    pub total_attack: u32,
-    pub stun_power: f32,
-    pub critical_rate: f32,
-    pub total_power: u32,
-}
-
-impl From<protocol::PlayerStats> for PlayerStats {
-    fn from(stats: protocol::PlayerStats) -> Self {
-        Self {
-            level: stats.level,
-            total_hp: stats.total_hp,
-            total_attack: stats.total_attack,
-            stun_power: stats.stun_power,
-            critical_rate: stats.critical_rate,
-            total_power: stats.total_power,
-        }
-    }
-}
-
-/// Equippable sigil for a character
-#[derive(Debug, Serialize, Deserialize, Clone)]
-#[serde(rename_all = "camelCase")]
-struct Sigil {
-    /// ID of the first trait in this sigil
-    pub first_trait_id: u32,
-    /// Level of the first trait in this sigil
-    pub first_trait_level: u32,
-    /// ID of the second trait in this sigil
-    pub second_trait_id: u32,
-    /// Level of the second trait in this sigil
-    pub second_trait_level: u32,
-    /// ID of the sigil
-    pub sigil_id: u32,
-    /// ID of the character that this sigil is equipped to
-    pub equipped_character: u32,
-    /// Level of the sigil
-    pub sigil_level: u32,
-    /// Acquisition count, at what sigil count this sigil was acquired
-    pub acquisition_count: u32,
-    /// 0 is new sigil and shows a (!), 1 is nothing, 2 is notification was checked and removes the (!)
-    pub notification_enum: u32,
-}
-
-/// Data for a player in the encounter
-#[derive(Debug, Serialize, Deserialize, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerData {
-    /// Actor index for this player
-    actor_index: u32,
-    /// Display name for this player, empty if its an NPC
-    display_name: String,
-    /// Character name for this player if it's an NPC, otherwise it is the same as display_name
-    character_name: String,
-    /// Character type for this player
-    character_type: CharacterType,
-    /// Sigils that this player has equipped
-    sigils: Vec<Sigil>,
-    /// Whether this player was an online player or not
-    is_online: bool,
-    /// Weapon info for this player
-    weapon_info: Option<WeaponInfo>,
-    /// Overmastery info for this player
-    overmastery_info: Option<OvermasteryInfo>,
-    /// Player stats for this player
-    player_stats: Option<PlayerStats>,
-}
-
-/// Derived breakdown for an enemy target
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct EnemyState {
-    index: u32,
-    target_type: EnemyType,
-    raw_target_type: u32,
-    total_damage: u64,
-}
-
-impl EnemyState {
-    fn update_from_damage_event(&mut self, damage_instance: &AdjustedDamageInstance) {
-        self.total_damage += damage_instance.event.damage as u64;
-    }
-}
-
-/// The necessary details of an encounter that can be used to recreate the state at any point in time.
-#[derive(Debug, Serialize, Deserialize, Default)]
-#[serde(rename_all = "camelCase")]
-pub struct Encounter {
-    pub player_data: [Option<PlayerData>; 4],
-    pub quest_id: Option<u32>,
-    pub quest_timer: Option<u32>,
-    #[serde(default)]
-    pub quest_completed: bool,
-
-    /// DEPRECATED: Use `self.event_log()` instead.
-    pub event_log: Vec<(i64, DamageEvent)>,
-
-    #[serde(default)]
-    pub raw_event_log: Vec<(i64, Message)>,
-}
-
-impl Encounter {
-    /// Compresses this encounter data into a binary blob.
-    pub fn to_blob(&self) -> Result<Vec<u8>> {
-        let blob = cbor4ii::serde::to_vec(Vec::new(), &self)?;
-        let mut reader = BufReader::new(blob.as_slice());
-        let compressed_blob = zstd::encode_all(&mut reader, 3)?;
-        Ok(compressed_blob)
-    }
-
-    /// Deserializes a binary blob into encounter instance.
-    pub fn from_blob(blob: &[u8]) -> Result<Self> {
-        let decompressed = zstd::decode_all(blob)?;
-        Ok(cbor4ii::serde::from_slice(&decompressed)?)
-    }
-
-    /// For older logs that don't have the event log, we need to repopulate it.
-    pub fn repopulate_event_log(&mut self) {
-        if !self.raw_event_log.is_empty() {
-            return;
-        }
-
-        for (timestamp, event) in self.event_log.iter() {
-            self.raw_event_log
-                .push((*timestamp, Message::DamageEvent(event.clone())));
+            event,
+            player_data,
+            stun_damage,
+            source_index: event.source.parent_index,
         }
     }
 
-    fn reset_player_data(&mut self) {
-        self.player_data[0..=3].clone_from_slice(&[None, None, None, None]);
-    }
-
-    fn reset_quest(&mut self) {
-        self.quest_id = None;
-        self.quest_timer = None;
-    }
-
-    fn push_event(&mut self, timestamp: i64, event: protocol::Message) {
-        self.raw_event_log.push((timestamp, event));
-    }
-
-    pub fn event_log(&self) -> impl Iterator<Item = &(i64, Message)> {
-        self.raw_event_log.iter()
-    }
-}
-
-/// The status of the parser.
-#[derive(Debug, Serialize, Deserialize, Default, PartialEq, PartialOrd, Clone, Copy)]
-enum ParserStatus {
-    #[default]
-    Waiting,
-    InProgress,
-    Stopped,
-}
-
-/// The state of the encounter after processing all damage events (or all known events for now)
-/// Used for parsing the encounter into a calculated format that can be consumed by the front-end.
-#[derive(Debug, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DerivedEncounterState {
-    /// Timestamp of the first damage event
-    start_time: i64,
-    /// Timestamp of the last damage event (or the last known damage event if the encounter is still in progress)
-    end_time: i64,
-    /// The total damage done in the encounter
-    total_damage: u64,
-    /// The total DPS done in the encounter
-    dps: f64,
-    /// The total stun value done in the encounter
-    total_stun_value: f64,
-    /// The total stun value per second done in the encounter
-    stun_per_second: f64,
-    /// Status of the parser
-    status: ParserStatus,
-    /// Derived party stats
-    pub party: HashMap<u32, PlayerState>,
-    /// Derived target stats, damage done to each target.
-    targets: HashMap<u32, EnemyState>,
-}
-
-impl Default for DerivedEncounterState {
-    fn default() -> Self {
-        Self {
-            start_time: 0,
-            end_time: 0,
-            total_damage: 0,
-            dps: 0.0,
-            total_stun_value: 0.0,
-            stun_per_second: 0.0,
-            status: ParserStatus::Waiting,
-            party: HashMap::new(),
-            targets: HashMap::new(),
-        }
-    }
-}
-
-impl DerivedEncounterState {
-    pub fn duration(&self) -> i64 {
-        (self.end_time - self.start_time).max(1)
-    }
-
-    fn utc_start_time(&self) -> Result<chrono::DateTime<Utc>> {
-        chrono::DateTime::from_timestamp_millis(self.start_time)
-            .ok_or(anyhow::anyhow!("Failed to convert start time to DateTime"))
-    }
-
-    fn start(&mut self, now: i64) {
-        self.start_time = now;
-        self.end_time = now;
-    }
-
-    /// Gets the primary target of the encounter (the target that had the most damage done to it)
-    fn get_primary_target(&self) -> Option<&EnemyState> {
-        self.targets
-            .values()
-            .max_by_key(|target| target.total_damage)
-    }
-
-    fn process_damage_event(&mut self, now: i64, damage_instance: &AdjustedDamageInstance) {
-        self.end_time = now;
-        self.total_damage += damage_instance.event.damage as u64;
-        self.dps = self.total_damage as f64 / ((self.duration()) as f64 / 1000.0);
-
-        // Update stun value
-        self.total_stun_value += damage_instance.stun_damage;
-        self.stun_per_second = self.total_stun_value / ((self.duration()) as f64 / 1000.0);
-
-        // Add actor to party if not already present.
-        let source_player = self
-            .party
-            .entry(damage_instance.event.source.parent_index)
-            .or_insert(PlayerState {
-                index: damage_instance.event.source.parent_index,
-                character_type: CharacterType::from_hash(
-                    damage_instance.event.source.parent_actor_type,
-                ),
-                total_damage: 0,
-                dps: 0.0,
-                sba: 0.0,
-                stun_per_second: 0.0,
-                total_stun_value: 0.0,
-                skill_breakdown: Vec::new(),
-                last_known_pet_skill: None,
-            });
-
-        // Update player stats from damage event.
-        source_player.update_from_damage_event(damage_instance);
-
-        // Update target stats from damage event.
-        let target = self
-            .targets
-            .entry(damage_instance.event.target.parent_index)
-            .or_insert(EnemyState {
-                index: damage_instance.event.target.parent_index,
-                target_type: EnemyType::from_hash(damage_instance.event.target.parent_actor_type),
-                raw_target_type: damage_instance.event.target.parent_actor_type,
-                total_damage: 0,
-            });
-
-        target.update_from_damage_event(damage_instance);
-
-        // Update everyone's DPS
-        for player in self.party.values_mut() {
-            player.update_dps(now, self.start_time);
-        }
+    /// Files this hit under `source_index` instead of the actor the event names.
+    ///
+    /// Ensures that the correct player is attributed.
+    pub fn adopted_by(mut self, source_index: u32) -> Self {
+        self.source_index = source_index;
+        self
     }
 }
 
@@ -426,14 +224,65 @@ pub struct Parser {
     /// The database connection for the parser, used to save the encounter
     #[serde(skip)]
     db: Option<Connection>,
+
+    #[serde(skip)]
+    game_version: Option<String>,
+
+    #[serde(skip)]
+    last_save_time: Option<i64>,
+
+    #[serde(skip)]
+    stun_recon: StunReconstructor,
+
+    #[serde(skip)]
+    action_actors: ActionActors,
+
+    #[serde(skip)]
+    live_emit: LiveEmitGate,
+}
+
+/// The gauge message carries no actor, so a gain is named by the last damage
+/// event with the same action id from that player.
+#[derive(Debug, Default)]
+struct ActionActors(HashMap<(u32, ActionType), CharacterType>);
+
+impl ActionActors {
+    fn remember(&mut self, event: &DamageEvent) {
+        self.0.insert(
+            (event.source.parent_index, event.action_id),
+            child_character_type_of(event),
+        );
+    }
+
+    fn resolve(
+        &self,
+        actor_index: u32,
+        cause: SbaCause,
+        character_type: CharacterType,
+    ) -> Option<CharacterType> {
+        let action = match cause {
+            SbaCause::Action(action) | SbaCause::Inferred(action) => action,
+            _ => return None,
+        };
+
+        let child = *self.0.get(&(actor_index, action))?;
+
+        (child != character_type).then_some(child)
+    }
 }
 
 impl Parser {
-    pub fn new(app: AppHandle, window: Window, db: Connection) -> Self {
+    pub fn new(
+        app: AppHandle,
+        window: Window,
+        db: Connection,
+        game_version: Option<String>,
+    ) -> Self {
         Self {
             app: Some(app),
             db: Some(db),
             window_handle: Some(window),
+            game_version,
             ..Default::default()
         }
     }
@@ -444,6 +293,29 @@ impl Parser {
             *timestamp
         } else {
             1
+        }
+    }
+
+    fn send_live_payload(&self) {
+        if let Some(window) = &self.window_handle {
+            let _ = window.emit("encounter-update", &self.derived_state.live_payload());
+        }
+    }
+
+    fn emit_live_update(&mut self) {
+        self.send_live_payload();
+        self.live_emit.emitted(Utc::now().timestamp_millis());
+    }
+
+    fn emit_live_update_throttled(&mut self, now: i64) {
+        if self.live_emit.should_emit(now) {
+            self.send_live_payload();
+        }
+    }
+
+    pub fn flush_live_update(&mut self) {
+        if self.live_emit.take_pending(Utc::now().timestamp_millis()) {
+            self.send_live_payload();
         }
     }
 
@@ -464,6 +336,11 @@ impl Parser {
         // Repopulate the event log if it's empty.
         encounter.repopulate_event_log();
 
+        // Before the derived state is built off it: a member the capture never
+        // announced gets their row back from their own damage, so an already-
+        // saved log stops hiding them (see `seed_player_slots_from_damage`).
+        encounter.seed_player_slots_from_damage();
+
         Ok(Self::from_encounter(encounter))
     }
 
@@ -472,61 +349,123 @@ impl Parser {
         self.derived_state = Default::default();
         self.derived_state.start(self.start_time());
 
-        for (timestamp, event) in self.encounter.event_log() {
-            self.derived_state.end_time = *timestamp;
+        let mut stun_recon = StunReconstructor::default();
 
+        for (timestamp, event) in self.encounter.event_log() {
             match event {
+                Message::DamageEvent(event) if is_damage_taken(event) => {
+                    let cap = self.max_hp_for(event.target.parent_index);
+                    self.derived_state.process_damage_taken(event, cap);
+                }
                 Message::DamageEvent(event) => {
+                    let source_index =
+                        attributed_source_index(&self.encounter.player_data, event);
                     let player_data = self
                         .encounter
                         .player_data
                         .iter()
                         .flatten()
-                        .find(|player| player.actor_index == event.source.parent_index);
+                        .find(|player| player.actor_index == source_index);
 
-                    let damage_instance =
-                        AdjustedDamageInstance::from_damage_event(event, player_data);
+                    let stun_damage = stun_recon.counted_stun(event);
+                    let damage_instance = AdjustedDamageInstance::with_reconstructed_stun(
+                        event,
+                        player_data,
+                        stun_damage,
+                    )
+                    .adopted_by(source_index);
 
                     self.derived_state
                         .process_damage_event(*timestamp, &damage_instance);
+                }
+                // Status events are not folded here. `pair_status_intervals` in
+                // `commands.rs` derives them from this same log at read time.
+                Message::OnHeal(event) => {
+                    self.derived_state.process_heal_event(event);
+                }
+                _ => {}
+            }
+        }
+
+        self.reparse_sba_gains();
+    }
+
+    fn reparse_sba_gains(&mut self) {
+        let inferred = sba_inference::infer_remote_causes(&self.encounter);
+        let mut actors = ActionActors::default();
+
+        for (index, (_, event)) in self.encounter.event_log().enumerate() {
+            match event {
+                Message::DamageEvent(event) if !is_damage_taken(event) => {
+                    actors.remember(event);
+                }
+                Message::OnUpdateSBA(sba) => {
+                    let character_type = self.character_type_of(sba.actor_index);
+                    let cause = inferred.get(&index).copied().unwrap_or(sba.cause);
+                    let child = actors.resolve(sba.actor_index, cause, character_type);
+                    let player = self
+                        .derived_state
+                        .party_row(sba.actor_index, character_type);
+                    player.set_sba(sba.sba_value as f64);
+                    player.add_sba_gain(cause, child, sba.sba_added as f64);
+                }
+                Message::OnPerformSBA(sba) => {
+                    if let Some(player) = self.derived_state.party.get_mut(&sba.actor_index) {
+                        player.set_sba(0.0);
+                    }
+                }
+                Message::OnAttemptSBA(sba) => {
+                    if let Some(player) = self.derived_state.party.get_mut(&sba.actor_index) {
+                        player.set_sba(SBA_ATTEMPT_LEVEL);
+                    }
                 }
                 _ => {}
             }
         }
     }
 
-    // Re-analyzes the encounter with the given targets.
-    pub fn reparse_with_options(&mut self, targets: &[EnemyType]) {
-        self.derived_state = Default::default();
-        self.derived_state.start(self.start_time());
+    fn character_type_of(&self, actor_index: u32) -> CharacterType {
+        self.encounter
+            .player_data
+            .iter()
+            .flatten()
+            .find(|player| player.actor_index == actor_index)
+            .map(|player| player.character_type)
+            .unwrap_or(CharacterType::Unknown(0))
+    }
+
+    /// Gauge is left out: it belongs to the player, not to who they hit, so
+    /// there is no per-enemy slice of it to take.
+    pub fn derived_state_for_enemy(&self, enemy_index: u32) -> DerivedEncounterState {
+        let start_time = self.start_time();
+        let mut state = DerivedEncounterState::default();
+        state.start(start_time);
+
+        let mut stun_recon = StunReconstructor::default();
 
         for (timestamp, event) in self.encounter.event_log() {
-            self.derived_state.end_time = *timestamp;
-
-            match event {
-                Message::DamageEvent(event) => {
-                    // If the target list is empty, then we're not filtering by target.
-                    // Otherwise, we only process damage events that match the target list.
-                    let target_type = EnemyType::from_hash(event.target.parent_actor_type);
-
-                    if targets.is_empty() || targets.contains(&target_type) {
-                        let player_data = self
-                            .encounter
-                            .player_data
-                            .iter()
-                            .flatten()
-                            .find(|player| player.actor_index == event.source.parent_index);
-
-                        let damage_instance =
-                            AdjustedDamageInstance::from_damage_event(event, player_data);
-
-                        self.derived_state
-                            .process_damage_event(*timestamp, &damage_instance);
-                    }
-                }
-                _ => {}
+            let Message::DamageEvent(event) = event else {
+                continue;
+            };
+            if event.target.parent_index != enemy_index {
+                continue;
             }
+
+            let source_index = attributed_source_index(&self.encounter.player_data, event);
+            let player_data = self
+                .encounter
+                .player_data
+                .iter()
+                .flatten()
+                .find(|player| player.actor_index == source_index);
+            let stun_damage = stun_recon.counted_stun(event);
+            let damage_instance =
+                AdjustedDamageInstance::with_reconstructed_stun(event, player_data, stun_damage)
+                    .adopted_by(source_index);
+            state.process_damage_event(*timestamp, &damage_instance);
         }
+
+        state
     }
 
     pub fn generate_sba_chart(&self, interval: i64) -> HashMap<u32, Vec<f32>> {
@@ -541,9 +480,12 @@ impl Parser {
 
         let mut last_event_timestamp = start_time;
 
+        // SBA syncs keep arriving after the last hit; clamp them into the last slice.
+        let last_slot = (duration / interval) as usize;
+
         for (timestamp, event) in self.encounter.event_log() {
-            let last_index = ((last_event_timestamp - start_time) / interval) as usize;
-            let index = ((timestamp - start_time) / interval) as usize;
+            let last_index = (((last_event_timestamp - start_time) / interval) as usize).min(last_slot);
+            let index = (((timestamp - start_time) / interval) as usize).min(last_slot);
 
             // Carry over the previous values to the current timeslice.
             if last_index != index && last_index > 0 {
@@ -584,12 +526,131 @@ impl Parser {
         chart_values
     }
 
+    fn max_hp_for(&self, actor_index: u32) -> Option<u64> {
+        self.encounter
+            .player_data
+            .iter()
+            .flatten()
+            .find(|p| p.actor_index == actor_index)
+            .and_then(|p| p.player_stats.as_ref())
+            .map(|s| s.total_hp as u64)
+            .filter(|&hp| hp > 0)
+    }
+
+    pub fn generate_misc_charts(&self, interval: i64) -> MiscCharts {
+        let start_time = self.start_time();
+        let duration = self.derived_state.duration();
+        let len = (duration / interval) as usize + 1;
+
+        let players: Vec<u32> = self.derived_state.party.keys().copied().collect();
+        let seed = || -> HashMap<u32, Vec<u64>> {
+            players.iter().map(|&p| (p, vec![0u64; len])).collect()
+        };
+        let mut provided = seed();
+        let mut received = seed();
+        let mut taken = seed();
+        let mut deaths: HashMap<u32, Vec<i64>> = HashMap::new();
+
+        let mut run_provided: HashMap<u32, u64> = players.iter().map(|&p| (p, 0)).collect();
+        let mut run_received: HashMap<u32, u64> = players.iter().map(|&p| (p, 0)).collect();
+        let mut run_taken: HashMap<u32, u64> = players.iter().map(|&p| (p, 0)).collect();
+
+        let bucket = |ts: i64| -> usize { (((ts - start_time).max(0) / interval) as usize).min(len - 1) };
+
+        fn carry(series: &mut HashMap<u32, Vec<u64>>, run: &HashMap<u32, u64>, from: usize, to: usize) {
+            for (p, entries) in series.iter_mut() {
+                let v = run[p];
+                for entry in entries.iter_mut().take(to + 1).skip(from + 1) {
+                    *entry = v;
+                }
+            }
+        }
+
+        // A hit on a downed body re-emits a death, so drop deaths while a player is down.
+        let mut down: HashSet<u32> = HashSet::new();
+
+        let mut last_idx = 0usize;
+        for (timestamp, event) in self.encounter.event_log() {
+            let idx = bucket(*timestamp);
+            if idx > last_idx {
+                carry(&mut provided, &run_provided, last_idx, idx);
+                carry(&mut received, &run_received, last_idx, idx);
+                carry(&mut taken, &run_taken, last_idx, idx);
+                last_idx = idx;
+            }
+
+            match event {
+                Message::DamageEvent(e) => {
+                    down.remove(&e.source.parent_index);
+                }
+                Message::OnHeal(e) if e.heal_type == REVIVE_HEAL_TYPE => {
+                    down.remove(&e.target);
+                }
+                _ => {}
+            }
+
+            match event {
+                Message::OnHeal(e) if e.amount > 0 => {
+                    if let Some(src) = e.source {
+                        if let Some(r) = run_provided.get_mut(&src) {
+                            *r += e.amount as u64;
+                            if let Some(a) = provided.get_mut(&src) {
+                                a[idx] = *r;
+                            }
+                        }
+                    }
+                    if let Some(r) = run_received.get_mut(&e.target) {
+                        *r += e.amount as u64;
+                        if let Some(a) = received.get_mut(&e.target) {
+                            a[idx] = *r;
+                        }
+                    }
+                }
+                Message::DamageEvent(e) if is_damage_taken(e) && e.damage > 0 => {
+                    let t = e.target.parent_index;
+                    let hit = capped_damage(e.damage, self.max_hp_for(t));
+                    if let Some(r) = run_taken.get_mut(&t) {
+                        *r += hit;
+                        if let Some(a) = taken.get_mut(&t) {
+                            a[idx] = a[idx].max(*r);
+                        }
+                    }
+                }
+                Message::OnDeathEvent(e) => {
+                    if !down.insert(e.actor_index) {
+                        continue;
+                    }
+
+                    deaths.entry(e.actor_index).or_default().push(*timestamp - start_time);
+                    if let Some(r) = run_taken.get_mut(&e.actor_index) {
+                        *r = 0;
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        carry(&mut provided, &run_provided, last_idx, len - 1);
+        carry(&mut received, &run_received, last_idx, len - 1);
+        carry(&mut taken, &run_taken, last_idx, len - 1);
+
+        MiscCharts {
+            heal_provided: provided,
+            heal_received: received,
+            damage_taken: taken,
+            deaths,
+        }
+    }
+
     /// Handles the event when an area is entered.
     /// If the current encounter was in progress, then stop it as we've left the instance.
     /// If there was damage in that stopped instance, then save it as a new log.
     /// Otherwise, we're waiting for the encounter to start.
     pub fn on_area_enter_event(&mut self, event: AreaEnterEvent) {
-        self.encounter.quest_id = Some(event.last_known_quest_id);
+        // 0 = no quest known; keep what the encounter already has.
+        if event.last_known_quest_id != 0 {
+            self.encounter.quest_id = Some(event.last_known_quest_id);
+        }
 
         if self.status == ParserStatus::InProgress {
             self.update_status(ParserStatus::Stopped);
@@ -613,17 +674,22 @@ impl Parser {
         }
 
         self.encounter.quest_completed = false;
+        self.encounter.quest_abandoned = false;
         self.encounter.reset_player_data();
 
         if let Some(window) = &self.window_handle {
-            let _ = window.emit("on-area-enter", &self.derived_state);
+            let _ = window.emit("on-area-enter", &self.derived_state.live_payload());
         }
     }
 
     pub fn on_quest_complete_event(&mut self, event: QuestCompleteEvent) {
         self.encounter.quest_id = Some(event.quest_id);
-        self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
+        // 0 = no authoritative timer; in Conflux the game's timer counts only the current area.
+        if event.elapsed_time_in_secs != 0 {
+            self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
+        }
         self.encounter.quest_completed = true;
+        self.encounter.quest_abandoned = false;
 
         if self.status == ParserStatus::InProgress {
             self.update_status(ParserStatus::Stopped);
@@ -643,23 +709,78 @@ impl Parser {
                 }
             }
 
-            if let Some(window) = &self.window_handle {
-                let _ = window.emit("encounter-update", &self.derived_state);
-            }
+            self.emit_live_update();
         }
+
+        self.encounter.reset_player_data();
+    }
+
+    pub fn on_quest_abandon_event(&mut self, event: QuestAbandonEvent) {
+        if event.quest_id != 0 {
+            self.encounter.quest_id = Some(event.quest_id);
+        }
+        if event.elapsed_time_in_secs != 0 {
+            self.encounter.quest_timer = Some(event.elapsed_time_in_secs);
+        }
+        self.encounter.quest_completed = false;
+        self.encounter.quest_abandoned = true;
+
+        if self.status == ParserStatus::InProgress {
+            self.update_status(ParserStatus::Stopped);
+
+            if self.has_damage() {
+                match self.save_encounter_to_db() {
+                    Ok(id) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved", id);
+                        }
+                    }
+                    Err(e) => {
+                        if let Some(window) = &self.window_handle {
+                            let _ = window.emit("encounter-saved-error", e.to_string());
+                        }
+                    }
+                }
+            }
+
+            self.emit_live_update();
+        }
+
+        self.encounter.reset_player_data();
     }
 
     // Called when a damage event is received from the game.
     pub fn on_damage_event(&mut self, event: DamageEvent) {
         let now = Utc::now().timestamp_millis();
 
+        if is_damage_taken(&event) {
+            if self.status == ParserStatus::InProgress {
+                self.encounter
+                    .push_event(now, Message::DamageEvent(event.clone()));
+                let cap = self.max_hp_for(event.target.parent_index);
+                self.derived_state.process_damage_taken(&event, cap);
+            }
+            return;
+        }
+
         if Self::should_ignore_damage_event(&event) {
             return;
+        }
+
+        // A stray hit right after the kill blow must not start a phantom encounter.
+        if matches!(self.status, ParserStatus::Stopped | ParserStatus::Waiting) {
+            if let Some(last_save) = self.last_save_time {
+                if now - last_save < SAVE_DEBOUNCE_MILLIS {
+                    return;
+                }
+            }
         }
 
         // If this is the first damage event, set the start time.
         if self.status == ParserStatus::Stopped || self.status == ParserStatus::Waiting {
             self.reset();
+            self.encounter.quest_completed = false;
+            self.encounter.quest_abandoned = false;
             self.derived_state.start(now);
             self.update_status(ParserStatus::InProgress);
         }
@@ -667,28 +788,37 @@ impl Parser {
         self.encounter
             .push_event(now, Message::DamageEvent(event.clone()));
 
+        self.action_actors.remember(&event);
+
+        // Ahead of the adoption below, deliberately: a member seeded only by
+        // their own damage has to exist before adoption can find them as an
+        // owner.
+        self.encounter
+            .ensure_player_slot(event.source.parent_index, event.source.parent_actor_type);
+
+        let source_index = attributed_source_index(&self.encounter.player_data, &event);
         let player_data = self
             .encounter
             .player_data
             .iter()
             .flatten()
-            .find(|player| player.actor_index == event.source.parent_index);
+            .find(|player| player.actor_index == source_index);
 
-        let damage_instance = AdjustedDamageInstance::from_damage_event(&event, player_data);
+        let stun_damage = self.stun_recon.counted_stun(&event);
+        let damage_instance =
+            AdjustedDamageInstance::with_reconstructed_stun(&event, player_data, stun_damage)
+                .adopted_by(source_index);
 
         self.derived_state
             .process_damage_event(now, &damage_instance);
 
-        if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-update", &self.derived_state);
-        }
+        self.emit_live_update_throttled(now);
     }
 
-    pub fn on_player_load_event(&mut self, event: PlayerLoadEvent) {
-        let character_type = CharacterType::from_hash(event.character_type);
+    pub fn on_player_identity_event(&mut self, event: PlayerIdentityEvent) {
+        let character_type = canonical_character_type(event.character_type);
 
-        // Ignore Id's transformation.
-        if character_type == CharacterType::Pl2000 {
+        if event.party_index > 3 {
             return;
         }
 
@@ -711,60 +841,250 @@ impl Parser {
         let player_data = PlayerData {
             actor_index: event.actor_index,
             display_name: event.display_name.to_string_lossy().to_string(),
-            character_name: event.character_name.to_string_lossy().to_string(),
+            character_name: character_name_for(character_type)
+                .map(str::to_string)
+                .unwrap_or_else(|| event.character_name.to_string_lossy().to_string()),
             is_online: event.is_online,
             character_type,
             sigils,
-            weapon_info: Some(event.weapon_info.into()),
-            overmastery_info: Some(event.overmastery_info.into()),
-            player_stats: Some(event.player_stats.into()),
+            weapon_info: event.weapon_info.map(Into::into),
+            overmastery_info: None,
+            summon_info: event.summon_info.map(Into::into),
+            skill_loadout: event.skill_loadout,
+            over_mastery: event.over_mastery.into_iter().map(Into::into).collect(),
+            master_trait_flags: event
+                .master_trait_flags
+                .into_iter()
+                .map(Into::into)
+                .collect(),
+            effective_traits: event.effective_traits.into_iter().map(Into::into).collect(),
+            player_stats: event.player_stats.map(Into::into),
+            network_user_id: event.network_user_id,
+            network_user_name: event.network_user_name,
+            master_level: event.master_level,
         };
 
-        // Insert into encounter player data array, using actor_index.
-        if !player_data.is_online && event.party_index == 0 {
-            self.encounter.player_data[0] = Some(player_data.clone());
-        } else {
-            for i in 1..=3 {
-                if let Some(player) = &self.encounter.player_data[i] {
-                    // If this is the same player, update it.
-                    if player.actor_index == player_data.actor_index {
-                        self.encounter.player_data[i] = Some(player_data.clone());
-                        break;
-                    }
-
-                    // If the actor index we're trying to insert is lower than the current slot's actor index,
-                    // then we need to shift the rest of the array to the right.
-                    if player_data.actor_index < player.actor_index {
-                        self.encounter.player_data[i..].rotate_right(1);
-                        self.encounter.player_data[i] = Some(player_data.clone());
-                        break;
-                    }
-                } else {
-                    self.encounter.player_data[i] = Some(player_data.clone());
-                    break;
-                }
-            }
-        }
+        self.encounter.player_data[event.party_index as usize] = Some(player_data);
 
         if let Some(window) = &self.window_handle {
             let _ = window.emit("encounter-party-update", &self.encounter.player_data);
         }
     }
 
-    /// Handles setting the SBA gauge value for a player
-    pub fn on_sba_update(&mut self, event: OnUpdateSBAEvent) {
-        self.encounter.push_event(
-            Utc::now().timestamp_millis(),
-            Message::OnUpdateSBA(event.clone()),
-        );
+    pub fn on_party_roster_event(&mut self, event: protocol::PartyRosterEvent) {
+        let in_progress = self.status == ParserStatus::InProgress && self.has_damage();
 
-        let player_index = event.actor_index;
-        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
-            player.set_sba(event.sba_value as f64);
+        if in_progress {
+            for member in event.members {
+                let slot = member.party_index as usize;
+                if slot > 3 {
+                    continue;
+                }
+                if let Some(existing) = self.encounter.player_data[slot].as_mut() {
+                    if existing.network_user_id.is_none() {
+                        existing.network_user_id = member.network_user_id;
+                    }
+                    if existing.network_user_name.is_none() {
+                        existing.network_user_name = member.network_user_name;
+                    }
+                }
+            }
+        } else {
+            self.reset();
+            self.encounter.reset_player_data();
+            self.update_status(ParserStatus::Waiting);
+
+            for member in &event.members {
+                let slot = member.party_index as usize;
+                if slot > 3 {
+                    continue;
+                }
+                let character_type = canonical_character_type(member.character_type);
+                self.encounter.player_data[slot] = Some(PlayerData {
+                    actor_index: protocol::PLAYER_ID_BASE | u32::from(member.party_index),
+                    display_name: member.display_name.to_string_lossy().to_string(),
+                    character_name: character_name_for(character_type)
+                        .map(str::to_string)
+                        .unwrap_or_default(),
+                    character_type,
+                    is_online: member.is_online,
+                    sigils: Vec::new(),
+                    weapon_info: None,
+                    overmastery_info: None,
+                    summon_info: None,
+                    skill_loadout: Vec::new(),
+                    over_mastery: Vec::new(),
+                    master_trait_flags: Vec::new(),
+                    effective_traits: Vec::new(),
+                    player_stats: None,
+                    network_user_id: member.network_user_id.clone(),
+                    network_user_name: member.network_user_name.clone(),
+                    master_level: None,
+                });
+            }
         }
 
         if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-update", &self.derived_state);
+            let _ = window.emit("encounter-party-update", &self.encounter.player_data);
+        }
+        self.emit_live_update();
+    }
+
+    /// Handles setting the SBA gauge value for a player
+    pub fn on_sba_update(&mut self, event: OnUpdateSBAEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnUpdateSBA(event.clone()),
+            );
+        }
+
+        let player_index = event.actor_index;
+        if let Some(player) = self.derived_state.party.get_mut(&player_index) {
+            let child = self
+                .action_actors
+                .resolve(player_index, event.cause, player.character_type);
+            player.set_sba(event.sba_value as f64);
+            player.add_sba_gain(event.cause, child, event.sba_added as f64);
+        }
+
+        self.emit_live_update_throttled(Utc::now().timestamp_millis());
+    }
+
+    pub fn on_peer_counter(&mut self, event: protocol::PeerCounterEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnPeerCounter(event),
+            );
+        }
+    }
+
+    pub fn on_link_time_start(&mut self, event: protocol::LinkTimeStartEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnLinkTimeStart(event),
+            );
+        }
+    }
+
+    pub fn on_link_time_end(&mut self, event: protocol::LinkTimeEndEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter
+                .push_event(Utc::now().timestamp_millis(), Message::OnLinkTimeEnd(event));
+        }
+    }
+
+    /// A status effect was applied to, or refreshed on, an actor. Log-only:
+    /// `pair_status_intervals` in `commands.rs` derives everything from the log.
+    pub fn on_status_applied(&mut self, event: protocol::StatusAppliedEvent) {
+        if self.status != ParserStatus::InProgress {
+            return;
+        }
+
+        let now = Utc::now().timestamp_millis();
+        self.encounter
+            .push_event(now, Message::OnStatusApplied(event));
+    }
+
+    /// HP was restored to an actor. The heal is credited to its source.
+    pub fn on_heal_event(&mut self, event: protocol::HealEvent) {
+        if self.status != ParserStatus::InProgress {
+            return;
+        }
+
+        let now = Utc::now().timestamp_millis();
+        self.derived_state.process_heal_event(&event);
+        self.encounter.push_event(now, Message::OnHeal(event));
+    }
+
+    /// A status effect left an actor. A removal is not necessarily the end of
+    /// the status: `stacks` is the depth REMAINING after it, and what that
+    /// means for an uptime interval is `pair_status_intervals`'s job.
+    pub fn on_status_removed(&mut self, event: protocol::StatusRemovedEvent) {
+        if self.status != ParserStatus::InProgress {
+            return;
+        }
+
+        let now = Utc::now().timestamp_millis();
+        self.encounter
+            .push_event(now, Message::OnStatusRemoved(event));
+    }
+
+    /// A status's stack depth moved while the actor kept holding it. The apply
+    /// event fires before the game writes the stack level, so it reports the
+    /// depth from before the grant; this corrects it, when it fires at all.
+    pub fn on_status_stacks_changed(&mut self, event: protocol::StatusStacksChangedEvent) {
+        if self.status != ParserStatus::InProgress {
+            return;
+        }
+
+        let now = Utc::now().timestamp_millis();
+        self.encounter
+            .push_event(now, Message::OnStatusStacksChanged(event));
+    }
+
+    pub fn on_link_attack_chance(&mut self, event: protocol::LinkAttackChanceEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnLinkAttackChance(event),
+            );
+        }
+    }
+
+    pub fn on_conflux_area_clear(&mut self, event: protocol::ConfluxAreaClearEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnConfluxAreaClear(event),
+            );
+        }
+    }
+
+    pub fn on_conflux_advance(&mut self, event: protocol::ConfluxAdvanceEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnConfluxAdvance(event),
+            );
+        }
+    }
+
+    pub fn on_conflux_boss_clear(&mut self, event: protocol::ConfluxBossClearEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnConfluxBossClear(event),
+            );
+        }
+    }
+
+    pub fn on_enemy_mode_change(&mut self, event: protocol::EnemyModeChangeEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnEnemyModeChange(event),
+            );
+        }
+    }
+
+    pub fn on_sba_window_change(&mut self, event: protocol::SbaWindowChangeEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnSbaWindowChange(event),
+            );
+        }
+    }
+
+    pub fn on_enemy_death(&mut self, event: protocol::EnemyDeathEvent) {
+        if self.status == ParserStatus::InProgress {
+            self.encounter.push_event(
+                Utc::now().timestamp_millis(),
+                Message::OnEnemyDeath(event),
+            );
         }
     }
 
@@ -776,12 +1096,10 @@ impl Parser {
 
         let player_index = event.actor_index;
         if let Some(player) = self.derived_state.party.get_mut(&player_index) {
-            player.set_sba(800.0);
+            player.set_sba(SBA_ATTEMPT_LEVEL);
         }
 
-        if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-update", &self.derived_state);
-        }
+        self.emit_live_update();
     }
 
     pub fn on_sba_perform(&mut self, event: OnPerformSBAEvent) {
@@ -795,9 +1113,7 @@ impl Parser {
             player.set_sba(0.0);
         }
 
-        if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-update", &self.derived_state);
-        }
+        self.emit_live_update();
     }
 
     /// @TODO(false): Note that this event only fires for the local player.
@@ -812,9 +1128,7 @@ impl Parser {
             player.set_sba(0.0);
         }
 
-        if let Some(window) = &self.window_handle {
-            let _ = window.emit("encounter-update", &self.derived_state);
-        }
+        self.emit_live_update();
     }
 
     pub fn on_death_event(&mut self, event: OnDeathEvent) {
@@ -828,6 +1142,8 @@ impl Parser {
         self.encounter.raw_event_log.clear();
         self.encounter.raw_event_log.shrink_to_fit();
         self.derived_state = Default::default();
+        self.stun_recon = StunReconstructor::default();
+        self.action_actors = ActionActors::default();
     }
 
     fn update_status(&mut self, new_status: ParserStatus) {
@@ -843,12 +1159,13 @@ impl Parser {
     fn should_ignore_damage_event(event: &DamageEvent) -> bool {
         let character_type = CharacterType::from_hash(event.source.parent_actor_type);
 
-        if event.damage <= 0 {
+        if event.damage <= 0 && event.stun_value.unwrap_or(0.0) <= 0.0 {
             return true;
         }
 
-        // Eugen's Grenade should be ignored.
-        if event.target.actor_type == 0x022a350f {
+        // A hit on a player's own helper entity, like Eugen's grenade, is a
+        // duplicate of the one that landed on the real enemy.
+        if is_helper_target(event) {
             return true;
         }
 
@@ -902,8 +1219,18 @@ impl Parser {
                         p4_type,
                         quest_id,
                         quest_elapsed_time,
-                        quest_completed
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
+                        quest_completed,
+                        game_version,
+                        p1_network_id,
+                        p2_network_id,
+                        p3_network_id,
+                        p4_network_id,
+                        p1_styles,
+                        p2_styles,
+                        p3_styles,
+                        p4_styles,
+                        app_version
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"#,
                 params![
                     "",
                     start_datetime.timestamp_millis(),
@@ -911,21 +1238,35 @@ impl Parser {
                     &encounter_data,
                     1,
                     primary_target,
-                    p1.map(|p| p.display_name.as_str()),
+                    name_column(p1),
                     p1.map(|p| p.character_type.to_string()),
-                    p2.map(|p| p.display_name.as_str()),
+                    name_column(p2),
                     p2.map(|p| p.character_type.to_string()),
-                    p3.map(|p| p.display_name.as_str()),
+                    name_column(p3),
                     p3.map(|p| p.character_type.to_string()),
-                    p4.map(|p| p.display_name.as_str()),
+                    name_column(p4),
                     p4.map(|p| p.character_type.to_string()),
                     self.encounter.quest_id,
                     self.encounter.quest_timer,
-                    self.encounter.quest_completed
+                    self.encounter.quest_completed,
+                    self.game_version.as_deref(),
+                    p1.and_then(|p| p.network_user_id.as_deref()),
+                    p2.and_then(|p| p.network_user_id.as_deref()),
+                    p3.and_then(|p| p.network_user_id.as_deref()),
+                    p4.and_then(|p| p.network_user_id.as_deref()),
+                    // Completed-styles bitmasks; 0 = computed none, NULL = not yet backfilled.
+                    p1.map_or(0, |p| style_catalog::completed_styles(&p.master_trait_flags)),
+                    p2.map_or(0, |p| style_catalog::completed_styles(&p.master_trait_flags)),
+                    p3.map_or(0, |p| style_catalog::completed_styles(&p.master_trait_flags)),
+                    p4.map_or(0, |p| style_catalog::completed_styles(&p.master_trait_flags)),
+                    self.app
+                        .as_ref()
+                        .map(|app| app.package_info().version.to_string()),
                 ],
             )?;
 
             let id = conn.last_insert_rowid();
+            self.last_save_time = Some(Utc::now().timestamp_millis());
 
             return Ok(Some(id));
         }
@@ -950,107 +1291,3 @@ impl From<v0::Parser> for Parser {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use protocol::{ActionType, Actor};
-
-    use super::*;
-
-    #[test]
-    fn can_create_parser() {
-        let parser = Parser::default();
-
-        assert_eq!(parser.status, ParserStatus::Waiting);
-        assert_eq!(parser.start_time(), 1);
-    }
-
-    #[test]
-    fn start_time_depends_on_first_event() {
-        let mut parser = Parser::default();
-
-        parser.encounter.raw_event_log.push((
-            1_000,
-            Message::DamageEvent(DamageEvent {
-                source: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                target: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                damage: 0,
-                flags: 0,
-                action_id: ActionType::Normal(0),
-                attack_rate: None,
-                stun_value: None,
-                damage_cap: None,
-            }),
-        ));
-
-        assert_eq!(parser.start_time(), 1_000);
-    }
-
-    #[test]
-    fn duration_calculated_from_start_to_current_event() {
-        let mut parser = Parser::default();
-
-        parser.encounter.raw_event_log.push((
-            1_000,
-            Message::DamageEvent(DamageEvent {
-                source: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                target: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                damage: 0,
-                flags: 0,
-                action_id: ActionType::Normal(0),
-                attack_rate: None,
-                stun_value: None,
-                damage_cap: None,
-            }),
-        ));
-
-        parser.encounter.raw_event_log.push((
-            5_000,
-            Message::DamageEvent(DamageEvent {
-                source: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                target: Actor {
-                    index: 0,
-                    actor_type: 0,
-                    parent_actor_type: 0,
-                    parent_index: 0,
-                },
-                damage: 0,
-                flags: 0,
-                action_id: ActionType::Normal(0),
-                attack_rate: None,
-                stun_value: None,
-                damage_cap: None,
-            }),
-        ));
-
-        parser.reparse();
-
-        assert_eq!(parser.derived_state.start_time, 1_000);
-        assert_eq!(parser.derived_state.end_time, 5_000);
-        assert_eq!(parser.derived_state.duration(), 4_000);
-    }
-}

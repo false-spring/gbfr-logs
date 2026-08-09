@@ -44,6 +44,7 @@ const SettingsPage = () => {
     addOverlayColumn,
     removeOverlayColumn,
     open_log_on_save,
+    show_link_time,
   } = useSettings();
 
   const toggleDebugMode = () => {
@@ -131,6 +132,13 @@ const SettingsPage = () => {
               label={t("ui.open-log-on-save")}
               checked={open_log_on_save}
               onChange={(event) => setMeterSettings({ open_log_on_save: event.currentTarget.checked })}
+            />
+          </Tooltip>
+          <Tooltip label={t("ui.show-link-time-description", "Shades the Link Time windows on the log view's charts.")}>
+            <Checkbox
+              label={t("ui.show-link-time", "Show Link Time")}
+              checked={show_link_time}
+              onChange={(event) => setMeterSettings({ show_link_time: event.currentTarget.checked })}
             />
           </Tooltip>
           <Tooltip label={t("ui.debug-mode-description")}>

@@ -1,29 +1,44 @@
-use std::ffi::CString;
-
+/// `attack_rate` is the multiplier the damage core consumes, not +0xD8 or +0xDC.
 #[derive(Debug)]
 #[repr(C)]
 pub struct DamageInstance {
-    padding_00: [u8; 0xD0],   // 0x00 - 0xD0
-    pub damage: i32,          // 0xD0
-    pub attack_rate: f32,     // 0xD4
-    pub flags: u64,           // 0xD8
-    padding_e0: [u8; 0x08],   // 0xE0
-    pub stun_value: f32,      // 0xE8
-    padding_ec: [u8; 0x68],   // 0xEC - 0x154
-    pub action_id: u32,       // 0x154
-    padding_158: [u8; 0x10C], // 0x158 - 0x264
-    pub damage_cap: i32,      // 0x264
+    padding_00: [u8; 0xD0],    // 0x000 - 0x0D0
+    pub reference_damage: i32, // 0x0D0
+    pub damage: i32,           // 0x0D4
+    padding_d8: [u8; 0x04],    // 0x0D8 - 0x0DC
+    pub cap_rate: f32,         // 0x0DC
+    pub attack_rate: f32,      // 0x0E0
+    padding_e4: [u8; 0x04],    // 0x0E4 - 0x0E8
+    pub flags: u64,            // 0x0E8
+    /// Bits 64..95 of the flag block `flags` covers the low half of, NOT part of
+    /// `flags`. `& 0x10000` = Skill, `& 0x40000` = SBA, bit 7 = summon, else Normal
+    pub class_flags: u32,      // 0x0F0
+    /// Per-hit stun in gauge units, pre-bonus.
+    pub stun: f32,             // 0x0F4
+    padding_f8: [u8; 0x74],    // 0x0F8 - 0x16C
+    pub action_id: u32,        // 0x16C
+    padding_170: [u8; 0x148],  // 0x170 - 0x2B8
+    pub damage_floor: i32,     // 0x2B8
+    pub damage_cap: i32,       // 0x2BC
+    padding_2c0: [u8; 0x14],   // 0x2C0 - 0x2D4
+    pub pre_cap_damage: f32,   // 0x2D4
 }
 
+/// Based at the quest manager singleton itself, not at a1+0x1D8 as pre-2.0.
 #[derive(Debug)]
 #[repr(C)]
 pub struct QuestState {
-    pub quest_id: u32,        // 0x00
-    padding_640: [u8; 0x648], // 0x004 - 0x64C
-    pub elapsed_time: u32,    // 0x64C
+    padding_00: [u8; 0xAC8],  // 0x000 - 0xAC8
+    pub elapsed_time: u32,    // 0xAC8 — seconds; the final clear time, frozen at quest end
+    padding_acc: [u8; 0x10],  // 0xACC - 0xADC
+    // 0 while playing, 1 the instant the quest ends, 0 again on quest load.
+    pub freeze_flag: u8,      // 0xADC
+    padding_add: [u8; 0x2EB], // 0xADD - 0xDC8
+    pub quest_id: u32,        // 0xDC8
 }
 
-#[derive(Debug)]
+/// One of the 13 sigil slots at record+0x5E60 (the array grew 12 -> 13 in ER).
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct SigilEntry {
     pub first_trait_id: u32,
@@ -37,123 +52,81 @@ pub struct SigilEntry {
     pub notification_enum: u32,
 }
 
-#[derive(Debug)]
-#[repr(C)]
-pub struct SigilList {
-    pub sigils: [SigilEntry; 12], // 0x00
-    unk_1b0: u32,                 //0x01B0
-    unk_1b4: u32,                 //0x01B4
-    unk_1b8: u32,                 //0x01B8
-    unk_1bc: u32,                 //0x01BC
-    unk_1c0: u32,                 //0x01C0
-    unk_1c4: u32,                 //0x01C4
-    /// 0 == local, 1 == online
-    pub is_online: u32, //0x01C8
-    unk_1cc: u32,                 //0x01CC
-    unk_1d0: u32,                 //0x01D0
-    unk_1d4: u32,                 //0x01D4
-    unk_1d8: u32,                 //0x01D8
-    unk_1dc: u32,                 //0x01DC
-    unk_1e0: u32,                 //0x01E0
-    unk_1e4: u32,                 //0x01E4
-    pub character_name: [u8; 16], //0x01E8
-    padding_1f8: [u8; 16],        //0x01F8
-    pub display_name: [u8; 16],   //0x0208
-    padding_218: [u8; 20],        //0x0218
-    pub party_index: u32,         //0x022C
-}
-
-#[derive(Debug)]
-#[repr(C)]
-pub struct PlayerStats {
-    pub level: u32,
-    pub total_health: u32,
-    pub total_attack: u32,
-    pub unk_0c: u32,
-    pub stun_power: f32,
-    pub critical_rate: f32,
-    pub total_power: u32,
-}
-
-#[derive(Debug)]
-#[repr(C)]
-pub struct WeaponInfo {
-    unk_00: u32,
-    /// Weapon ID Hash
-    pub weapon_id: u32,
-    pub weapon_ap_tree: u32,
-    unk_0c: u32,
-    pub weapon_exp: u32,
-    /// How many uncap stars the weapon has
-    pub star_level: u32,
-    /// Number of plus marks on the weapon
-    pub plus_marks: u32,
-    /// Weapon's awakening level
-    pub awakening_level: u32,
-    /// First trait ID
-    pub trait_1_id: u32,
-    /// First trait level
-    pub trait_1_level: u32,
-    /// Second trait ID
-    pub trait_2_id: u32,
-    /// Second trait level
-    pub trait_2_level: u32,
-    /// Third trait ID
-    pub trait_3_id: u32,
-    /// Third trait level
-    pub trait_3_level: u32,
-    /// Wrightstone used on the weapon
-    pub wrightstone_id: u32,
-    unk_3c: u32,
-    /// Current weapon level
-    pub weapon_level: u32,
-    /// Weapon's HP Stats (before plus marks)
-    pub weapon_hp: u32,
-    /// Weapon's Attack Stats (before plus marks)
-    pub weapon_attack: u32,
-}
-
-#[derive(Debug)]
-#[repr(C)]
-pub struct Overmastery {
-    /// Overmastery Stats ID type
-    pub id: u32,
-    /// Flags
-    pub flags: u32,
-    unk_08: u32,
-    /// Value for the overmastery
-    pub value: f32,
-}
-
-#[derive(Debug)]
-#[repr(C)]
-pub struct Overmasteries {
-    pub stats: [Overmastery; 4],
-}
-
-pub struct VBuffer(pub *const usize);
-
-impl VBuffer {
-    pub fn ptr(&self) -> *const usize {
-        if self.max_size() > 0xf {
-            unsafe { self.0.read() as *const usize }
-        } else {
-            self.0
+impl From<&SigilEntry> for protocol::Sigil {
+    fn from(sigil: &SigilEntry) -> Self {
+        protocol::Sigil {
+            first_trait_id: sigil.first_trait_id,
+            first_trait_level: sigil.first_trait_level,
+            second_trait_id: sigil.second_trait_id,
+            second_trait_level: sigil.second_trait_level,
+            sigil_id: sigil.sigil_id,
+            equipped_character: sigil.equipped_character,
+            sigil_level: sigil.sigil_level,
+            acquisition_count: sigil.acquisition_count,
+            notification_enum: sigil.notification_enum,
         }
     }
+}
 
-    fn used_size(&self) -> usize {
-        unsafe { self.0.byte_add(0x10).read() }
-    }
+/// Equipped-summon slot, four per record; populated for remote players too.
+#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+pub struct SummonSlot {
+    pub id: u32, // 0x00 — summon id hash; 0x887AE0B0 = empty slot
+    unk_04: u32, // 0x04 (0-init)
+    pub trait_id: u32, // 0x08 — aura trait id hash granted by this summon
+    pub equip_bonus_id: u32, // 0x0C — 0x887AE0B0 = none; names via `summonbonuses`
+    pub trait_level: i32, // 0x10 — aura level as shown on the card ("T.Lvl"; -1 init)
+    pub equip_bonus_level: i32, // 0x14 — 0-based index into the bonus's ladder (-1 init)
+    unk_18: u32, // 0x18 (0-init)
+}
 
-    fn max_size(&self) -> usize {
-        unsafe { self.0.byte_add(0x18).read() }
-    }
+/// Five weapon pairs at record+0xF4, three wrightstone pairs at record+0x70.
+#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+pub struct TraitPair {
+    pub trait_id: u32,
+    pub level: u32,
+}
 
-    pub fn raw(&self) -> CString {
-        let bytes =
-            unsafe { std::slice::from_raw_parts(self.ptr() as *const u8, self.used_size()) };
+/// Active Over Mastery slot, four of them at record+0x58B8 + n*0x10.
+#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+pub struct OverMasterySlot {
+    pub param_hash: u32, // 0x00 — limit_bonus_param hash; 0x887AE0B0 or 0 = empty
+    pub rank_bit: u32, // 0x04 — single set bit: 1 << (star_rank - 1); 0 = empty
+    pub param_type: u32, // 0x08 — param type code (0..3 / 100+ family)
+    pub value: f32, // 0x0C — raw per-rank value
+}
 
-        unsafe { CString::from_vec_unchecked(bytes.to_vec()) }
+/// One row of the 400-slot mastery array at record+0x138. The first three u32s
+/// classify it: skillboard flag, limit_bonus catalog entry, or empty fill.
+#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+pub struct MasteryNodeRow {
+    pub hash: u32,        // 0x00
+    pub flag: u32,        // 0x04
+    pub marker: u32,      // 0x08
+    pub rest: [u8; 0x2C], // 0x0C - 0x38 (unused by the meter)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::DamageInstance;
+    use std::mem::offset_of;
+
+    #[test]
+    fn damage_instance_field_offsets() {
+        assert_eq!(offset_of!(DamageInstance, reference_damage), 0xD0);
+        assert_eq!(offset_of!(DamageInstance, damage), 0xD4);
+        assert_eq!(offset_of!(DamageInstance, cap_rate), 0xDC);
+        assert_eq!(offset_of!(DamageInstance, attack_rate), 0xE0);
+        assert_eq!(offset_of!(DamageInstance, flags), 0xE8);
+        assert_eq!(offset_of!(DamageInstance, class_flags), 0xF0);
+        assert_eq!(offset_of!(DamageInstance, stun), 0xF4);
+        assert_eq!(offset_of!(DamageInstance, action_id), 0x16C);
+        assert_eq!(offset_of!(DamageInstance, damage_floor), 0x2B8);
+        assert_eq!(offset_of!(DamageInstance, damage_cap), 0x2BC);
+        assert_eq!(offset_of!(DamageInstance, pre_cap_damage), 0x2D4);
     }
 }

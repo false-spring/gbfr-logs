@@ -86,7 +86,23 @@ impl Process {
         found_process.ok_or(ProcessError::ProcessNotFound)
     }
 
-    /// Searches and returns the RVAs of the function that matches the given signature pattern.
+    /// Absolute VA bounds of the module's executable code, `[start, end)`.
+    pub fn code_range(&self) -> (usize, usize) {
+        let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
+        let opt = view.optional_header();
+        let start = self.base_address + opt.BaseOfCode as usize;
+        (start, start + opt.SizeOfCode as usize)
+    }
+
+    /// Absolute VA bounds of the whole mapped image, `[base, base+SizeOfImage)`.
+    pub fn image_range(&self) -> (usize, usize) {
+        let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
+        let size = view.optional_header().SizeOfImage as usize;
+        (self.base_address, self.base_address + size)
+    }
+
+    /// Searches and returns the RVAs of the function that matches the given
+    /// signature pattern. Keeps the LAST match; `search_slice` keeps the FIRST.
     pub fn search_address(&self, signature_pattern: &str) -> anyhow::Result<usize> {
         let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
         let scanner = view.scanner();
@@ -96,21 +112,63 @@ impl Process {
 
         let mut matches = scanner.matches_code(&pattern);
 
-        let mut first_addr = None;
+        let mut chosen = None;
+        let mut count = 0usize;
 
         // addrs[0] = RVA of where the match was found.
         // addrs[1] = RVA of the function being called.
         while matches.next(&mut addrs) {
-            first_addr = Some(self.base_address + addrs[1] as usize);
+            count += 1;
+            chosen = Some(self.base_address + addrs[1] as usize);
         }
 
-        first_addr.ok_or(anyhow!(
+        if count > 1 {
+            log::warn!(
+                "signature is NOT unique ({count} matches), binding to the LAST — \
+                 verify it is the intended target: {signature_pattern}"
+            );
+        }
+
+        chosen.ok_or(anyhow!(
             "Could not find match for pattern: {}",
             signature_pattern
         ))
     }
 
-    /// Searches and returns the value of the type `T` that matches the given signature pattern.
+    /// Absolute address of where a pattern's match begins. Keeps the LAST match.
+    pub fn search_address_start(&self, signature_pattern: &str) -> anyhow::Result<usize> {
+        let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
+        let scanner = view.scanner();
+        let pattern = pattern::parse(signature_pattern)?;
+
+        let mut addrs = [0; 8];
+
+        let mut matches = scanner.matches_code(&pattern);
+
+        let mut chosen = None;
+        let mut count = 0usize;
+
+        // pelite prepends `Save(0)`, so addrs[0] is where the match starts.
+        while matches.next(&mut addrs) {
+            count += 1;
+            chosen = Some(self.base_address + addrs[0] as usize);
+        }
+
+        if count > 1 {
+            log::warn!(
+                "prologue signature is NOT unique ({count} matches), binding to the LAST — \
+                 verify it is the intended target: {signature_pattern}"
+            );
+        }
+
+        chosen.ok_or(anyhow!(
+            "Could not find match for pattern: {}",
+            signature_pattern
+        ))
+    }
+
+    /// Searches and returns the value of the type `T` that matches the given
+    /// signature pattern. Takes the FIRST match.
     pub fn search_slice<T>(&self, signature_pattern: &str) -> anyhow::Result<T> {
         let view = unsafe { PeView::module(self.module_handle.0 as *const u8) };
         let scanner = view.scanner();

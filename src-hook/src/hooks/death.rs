@@ -3,13 +3,21 @@ use retour::static_detour;
 
 use crate::{event, process::Process};
 
-type DeathEventFunc = unsafe extern "system" fn(*const usize) -> usize;
+use super::{player_directory, probe_actor, read_player_key, safe_read};
+
+// The 5th arg is a real stack arg; the detour must be declared 5-wide.
+type ChangeStateFunc =
+    unsafe extern "system" fn(*const usize, u32, u32, u32, u32) -> usize;
 
 static_detour! {
-    static OnDeathEvent: unsafe extern "system" fn(*const usize) -> usize;
+    static OnDeathEvent: unsafe extern "system" fn(*const usize, u32, u32, u32, u32) -> usize;
 }
 
-const ON_DEATH_EVENT_SIG: &str = "e8 $ { ' } 49 ? ? 48 ? ? ? ? ? ? 83 78 ? ?";
+const ON_DEATH_EVENT_SIG: &str = "e8 $ { ' } b9 80 3d 00 00 48 03 4f 10 b2 01";
+
+/// Entity state id registered by `ExPlayerDie`.
+const DIE_STATE: u32 = 0x48;
+const STATE_ID_OFFSET: usize = 0x40;
 
 #[derive(Clone)]
 pub struct OnDeathHook {
@@ -29,8 +37,10 @@ impl OnDeathHook {
             println!("Found on death event");
 
             unsafe {
-                let func: DeathEventFunc = std::mem::transmute(on_death_event);
-                OnDeathEvent.initialize(func, move |a1| cloned_self.run(a1))?;
+                let func: ChangeStateFunc = std::mem::transmute(on_death_event);
+                OnDeathEvent.initialize(func, move |entity, new_state, kind, flag, a5| {
+                    cloned_self.run(entity, new_state, kind, flag, a5)
+                })?;
                 OnDeathEvent.enable()?;
             }
         } else {
@@ -40,23 +50,32 @@ impl OnDeathHook {
         Ok(())
     }
 
-    fn run(&self, a1: *const usize) -> usize {
-        #[cfg(feature = "console")]
-        println!("on death");
+    fn run(&self, entity: *const usize, new_state: u32, kind: u32, flag: u32, a5: u32) -> usize {
+        // Sample the outgoing state first; the game re-posts 0x48 if you're hit while dead
+        let prev_state = read_state_id(entity);
 
-        let ret = unsafe { OnDeathEvent.call(a1) };
+        let ret = unsafe { OnDeathEvent.call(entity, new_state, kind, flag, a5) };
 
-        let entity_ptr = unsafe { a1.byte_add(0x10).read() as *const usize };
-        let actor_index = unsafe { entity_ptr.byte_add(0x170).read() } as u32;
-        let death_counter = unsafe { a1.byte_add(0xEC).read() } as u32;
+        if new_state == DIE_STATE && prev_state != Some(DIE_STATE) {
+            let post_state = read_state_id(entity);
+            if post_state == Some(DIE_STATE) {
+                if let Some(player_key) = read_player_key(entity) {
+                    let probe = probe_actor(entity);
+                    let slot = probe.slot.map(|(_key, slot, _record)| slot);
+                    let event = protocol::Message::OnDeathEvent(protocol::OnDeathEvent {
+                        actor_index: probe.id,
+                        death_counter: player_directory::bump_death_count(player_key, slot),
+                    });
 
-        let event = protocol::Message::OnDeathEvent(protocol::OnDeathEvent {
-            actor_index,
-            death_counter,
-        });
-
-        let _ = self.tx.send(event);
+                    let _ = self.tx.send(event);
+                }
+            }
+        }
 
         ret
     }
+}
+
+fn read_state_id(entity: *const usize) -> Option<u32> {
+    safe_read((entity as *const u8).wrapping_add(STATE_ID_OFFSET) as *const u32)
 }

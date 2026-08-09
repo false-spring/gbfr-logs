@@ -2,7 +2,7 @@ import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { Fragment } from "react";
 
 import { ComputedPlayerState, PlayerData } from "@/types";
-import { translatedPlayerName } from "@/utils";
+import { translatedPlayerName } from "@/utils/i18n";
 
 import { SkillBreakdown } from "./SkillBreakdown";
 import { usePlayerRow } from "./usePlayerRow";
@@ -11,10 +11,14 @@ export const PlayerRow = ({
   live = false,
   player,
   partyData,
+  partyTotalStunValue,
+  metric = "damage",
 }: {
   live?: boolean;
   player: ComputedPlayerState;
   partyData: Array<PlayerData | null>;
+  partyTotalStunValue: number;
+  metric?: "damage" | "stun" | "sba";
 }) => {
   const {
     color,
@@ -25,7 +29,7 @@ export const PlayerRow = ({
     showDisplayNames,
     showFullValues,
     matchColumnTypeToValue,
-  } = usePlayerRow(live, player, partyData);
+  } = usePlayerRow(live, player, partyData, partyTotalStunValue, metric);
 
   return (
     <Fragment>
@@ -52,7 +56,7 @@ export const PlayerRow = ({
         <td className="text-center row-button">{isOpen ? <CaretUp size={16} /> : <CaretDown size={16} />}</td>
         <div className="damage-bar" style={{ backgroundColor: color, width: `${player.percentage}%` }} />
       </tr>
-      {isOpen && <SkillBreakdown player={player} color={color} />}
+      {isOpen && <SkillBreakdown player={player} color={color} metric={metric} />}
     </Fragment>
   );
 };
