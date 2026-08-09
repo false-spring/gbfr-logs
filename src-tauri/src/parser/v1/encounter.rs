@@ -274,9 +274,9 @@ impl DerivedEncounterState {
         // Add actor to party if not already present.
         let source_player = self
             .party
-            .entry(damage_instance.event.source.parent_index)
+            .entry(damage_instance.source_index)
             .or_insert(PlayerState {
-                index: damage_instance.event.source.parent_index,
+                index: damage_instance.source_index,
                 character_type: canonical_character_type(
                     damage_instance.event.source.parent_actor_type,
                 ),

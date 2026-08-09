@@ -18,7 +18,7 @@ use crate::db::{
 use crate::parser::{
     self,
     constants::{CharacterType, EnemyType},
-    v1::{self, PlayerData, StunReconstructor},
+    v1::{self, attributed_source_index, PlayerData, StunReconstructor},
 };
 
 pub struct AlwaysOnTop(pub AtomicBool);
@@ -381,7 +381,8 @@ pub fn fetch_encounter_state(id: u64) -> Result<EncounterStateResponse, String> 
             let index = ((timestamp - start_time) / DPS_INTERVAL) as usize;
 
             let enemy = damage_event.target.parent_index;
-            let player = damage_event.source.parent_index;
+            let player =
+                attributed_source_index(&parser.encounter.player_data, damage_event);
             last_hit_by_target.insert(enemy, timestamp - start_time);
             let counted = stun_recon.counted_stun(damage_event);
             if party_players.contains(&player) {

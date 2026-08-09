@@ -2701,6 +2701,151 @@ fn id_dragon_damage_merges_into_id_row() {
     assert_eq!(placed.display_name, "Cleista");
 }
 
+/// Hashes and ids shared by the slot-less-child adoption tests below: a summon
+/// called while Id was transformed, so its owner is the DRAGON body, which
+/// holds no party slot of its own.
+const PL1000_HASH: u32 = 0x28AC_1108;
+const PL2000_HASH: u32 = 0xF575_5C0E;
+const BEELZEBUB_HASH: u32 = 0x5395_CE93;
+/// Id's slot id, the form the hook hands out for a party member.
+const ID_ACTOR_INDEX: u32 = protocol::PLAYER_ID_BASE | 2;
+/// The dragon's pointer-derived id — below `PLAYER_ID_BASE`, i.e. no slot.
+const DRAGON_ACTOR_INDEX: u32 = 0x48C0_3665;
+
+/// One of Beelzebub's hits as the log recorded them: zero damage, real stun,
+/// and an owner that names Id's dragon rather than Id.
+fn summon_hit_owned_by_the_dragon() -> DamageEvent {
+    DamageEvent {
+        source: Actor {
+            index: 0x719D_5B1E,
+            actor_type: BEELZEBUB_HASH,
+            parent_actor_type: PL2000_HASH,
+            parent_index: DRAGON_ACTOR_INDEX,
+        },
+        target: Actor {
+            index: 100,
+            actor_type: 1,
+            parent_actor_type: 1,
+            parent_index: 100,
+        },
+        damage: 0,
+        flags: 0,
+        action_id: ActionType::Normal(80000),
+        attack_rate: None,
+        stun_value: Some(12.0),
+        damage_cap: None,
+        stun_fill: None,
+        target_base_type: None,
+        stun_max: None,
+    }
+}
+
+fn identity_for(actor_index: u32, party_index: u8, character_type: u32) -> protocol::PlayerIdentityEvent {
+    protocol::PlayerIdentityEvent {
+        actor_index,
+        party_index,
+        character_name: std::ffi::CString::new("").unwrap(),
+        display_name: std::ffi::CString::new("poilly").unwrap(),
+        character_type,
+        is_online: true,
+        sigils: Vec::new(),
+        weapon_info: None,
+        summon_info: None,
+        skill_loadout: Vec::new(),
+        over_mastery: Vec::new(),
+        master_trait_flags: Vec::new(),
+        effective_traits: Vec::new(),
+        player_stats: None,
+        network_user_id: None,
+        network_user_name: None,
+        master_level: None,
+    }
+}
+
+#[test]
+fn a_summon_owned_by_a_slotless_child_merges_into_its_owners_row() {
+    let mut parser = Parser::default();
+    parser.on_player_identity_event(identity_for(ID_ACTOR_INDEX, 2, PL2000_HASH));
+
+    // Id's own hit, then the summon's — whose owner the hook could only
+    // resolve as far as the dragon.
+    let mut own_hit = summon_hit_owned_by_the_dragon();
+    own_hit.source.index = ID_ACTOR_INDEX;
+    own_hit.source.actor_type = PL2000_HASH;
+    own_hit.source.parent_index = ID_ACTOR_INDEX;
+    own_hit.damage = 100;
+    parser.on_damage_event(own_hit);
+    parser.on_damage_event(summon_hit_owned_by_the_dragon());
+
+    // Both the live pass and a reparse of the same log have to agree, since a
+    // saved log is read back through the second one.
+    for pass in ["live", "reparse"] {
+        assert_eq!(parser.derived_state.party.len(), 1, "{pass}: one row, not a Guest beside it");
+        assert!(
+            !parser.derived_state.party.contains_key(&DRAGON_ACTOR_INDEX),
+            "{pass}: the slot-less id must not open a row"
+        );
+
+        let row = &parser.derived_state.party[&ID_ACTOR_INDEX];
+        assert_eq!(row.character_type, CharacterType::Pl1900, "{pass}");
+        assert_eq!(row.total_damage, 100, "{pass}");
+        assert_eq!(row.total_stun_value, 24.0, "{pass}: both hits' stun");
+
+        // The summon keeps its own skill row under Id, exactly as one called
+        // from human form does — adoption moves the row key, not the child type.
+        assert!(
+            row.skill_breakdown
+                .iter()
+                .any(|skill| skill.child_character_type == CharacterType::from_hash(BEELZEBUB_HASH)),
+            "{pass}: the summon should still name itself in the breakdown"
+        );
+
+        parser.reparse();
+    }
+}
+
+#[test]
+fn a_slotless_child_nobody_in_the_party_matches_keeps_its_own_row() {
+    // Fail closed: with no Id in the party there is no owner to adopt onto, so
+    // the hit stays on the id the event named rather than being guessed onto
+    // whoever happens to be there.
+    let mut parser = Parser::default();
+    parser.on_player_identity_event(identity_for(protocol::PLAYER_ID_BASE, 0, PL1000_HASH));
+    parser.on_damage_event(summon_hit_owned_by_the_dragon());
+
+    assert!(parser.derived_state.party.contains_key(&DRAGON_ACTOR_INDEX));
+}
+
+#[test]
+fn a_slotless_child_two_party_members_could_own_is_not_adopted() {
+    // The character type is the only handle on the owner, so it has to be
+    // unambiguous. Two members of the same character would make adoption a
+    // coin flip; the hit keeps its own id instead.
+    let mut player_data: [Option<PlayerData>; 4] = Default::default();
+    for (slot, holder) in player_data.iter_mut().enumerate().take(2) {
+        let mut parser = Parser::default();
+        parser.on_player_identity_event(identity_for(
+            protocol::PLAYER_ID_BASE | slot as u32,
+            slot as u8,
+            PL2000_HASH,
+        ));
+        *holder = parser.encounter.player_data[slot].clone();
+    }
+
+    let event = summon_hit_owned_by_the_dragon();
+    assert_eq!(
+        attributed_source_index(&player_data, &event),
+        DRAGON_ACTOR_INDEX
+    );
+
+    // One of them alone IS unambiguous, and gets the hit.
+    player_data[1] = None;
+    assert_eq!(
+        attributed_source_index(&player_data, &event),
+        protocol::PLAYER_ID_BASE
+    );
+}
+
 #[test]
 fn identity_event_upserts_build_data() {
     const EMPTY_HASH: u32 = 0x887AE0B0;

@@ -260,8 +260,9 @@ fn two_hop_summoner(
     Some(owner)
 }
 
+/// One hop only; `resolve_source_parent_typed` walks the chain.
 #[inline(always)]
-fn resolve_source_parent_ptr(source_type_id: u32, source: *const usize) -> Option<*const usize> {
+fn resolve_source_parent_hop(source_type_id: u32, source: *const usize) -> Option<*const usize> {
     match source_type_id {
         // SoAhrimanBaseLaser
         0x8FE0DF11 => return two_hop_summoner(source, 0x4F0, 0x4F8),
@@ -313,11 +314,49 @@ fn resolve_source_parent_ptr(source_type_id: u32, source: *const usize) -> Optio
     Some(parent)
 }
 
+/// Add support for recursive calls to identify edge cases
+/// such as Id (Dragonform) summoning Beelzebub
+const MAX_PARENT_HOPS: usize = 3;
+
+#[inline(always)]
+fn resolve_source_parent_typed(
+    source_type_id: u32,
+    source: *const usize,
+) -> Option<(*const usize, u32)> {
+    let mut current = source;
+    let mut current_type = source_type_id;
+    let mut resolved = None;
+
+    for _ in 0..MAX_PARENT_HOPS {
+        let Some(parent) = resolve_source_parent_hop(current_type, current) else {
+            break;
+        };
+
+        let Some(type_fn) = validated_vfunc(parent, TYPE_ID_VFUNC_SLOT) else {
+            break;
+        };
+        let parent_type = actor_type_id_via(parent, type_fn);
+        resolved = Some((parent, parent_type));
+
+        if std::ptr::eq(parent, current) {
+            break;
+        }
+        current = parent;
+        current_type = parent_type;
+    }
+
+    resolved
+}
+
+#[inline(always)]
+fn resolve_source_parent_ptr(source_type_id: u32, source: *const usize) -> Option<*const usize> {
+    resolve_source_parent_typed(source_type_id, source).map(|(parent, _)| parent)
+}
+
 #[inline(always)]
 pub fn get_source_parent(source_type_id: u32, source: *const usize) -> Option<(u32, u32)> {
-    let parent = resolve_source_parent_ptr(source_type_id, source)?;
-    let type_fn = validated_vfunc(parent, TYPE_ID_VFUNC_SLOT)?;
-    Some((actor_type_id_via(parent, type_fn), actor_idx(parent)))
+    let (parent, parent_type) = resolve_source_parent_typed(source_type_id, source)?;
+    Some((parent_type, actor_idx(parent)))
 }
 
 pub(crate) fn source_owner_via_parent_is_local(
@@ -650,12 +689,7 @@ mod tests {
         let human_size = INSTANCE_RECORD_OFFSET + player::RECORD_SOURCE_TYPE_OFFSET + 4;
         let human: &'static mut [u8] = Box::leak(vec![0u8; human_size].into_boxed_slice());
         let human_addr = human.as_ptr() as usize;
-
-        let vtable: &'static mut [u8] =
-            Box::leak(vec![0u8; TYPE_ID_VFUNC_SLOT + 8].into_boxed_slice());
-        vtable[TYPE_ID_VFUNC_SLOT..TYPE_ID_VFUNC_SLOT + 8]
-            .copy_from_slice(&(0xDEAD_usize as u64).to_le_bytes());
-        human[0..8].copy_from_slice(&(vtable.as_ptr() as u64).to_le_bytes());
+        install_type_id_vfunc(human_addr as *const usize, reports_pl1900);
 
         human[ACTOR_PLAYER_KEY_OFFSET..ACTOR_PLAYER_KEY_OFFSET + 4]
             .copy_from_slice(&0xBEEF_0001u32.to_le_bytes());
@@ -710,5 +744,110 @@ mod tests {
 
         let vtable_less_player = fake_player_with_slot(0xFEED_0001, 2);
         assert_eq!(parent_actor_idx(vtable_less_player), PLAYER_ID_BASE | 2);
+    }
+
+    const PL1900_HUMAN_TYPE_ID: u32 = 0x8056_ABCD;
+    const SUMMON_TYPE_ID: u32 = 0x5395_CE93;
+    const SUMMON_HANDLE_IDX_OFFSET: usize = 0xFE0;
+    const SUMMON_HANDLE_PTR_OFFSET: usize = 0xFE8;
+
+    unsafe extern "system" fn reports_pl2000(_: *const usize, out: *const u32) -> *const usize {
+        (out as *mut u32).write_unaligned(PL2000_DRAGON_TYPE_ID);
+        std::ptr::null()
+    }
+
+    unsafe extern "system" fn reports_pl1900(_: *const usize, out: *const u32) -> *const usize {
+        (out as *mut u32).write_unaligned(PL1900_HUMAN_TYPE_ID);
+        std::ptr::null()
+    }
+
+    fn install_type_id_vfunc(instance: *const usize, type_fn: GetEntityHashID0x58) {
+        let vtable: &'static mut [u8] =
+            Box::leak(vec![0u8; TYPE_ID_VFUNC_SLOT + 8].into_boxed_slice());
+        vtable[TYPE_ID_VFUNC_SLOT..TYPE_ID_VFUNC_SLOT + 8]
+            .copy_from_slice(&(type_fn as usize as u64).to_le_bytes());
+        unsafe { (instance as *mut u64).write_unaligned(vtable.as_ptr() as u64) };
+    }
+
+    fn fake_entity_info(instance: *const usize) -> *const usize {
+        let info: &'static mut [u8] =
+            Box::leak(vec![0u8; ENTITY_SPECIFIED_INSTANCE_OFFSET + 8].into_boxed_slice());
+        info[ENTITY_SPECIFIED_INSTANCE_OFFSET..ENTITY_SPECIFIED_INSTANCE_OFFSET + 8]
+            .copy_from_slice(&(instance as u64).to_le_bytes());
+        info.as_ptr() as *const usize
+    }
+
+    fn fake_summon_owned_by_dragonform(slot: u8) -> (*const usize, *const usize) {
+        let human = fake_player_with_slot(0xBEEF_1900, slot);
+        install_type_id_vfunc(human, reports_pl1900);
+
+        let dragon: &'static mut [u8] =
+            Box::leak(vec![0u8; PL2000_PARENT_OFFSET + 8].into_boxed_slice());
+        dragon[ACTOR_PLAYER_KEY_OFFSET..ACTOR_PLAYER_KEY_OFFSET + 4]
+            .copy_from_slice(&0xBEEF_2000u32.to_le_bytes());
+        dragon[ACTOR_PLAYER_KEY_OFFSET + 4..ACTOR_PLAYER_KEY_OFFSET + 8]
+            .copy_from_slice(&ACTOR_PLAYER_KEY_SENTINEL.to_le_bytes());
+        dragon[PL2000_PARENT_OFFSET..PL2000_PARENT_OFFSET + 8]
+            .copy_from_slice(&(fake_entity_info(human) as u64).to_le_bytes());
+        let dragon = dragon.as_ptr() as *const usize;
+        install_type_id_vfunc(dragon, reports_pl2000);
+
+        let summon: &'static mut [u8] =
+            Box::leak(vec![0u8; SUMMON_HANDLE_PTR_OFFSET + 8].into_boxed_slice());
+        summon[SUMMON_HANDLE_IDX_OFFSET..SUMMON_HANDLE_IDX_OFFSET + 4]
+            .copy_from_slice(&1u32.to_le_bytes());
+        summon[SUMMON_HANDLE_PTR_OFFSET..SUMMON_HANDLE_PTR_OFFSET + 8]
+            .copy_from_slice(&(fake_entity_info(dragon) as u64).to_le_bytes());
+
+        (summon.as_ptr() as *const usize, dragon)
+    }
+
+    #[test]
+    fn summon_called_in_dragonform_files_under_the_human_player() {
+        let (summon, dragon) = fake_summon_owned_by_dragonform(2);
+
+        let one_hop = resolve_source_parent_hop(SUMMON_TYPE_ID, summon).unwrap();
+        assert!(std::ptr::eq(one_hop, dragon));
+        assert!(actor_idx(dragon) < PLAYER_ID_BASE);
+
+        assert_eq!(
+            get_source_parent(SUMMON_TYPE_ID, summon),
+            Some((PL1900_HUMAN_TYPE_ID, PLAYER_ID_BASE | 2))
+        );
+    }
+
+    #[test]
+    fn a_source_owned_directly_by_a_player_still_stops_at_that_player() {
+        let (_, dragon) = fake_summon_owned_by_dragonform(3);
+
+        assert_eq!(
+            get_source_parent(PL2000_DRAGON_TYPE_ID, dragon),
+            Some((PL1900_HUMAN_TYPE_ID, PLAYER_ID_BASE | 3))
+        );
+    }
+
+    #[test]
+    fn a_source_with_no_arm_resolves_no_parent() {
+        let player = fake_player_with_slot(0xFEED_2002, 1);
+        install_type_id_vfunc(player, reports_pl1900);
+
+        assert_eq!(get_source_parent(PL1900_HUMAN_TYPE_ID, player), None);
+    }
+
+    #[test]
+    fn a_self_owning_chain_terminates() {
+        let dragon: &'static mut [u8] =
+            Box::leak(vec![0u8; PL2000_PARENT_OFFSET + 8].into_boxed_slice());
+        let dragon = dragon.as_ptr() as *const usize;
+        install_type_id_vfunc(dragon, reports_pl2000);
+        let info = fake_entity_info(dragon);
+        unsafe {
+            ((dragon as usize + PL2000_PARENT_OFFSET) as *mut u64).write_unaligned(info as u64)
+        };
+
+        assert_eq!(
+            get_source_parent(PL2000_DRAGON_TYPE_ID, dragon),
+            Some((PL2000_DRAGON_TYPE_ID, actor_idx(dragon)))
+        );
     }
 }

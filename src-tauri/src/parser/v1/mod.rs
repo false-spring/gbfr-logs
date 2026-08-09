@@ -81,6 +81,28 @@ fn is_damage_taken(event: &DamageEvent) -> bool {
     event.target.parent_index >= protocol::PLAYER_ID_BASE
 }
 
+pub fn attributed_source_index(player_data: &[Option<PlayerData>; 4], event: &DamageEvent) -> u32 {
+    let named = event.source.parent_index;
+    if named >= protocol::PLAYER_ID_BASE {
+        return named;
+    }
+
+    let character_type = canonical_character_type(event.source.parent_actor_type);
+    if matches!(character_type, CharacterType::Unknown(_)) {
+        return named;
+    }
+
+    let mut members = player_data
+        .iter()
+        .flatten()
+        .filter(|player| player.character_type == character_type);
+
+    match (members.next(), members.next()) {
+        (Some(only), None) => only.actor_index,
+        _ => named,
+    }
+}
+
 fn is_helper_target(event: &DamageEvent) -> bool {
     constants::is_helper_actor(event.target.actor_type)
         || constants::is_helper_actor(event.target.parent_actor_type)
@@ -132,6 +154,7 @@ pub struct AdjustedDamageInstance<'a> {
     pub event: &'a DamageEvent,
     pub player_data: Option<&'a PlayerData>,
     pub stun_damage: f64,
+    pub source_index: u32,
 }
 
 impl<'a> AdjustedDamageInstance<'a> {
@@ -142,6 +165,7 @@ impl<'a> AdjustedDamageInstance<'a> {
             event,
             player_data,
             stun_damage,
+            source_index: event.source.parent_index,
         }
     }
 
@@ -154,7 +178,16 @@ impl<'a> AdjustedDamageInstance<'a> {
             event,
             player_data,
             stun_damage,
+            source_index: event.source.parent_index,
         }
+    }
+
+    /// Files this hit under `source_index` instead of the actor the event names.
+    ///
+    /// Ensures that the correct player is attributed.
+    pub fn adopted_by(mut self, source_index: u32) -> Self {
+        self.source_index = source_index;
+        self
     }
 }
 
@@ -308,19 +341,22 @@ impl Parser {
                     self.derived_state.process_damage_taken(event, cap);
                 }
                 Message::DamageEvent(event) => {
+                    let source_index =
+                        attributed_source_index(&self.encounter.player_data, event);
                     let player_data = self
                         .encounter
                         .player_data
                         .iter()
                         .flatten()
-                        .find(|player| player.actor_index == event.source.parent_index);
+                        .find(|player| player.actor_index == source_index);
 
                     let stun_damage = stun_recon.counted_stun(event);
                     let damage_instance = AdjustedDamageInstance::with_reconstructed_stun(
                         event,
                         player_data,
                         stun_damage,
-                    );
+                    )
+                    .adopted_by(source_index);
 
                     self.derived_state
                         .process_damage_event(*timestamp, &damage_instance);
@@ -398,15 +434,17 @@ impl Parser {
                 continue;
             }
 
+            let source_index = attributed_source_index(&self.encounter.player_data, event);
             let player_data = self
                 .encounter
                 .player_data
                 .iter()
                 .flatten()
-                .find(|player| player.actor_index == event.source.parent_index);
+                .find(|player| player.actor_index == source_index);
             let stun_damage = stun_recon.counted_stun(event);
             let damage_instance =
-                AdjustedDamageInstance::with_reconstructed_stun(event, player_data, stun_damage);
+                AdjustedDamageInstance::with_reconstructed_stun(event, player_data, stun_damage)
+                    .adopted_by(source_index);
             state.process_damage_event(*timestamp, &damage_instance);
         }
 
@@ -735,16 +773,18 @@ impl Parser {
 
         self.action_actors.remember(&event);
 
+        let source_index = attributed_source_index(&self.encounter.player_data, &event);
         let player_data = self
             .encounter
             .player_data
             .iter()
             .flatten()
-            .find(|player| player.actor_index == event.source.parent_index);
+            .find(|player| player.actor_index == source_index);
 
         let stun_damage = self.stun_recon.counted_stun(&event);
         let damage_instance =
-            AdjustedDamageInstance::with_reconstructed_stun(&event, player_data, stun_damage);
+            AdjustedDamageInstance::with_reconstructed_stun(&event, player_data, stun_damage)
+                .adopted_by(source_index);
 
         self.derived_state
             .process_damage_event(now, &damage_instance);
