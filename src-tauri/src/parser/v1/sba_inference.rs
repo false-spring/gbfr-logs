@@ -514,15 +514,26 @@ fn gauge_is_consistent(
     }))
 }
 
-/// A party-wide gauge fill: one burst tops every member to the cap. Some gain
-/// must exceed the 13% chain maximum, and the caster caps out too.
+/// Names a party-wide gauge fill — every member topped to the cap in one burst
+/// — and returns the log index of each gain that made one up.
+///
+/// Shares the `ChainGrant` granter with the chain contribution and the
+/// redistribute credit, and is told apart by shape: a chain contribution cannot
+/// move a bar by more than 130.00, and a redistribute MOVES gauge so its caster
+/// ends short. Both clauses are needed — each alone matches something innocent.
+///
+/// Fails closed on an incomplete roster: a dead member takes no fill, so the
+/// whole-roster test fails and the burst goes unnamed.
 fn party_fill_credits(encounter: &Encounter) -> HashSet<usize> {
     const GAUGE_MAX: f32 = 1000.0;
     const MAX_CHAIN_GRANT: f32 = 130.0;
     const EPSILON: f32 = 0.02;
     const AT_CAP: f32 = 0.01;
-    /// An observed fill spans ~60 ms across four players.
-    const BURST_MS: i64 = 200;
+    /// Half-width around the fill's signature gain, not a forward window from
+    /// an arbitrary first row: the rows are spread by cross-client jitter, so a
+    /// forward window reads the same fill differently depending on where it
+    /// starts. Covers both observed fills (60 ms and 283 ms) with margin.
+    const BURST_MS: i64 = 500;
 
     let roster: HashSet<u32> = encounter
         .player_data
@@ -547,41 +558,34 @@ fn party_fill_credits(encounter: &Encounter) -> HashSet<usize> {
         }
     }
 
-    let mut out = HashSet::new();
-    let mut last_level: HashMap<u32, f32> = HashMap::new();
-    let mut cursor = 0;
+    let at_cap = |level: f32| (level - GAUGE_MAX).abs() < AT_CAP;
 
-    for start in 0..rows.len() {
-        let (_, burst_at, _, value, _) = rows[start];
-        while cursor < start {
-            let (_, _, actor, level, _) = rows[cursor];
-            last_level.insert(actor, level);
-            cursor += 1;
-        }
-        if (value - GAUGE_MAX).abs() >= AT_CAP {
+    let mut out = HashSet::new();
+    // Anchored on the gain no chain contribution could have paid: the one row a
+    // fill always produces, so the same burst is found from any direction.
+    for (_, anchor_at, _, value, added) in rows.iter().copied() {
+        if !at_cap(value) || added <= MAX_CHAIN_GRANT + EPSILON {
             continue;
         }
 
-        let burst: Vec<&(usize, i64, u32, f32, f32)> = rows[start..]
+        let burst: Vec<&(usize, i64, u32, f32, f32)> = rows
             .iter()
-            .take_while(|(_, t, _, _, _)| t - burst_at <= BURST_MS)
-            .filter(|(_, _, _, level, _)| (level - GAUGE_MAX).abs() < AT_CAP)
+            .filter(|(_, t, _, level, _)| (t - anchor_at).abs() <= BURST_MS && at_cap(*level))
             .collect();
 
-        if !burst
+        // Each actor's last level at or before the burst ends, not a row from
+        // everyone: a member already at the cap has nothing to sync and emits
+        // no row. Reading the last level also excludes one who spent the bar
+        // inside the window.
+        let filled: HashSet<u32> = roster
             .iter()
-            .any(|(_, _, _, _, added)| *added > MAX_CHAIN_GRANT + EPSILON)
-        {
-            continue;
-        }
-        let filled: HashSet<u32> = burst
-            .iter()
-            .map(|(_, _, actor, _, _)| *actor)
-            .chain(roster.iter().copied().filter(|actor| {
-                last_level
-                    .get(actor)
-                    .is_some_and(|level| (level - GAUGE_MAX).abs() < AT_CAP)
-            }))
+            .copied()
+            .filter(|actor| {
+                rows.iter()
+                    .rev()
+                    .find(|(_, t, a, _, _)| a == actor && *t <= anchor_at + BURST_MS)
+                    .is_some_and(|(_, _, _, level, _)| at_cap(*level))
+            })
             .collect();
         if !roster.is_subset(&filled) {
             continue;

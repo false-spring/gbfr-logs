@@ -2066,6 +2066,66 @@ fn a_fill_read_as_a_chain_grant_is_corrected() {
 }
 
 #[test]
+fn a_fill_whose_last_bar_syncs_late_still_credits_the_first() {
+    let mut parser = Parser::default();
+    let party = seat_party(&mut parser);
+
+    parser.encounter.raw_event_log.push((
+        60_000,
+        Message::OnUpdateSBA(sba_update(party[0], 1000.0, 1000.0, SbaCause::ChainGrant)),
+    ));
+    parser
+        .encounter
+        .raw_event_log
+        .push((60_000, Message::OnUpdateSBA(remote_gain(party[2], 1000.0, 311.40))));
+    parser
+        .encounter
+        .raw_event_log
+        .push((60_043, Message::OnUpdateSBA(remote_gain(party[1], 1000.0, 30.0))));
+    parser
+        .encounter
+        .raw_event_log
+        .push((60_283, Message::OnUpdateSBA(remote_gain(party[3], 1000.0, 1000.0))));
+
+    parser.reparse();
+
+    for actor in party {
+        let rows = breakdown_for(&parser, actor);
+        assert!(
+            rows.iter().any(|(c, _, _)| *c == SbaCause::InferredPartyFill),
+            "a bar syncing 283 ms late is the same fill: {rows:?}"
+        );
+    }
+}
+
+#[test]
+fn a_bar_capped_long_after_the_burst_is_not_part_of_it() {
+    let mut parser = Parser::default();
+    let party = seat_party(&mut parser);
+
+    for (index, actor) in party[..3].iter().copied().enumerate() {
+        parser.encounter.raw_event_log.push((
+            60_000 + index as i64 * 20,
+            Message::OnUpdateSBA(remote_gain(actor, 1000.0, 700.0)),
+        ));
+    }
+    parser
+        .encounter
+        .raw_event_log
+        .push((61_500, Message::OnUpdateSBA(remote_gain(party[3], 1000.0, 50.0))));
+
+    parser.reparse();
+
+    for actor in party {
+        let rows = breakdown_for(&parser, actor);
+        assert!(
+            !rows.iter().any(|(c, _, _)| *c == SbaCause::InferredPartyFill),
+            "1.5 s apart is not one burst: {rows:?}"
+        );
+    }
+}
+
+#[test]
 fn inference_never_overwrites_a_read_cause() {
     let mut parser = Parser::default();
     parser.on_damage_event(player_damage_event());
