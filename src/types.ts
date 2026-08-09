@@ -63,6 +63,8 @@ export type SkillState = {
    * condensed skill groups, which have no single source.
    */
   auraSource?: AuraSource;
+
+  etherGun?: boolean;
   /** Number of total hits of the skill */
   hits: number;
   /** Minimum damage of the skill */

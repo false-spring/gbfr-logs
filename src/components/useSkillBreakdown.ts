@@ -42,7 +42,7 @@ export const useSkillBreakdown = (player: ComputedPlayerState, metric: "damage" 
 
         for (const group in skillGroupMapping) {
           const groupActionType = { Group: group };
-          const skillBelongsToGroup = skillGroupMapping[group].skills.includes(actionType.Normal);
+          const skillBelongsToGroup = !skill.etherGun && skillGroupMapping[group].skills.includes(actionType.Normal);
 
           if (skillBelongsToGroup) {
             const skillGroupIndex = skills.findIndex((skillGroup) => {

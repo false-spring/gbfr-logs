@@ -77,6 +77,10 @@ export const getSkillName = (characterType: CharacterType, skill: SkillState) =>
         });
       }
 
+      if (skill.etherGun) {
+        return t([`skills.default.${skillID}`, `skills.default.unknown-skill`], { id: skillID });
+      }
+
       return t(
         [
           `skills.${skill.childCharacterType}.${skillID}`,

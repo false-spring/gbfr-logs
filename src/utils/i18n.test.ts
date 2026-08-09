@@ -53,3 +53,26 @@ describe("getSkillName, Conflux auras", () => {
     );
   });
 });
+
+describe("getSkillName, the ether gun", () => {
+  it("names both of the gun's shots from the shared strings", () => {
+    expect(getSkillName("Pl2600", skill({ actionType: { Normal: 5000 }, etherGun: true }))).toBe("skills.default.5000");
+    expect(getSkillName("Pl2800", skill({ actionType: { Normal: 5010 }, etherGun: true }))).toBe("skills.default.5010");
+  });
+
+  it("leaves the skill sharing the id alone", () => {
+    expect(
+      getSkillName("Pl2600", skill({ actionType: { Normal: 5000 }, childCharacterType: "Pl2600", etherGun: false }))
+    ).toBe("skills.Pl2600.5000");
+  });
+
+  it("falls through when the field is absent entirely", () => {
+    expect(getSkillName("Pl2600", skill({ actionType: { Normal: 5000 }, childCharacterType: "Pl2600" }))).toBe(
+      "skills.Pl2600.5000"
+    );
+  });
+
+  it("is a no-op for a character with no skill at the id", () => {
+    expect(getSkillName("Pl1800", skill({ actionType: { Normal: 5010 }, etherGun: true }))).toBe("skills.default.5010");
+  });
+});
