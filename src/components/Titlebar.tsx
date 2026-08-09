@@ -90,7 +90,7 @@ export const Titlebar = ({
   );
   const exportDisplayNames = show_display_names && !streamer_mode;
   // Display-only channel; the app version itself must stay numeric (MSI requirement).
-  const buildChannel = "ER-cleista-ALPHA-PRERELEASE";
+  const buildChannel = "ER";
   const displayVersion = `${version.replace(/-(\d+)$/, ".$1")}-${buildChannel}`;
 
   const onMinimize = () => {
