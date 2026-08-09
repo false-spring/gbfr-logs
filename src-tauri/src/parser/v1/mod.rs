@@ -21,6 +21,7 @@ mod aura;
 mod counter_grant;
 mod dto;
 mod encounter;
+mod ether_gun;
 mod player_state;
 mod retro;
 pub mod sba_inference;

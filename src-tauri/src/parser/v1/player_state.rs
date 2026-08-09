@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 use crate::parser::constants::{CharacterType, FerrySkillId};
 
 use super::aura::{aura_source_of, CONFLUX_AURA_SENTINEL};
+use super::ether_gun::is_ether_gun;
 use super::{sba_state::SbaSourceState, skill_state::SkillState, AdjustedDamageInstance};
 
 /// `HealInfo +0x0C` for the generic heal skill; every other producer passes `0xFFFFFFFF`.
@@ -196,6 +197,12 @@ impl PlayerState {
             self.last_non_sentinel_action = Some(action);
         }
 
+        // Five characters own a skill at action id 5000/5010, which is also
+        // what Endless Ragnarok's shared ether gun reports — so the id alone
+        // names the gun after whichever skill the character happens to own.
+        // Returns `false` for every other action on the first comparison.
+        let ether_gun = is_ether_gun(action, damage_instance.event.flags);
+
         // If the skill is already being tracked, update it.
         for skill in self.skill_breakdown.iter_mut() {
             // Aggregate all supplementary damage events into the same skill instance.
@@ -212,6 +219,7 @@ impl PlayerState {
             if skill.action_type == action
                 && skill.child_character_type == child_character_type
                 && skill.aura_source == aura_source
+                && skill.ether_gun == ether_gun
             {
                 skill.update_from_damage_event(damage_instance);
                 return;
@@ -219,7 +227,7 @@ impl PlayerState {
         }
 
         // Otherwise, create a new skill and track it.
-        let mut skill = SkillState::new(action, child_character_type, aura_source);
+        let mut skill = SkillState::new(action, child_character_type, aura_source, ether_gun);
 
         skill.update_from_damage_event(damage_instance);
         self.skill_breakdown.push(skill);
@@ -766,6 +774,56 @@ mod tests {
     }
 
     #[test]
+    fn the_ether_gun_does_not_merge_with_the_skill_sharing_its_id() {
+        let mut player_state = blank_player_state();
+
+        let gun = shared_id_hit(5000, 0x0000_1000_0100_0000, 8000);
+        let hearts_on_fire = shared_id_hit(5000, 0x0000_0000_0002_0800, 50000);
+
+        for event in [&gun, &gun, &hearts_on_fire] {
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(event, None));
+        }
+
+        assert_eq!(player_state.skill_breakdown.len(), 2);
+        assert_eq!(player_state.total_damage, 66000);
+
+        let gun_row = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| s.ether_gun)
+            .expect("ether gun row");
+        assert_eq!(gun_row.hits, 2);
+        assert_eq!(gun_row.total_damage, 16000);
+
+        let skill_row = player_state
+            .skill_breakdown
+            .iter()
+            .find(|s| !s.ether_gun)
+            .expect("Hearts on Fire row");
+        assert_eq!(skill_row.hits, 1);
+        assert_eq!(skill_row.total_damage, 50000);
+    }
+
+    #[test]
+    fn the_guns_two_shots_remain_distinct_rows() {
+        let mut player_state = blank_player_state();
+
+        let ether_round = shared_id_hit(5000, 0x0000_1000_0100_0000, 8000);
+        let charged_shot = shared_id_hit(5010, 0x0000_1000_0100_0000, 20000);
+
+        for event in [&ether_round, &charged_shot] {
+            player_state
+                .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(event, None));
+        }
+
+        assert_eq!(player_state.skill_breakdown.len(), 2);
+        assert!(player_state.skill_breakdown.iter().all(|s| s.ether_gun));
+    }
+
+    /// The discriminator must not change how anything else is grouped: repeats
+    /// of one ordinary move stay a single row whatever their flags say.
+    #[test]
     fn ordinary_moves_are_unaffected_by_flags() {
         let mut player_state = PlayerState {
             index: 0,
@@ -882,6 +940,16 @@ mod tests {
         }
     }
 
+    fn shared_id_hit(action_id: u32, flags: u64, damage: i32) -> DamageEvent {
+        DamageEvent {
+            action_id: ActionType::Normal(action_id),
+            damage,
+            flags,
+            ..blank_event()
+        }
+    }
+
+    /// A bare damage event carrying the Conflux sentinel id.
     fn aura_hit(flags: u64, damage: i32) -> DamageEvent {
         DamageEvent {
             action_id: ActionType::Normal(99999),

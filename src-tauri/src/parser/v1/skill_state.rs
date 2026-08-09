@@ -17,6 +17,10 @@ pub struct SkillState {
     /// Conflux aura that produced this hit, for the several that share action id `99999`
     #[serde(default)]
     pub aura_source: AuraSource,
+    /// Set when this row is the ether cannon rather than the character's
+    /// own skill at action id `5000`/`5010`. See `ether_gun.rs`.
+    #[serde(default)]
+    pub ether_gun: bool,
     /// Number of hits this skill has done
     pub hits: u32,
     /// Minimum damage done by this skill
@@ -45,11 +49,13 @@ impl SkillState {
         action_type: ActionType,
         child_character_type: CharacterType,
         aura_source: AuraSource,
+        ether_gun: bool,
     ) -> Self {
         Self {
             action_type,
             child_character_type,
             aura_source,
+            ether_gun,
             hits: 0,
             min_damage: None,
             max_damage: None,
@@ -112,8 +118,12 @@ mod tests {
 
     #[test]
     fn updating_from_damage_event() {
-        let mut skill_state =
-            SkillState::new(ActionType::Normal(1), CharacterType::Pl0000, AuraSource::None);
+        let mut skill_state = SkillState::new(
+            ActionType::Normal(1),
+            CharacterType::Pl0000,
+            AuraSource::None,
+            false,
+        );
 
         let damage_event = DamageEvent {
             source: Actor {
@@ -180,8 +190,12 @@ mod tests {
 
     #[test]
     fn zero_stun_hits_are_excluded_from_stun_hit_count() {
-        let mut skill_state =
-            SkillState::new(ActionType::Normal(1), CharacterType::Pl0000, AuraSource::None);
+        let mut skill_state = SkillState::new(
+            ActionType::Normal(1),
+            CharacterType::Pl0000,
+            AuraSource::None,
+            false,
+        );
 
         let base_event = DamageEvent {
             source: Actor {
@@ -246,8 +260,12 @@ mod tests {
 
     #[test]
     fn min_and_max_stun_value_track_both_bounds_across_hits() {
-        let mut skill_state =
-            SkillState::new(ActionType::Normal(1), CharacterType::Pl0000, AuraSource::None);
+        let mut skill_state = SkillState::new(
+            ActionType::Normal(1),
+            CharacterType::Pl0000,
+            AuraSource::None,
+            false,
+        );
 
         let base_event = DamageEvent {
             source: Actor {
@@ -306,8 +324,12 @@ mod tests {
 
     #[test]
     fn zero_damage_hits_are_excluded_from_damage_stats_but_still_count_stun() {
-        let mut skill_state =
-            SkillState::new(ActionType::Normal(1), CharacterType::Pl0000, AuraSource::None);
+        let mut skill_state = SkillState::new(
+            ActionType::Normal(1),
+            CharacterType::Pl0000,
+            AuraSource::None,
+            false,
+        );
 
         let base_event = DamageEvent {
             source: Actor {
@@ -347,8 +369,10 @@ mod tests {
             ..base_event
         };
 
-        skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&hit_a, None));
-        skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&hit_b, None));
+        skill_state
+            .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&hit_a, None));
+        skill_state
+            .update_from_damage_event(&AdjustedDamageInstance::from_damage_event(&hit_b, None));
         skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
             &zero_damage_stun_tick,
             None,
@@ -366,8 +390,12 @@ mod tests {
 
     #[test]
     fn a_skill_that_only_ever_deals_zero_damage_reports_no_hits() {
-        let mut skill_state =
-            SkillState::new(ActionType::Normal(1), CharacterType::Pl0000, AuraSource::None);
+        let mut skill_state = SkillState::new(
+            ActionType::Normal(1),
+            CharacterType::Pl0000,
+            AuraSource::None,
+            false,
+        );
 
         let zero_damage_stun_tick = DamageEvent {
             source: Actor {
