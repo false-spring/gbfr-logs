@@ -213,6 +213,21 @@ fn is_stackable(kind_id: u32) -> bool {
     STACKABLE_KINDS.binary_search(&kind_id).is_ok()
 }
 
+/// Whether an `applyStatus` call renewed something already held, from the
+/// OBJECT counts either side of it — not the depths, which report 1 for a
+/// non-stackable kind however many objects are held, so a second source's own
+/// copy reads as a refresh of the first. Refreshes are gated and applications
+/// are not, so that mislabel drops the application entirely.
+///
+/// `false` when either read failed — see the field doc on `StatusAppliedEvent`
+/// for why that is the conservative direction.
+fn is_refresh_from(before: Option<u32>, after: Option<u32>) -> bool {
+    match (before, after) {
+        (Some(before), Some(after)) => after <= before,
+        _ => false,
+    }
+}
+
 /// Apply out-struct (`rdx`): `{ u8 applied; Status* @+0x08 }`. Failure writes `{0, NULL}`.
 const APPLY_OUT_STATUS_OFFSET: usize = 0x08;
 
@@ -413,7 +428,8 @@ unsafe extern "system" fn apply_status_detour(
     a14: u64,
     a15: u64,
 ) -> usize {
-    let kind_before = stack_depth_in_component(comp, kind_id, std::ptr::null()).map(|(n, _, _)| n);
+    let kind_before =
+        stack_depth_in_component(comp, kind_id, std::ptr::null()).map(|(_, objects, _)| objects);
 
     let trampoline = APPLY_TRAMPOLINE.load(Ordering::Acquire);
     if trampoline == 0 {
@@ -448,12 +464,13 @@ unsafe extern "system" fn apply_status_detour(
     let is_permanent =
         safe_read(status.wrapping_add(STATUS_PERMANENT_OFFSET) as *const u8).map(|v| v != 0);
 
-    let stacks = stack_depth_in_component(comp, kind_id, std::ptr::null()).map(|(n, _, _)| n);
+    // PROVISIONAL for stackable kinds: `applyStatus` does not write the level,
+    // its caller does after this returns, so a fresh object reads 0 here and is
+    // clamped to 1. `OnStatusStacksChangedHook` corrects it microseconds later.
+    let held = stack_depth_in_component(comp, kind_id, std::ptr::null());
+    let stacks = held.map(|(depth, _, _)| depth);
 
-    let is_refresh = match (kind_before, stacks) {
-        (Some(before), Some(after)) => after <= before,
-        _ => false,
-    };
+    let is_refresh = is_refresh_from(kind_before, held.map(|(_, objects, _)| objects));
 
     if is_refresh && !REFRESH_GATE.should_emit(actor_index, kind_id, now_ms(), REFRESH_MIN_GAP_MS) {
         return ret;
@@ -1258,6 +1275,39 @@ mod tests {
 
         assert!(gate.should_emit(ACTOR, DMG_CUT, 10, GAP), "forgotten pair emits");
         assert!(!gate.should_emit(ACTOR, other_kind, 10, GAP), "untouched pair still gated");
+    }
+
+    /// The shape that broke. `DMG↑` does not stack, so both readings report a
+    /// depth of 1 — before, with one source's copy held, and after, with a
+    /// second source's copy added. Only the object count moves, and it is the
+    /// one that answers the question being asked.
+    #[test]
+    fn a_second_sources_copy_of_a_non_stackable_kind_is_an_application() {
+        assert!(!is_refresh_from(Some(1), Some(2)));
+    }
+
+    /// One object before, the same one object after: nothing was inserted,
+    /// whether the kind stacks in place or simply renewed its duration. This is
+    /// what the live Invincibility run measured — 17 applications, no insert.
+    #[test]
+    fn re_applying_from_the_same_source_is_a_refresh() {
+        assert!(is_refresh_from(Some(1), Some(1)));
+        assert!(is_refresh_from(Some(3), Some(3)));
+    }
+
+    #[test]
+    fn the_first_copy_of_a_kind_is_never_a_refresh() {
+        assert!(!is_refresh_from(Some(0), Some(1)));
+    }
+
+    /// An unreadable count must not be allowed to invent a refresh: a refresh
+    /// can be gated away, an application cannot, so the failure has to fall on
+    /// the side that still opens an interval.
+    #[test]
+    fn an_unreadable_count_is_not_a_refresh() {
+        assert!(!is_refresh_from(None, Some(1)));
+        assert!(!is_refresh_from(Some(1), None));
+        assert!(!is_refresh_from(None, None));
     }
 
     #[test]
