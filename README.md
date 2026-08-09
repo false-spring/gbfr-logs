@@ -15,6 +15,40 @@ Overlay DPS parser/meter for Granblue Fantasy: Relink, based initially on the re
 - Download the latest .msi installer and run it.
 - Open GBFR Logs after the game is already running.
 
+## New Features: 2.0.4 Endless Ragnarok Release
+
+GBFR Logs has now been updated for Endless Ragnarok and many new features implemented!
+
+## Upload & View Log Online
+You can now optionally upload your logs online to view them on the [GBFR Logs DB](https://relink.cleista.cc/) site and share them easily! Uploads are anonymous by default. 
+
+![View Logs Online](./docs/screenshots/view-logs-online.png)
+
+### Support for new characters & Style filter
+![Eustace Breakdown](./docs/screenshots/eustace-breakdown.png)
+![Style Filter](./docs/screenshots/style-filter.png)
+
+### Skill Loadout, Summon & Mastery Trait Support
+![Endless Ragnarok Equipment](./docs/screenshots/er-equipment.png)
+![Mastery Trait Board](./docs/screenshots/mt-board.png)
+
+### Status Effect Uptime & Source Tracking (Beta)
+You can see the uptime of status effects applied to any player or enemy and (usually) the source of the status effect!
+
+![Status Effect Uptime](./docs/screenshots/status-effect-uptime.png)
+^ Also displays when Link Time, SBA lockdown, and Break are (for knowing when you did damage for Celestial Aqua)
+
+### SBA Generation Attribution (Beta)
+![SBA Generation Attribution](./docs/screenshots/sba-gen-attribution.png)
+
+### Stun Tracking (Beta)
+![Stun Tracking](./docs/screenshots/stun-tracking.png)
+
+### Built-in Easy Bug Reporting
+Simply click "Report Issue" at the top right with any fight open if there's an issue with the logger!
+
+![Report Issue](./docs/screenshots/report-issue.png)
+
 ## Screenshots
 
 ### DPS Overlay
