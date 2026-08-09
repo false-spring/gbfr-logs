@@ -813,10 +813,13 @@ fn read_vbuffer_guarded(vbuf: *const usize) -> CString {
 /// A slotless form (Id's dragon) carries `party_index` -1 and probes as `None`,
 /// so it falls back to the slot `actor_index` encodes — not a guess, that id is
 /// the owner `get_source_parent` already resolved.
+///
+/// `source_type` is only a fallback, for a record whose player key maps to no
+/// character the hook knows.
 pub fn resolve_source_identity(
     source_slot: Option<(u32, u8, usize)>,
     actor_index: u32,
-    character_type: u32,
+    source_type: u32,
 ) -> Option<PlayerIdentityEvent> {
     // `party_slot_from_actor_index` returns `None` below `PLAYER_ID_BASE`, so an
     // enemy or unowned sub-entity exits here rather than announcing as a player.
@@ -867,7 +870,14 @@ pub fn resolve_source_identity(
         party_index: identity.party_index,
         character_name: identity.character_name,
         display_name: identity.display_name,
-        character_type,
+        // The character the RECORD says this slot is playing, never the class of
+        // whatever entity landed the announcing hit: a persistent sub-entity
+        // (Cagliostro's sled, Ferry's pet) can get there first and would name
+        // the slot after itself for the whole encounter.
+        character_type: match identity.character_type {
+            0 => source_type,
+            known => known,
+        },
         is_online: identity.is_online,
         sigils: identity.sigils,
         weapon_info: identity.weapon_info,
@@ -989,5 +999,53 @@ mod tests {
         // store — this is the arm that keeps the fallback from inventing players.
         announced_identities().lock().unwrap().clear();
         assert!(resolve_source_identity(None, 0x3AC4_D149, ID_HUMAN).is_none());
+    }
+
+    #[test]
+    fn a_sub_entitys_hit_announces_its_owner_not_itself() {
+        const SLOT: u8 = 1;
+        const CAGLIOSTRO: u32 = 0x9DC0_1E15; // stand-in for gbfr_hash("Pl1800")
+        const SLED: u32 = 0xC9F4_5042; // Wp1890, her summoned sled
+        let owner_id = protocol::PLAYER_ID_BASE | u32::from(SLOT);
+
+        identity_store().lock().unwrap().clear();
+        announced_identities().lock().unwrap().clear();
+        identity_store().lock().unwrap().insert(
+            (SLOT, 0xBEEF_0001),
+            PlayerIdentity {
+                party_index: SLOT,
+                display_name: CString::new("Uplift PLS").unwrap(),
+                character_type: CAGLIOSTRO,
+                is_online: true,
+                ..Default::default()
+            },
+        );
+
+        // The sled lands the first hit of the fight. It resolves to its owner's
+        // slot -- that part is right, and is what files the damage correctly --
+        // but it must not lend the slot its own class.
+        let announced = resolve_source_identity(None, owner_id, SLED)
+            .expect("an owned sub-entity still announces its owner");
+        assert_eq!(announced.character_type, CAGLIOSTRO);
+        assert_eq!(announced.display_name.to_str().unwrap(), "Uplift PLS");
+
+        // The source's own class is still the fallback for a record whose player
+        // key maps to no character the hook knows -- better than nothing, and
+        // the only case that reaches it.
+        announced_identities().lock().unwrap().clear();
+        identity_store().lock().unwrap().clear();
+        identity_store().lock().unwrap().insert(
+            (SLOT, 0xBEEF_0002),
+            PlayerIdentity {
+                party_index: SLOT,
+                display_name: CString::new("Unmapped").unwrap(),
+                character_type: 0,
+                is_online: true,
+                ..Default::default()
+            },
+        );
+        let announced = resolve_source_identity(None, owner_id, SLED)
+            .expect("an unmapped key still announces");
+        assert_eq!(announced.character_type, SLED);
     }
 }
