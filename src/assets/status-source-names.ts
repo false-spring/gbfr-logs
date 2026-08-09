@@ -1,7 +1,9 @@
 // What applied a status. Source ids are not unique on their own, so keys are
 // "<sourceId>:<kindId>" pairs.
+//
+// Source id 0 must never appear here: it is the ABSENCE of an id, so a
+// "0:<kind>" row names every character's unattributed status of that kind.
 const StatusSourceNames: Record<string, string> = {
-  "0:42": "Ebony's Warpath",
   "130:21": "Thunderwolf's Recharge",
   "10000:8": "Spirit Edge's Warpath",
   "10000:17": "Spirit Edge's Warpath",
@@ -24,6 +26,9 @@ const StatusSourceNames: Record<string, string> = {
 
 // Unconfirmed guesses, rendered with a trailing "?" in the UI.
 export const StatusSourceGuesses: Record<string, string> = {
+  // Demoted from the table above: the evidence shows this trait CAN produce a
+  // source-less DMG↑, not that nothing else does.
+  "0:42": "Ebony's Warpath",
   "0:16": "Potent Greens",
   "0:17": "Potent Greens",
   "0:26": "Mage's Warpath",
@@ -57,6 +62,10 @@ export const StatusSourceOverrides: Record<string, string> = {
   "PL1100:1:170": "Dragonslayer's Dominance",
   "PL1000:7:9996": "Lord's Warpath",
   "PL1000:0:9996": "Lord's Ambition",
+
+  // Cagliostro's DMG↑ arrives with no source id at all. Scoped to Pl1800 rather
+  // than put back in the pair table, since the key has to carry the character.
+  "PL1800:42:0": "Founder's Warpath",
 };
 
 export default StatusSourceNames;
