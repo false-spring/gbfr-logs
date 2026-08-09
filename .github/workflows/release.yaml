@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]+-*"
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 20
+
+      - name: Install Rust toolchain (pinned by rust-toolchain.toml)
+        shell: bash
+        run: |
+          rustup set auto-self-update disable
+          rustup toolchain install
+
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: "./src-tauri -> target"
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build hook DLL
+        run: cargo build --release --package hook
+
+      - name: Stage hook.dll
+        shell: bash
+        run: cp target/release/hook.dll src-tauri/hook.dll
+
+      - name: Build, sign, and publish release
+        uses: tauri-apps/tauri-action@84b9d35b5fc46c1e45415bdb6144030364f7ebc5 # v0.6.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_PRIVATE_KEY_PASSWORD }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: "${{ github.ref_name }}"
+          releaseBody: "Please make sure to save and exit before updating. Check release notes on github for more details!"
+          releaseDraft: true
+          prerelease: false
+          uploadUpdaterJson: true
