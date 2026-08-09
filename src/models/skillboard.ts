@@ -47,6 +47,26 @@ export const styleBoardName = (cardHash: number | null, board: string): string =
   return t([`mastertraits:${toHashString(cardHash)}.text`, "ui.unknown"], { id: toHashString(cardHash) });
 };
 
+const BOARD_SOURCE_IDS: Record<number, string> = {
+  9999: "SB_DEF",
+  9998: "SB_ATK",
+  9997: "SB_LIMIT",
+};
+
+/**
+ * The Mastery Trait that granted a status effect.
+ */
+export const styleBoardSourceName = (sourceId: number, flags: MasterTraitFlag[] | undefined): string | null => {
+  const board = BOARD_SOURCE_IDS[sourceId];
+  if (board === undefined) return null;
+
+  const cardHash = (flags ?? []).find((flag) => {
+    const node = MasterTraits[toHashString(flag.hash)];
+    return node?.card === true && node.board === board;
+  })?.hash;
+  return styleBoardName(cardHash ?? null, board);
+};
+
 export const boardGemCounts = (flags: MasterTraitFlag[], board: string): number[] => {
   return GEM_GROUP_ORDER.map(
     (group) =>

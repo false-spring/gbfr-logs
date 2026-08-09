@@ -33,7 +33,14 @@ vi.mock("i18next", () => ({
 
 import { type MasterTraitFlag } from "@/types";
 
-import { boardGemCounts, masteryLevel, styleBoardName, styleBoardSummaries, styleRankDiamonds } from "./skillboard";
+import {
+  boardGemCounts,
+  masteryLevel,
+  styleBoardName,
+  styleBoardSourceName,
+  styleBoardSummaries,
+  styleRankDiamonds,
+} from "./skillboard";
 
 const flag = (hash: number, on: boolean): MasterTraitFlag => ({ hash, on });
 
@@ -129,6 +136,34 @@ describe("styleBoardName", () => {
     expect(styleBoardName(null, "SB_DEF")).toBe("Insight");
     expect(styleBoardName(null, "SB_ATK")).toBe("Essence");
     expect(styleBoardName(null, "SB_LIMIT")).toBe("Crux");
+  });
+});
+
+describe("styleBoardSourceName", () => {
+  // 9997 is the board, not any one effect, so it means a different card for
+  // every character carrying it — a raw `#9997` was all it could render before.
+  it("names each of the three board source ids from the applier's own band", () => {
+    const band = emptyBand();
+
+    expect(styleBoardSourceName(9999, band)).toBe("Insight: Bulwark");
+    expect(styleBoardSourceName(9998, band)).toBe("Essence: Onslaught");
+    expect(styleBoardSourceName(9997, band)).toBe("Crux: Overdrive");
+  });
+
+  it("names the board even when its style card is unpurchased", () => {
+    // The card row gates Style Rank 2/3, so an unpurchased card still names the
+    // board the game shows.
+    expect(styleBoardSourceName(9997, [flag(0x00000030, false)])).toBe("Crux: Overdrive");
+  });
+
+  it("falls back to the generic style name for a band with no card row", () => {
+    expect(styleBoardSourceName(9997, [])).toBe("Crux");
+    expect(styleBoardSourceName(9997, undefined)).toBe("Crux");
+  });
+
+  it("leaves every other source id to the tables that name effects", () => {
+    expect(styleBoardSourceName(9996, emptyBand())).toBeNull();
+    expect(styleBoardSourceName(10000, emptyBand())).toBeNull();
   });
 });
 

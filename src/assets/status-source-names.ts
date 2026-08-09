@@ -13,16 +13,12 @@ const StatusSourceNames: Record<string, string> = {
   "11000:27": "Mage's Warpath",
   "11000:42": "Mage's Warpath",
 
-  "9999:20": "Guts",
-  "9999:25": "Autorevive",
   "99996:0": "Guard Payback",
   "10000:48": "Ultramarine's Warpath",
   "10000:49": "Ultramarine's Warpath",
   "10001:125": "Immortal Shell",
   "10000:4": "Crabvestment Returns",
 
-  "9999:74": "Holy Knight's Luster",
-  "9998:75": "Holy Knight's Grandeur",
   "10000:47": "Ultramarine's Warpath",
 };
 
@@ -49,9 +45,6 @@ export const StatusSourceGuesses: Record<string, string> = {
   "9995:7": "Butterfly's Warpath",
   "9995:42": "Butterfly's Warpath",
   "9996:0": "Lord's Ambition",
-  "9997:17": "Guardian's Warpath",
-  "9997:42": "Guardian's Warpath",
-  "9998:41": "Guardian's Honor",
   "10000:24": "Hero's Creed",
   "99998:6": "Nimble Onslaught",
   "99999:51": "Flight over Fight",
@@ -62,6 +55,8 @@ export const StatusSourceGuesses: Record<string, string> = {
 // character uppercased.
 export const StatusSourceOverrides: Record<string, string> = {
   "PL1100:1:170": "Dragonslayer's Dominance",
+  "PL1000:7:9996": "Lord's Warpath",
+  "PL1000:0:9996": "Lord's Ambition",
 };
 
 export default StatusSourceNames;

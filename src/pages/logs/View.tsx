@@ -30,6 +30,7 @@ import { SbaTab } from "@/components/SbaTab";
 import { StunTab } from "@/components/StunTab";
 import { UploadLogButton } from "@/components/UploadLogButton";
 import { makeResolvePlayerName } from "@/components/chartCommon";
+import { styleBoardSourceName } from "@/models/skillboard";
 import { EncounterStateResponse, useEncounterStore } from "@/stores/useEncounterStore";
 import { useMeterSettingsStore } from "@/stores/useMeterSettingsStore";
 import {
@@ -351,6 +352,7 @@ export const ViewPage = () => {
   const statusKind = statusGroups.some((group) => group.items.some((item) => Number(item.value) === selectedStatusKind))
     ? selectedStatusKind
     : null;
+
   const statusSourceActionName = (
     applierIndex: number,
     actionId: number,
@@ -386,7 +388,9 @@ export const ViewPage = () => {
       magnitude,
       statusValueIsFraction[statusKind]
     );
-    return perk ? `${perk} (Master Trait)` : null;
+    if (perk) return `${perk} (Master Trait)`;
+
+    return styleBoardSourceName(actionId, playerData[partySlotIndex]?.masterTraitFlags);
   };
 
   const statusSourceList = selectedStatusSources(statusSources, statusActor, statusKind);
