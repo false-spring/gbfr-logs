@@ -151,6 +151,17 @@ fn character_name_for(character_type: CharacterType) -> Option<&'static str> {
         .map(String::as_str)
 }
 
+/// The `p*_name` column for a party slot. A damage-seeded row (see
+/// `Encounter::ensure_player_slot`) knows the character but not who was playing
+/// them, and "unknown" is NULL in this column, not `""`. The logs list already
+/// falls back to the character when the name is absent, so such a slot reads as
+/// its character rather than as an empty entry.
+fn name_column(player: Option<&PlayerData>) -> Option<&str> {
+    player
+        .map(|player| player.display_name.as_str())
+        .filter(|name| !name.is_empty())
+}
+
 pub struct AdjustedDamageInstance<'a> {
     pub event: &'a DamageEvent,
     pub player_data: Option<&'a PlayerData>,
@@ -324,6 +335,11 @@ impl Parser {
 
         // Repopulate the event log if it's empty.
         encounter.repopulate_event_log();
+
+        // Before the derived state is built off it: a member the capture never
+        // announced gets their row back from their own damage, so an already-
+        // saved log stops hiding them (see `seed_player_slots_from_damage`).
+        encounter.seed_player_slots_from_damage();
 
         Ok(Self::from_encounter(encounter))
     }
@@ -774,6 +790,12 @@ impl Parser {
 
         self.action_actors.remember(&event);
 
+        // Ahead of the adoption below, deliberately: a member seeded only by
+        // their own damage has to exist before adoption can find them as an
+        // owner.
+        self.encounter
+            .ensure_player_slot(event.source.parent_index, event.source.parent_actor_type);
+
         let source_index = attributed_source_index(&self.encounter.player_data, &event);
         let player_data = self
             .encounter
@@ -1216,13 +1238,13 @@ impl Parser {
                     &encounter_data,
                     1,
                     primary_target,
-                    p1.map(|p| p.display_name.as_str()),
+                    name_column(p1),
                     p1.map(|p| p.character_type.to_string()),
-                    p2.map(|p| p.display_name.as_str()),
+                    name_column(p2),
                     p2.map(|p| p.character_type.to_string()),
-                    p3.map(|p| p.display_name.as_str()),
+                    name_column(p3),
                     p3.map(|p| p.character_type.to_string()),
-                    p4.map(|p| p.display_name.as_str()),
+                    name_column(p4),
                     p4.map(|p| p.character_type.to_string()),
                     self.encounter.quest_id,
                     self.encounter.quest_timer,

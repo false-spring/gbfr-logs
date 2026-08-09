@@ -806,14 +806,24 @@ fn read_vbuffer_guarded(vbuf: *const usize) -> CString {
     CString::new(bytes).unwrap_or_default()
 }
 
-/// Returns `Some` only the first time an `actor_index` maps to a slot, or when
-/// that mapping changes, so callers can send the event on every hit.
+/// Keyed by (party slot, record pointer): the player key is not unique across
+/// crossplay platforms, and the slot alone can be claimed by a stale local-CPU
+/// record. Deduplicated, so callers may send unconditionally.
+///
+/// A slotless form (Id's dragon) carries `party_index` -1 and probes as `None`,
+/// so it falls back to the slot `actor_index` encodes — not a guess, that id is
+/// the owner `get_source_parent` already resolved.
 pub fn resolve_source_identity(
     source_slot: Option<(u32, u8, usize)>,
     actor_index: u32,
     character_type: u32,
 ) -> Option<PlayerIdentityEvent> {
-    let (_player_key, slot, record_ptr) = source_slot?;
+    // `party_slot_from_actor_index` returns `None` below `PLAYER_ID_BASE`, so an
+    // enemy or unowned sub-entity exits here rather than announcing as a player.
+    let (slot, record_ptr) = match source_slot {
+        Some((_player_key, slot, record_ptr)) => (slot, Some(record_ptr)),
+        None => (protocol::party_slot_from_actor_index(actor_index)?, None),
+    };
 
     {
         let announced = announced_identities().lock().ok()?;
@@ -824,8 +834,9 @@ pub fn resolve_source_identity(
 
     let identity = {
         let store = identity_store().lock().ok()?;
-        match store.get(&(slot, record_ptr)) {
+        match record_ptr.and_then(|record_ptr| store.get(&(slot, record_ptr))) {
             Some(identity) => identity.clone(),
+
             None => store
                 .iter()
                 .filter(|((s, _), _)| *s == slot)
@@ -935,5 +946,48 @@ mod tests {
         .is_none());
         assert!(classify_master_trait_row(&row(EMPTY_HASH_SENTINEL, 0, EMPTY_HASH_SENTINEL)).is_none());
         assert!(classify_master_trait_row(&row(0, 0, EMPTY_HASH_SENTINEL)).is_none());
+    }
+
+    /// The bug this fixes (report cbab2062), plus the two properties that make
+    /// the fallback safe to reach. One test rather than four because
+    /// IDENTITY_STORE and ANNOUNCED_IDENTITIES are process-global: separate
+    /// `#[test]` fns run concurrently in one binary and would clobber each
+    /// other's fixture.
+    #[test]
+    fn a_slotless_form_announces_via_the_parent_encoded_slot() {
+        const DRAGON_SLOT: u8 = 3;
+        const ID_HUMAN: u32 = 0x8056_ABCD; // gbfr_hash("Pl1900")
+        let dragon_id = protocol::PLAYER_ID_BASE | u32::from(DRAGON_SLOT);
+
+        identity_store().lock().unwrap().clear();
+        announced_identities().lock().unwrap().clear();
+        identity_store().lock().unwrap().insert(
+            (DRAGON_SLOT, 0xBEEF_0000),
+            PlayerIdentity {
+                party_index: DRAGON_SLOT,
+                display_name: CString::new("Darx").unwrap(),
+                character_type: ID_HUMAN,
+                is_online: true,
+                ..Default::default()
+            },
+        );
+
+        // An Id who spent the whole fight as a dragon: every hit arrives with no
+        // slot of its own, carrying only the parent id `get_source_parent`
+        // resolved. Before the fix this returned None on every one of them.
+        let announced = resolve_source_identity(None, dragon_id, ID_HUMAN)
+            .expect("slotless form announces through its parent's slot");
+        assert_eq!(announced.party_index, DRAGON_SLOT);
+        assert_eq!(announced.display_name.to_str().unwrap(), "Darx");
+
+        // Announce-once still holds — the dedup is keyed by actor id, and the
+        // fallback must not reopen the flood it prevents.
+        assert!(resolve_source_identity(None, dragon_id, ID_HUMAN).is_none());
+
+        // An enemy or unowned sub-entity carries a pointer-derived id, which
+        // encodes no slot. It must stay out of the party even with a populated
+        // store — this is the arm that keeps the fallback from inventing players.
+        announced_identities().lock().unwrap().clear();
+        assert!(resolve_source_identity(None, 0x3AC4_D149, ID_HUMAN).is_none());
     }
 }

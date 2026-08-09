@@ -73,6 +73,131 @@ fn a_roster_seeds_slots_so_a_hit_joins_without_any_identity_event() {
     assert_eq!(row.index, parser.encounter.player_data[1].as_ref().unwrap().actor_index);
 }
 
+/// A hit from a slotless form: `get_source_parent` resolved the owner, so the
+/// parent fields name the player while `index`/`actor_type` stay the sub-entity
+/// that actually swung. Id's dragon, as it arrives in report cbab2062.
+fn dragon_hit(slot: u32) -> DamageEvent {
+    let mut hit = player_damage_event();
+    hit.source.index = 0x3AC4_D149; // pointer-derived: the dragon owns no slot
+    hit.source.actor_type = 0xF575_5C0E; // Pl2000
+    hit.source.parent_index = protocol::PLAYER_ID_BASE | slot;
+    hit.source.parent_actor_type = 0x8056_ABCD; // Pl1900, Id
+    hit
+}
+
+/// Report cbab2062: an Id who spent the whole fight in dragon form landed every
+/// hit from Pl2000, announced no identity, and so had no party row at all --
+/// absent from the logs list, which renders the saved `p*_name`/`p*_type`. The
+/// hook fix stops that at the source; this is the parser-side backstop, which
+/// has to hold for any other reason an identity never arrives.
+#[test]
+fn damage_alone_opens_a_party_row_for_a_member_who_never_announces() {
+    let mut parser = Parser::default();
+    parser.on_damage_event(dragon_hit(3));
+
+    let seeded = parser.encounter.player_data[3]
+        .as_ref()
+        .expect("a slot with damage must not stay empty");
+    // Canonicalized: the row is Id, not his dragon -- which matters because
+    // Pl2000 has no name in the character table and would render blank.
+    assert_eq!(seeded.character_type, CharacterType::Pl1900);
+    assert_eq!(seeded.character_name, "Id");
+    assert_eq!(seeded.actor_index, protocol::PLAYER_ID_BASE | 3);
+    // Never guessed. Who was playing him is not knowable from a damage event,
+    // and `name_column` maps this to NULL rather than "" on the way to the DB.
+    assert!(seeded.display_name.is_empty());
+    assert_eq!(name_column(parser.encounter.player_data[3].as_ref()), None);
+
+    // The other three slots are untouched -- seeding is per-slot, not a party.
+    assert!(parser.encounter.player_data[0].is_none());
+}
+
+/// The seed is a placeholder, not a claim. A real identity must overwrite it
+/// wholesale, name and build included, exactly as it overwrites a roster seed.
+#[test]
+fn a_real_identity_replaces_the_damage_seeded_row() {
+    let mut parser = Parser::default();
+    parser.on_damage_event(dragon_hit(3));
+    assert!(parser.encounter.player_data[3]
+        .as_ref()
+        .unwrap()
+        .display_name
+        .is_empty());
+
+    parser.on_player_identity_event(protocol::PlayerIdentityEvent {
+        actor_index: protocol::PLAYER_ID_BASE | 3,
+        party_index: 3,
+        character_name: std::ffi::CString::new("Id").unwrap(),
+        display_name: std::ffi::CString::new("Darx").unwrap(),
+        character_type: 0xF575_5C0E, // announced from the dragon form
+        is_online: true,
+        sigils: vec![protocol::Sigil {
+            first_trait_id: 1,
+            first_trait_level: 1,
+            second_trait_id: 0,
+            second_trait_level: 0,
+            sigil_id: 1,
+            equipped_character: 0,
+            sigil_level: 15,
+            acquisition_count: 1,
+            notification_enum: 0,
+        }],
+        weapon_info: None,
+        summon_info: None,
+        skill_loadout: Vec::new(),
+        over_mastery: Vec::new(),
+        master_trait_flags: Vec::new(),
+        effective_traits: Vec::new(),
+        player_stats: None,
+        network_user_id: None,
+        network_user_name: None,
+        master_level: Some(55),
+    });
+
+    let placed = parser.encounter.player_data[3].as_ref().expect("slot 3");
+    assert_eq!(placed.display_name, "Darx");
+    assert_eq!(placed.character_type, CharacterType::Pl1900);
+    assert_eq!(placed.sigils.len(), 1);
+    assert_eq!(placed.master_level, Some(55));
+    assert_eq!(name_column(Some(placed)), Some("Darx"));
+}
+
+/// The seed must not invent party members. Enemies carry a pointer-derived id
+/// that encodes no slot, and an unnamed class would surface as raw hex.
+#[test]
+fn damage_seeding_refuses_non_players_and_unnamed_classes() {
+    let mut parser = Parser::default();
+
+    // No slot in the id at all.
+    parser.encounter.ensure_player_slot(0x3AC4_D149, 0x8056_ABCD);
+    // A real slot, but a class with no name row.
+    parser
+        .encounter
+        .ensure_player_slot(protocol::PLAYER_ID_BASE | 2, 0xDEAD_BEEF);
+
+    assert!(parser.encounter.player_data.iter().all(Option::is_none));
+}
+
+/// Already-saved logs get the row back on reparse, so a capture taken before
+/// the fix stops hiding a member. Only the derived view changes; `raw_event_log`
+/// stays the faithful record.
+#[test]
+fn reparsing_a_saved_log_seeds_the_member_it_never_announced() {
+    let mut source = Parser::default();
+    source.on_damage_event(dragon_hit(3));
+    // The capture as it would have been written before this fix: damage in the
+    // log, no identity anywhere.
+    source.encounter.reset_player_data();
+    let blob = source.encounter.to_blob().expect("blob");
+
+    let reparsed = Parser::from_encounter_blob(&blob).expect("reparse");
+    let recovered = reparsed.encounter.player_data[3]
+        .as_ref()
+        .expect("reparse must recover the slot from its damage");
+    assert_eq!(recovered.character_type, CharacterType::Pl1900);
+    assert_eq!(recovered.actor_index, protocol::PLAYER_ID_BASE | 3);
+}
+
 fn sba_update(actor_index: u32, sba_value: f32, sba_added: f32, cause: SbaCause) -> OnUpdateSBAEvent {
     OnUpdateSBAEvent {
         actor_index,

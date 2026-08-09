@@ -90,6 +90,77 @@ impl Encounter {
         self.player_data[0..=3].clone_from_slice(&[None, None, None, None]);
     }
 
+    /// Opens a party row for a slot that has damage but no identity yet: without
+    /// it such a player has no row, no overlay name, and no logs-list entry.
+    /// Build data and the display name stay EMPTY rather than guessed.
+    pub(super) fn ensure_player_slot(&mut self, actor_index: u32, character_type: u32) {
+        let Some(slot) = protocol::party_slot_from_actor_index(actor_index) else {
+            return;
+        };
+        let slot = slot as usize;
+        if slot > 3 || self.player_data[slot].is_some() {
+            return;
+        }
+
+        // An unnamed class would render as raw hex in the logs list, which is
+        // worse than the empty slot this replaces. Matches the live path, where
+        // `should_ignore_damage_event` has already dropped these.
+        let character_type = canonical_character_type(character_type);
+        if matches!(character_type, CharacterType::Unknown(_)) {
+            return;
+        }
+
+        self.player_data[slot] = Some(PlayerData {
+            actor_index,
+            display_name: String::new(),
+            character_name: super::character_name_for(character_type)
+                .map(str::to_string)
+                .unwrap_or_default(),
+            character_type,
+            is_online: false,
+            sigils: Vec::new(),
+            weapon_info: None,
+            overmastery_info: None,
+            summon_info: None,
+            skill_loadout: Vec::new(),
+            over_mastery: Vec::new(),
+            master_trait_flags: Vec::new(),
+            effective_traits: Vec::new(),
+            player_stats: None,
+            network_user_id: None,
+            network_user_name: None,
+            master_level: None,
+        });
+    }
+
+    /// The same backstop applied to a log that is already saved, so a member
+    /// missing from an OLD capture reappears on reparse instead of needing the
+    /// fight to be fought again. Only the derived view changes — `raw_event_log`
+    /// stays the faithful record of what the game reported, the same division
+    /// `attributed_source_index` draws.
+    ///
+    /// The saved `p*_name`/`p*_type` columns are NOT rewritten (that would need
+    /// a migration), so an old log gains its missing row in the detail view
+    /// while the list line still reads three characters.
+    pub(super) fn seed_player_slots_from_damage(&mut self) {
+        let sources: Vec<(u32, u32)> = self
+            .event_log()
+            .filter_map(|(_, event)| match event {
+                Message::DamageEvent(event) if !super::is_damage_taken(event) => {
+                    Some((event.source.parent_index, event.source.parent_actor_type))
+                }
+                _ => None,
+            })
+            .filter(|(actor_index, _)| protocol::party_slot_from_actor_index(*actor_index).is_some())
+            .collect::<std::collections::HashSet<_>>()
+            .into_iter()
+            .collect();
+
+        for (actor_index, character_type) in sources {
+            self.ensure_player_slot(actor_index, character_type);
+        }
+    }
+
     pub(super) fn reset_quest(&mut self) {
         self.quest_id = None;
         self.quest_timer = None;
