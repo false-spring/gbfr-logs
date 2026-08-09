@@ -340,7 +340,7 @@ export const EquipmentTab = ({
                       <Placeholder empty />
                     ) : (
                       boards.map(({ board, cardHash, ranksOn, ranksTotal, gems }) => (
-                        <Text key={board} size="xs" fs="italic" fw={300}>
+                        <Text key={board} size="xs" fw={300}>
                           {[
                             styleBoardName(cardHash, board),
                             styleRankDiamonds(ranksOn, ranksTotal),
