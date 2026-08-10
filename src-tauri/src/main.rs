@@ -500,6 +500,8 @@ fn connect_and_run_parser(app: AppHandle) {
                                 protocol::Message::OnDeathEvent(event) => {
                                     state.on_death_event(event);
                                 }
+                                // The ER 2.0 messages aren't consumed by the parser yet.
+                                _ => {}
                             }
                         }
                     }

@@ -90,6 +90,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let damage_event_two = DamageEvent {
@@ -111,6 +114,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         skill_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
