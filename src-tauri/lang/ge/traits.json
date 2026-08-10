@@ -61,7 +61,7 @@
   },
   "15806dfc": {
     "key": "SKILL_172_01",
-    "text": "Nimbus des Ob. Primarchen"
+    "text": "Nimbus des Oberengels"
   },
   "16eff868": {
     "key": "SKILL_122_01",
@@ -173,7 +173,7 @@
   },
   "4e5f6706": {
     "key": "SKILL_172_02",
-    "text": "Pfad des Obersten Primarchen"
+    "text": "Pfad des Oberengels"
   },
   "4f135217": {
     "key": "SKILL_131_02",
@@ -197,7 +197,7 @@
   },
   "522e2388": {
     "key": "SKILL_125_01",
-    "text": "Erhabene heilige Ritterin"
+    "text": "Erhabene Heilige Ritterin"
   },
   "5463232f": {
     "key": "SKILL_128_00",
@@ -261,7 +261,7 @@
   },
   "7440e869": {
     "key": "SKILL_132_00",
-    "text": "Tiefschwarze Gegenwart"
+    "text": "Tiefschwarze Sense"
   },
   "74aa75d6": {
     "key": "SKILL_144_00",
@@ -373,7 +373,7 @@
   },
   "9a9dc170": {
     "key": "SKILL_125_00",
-    "text": "Glanz der heiligen Ritterin"
+    "text": "Glanz der Heiligen Ritterin"
   },
   "9ad8b5e6": {
     "key": "SKILL_142_00",
@@ -425,7 +425,7 @@
   },
   "a9d17f55": {
     "key": "SKILL_030_00",
-    "text": "Überladungsattentäter"
+    "text": "Overdrive-Attentäter"
   },
   "aa83f548": {
     "key": "SKILL_118_00",
@@ -433,7 +433,7 @@
   },
   "ac9674c1": {
     "key": "SKILL_031_00",
-    "text": "Durchbrechen-Attentäter"
+    "text": "Break-Attentäter"
   },
   "af513a9d": {
     "key": "SKILL_129_01",
@@ -533,7 +533,7 @@
   },
   "d40d1e9b": {
     "key": "SKILL_172_00",
-    "text": "Ehrfurcht des Ob. Primarchen"
+    "text": "Ehrfurcht des Oberengels"
   },
   "d54f8ca7": {
     "key": "SKILL_051_00",
@@ -658,5 +658,165 @@
   "fdd1ad24": {
     "key": "SKILL_127_02",
     "text": "Pfad des Schmetterlings"
+  },
+  "d461ecfb": {
+    "key": "SKILL_141_04",
+    "text": "Ein Meer an Erträgen"
+  },
+  "1e1cecce": {
+    "key": "SKILL_143_10",
+    "text": "Katastrophen-Nova"
+  },
+  "1de14c65": {
+    "key": "SKILL_173_00",
+    "text": "Passion des Alpha-Wolfs"
+  },
+  "26956f25": {
+    "key": "SKILL_173_01",
+    "text": "Kreisel des Alpha-Wolfs"
+  },
+  "dba19768": {
+    "key": "SKILL_173_02",
+    "text": "Pfad des Alpha-Wolfs"
+  },
+  "7b5b081d": {
+    "key": "SKILL_174_00",
+    "text": "Arie der Klingenprinzessin"
+  },
+  "9ace140b": {
+    "key": "SKILL_174_01",
+    "text": "Tanz der Klingenprinzessin"
+  },
+  "79266456": {
+    "key": "SKILL_174_02",
+    "text": "Pfad der Klingenprinzessin"
+  },
+  "d176d262": {
+    "key": "SKILL_175_00",
+    "text": "Indigofarbener Schwertstoß"
+  },
+  "461a8e07": {
+    "key": "SKILL_175_01",
+    "text": "Indigofarbenes Unglück"
+  },
+  "b953cc1e": {
+    "key": "SKILL_175_02",
+    "text": "Indigofarbener Pfad"
+  },
+  "7d75d904": {
+    "key": "SKILL_176_00",
+    "text": "Munition des Donnerwolfs"
+  },
+  "be3404b9": {
+    "key": "SKILL_176_01",
+    "text": "Auge des Donnerwolfs"
+  },
+  "3eb345d7": {
+    "key": "SKILL_176_02",
+    "text": "Pfad des Donnerwolfs"
+  },
+  "47384248": {
+    "key": "SKILL_177_00",
+    "text": "Reinkarnierte Güte"
+  },
+  "30773197": {
+    "key": "SKILL_177_01",
+    "text": "Reinkarnierter Schwung"
+  },
+  "807b6684": {
+    "key": "SKILL_177_02",
+    "text": "Reinkarnierter Pfad"
+  },
+  "06719232": {
+    "key": "SKILL_178_00",
+    "text": "Schwarzes Fluchsiegel"
+  },
+  "ed8d8ad8": {
+    "key": "SKILL_178_01",
+    "text": "Schwarzer Satz"
+  },
+  "5559232f": {
+    "key": "SKILL_178_02",
+    "text": "Schwarzer Pfad"
+  },
+  "bf78fbfc": {
+    "key": "SKILL_301_00",
+    "text": "Fürchterliche Krabben"
+  },
+  "46ee3116": {
+    "key": "SKILL_302_00",
+    "text": "Pechschwarze Bande"
+  },
+  "89c66acb": {
+    "key": "SKILL_303_00",
+    "text": "Sumo-Kriegsmarsch"
+  },
+  "3b71af12": {
+    "key": "SKILL_311_00",
+    "text": "Himmelsgrollen"
+  },
+  "fff8cf64": {
+    "key": "SKILL_312_00",
+    "text": "Seuchenhimmel"
+  },
+  "235d86ef": {
+    "key": "SKILL_313_00",
+    "text": "Supernova"
+  },
+  "aefeb1bc": {
+    "key": "SKILL_314_00",
+    "text": "Azurhimmel"
+  },
+  "0151cf9e": {
+    "key": "SKILL_315_00",
+    "text": "Magentahimmel"
+  },
+  "bbd77c33": {
+    "key": "SKILL_316_00",
+    "text": "Gesteigerte Hiebe"
+  },
+  "020db733": {
+    "key": "SKILL_317_00",
+    "text": "Gesteigerte Finesse"
+  },
+  "3f682593": {
+    "key": "SKILL_318_00",
+    "text": "Gesteigerter Durchbruch"
+  },
+  "79027fc8": {
+    "key": "SKILL_319_00",
+    "text": "Gesteigerte Zertrümmerung"
+  },
+  "0de887a0": {
+    "key": "SKILL_320_00",
+    "text": "Caelum-Erprobung"
+  },
+  "a7726190": {
+    "key": "SKILL_321_00",
+    "text": "Caelum-Glanz"
+  },
+  "9232dc17": {
+    "key": "SKILL_322_00",
+    "text": "Caelum-Grenze"
+  },
+  "36e3848d": {
+    "key": "SKILL_323_00",
+    "text": "Caelum-Flamme"
+  },
+  "a898e283": {
+    "key": "SKILL_324_00",
+    "text": "Caelum-Schnee"
+  },
+  "d029fe08": {
+    "key": "SKILL_325_00",
+    "text": "Sagenhaft"
+  },
+  "73220725": {
+    "key": "SKILL_326_00",
+    "text": "Caelum-Stille"
+  },
+  "f26baea5": {
+    "key": "SKILL_327_00",
+    "text": "Divergenz"
   }
 }

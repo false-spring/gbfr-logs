@@ -3,21 +3,145 @@
     "key": "EM0003",
     "text": "Arquero trasgo"
   },
+  "0014a1b8": {
+    "key": "EM0013",
+    "text": "Diablillo arquero"
+  },
+  "00416ad7": {
+    "key": "Em8401SpDrainShot",
+    "text": "Em8401SpDrainShot"
+  },
+  "006f03ee": {
+    "key": "EM0500_05",
+    "text": "Telurosaurio de la Vorágine"
+  },
+  "007fc4ea": {
+    "key": "EM0501_01",
+    "text": "Glaciosaurio A"
+  },
   "0178bc98": {
     "key": "EM0603",
     "text": "Viscosín plateado rey"
+  },
+  "02d790aa": {
+    "key": "EM0004_01",
+    "text": "Gladiador trasgo"
+  },
+  "02f31cae": {
+    "key": "BA8200",
+    "text": "Ba8200"
+  },
+  "03c6b8aa": {
+    "key": "WE7300_03",
+    "text": "Despina"
   },
   "044bbc73": {
     "key": "EM1800",
     "text": "Dragón ancestral"
   },
+  "045df4e3": {
+    "key": "Em0900FireBeam",
+    "text": "Em0900FireBeam"
+  },
+  "048eb0bb": {
+    "key": "EM75B0",
+    "text": "Em75b0"
+  },
+  "04c20745": {
+    "key": "Em2510Wave",
+    "text": "Em2510Wave"
+  },
+  "04cbc046": {
+    "key": "WE7300_01",
+    "text": "Halimede"
+  },
+  "04faeced": {
+    "key": "EM0804_01",
+    "text": "Gyro luminoso del juicio"
+  },
+  "053688c2": {
+    "key": "EM7700_01",
+    "text": "Lucilius, el apocalipsis"
+  },
+  "05419c3d": {
+    "key": "Em8000CarroMagnificoShot",
+    "text": "Em8000CarroMagnificoShot"
+  },
+  "0548d996": {
+    "key": "Em8400ShotRing",
+    "text": "Em8400ShotRing"
+  },
+  "05601f18": {
+    "key": "NP0600",
+    "text": "Zathba"
+  },
+  "05c3d2b2": {
+    "key": "WE2104",
+    "text": "We2104"
+  },
+  "05f98f56": {
+    "key": "NP27E0",
+    "text": "Np27e0"
+  },
+  "06318d88": {
+    "key": "NP17E0",
+    "text": "Np17e0"
+  },
   "06d40674": {
     "key": "WE2112",
     "text": "Caduceo"
   },
+  "0722fd02": {
+    "key": "EM0100_05",
+    "text": "Calavera funesta"
+  },
+  "073ad302": {
+    "key": "EM0012",
+    "text": "Diablillo protector"
+  },
+  "07cf4aa5": {
+    "key": "Em7400SandSpearShot",
+    "text": "Em7400SandSpearShot"
+  },
+  "0818553f": {
+    "key": "BA53EF",
+    "text": "Ba53ef"
+  },
+  "08c5ecc7": {
+    "key": "WE8453",
+    "text": "Orden viridián"
+  },
+  "0909292a": {
+    "key": "EM0804_03",
+    "text": "Gyro luminoso sublime"
+  },
+  "09185def": {
+    "key": "Em7500VanishPlayerObjHit",
+    "text": "Em7500VanishPlayerObjHit"
+  },
   "095c118f": {
     "key": "EM0900",
     "text": "Espíritu del fuego"
+  },
+  "0a1cd979": {
+    "key": "EM0900_07",
+    "text": "Llama ambarina"
+  },
+  "0a9dec9a": {
+    "key": "BA5550",
+    "text": "Ba5550"
+  },
+  "0b82f571": {
+    "key": "EM0400_07",
+    "text": "Guiverno monarca de la Vorágine"
+  },
+  "0c218a00": {
+    "key": "EM1000_01",
+    "text": "Soldado de Avia"
+  },
+  "0c700ecf": {
+    "key": "EM0801_03",
+    "text": "Gyro acuático sublime"
   },
   "0c9d3c34": {
     "key": "EM2300",
@@ -35,6 +159,10 @@
     "key": "EM7401",
     "text": "Reactor astrágalo"
   },
+  "0df79f88": {
+    "key": "Em1800MeteorMagic",
+    "text": "Em1800MeteorMagic"
+  },
   "0e0a8d33": {
     "key": "EM0100",
     "text": "Esqueleto"
@@ -43,117 +171,789 @@
     "key": "EM1805",
     "text": "Draco prístino Radis"
   },
+  "0e6ce1cf": {
+    "key": "Em1500RisingRock",
+    "text": "Em1500RisingRock"
+  },
+  "0ed6a142": {
+    "key": "EM8401",
+    "text": "Echo Logi"
+  },
   "0ee3e67f": {
     "key": "EM0902",
     "text": "Espíritu del agua"
+  },
+  "0ef66e66": {
+    "key": "EM0200_01",
+    "text": "Lobo del desierto"
   },
   "0f7062bc": {
     "key": "WE7004",
     "text": "Anemos"
   },
+  "0f768151": {
+    "key": "EM2600_04",
+    "text": "Víbora de la muerte"
+  },
+  "0ff89d78": {
+    "key": "EM7100_01",
+    "text": "Miedo de la Vorágine"
+  },
+  "102b8892": {
+    "key": "Em7001AnimTransform",
+    "text": "Em7001AnimTransform"
+  },
+  "10536d71": {
+    "key": "Em7500DarkVortexWave",
+    "text": "Em7500DarkVortexWave"
+  },
+  "10fd87b2": {
+    "key": "WE8470",
+    "text": "We8470"
+  },
+  "11360887": {
+    "key": "EM1005_04",
+    "text": "Avalan"
+  },
+  "117a9c12": {
+    "key": "Em1806HugeBlackHoleCannon",
+    "text": "Em1806HugeBlackHoleCannon"
+  },
   "119d4d01": {
     "key": "EM0400",
     "text": "Guiverno"
+  },
+  "11bd386b": {
+    "key": "EM0000_06",
+    "text": "Rastreador de la Vorágine"
+  },
+  "11fe0978": {
+    "key": "EM0003_04",
+    "text": "Jäger trasgo"
+  },
+  "1278666d": {
+    "key": "Em1600TornadoCrawling",
+    "text": "Em1600TornadoCrawling"
   },
   "1343cb82": {
     "key": "EM00A1",
     "text": "Sanador trasgo"
   },
+  "138fbf91": {
+    "key": "Em3100UtilLineSign",
+    "text": "Em3100UtilLineSign"
+  },
+  "13ef72fb": {
+    "key": "Em1700AssembleArea",
+    "text": "Em1700AssembleArea"
+  },
+  "142b0692": {
+    "key": "EM7300_01",
+    "text": "Aislamiento de la Vorágine"
+  },
+  "156a3c93": {
+    "key": "Em1800MagicCircle",
+    "text": "Em1800MagicCircle"
+  },
+  "15759657": {
+    "key": "WE2111_01",
+    "text": "Sombra del martillo"
+  },
+  "161dbcb9": {
+    "key": "EM1501_02",
+    "text": "Ragnarion carbúnculo"
+  },
+  "1641505f": {
+    "key": "EM0805_10",
+    "text": "Amalgama oscura"
+  },
+  "167bc4c9": {
+    "key": "EM0900_09",
+    "text": "Espectro de fuego"
+  },
+  "1685abd0": {
+    "key": "EM8303",
+    "text": "Em8303"
+  },
   "17576f75": {
     "key": "EM2000",
     "text": "Gallanza"
+  },
+  "17c28f21": {
+    "key": "We7000DarkWaveShot",
+    "text": "We7000DarkWaveShot"
+  },
+  "180bb988": {
+    "key": "Em8401WaterShot",
+    "text": "Em8401WaterShot"
   },
   "181b3a5b": {
     "key": "EM1804",
     "text": "Draco eólico Elusio"
   },
+  "18b9915e": {
+    "key": "EM7600_02",
+    "text": "Bahamut Alterum"
+  },
+  "18c5ff00": {
+    "key": "Em7520PowerUpEnergy",
+    "text": "Em7520PowerUpEnergy"
+  },
+  "18fde573": {
+    "key": "EM8301",
+    "text": "Mundo"
+  },
   "1943ed28": {
     "key": "EM7530",
     "text": "Aka Manah"
+  },
+  "194667e3": {
+    "key": "EM1004_05",
+    "text": "Rook"
+  },
+  "1ab10b48": {
+    "key": "EM0400_10",
+    "text": "Ser consanguíneo"
   },
   "1b7264b0": {
     "key": "EM00A4",
     "text": "Soldado trasgo"
   },
+  "1c37ae8f": {
+    "key": "Em7300Laser",
+    "text": "Em7300Laser"
+  },
+  "1c3915cb": {
+    "key": "BH5310",
+    "text": "Bh5310"
+  },
+  "1dc24c0a": {
+    "key": "Em7700Trial1_4",
+    "text": "Em7700Trial1_4"
+  },
+  "1de00538": {
+    "key": "EM0902_02",
+    "text": "Elemental de Neigelith"
+  },
+  "1e47d4b3": {
+    "key": "EM2600_02",
+    "text": "Serpiente de la Vorágine"
+  },
+  "1e4d497f": {
+    "key": "WE7100",
+    "text": "We7100"
+  },
+  "1e703986": {
+    "key": "EM0706_01",
+    "text": "Nazarbonju A"
+  },
+  "1ee38e23": {
+    "key": "NP1800",
+    "text": "Np1800"
+  },
+  "1f3323c0": {
+    "key": "EM0014",
+    "text": "Cabecilla azul"
+  },
   "20037267": {
     "key": "BA7200",
     "text": "Guardián"
+  },
+  "206e163e": {
+    "key": "EM0004_04",
+    "text": "Gimza el Comearena"
+  },
+  "20823730": {
+    "key": "WE7103",
+    "text": "We7103"
+  },
+  "20f45d2e": {
+    "key": "EM0100_04",
+    "text": "Osamenta crepitante"
+  },
+  "2121ca4d": {
+    "key": "NP2201",
+    "text": "Np2201"
+  },
+  "21a54147": {
+    "key": "EM1002_02",
+    "text": "Flechero decaído"
+  },
+  "21cad983": {
+    "key": "EM1000_03",
+    "text": "Esgrimista decaído"
+  },
+  "220b68d0": {
+    "key": "EM1301_04",
+    "text": "Droita de la Vorágine"
   },
   "22102ccd": {
     "key": "WE7003",
     "text": "Edafos"
   },
+  "222ba73c": {
+    "key": "Em8400Laser",
+    "text": "Em8400Laser"
+  },
+  "2244f9de": {
+    "key": "EM0805_01",
+    "text": "Gyro umbrío del juicio"
+  },
+  "226413a0": {
+    "key": "EM0015_01",
+    "text": "Furia escarlata"
+  },
   "22e188a1": {
     "key": "EM7406",
     "text": "Conector cervical"
+  },
+  "2326ba6c": {
+    "key": "EM0000_04",
+    "text": "Patrullero trasgo"
+  },
+  "234f8673": {
+    "key": "EM0900_05",
+    "text": "Fantasma carmesí"
+  },
+  "23dbc16e": {
+    "key": "EM0112",
+    "text": "Ragnarion maldito"
+  },
+  "24b8c28f": {
+    "key": "EM1301_05",
+    "text": "Portador droita"
+  },
+  "24ea91e7": {
+    "key": "Em8400ElementCoreInhaleShot",
+    "text": "Em8400ElementCoreInhaleShot"
+  },
+  "25538033": {
+    "key": "EM0801_02",
+    "text": "Gyro acuático de la Vorágine"
+  },
+  "25b7cd88": {
+    "key": "Em7700Laser",
+    "text": "Em7700Laser"
+  },
+  "25cf4bb3": {
+    "key": "EM0012_01",
+    "text": "Diablillo bermejo"
+  },
+  "25e2471e": {
+    "key": "EM0706_03",
+    "text": "Mirada eterna"
+  },
+  "2678f0c1": {
+    "key": "EM1021",
+    "text": "Lancero de Avia"
   },
   "269529e2": {
     "key": "WE7002",
     "text": "Hydor"
   },
+  "271334f2": {
+    "key": "Em7500DarkSwamp",
+    "text": "Em7500DarkSwamp"
+  },
+  "279a8289": {
+    "key": "Em1806BlackHoleCannonShot",
+    "text": "Em1806BlackHoleCannonShot"
+  },
+  "27d88c16": {
+    "key": "EM0500_06",
+    "text": "Ragnarion girodestructor"
+  },
+  "28242ccc": {
+    "key": "EM2901",
+    "text": "Em2901"
+  },
+  "2a603a4a": {
+    "key": "EM0103_03",
+    "text": "Quiebrahuesos colérico"
+  },
+  "2a6a4077": {
+    "key": "Em7500ChargeBall",
+    "text": "Em7500ChargeBall"
+  },
+  "2a79e28a": {
+    "key": "Em7001DarkFloorShot",
+    "text": "Em7001DarkFloorShot"
+  },
   "2b31654b": {
     "key": "EM7700",
     "text": "Lucilius"
   },
+  "2b4e28b2": {
+    "key": "BA5479",
+    "text": "Ba5479"
+  },
   "2bd7220b": {
     "key": "WE7701",
-    "text": "Espada de repudio"
+    "text": "Espada de la negación absoluta"
+  },
+  "2be332c4": {
+    "key": "BA001C",
+    "text": "Ba001c"
+  },
+  "2c100a47": {
+    "key": "EM1800_01",
+    "text": "Magnapresa furioso"
+  },
+  "2c13e962": {
+    "key": "NP18E0",
+    "text": "Np18e0"
+  },
+  "2c3a76aa": {
+    "key": "EM0010_01",
+    "text": "Diablillo carmesí"
   },
   "2c800d3a": {
     "key": "WE7000",
     "text": "Skotadi"
   },
+  "2d0e3585": {
+    "key": "Em7700TimeStopMeteo",
+    "text": "Em7700TimeStopMeteo"
+  },
   "2d1e3cc6": {
     "key": "EM0604",
     "text": "Viscosín dorado rey"
+  },
+  "2d6b98b7": {
+    "key": "Em8300ShotDimension",
+    "text": "Em8300ShotDimension"
+  },
+  "2e0de3a8": {
+    "key": "WE8170",
+    "text": "We8170"
+  },
+  "2e7f3ed0": {
+    "key": "NP23E0",
+    "text": "Np23e0"
+  },
+  "2e84b345": {
+    "key": "EM2800_04",
+    "text": "Holograma evolutivo"
+  },
+  "2eaca4dc": {
+    "key": "EM0005_04",
+    "text": "Robaespadas Gramson"
+  },
+  "2eacbfaa": {
+    "key": "EM3100_02",
+    "text": "Ragnarion lunar"
+  },
+  "2f1a5740": {
+    "key": "Em1500CounterRock",
+    "text": "Em1500CounterRock"
+  },
+  "2f5f3e49": {
+    "key": "EM8510",
+    "text": "As de la altura"
+  },
+  "2f6b4c94": {
+    "key": "Em7500LilithSphere",
+    "text": "Em7500LilithSphere"
+  },
+  "2f7668e6": {
+    "key": "EM0900_02",
+    "text": "Elemental de Fondam"
+  },
+  "307c98a0": {
+    "key": "Em7700InstallationBom",
+    "text": "Em7700InstallationBom"
+  },
+  "310f13b8": {
+    "key": "EM1900_01",
+    "text": "Tayu'itar A"
+  },
+  "3114585d": {
+    "key": "EM0001_06",
+    "text": "Hechicero trasgo"
   },
   "3165aaba": {
     "key": "EM1001",
     "text": "Lancero de Avia"
   },
+  "31a41014": {
+    "key": "Em7700GopherwoodArkFinalSlash",
+    "text": "Em7700GopherwoodArkFinalSlash"
+  },
+  "31f523be": {
+    "key": "EM0002_01",
+    "text": "Espadachín embarrado"
+  },
+  "320685fd": {
+    "key": "EM1816",
+    "text": "Draco azabache desesperado"
+  },
+  "33051c60": {
+    "key": "EM0300_01",
+    "text": "Rapaz funesto"
+  },
+  "335e00c7": {
+    "key": "Em1600ODFeather",
+    "text": "Em1600ODFeather"
+  },
+  "3399f4dc": {
+    "key": "EM0902_08",
+    "text": "Espectro de agua"
+  },
+  "339a1199": {
+    "key": "NP06E0",
+    "text": "Np06e0"
+  },
+  "34791598": {
+    "key": "Em8200TotemBarrier",
+    "text": "Em8200TotemBarrier"
+  },
+  "348ce05a": {
+    "key": "EM0902_04",
+    "text": "Espíritu acuático"
+  },
+  "34fe8ace": {
+    "key": "BA5347",
+    "text": "Ba5347"
+  },
+  "351c595e": {
+    "key": "EM0500_04",
+    "text": "Pangeasaurio"
+  },
   "363f9b5c": {
     "key": "EM1003",
     "text": "Abanderado de Avia"
+  },
+  "3645e628": {
+    "key": "EM0005_03",
+    "text": "Guerrero trasgo B"
+  },
+  "368e4fbb": {
+    "key": "EM0200_02",
+    "text": "Lobo voraz"
+  },
+  "36cd5aec": {
+    "key": "EM0001_03",
+    "text": "Mago de la Vorágine"
+  },
+  "36fd42f3": {
+    "key": "EM1006_01",
+    "text": "Seguidor de Avalan"
+  },
+  "37a72b81": {
+    "key": "Em7700Trial8_11Crystal",
+    "text": "Em7700Trial8_11Crystal"
+  },
+  "382450c2": {
+    "key": "EM0002_02",
+    "text": "Portaescudo de la Vorágine"
+  },
+  "383390a7": {
+    "key": "EM0400_06",
+    "text": "Guiverno de la Vorágine"
+  },
+  "3931e795": {
+    "key": "EM0103_05",
+    "text": "Ragnarion difunto"
+  },
+  "39369a81": {
+    "key": "Em0502Magma",
+    "text": "Em0502Magma"
+  },
+  "398ced54": {
+    "key": "EM0900_01",
+    "text": "Elemental ardiente del juicio"
   },
   "3a0ea858": {
     "key": "EM0102",
     "text": "Geraseno"
   },
+  "3a1018ce": {
+    "key": "EM1910",
+    "text": "Tayu'itar carnicero"
+  },
   "3a1c16f4": {
     "key": "EM1005",
     "text": "Hermano Avalan"
+  },
+  "3a1c276f": {
+    "key": "EM0300_05",
+    "text": "Rapaz de la Vorágine"
+  },
+  "3a2843f6": {
+    "key": "EM0902_03",
+    "text": "Elemental sombrío de Vayoi"
+  },
+  "3b466939": {
+    "key": "EM2500_01",
+    "text": "Cangrejo de la lava"
+  },
+  "3c5553f0": {
+    "key": "EM1804_03",
+    "text": "Draco eólico huracanado"
   },
   "3d05eb17": {
     "key": "EM0002",
     "text": "Defensor trasgo"
   },
+  "3d2a1c7d": {
+    "key": "EM1806_02",
+    "text": "Draco azabache desesperado"
+  },
+  "3d42569f": {
+    "key": "BA4030",
+    "text": "Ba4030"
+  },
+  "3d8c1392": {
+    "key": "EM0005_07",
+    "text": "Guerrero ragnarion"
+  },
+  "3dc9c374": {
+    "key": "EM0800_03",
+    "text": "Gyro ardiente de la Vorágine"
+  },
+  "3e77ad44": {
+    "key": "Em8100BehaviorShotArrow",
+    "text": "Em8100BehaviorShotArrow"
+  },
+  "3e923943": {
+    "key": "EM0701_02",
+    "text": "Córnea de la Vorágine"
+  },
+  "3eb3dd4b": {
+    "key": "EM1005_02",
+    "text": "Vengador de Avia"
+  },
+  "3ed8c993": {
+    "key": "EM0003_03",
+    "text": "Cazador de la Vorágine"
+  },
+  "3eeb4713": {
+    "key": "EM7406_03",
+    "text": "Conector lumbar"
+  },
+  "3f0604be": {
+    "key": "EM7500_01",
+    "text": "Angra Mainyu (forma consumada)"
+  },
+  "3f4b75d5": {
+    "key": "EM8000",
+    "text": "Siete"
+  },
+  "3f564387": {
+    "key": "Em0900FireWall",
+    "text": "Em0900FireWall"
+  },
+  "3f6f3fef": {
+    "key": "EM1510",
+    "text": "Roca laberíntica"
+  },
   "3f7f9a35": {
     "key": "EM1500",
     "text": "Gólem pétreo"
+  },
+  "3f9d3711": {
+    "key": "EM0103_04",
+    "text": "Scarmiglione de la Vorágine"
+  },
+  "3fa09973": {
+    "key": "Em7700SowrdFinish2SlashBarrageShot",
+    "text": "Em7700SowrdFinish2SlashBarrageShot"
+  },
+  "3fcb1540": {
+    "key": "Em7700ParadiseLostBarrageShot",
+    "text": "Em7700ParadiseLostBarrageShot"
+  },
+  "3fd7111c": {
+    "key": "EM0902_01",
+    "text": "Elemental de agua del juicio"
+  },
+  "3fd854fc": {
+    "key": "Em2000StompQuake",
+    "text": "Em2000StompQuake"
+  },
+  "4040b8cd": {
+    "key": "EM8100",
+    "text": "Song"
+  },
+  "407955e7": {
+    "key": "EM0802_02",
+    "text": "Gyro terroso de la Vorágine"
+  },
+  "40db270b": {
+    "key": "Em0902FreezeBeam",
+    "text": "Em0902FreezeBeam"
+  },
+  "40e01ba4": {
+    "key": "Em8400ShotParent",
+    "text": "Em8400ShotParent"
+  },
+  "41a90fb4": {
+    "key": "WE7300_02",
+    "text": "Náyade"
+  },
+  "41ab1b34": {
+    "key": "Em0103IceBox",
+    "text": "Em0103IceBox"
+  },
+  "41d68ba3": {
+    "key": "EM1500_02",
+    "text": "Gólem pétreo B"
+  },
+  "41fd8d06": {
+    "key": "Em0706BaIcePillarHuge",
+    "text": "Em0706BaIcePillarHuge"
   },
   "427e32fe": {
     "key": "EM0000",
     "text": "Asaltante trasgo"
   },
+  "4289b24a": {
+    "key": "EM1003_01",
+    "text": "Escolta de honores de Avia"
+  },
+  "436ba9c9": {
+    "key": "EM2800_01",
+    "text": "Espectro vengativo"
+  },
+  "43cf4540": {
+    "key": "EM0104",
+    "text": "Rencor óseo"
+  },
+  "4413c8e6": {
+    "key": "Em7300HugeIceBlock",
+    "text": "Em7300HugeIceBlock"
+  },
+  "4417d02d": {
+    "key": "Em7700Trial12",
+    "text": "Em7700Trial12"
+  },
+  "44561624": {
+    "key": "BA0004",
+    "text": "Ba0004"
+  },
   "44a72d4b": {
     "key": "EM0001",
     "text": "Sanador trasgo"
+  },
+  "4586d2bc": {
+    "key": "Em8300Wave",
+    "text": "Em8300Wave"
+  },
+  "45bed43a": {
+    "key": "WE2113_02",
+    "text": "Gae Bolg +99"
+  },
+  "45c9cd7f": {
+    "key": "EM2200_02",
+    "text": "Sombra del espadachín oscuro"
+  },
+  "460a7d7d": {
+    "key": "EM0005_01",
+    "text": "Madbeat blindado"
+  },
+  "46429479": {
+    "key": "Em1803TailGroundCrack",
+    "text": "Em1803TailGroundCrack"
   },
   "4698f258": {
     "key": "EM0201",
     "text": "Jinete trasgo"
   },
+  "4718910c": {
+    "key": "Em8000GrandCrossShot",
+    "text": "Em8000GrandCrossShot"
+  },
+  "47d8a534": {
+    "key": "EM0014_01",
+    "text": "Vándalo carmín"
+  },
+  "48239c9e": {
+    "key": "WE2000",
+    "text": "We2000"
+  },
+  "48d5c1be": {
+    "key": "EM0103_01",
+    "text": "Scarmiglione A"
+  },
+  "48e41046": {
+    "key": "EM1004_04",
+    "text": "García"
+  },
   "48ebace1": {
     "key": "EM1000",
     "text": "Espadachín de Avia"
+  },
+  "49096420": {
+    "key": "Em8000FallSwordShot",
+    "text": "Em8000FallSwordShot"
+  },
+  "493b3f93": {
+    "key": "WE2111_02",
+    "text": "Mjölnir +99"
+  },
+  "498e8418": {
+    "key": "WE8454",
+    "text": "Orden albo"
+  },
+  "49ad1aa0": {
+    "key": "EM0716",
+    "text": "Ragnarion ojorrampante"
+  },
+  "49d04c08": {
+    "key": "Em8300FixLaser",
+    "text": "Em8300FixLaser"
+  },
+  "49f88217": {
+    "key": "EM0600_01",
+    "text": "Maravilla de la Vorágine"
+  },
+  "4a094ca5": {
+    "key": "Em2200OdAbilityShotDiffusion",
+    "text": "Em2200OdAbilityShotDiffusion"
   },
   "4a299e62": {
     "key": "EM1801",
     "text": "Draco ígneo Vrazarek"
   },
+  "4a87f079": {
+    "key": "EM1811",
+    "text": "Draco ígneo llameante"
+  },
   "4a9e6f56": {
     "key": "EM1700",
     "text": "Bégimo"
+  },
+  "4ac36db7": {
+    "key": "EM1815",
+    "text": "Draco prístino enloquecido"
+  },
+  "4ac4a191": {
+    "key": "Em2600PoisonShot",
+    "text": "Em2600PoisonShot"
+  },
+  "4aee7cfb": {
+    "key": "EM0400_05",
+    "text": "Alanefasta"
+  },
+  "4af4ffa3": {
+    "key": "EM8400_01",
+    "text": "Omnis Zegalithos"
+  },
+  "4bc5b36e": {
+    "key": "Em8400ElementCoreShotCircle",
+    "text": "Em8400ElementCoreShotCircle"
+  },
+  "4bee821b": {
+    "key": "EM1100_02",
+    "text": "Espada decaída"
+  },
+  "4c28dce6": {
+    "key": "EM1700_01",
+    "text": "Tauro de la Vorágine"
+  },
+  "4ccacea9": {
+    "key": "EM0300_07",
+    "text": "Pico intrépido"
   },
   "4d2202ae": {
     "key": "EM7404",
@@ -162,6 +962,54 @@
   "4d2d2ef6": {
     "key": "EM7402",
     "text": "Excavalion"
+  },
+  "4d524f9c": {
+    "key": "EM7406_01",
+    "text": "Conector torácico"
+  },
+  "4db719a6": {
+    "key": "EM1303_04",
+    "text": "Asaltante droita"
+  },
+  "4dc08a5a": {
+    "key": "EM1900_07",
+    "text": "Tayu'itar 2.0"
+  },
+  "4df58671": {
+    "key": "BA0005",
+    "text": "Ba0005"
+  },
+  "4e4a69d8": {
+    "key": "EM0102_03",
+    "text": "Ignis tristis"
+  },
+  "4e698abc": {
+    "key": "EM0101_01",
+    "text": "Paladín marchito"
+  },
+  "4e6eb6b4": {
+    "key": "Em0706IceShot",
+    "text": "Em0706IceShot"
+  },
+  "4e6fb5e2": {
+    "key": "EM7100_02",
+    "text": "Vulkan Bora resurgido"
+  },
+  "4ef530a9": {
+    "key": "Em0500RockCrush",
+    "text": "Em0500RockCrush"
+  },
+  "4f8a14ac": {
+    "key": "EM1813",
+    "text": "Draco telúrico sepultado"
+  },
+  "4f989cea": {
+    "key": "EM1303_02",
+    "text": "Soportador droita"
+  },
+  "4fd80298": {
+    "key": "EM0201_04",
+    "text": "Jinete trasgo enloquecido"
   },
   "4fdad2ca": {
     "key": "EM7526",
@@ -175,41 +1023,293 @@
     "key": "EM00A2",
     "text": "Defensor trasgo"
   },
+  "507b1de9": {
+    "key": "Em1806CrownWave",
+    "text": "Em1806CrownWave"
+  },
+  "50d4839d": {
+    "key": "Em8400ElementCoreShotLine",
+    "text": "Em8400ElementCoreShotLine"
+  },
+  "51757c68": {
+    "key": "Em2000Explode",
+    "text": "Em2000Explode"
+  },
+  "518a9cf9": {
+    "key": "Em8300ReflectLaser",
+    "text": "Em8300ReflectLaser"
+  },
+  "51c77ff4": {
+    "key": "EM0103_02",
+    "text": "Scarmiglione B"
+  },
+  "51fceeba": {
+    "key": "EM1801_02",
+    "text": "Draco ígneo llameante"
+  },
+  "52469910": {
+    "key": "EM0100_07",
+    "text": "Réplica de esqueleto"
+  },
+  "52c52a32": {
+    "key": "EM0800_04",
+    "text": "Gyro ardiente sublime"
+  },
+  "52da7312": {
+    "key": "EM1803_02",
+    "text": "Draco telúrico sepultado"
+  },
+  "535fead5": {
+    "key": "EM0500_03",
+    "text": "Rocaimán"
+  },
+  "53e6b191": {
+    "key": "EM1020",
+    "text": "Espadachín de Avia"
+  },
+  "54266003": {
+    "key": "Em8000ForwardFanShot",
+    "text": "Em8000ForwardFanShot"
+  },
+  "5469da4b": {
+    "key": "Em7400ShoulderMissileShot",
+    "text": "Em7400ShoulderMissileShot"
+  },
+  "548cdfe4": {
+    "key": "EM0801_04",
+    "text": "Illusio frigida"
+  },
+  "549fdbe8": {
+    "key": "Em7520ChargeEnergy",
+    "text": "Em7520ChargeEnergy"
+  },
+  "54b8f7ea": {
+    "key": "EM0200_07",
+    "text": "Réplica de lobo famélico"
+  },
+  "54f62a8e": {
+    "key": "EM0300_03",
+    "text": "Carroñero de la mina"
+  },
+  "552f2aa8": {
+    "key": "Em8000VortexAreaFinishShot",
+    "text": "Em8000VortexAreaFinishShot"
+  },
+  "5564a708": {
+    "key": "BA5336",
+    "text": "Ba5336"
+  },
+  "55830b0b": {
+    "key": "We8454StraightLaser",
+    "text": "We8454StraightLaser"
+  },
+  "55a0cc62": {
+    "key": "EM0400_03",
+    "text": "Guiverno monarca"
+  },
+  "55acf6cf": {
+    "key": "EM0902_05",
+    "text": "Fantasma cerúleo"
+  },
+  "55fd8ed7": {
+    "key": "EM1301_01",
+    "text": "Madre droita (asalto)"
+  },
+  "5620d954": {
+    "key": "EM7500_02",
+    "text": "Angra Mainyu (unión con Lilith)"
+  },
   "563b59b1": {
     "key": "BH2002",
     "text": "Cañón automático de éter de 20 mm"
+  },
+  "565fc5b3": {
+    "key": "Em1805SacrificeField",
+    "text": "Em1805SacrificeField"
+  },
+  "56b6feee": {
+    "key": "EM7406_05",
+    "text": "Tornillo infraespinoso"
+  },
+  "56e481bd": {
+    "key": "Em7001ManagedShot",
+    "text": "Em7001ManagedShot"
+  },
+  "5708da64": {
+    "key": "WE2103",
+    "text": "We2103"
   },
   "578e0df2": {
     "key": "WE7024",
     "text": "Anemos"
   },
+  "581dbdeb": {
+    "key": "EM8401_01",
+    "text": "Esencia perfecta"
+  },
+  "58312d1a": {
+    "key": "EM0200_05",
+    "text": "Colmillos mortíferos"
+  },
   "584b39dc": {
     "key": "EM7524",
     "text": "Daeva"
+  },
+  "58a85756": {
+    "key": "EM1300",
+    "text": "Centinela droita"
+  },
+  "590ac46c": {
+    "key": "Em3100ShotChargeLaser",
+    "text": "Em3100ShotChargeLaser"
+  },
+  "59a16138": {
+    "key": "Em1801MagmaField",
+    "text": "Em1801MagmaField"
+  },
+  "59c1f4ed": {
+    "key": "Em1800TargetField",
+    "text": "Em1800TargetField"
+  },
+  "5a37f37f": {
+    "key": "EM8300_02",
+    "text": "Mundo"
+  },
+  "5a3fcff3": {
+    "key": "WE2112_02",
+    "text": "Caduceo +99"
+  },
+  "5a5d001e": {
+    "key": "EM0701_04",
+    "text": "Alskali"
+  },
+  "5a63c162": {
+    "key": "We8454HomingLaser",
+    "text": "We8454HomingLaser"
+  },
+  "5ad167ce": {
+    "key": "EM1003_03",
+    "text": "Condotiero decaído"
+  },
+  "5afeb1e4": {
+    "key": "EM0001_05",
+    "text": "Conjurador trasgo"
+  },
+  "5c1e1def": {
+    "key": "EM0510",
+    "text": "Ragnarion girodestructor"
+  },
+  "5c87e919": {
+    "key": "Em0802CreepShot",
+    "text": "Em0802CreepShot"
+  },
+  "5d14c731": {
+    "key": "Em7700Trial5_7",
+    "text": "Em7700Trial5_7"
+  },
+  "5d776ccf": {
+    "key": "BA60D1",
+    "text": "Ba60d1"
+  },
+  "5d9ac395": {
+    "key": "EM75A0",
+    "text": "Em75a0"
   },
   "5e316d49": {
     "key": "EM7603",
     "text": "Núcleo de Bahamut"
   },
+  "5e7148b7": {
+    "key": "EM1023",
+    "text": "Abanderado de Avia"
+  },
+  "5eb9b20a": {
+    "key": "Em7700ParadiseLostBigLaser",
+    "text": "Em7700ParadiseLostBigLaser"
+  },
+  "5f18c448": {
+    "key": "NP28E0",
+    "text": "Np28e0"
+  },
+  "5f97b606": {
+    "key": "We2113AttackHateWeaponOwnerClose",
+    "text": "We2113AttackHateWeaponOwnerClose"
+  },
   "5fb90ec9": {
     "key": "EM0501",
     "text": "Glaciosaurio"
+  },
+  "5fecb821": {
+    "key": "Em7530ChargeEnergy",
+    "text": "Em7530ChargeEnergy"
   },
   "6056b80a": {
     "key": "EM2600",
     "text": "Cobra"
   },
+  "60b5abdf": {
+    "key": "EM0000_13",
+    "text": "Trasgo fortachón"
+  },
+  "61325867": {
+    "key": "EM0610",
+    "text": "Viscosín celestial"
+  },
+  "61559213": {
+    "key": "Em7400Core",
+    "text": "Em7400Core"
+  },
+  "62570350": {
+    "key": "EM1303_01",
+    "text": "Bálsamo torpedo"
+  },
+  "62d6c821": {
+    "key": "Em7001CoreAttribute",
+    "text": "Em7001CoreAttribute"
+  },
+  "62d7c859": {
+    "key": "EM0015",
+    "text": "Lacayo agreste"
+  },
+  "62e29ce2": {
+    "key": "EM1700_02",
+    "text": "Ennugi"
+  },
+  "632dd368": {
+    "key": "Em7001LightShot",
+    "text": "Em7001LightShot"
+  },
   "635fffb6": {
     "key": "WE7702",
-    "text": "Espada de renuncia"
+    "text": "Espada del rechazo eterno"
+  },
+  "63e3da75": {
+    "key": "EM0003_01",
+    "text": "Arquero frenético"
   },
   "6409b2a8": {
     "key": "EM1900",
     "text": "Tayu'itar"
   },
+  "6477795c": {
+    "key": "EM0600_02",
+    "text": "Maravilla caótica"
+  },
+  "653ce733": {
+    "key": "EM2200_01",
+    "text": "Espadachín misterioso"
+  },
   "65c26889": {
     "key": "EM1806",
     "text": "Draco azabache Evyl"
+  },
+  "65f552bc": {
+    "key": "Em7001ExplodeShockWaveShot",
+    "text": "Em7001ExplodeShockWaveShot"
+  },
+  "66a3b7f4": {
+    "key": "EM8200",
+    "text": "Beelzebub"
   },
   "677f73cd": {
     "key": "EM7409",
@@ -219,21 +1319,81 @@
     "key": "EM0600",
     "text": "Viscosín"
   },
+  "67cca534": {
+    "key": "EM7220",
+    "text": "Furiacán resurgido"
+  },
+  "67f0909c": {
+    "key": "EM0101_05",
+    "text": "Náufrago gélido"
+  },
+  "6893bd66": {
+    "key": "EM0805_02",
+    "text": "Crisol umbrío"
+  },
+  "697cf7ef": {
+    "key": "WE2113_01",
+    "text": "Sombra del tridente"
+  },
+  "6997bbf6": {
+    "key": "EM0900_10",
+    "text": "Escultura flamígera"
+  },
+  "69a60701": {
+    "key": "Em1800Meteor",
+    "text": "Em1800Meteor"
+  },
   "69bb1528": {
     "key": "WE7022",
     "text": "Hydor"
+  },
+  "6a28e7d7": {
+    "key": "EM7406_04",
+    "text": "Tornillo supraespinoso"
+  },
+  "6aa19735": {
+    "key": "EM0002_04",
+    "text": "Guardián trasgo"
+  },
+  "6b17225c": {
+    "key": "EM1804_01",
+    "text": "Falseavientos Sarimanok"
+  },
+  "6c9a3a65": {
+    "key": "EM1024",
+    "text": "Inquisidor Rook"
+  },
+  "6d5a0679": {
+    "key": "We7004TornadoShot",
+    "text": "We7004TornadoShot"
   },
   "6d5ba989": {
     "key": "EM0701",
     "text": "Cyaegha"
   },
+  "6d76e274": {
+    "key": "EM0300_04",
+    "text": "Rapaz de la Vorágine"
+  },
   "6ef4d20b": {
     "key": "WE7021",
     "text": "Fotia"
   },
+  "6f8767e6": {
+    "key": "BA4050",
+    "text": "Ba4050"
+  },
   "6f92396e": {
     "key": "EM7520",
     "text": "Daeva"
+  },
+  "6fb34a18": {
+    "key": "BA5460",
+    "text": "Ba5460"
+  },
+  "701f6b7e": {
+    "key": "Em0500Rock",
+    "text": "Em0500Rock"
   },
   "703b6906": {
     "key": "WE2113",
@@ -243,17 +1403,121 @@
     "key": "WE3100",
     "text": "Libélula"
   },
+  "707c4992": {
+    "key": "EM7406_06",
+    "text": "Tornillo posterior"
+  },
+  "708c3fd9": {
+    "key": "EM0113",
+    "text": "Ragnarion difunto"
+  },
+  "70d8e5ba": {
+    "key": "EM0101_02",
+    "text": "Mal de hoja gélida"
+  },
+  "7193538c": {
+    "key": "EM0900_08",
+    "text": "Elemental ardiente de la Vorágine"
+  },
+  "7213dd70": {
+    "key": "EM2000_02",
+    "text": "Gallanza sublime"
+  },
+  "722d8639": {
+    "key": "EM0000_05",
+    "text": "Carroñero inmundo"
+  },
+  "732c74c0": {
+    "key": "Em7500ExplosionBigWedge",
+    "text": "Em7500ExplosionBigWedge"
+  },
+  "73318cd0": {
+    "key": "NP0301",
+    "text": "Np0301"
+  },
   "745da8b4": {
     "key": "EM7211",
     "text": "Furiacán Nihilla"
+  },
+  "752aca0f": {
+    "key": "Em7600EnergyBall",
+    "text": "Em7600EnergyBall"
+  },
+  "756cbfd0": {
+    "key": "EM1004_01",
+    "text": "Acorazado de Avia"
+  },
+  "7572dcb6": {
+    "key": "EM0802_01",
+    "text": "Gyro terroso del juicio"
   },
   "75a3867c": {
     "key": "EM7300",
     "text": "Mánagarm"
   },
+  "76cd41d2": {
+    "key": "EM0900_03",
+    "text": "Elemental de Vayoi"
+  },
+  "7778b2c9": {
+    "key": "EM0706_04",
+    "text": "Nazarbonju de la Vorágine"
+  },
   "777abf6d": {
     "key": "EM0200",
     "text": "Lobo"
+  },
+  "7783275f": {
+    "key": "EM1500_01",
+    "text": "Gólem pétreo A"
+  },
+  "77877abb": {
+    "key": "NP0002",
+    "text": "Np0002"
+  },
+  "77c77ed3": {
+    "key": "EM0001_02",
+    "text": "Piromante trasgo"
+  },
+  "77dde98a": {
+    "key": "EM1900_04",
+    "text": "Tayu'itar de la Vorágine"
+  },
+  "783c23a8": {
+    "key": "Em2200OdAbilityShotSubCircle",
+    "text": "Em2200OdAbilityShotSubCircle"
+  },
+  "789493d6": {
+    "key": "EM1700_03",
+    "text": "Ragnarion indómito"
+  },
+  "7968a5bf": {
+    "key": "EM0805_09",
+    "text": "Luz"
+  },
+  "79d255ac": {
+    "key": "EM0015_02",
+    "text": "Ragnarion hierronegro"
+  },
+  "79dd2e79": {
+    "key": "EM0701_01",
+    "text": "Vigía silente"
+  },
+  "7a946f08": {
+    "key": "EM0701_05",
+    "text": "Oculus"
+  },
+  "7bec4f65": {
+    "key": "EM1100_01",
+    "text": "Dédalo de la Espada"
+  },
+  "7d08e3de": {
+    "key": "EM7700_02",
+    "text": "Lucilius"
+  },
+  "7d1bb707": {
+    "key": "Em7700Trial1_4Wave",
+    "text": "Em7700Trial1_4Wave"
   },
   "7d71c604": {
     "key": "EM1600",
@@ -263,41 +1527,305 @@
     "key": "EM7525",
     "text": "Daeva"
   },
+  "7f0d919b": {
+    "key": "EM0800_01",
+    "text": "Gyro ardiente del juicio"
+  },
+  "7f2fc256": {
+    "key": "We7001FlameFloorShot",
+    "text": "We7001FlameFloorShot"
+  },
+  "7f44e8fa": {
+    "key": "Em7500BlueAura",
+    "text": "Em7500BlueAura"
+  },
+  "7f6d2a9e": {
+    "key": "EM7000_01",
+    "text": "Proto-Bahamut, el origen"
+  },
+  "7fe7f9ac": {
+    "key": "Em7001WideAreaShot",
+    "text": "Em7001WideAreaShot"
+  },
+  "802dfda1": {
+    "key": "EM0805_04",
+    "text": "Magnitud del vacío"
+  },
   "80b7eeff": {
     "key": "EM0602",
     "text": "Viscosín dorado"
+  },
+  "80cb3c8f": {
+    "key": "Em2901ChargeEnergy",
+    "text": "Em2901ChargeEnergy"
+  },
+  "80cdae70": {
+    "key": "Em7001RagnarokShot",
+    "text": "Em7001RagnarokShot"
+  },
+  "816c094a": {
+    "key": "EM0706_02",
+    "text": "Nazarbonju B"
+  },
+  "8199c8de": {
+    "key": "EM0400_01",
+    "text": "Guiverno antiguo"
+  },
+  "83ba805c": {
+    "key": "Em0706BhIcePillar",
+    "text": "Em0706BhIcePillar"
+  },
+  "83f27515": {
+    "key": "EM0400_04",
+    "text": "Machacarrocas"
+  },
+  "83f82336": {
+    "key": "EM0805_05",
+    "text": "Gyro umbrío de la Vorágine"
   },
   "84abcd3e": {
     "key": "EM7529",
     "text": "Daeva"
   },
+  "84b7cd6b": {
+    "key": "Em1600Tornado",
+    "text": "Em1600Tornado"
+  },
   "84fdd7b5": {
     "key": "EM0005",
     "text": "Guerrero trasgo"
+  },
+  "8506c7c0": {
+    "key": "EM0101_03",
+    "text": "Fiambre de la Vorágine"
+  },
+  "85412de1": {
+    "key": "EM2510",
+    "text": "Cangrejo luchador de sumo"
+  },
+  "85830ba7": {
+    "key": "EM8100_01",
+    "text": "Siete y Song"
+  },
+  "85a3d25f": {
+    "key": "Em7520RestraintSearchLightLineSign",
+    "text": "Em7520RestraintSearchLightLineSign"
+  },
+  "85b58e1e": {
+    "key": "EM7602",
+    "text": "Em7602"
+  },
+  "85c5a6b6": {
+    "key": "EM1301_02",
+    "text": "Cíclope droita"
+  },
+  "85cba49e": {
+    "key": "EM1004_02",
+    "text": "Salvador García"
+  },
+  "865db7dc": {
+    "key": "Em8401DarkShot",
+    "text": "Em8401DarkShot"
+  },
+  "866bf94d": {
+    "key": "Em7700TimeStopLaser",
+    "text": "Em7700TimeStopLaser"
+  },
+  "869d1ca3": {
+    "key": "NP25E0",
+    "text": "Np25e0"
+  },
+  "86a69154": {
+    "key": "EM0100_01",
+    "text": "Esqueleto musgoso"
+  },
+  "86f9ecad": {
+    "key": "EM0705_02",
+    "text": "Vista de lince"
+  },
+  "870b70de": {
+    "key": "Em7520Laser",
+    "text": "Em7520Laser"
+  },
+  "875726c1": {
+    "key": "EM0400_08",
+    "text": "Ragnarion vuelorraudo"
+  },
+  "87d8dec2": {
+    "key": "EM2100_01",
+    "text": "Sombra de la emperatriz"
+  },
+  "87d98182": {
+    "key": "BA4010",
+    "text": "Ba4010"
+  },
+  "8852cbc9": {
+    "key": "Em7500RestraintBeam",
+    "text": "Em7500RestraintBeam"
+  },
+  "88bcf8ff": {
+    "key": "EM1806_01",
+    "text": "Revenant de la Vorágine"
+  },
+  "88dbd702": {
+    "key": "Em8300ParllelShot",
+    "text": "Em8300ParllelShot"
+  },
+  "8998d441": {
+    "key": "EM0000_11",
+    "text": "Trasgo sagaz"
+  },
+  "89be0382": {
+    "key": "Em1900RocketChainsaw",
+    "text": "Em1900RocketChainsaw"
+  },
+  "89cabc10": {
+    "key": "EM0000_03",
+    "text": "Recolector trasgo"
+  },
+  "89e7b84f": {
+    "key": "Em1600TornadoSpiral",
+    "text": "Em1600TornadoSpiral"
+  },
+  "8ac79c5a": {
+    "key": "EM1600_04",
+    "text": "Devorador de trasgos"
+  },
+  "8ad892d1": {
+    "key": "BA5313",
+    "text": "Ba5313"
+  },
+  "8b1e80d8": {
+    "key": "BA4200",
+    "text": "Ba4200"
+  },
+  "8b291b9b": {
+    "key": "EM0000_02",
+    "text": "Luchador trasgo"
+  },
+  "8b86d36b": {
+    "key": "Em7400AttachPart",
+    "text": "Em7400AttachPart"
   },
   "8b964be7": {
     "key": "EM2800",
     "text": "Ente siniestro"
   },
+  "8bb0cbf1": {
+    "key": "EM0004_06",
+    "text": "Gladiador de la Vorágine"
+  },
   "8c3adb57": {
     "key": "EM7100",
     "text": "Vulkan Bora"
+  },
+  "8d17098b": {
+    "key": "Em0005OverDriveRock",
+    "text": "Em0005OverDriveRock"
+  },
+  "8d75ac40": {
+    "key": "EM0002_05",
+    "text": "Mercenario trasgo"
+  },
+  "8dfc0abc": {
+    "key": "EM1805_02",
+    "text": "Draco prístino enloquecido"
   },
   "8eaf20fb": {
     "key": "EM0804",
     "text": "Gyro luminoso"
   },
+  "8f113ea1": {
+    "key": "EM0100_08",
+    "text": "Oscuridad ruinosa"
+  },
+  "8f3cbe40": {
+    "key": "EM0201_02",
+    "text": "Corredor de la Vorágine"
+  },
+  "8f4dc1b9": {
+    "key": "NP19E0",
+    "text": "Np19e0"
+  },
+  "8f8cd542": {
+    "key": "EM0300_06",
+    "text": "Ave de rapiña"
+  },
+  "8fa2e554": {
+    "key": "Em0501FrozenGas",
+    "text": "Em0501FrozenGas"
+  },
+  "8fa422d0": {
+    "key": "EM0004_03",
+    "text": "Janaf el Codicioso"
+  },
+  "9045fb67": {
+    "key": "EM0502_04",
+    "text": "Ragnarion ignífago"
+  },
   "90793b2e": {
     "key": "BA7211",
     "text": "Puerta calamitosa"
+  },
+  "91ba4a22": {
+    "key": "Em8200Cinema",
+    "text": "Em8200Cinema"
+  },
+  "91fec9f9": {
+    "key": "Em8401FireShot",
+    "text": "Em8401FireShot"
+  },
+  "92aa5cd7": {
+    "key": "EM0800_02",
+    "text": "Gyro fosforescente"
+  },
+  "93074faa": {
+    "key": "EM2800_02",
+    "text": "Espectro calamitoso"
+  },
+  "93145a8b": {
+    "key": "We8454SimpleOdRotateLaser",
+    "text": "We8454SimpleOdRotateLaser"
+  },
+  "9338abc9": {
+    "key": "EM1200",
+    "text": "Rapaz vaza'ite"
+  },
+  "9387fe22": {
+    "key": "EM1001_01",
+    "text": "Centinela de la Vorágine"
   },
   "938a4bdf": {
     "key": "EM7310",
     "text": "Mánagarm Nihilla"
   },
+  "938ea8ea": {
+    "key": "Em7520VanishCharacterBeam",
+    "text": "Em7520VanishCharacterBeam"
+  },
+  "9428c0e4": {
+    "key": "Em7310Crack",
+    "text": "Em7310Crack"
+  },
+  "94f6dfbb": {
+    "key": "Em8400AttachLaser",
+    "text": "Em8400AttachLaser"
+  },
+  "958f4b97": {
+    "key": "EM7406_02",
+    "text": "Conector escapular"
+  },
+  "95b80d76": {
+    "key": "EM0502_03",
+    "text": "Vulcasaurio de la Vorágine"
+  },
   "95ecf6ab": {
     "key": "EM7540",
     "text": "Daeva"
+  },
+  "961414c4": {
+    "key": "We8455HugeBlackHoleCannon",
+    "text": "We8455HugeBlackHoleCannon"
   },
   "96316442": {
     "key": "EM7110",
@@ -307,13 +1835,57 @@
     "key": "EM7527",
     "text": "Daeva"
   },
+  "96bf1da7": {
+    "key": "Em8300Laser",
+    "text": "Em8300Laser"
+  },
+  "96f468c7": {
+    "key": "Em7700Trial8_11",
+    "text": "Em7700Trial8_11"
+  },
   "974772c3": {
     "key": "BH0002",
     "text": "Cargamento del mercader"
   },
+  "97dfa1f2": {
+    "key": "EM0901",
+    "text": "Efigie del agua"
+  },
+  "980e59e6": {
+    "key": "EM0501_04",
+    "text": "Glaciosaurio de la Vorágine"
+  },
+  "985c0fe3": {
+    "key": "Em1800MultipleMagicCircle",
+    "text": "Em1800MultipleMagicCircle"
+  },
+  "98f5208d": {
+    "key": "NP24E0",
+    "text": "Np24e0"
+  },
+  "99344cfe": {
+    "key": "BA2610",
+    "text": "Ba2610"
+  },
+  "99568076": {
+    "key": "BA1004",
+    "text": "Ba1004"
+  },
+  "99995b50": {
+    "key": "EM1805_01",
+    "text": "Draco prístino del caos"
+  },
+  "99aad6aa": {
+    "key": "WE0800",
+    "text": "We0800"
+  },
   "9a7dfec3": {
     "key": "EM7522",
     "text": "Daeva"
+  },
+  "9a97c4eb": {
+    "key": "WE8480",
+    "text": "We8480"
   },
   "9ac78d6f": {
     "key": "EM1002",
@@ -323,13 +1895,81 @@
     "key": "EM7405",
     "text": "Excavalion"
   },
+  "9b2fb1e6": {
+    "key": "Em7520RushSign",
+    "text": "Em7520RushSign"
+  },
+  "9b8a992c": {
+    "key": "EM1802_02",
+    "text": "Draco gélido torrencial"
+  },
+  "9bc59239": {
+    "key": "EM76A0",
+    "text": "Em76a0"
+  },
   "9beb4c14": {
     "key": "WE7023",
     "text": "Edafos"
   },
+  "9c5a70d1": {
+    "key": "Em7700HormingLaser",
+    "text": "Em7700HormingLaser"
+  },
+  "9cecd28b": {
+    "key": "EM1900_02",
+    "text": "Tayu'itar B"
+  },
+  "9dc6e63f": {
+    "key": "EM0902_07",
+    "text": "Elemental de agua de la Vorágine"
+  },
+  "9e3c5762": {
+    "key": "WE8452",
+    "text": "Orden dorado"
+  },
+  "9f2c6964": {
+    "key": "Np06e0Rose",
+    "text": "Np06e0Rose"
+  },
+  "9f498833": {
+    "key": "EM0706_05",
+    "text": "Ragnarion ojorrampante"
+  },
+  "9f786297": {
+    "key": "EM1600_07",
+    "text": "Ragnarion níveo"
+  },
+  "9fa0b494": {
+    "key": "EM0805_03",
+    "text": "Gyro crepuscular"
+  },
+  "9fc9b9b5": {
+    "key": "Em0001FireWallTrap",
+    "text": "Em0001FireWallTrap"
+  },
   "9ff822ce": {
     "key": "EM7528",
     "text": "Daeva"
+  },
+  "a08e006f": {
+    "key": "NP2801",
+    "text": "Np2801"
+  },
+  "a2ae69b2": {
+    "key": "EM0501_05",
+    "text": "Ragnarion corazahelada"
+  },
+  "a309b4c3": {
+    "key": "BA260C",
+    "text": "Ba260c"
+  },
+  "a325369b": {
+    "key": "Em7300IceBlock",
+    "text": "Em7300IceBlock"
+  },
+  "a35e461d": {
+    "key": "EM1801_01",
+    "text": "Draco ígneo del caos"
   },
   "a379ac65": {
     "key": "EM2700",
@@ -339,17 +1979,73 @@
     "key": "BH0004",
     "text": "Barricada"
   },
+  "a3e89b41": {
+    "key": "EM1800_02",
+    "text": "Garamud feroz"
+  },
+  "a426dc15": {
+    "key": "EM0005_06",
+    "text": "Guerrero de la Vorágine"
+  },
+  "a4661ade": {
+    "key": "EM1301_03",
+    "text": "Receptáculo etéreo"
+  },
+  "a500816a": {
+    "key": "Em8400ElementCoreShotStageRandom",
+    "text": "Em8400ElementCoreShotStageRandom"
+  },
   "a51ba796": {
     "key": "EM7407",
     "text": "Reactor deltoideo"
+  },
+  "a5d4b64a": {
+    "key": "BH7150",
+    "text": "Bh7150"
+  },
+  "a5ede718": {
+    "key": "EM0102_02",
+    "text": "Ragnarion maldito"
+  },
+  "a5f2b85c": {
+    "key": "EM0001_01",
+    "text": "Brujo trasgo"
+  },
+  "a5f407c1": {
+    "key": "WE2102",
+    "text": "We2102"
+  },
+  "a62190cb": {
+    "key": "EM8200_02",
+    "text": "Beelzebub"
+  },
+  "a635d9fe": {
+    "key": "EM0805_08",
+    "text": "Osteoesfera maldita corrosiva"
   },
   "a63de428": {
     "key": "EM0300",
     "text": "Cálao"
   },
+  "a66035d8": {
+    "key": "Em7700Crack",
+    "text": "Em7700Crack"
+  },
   "a685791c": {
     "key": "EM7403",
     "text": "Excavalion"
+  },
+  "a74ac4f9": {
+    "key": "EM1303_03",
+    "text": "Bálsamo de la Vorágine"
+  },
+  "a77081a5": {
+    "key": "Em0501IceWave",
+    "text": "Em0501IceWave"
+  },
+  "a7ba17c4": {
+    "key": "NP0100",
+    "text": "Vyrn"
   },
   "a81f6dca": {
     "key": "EM0101",
@@ -357,15 +2053,115 @@
   },
   "a86498c5": {
     "key": "EM7610",
-    "text": "Bahamut Alterum Omega"
+    "text": "Mega-Bahamut Alterum"
+  },
+  "a912f0af": {
+    "key": "Em8000SmallSwordShot",
+    "text": "Em8000SmallSwordShot"
+  },
+  "a9486673": {
+    "key": "Em7400FallRock",
+    "text": "Em7400FallRock"
+  },
+  "a959251b": {
+    "key": "Em7000EnergyBall",
+    "text": "Em7000EnergyBall"
+  },
+  "a998aa26": {
+    "key": "EM0004_09",
+    "text": "Réplica de ogro"
+  },
+  "a9b48823": {
+    "key": "Em8401EarthShot",
+    "text": "Em8401EarthShot"
+  },
+  "a9d9072e": {
+    "key": "EM0003_05",
+    "text": "Tirador trasgo"
+  },
+  "aa3afd9c": {
+    "key": "EM2200_03",
+    "text": "Iz, autoridad divina"
+  },
+  "aaa89fcd": {
+    "key": "BA0000",
+    "text": "Ba0000"
+  },
+  "aaaac784": {
+    "key": "EM0100_02",
+    "text": "Esqueleto de la Vorágine"
+  },
+  "ab049e59": {
+    "key": "BA0060",
+    "text": "Ba0060"
+  },
+  "ab0b6627": {
+    "key": "WE2110_02",
+    "text": "Freikugel +99"
+  },
+  "ab5cc891": {
+    "key": "NP0702",
+    "text": "Consomé"
+  },
+  "ac358060": {
+    "key": "EM1900_05",
+    "text": "Tayu'itar 2.0 de la Vorágine"
+  },
+  "ad8d0675": {
+    "key": "NP0300",
+    "text": "Rolan"
   },
   "ad9c4174": {
     "key": "EM7505",
     "text": "Angra Mainyu"
   },
+  "adc377e7": {
+    "key": "EM0502_02",
+    "text": "Vulcasaurio B"
+  },
+  "ae163866": {
+    "key": "BH5400",
+    "text": "Bh5400"
+  },
+  "ae1e9ffc": {
+    "key": "WE8091",
+    "text": "We8091"
+  },
+  "ae1f95d9": {
+    "key": "WE8090",
+    "text": "We8090"
+  },
+  "ae21ba4d": {
+    "key": "EM0100_03",
+    "text": "Aparición de la Vorágine"
+  },
   "ae3325e8": {
     "key": "WE7001",
     "text": "Fotia"
+  },
+  "ae43dac4": {
+    "key": "Em2200BehaviorShot",
+    "text": "Em2200BehaviorShot"
+  },
+  "ae4817f3": {
+    "key": "Em2200OdAbilityShotFinishMain",
+    "text": "Em2200OdAbilityShotFinishMain"
+  },
+  "ae719022": {
+    "key": "EM1000_02",
+    "text": "Recluta de la Vorágine"
+  },
+  "af025be5": {
+    "key": "BA7090",
+    "text": "Ba7090"
+  },
+  "afa2e2d1": {
+    "key": "Em8300Shot",
+    "text": "Em8300Shot"
+  },
+  "afac16fb": {
+    "key": "EM1005_03",
+    "text": "Delirante Derleth"
   },
   "afeb2d7e": {
     "key": "EM1803",
@@ -375,13 +2171,41 @@
     "key": "WE2110",
     "text": "Freikugel"
   },
+  "b1412d89": {
+    "key": "EM1900_03",
+    "text": "Tayu'itar 2.0"
+  },
+  "b1796753": {
+    "key": "WE2105",
+    "text": "We2105"
+  },
+  "b1ca8945": {
+    "key": "EM0400_02",
+    "text": "Llama infernal de Fondam"
+  },
+  "b2391d46": {
+    "key": "EM0500_01",
+    "text": "Telurosaurio A"
+  },
   "b2efc09d": {
     "key": "EM0801",
     "text": "Gyro acuático"
   },
+  "b2f29e75": {
+    "key": "EM1800_03",
+    "text": "Dragón de la Vorágine"
+  },
+  "b30b48e6": {
+    "key": "We3100ShotNormalLaser",
+    "text": "We3100ShotNormalLaser"
+  },
   "b31ee30a": {
     "key": "EM0706",
     "text": "Nazarbonju"
+  },
+  "b32d8bb6": {
+    "key": "EM3100_01",
+    "text": "Torp, dios autómata"
   },
   "b3704145": {
     "key": "EM00A0",
@@ -391,6 +2215,30 @@
     "key": "EM2400",
     "text": "Lilith"
   },
+  "b3aa3a0f": {
+    "key": "EM0501_03",
+    "text": "Rompehielos"
+  },
+  "b4276d8f": {
+    "key": "EM1814",
+    "text": "Draco eólico huracanado"
+  },
+  "b43ff816": {
+    "key": "EM0000_12",
+    "text": "Réplica de diablillo"
+  },
+  "b46b3233": {
+    "key": "BA53E0",
+    "text": "Ba53e0"
+  },
+  "b479a2da": {
+    "key": "EM7202",
+    "text": "Em7202"
+  },
+  "b4a319a1": {
+    "key": "NP15E0",
+    "text": "Np15e0"
+  },
   "b4aed02d": {
     "key": "EM7600",
     "text": "Bahamut Alterum"
@@ -399,13 +2247,25 @@
     "key": "BA7201",
     "text": "Vigía"
   },
+  "b593f406": {
+    "key": "EM1004_06",
+    "text": "Alférez decaído"
+  },
   "b624c0be": {
     "key": "EM0605",
     "text": "Viscosín prismático"
   },
+  "b66a9db2": {
+    "key": "BA5322",
+    "text": "Ba5322"
+  },
   "b67bc0ca": {
     "key": "WE7014",
     "text": "Anemos"
+  },
+  "b6948f8e": {
+    "key": "EM0005_05",
+    "text": "Berserker ragnarion"
   },
   "b69dd953": {
     "key": "EM0103",
@@ -415,6 +2275,10 @@
     "key": "EM7400",
     "text": "Excavalion"
   },
+  "b6ff9a9a": {
+    "key": "EM0013_01",
+    "text": "Diablillo bermellón"
+  },
   "b71014c5": {
     "key": "EM0500",
     "text": "Telurosaurio"
@@ -423,69 +2287,481 @@
     "key": "WE7013",
     "text": "Edafos"
   },
+  "b798a8c8": {
+    "key": "EM1900_06",
+    "text": "Tayu'itar carnicero"
+  },
   "b81ca4b7": {
     "key": "WE7012",
     "text": "Hydor"
+  },
+  "b8a7b25f": {
+    "key": "Em7001ExplodeLaserShot",
+    "text": "Em7001ExplodeLaserShot"
+  },
+  "b8f6d4d5": {
+    "key": "EM1806_04",
+    "text": "Ragnarion final"
+  },
+  "b98c51ac": {
+    "key": "EM1500_03",
+    "text": "Gólem pétreo de la Vorágine"
+  },
+  "ba1cab8f": {
+    "key": "EM7300_02",
+    "text": "Mánagarm resurgido"
   },
   "ba320eeb": {
     "key": "EM0502",
     "text": "Vulcasaurio"
   },
+  "ba643660": {
+    "key": "EM0900_04",
+    "text": "Espíritu ardiente"
+  },
+  "ba89293f": {
+    "key": "WE7711",
+    "text": "Espada de la negación absoluta"
+  },
+  "bae9fa0d": {
+    "key": "EM0902_09",
+    "text": "Escultura glacial"
+  },
+  "bb54d878": {
+    "key": "Em2100Sword",
+    "text": "Em2100Sword"
+  },
+  "bbc92ba0": {
+    "key": "Em1800FireField",
+    "text": "Em1800FireField"
+  },
+  "bbfa3650": {
+    "key": "EM8100_02",
+    "text": "Siete y Song, estrellas boreales"
+  },
   "bc7e01a9": {
     "key": "BA2103",
     "text": "Arpeo"
+  },
+  "bce93654": {
+    "key": "EM0102_01",
+    "text": "Alma errante de la Vorágine"
   },
   "bcef1ee2": {
     "key": "EM1100",
     "text": "Velo de la Espada"
   },
+  "bd48c3ef": {
+    "key": "EM2000_01",
+    "text": "Sombra del lobo alfa"
+  },
+  "bd6c4dd2": {
+    "key": "EM0502_01",
+    "text": "Vulcasaurio A"
+  },
   "bdc484a5": {
     "key": "EM1303",
     "text": "Bálsamo droita"
+  },
+  "bddfb5d8": {
+    "key": "Em1804WindField",
+    "text": "Em1804WindField"
   },
   "bdf271c2": {
     "key": "EM7601",
     "text": "Bahamut Alterum"
   },
+  "be09f367": {
+    "key": "EM1303_05",
+    "text": "Brizna droita"
+  },
+  "be14bcd5": {
+    "key": "EM8200_01",
+    "text": "Beelzebub, soberano supremo"
+  },
+  "be283b9b": {
+    "key": "EM0000_01",
+    "text": "Bandido trasgo"
+  },
+  "be52364f": {
+    "key": "BA4007",
+    "text": "Ba4007"
+  },
+  "be569df0": {
+    "key": "Em3100UtilLaserModule",
+    "text": "Em3100UtilLaserModule"
+  },
+  "bec6a8a2": {
+    "key": "EM0201_01",
+    "text": "Jinete de la Vorágine"
+  },
+  "c015efee": {
+    "key": "We7001MeteorShot",
+    "text": "We7001MeteorShot"
+  },
+  "c065af80": {
+    "key": "Em7520CreateDimensionObjectSign",
+    "text": "Em7520CreateDimensionObjectSign"
+  },
+  "c222c939": {
+    "key": "WE8451",
+    "text": "Orden cerúleo"
+  },
+  "c2a987a5": {
+    "key": "EM3000",
+    "text": "Em3000"
+  },
   "c3089918": {
     "key": "EM2500",
     "text": "Pinzador"
+  },
+  "c32fa98d": {
+    "key": "EM0101_06",
+    "text": "Muerte helada"
+  },
+  "c38eab52": {
+    "key": "EM1812",
+    "text": "Draco gélido torrencial"
   },
   "c3c58c76": {
     "key": "EM7200",
     "text": "Furiacán"
   },
+  "c4d2bb4b": {
+    "key": "EM0803",
+    "text": "Gyro eólico"
+  },
+  "c54dc2d3": {
+    "key": "WE1100",
+    "text": "We1100"
+  },
+  "c57bde22": {
+    "key": "We7003ShockWaveShot",
+    "text": "We7003ShockWaveShot"
+  },
+  "c5d5664e": {
+    "key": "Em7500DarkExplosion",
+    "text": "Em7500DarkExplosion"
+  },
+  "c5ee1298": {
+    "key": "BA4005",
+    "text": "Ba4005"
+  },
+  "c5ef7201": {
+    "key": "Em3100ShotTailBeam",
+    "text": "Em3100ShotTailBeam"
+  },
+  "c623abd9": {
+    "key": "NP21E0",
+    "text": "Np21e0"
+  },
+  "c6fd68b3": {
+    "key": "EM8300_01",
+    "text": "Mundo Gestante"
+  },
+  "c70d7964": {
+    "key": "EM1000_04",
+    "text": "Seguidor de Avia"
+  },
+  "c7eab279": {
+    "key": "EM0201_03",
+    "text": "Trasgo de caballería"
+  },
+  "c8035f03": {
+    "key": "EM7406_07",
+    "text": "Tornillo dorsal"
+  },
+  "c8a79452": {
+    "key": "NP22E0",
+    "text": "Np22e0"
+  },
+  "c90aa636": {
+    "key": "EM8500",
+    "text": "Albacora"
+  },
+  "c992621d": {
+    "key": "EM0005_02",
+    "text": "Guerrero trasgo A"
+  },
+  "ca053788": {
+    "key": "Em8400CommonVfx",
+    "text": "Em8400CommonVfx"
+  },
+  "ca1d552d": {
+    "key": "EM1803_01",
+    "text": "Draco telúrico del caos"
+  },
   "ca4091c8": {
     "key": "EM0004",
     "text": "Soldado trasgo"
+  },
+  "ca4964ab": {
+    "key": "EM8400",
+    "text": "Omnis Zegalithos"
+  },
+  "cae6d200": {
+    "key": "EM2900",
+    "text": "Em2900"
+  },
+  "caf657d8": {
+    "key": "Em7700ParadiseLostChargeBarrageShot",
+    "text": "Em7700ParadiseLostChargeBarrageShot"
+  },
+  "cb6ccaba": {
+    "key": "EM0200_04",
+    "text": "Lobo de la Vorágine"
+  },
+  "cc551543": {
+    "key": "EM0400_09",
+    "text": "Ziverno"
+  },
+  "cc6c995c": {
+    "key": "EM1806_03",
+    "text": "Draco maldito corrosivo"
+  },
+  "ccddbda1": {
+    "key": "EM7101",
+    "text": "Em7101"
+  },
+  "ccf15bc1": {
+    "key": "Em7700MagicFinish1FallBarrageShot",
+    "text": "Em7700MagicFinish1FallBarrageShot"
+  },
+  "cd3fcd78": {
+    "key": "WE2112_01",
+    "text": "Sombra de la vara"
+  },
+  "cd9168fa": {
+    "key": "Em7500BystanderEm2400",
+    "text": "Em7500BystanderEm2400"
+  },
+  "cd97935d": {
+    "key": "EM0512",
+    "text": "Ragnarion ignífago"
   },
   "cdaa9205": {
     "key": "EM7504",
     "text": "Angra Mainyu"
   },
+  "cf1635a1": {
+    "key": "EM0004_02",
+    "text": "Bord el marrullero"
+  },
+  "cf45d828": {
+    "key": "EM0501_02",
+    "text": "Glaciosaurio B"
+  },
+  "cfc0bcbe": {
+    "key": "NP0000",
+    "text": "Lyria"
+  },
+  "cfd2f03a": {
+    "key": "Em8400LaserTarget",
+    "text": "Em8400LaserTarget"
+  },
+  "cff090a4": {
+    "key": "EM0004_08",
+    "text": "Aniquilador trasgo"
+  },
+  "d00c2f56": {
+    "key": "EM0800_05",
+    "text": "Illusio calida"
+  },
+  "d0302bb4": {
+    "key": "Em7310IceBlock",
+    "text": "Em7310IceBlock"
+  },
+  "d05e829f": {
+    "key": "EM1002_01",
+    "text": "Francotirador de la Vorágine"
+  },
+  "d07e0c30": {
+    "key": "EM0701_03",
+    "text": "Mirada de la Vorágine"
+  },
+  "d08df671": {
+    "key": "EM1600_01",
+    "text": "Alaspectro"
+  },
+  "d08f4466": {
+    "key": "Em7520RestraintSearchlight",
+    "text": "Em7520RestraintSearchlight"
+  },
   "d09c5b2e": {
     "key": "EM7201",
     "text": "Furiacán"
   },
+  "d0d68948": {
+    "key": "EM1022",
+    "text": "Arquero de Avia"
+  },
+  "d10999a4": {
+    "key": "EM7600_01",
+    "text": "Bahamut Alterum, autoridad divina"
+  },
+  "d145179a": {
+    "key": "EM1600_03",
+    "text": "Grifo B"
+  },
+  "d1642ea8": {
+    "key": "Em7001RedLightShot",
+    "text": "Em7001RedLightShot"
+  },
+  "d1f18fb8": {
+    "key": "Em7500BlueAuraLink",
+    "text": "Em7500BlueAuraLink"
+  },
+  "d21d2bd8": {
+    "key": "Em7001Core",
+    "text": "Em7001Core"
+  },
+  "d2d789d0": {
+    "key": "EM1804_02",
+    "text": "Draco eólico del caos"
+  },
+  "d316a5bd": {
+    "key": "WE8450",
+    "text": "Orden cinabrio"
+  },
+  "d3b72274": {
+    "key": "Em2200OdAbilityShotFinishSub",
+    "text": "Em2200OdAbilityShotFinishSub"
+  },
+  "d4331ab3": {
+    "key": "EM0001_04",
+    "text": "Brujo de la Vorágine"
+  },
+  "d4671109": {
+    "key": "Em7700ExpandCircleShot",
+    "text": "Em7700ExpandCircleShot"
+  },
+  "d46f4020": {
+    "key": "BA2620",
+    "text": "Ba2620"
+  },
   "d4950d74": {
     "key": "WE7700",
-    "text": "Espada de refutación"
+    "text": "Espada del repudio total"
+  },
+  "d4d32b5c": {
+    "key": "EM2600_03",
+    "text": "Segador de las arenas de la Vorágine"
   },
   "d4eebb52": {
     "key": "EM7531",
     "text": "Aka Manah"
   },
+  "d5163e41": {
+    "key": "Em7600ExLaser",
+    "text": "Em7600ExLaser"
+  },
+  "d5bf9001": {
+    "key": "EM0902_06",
+    "text": "Fantasma aguamarina"
+  },
   "d622ed34": {
     "key": "EM0800",
     "text": "Gyro ardiente"
+  },
+  "d66593a7": {
+    "key": "BA4002",
+    "text": "Ba4002"
+  },
+  "d6bc56c1": {
+    "key": "EM0005_08",
+    "text": "Despojador cazasonidos"
+  },
+  "d6bd89ff": {
+    "key": "EM0200_03",
+    "text": "Bestia de la Vorágine"
+  },
+  "d6fcd868": {
+    "key": "EM2600_01",
+    "text": "Segador de las arenas"
+  },
+  "d79a9079": {
+    "key": "Em7001MagicCircleShot",
+    "text": "Em7001MagicCircleShot"
+  },
+  "d7ac7e8e": {
+    "key": "EM7200_01",
+    "text": "Vitalidad de la Vorágine"
+  },
+  "d7b7ee0d": {
+    "key": "EM0804_02",
+    "text": "Gyro luminoso de la Vorágine"
+  },
+  "d7ba6d4a": {
+    "key": "EM8300",
+    "text": "Mundo"
+  },
+  "d7ceaf10": {
+    "key": "EM0000_10",
+    "text": "Trasgo enérgico"
+  },
+  "d7dce4ad": {
+    "key": "Em7700MagicCurveShot",
+    "text": "Em7700MagicCurveShot"
+  },
+  "d8c03014": {
+    "key": "WE8000",
+    "text": "We8000"
+  },
+  "d9158b9f": {
+    "key": "Em7500DimensionDamageOverTime",
+    "text": "Em7500DimensionDamageOverTime"
   },
   "d9e45318": {
     "key": "EM0705",
     "text": "Ahriman"
   },
+  "da4b7682": {
+    "key": "We3101ShotChargeLaser",
+    "text": "We3101ShotChargeLaser"
+  },
+  "da984d5f": {
+    "key": "WE8455",
+    "text": "Orden azabache"
+  },
+  "db8a7193": {
+    "key": "EM0300_02",
+    "text": "Cuervo enajenado"
+  },
+  "dba1eaef": {
+    "key": "EM0100_06",
+    "text": "Grito de Dahli"
+  },
+  "dbc6e399": {
+    "key": "EM0900_06",
+    "text": "Fantasma rubí"
+  },
   "dbca3857": {
     "key": "EM7000",
     "text": "Proto-Bahamut"
+  },
+  "dbf6856a": {
+    "key": "EM0511",
+    "text": "Ragnarion corazahelada"
+  },
+  "dc207957": {
+    "key": "BA5374",
+    "text": "Ba5374"
+  },
+  "dc3db4ac": {
+    "key": "Em3100UtilBeamModule",
+    "text": "Em3100UtilBeamModule"
+  },
+  "dd0b753b": {
+    "key": "Em8400AttackSign",
+    "text": "Em8400AttackSign"
+  },
+  "dd0fdf47": {
+    "key": "EM1301_06",
+    "text": "Peonza droita"
+  },
+  "dea4b0f4": {
+    "key": "EM1600_06",
+    "text": "Grifo de la Vorágine"
   },
   "dea8e6e6": {
     "key": "EM7523",
@@ -495,9 +2771,25 @@
     "key": "EM7001",
     "text": "Proto-Bahamut"
   },
+  "df63ead1": {
+    "key": "EM1802_01",
+    "text": "Draco gélido del caos"
+  },
+  "e0544084": {
+    "key": "EM1001_02",
+    "text": "Catafracto decaído"
+  },
   "e07acd74": {
     "key": "WE7300",
     "text": "Nereida"
+  },
+  "e0953732": {
+    "key": "EM0801_01",
+    "text": "Gyro acuático del juicio"
+  },
+  "e0f96f27": {
+    "key": "Em1803OctagonCrack",
+    "text": "Em1803OctagonCrack"
   },
   "e121c79f": {
     "key": "EM00A3",
@@ -507,13 +2799,49 @@
     "key": "EM1802",
     "text": "Draco gélido Wilino"
   },
+  "e1716f77": {
+    "key": "EM7406_08",
+    "text": "Cilindro principal"
+  },
+  "e2293387": {
+    "key": "Em7400MissleEffect",
+    "text": "Em7400MissleEffect"
+  },
+  "e232fb42": {
+    "key": "Em2200OdAbilityShotMark",
+    "text": "Em2200OdAbilityShotMark"
+  },
   "e25b6346": {
     "key": "BA7210",
     "text": "Vestigios calamitosos"
   },
+  "e2a02d29": {
+    "key": "Em7700BarrageOuterLaser",
+    "text": "Em7700BarrageOuterLaser"
+  },
+  "e2d330ef": {
+    "key": "EM0200_06",
+    "text": "Lobo terrorífico"
+  },
+  "e3ff99b5": {
+    "key": "EM1600_02",
+    "text": "Grifo A"
+  },
+  "e4b27f53": {
+    "key": "EM7407_01",
+    "text": "Reactor antebraquial"
+  },
   "e4c12a94": {
     "key": "EM2100",
     "text": "Maglielle"
+  },
+  "e50e768a": {
+    "key": "Em2000Wave",
+    "text": "Em2000Wave"
+  },
+  "e5277feb": {
+    "key": "Em7500RestraintNp0300",
+    "text": "Em7500RestraintNp0300"
   },
   "e556d1bf": {
     "key": "EM7210",
@@ -521,7 +2849,23 @@
   },
   "e57a72bc": {
     "key": "WE2111",
-    "text": "Mjolnir"
+    "text": "Mjölnir"
+  },
+  "e588509d": {
+    "key": "Em1600TornadoCrossCrawling",
+    "text": "Em1600TornadoCrossCrawling"
+  },
+  "e5e52b9f": {
+    "key": "EM1900_08",
+    "text": "Tayu'itar carnicero"
+  },
+  "e667093e": {
+    "key": "Em1806AuraBreath",
+    "text": "Em1806AuraBreath"
+  },
+  "e751b708": {
+    "key": "EM2600_05",
+    "text": "Rinkhals"
   },
   "e7576708": {
     "key": "EM7500",
@@ -535,33 +2879,197 @@
     "key": "EM0802",
     "text": "Gyro terroso"
   },
+  "e77b72ab": {
+    "key": "EM0201_11",
+    "text": "Corredor carmesí"
+  },
+  "e7845ee5": {
+    "key": "EM0000_07",
+    "text": "Bandido de la Vorágine"
+  },
+  "e7e6e334": {
+    "key": "Em1803GroundCrack",
+    "text": "Em1803GroundCrack"
+  },
   "e7f7fc6d": {
     "key": "EM7503",
     "text": "Angra Mainyu"
+  },
+  "e819802d": {
+    "key": "BH5386",
+    "text": "Bh5386"
+  },
+  "e845921e": {
+    "key": "Em1700ThunderLine",
+    "text": "Em1700ThunderLine"
   },
   "e873d0f9": {
     "key": "EM7501",
     "text": "Angra Mainyu"
   },
+  "e8ff6743": {
+    "key": "EM7200_02",
+    "text": "Furiacán resurgido"
+  },
+  "e93faca2": {
+    "key": "EM0903",
+    "text": "Efigie del viento"
+  },
+  "e940aef5": {
+    "key": "WE7710",
+    "text": "Espada del repudio total"
+  },
+  "e95bb4cb": {
+    "key": "NP0400",
+    "text": "Crónica"
+  },
+  "e9f3bfcc": {
+    "key": "Em7700MagicFallShot",
+    "text": "Em7700MagicFallShot"
+  },
+  "ea6b0b74": {
+    "key": "Em7700BarrageFallingLaser",
+    "text": "Em7700BarrageFallingLaser"
+  },
   "eab390a0": {
     "key": "EM2200",
     "text": "Iz"
+  },
+  "eb334bdd": {
+    "key": "Em1600TornadoDelaySign",
+    "text": "Em1600TornadoDelaySign"
+  },
+  "eb40ceb0": {
+    "key": "NP03E0",
+    "text": "Np03e0"
+  },
+  "eb9c09ed": {
+    "key": "EM0802_03",
+    "text": "Gyro terroso sublime"
+  },
+  "ed096929": {
+    "key": "WE7712",
+    "text": "Espada del rechazo eterno"
+  },
+  "ed2ef076": {
+    "key": "EM0805_06",
+    "text": "Crisol desconsolador"
+  },
+  "eddcfa8b": {
+    "key": "EM2100_02",
+    "text": "Maglielle sublime"
+  },
+  "ee30a953": {
+    "key": "EM1003_02",
+    "text": "Comandante de la Vorágine"
+  },
+  "ee4017bd": {
+    "key": "EM1004_03",
+    "text": "Aguerrido Rynell"
+  },
+  "ef3eb232": {
+    "key": "EM0805_07",
+    "text": "Gyro umbrío sublime"
+  },
+  "ef9323ac": {
+    "key": "EM1600_05",
+    "text": "Rapaz de obsidiana"
+  },
+  "effc3497": {
+    "key": "EM0010",
+    "text": "Diablillo raso"
+  },
+  "f0541fcc": {
+    "key": "Em7520Cinema",
+    "text": "Em7520Cinema"
+  },
+  "f08e5f48": {
+    "key": "Em2100WeaponOwner",
+    "text": "Em2100WeaponOwner"
+  },
+  "f237e078": {
+    "key": "EM0004_07",
+    "text": "Camorrista trasgo"
+  },
+  "f2689950": {
+    "key": "EM0000_08",
+    "text": "Salteador trasgo"
+  },
+  "f2825aca": {
+    "key": "Em8200Totem",
+    "text": "Em8200Totem"
+  },
+  "f296b450": {
+    "key": "EM0101_04",
+    "text": "Caos decaído"
+  },
+  "f3839ce2": {
+    "key": "EM0004_05",
+    "text": "Bárbaro de la Vorágine"
+  },
+  "f38ad679": {
+    "key": "EM1501",
+    "text": "Gólem rubí Aquila"
+  },
+  "f4207a67": {
+    "key": "EM0003_02",
+    "text": "Arquero de la Vorágine"
+  },
+  "f4214002": {
+    "key": "Em7300ExIceBlock",
+    "text": "Em7300ExIceBlock"
+  },
+  "f44ff159": {
+    "key": "EM1501_01",
+    "text": "Gólem gema de la Vorágine"
   },
   "f45a0b6d": {
     "key": "EM1301",
     "text": "Madre droita"
   },
+  "f50c33b4": {
+    "key": "Em7500DarkVortex",
+    "text": "Em7500DarkVortex"
+  },
+  "f5f76788": {
+    "key": "EM0002_03",
+    "text": "Hoplita de la Vorágine"
+  },
+  "f5fec39b": {
+    "key": "Em1801MagmaRock",
+    "text": "Em1801MagmaRock"
+  },
+  "f62b9014": {
+    "key": "EM1005_01",
+    "text": "Pecador Vargas"
+  },
+  "f69b1636": {
+    "key": "WE2110_01",
+    "text": "Sombra del trabuco"
+  },
   "f740812d": {
     "key": "EM7502",
     "text": "Angra Mainyu"
+  },
+  "f79ff29a": {
+    "key": "EM2800_03",
+    "text": "Sombra de la Vorágine"
   },
   "f83b508a": {
     "key": "EM0601",
     "text": "Viscosín plateado"
   },
+  "f85ae1cd": {
+    "key": "EM0000_09",
+    "text": "Bruto trasgo"
+  },
   "f946d055": {
     "key": "EM7408",
     "text": "Reactor coxal"
+  },
+  "f9f88fa3": {
+    "key": "NP07E0",
+    "text": "Np07e0"
   },
   "fac02e60": {
     "key": "EM7521",
@@ -571,12 +3079,60 @@
     "key": "WE3101",
     "text": "Generador Hutchison"
   },
+  "fbc2c2a3": {
+    "key": "EM7221",
+    "text": "Furiacán resurgido"
+  },
+  "fc1895b0": {
+    "key": "EM0500_02",
+    "text": "Telurosaurio B"
+  },
+  "fd671978": {
+    "key": "Em7520LaserSign",
+    "text": "Em7520LaserSign"
+  },
   "fd6d4bab": {
     "key": "EM1004",
     "text": "Inquisidor Rook"
   },
+  "fd74df86": {
+    "key": "Em7700DimensionDamageAreaShot",
+    "text": "Em7700DimensionDamageAreaShot"
+  },
+  "fdaf2f99": {
+    "key": "BA0040",
+    "text": "Ba0040"
+  },
+  "fdc192de": {
+    "key": "Em1800BaseObject",
+    "text": "Em1800BaseObject"
+  },
+  "fdc99018": {
+    "key": "NP29E0",
+    "text": "Np29e0"
+  },
+  "fde6560c": {
+    "key": "EM0015_03",
+    "text": "Ragnarion cascorrojo"
+  },
   "fdfb322b": {
     "key": "BH0003",
     "text": "Tierra sagrada"
+  },
+  "fe203029": {
+    "key": "Em1801MagmaEruption",
+    "text": "Em1801MagmaEruption"
+  },
+  "fee79d31": {
+    "key": "We7002IceShot",
+    "text": "We7002IceShot"
+  },
+  "ff0b708a": {
+    "key": "EM0705_01",
+    "text": "Ahriman de la Vorágine"
+  },
+  "ffa41191": {
+    "key": "BA7052",
+    "text": "Ba7052"
   }
 }
