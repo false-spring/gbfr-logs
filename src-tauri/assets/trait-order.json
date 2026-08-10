@@ -1,0 +1,1645 @@
+{
+  "_meta": {
+    "desc": "trait_hash -> {name,category 0basic/1atk/2def/3sup/4special,category_name,order,variant,special(awakening|warpath|null)}"
+  },
+  "50079a1c": {
+    "name": "ATK",
+    "category": 0,
+    "category_name": "basic",
+    "order": 101000,
+    "variant": 0,
+    "special": null
+  },
+  "f372f096": {
+    "name": "HP",
+    "category": 0,
+    "category_name": "basic",
+    "order": 102000,
+    "variant": 0,
+    "special": null
+  },
+  "8d78a19b": {
+    "name": "Critical Hit Rate",
+    "category": 0,
+    "category_name": "basic",
+    "order": 103000,
+    "variant": 0,
+    "special": null
+  },
+  "ceb700ee": {
+    "name": "Stun Power",
+    "category": 0,
+    "category_name": "basic",
+    "order": 104000,
+    "variant": 0,
+    "special": null
+  },
+  "3f488339": {
+    "name": "Enmity",
+    "category": 1,
+    "category_name": "attack",
+    "order": 201000,
+    "variant": 0,
+    "special": null
+  },
+  "2fc8fbff": {
+    "name": "Stamina",
+    "category": 1,
+    "category_name": "attack",
+    "order": 202000,
+    "variant": 0,
+    "special": null
+  },
+  "c0979a17": {
+    "name": "Critical Hit DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 203000,
+    "variant": 0,
+    "special": null
+  },
+  "6b694d6d": {
+    "name": "Weak Point DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 204000,
+    "variant": 0,
+    "special": null
+  },
+  "71f11a9b": {
+    "name": "Tyranny",
+    "category": 1,
+    "category_name": "attack",
+    "order": 205000,
+    "variant": 0,
+    "special": null
+  },
+  "8f502f0d": {
+    "name": "Life on the Line",
+    "category": 1,
+    "category_name": "attack",
+    "order": 206000,
+    "variant": 0,
+    "special": null
+  },
+  "dc584f60": {
+    "name": "DMG Cap",
+    "category": 1,
+    "category_name": "attack",
+    "order": 207000,
+    "variant": 0,
+    "special": null
+  },
+  "eae321eb": {
+    "name": "Skilled Assault",
+    "category": 1,
+    "category_name": "attack",
+    "order": 208000,
+    "variant": 0,
+    "special": null
+  },
+  "3fec5f80": {
+    "name": "Linked Together",
+    "category": 1,
+    "category_name": "attack",
+    "order": 209000,
+    "variant": 0,
+    "special": null
+  },
+  "f17850b9": {
+    "name": "Combo Booster",
+    "category": 1,
+    "category_name": "attack",
+    "order": 210000,
+    "variant": 0,
+    "special": null
+  },
+  "57ab5b10": {
+    "name": "Supplementary DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 211000,
+    "variant": 0,
+    "special": null
+  },
+  "ee85cd1f": {
+    "name": "Berserker Echo",
+    "category": 1,
+    "category_name": "attack",
+    "order": 212000,
+    "variant": 0,
+    "special": null
+  },
+  "3d8153a1": {
+    "name": "Spartan Echo",
+    "category": 1,
+    "category_name": "attack",
+    "order": 213000,
+    "variant": 0,
+    "special": null
+  },
+  "a7a45f28": {
+    "name": "Combo Finisher DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 214000,
+    "variant": 0,
+    "special": null
+  },
+  "1c360c63": {
+    "name": "Charged Attack DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 215000,
+    "variant": 0,
+    "special": null
+  },
+  "c35b111b": {
+    "name": "Lucky Charge",
+    "category": 1,
+    "category_name": "attack",
+    "order": 216000,
+    "variant": 0,
+    "special": null
+  },
+  "84078cb0": {
+    "name": "Quick Charge",
+    "category": 1,
+    "category_name": "attack",
+    "order": 217000,
+    "variant": 0,
+    "special": null
+  },
+  "b360801d": {
+    "name": "Concentrated Fire",
+    "category": 1,
+    "category_name": "attack",
+    "order": 218000,
+    "variant": 0,
+    "special": null
+  },
+  "8d078597": {
+    "name": "Throw DMG",
+    "category": 1,
+    "category_name": "attack",
+    "order": 219000,
+    "variant": 0,
+    "special": null
+  },
+  "4f1a3683": {
+    "name": "Injury to Insult",
+    "category": 1,
+    "category_name": "attack",
+    "order": 220000,
+    "variant": 0,
+    "special": null
+  },
+  "a9d17f55": {
+    "name": "Overdrive Assassin",
+    "category": 1,
+    "category_name": "attack",
+    "order": 221000,
+    "variant": 0,
+    "special": null
+  },
+  "ac9674c1": {
+    "name": "Break Assassin",
+    "category": 1,
+    "category_name": "attack",
+    "order": 222000,
+    "variant": 0,
+    "special": null
+  },
+  "1568e0e4": {
+    "name": "Head Start",
+    "category": 1,
+    "category_name": "attack",
+    "order": 223000,
+    "variant": 0,
+    "special": null
+  },
+  "dc225c96": {
+    "name": "Power Hungry",
+    "category": 1,
+    "category_name": "attack",
+    "order": 224000,
+    "variant": 0,
+    "special": null
+  },
+  "3c2b57b0": {
+    "name": "Guard Payback",
+    "category": 1,
+    "category_name": "attack",
+    "order": 225000,
+    "variant": 0,
+    "special": null
+  },
+  "7c2e4d64": {
+    "name": "Dodge Payback",
+    "category": 1,
+    "category_name": "attack",
+    "order": 226000,
+    "variant": 0,
+    "special": null
+  },
+  "51c115d2": {
+    "name": "Super Ultimate Perfect Dodge",
+    "category": 1,
+    "category_name": "attack",
+    "order": 227000,
+    "variant": 0,
+    "special": null
+  },
+  "82ce278d": {
+    "name": "Less Is More",
+    "category": 1,
+    "category_name": "attack",
+    "order": 228000,
+    "variant": 0,
+    "special": null
+  },
+  "70395731": {
+    "name": "Berserker",
+    "category": 1,
+    "category_name": "attack",
+    "order": 229000,
+    "variant": 0,
+    "special": null
+  },
+  "a8a3163b": {
+    "name": "Glass Cannon",
+    "category": 1,
+    "category_name": "attack",
+    "order": 230000,
+    "variant": 0,
+    "special": null
+  },
+  "333e5862": {
+    "name": "Roll of the Die",
+    "category": 1,
+    "category_name": "attack",
+    "order": 231000,
+    "variant": 0,
+    "special": null
+  },
+  "4c588c27": {
+    "name": "War Elemental",
+    "category": 1,
+    "category_name": "attack",
+    "order": 232000,
+    "variant": 0,
+    "special": null
+  },
+  "3b71af12": {
+    "name": "DMG Cap Ecru",
+    "category": 1,
+    "category_name": "attack",
+    "order": 10250000,
+    "variant": 0,
+    "special": null
+  },
+  "aefeb1bc": {
+    "name": "DMG Cap Cobalt",
+    "category": 1,
+    "category_name": "attack",
+    "order": 10253000,
+    "variant": 0,
+    "special": null
+  },
+  "fff8cf64": {
+    "name": "DMG Cap Sage",
+    "category": 1,
+    "category_name": "attack",
+    "order": 10254000,
+    "variant": 0,
+    "special": null
+  },
+  "40223c28": {
+    "name": "Catastrophe",
+    "category": 1,
+    "category_name": "attack",
+    "order": 10255000,
+    "variant": 0,
+    "special": null
+  },
+  "1e1cecce": {
+    "name": "Catastrophe Nova",
+    "category": 1,
+    "category_name": "attack",
+    "order": 10255010,
+    "variant": 10,
+    "special": null
+  },
+  "e0abfdfe": {
+    "name": "Aegis",
+    "category": 2,
+    "category_name": "defense",
+    "order": 501000,
+    "variant": 0,
+    "special": null
+  },
+  "48a95b8d": {
+    "name": "Greater Aegis",
+    "category": 2,
+    "category_name": "defense",
+    "order": 502000,
+    "variant": 0,
+    "special": null
+  },
+  "e6cdba9c": {
+    "name": "Garrison",
+    "category": 2,
+    "category_name": "defense",
+    "order": 503000,
+    "variant": 0,
+    "special": null
+  },
+  "74aa75d6": {
+    "name": "Stronghold",
+    "category": 2,
+    "category_name": "defense",
+    "order": 504000,
+    "variant": 0,
+    "special": null
+  },
+  "1470f860": {
+    "name": "Steel Nerves",
+    "category": 2,
+    "category_name": "defense",
+    "order": 505000,
+    "variant": 0,
+    "special": null
+  },
+  "0aa20846": {
+    "name": "Improved Guard",
+    "category": 2,
+    "category_name": "defense",
+    "order": 506000,
+    "variant": 0,
+    "special": null
+  },
+  "8b3bf60c": {
+    "name": "Improved Dodge",
+    "category": 2,
+    "category_name": "defense",
+    "order": 507000,
+    "variant": 0,
+    "special": null
+  },
+  "29b292a8": {
+    "name": "Precise Resilience",
+    "category": 2,
+    "category_name": "defense",
+    "order": 508000,
+    "variant": 0,
+    "special": null
+  },
+  "09aa7db5": {
+    "name": "Nimble Defense",
+    "category": 2,
+    "category_name": "defense",
+    "order": 509000,
+    "variant": 0,
+    "special": null
+  },
+  "af794a87": {
+    "name": "Untouchable",
+    "category": 2,
+    "category_name": "defense",
+    "order": 510000,
+    "variant": 0,
+    "special": null
+  },
+  "ec1c6779": {
+    "name": "Flight over Fight",
+    "category": 2,
+    "category_name": "defense",
+    "order": 511000,
+    "variant": 0,
+    "special": null
+  },
+  "b6e31f76": {
+    "name": "Firm Stance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 512000,
+    "variant": 0,
+    "special": null
+  },
+  "3759a5b9": {
+    "name": "Dizzy Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 513000,
+    "variant": 0,
+    "special": null
+  },
+  "fb572681": {
+    "name": "Glaciate Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 514000,
+    "variant": 0,
+    "special": null
+  },
+  "1dc9d7e7": {
+    "name": "Held Under Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 515000,
+    "variant": 0,
+    "special": null
+  },
+  "d54f8ca7": {
+    "name": "Sandtomb Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 516000,
+    "variant": 0,
+    "special": null
+  },
+  "973b49af": {
+    "name": "Poison Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 517000,
+    "variant": 0,
+    "special": null
+  },
+  "a2fa9685": {
+    "name": "Slow Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 518000,
+    "variant": 0,
+    "special": null
+  },
+  "7c84a6b3": {
+    "name": "Burn Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 519000,
+    "variant": 0,
+    "special": null
+  },
+  "2242921f": {
+    "name": "Paralysis Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 520000,
+    "variant": 0,
+    "special": null
+  },
+  "9702860f": {
+    "name": "Blight Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 521000,
+    "variant": 0,
+    "special": null
+  },
+  "50b453dd": {
+    "name": "Skill Sealed Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 522000,
+    "variant": 0,
+    "special": null
+  },
+  "cfb48782": {
+    "name": "SBA Sealed Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 523000,
+    "variant": 0,
+    "special": null
+  },
+  "dd4a701e": {
+    "name": "Darkflame Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 524000,
+    "variant": 0,
+    "special": null
+  },
+  "4bf2e191": {
+    "name": "ATK↓ Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 525000,
+    "variant": 0,
+    "special": null
+  },
+  "66de60b1": {
+    "name": "DEF↓ Resistance",
+    "category": 2,
+    "category_name": "defense",
+    "order": 526000,
+    "variant": 0,
+    "special": null
+  },
+  "0ead65e0": {
+    "name": "Natural Defenses",
+    "category": 2,
+    "category_name": "defense",
+    "order": 527000,
+    "variant": 0,
+    "special": null
+  },
+  "9389cc06": {
+    "name": "Improved Healing",
+    "category": 3,
+    "category_name": "support",
+    "order": 401000,
+    "variant": 0,
+    "special": null
+  },
+  "6085da25": {
+    "name": "Regen",
+    "category": 3,
+    "category_name": "support",
+    "order": 402000,
+    "variant": 0,
+    "special": null
+  },
+  "7ccff74f": {
+    "name": "Drain",
+    "category": 3,
+    "category_name": "support",
+    "order": 403000,
+    "variant": 0,
+    "special": null
+  },
+  "318d12e9": {
+    "name": "Quick Cooldown",
+    "category": 3,
+    "category_name": "support",
+    "order": 404000,
+    "variant": 0,
+    "special": null
+  },
+  "05f2ecdc": {
+    "name": "Cascade",
+    "category": 3,
+    "category_name": "support",
+    "order": 405000,
+    "variant": 0,
+    "special": null
+  },
+  "b5ff9fd3": {
+    "name": "Uplift",
+    "category": 3,
+    "category_name": "support",
+    "order": 406000,
+    "variant": 0,
+    "special": null
+  },
+  "7edd69d0": {
+    "name": "Precise Wrath",
+    "category": 3,
+    "category_name": "support",
+    "order": 407000,
+    "variant": 0,
+    "special": null
+  },
+  "d2c8e10a": {
+    "name": "Nimble Onslaught",
+    "category": 3,
+    "category_name": "support",
+    "order": 408000,
+    "variant": 0,
+    "special": null
+  },
+  "cd18a77d": {
+    "name": "Potent Greens",
+    "category": 3,
+    "category_name": "support",
+    "order": 409000,
+    "variant": 0,
+    "special": null
+  },
+  "3f2c482e": {
+    "name": "Supplements",
+    "category": 3,
+    "category_name": "support",
+    "order": 11047000,
+    "variant": 0,
+    "special": null
+  },
+  "24883af3": {
+    "name": "Potion Hoarder",
+    "category": 4,
+    "category_name": "special",
+    "order": 701000,
+    "variant": 0,
+    "special": null
+  },
+  "f71f8997": {
+    "name": "Auto Potion",
+    "category": 4,
+    "category_name": "special",
+    "order": 702000,
+    "variant": 0,
+    "special": null
+  },
+  "e69a4694": {
+    "name": "Guts",
+    "category": 4,
+    "category_name": "special",
+    "order": 703000,
+    "variant": 0,
+    "special": null
+  },
+  "95f3fa86": {
+    "name": "Autorevive",
+    "category": 4,
+    "category_name": "special",
+    "order": 704000,
+    "variant": 0,
+    "special": null
+  },
+  "0053599e": {
+    "name": "Steady Focus",
+    "category": 4,
+    "category_name": "special",
+    "order": 705000,
+    "variant": 0,
+    "special": null
+  },
+  "6018372b": {
+    "name": "Provoke",
+    "category": 4,
+    "category_name": "special",
+    "order": 706000,
+    "variant": 0,
+    "special": null
+  },
+  "dc607d75": {
+    "name": "Low Profile",
+    "category": 4,
+    "category_name": "special",
+    "order": 707000,
+    "variant": 0,
+    "special": null
+  },
+  "f687c5ef": {
+    "name": "Fast Learner",
+    "category": 4,
+    "category_name": "special",
+    "order": 708000,
+    "variant": 0,
+    "special": null
+  },
+  "c86f3082": {
+    "name": "Rupie Tycoon",
+    "category": 4,
+    "category_name": "special",
+    "order": 709000,
+    "variant": 0,
+    "special": null
+  },
+  "5e422ae5": {
+    "name": "Path to Mastery",
+    "category": 4,
+    "category_name": "special",
+    "order": 710000,
+    "variant": 0,
+    "special": null
+  },
+  "082033cb": {
+    "name": "Crabby Resonance",
+    "category": 4,
+    "category_name": "special",
+    "order": 730000,
+    "variant": 0,
+    "special": null
+  },
+  "1b0d9897": {
+    "name": "Crabvestment Returns",
+    "category": 4,
+    "category_name": "special",
+    "order": 731000,
+    "variant": 0,
+    "special": null
+  },
+  "d461ecfb": {
+    "name": "Crabvestment Returns",
+    "category": 4,
+    "category_name": "special",
+    "order": 731004,
+    "variant": 4,
+    "special": null
+  },
+  "d3b8c21f": {
+    "name": "Crabmiration",
+    "category": 4,
+    "category_name": "special",
+    "order": 732000,
+    "variant": 0,
+    "special": null
+  },
+  "a1a8e39d": {
+    "name": "Stout Heart",
+    "category": 4,
+    "category_name": "special",
+    "order": 740000,
+    "variant": 0,
+    "special": null
+  },
+  "dbe1d775": {
+    "name": "Alpha",
+    "category": 4,
+    "category_name": "special",
+    "order": 750000,
+    "variant": 0,
+    "special": null
+  },
+  "8d2adb6e": {
+    "name": "Beta",
+    "category": 4,
+    "category_name": "special",
+    "order": 751000,
+    "variant": 0,
+    "special": null
+  },
+  "5c862e13": {
+    "name": "Gamma",
+    "category": 4,
+    "category_name": "special",
+    "order": 752000,
+    "variant": 0,
+    "special": null
+  },
+  "cd030268": {
+    "name": "Fearless Drive",
+    "category": 4,
+    "category_name": "special",
+    "order": 801000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "a38510e2": {
+    "name": "Fearless Spirit",
+    "category": 4,
+    "category_name": "special",
+    "order": 801001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "dade14dc": {
+    "name": "Fearless Heart",
+    "category": 4,
+    "category_name": "special",
+    "order": 801002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "3bfed918": {
+    "name": "Guardian's Conviction",
+    "category": 4,
+    "category_name": "special",
+    "order": 804000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "f8496336": {
+    "name": "Guardian's Honor",
+    "category": 4,
+    "category_name": "special",
+    "order": 804001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "9afdfa9e": {
+    "name": "Guardian's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 804002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "151e4674": {
+    "name": "Helmsman's Navigation",
+    "category": 4,
+    "category_name": "special",
+    "order": 807000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "a374fdf0": {
+    "name": "Helmsman's Tenacity",
+    "category": 4,
+    "category_name": "special",
+    "order": 807001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "d76f4d24": {
+    "name": "Helmsman's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 807002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "b48eef48": {
+    "name": "Mage's Aspiration",
+    "category": 4,
+    "category_name": "special",
+    "order": 810000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "11aae5f5": {
+    "name": "Mage's Savvy",
+    "category": 4,
+    "category_name": "special",
+    "order": 810001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "c00163b3": {
+    "name": "Mage's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 810002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "aa83f548": {
+    "name": "Veteran's Insight",
+    "category": 4,
+    "category_name": "special",
+    "order": 813000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "921b6b0c": {
+    "name": "Veteran's Vision",
+    "category": 4,
+    "category_name": "special",
+    "order": 813001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "0e42be1b": {
+    "name": "Veteran's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 813002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "23d0f67f": {
+    "name": "Rose's Blooming",
+    "category": 4,
+    "category_name": "special",
+    "order": 816000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "c2a4c7a9": {
+    "name": "Rose's Profusion",
+    "category": 4,
+    "category_name": "special",
+    "order": 816001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "8519ad4a": {
+    "name": "Rose's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 816002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "9a9dc170": {
+    "name": "Holy Knight's Luster",
+    "category": 4,
+    "category_name": "special",
+    "order": 819000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "522e2388": {
+    "name": "Holy Knight's Grandeur",
+    "category": 4,
+    "category_name": "special",
+    "order": 819001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "b85202bc": {
+    "name": "Holy Knight's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 819002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "5463232f": {
+    "name": "Eternal Rage's Mettle",
+    "category": 4,
+    "category_name": "special",
+    "order": 822000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "451d814c": {
+    "name": "Eternal Rage's Ethos",
+    "category": 4,
+    "category_name": "special",
+    "order": 822001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "0f026cf0": {
+    "name": "Eternal Rage's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 822002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "d908223d": {
+    "name": "Phantasm's Concord",
+    "category": 4,
+    "category_name": "special",
+    "order": 825000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "7351d602": {
+    "name": "Phantasm's Harmony",
+    "category": 4,
+    "category_name": "special",
+    "order": 825001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "a339d642": {
+    "name": "Phantasm's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 825002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "29b07beb": {
+    "name": "Butterfly's Grace",
+    "category": 4,
+    "category_name": "special",
+    "order": 828000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "a63b89cd": {
+    "name": "Butterfly's Valor",
+    "category": 4,
+    "category_name": "special",
+    "order": 828001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "fdd1ad24": {
+    "name": "Butterfly's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 828002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "8cdf9382": {
+    "name": "White Dragon's Oath",
+    "category": 4,
+    "category_name": "special",
+    "order": 831000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "d1012d8c": {
+    "name": "White Dragon's Glory",
+    "category": 4,
+    "category_name": "special",
+    "order": 831001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "6316cbeb": {
+    "name": "White Dragon's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 831002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "2e65a774": {
+    "name": "Hero's Creed",
+    "category": 4,
+    "category_name": "special",
+    "order": 834000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "16eff868": {
+    "name": "Hero's Will",
+    "category": 4,
+    "category_name": "special",
+    "order": 834001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "d8f66c1c": {
+    "name": "Hero's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 834002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "e60a735c": {
+    "name": "Lord's Procession",
+    "category": 4,
+    "category_name": "special",
+    "order": 837000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "6ff05223": {
+    "name": "Lord's Ambition",
+    "category": 4,
+    "category_name": "special",
+    "order": 837001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "ba504607": {
+    "name": "Lord's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 837002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "86cbcdc4": {
+    "name": "Dragonslayer's Dominance",
+    "category": 4,
+    "category_name": "special",
+    "order": 840000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "05fa4599": {
+    "name": "Dragonslayer's Ingenuity",
+    "category": 4,
+    "category_name": "special",
+    "order": 840001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "c7d379f1": {
+    "name": "Dragonslayer's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 840002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "ec3cf174": {
+    "name": "Founder's Strategy",
+    "category": 4,
+    "category_name": "special",
+    "order": 843000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "af513a9d": {
+    "name": "Founder's Truth",
+    "category": 4,
+    "category_name": "special",
+    "order": 843001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "e6b92e34": {
+    "name": "Founder's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 843002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "0cd6c625": {
+    "name": "Swordmaster's Prowess",
+    "category": 4,
+    "category_name": "special",
+    "order": 846000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "a3b49220": {
+    "name": "Swordmaster's Art",
+    "category": 4,
+    "category_name": "special",
+    "order": 846001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "daefbb27": {
+    "name": "Swordmaster's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 846002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "6ebfa176": {
+    "name": "Crimson's Clout",
+    "category": 4,
+    "category_name": "special",
+    "order": 849000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "f1d5dbd0": {
+    "name": "Crimson's Flight",
+    "category": 4,
+    "category_name": "special",
+    "order": 849001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "4f135217": {
+    "name": "Crimson's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 849002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "7440e869": {
+    "name": "Ebony's Presence",
+    "category": 4,
+    "category_name": "special",
+    "order": 852000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "cd124165": {
+    "name": "Ebony's Poise",
+    "category": 4,
+    "category_name": "special",
+    "order": 852001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "d7f9bb88": {
+    "name": "Ebony's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 852002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "d176d262": {
+    "name": "Ultramarine's Flash",
+    "category": 4,
+    "category_name": "special",
+    "order": 856000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "461a8e07": {
+    "name": "Ultramarine's Adversity",
+    "category": 4,
+    "category_name": "special",
+    "order": 856001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "b953cc1e": {
+    "name": "Ultramarine's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 856002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "7d75d904": {
+    "name": "Thunderwolf's Recharge",
+    "category": 4,
+    "category_name": "special",
+    "order": 859000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "be3404b9": {
+    "name": "Thunderwolf's Acuity",
+    "category": 4,
+    "category_name": "special",
+    "order": 859001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "3eb345d7": {
+    "name": "Thunderwolf's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 859002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "77c809f5": {
+    "name": "Spirit Edge's Rally",
+    "category": 4,
+    "category_name": "special",
+    "order": 861000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "9230e3f5": {
+    "name": "Spirit Edge's Fury",
+    "category": 4,
+    "category_name": "special",
+    "order": 861001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "7b4fc47a": {
+    "name": "Spirit Edge's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 861002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "ef05ec4d": {
+    "name": "Seven-Star Boundary",
+    "category": 4,
+    "category_name": "special",
+    "order": 861003,
+    "variant": 3,
+    "special": "boundary"
+  },
+  "e85ff8e0": {
+    "name": "Dark Huntress's Volley",
+    "category": 4,
+    "category_name": "special",
+    "order": 865000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "8572b8af": {
+    "name": "Dark Huntress's Surge",
+    "category": 4,
+    "category_name": "special",
+    "order": 865001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "81b293d9": {
+    "name": "Dark Huntress's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 865002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "281214ab": {
+    "name": "Two-Crown Boundary",
+    "category": 4,
+    "category_name": "special",
+    "order": 865003,
+    "variant": 3,
+    "special": "boundary"
+  },
+  "d40d1e9b": {
+    "name": "Supreme Primarch's Awe",
+    "category": 4,
+    "category_name": "special",
+    "order": 869000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "15806dfc": {
+    "name": "Supreme Primarch's Nimbus",
+    "category": 4,
+    "category_name": "special",
+    "order": 869001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "4e5f6706": {
+    "name": "Supreme Primarch's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 869002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "1a2ef59e": {
+    "name": "Ain",
+    "category": 4,
+    "category_name": "special",
+    "order": 869003,
+    "variant": 3,
+    "special": "boundary"
+  },
+  "47384248": {
+    "name": "Enchantress's Blessing",
+    "category": 4,
+    "category_name": "special",
+    "order": 874000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "30773197": {
+    "name": "Enchantress's Rhythm",
+    "category": 4,
+    "category_name": "special",
+    "order": 874001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "807b6684": {
+    "name": "Enchantress's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 874002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "06719232": {
+    "name": "The Black's Mark",
+    "category": 4,
+    "category_name": "special",
+    "order": 877000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "ed8d8ad8": {
+    "name": "The Black's Impulse",
+    "category": 4,
+    "category_name": "special",
+    "order": 877001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "5559232f": {
+    "name": "The Black's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 877002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "93a2093c": {
+    "name": "Versalis Foundation",
+    "category": 4,
+    "category_name": "special",
+    "order": 879000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "7ad0c010": {
+    "name": "Versalis Ignition",
+    "category": 4,
+    "category_name": "special",
+    "order": 879001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "b064a634": {
+    "name": "Versalis Heart",
+    "category": 4,
+    "category_name": "special",
+    "order": 879002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "1de14c65": {
+    "name": "Gladiator's Frenzy",
+    "category": 4,
+    "category_name": "special",
+    "order": 883000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "26956f25": {
+    "name": "Gladiator's Top",
+    "category": 4,
+    "category_name": "special",
+    "order": 883001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "dba19768": {
+    "name": "Gladiator's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 883002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "7b5b081d": {
+    "name": "Bladequeen's Serenade",
+    "category": 4,
+    "category_name": "special",
+    "order": 886000,
+    "variant": 0,
+    "special": "awakening"
+  },
+  "9ace140b": {
+    "name": "Bladequeen's Circuit",
+    "category": 4,
+    "category_name": "special",
+    "order": 886001,
+    "variant": 1,
+    "special": "awakening"
+  },
+  "79266456": {
+    "name": "Bladequeen's Warpath",
+    "category": 4,
+    "category_name": "special",
+    "order": 886002,
+    "variant": 2,
+    "special": "warpath"
+  },
+  "9ad8b5e6": {
+    "name": "Seven Net",
+    "category": 4,
+    "category_name": "special",
+    "order": 904000,
+    "variant": 0,
+    "special": null
+  },
+  "57e8a93f": {
+    "name": "Sigil Booster",
+    "category": 4,
+    "category_name": "special",
+    "order": 10720000,
+    "variant": 0,
+    "special": null
+  },
+  "0fba47e8": {
+    "name": "Fortifying Vigor",
+    "category": 4,
+    "category_name": "special",
+    "order": 11001000,
+    "variant": 0,
+    "special": null
+  },
+  "a4d6b880": {
+    "name": "Instilling Vigor",
+    "category": 4,
+    "category_name": "special",
+    "order": 11002000,
+    "variant": 0,
+    "special": null
+  },
+  "cdeb73f6": {
+    "name": "Gilding Vigor",
+    "category": 4,
+    "category_name": "special",
+    "order": 11003000,
+    "variant": 0,
+    "special": null
+  },
+  "bf78fbfc": {
+    "name": "Immortal Shell",
+    "category": 4,
+    "category_name": "special",
+    "order": 90301000,
+    "variant": 0,
+    "special": null
+  },
+  "46ee3116": {
+    "name": "In a Pinch",
+    "category": 4,
+    "category_name": "special",
+    "order": 90302000,
+    "variant": 0,
+    "special": null
+  },
+  "89c66acb": {
+    "name": "Sumo Force",
+    "category": 4,
+    "category_name": "special",
+    "order": 90303000,
+    "variant": 0,
+    "special": null
+  },
+  "235d86ef": {
+    "name": "Supernova",
+    "category": 4,
+    "category_name": "special",
+    "order": 90313000,
+    "variant": 0,
+    "special": null
+  },
+  "0151cf9e": {
+    "name": "DMG Cap Cardinal",
+    "category": 4,
+    "category_name": "special",
+    "order": 90315000,
+    "variant": 0,
+    "special": null
+  },
+  "bbd77c33": {
+    "name": "Unbound Strike",
+    "category": 4,
+    "category_name": "special",
+    "order": 90316000,
+    "variant": 0,
+    "special": null
+  },
+  "020db733": {
+    "name": "Unbound Technique",
+    "category": 4,
+    "category_name": "special",
+    "order": 90317000,
+    "variant": 0,
+    "special": null
+  },
+  "3f682593": {
+    "name": "Unbound Exertion",
+    "category": 4,
+    "category_name": "special",
+    "order": 90318000,
+    "variant": 0,
+    "special": null
+  },
+  "79027fc8": {
+    "name": "Unbound Master",
+    "category": 4,
+    "category_name": "special",
+    "order": 90319000,
+    "variant": 0,
+    "special": null
+  },
+  "0de887a0": {
+    "name": "Celestial Nyx",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90320000,
+    "variant": 0,
+    "special": null
+  },
+  "a7726190": {
+    "name": "Celestial Lumen",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90321000,
+    "variant": 0,
+    "special": null
+  },
+  "9232dc17": {
+    "name": "Celestial Terra",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90322000,
+    "variant": 0,
+    "special": null
+  },
+  "36e3848d": {
+    "name": "Celestial Incendo",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90323000,
+    "variant": 0,
+    "special": null
+  },
+  "a898e283": {
+    "name": "Celestial Aqua",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90324000,
+    "variant": 0,
+    "special": null
+  },
+  "d029fe08": {
+    "name": "Fatebreaker",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90325000,
+    "variant": 0,
+    "special": null
+  },
+  "73220725": {
+    "name": "Celestial Ventus",
+    "category": 1,
+    "category_name": "attack",
+    "order": 90326000,
+    "variant": 0,
+    "special": null
+  },
+  "f26baea5": {
+    "name": "Divergence",
+    "category": 3,
+    "category_name": "support",
+    "order": 90327000,
+    "variant": 0,
+    "special": null
+  }
+}

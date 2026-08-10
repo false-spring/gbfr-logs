@@ -261,7 +261,7 @@
   },
   "43d71e8f": {
     "key": "43D71E8F",
-    "text": "Limite de soins renforcée"
+    "text": "Limite de soins des comp. renforcée"
   },
   "44f04a7a": {
     "key": "44F04A7A",
@@ -345,7 +345,7 @@
   },
   "54929589": {
     "key": "MED_EFF_RECOVERY_LIMIT01",
-    "text": "Limite de soins renforcée"
+    "text": "Limite de soins des comp. renforcée"
   },
   "563f7784": {
     "key": "563F7784",
@@ -473,7 +473,7 @@
   },
   "76c83bfd": {
     "key": "76C83BFD",
-    "text": "Limite de soins renforcée"
+    "text": "Limite de soins des comp. renforcée"
   },
   "776adca4": {
     "key": "776ADCA4",
@@ -945,7 +945,7 @@
   },
   "ec3b22ff": {
     "key": "EC3B22FF",
-    "text": "Limite de soins renforcée"
+    "text": "Limite de soins des comp. renforcée"
   },
   "ee6100ca": {
     "key": "EE6100CA",
@@ -1030,5 +1030,569 @@
   "fe71865d": {
     "key": "FE71865D",
     "text": "Attaque renforcée"
+  },
+  "e55c2b23": {
+    "key": "E55C2B23",
+    "text": "Attaque renforcée"
+  },
+  "2e2bb439": {
+    "key": "2E2BB439",
+    "text": "Attaque renforcée"
+  },
+  "443ee079": {
+    "key": "443EE079",
+    "text": "Attaque renforcée"
+  },
+  "b6af9b8e": {
+    "key": "B6AF9B8E",
+    "text": "Attaque renforcée"
+  },
+  "eed855f9": {
+    "key": "EED855F9",
+    "text": "Attaque renforcée"
+  },
+  "db4eb256": {
+    "key": "DB4EB256",
+    "text": "Attaque renforcée"
+  },
+  "72117bf2": {
+    "key": "72117BF2",
+    "text": "Attaque renforcée"
+  },
+  "c8cf021b": {
+    "key": "C8CF021B",
+    "text": "Santé renforcée"
+  },
+  "3fcffbb6": {
+    "key": "3FCFFBB6",
+    "text": "Santé renforcée"
+  },
+  "4e0ff036": {
+    "key": "4E0FF036",
+    "text": "Santé renforcée"
+  },
+  "aabf46bf": {
+    "key": "AABF46BF",
+    "text": "Santé renforcée"
+  },
+  "00ffc38d": {
+    "key": "00FFC38D",
+    "text": "Santé renforcée"
+  },
+  "59a8fcaf": {
+    "key": "59A8FCAF",
+    "text": "Taux critique renforcé"
+  },
+  "ce96759f": {
+    "key": "CE96759F",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "82d08fb1": {
+    "key": "82D08FB1",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "e931b514": {
+    "key": "E931B514",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "da1e7c1c": {
+    "key": "DA1E7C1C",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "3e27f90f": {
+    "key": "3E27F90F",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "03a22a3a": {
+    "key": "03A22A3A",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "f57786e2": {
+    "key": "F57786E2",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "498d63f2": {
+    "key": "498D63F2",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "371b114f": {
+    "key": "371B114F",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "eb7be8f6": {
+    "key": "EB7BE8F6",
+    "text": "Attaque renforcée"
+  },
+  "28e99d17": {
+    "key": "28E99D17",
+    "text": "Attaque renforcée"
+  },
+  "22e80215": {
+    "key": "22E80215",
+    "text": "Attaque renforcée"
+  },
+  "853edb6a": {
+    "key": "853EDB6A",
+    "text": "Attaque renforcée"
+  },
+  "93eadf27": {
+    "key": "93EADF27",
+    "text": "Attaque renforcée"
+  },
+  "1da164b8": {
+    "key": "1DA164B8",
+    "text": "Attaque renforcée"
+  },
+  "27156f24": {
+    "key": "27156F24",
+    "text": "Attaque renforcée"
+  },
+  "c774a784": {
+    "key": "C774A784",
+    "text": "Attaque renforcée"
+  },
+  "13091d82": {
+    "key": "13091D82",
+    "text": "Attaque renforcée"
+  },
+  "c44bf623": {
+    "key": "C44BF623",
+    "text": "Attaque renforcée"
+  },
+  "d4cf0f5e": {
+    "key": "D4CF0F5E",
+    "text": "Attaque renforcée"
+  },
+  "83ec4e8e": {
+    "key": "83EC4E8E",
+    "text": "Attaque renforcée"
+  },
+  "947b7406": {
+    "key": "947B7406",
+    "text": "Attaque renforcée"
+  },
+  "ffb88765": {
+    "key": "FFB88765",
+    "text": "Attaque renforcée"
+  },
+  "b41d04c9": {
+    "key": "B41D04C9",
+    "text": "Attaque renforcée"
+  },
+  "5dd07f50": {
+    "key": "5DD07F50",
+    "text": "Attaque renforcée"
+  },
+  "aa849114": {
+    "key": "AA849114",
+    "text": "Attaque renforcée"
+  },
+  "dfc1d004": {
+    "key": "DFC1D004",
+    "text": "Attaque renforcée"
+  },
+  "864746c5": {
+    "key": "864746C5",
+    "text": "Attaque renforcée"
+  },
+  "c07f498c": {
+    "key": "C07F498C",
+    "text": "Attaque renforcée"
+  },
+  "4eb53013": {
+    "key": "4EB53013",
+    "text": "Santé renforcée"
+  },
+  "603840ce": {
+    "key": "603840CE",
+    "text": "Santé renforcée"
+  },
+  "f39f8114": {
+    "key": "F39F8114",
+    "text": "Santé renforcée"
+  },
+  "b309e5e6": {
+    "key": "B309E5E6",
+    "text": "Santé renforcée"
+  },
+  "c8353e24": {
+    "key": "C8353E24",
+    "text": "Santé renforcée"
+  },
+  "94f139c9": {
+    "key": "94F139C9",
+    "text": "Santé renforcée"
+  },
+  "c3c9e540": {
+    "key": "C3C9E540",
+    "text": "Santé renforcée"
+  },
+  "78fa278a": {
+    "key": "78FA278A",
+    "text": "Santé renforcée"
+  },
+  "f878dcc2": {
+    "key": "F878DCC2",
+    "text": "Santé renforcée"
+  },
+  "7bd6879a": {
+    "key": "7BD6879A",
+    "text": "Santé renforcée"
+  },
+  "625ada52": {
+    "key": "625ADA52",
+    "text": "Santé renforcée"
+  },
+  "fabd6177": {
+    "key": "FABD6177",
+    "text": "Santé renforcée"
+  },
+  "ba9210a7": {
+    "key": "BA9210A7",
+    "text": "Santé renforcée"
+  },
+  "ead60da1": {
+    "key": "EAD60DA1",
+    "text": "Santé renforcée"
+  },
+  "22803e42": {
+    "key": "22803E42",
+    "text": "Santé renforcée"
+  },
+  "174abc16": {
+    "key": "174ABC16",
+    "text": "Santé renforcée"
+  },
+  "4c5fb53d": {
+    "key": "4C5FB53D",
+    "text": "Santé renforcée"
+  },
+  "f3b1b4cc": {
+    "key": "F3B1B4CC",
+    "text": "Santé renforcée"
+  },
+  "29503ca1": {
+    "key": "29503CA1",
+    "text": "Santé renforcée"
+  },
+  "0469aeb2": {
+    "key": "0469AEB2",
+    "text": "Santé renforcée"
+  },
+  "e8d3af6b": {
+    "key": "E8D3AF6B",
+    "text": "Santé renforcée"
+  },
+  "f2be9395": {
+    "key": "F2BE9395",
+    "text": "Santé renforcée"
+  },
+  "0b5dfa34": {
+    "key": "0B5DFA34",
+    "text": "Santé renforcée"
+  },
+  "ea3ea970": {
+    "key": "EA3EA970",
+    "text": "Santé renforcée"
+  },
+  "adaa8f29": {
+    "key": "ADAA8F29",
+    "text": "Santé renforcée"
+  },
+  "217e62e2": {
+    "key": "217E62E2",
+    "text": "Santé renforcée"
+  },
+  "57ea2e2c": {
+    "key": "57EA2E2C",
+    "text": "Taux critique renforcé"
+  },
+  "9c360784": {
+    "key": "9C360784",
+    "text": "Taux critique renforcé"
+  },
+  "d7737b35": {
+    "key": "D7737B35",
+    "text": "Taux critique renforcé"
+  },
+  "89d08caf": {
+    "key": "89D08CAF",
+    "text": "Taux critique renforcé"
+  },
+  "79909f31": {
+    "key": "79909F31",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "5d4e91a3": {
+    "key": "5D4E91A3",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "ded4178f": {
+    "key": "DED4178F",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "3e0e3aa2": {
+    "key": "3E0E3AA2",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "b32fe60f": {
+    "key": "B32FE60F",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "29f5b171": {
+    "key": "29F5B171",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "d61624cb": {
+    "key": "D61624CB",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "9311ee44": {
+    "key": "9311EE44",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "34997da4": {
+    "key": "34997DA4",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "ce2652af": {
+    "key": "CE2652AF",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "1010438a": {
+    "key": "1010438A",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "97add052": {
+    "key": "97ADD052",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "628e9930": {
+    "key": "628E9930",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "8c0422e5": {
+    "key": "8C0422E5",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "08cc60b1": {
+    "key": "08CC60B1",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "8db159d0": {
+    "key": "8DB159D0",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "15cb5b17": {
+    "key": "15CB5B17",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "5e04b4e2": {
+    "key": "5E04B4E2",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "86071b01": {
+    "key": "86071B01",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "ca8661c1": {
+    "key": "CA8661C1",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "59d32481": {
+    "key": "59D32481",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "ccf0d107": {
+    "key": "CCF0D107",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "1f64c35c": {
+    "key": "1F64C35C",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "25773382": {
+    "key": "25773382",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "e51a0846": {
+    "key": "E51A0846",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "375e03d0": {
+    "key": "375E03D0",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "3ff3b1e1": {
+    "key": "3FF3B1E1",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "bb5cf95b": {
+    "key": "BB5CF95B",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "b08713ea": {
+    "key": "B08713EA",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "ba1190c7": {
+    "key": "BA1190C7",
+    "text": "Étourdissement renforcé"
+  },
+  "f1baeea2": {
+    "key": "F1BAEEA2",
+    "text": "Étourdissement renforcé"
+  },
+  "965de284": {
+    "key": "965DE284",
+    "text": "Étourdissement renforcé"
+  },
+  "db12aef4": {
+    "key": "DB12AEF4",
+    "text": "Étourdissement renforcé"
+  },
+  "47ab30fc": {
+    "key": "47AB30FC",
+    "text": "Étourdissement renforcé"
+  },
+  "d1edbb0a": {
+    "key": "D1EDBB0A",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "2e7ca1bb": {
+    "key": "2E7CA1BB",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "3129cd4d": {
+    "key": "3129CD4D",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "88cc6e3b": {
+    "key": "88CC6E3B",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "630875ed": {
+    "key": "630875ED",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "d7de9bb5": {
+    "key": "D7DE9BB5",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "5f18a702": {
+    "key": "5F18A702",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "4587531d": {
+    "key": "4587531D",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "074abe50": {
+    "key": "074ABE50",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "9ddb8898": {
+    "key": "9DDB8898",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "77dd1cc7": {
+    "key": "77DD1CC7",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "95911f77": {
+    "key": "95911F77",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "3ab34e99": {
+    "key": "3AB34E99",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "001c675c": {
+    "key": "001C675C",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "d9c51308": {
+    "key": "D9C51308",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "5510c86b": {
+    "key": "5510C86B",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "da078751": {
+    "key": "DA078751",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "e3e9d634": {
+    "key": "E3E9D634",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "15ba9804": {
+    "key": "15BA9804",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "1fb03ebb": {
+    "key": "1FB03EBB",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "1345cce9": {
+    "key": "1345CCE9",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "893b7fe9": {
+    "key": "893B7FE9",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "c0aab186": {
+    "key": "C0AAB186",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "c83bed8b": {
+    "key": "C83BED8B",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "23052d2b": {
+    "key": "23052D2B",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "19705526": {
+    "key": "19705526",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "e956bbd9": {
+    "key": "E956BBD9",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "6997fbb0": {
+    "key": "6997FBB0",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "ca090c54": {
+    "key": "CA090C54",
+    "text": "Lim. de dégâts d'att. nor. renforcée"
+  },
+  "19eb9aa0": {
+    "key": "19EB9AA0",
+    "text": "Lim. de dégâts de comp. renforcée"
+  },
+  "026c427e": {
+    "key": "026C427E",
+    "text": "Lim. de dég. d'Art céleste renforcée"
+  },
+  "d5c6407a": {
+    "key": "D5C6407A",
+    "text": "Limite de soins des comp. renforcée"
+  },
+  "fde0318d": {
+    "key": "FDE0318D",
+    "text": "Limite de soins des comp. renforcée"
+  },
+  "3d184640": {
+    "key": "3D184640",
+    "text": "Santé renforcée"
+  },
+  "385be72c": {
+    "key": "385BE72C",
+    "text": "Santé renforcée"
   }
 }

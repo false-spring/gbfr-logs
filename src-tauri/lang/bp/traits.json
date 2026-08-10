@@ -658,5 +658,165 @@
   "fdd1ad24": {
     "key": "SKILL_127_02",
     "text": "Ímpeto da Borboleta"
+  },
+  "d461ecfb": {
+    "key": "SKILL_141_04",
+    "text": "Rendimentos Crustáceos"
+  },
+  "1e1cecce": {
+    "key": "SKILL_143_10",
+    "text": "Nova Catastrófica"
+  },
+  "1de14c65": {
+    "key": "SKILL_173_00",
+    "text": "Frenesi do Gladiador"
+  },
+  "26956f25": {
+    "key": "SKILL_173_01",
+    "text": "Topo do Gladiador"
+  },
+  "dba19768": {
+    "key": "SKILL_173_02",
+    "text": "Ímpeto do Gladiador"
+  },
+  "7b5b081d": {
+    "key": "SKILL_174_00",
+    "text": "Serenata da Regilâmina"
+  },
+  "9ace140b": {
+    "key": "SKILL_174_01",
+    "text": "Circuito da Regilâmina"
+  },
+  "79266456": {
+    "key": "SKILL_174_02",
+    "text": "Ímpeto da Regilâmina"
+  },
+  "d176d262": {
+    "key": "SKILL_175_00",
+    "text": "Carne da Ultramarina"
+  },
+  "461a8e07": {
+    "key": "SKILL_175_01",
+    "text": "Adversid. da Ultramarina"
+  },
+  "b953cc1e": {
+    "key": "SKILL_175_02",
+    "text": "Ímpeto da Ultramarina"
+  },
+  "7d75d904": {
+    "key": "SKILL_176_00",
+    "text": "Recarga do Lobo do Trovão"
+  },
+  "be3404b9": {
+    "key": "SKILL_176_01",
+    "text": "Acuid. do Lobo do Trovão"
+  },
+  "3eb345d7": {
+    "key": "SKILL_176_02",
+    "text": "Ímpeto do Lobo do Trovão"
+  },
+  "47384248": {
+    "key": "SKILL_177_00",
+    "text": "Bênção da Feiticeira"
+  },
+  "30773197": {
+    "key": "SKILL_177_01",
+    "text": "Ritmo da Feiticeira"
+  },
+  "807b6684": {
+    "key": "SKILL_177_02",
+    "text": "Ímpeto da Feiticeira"
+  },
+  "06719232": {
+    "key": "SKILL_178_00",
+    "text": "Marca da Sombria"
+  },
+  "ed8d8ad8": {
+    "key": "SKILL_178_01",
+    "text": "Impulso da Sombria"
+  },
+  "5559232f": {
+    "key": "SKILL_178_02",
+    "text": "Ímpeto da Sombria"
+  },
+  "bf78fbfc": {
+    "key": "SKILL_301_00",
+    "text": "Carapaça Imortal"
+  },
+  "46ee3116": {
+    "key": "SKILL_302_00",
+    "text": "Pega-pinça"
+  },
+  "89c66acb": {
+    "key": "SKILL_303_00",
+    "text": "Força do Sumô"
+  },
+  "3b71af12": {
+    "key": "SKILL_311_00",
+    "text": "Limite de Dano Bege"
+  },
+  "fff8cf64": {
+    "key": "SKILL_312_00",
+    "text": "Limite de Dano Sálvia"
+  },
+  "235d86ef": {
+    "key": "SKILL_313_00",
+    "text": "Supernova"
+  },
+  "aefeb1bc": {
+    "key": "SKILL_314_00",
+    "text": "Limite de Dano Cobalto"
+  },
+  "0151cf9e": {
+    "key": "SKILL_315_00",
+    "text": "Limite de Dano Escarlate"
+  },
+  "bbd77c33": {
+    "key": "SKILL_316_00",
+    "text": "Golpe Desatado"
+  },
+  "020db733": {
+    "key": "SKILL_317_00",
+    "text": "Técnica Desatada"
+  },
+  "3f682593": {
+    "key": "SKILL_318_00",
+    "text": "Empenho Desatado"
+  },
+  "79027fc8": {
+    "key": "SKILL_319_00",
+    "text": "Mestre Desatado"
+  },
+  "0de887a0": {
+    "key": "SKILL_320_00",
+    "text": "Nix Celestial"
+  },
+  "a7726190": {
+    "key": "SKILL_321_00",
+    "text": "Lúmen Celestial"
+  },
+  "9232dc17": {
+    "key": "SKILL_322_00",
+    "text": "Terra Celestial"
+  },
+  "36e3848d": {
+    "key": "SKILL_323_00",
+    "text": "Incendo Celestial"
+  },
+  "a898e283": {
+    "key": "SKILL_324_00",
+    "text": "Aqua Celestial"
+  },
+  "d029fe08": {
+    "key": "SKILL_325_00",
+    "text": "Quebra-Destino"
+  },
+  "73220725": {
+    "key": "SKILL_326_00",
+    "text": "Ventus Celestial"
+  },
+  "f26baea5": {
+    "key": "SKILL_327_00",
+    "text": "Divergência"
   }
 }

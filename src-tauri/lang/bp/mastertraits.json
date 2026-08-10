@@ -1,0 +1,350 @@
+{
+  "3a583a9c": {
+    "key": "SBE_PL0000_SP000",
+    "text": "Visão: Sagazmente Adepto"
+  },
+  "ec41afa1": {
+    "key": "SBE_PL0000_SP100",
+    "text": "Essência: Cura de Combate"
+  },
+  "7c26d0c4": {
+    "key": "SBE_PL0000_SP200",
+    "text": "Chave: Substituto"
+  },
+  "23f3c22e": {
+    "key": "SBE_PL0100_SP000",
+    "text": "Visão: Sagazmente Adepto"
+  },
+  "db71c42a": {
+    "key": "SBE_PL0100_SP100",
+    "text": "Essência: Cura de Combate"
+  },
+  "6017b9b5": {
+    "key": "SBE_PL0100_SP200",
+    "text": "Chave: Substituto"
+  },
+  "ecd375f1": {
+    "key": "SBE_PL0200_SP000",
+    "text": "Visão: Ares Eterno"
+  },
+  "da587cb6": {
+    "key": "SBE_PL0200_SP100",
+    "text": "Essência: Ares da Ira"
+  },
+  "e6193e09": {
+    "key": "SBE_PL0200_SP200",
+    "text": "Chave: Lâmina Azul"
+  },
+  "dc249afd": {
+    "key": "SBE_PL0300_SP000",
+    "text": "Visão: Explosão de Precisão"
+  },
+  "1bdadfec": {
+    "key": "SBE_PL0300_SP100",
+    "text": "Essência: F. Caixões Esp."
+  },
+  "c8b3ff29": {
+    "key": "SBE_PL0300_SP200",
+    "text": "Chave: Risco Colateral"
+  },
+  "3785ee72": {
+    "key": "SBE_PL0400_SP000",
+    "text": "Visão: Concentração Pura"
+  },
+  "09bdc3a0": {
+    "key": "SBE_PL0400_SP100",
+    "text": "Essência: Cadeia Mágica"
+  },
+  "9ff0b805": {
+    "key": "SBE_PL0400_SP200",
+    "text": "Chave: Sobrec. Sete Floridos"
+  },
+  "a56678a9": {
+    "key": "SBE_PL0500_SP000",
+    "text": "Visão: Visão Perfeita"
+  },
+  "0a225055": {
+    "key": "SBE_PL0500_SP100",
+    "text": "Essência: Golpe de Granada"
+  },
+  "96fde7fd": {
+    "key": "SBE_PL0500_SP200",
+    "text": "Chave: Cuspe Venenoso"
+  },
+  "2a1e9175": {
+    "key": "SBE_PL0600_SP000",
+    "text": "Visão: Réquiem da Rosa"
+  },
+  "dddb9201": {
+    "key": "SBE_PL0600_SP100",
+    "text": "Essência: Cultor do C. Bat."
+  },
+  "960314a6": {
+    "key": "SBE_PL0600_SP200",
+    "text": "Chave: Rosas Guarnecidas"
+  },
+  "60700621": {
+    "key": "SBE_PL0700_SP000",
+    "text": "Visão: Mascotes Fantásticas"
+  },
+  "97f24c90": {
+    "key": "SBE_PL0700_SP100",
+    "text": "Essência: Alma Confiante"
+  },
+  "8796ea21": {
+    "key": "SBE_PL0700_SP200",
+    "text": "Chave: Apoio Ardente"
+  },
+  "d95eb781": {
+    "key": "SBE_PL0800_SP000",
+    "text": "Visão: Conclusão Perfeita"
+  },
+  "fbbe6baf": {
+    "key": "SBE_PL0800_SP100",
+    "text": "Essência: Esquiva Apta"
+  },
+  "321ee2fa": {
+    "key": "SBE_PL0800_SP200",
+    "text": "Chave: Ac. de Habilidade"
+  },
+  "164b5647": {
+    "key": "SBE_PL0900_SP000",
+    "text": "Visão: Hostilidade+"
+  },
+  "c7ba5829": {
+    "key": "SBE_PL0900_SP100",
+    "text": "Essência: Tudo Pelo Grupo"
+  },
+  "725ec346": {
+    "key": "SBE_PL0900_SP200",
+    "text": "Chave: Infalível"
+  },
+  "19b5f235": {
+    "key": "SBE_PL1000_SP000",
+    "text": "Visão: Avante"
+  },
+  "9553b16e": {
+    "key": "SBE_PL1000_SP100",
+    "text": "Essência: Lâmina Derretida"
+  },
+  "45f93675": {
+    "key": "SBE_PL1000_SP200",
+    "text": "Chave: Foco Def Carregada"
+  },
+  "4ce38b11": {
+    "key": "SBE_PL1100_SP000",
+    "text": "Visão: Atacante Perfeito"
+  },
+  "944c385d": {
+    "key": "SBE_PL1100_SP100",
+    "text": "Essência: Matador Hábil"
+  },
+  "15e1e269": {
+    "key": "SBE_PL1100_SP200",
+    "text": "Chave: Alimentado pela Dor"
+  },
+  "9abaf95f": {
+    "key": "SBE_PL1200_SP000",
+    "text": "Visão: Postura Nobre"
+  },
+  "4ce67126": {
+    "key": "SBE_PL1200_SP100",
+    "text": "Essência: Atacar!"
+  },
+  "caa980bb": {
+    "key": "SBE_PL1200_SP200",
+    "text": "Chave: Eu Sou Invencível"
+  },
+  "394ebac1": {
+    "key": "SBE_PL1300_SP000",
+    "text": "Visão: Pro em Mortalha Tripla"
+  },
+  "a3c64b2c": {
+    "key": "SBE_PL1300_SP100",
+    "text": "Essência: Veloz"
+  },
+  "f88599c1": {
+    "key": "SBE_PL1300_SP200",
+    "text": "Chave: Deflexão Hábil"
+  },
+  "13ccf9f5": {
+    "key": "SBE_PL1400_SP000",
+    "text": "Visão: Mudança de Paradigma"
+  },
+  "bd7d2d0a": {
+    "key": "SBE_PL1400_SP100",
+    "text": "Essência: 1 Corte, 1 Morte"
+  },
+  "485bb574": {
+    "key": "SBE_PL1400_SP200",
+    "text": "Chave: Devoção à Devoção"
+  },
+  "058bbcd0": {
+    "key": "SBE_PL1500_SP000",
+    "text": "Visão: Superpunho Furioso"
+  },
+  "6481eb8c": {
+    "key": "SBE_PL1500_SP100",
+    "text": "Essência: Leão Furioso"
+  },
+  "cbf2fa02": {
+    "key": "SBE_PL1500_SP200",
+    "text": "Chave: Técnica Furiosa"
+  },
+  "971aa4ef": {
+    "key": "SBE_PL1600_SP000",
+    "text": "Visão: Loops Intensos"
+  },
+  "9d221a4b": {
+    "key": "SBE_PL1600_SP100",
+    "text": "Essência: Temos Habilidades"
+  },
+  "3e799f4a": {
+    "key": "SBE_PL1600_SP200",
+    "text": "Chave: Foco no Contra-Atq"
+  },
+  "48253f09": {
+    "key": "SBE_PL1700_SP000",
+    "text": "Visão: Fã de Combos"
+  },
+  "abbd6fea": {
+    "key": "SBE_PL1700_SP100",
+    "text": "Essência: Sem Poupar Forças"
+  },
+  "d3de43c1": {
+    "key": "SBE_PL1700_SP200",
+    "text": "Chave: Foco Def. Carregada"
+  },
+  "6bf584f8": {
+    "key": "SBE_PL1800_SP000",
+    "text": "Visão: Combos Debilitantes"
+  },
+  "67e999f5": {
+    "key": "SBE_PL1800_SP100",
+    "text": "Essência: Supercolapso"
+  },
+  "72e2ef88": {
+    "key": "SBE_PL1800_SP200",
+    "text": "Chave: Alquimia"
+  },
+  "65eb5b0d": {
+    "key": "SBE_PL1900_SP000",
+    "text": "Visão: Fé na Força Divina"
+  },
+  "62b36c64": {
+    "key": "SBE_PL1900_SP100",
+    "text": "Essência: Fé na F. Dragão"
+  },
+  "ca8c0eff": {
+    "key": "SBE_PL1900_SP200",
+    "text": "Chave: Caminho da Vingança"
+  },
+  "874a1bde": {
+    "key": "SBE_PL2100_SP000",
+    "text": "Visão: Asas Promissoras"
+  },
+  "0067b812": {
+    "key": "SBE_PL2100_SP100",
+    "text": "Essência: Buscando Refúgio"
+  },
+  "9239f96a": {
+    "key": "SBE_PL2100_SP200",
+    "text": "Chave: Sinos Dobram por Ti"
+  },
+  "24d6f865": {
+    "key": "SBE_PL2200_SP000",
+    "text": "Visão: Abastecendo o Avatar"
+  },
+  "7e9626ef": {
+    "key": "SBE_PL2200_SP100",
+    "text": "Essência: Torm. da Espada"
+  },
+  "d728f964": {
+    "key": "SBE_PL2200_SP200",
+    "text": "Chave: Luta em Dupla"
+  },
+  "7e36b21a": {
+    "key": "SBE_PL2300_SP000",
+    "text": "Visão: Saraiva Multimira"
+  },
+  "34f96e76": {
+    "key": "SBE_PL2300_SP100",
+    "text": "Essência: Vitória em Clinch"
+  },
+  "b2845904": {
+    "key": "SBE_PL2300_SP200",
+    "text": "Chave: Mestre de 2 Coroas"
+  },
+  "e3ea15a1": {
+    "key": "SBE_PL2400_SP000",
+    "text": "Visão: Mata-Mata Extremo"
+  },
+  "f9ad080c": {
+    "key": "SBE_PL2400_SP100",
+    "text": "Essência: Turbina Turbo"
+  },
+  "a77be1b3": {
+    "key": "SBE_PL2400_SP200",
+    "text": "Chave: Dá um Show"
+  },
+  "678e3771": {
+    "key": "SBE_PL2500_SP000",
+    "text": "Visão: Dança Ardente"
+  },
+  "78a786b7": {
+    "key": "SBE_PL2500_SP100",
+    "text": "Essência: Bruxaria Suprema"
+  },
+  "efa2d23e": {
+    "key": "SBE_PL2500_SP200",
+    "text": "Chave: Guarda do V Espada"
+  },
+  "d8c19249": {
+    "key": "SBE_PL2600_SP000",
+    "text": "Visão: Fome de Causalidade"
+  },
+  "9467c71a": {
+    "key": "SBE_PL2600_SP100",
+    "text": "Essência: Pontualidade"
+  },
+  "a86cbc27": {
+    "key": "SBE_PL2600_SP200",
+    "text": "Chave: Cadeia de Hab"
+  },
+  "99f6460d": {
+    "key": "SBE_PL2700_SP000",
+    "text": "Visão: Seus Inimigos Perto"
+  },
+  "d994808e": {
+    "key": "SBE_PL2700_SP100",
+    "text": "Essência: Soldado-Relâmpago"
+  },
+  "edb9d7fc": {
+    "key": "SBE_PL2700_SP200",
+    "text": "Chave: Perfeccionista"
+  },
+  "df550c8b": {
+    "key": "SBE_PL2800_SP000",
+    "text": "Visão: Virando o Jogo"
+  },
+  "567ebb0a": {
+    "key": "SBE_PL2800_SP100",
+    "text": "Essência: Sedução da Força"
+  },
+  "881a8207": {
+    "key": "SBE_PL2800_SP200",
+    "text": "Chave: Pacto com o Diabo"
+  },
+  "0ed7e526": {
+    "key": "SBE_PL2900_SP000",
+    "text": "Visão: Toque Final"
+  },
+  "cd8aa9e7": {
+    "key": "SBE_PL2900_SP100",
+    "text": "Essência: Sombra Corrosiva"
+  },
+  "15690516": {
+    "key": "SBE_PL2900_SP200",
+    "text": "Chave: Hb Dano Fortificadas"
+  }
+}

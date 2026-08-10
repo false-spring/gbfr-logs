@@ -81,7 +81,7 @@
   },
   "13fcf405": {
     "key": "ITEM_05_0001",
-    "text": "Alma de Excavalion Ω"
+    "text": "Alma de Mega-Excavalion"
   },
   "141ef3a7": {
     "key": "ITEM_02_0001",
@@ -117,7 +117,7 @@
   },
   "1a114b03": {
     "key": "ITEM_04_0001",
-    "text": "Alma de Mánagarm Ω"
+    "text": "Alma de Mega-Mánagarm"
   },
   "1aa4382d": {
     "key": "ITEM_02_0012",
@@ -333,7 +333,7 @@
   },
   "4f1e4c13": {
     "key": "ITEM_03_0001",
-    "text": "Alma de Furiacán Ω"
+    "text": "Alma de Mega-Furiacán"
   },
   "51355c28": {
     "key": "ITEM_22_0031",
@@ -401,11 +401,11 @@
   },
   "6096c6bf": {
     "key": "ITEM_16_0012",
-    "text": "Núcleo de Grynoth"
+    "text": "Núcleo de Cronos"
   },
   "60cb5ea6": {
     "key": "ITEM_14_0050",
-    "text": "Medallón del renacer"
+    "text": "Medallón del empíreo"
   },
   "60fd93bd": {
     "key": "ITEM_27_0030",
@@ -589,11 +589,11 @@
   },
   "8572b2ce": {
     "key": "ITEM_23_0001",
-    "text": "Carta de tripulante: Seofón"
+    "text": "Carta de tripulante: Siete"
   },
   "8682c2ac": {
     "key": "ITEM_80_0001",
-    "text": "Llave de lazurita"
+    "text": "Llave de oro"
   },
   "86b12abc": {
     "key": "ITEM_80_0002",
@@ -941,7 +941,7 @@
   },
   "d465046a": {
     "key": "ITEM_31_0070",
-    "text": "Rueda de mitrilo"
+    "text": "Rueda de mithril"
   },
   "d47f792a": {
     "key": "ITEM_31_0000",
@@ -1017,7 +1017,7 @@
   },
   "e5481168": {
     "key": "ITEM_06_0001",
-    "text": "Alma de Vulkan Bora Ω"
+    "text": "Alma de Mega-Vulkan Bora"
   },
   "e578bb85": {
     "key": "ITEM_70_0008",
@@ -1061,7 +1061,7 @@
   },
   "ed3b872d": {
     "key": "ITEM_07_0001",
-    "text": "Alma de Angra Mainyu Ω"
+    "text": "Alma de Mega-Angra Mainyu"
   },
   "ed91fe58": {
     "key": "ITEM_31_0001",
@@ -1145,7 +1145,7 @@
   },
   "fe52f7cb": {
     "key": "ITEM_23_0002",
-    "text": "Carta de tripulante: Tueyen"
+    "text": "Carta de tripulante: Song"
   },
   "feeafccf": {
     "key": "ITEM_01_0062",
@@ -1153,6 +1153,338 @@
   },
   "ff1a207a": {
     "key": "ITEM_70_0007",
-    "text": "Figura de cangrejo"
+    "text": "Figura de cangrejo dorada"
+  },
+  "4a41482c": {
+    "key": "ITEM_03_0003",
+    "text": "Pezuña esmeralda de vitalidad"
+  },
+  "b0782428": {
+    "key": "ITEM_04_0003",
+    "text": "Crin celeste de aislamiento"
+  },
+  "35f709e3": {
+    "key": "ITEM_06_0003",
+    "text": "Cola rígida temible"
+  },
+  "456d2bb3": {
+    "key": "ITEM_09_0003",
+    "text": "Mortido"
+  },
+  "6e13e372": {
+    "key": "ITEM_09_0013",
+    "text": "Hoja de Lobo Plateado caótico"
+  },
+  "4c21dc42": {
+    "key": "ITEM_09_0023",
+    "text": "Columelar degollador caótico"
+  },
+  "8d888638": {
+    "key": "ITEM_09_0030",
+    "text": "Alma celeste"
+  },
+  "9a3dc719": {
+    "key": "ITEM_09_0050",
+    "text": "Almenara celeste"
+  },
+  "20c742de": {
+    "key": "ITEM_14_0001",
+    "text": "Azurita imperfecta"
+  },
+  "c043bac9": {
+    "key": "ITEM_14_0023",
+    "text": "Título de pionerismo"
+  },
+  "537cb6d9": {
+    "key": "ITEM_14_0061",
+    "text": "Ragnita (defensa)"
+  },
+  "86fb2ee1": {
+    "key": "ITEM_14_0062",
+    "text": "Ragnita (aturdimiento)"
+  },
+  "654fa095": {
+    "key": "ITEM_14_0063",
+    "text": "Ragnita (ascensión)"
+  },
+  "1f4bae8c": {
+    "key": "ITEM_14_0064",
+    "text": "Ragnita (aguijón)"
+  },
+  "54732298": {
+    "key": "ITEM_14_0065",
+    "text": "Ragnita (espíritu luchador)"
+  },
+  "1c195d33": {
+    "key": "ITEM_14_0066",
+    "text": "Ragnita (proto)"
+  },
+  "8c4fc319": {
+    "key": "ITEM_14_0074",
+    "text": "Cubo caótico"
+  },
+  "65063e17": {
+    "key": "ITEM_14_0076",
+    "text": "Recipiente de era divina"
+  },
+  "0eb683cd": {
+    "key": "ITEM_15_0010",
+    "text": "Gran cubo I"
+  },
+  "98cdb46f": {
+    "key": "ITEM_15_0011",
+    "text": "Gran cubo II"
+  },
+  "64a63fbc": {
+    "key": "ITEM_15_0012",
+    "text": "Gran cubo III"
+  },
+  "5392dee6": {
+    "key": "ITEM_16_0005",
+    "text": "Pluma de divinidad caótica"
+  },
+  "831f31ff": {
+    "key": "ITEM_16_0007",
+    "text": "Espina de vacío"
+  },
+  "df713fa9": {
+    "key": "ITEM_16_0009",
+    "text": "Recuerdo ultimus"
+  },
+  "03a19196": {
+    "key": "ITEM_16_0013",
+    "text": "Núcleo de Período"
+  },
+  "68bafc37": {
+    "key": "ITEM_16_0105",
+    "text": "Pluma celeste olvidada"
+  },
+  "c1563862": {
+    "key": "ITEM_16_0106",
+    "text": "Pluma bermellón divina"
+  },
+  "fd1dc09a": {
+    "key": "ITEM_16_0901",
+    "text": "Génesis llameante"
+  },
+  "25165316": {
+    "key": "ITEM_16_0902",
+    "text": "Génesis torrencial"
+  },
+  "686f12ad": {
+    "key": "ITEM_16_0903",
+    "text": "Génesis huracanada"
+  },
+  "53a9d491": {
+    "key": "ITEM_16_0904",
+    "text": "Génesis sepultada"
+  },
+  "0311b2de": {
+    "key": "ITEM_18_0003",
+    "text": "Lágrimas del apocalipsis caótico"
+  },
+  "6f38afe1": {
+    "key": "ITEM_19_0010",
+    "text": "Concepto de mundo"
+  },
+  "85f40d79": {
+    "key": "ITEM_19_0012",
+    "text": "Signo del caos"
+  },
+  "8a08f64e": {
+    "key": "ITEM_19_0013",
+    "text": "Signo de la aurora"
+  },
+  "d147a1ba": {
+    "key": "ITEM_19_0020",
+    "text": "Pluma azabache puntiaguda"
+  },
+  "05474649": {
+    "key": "ITEM_19_0022",
+    "text": "Cristal supremo"
+  },
+  "f7dc6ed9": {
+    "key": "ITEM_19_0023",
+    "text": "Hexacristal supremo"
+  },
+  "58fc9b99": {
+    "key": "ITEM_21_0001",
+    "text": "Vale avanzado"
+  },
+  "d0f04d9f": {
+    "key": "ITEM_22_0022",
+    "text": "Fuego primigenio"
+  },
+  "a2452b7c": {
+    "key": "ITEM_22_0032",
+    "text": "Agua primigenia"
+  },
+  "89406db0": {
+    "key": "ITEM_22_0042",
+    "text": "Tierra primigenia"
+  },
+  "a1ead2c2": {
+    "key": "ITEM_22_0052",
+    "text": "Aire primigenio"
+  },
+  "882f94a7": {
+    "key": "ITEM_22_0062",
+    "text": "Luz primigenia"
+  },
+  "c83f9e36": {
+    "key": "ITEM_22_0072",
+    "text": "Oscuridad primigenia"
+  },
+  "faf93bcc": {
+    "key": "ITEM_22_0121",
+    "text": "Flama de los pilares"
+  },
+  "eb707ea7": {
+    "key": "ITEM_23_0004",
+    "text": "Carta de tripulante: Gallanza"
+  },
+  "e8926145": {
+    "key": "ITEM_23_0005",
+    "text": "Carta de tripulante: Maglielle"
+  },
+  "41e4c8ce": {
+    "key": "ITEM_23_0006",
+    "text": "Carta de tripulante: Fraux"
+  },
+  "06e5185f": {
+    "key": "ITEM_23_0007",
+    "text": "Carta de tripulante: Fediel"
+  },
+  "17f349ba": {
+    "key": "ITEM_31_0003",
+    "text": "Ojo singular de megaunión"
+  },
+  "6837efc6": {
+    "key": "ITEM_31_0013",
+    "text": "Hacha funesta de megahielo"
+  },
+  "19871bf3": {
+    "key": "ITEM_31_0023",
+    "text": "Hacha purg. megamiseria"
+  },
+  "0e7cbc8e": {
+    "key": "ITEM_31_0033",
+    "text": "Pico rígido de megabelleza"
+  },
+  "25289584": {
+    "key": "ITEM_31_0043",
+    "text": "Asta de bestia telúrica"
+  },
+  "7500c5d9": {
+    "key": "ITEM_31_0053",
+    "text": "Asta de bestia gélida"
+  },
+  "695ea716": {
+    "key": "ITEM_31_0063",
+    "text": "Asta de bestia ígnea"
+  },
+  "04c18eec": {
+    "key": "ITEM_31_0077",
+    "text": "Unidad pulsativa de carnicería"
+  },
+  "f7f9a658": {
+    "key": "ITEM_31_0078",
+    "text": "Punta siniestra"
+  },
+  "d4ee7fc3": {
+    "key": "ITEM_31_0085",
+    "text": "Rubí de sangre"
+  },
+  "2a5548a9": {
+    "key": "ITEM_31_0086",
+    "text": "Mandíbula de oro negro"
+  },
+  "381526a4": {
+    "key": "ITEM_31_0095",
+    "text": "Yelmo de furia"
+  },
+  "bdbf43ee": {
+    "key": "ITEM_32_0044",
+    "text": "Clúster del lamento caótico"
+  },
+  "adffe24e": {
+    "key": "ITEM_32_0046",
+    "text": "Magatama de bestia feroz"
+  },
+  "f74a6a4d": {
+    "key": "ITEM_32_1000",
+    "text": "Cuerno de cangrejo luchador"
+  },
+  "7388fe67": {
+    "key": "ITEM_33_0002",
+    "text": "Resplandor de Céfira"
+  },
+  "68eadaa9": {
+    "key": "ITEM_35_2000",
+    "text": "Punto de la Vorágine"
+  },
+  "2657283e": {
+    "key": "ITEM_35_3000",
+    "text": "Punto de resonancia"
+  },
+  "9fba96d1": {
+    "key": "ITEM_60_0001",
+    "text": "Pinzador pigmeo negro"
+  },
+  "076a9f41": {
+    "key": "ITEM_70_0018",
+    "text": "Figura de cangrejo azabache"
+  },
+  "06c0d0a1": {
+    "key": "ITEM_70_0019",
+    "text": "Figura de albacora dorada"
+  },
+  "6c375d99": {
+    "key": "ITEM_70_0020",
+    "text": "Recuerdo célico: Innumerables vidas"
+  },
+  "2c0b5a82": {
+    "key": "ITEM_70_0021",
+    "text": "Recuerdo célico: Materialización"
+  },
+  "96a00c42": {
+    "key": "ITEM_70_0022",
+    "text": "Recuerdo célico: Las luces del amor"
+  },
+  "e3abc397": {
+    "key": "ITEM_70_0023",
+    "text": "Recuerdo célico: La guerra de los cielos"
+  },
+  "0943913b": {
+    "key": "ITEM_70_0024",
+    "text": "Recuerdo célico: Chica Celeste"
+  },
+  "c57a5fe9": {
+    "key": "ITEM_70_0025",
+    "text": "Recuerdo célico: Cielos fragmentados"
+  },
+  "4249436e": {
+    "key": "ITEM_70_0026",
+    "text": "Recuerdo célico: Un dios dividido en dos"
+  },
+  "74201317": {
+    "key": "ITEM_70_0027",
+    "text": "Recuerdo célico: Regeneración y génesis"
+  },
+  "d11baafc": {
+    "key": "ITEM_70_0028",
+    "text": "Paquete de colores temático"
+  },
+  "c93e2fdd": {
+    "key": "ITEM_90_0000",
+    "text": "Cuarzo invoc.: Hijo del averno y las tinieblas"
+  },
+  "8bf58697": {
+    "key": "ITEM_90_0001",
+    "text": "Cuarzo invoc.: Draco argénteo de Terminus"
+  },
+  "cf24b2f6": {
+    "key": "ITEM_90_0002",
+    "text": "Cuarzo invoc.: Deidad de la fortificación"
   }
 }

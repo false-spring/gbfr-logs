@@ -3017,7 +3017,7 @@
   },
   "f12b5464": {
     "key": "GEEN_166_00",
-    "text": "Greater Aegis"
+    "text": "Greater Aegis I"
   },
   "f142a66c": {
     "key": "GEEN_067_03",
@@ -3218,5 +3218,913 @@
   "ffba8af0": {
     "key": "GEEN_029_02",
     "text": "Injury to Insult III"
+  },
+  "be4c13a6": {
+    "key": "GEEN_173_04",
+    "text": "Gladiator's Frenzy"
+  },
+  "b1683add": {
+    "key": "GEEN_173_54",
+    "text": "Gladiator's Top"
+  },
+  "4597a8a8": {
+    "key": "GEEN_173_64",
+    "text": "Gladiator's Warpath"
+  },
+  "9184f37b": {
+    "key": "GEEN_174_04",
+    "text": "Bladequeen's Serenade"
+  },
+  "247a41f3": {
+    "key": "GEEN_174_54",
+    "text": "Bladequeen's Circuit"
+  },
+  "6b920da2": {
+    "key": "GEEN_174_64",
+    "text": "Bladequeen's Warpath"
+  },
+  "d594d945": {
+    "key": "GEEN_175_04",
+    "text": "Ultramarine's Flash"
+  },
+  "e3cd2935": {
+    "key": "GEEN_175_54",
+    "text": "Ultramarine's Adversity"
+  },
+  "b4ece7bc": {
+    "key": "GEEN_175_64",
+    "text": "Ultramarine's Warpath"
+  },
+  "01bb436b": {
+    "key": "GEEN_176_04",
+    "text": "Thunderwolf's Recharge"
+  },
+  "99194505": {
+    "key": "GEEN_176_54",
+    "text": "Thunderwolf's Acuity"
+  },
+  "61a1a299": {
+    "key": "GEEN_176_64",
+    "text": "Thunderwolf's Warpath"
+  },
+  "7a06c7fb": {
+    "key": "GEEN_177_04",
+    "text": "Enchantress's Blessing"
+  },
+  "5cb2445f": {
+    "key": "GEEN_177_54",
+    "text": "Enchantress's Rhythm"
+  },
+  "db05a865": {
+    "key": "GEEN_177_64",
+    "text": "Enchantress's Warpath"
+  },
+  "9978c657": {
+    "key": "GEEN_178_04",
+    "text": "The Black's Mark"
+  },
+  "94dc820e": {
+    "key": "GEEN_178_54",
+    "text": "The Black's Impulse"
+  },
+  "4119f09b": {
+    "key": "GEEN_178_64",
+    "text": "The Black's Warpath"
+  },
+  "49434696": {
+    "key": "GEEN_301_00",
+    "text": "Immortal Shell"
+  },
+  "65f0420a": {
+    "key": "GEEN_302_00",
+    "text": "In a Pinch"
+  },
+  "b289a9ad": {
+    "key": "GEEN_303_00",
+    "text": "Sumo Force"
+  },
+  "cd6bb486": {
+    "key": "GEEN_320_00",
+    "text": "Celestial Nyx I"
+  },
+  "74eedc99": {
+    "key": "GEEN_320_01",
+    "text": "Celestial Nyx II"
+  },
+  "72c5a23d": {
+    "key": "GEEN_320_02",
+    "text": "Celestial Nyx III"
+  },
+  "5f097193": {
+    "key": "GEEN_320_03",
+    "text": "Celestial Nyx IV"
+  },
+  "56d196c5": {
+    "key": "GEEN_320_04",
+    "text": "Celestial Nyx V"
+  },
+  "4b86cc01": {
+    "key": "GEEN_321_00",
+    "text": "Celestial Lumen I"
+  },
+  "b3c0c93d": {
+    "key": "GEEN_321_01",
+    "text": "Celestial Lumen II"
+  },
+  "12789216": {
+    "key": "GEEN_321_02",
+    "text": "Celestial Lumen III"
+  },
+  "90176d85": {
+    "key": "GEEN_321_03",
+    "text": "Celestial Lumen IV"
+  },
+  "7300a967": {
+    "key": "GEEN_321_04",
+    "text": "Celestial Lumen V"
+  },
+  "840c419a": {
+    "key": "GEEN_322_00",
+    "text": "Celestial Terra I"
+  },
+  "abf24655": {
+    "key": "GEEN_322_01",
+    "text": "Celestial Terra II"
+  },
+  "8ff568f7": {
+    "key": "GEEN_322_02",
+    "text": "Celestial Terra III"
+  },
+  "1a743e14": {
+    "key": "GEEN_322_03",
+    "text": "Celestial Terra IV"
+  },
+  "87658a6f": {
+    "key": "GEEN_322_04",
+    "text": "Celestial Terra V"
+  },
+  "cc7dde55": {
+    "key": "GEEN_323_00",
+    "text": "Celestial Incendo I"
+  },
+  "a99085f7": {
+    "key": "GEEN_323_01",
+    "text": "Celestial Incendo II"
+  },
+  "96390ecf": {
+    "key": "GEEN_323_02",
+    "text": "Celestial Incendo III"
+  },
+  "22dc8701": {
+    "key": "GEEN_323_03",
+    "text": "Celestial Incendo IV"
+  },
+  "5536ee62": {
+    "key": "GEEN_323_04",
+    "text": "Celestial Incendo V"
+  },
+  "3dd38511": {
+    "key": "GEEN_324_00",
+    "text": "Celestial Aqua I"
+  },
+  "19c4348e": {
+    "key": "GEEN_324_01",
+    "text": "Celestial Aqua II"
+  },
+  "590715d9": {
+    "key": "GEEN_324_02",
+    "text": "Celestial Aqua III"
+  },
+  "d28011a6": {
+    "key": "GEEN_324_03",
+    "text": "Celestial Aqua IV"
+  },
+  "8ce18579": {
+    "key": "GEEN_324_04",
+    "text": "Celestial Aqua V"
+  },
+  "53bd323f": {
+    "key": "GEEN_325_00",
+    "text": "Fatebreaker I"
+  },
+  "85e85d91": {
+    "key": "GEEN_325_01",
+    "text": "Fatebreaker II"
+  },
+  "dce00ddb": {
+    "key": "GEEN_325_02",
+    "text": "Fatebreaker III"
+  },
+  "e4815918": {
+    "key": "GEEN_325_03",
+    "text": "Fatebreaker IV"
+  },
+  "501973ce": {
+    "key": "GEEN_325_04",
+    "text": "Fatebreaker V"
+  },
+  "83b5463b": {
+    "key": "GEEN_326_00",
+    "text": "Celestial Ventus I"
+  },
+  "a14ba9ce": {
+    "key": "GEEN_326_01",
+    "text": "Celestial Ventus II"
+  },
+  "b2420cbe": {
+    "key": "GEEN_326_02",
+    "text": "Celestial Ventus III"
+  },
+  "7f4f38ef": {
+    "key": "GEEN_326_03",
+    "text": "Celestial Ventus IV"
+  },
+  "33006fc3": {
+    "key": "GEEN_326_04",
+    "text": "Celestial Ventus V"
+  },
+  "e18cc78f": {
+    "key": "GEEN_327_00",
+    "text": "Divergence I"
+  },
+  "00277247": {
+    "key": "GEEN_327_01",
+    "text": "Divergence II"
+  },
+  "bd8ba705": {
+    "key": "GEEN_327_02",
+    "text": "Divergence III"
+  },
+  "7ac9dc94": {
+    "key": "GEEN_327_03",
+    "text": "Divergence IV"
+  },
+  "a8533ce3": {
+    "key": "GEEN_327_04",
+    "text": "Divergence V"
+  },
+  "43cdd1fc": {
+    "key": "43CDD1FC",
+    "text": "Damage Cap V+"
+  },
+  "c856d9a9": {
+    "key": "C856D9A9",
+    "text": "Damage Cap V+"
+  },
+  "36e1c7fc": {
+    "key": "36E1C7FC",
+    "text": "Damage Cap V+"
+  },
+  "9c309b7a": {
+    "key": "9C309B7A",
+    "text": "Damage Cap V+"
+  },
+  "c42e609c": {
+    "key": "C42E609C",
+    "text": "Damage Cap V+"
+  },
+  "abc0b11b": {
+    "key": "ABC0B11B",
+    "text": "Tyranny V+"
+  },
+  "98a07ee2": {
+    "key": "98A07EE2",
+    "text": "Guts V+"
+  },
+  "335da2a5": {
+    "key": "335DA2A5",
+    "text": "Guts V+"
+  },
+  "425056c4": {
+    "key": "425056C4",
+    "text": "Burn Resistance V+"
+  },
+  "28b71e53": {
+    "key": "28B71E53",
+    "text": "Sandtomb Resistance V+"
+  },
+  "e5e2ad4b": {
+    "key": "E5E2AD4B",
+    "text": "Improved Dodge+"
+  },
+  "748dd213": {
+    "key": "748DD213",
+    "text": "Improved Dodge+"
+  },
+  "02c1d304": {
+    "key": "02C1D304",
+    "text": "Improved Dodge+"
+  },
+  "f39b8fe1": {
+    "key": "F39B8FE1",
+    "text": "Autorevive V+"
+  },
+  "e87b1975": {
+    "key": "E87B1975",
+    "text": "Cascade V+"
+  },
+  "490f7304": {
+    "key": "490F7304",
+    "text": "Potion Hoarder V+"
+  },
+  "b12e3029": {
+    "key": "B12E3029",
+    "text": "Stronghold V+"
+  },
+  "297d03f7": {
+    "key": "297D03F7",
+    "text": "Stronghold V+"
+  },
+  "e0294510": {
+    "key": "E0294510",
+    "text": "Supplementary Damage V+"
+  },
+  "1e2ebc39": {
+    "key": "1E2EBC39",
+    "text": "Supplementary Damage V+"
+  },
+  "90822db1": {
+    "key": "90822DB1",
+    "text": "Supplementary Damage V+"
+  },
+  "73e4c05e": {
+    "key": "73E4C05E",
+    "text": "Greater Aegis V+"
+  },
+  "2ac47940": {
+    "key": "2AC47940",
+    "text": "Berserker Echo+"
+  },
+  "05fe0351": {
+    "key": "05FE0351",
+    "text": "Spartan Echo+"
+  },
+  "426ad20e": {
+    "key": "GEEN_300_11",
+    "text": "Crabs Are Forever+"
+  },
+  "3d0bf8cb": {
+    "key": "3D0BF8CB",
+    "text": "War Elemental+"
+  },
+  "ce8c3c96": {
+    "key": "CE8C3C96",
+    "text": "War Elemental+"
+  },
+  "6efcd286": {
+    "key": "6EFCD286",
+    "text": "War Elemental+"
+  },
+  "6ff3308a": {
+    "key": "6FF3308A",
+    "text": "War Elemental+"
+  },
+  "66cb28ba": {
+    "key": "GEEN_301_10",
+    "text": "Immortal Shell+"
+  },
+  "76786869": {
+    "key": "GEEN_302_10",
+    "text": "In a Pinch+"
+  },
+  "186407ed": {
+    "key": "186407ED",
+    "text": "Celestial Nyx III+"
+  },
+  "b0ce994b": {
+    "key": "B0CE994B",
+    "text": "Celestial Nyx IV+"
+  },
+  "40214c38": {
+    "key": "40214C38",
+    "text": "Celestial Nyx V+"
+  },
+  "ff5f3079": {
+    "key": "FF5F3079",
+    "text": "Celestial Nyx V+"
+  },
+  "de19a583": {
+    "key": "DE19A583",
+    "text": "Celestial Nyx V+"
+  },
+  "b1b79be4": {
+    "key": "B1B79BE4",
+    "text": "Celestial Nyx V+"
+  },
+  "73db3bd3": {
+    "key": "73DB3BD3",
+    "text": "Celestial Lumen III+"
+  },
+  "2b2401ef": {
+    "key": "2B2401EF",
+    "text": "Celestial Lumen IV+"
+  },
+  "99926ea8": {
+    "key": "99926EA8",
+    "text": "Celestial Lumen V+"
+  },
+  "9a250027": {
+    "key": "9A250027",
+    "text": "Celestial Lumen V+"
+  },
+  "1e7796e1": {
+    "key": "1E7796E1",
+    "text": "Celestial Lumen V+"
+  },
+  "c2c979fc": {
+    "key": "C2C979FC",
+    "text": "Celestial Lumen V+"
+  },
+  "c4c213bd": {
+    "key": "C4C213BD",
+    "text": "Celestial Terra III+"
+  },
+  "36360691": {
+    "key": "36360691",
+    "text": "Celestial Terra IV+"
+  },
+  "006e474e": {
+    "key": "006E474E",
+    "text": "Celestial Terra V+"
+  },
+  "7bf56b6f": {
+    "key": "7BF56B6F",
+    "text": "Celestial Terra V+"
+  },
+  "52abe046": {
+    "key": "52ABE046",
+    "text": "Celestial Terra V+"
+  },
+  "7ce4d81c": {
+    "key": "7CE4D81C",
+    "text": "Celestial Terra V+"
+  },
+  "1c500ab2": {
+    "key": "1C500AB2",
+    "text": "Celestial Incendo III+"
+  },
+  "eae396e1": {
+    "key": "EAE396E1",
+    "text": "Celestial Incendo IV+"
+  },
+  "d7d2f16e": {
+    "key": "D7D2F16E",
+    "text": "Celestial Incendo V+"
+  },
+  "65b7e5c8": {
+    "key": "65B7E5C8",
+    "text": "Celestial Incendo V+"
+  },
+  "1147543e": {
+    "key": "1147543E",
+    "text": "Celestial Aqua III+"
+  },
+  "a70c5270": {
+    "key": "A70C5270",
+    "text": "Celestial Aqua IV+"
+  },
+  "fbb1778f": {
+    "key": "FBB1778F",
+    "text": "Celestial Aqua V+"
+  },
+  "fc19bf26": {
+    "key": "FC19BF26",
+    "text": "Celestial Aqua V+"
+  },
+  "b242510c": {
+    "key": "B242510C",
+    "text": "Fatebreaker III+"
+  },
+  "5119e3f4": {
+    "key": "5119E3F4",
+    "text": "Fatebreaker IV+"
+  },
+  "04bd9f6b": {
+    "key": "04BD9F6B",
+    "text": "Fatebreaker V+"
+  },
+  "1a5f39d2": {
+    "key": "1A5F39D2",
+    "text": "Fatebreaker V+"
+  },
+  "2a2304e2": {
+    "key": "2A2304E2",
+    "text": "Fatebreaker V+"
+  },
+  "9bd2b40e": {
+    "key": "9BD2B40E",
+    "text": "Celestial Ventus III+"
+  },
+  "7d720227": {
+    "key": "7D720227",
+    "text": "Celestial Ventus IV+"
+  },
+  "7009517b": {
+    "key": "7009517B",
+    "text": "Celestial Ventus V+"
+  },
+  "89538be0": {
+    "key": "89538BE0",
+    "text": "Celestial Ventus V+"
+  },
+  "d5cf6765": {
+    "key": "D5CF6765",
+    "text": "Celestial Ventus V+"
+  },
+  "61c49c10": {
+    "key": "61C49C10",
+    "text": "Celestial Ventus V+"
+  },
+  "0898bb55": {
+    "key": "0898BB55",
+    "text": "Divergence III+"
+  },
+  "a266e055": {
+    "key": "A266E055",
+    "text": "Divergence IV+"
+  },
+  "f1d8f754": {
+    "key": "F1D8F754",
+    "text": "Divergence V+"
+  },
+  "80cfc2f1": {
+    "key": "80CFC2F1",
+    "text": "Divergence V+"
+  },
+  "e59bbe0a": {
+    "key": "E59BBE0A",
+    "text": "Divergence V+"
+  },
+  "2d85102a": {
+    "key": "GEEN_146_34",
+    "text": "War Elemental+"
+  },
+  "49ebebeb": {
+    "key": "49EBEBEB",
+    "text": "Untouchable+"
+  },
+  "9a60fbf0": {
+    "key": "9A60FBF0",
+    "text": "Potent Greens+"
+  },
+  "6db307d5": {
+    "key": "6DB307D5",
+    "text": "Roll of the Die+"
+  },
+  "8e20b20c": {
+    "key": "8E20B20C",
+    "text": "Flight over Fight+"
+  },
+  "3c0f5461": {
+    "key": "3C0F5461",
+    "text": "Auto Potion+"
+  },
+  "99e8b892": {
+    "key": "GEEN_233_34",
+    "text": "Berserker Echo+"
+  },
+  "4ae72c9e": {
+    "key": "GEEN_234_34",
+    "text": "Spartan Echo+"
+  },
+  "113035d8": {
+    "key": "113035D8",
+    "text": "Super Ultimate Perfect Dodge+"
+  },
+  "f94e0066": {
+    "key": "GEEN_320_22",
+    "text": "Celestial Nyx III+"
+  },
+  "50996321": {
+    "key": "GEEN_320_23",
+    "text": "Celestial Nyx IV+"
+  },
+  "8b8085c0": {
+    "key": "GEEN_320_24",
+    "text": "Celestial Nyx V+"
+  },
+  "90e42e35": {
+    "key": "GEEN_321_22",
+    "text": "Celestial Lumen III+"
+  },
+  "231ebaa2": {
+    "key": "GEEN_321_23",
+    "text": "Celestial Lumen IV+"
+  },
+  "20492635": {
+    "key": "GEEN_321_24",
+    "text": "Celestial Lumen V+"
+  },
+  "07a3abd9": {
+    "key": "GEEN_322_22",
+    "text": "Celestial Terra III+"
+  },
+  "8b9c3d0f": {
+    "key": "GEEN_322_23",
+    "text": "Celestial Terra IV+"
+  },
+  "d29cd8e0": {
+    "key": "GEEN_322_24",
+    "text": "Celestial Terra V+"
+  },
+  "15f618b1": {
+    "key": "GEEN_323_22",
+    "text": "Celestial Incendo III+"
+  },
+  "53b1458d": {
+    "key": "GEEN_323_23",
+    "text": "Celestial Incendo IV+"
+  },
+  "74061b0c": {
+    "key": "GEEN_323_24",
+    "text": "Celestial Incendo V+"
+  },
+  "35ae024e": {
+    "key": "GEEN_324_22",
+    "text": "Celestial Aqua III+"
+  },
+  "abaefe36": {
+    "key": "GEEN_324_23",
+    "text": "Celestial Aqua IV+"
+  },
+  "e14e1598": {
+    "key": "GEEN_324_24",
+    "text": "Celestial Aqua V+"
+  },
+  "2767b7e2": {
+    "key": "GEEN_325_22",
+    "text": "Fatebreaker III+"
+  },
+  "a6aac25f": {
+    "key": "GEEN_325_23",
+    "text": "Fatebreaker IV+"
+  },
+  "5bf84fd1": {
+    "key": "GEEN_325_24",
+    "text": "Fatebreaker V+"
+  },
+  "81b3962d": {
+    "key": "GEEN_326_22",
+    "text": "Celestial Ventus III+"
+  },
+  "4a25d812": {
+    "key": "GEEN_326_23",
+    "text": "Celestial Ventus IV+"
+  },
+  "9300fadb": {
+    "key": "GEEN_326_24",
+    "text": "Celestial Ventus V+"
+  },
+  "908d5612": {
+    "key": "GEEN_327_22",
+    "text": "Divergence III+"
+  },
+  "4d52c35c": {
+    "key": "GEEN_327_23",
+    "text": "Divergence IV+"
+  },
+  "7b4aab30": {
+    "key": "GEEN_327_24",
+    "text": "Divergence V+"
+  },
+  "bb49c8f6": {
+    "key": "BB49C8F6",
+    "text": "Guts V+"
+  },
+  "ba16f729": {
+    "key": "BA16F729",
+    "text": "Improved Healing V+"
+  },
+  "837b3d64": {
+    "key": "837B3D64",
+    "text": "Regen V+"
+  },
+  "3ba37635": {
+    "key": "3BA37635",
+    "text": "Drain V+"
+  },
+  "d340651c": {
+    "key": "D340651C",
+    "text": "Autorevive V+"
+  },
+  "ab70208c": {
+    "key": "AB70208C",
+    "text": "Quick Cooldown V+"
+  },
+  "6cba6b0d": {
+    "key": "6CBA6B0D",
+    "text": "Cascade V+"
+  },
+  "04ac2281": {
+    "key": "04AC2281",
+    "text": "Uplift V+"
+  },
+  "3ed16fb2": {
+    "key": "3ED16FB2",
+    "text": "Potion Hoarder V+"
+  },
+  "33ac7f74": {
+    "key": "33AC7F74",
+    "text": "Low Profile V+"
+  },
+  "0890cd68": {
+    "key": "0890CD68",
+    "text": "Provoke V+"
+  },
+  "1c166abc": {
+    "key": "1C166ABC",
+    "text": "Fast Learner V+"
+  },
+  "98e33f8e": {
+    "key": "98E33F8E",
+    "text": "Rupie Tycoon V+"
+  },
+  "b506b258": {
+    "key": "B506B258",
+    "text": "Steady Focus V+"
+  },
+  "2679a4f0": {
+    "key": "2679A4F0",
+    "text": "Nimble Onslaught V+"
+  },
+  "80c94a24": {
+    "key": "80C94A24",
+    "text": "Precise Wrath V+"
+  },
+  "70051799": {
+    "key": "70051799",
+    "text": "Path to Mastery V+"
+  },
+  "895abbf6": {
+    "key": "GEEN_173_90",
+    "text": "Gladiator's Awakening+"
+  },
+  "d8a464f1": {
+    "key": "GEEN_174_90",
+    "text": "Bladequeen's Awakening+"
+  },
+  "95cc3cb8": {
+    "key": "GEEN_175_90",
+    "text": "Ultramarine's Awakening+"
+  },
+  "23953fd4": {
+    "key": "GEEN_176_90",
+    "text": "Thunderwolf's Awakening+"
+  },
+  "5a360ea8": {
+    "key": "GEEN_177_90",
+    "text": "Enchantress's Awakening+"
+  },
+  "a8a0cbff": {
+    "key": "GEEN_178_90",
+    "text": "The Black's Awakening+"
+  },
+  "282dbff0": {
+    "key": "GEEN_173_91",
+    "text": "Gladiator's Frenzy+"
+  },
+  "f21404b1": {
+    "key": "GEEN_173_92",
+    "text": "Gladiator's Top+"
+  },
+  "41ac1082": {
+    "key": "GEEN_173_93",
+    "text": "Gladiator's Warpath+"
+  },
+  "ec9ffe77": {
+    "key": "GEEN_174_91",
+    "text": "Bladequeen's Serenade+"
+  },
+  "96d6fe5e": {
+    "key": "GEEN_174_92",
+    "text": "Bladequeen's Circuit+"
+  },
+  "eb766d87": {
+    "key": "GEEN_174_93",
+    "text": "Bladequeen's Warpath+"
+  },
+  "9ec6c56d": {
+    "key": "GEEN_175_91",
+    "text": "Ultramarine's Flash+"
+  },
+  "d4117ff3": {
+    "key": "GEEN_175_92",
+    "text": "Ultramarine's Adversity+"
+  },
+  "51e98a7c": {
+    "key": "GEEN_175_93",
+    "text": "Ultramarine's Warpath+"
+  },
+  "f964a4ca": {
+    "key": "GEEN_176_91",
+    "text": "Thunderwolf's Recharge+"
+  },
+  "1a359b67": {
+    "key": "GEEN_176_92",
+    "text": "Thunderwolf's Acuity+"
+  },
+  "d8c61507": {
+    "key": "GEEN_176_93",
+    "text": "Thunderwolf's Warpath+"
+  },
+  "64301e91": {
+    "key": "GEEN_177_91",
+    "text": "Enchantress's Blessing+"
+  },
+  "ba28c81c": {
+    "key": "GEEN_177_92",
+    "text": "Enchantress's Rhythm+"
+  },
+  "2d70c37d": {
+    "key": "GEEN_177_93",
+    "text": "Enchantress's Warpath+"
+  },
+  "0523a202": {
+    "key": "GEEN_178_91",
+    "text": "The Black's Mark+"
+  },
+  "0723f7ec": {
+    "key": "GEEN_178_92",
+    "text": "The Black's Impulse+"
+  },
+  "9abd2da5": {
+    "key": "GEEN_178_93",
+    "text": "The Black's Warpath+"
+  },
+  "ed715e85": {
+    "key": "ED715E85",
+    "text": "Health V+"
+  },
+  "a21005e9": {
+    "key": "A21005E9",
+    "text": "Critical Hit Rate V+"
+  },
+  "688ab21c": {
+    "key": "688AB21C",
+    "text": "Stun Power V+"
+  },
+  "c3a4c1ec": {
+    "key": "C3A4C1EC",
+    "text": "Enmity V+"
+  },
+  "eded0b97": {
+    "key": "EDED0B97",
+    "text": "Stamina V+"
+  },
+  "cc5ff698": {
+    "key": "CC5FF698",
+    "text": "Damage Cap V+"
+  },
+  "bb6dee38": {
+    "key": "BB6DEE38",
+    "text": "Tyranny V+"
+  },
+  "612b6458": {
+    "key": "612B6458",
+    "text": "Guts V+"
+  },
+  "edef9eb0": {
+    "key": "EDEF9EB0",
+    "text": "Improved Dodge+"
+  },
+  "e365b951": {
+    "key": "E365B951",
+    "text": "Regen V+"
+  },
+  "329c4e1c": {
+    "key": "329C4E1C",
+    "text": "Drain V+"
+  },
+  "9eb767bb": {
+    "key": "9EB767BB",
+    "text": "Autorevive V+"
+  },
+  "b09e9d63": {
+    "key": "B09E9D63",
+    "text": "Cascade V+"
+  },
+  "edd3770b": {
+    "key": "EDD3770B",
+    "text": "Uplift V+"
+  },
+  "79495b88": {
+    "key": "79495B88",
+    "text": "Potion Hoarder V+"
+  },
+  "e71b5cd5": {
+    "key": "E71B5CD5",
+    "text": "Aegis V+"
+  },
+  "041d7b20": {
+    "key": "041D7B20",
+    "text": "Steel Nerves V+"
+  },
+  "1f012233": {
+    "key": "1F012233",
+    "text": "Nimble Defense V+"
+  },
+  "59de6187": {
+    "key": "59DE6187",
+    "text": "Nimble Onslaught V+"
   }
 }

@@ -33,7 +33,7 @@
   },
   "07bb324c": {
     "key": "WEP_PL0600_06",
-    "text": "Daga de Bahamut Coda"
+    "text": "Daga de Bahamut Futurum"
   },
   "08ac9299": {
     "key": "WEP_PL0000_03_00",
@@ -45,7 +45,7 @@
   },
   "099c8066": {
     "key": "WEP_PL1400_03",
-    "text": "Venustas"
+    "text": "Heishi Shorin"
   },
   "0a9b7790": {
     "key": "WEP_PL1600_02",
@@ -53,7 +53,7 @@
   },
   "0b1c14c1": {
     "key": "WEP_PL0900_06_02",
-    "text": "Mjolnir"
+    "text": "Mjölnir"
   },
   "0d7b7a95": {
     "key": "WEP_PL0000_06_03",
@@ -137,7 +137,7 @@
   },
   "1e8011eb": {
     "key": "WEP_PL2100_07_03",
-    "text": "Exterminador de mundos aciago"
+    "text": "Fin del Mundo aciago"
   },
   "1e90adb4": {
     "key": "WEP_PL0100_03_03",
@@ -145,7 +145,7 @@
   },
   "1ea049bc": {
     "key": "WEP_PL1000_05_02",
-    "text": "Señor del fuego"
+    "text": "Caballero de las Llamas"
   },
   "1f0bcdba": {
     "key": "WEP_PL1700_A0",
@@ -157,7 +157,7 @@
   },
   "227b690e": {
     "key": "WEP_PL0900_06_03",
-    "text": "Mjolnir, el azote atronador"
+    "text": "Mjölnir, el azote atronador"
   },
   "22e79816": {
     "key": "WEP_PL0400_03",
@@ -169,7 +169,7 @@
   },
   "241b6d32": {
     "key": "WEP_PL0800_05_01",
-    "text": "Caballero de Hielo"
+    "text": "Caballero del Hielo"
   },
   "24c815ab": {
     "key": "WEP_PL0100_03_01",
@@ -181,7 +181,7 @@
   },
   "25ff2db3": {
     "key": "WEP_PL0600_06_02",
-    "text": "Daga de Bahamut Coda"
+    "text": "Daga de Bahamut Futurum"
   },
   "26ad10bc": {
     "key": "WEP_PL0400_03_01",
@@ -209,7 +209,7 @@
   },
   "2a95501e": {
     "key": "WEP_PL1300_06_02",
-    "text": "Pez espada"
+    "text": "Pez sable"
   },
   "2af2a118": {
     "key": "WEP_PL0000_06_00",
@@ -253,7 +253,7 @@
   },
   "32ee4d8a": {
     "key": "WEP_PL0100_05",
-    "text": "Espada definitiva"
+    "text": "Espada Omega"
   },
   "33d018e0": {
     "key": "WEP_PL0700_03_03",
@@ -369,7 +369,7 @@
   },
   "4ca01db9": {
     "key": "WEP_PL0800_05_03",
-    "text": "Caballero de Hielo, brillo de plata"
+    "text": "Caballero del Hielo, brillo de plata"
   },
   "4cba06d8": {
     "key": "WEP_PL2300_07",
@@ -393,7 +393,7 @@
   },
   "515b69c7": {
     "key": "WEP_PL0900_05",
-    "text": "Hacha primaveral"
+    "text": "Hacha florida"
   },
   "51836359": {
     "key": "WEP_PL1300_03_03",
@@ -473,7 +473,7 @@
   },
   "64dd708d": {
     "key": "WEP_PL1400_03_02",
-    "text": "Venustas"
+    "text": "Heishi Shorin"
   },
   "67a31199": {
     "key": "WEP_PL1700_06_02",
@@ -493,7 +493,7 @@
   },
   "6bb5e5fd": {
     "key": "WEP_PL0700_04",
-    "text": "Látigo llameante"
+    "text": "Látigo de fuego"
   },
   "6c382cfb": {
     "key": "WEP_PL0600_04",
@@ -517,7 +517,7 @@
   },
   "72aae787": {
     "key": "WEP_PL0800_05",
-    "text": "Caballero de Hielo"
+    "text": "Caballero del Hielo"
   },
   "73263fe6": {
     "key": "WEP_PL0700_02",
@@ -545,7 +545,7 @@
   },
   "79adecd8": {
     "key": "WEP_PL1000_05_01",
-    "text": "Señor del fuego"
+    "text": "Caballero de las Llamas"
   },
   "7a0a0e34": {
     "key": "WEP_PL1900_03_03",
@@ -605,7 +605,7 @@
   },
   "8e2e15eb": {
     "key": "WEP_PL2100_07_01",
-    "text": "Exterminador de mundos"
+    "text": "Fin del Mundo"
   },
   "90a18c66": {
     "key": "WEP_PL1200_03_02",
@@ -629,11 +629,11 @@
   },
   "980058ed": {
     "key": "WEP_PL1000_04",
-    "text": "Alegría"
+    "text": "Joyosa"
   },
   "98f8ca3e": {
     "key": "WEP_PL1000_05",
-    "text": "Señor del fuego"
+    "text": "Caballero de las Llamas"
   },
   "9b9f83a2": {
     "key": "WEP_PL0000_06_01",
@@ -653,7 +653,7 @@
   },
   "a1f477d6": {
     "key": "WEP_PL1300_06",
-    "text": "Pez espada"
+    "text": "Pez sable"
   },
   "a44b08bf": {
     "key": "WEP_PL0200_06_03",
@@ -665,7 +665,7 @@
   },
   "a8d420f2": {
     "key": "WEP_PL1500_06_02",
-    "text": "Desgarracielos"
+    "text": "Fang Tian Hua Ji"
   },
   "a9e77ed8": {
     "key": "WEP_PL0200_03_02",
@@ -673,11 +673,11 @@
   },
   "a9e805ae": {
     "key": "WEP_PL1300_06_01",
-    "text": "Pez espada"
+    "text": "Pez sable"
   },
   "ab6678d2": {
     "key": "WEP_PL1500_06",
-    "text": "Desgarracielos"
+    "text": "Fang Tian Hua Ji"
   },
   "abe40e34": {
     "key": "WEP_PL1600_05",
@@ -693,7 +693,7 @@
   },
   "ad915067": {
     "key": "WEP_PL2100_07",
-    "text": "Exterminador de mundos"
+    "text": "Fin del Mundo"
   },
   "aed9ebf8": {
     "key": "WEP_PL0600_03_01",
@@ -701,7 +701,7 @@
   },
   "afbd8b45": {
     "key": "WEP_PL1400_03_03",
-    "text": "Venustas, la gracia divina"
+    "text": "Heishi Shorin, la gracia divina"
   },
   "b03ea930": {
     "key": "WEP_PL1700_01",
@@ -725,7 +725,7 @@
   },
   "b3ddaae1": {
     "key": "WEP_PL1000_05_03",
-    "text": "Señor del fuego, reino magno"
+    "text": "Caballero de las Llamas, reino magno"
   },
   "b5341662": {
     "key": "WEP_PL0500_03_03",
@@ -773,7 +773,7 @@
   },
   "bcd65f7d": {
     "key": "WEP_PL0600_06_03",
-    "text": "Daga de Bahamut Coda Primordial"
+    "text": "Daga de Bahamut Futurum Primordial"
   },
   "bddcd5e3": {
     "key": "WEP_PL1700_03",
@@ -833,7 +833,7 @@
   },
   "c84002e0": {
     "key": "WEP_PL0900_06",
-    "text": "Mjolnir"
+    "text": "Mjölnir"
   },
   "c8736136": {
     "key": "WEP_PL0000_99",
@@ -857,7 +857,7 @@
   },
   "cd8ca605": {
     "key": "WEP_PL1500_06_03",
-    "text": "Desgarracielos, puño supremo"
+    "text": "Fang Tian Hua Ji, puño supremo"
   },
   "cde3b884": {
     "key": "WEP_PL1900_A0",
@@ -869,7 +869,7 @@
   },
   "cf9c4808": {
     "key": "WEP_PL0000_05",
-    "text": "Espada definitiva"
+    "text": "Espada Omega"
   },
   "d055a41e": {
     "key": "WEP_PL1700_02",
@@ -877,7 +877,7 @@
   },
   "d21f4078": {
     "key": "WEP_PL2100_07_02",
-    "text": "Exterminador de mundos"
+    "text": "Fin del Mundo"
   },
   "d2dfbe87": {
     "key": "WEP_PL1000_A0",
@@ -905,7 +905,7 @@
   },
   "d7280fe5": {
     "key": "WEP_PL0900_06_01",
-    "text": "Mjolnir"
+    "text": "Mjölnir"
   },
   "d7cee3b8": {
     "key": "WEP_PL0000_03",
@@ -917,7 +917,7 @@
   },
   "da6ef17e": {
     "key": "WEP_PL1600_04",
-    "text": "Gisla"
+    "text": "Grásítha"
   },
   "db043dd7": {
     "key": "WEP_PL1400_01",
@@ -929,11 +929,11 @@
   },
   "dc144611": {
     "key": "WEP_PL1500_06_01",
-    "text": "Desgarracielos"
+    "text": "Fang Tian Hua Ji"
   },
   "dc75ce8a": {
     "key": "WEP_PL0800_05_02",
-    "text": "Caballero de Hielo"
+    "text": "Caballero del Hielo"
   },
   "dc959f74": {
     "key": "WEP_PL1000_06_01",
@@ -997,7 +997,7 @@
   },
   "ebbe11a9": {
     "key": "WEP_PL0600_06_01",
-    "text": "Daga de Bahamut Coda"
+    "text": "Daga de Bahamut Futurum"
   },
   "ee6cd89e": {
     "key": "WEP_PL0500_04",
@@ -1025,7 +1025,7 @@
   },
   "f246096b": {
     "key": "WEP_PL1400_03_01",
-    "text": "Venustas"
+    "text": "Heishi Shorin"
   },
   "f4c1de98": {
     "key": "WEP_PL1500_04",
@@ -1037,7 +1037,7 @@
   },
   "f6ff4cb2": {
     "key": "WEP_PL1300_06_03",
-    "text": "Pez espada, azote escamado"
+    "text": "Pez sable, azote escamado"
   },
   "f71832ef": {
     "key": "WEP_PL1200_05",
@@ -1086,5 +1086,369 @@
   "fff2f00f": {
     "key": "WEP_PL1400_06",
     "text": "Ame no Habakiri"
+  },
+  "2c8681f8": {
+    "key": "WEP_PL1900_10",
+    "text": "Espada kármica del apocalipsis"
+  },
+  "a626f67e": {
+    "key": "WEP_PL2100_04",
+    "text": "Espada de Miguel"
+  },
+  "dfbb5727": {
+    "key": "WEP_PL2100_06",
+    "text": "Éfeso"
+  },
+  "74804589": {
+    "key": "74804589",
+    "text": "Éfeso"
+  },
+  "abdf528d": {
+    "key": "ABDF528D",
+    "text": "Éfeso"
+  },
+  "d016feb3": {
+    "key": "D016FEB3",
+    "text": "Éfeso, comunión celícola"
+  },
+  "70fd3c94": {
+    "key": "WEP_PL2200_04",
+    "text": "Viento de Espada"
+  },
+  "74d764b7": {
+    "key": "WEP_PL2200_06",
+    "text": "Espada de los Diez"
+  },
+  "aef15742": {
+    "key": "AEF15742",
+    "text": "Espada de los Diez"
+  },
+  "d5fe66a2": {
+    "key": "D5FE66A2",
+    "text": "Espada de los Diez"
+  },
+  "1ea819a4": {
+    "key": "1EA819A4",
+    "text": "Espada de los Diez, heptahendidura"
+  },
+  "91ddc1f1": {
+    "key": "WEP_PL2300_04",
+    "text": "Hércules"
+  },
+  "1064441e": {
+    "key": "WEP_PL2300_06",
+    "text": "Arco de los Diez"
+  },
+  "82ac447f": {
+    "key": "82AC447F",
+    "text": "Arco de los Diez"
+  },
+  "de958cdb": {
+    "key": "DE958CDB",
+    "text": "Arco de los Diez"
+  },
+  "40204755": {
+    "key": "40204755",
+    "text": "Arco de los Diez, diperforación"
+  },
+  "121cd3fd": {
+    "key": "WEP_PL2400_01",
+    "text": "Contra"
+  },
+  "3c667a36": {
+    "key": "WEP_PL2400_03",
+    "text": "Zarpa Matadragones"
+  },
+  "fd6b963e": {
+    "key": "WEP_PL2400_03_01",
+    "text": "Zarpa Matadragones"
+  },
+  "de80bc37": {
+    "key": "WEP_PL2400_03_02",
+    "text": "Zarpa Matadragones"
+  },
+  "7f10010d": {
+    "key": "WEP_PL2400_03_03",
+    "text": "Zarpa Matadragones, arrasamundos"
+  },
+  "60720167": {
+    "key": "WEP_PL2400_04",
+    "text": "Madero de 2 por 4"
+  },
+  "10180036": {
+    "key": "WEP_PL2400_06",
+    "text": "Lanza armadura singular"
+  },
+  "974dbc97": {
+    "key": "974DBC97",
+    "text": "Lanza armadura singular"
+  },
+  "6a018933": {
+    "key": "6A018933",
+    "text": "Lanza armadura singular"
+  },
+  "5de1b311": {
+    "key": "5DE1B311",
+    "text": "Lanza armadura singular, lobo bravo"
+  },
+  "f76c20a2": {
+    "key": "WEP_PL2500_01",
+    "text": "Al Fine"
+  },
+  "1cc90cae": {
+    "key": "WEP_PL2500_03",
+    "text": "Excálibur"
+  },
+  "1a961ac5": {
+    "key": "1A961AC5",
+    "text": "Excálibur"
+  },
+  "4102b6ab": {
+    "key": "4102B6AB",
+    "text": "Excálibur"
+  },
+  "802b09da": {
+    "key": "802B09DA",
+    "text": "Excálibur, espada sacra del rey"
+  },
+  "eb3724b6": {
+    "key": "WEP_PL2500_04",
+    "text": "Deicida Exo Maitrah Karuna"
+  },
+  "90f5b18f": {
+    "key": "WEP_PL2500_06",
+    "text": "Ricercare"
+  },
+  "72ab825d": {
+    "key": "72AB825D",
+    "text": "Ricercare"
+  },
+  "87e6e352": {
+    "key": "87E6E352",
+    "text": "Ricercare"
+  },
+  "860ac3bf": {
+    "key": "860AC3BF",
+    "text": "Ricercare, espada sinfónica"
+  },
+  "5f516e5f": {
+    "key": "WEP_PL2600_01",
+    "text": "Espada Embrasque"
+  },
+  "785a520a": {
+    "key": "WEP_PL2600_02",
+    "text": "Destructora de Coloso Ira"
+  },
+  "969cf8c7": {
+    "key": "WEP_PL2600_03",
+    "text": "Gram"
+  },
+  "1154a6c6": {
+    "key": "1154A6C6",
+    "text": "Gram"
+  },
+  "84f432d7": {
+    "key": "84F432D7",
+    "text": "Gram"
+  },
+  "78544a75": {
+    "key": "78544A75",
+    "text": "Gram, desolación dragontina"
+  },
+  "a1c42adc": {
+    "key": "WEP_PL2600_04",
+    "text": "Onikiri Yasutsuna"
+  },
+  "78b64e9b": {
+    "key": "WEP_PL2600_05",
+    "text": "Ridill"
+  },
+  "6cff175c": {
+    "key": "WEP_PL2600_06",
+    "text": "Schrödinger"
+  },
+  "51f70303": {
+    "key": "51F70303",
+    "text": "Schrödinger"
+  },
+  "b2931faa": {
+    "key": "B2931FAA",
+    "text": "Schrödinger"
+  },
+  "a716d1f2": {
+    "key": "A716D1F2",
+    "text": "Schrödinger, desbarate de la física"
+  },
+  "daa4d559": {
+    "key": "WEP_PL2700_01",
+    "text": "Trueno Flamek"
+  },
+  "09cc74cf": {
+    "key": "WEP_PL2700_02",
+    "text": "Escopeta esmeralda de Céfira"
+  },
+  "14b3ae92": {
+    "key": "WEP_PL2700_03",
+    "text": "Furia Destructiva"
+  },
+  "6d381177": {
+    "key": "6D381177",
+    "text": "Furia Destructiva"
+  },
+  "e15ba40e": {
+    "key": "E15BA40E",
+    "text": "Furia Destructiva"
+  },
+  "4fee9341": {
+    "key": "4FEE9341",
+    "text": "Furia Destructiva, gran cometa"
+  },
+  "8f6fa5d0": {
+    "key": "WEP_PL2700_04",
+    "text": "Nabucodonosor"
+  },
+  "3897a020": {
+    "key": "WEP_PL2700_05",
+    "text": "Fusil Omega"
+  },
+  "6eea0d21": {
+    "key": "WEP_PL2700_06",
+    "text": "Hraesvelgr"
+  },
+  "7e092ccd": {
+    "key": "7E092CCD",
+    "text": "Hraesvelgr"
+  },
+  "e3b35c0d": {
+    "key": "E3B35C0D",
+    "text": "Hraesvelgr"
+  },
+  "ded16fcf": {
+    "key": "DED16FCF",
+    "text": "Hraesvelgr, águila veloz"
+  },
+  "75ec54d0": {
+    "key": "WEP_PL2800_01",
+    "text": "Vals mefistofélico"
+  },
+  "6ec326d3": {
+    "key": "WEP_PL2800_03",
+    "text": "Pointes radiantes"
+  },
+  "1826996a": {
+    "key": "1826996A",
+    "text": "Pointes radiantes"
+  },
+  "a14b98d8": {
+    "key": "A14B98D8",
+    "text": "Pointes radiantes"
+  },
+  "64705e7b": {
+    "key": "64705E7B",
+    "text": "Pointes radiantes, demonio albo"
+  },
+  "b927fca5": {
+    "key": "WEP_PL2800_04",
+    "text": "Sherezada"
+  },
+  "d5eb1dee": {
+    "key": "WEP_PL2800_06",
+    "text": "Encrucijada"
+  },
+  "82e85115": {
+    "key": "82E85115",
+    "text": "Encrucijada"
+  },
+  "9ae66fbd": {
+    "key": "9AE66FBD",
+    "text": "Encrucijada"
+  },
+  "ad99e05e": {
+    "key": "AD99E05E",
+    "text": "Encrucijada, llama infernal"
+  },
+  "9240d597": {
+    "key": "WEP_PL2900_01",
+    "text": "Hedera"
+  },
+  "1eb2b398": {
+    "key": "WEP_PL2900_03",
+    "text": "Morbiferi flores"
+  },
+  "165f82f5": {
+    "key": "165F82F5",
+    "text": "Morbiferi flores"
+  },
+  "280ea816": {
+    "key": "280EA816",
+    "text": "Morbiferi flores"
+  },
+  "219ee448": {
+    "key": "219EE448",
+    "text": "Morbiferi flores, recuerdo floral"
+  },
+  "f7128b85": {
+    "key": "WEP_PL2900_04",
+    "text": "Zagar"
+  },
+  "cdb13688": {
+    "key": "WEP_PL2900_06",
+    "text": "Ornamento estigio"
+  },
+  "18b8476c": {
+    "key": "18B8476C",
+    "text": "Ornamento estigio"
+  },
+  "32b5dc17": {
+    "key": "32B5DC17",
+    "text": "Ornamento estigio"
+  },
+  "f0b8cf77": {
+    "key": "F0B8CF77",
+    "text": "Ornamento estigio, pilar azabache"
+  },
+  "095082ab": {
+    "key": "WEP_PL0200_A0",
+    "text": "Rukalsa"
+  },
+  "e180dadb": {
+    "key": "WEP_PL0800_A0",
+    "text": "Altachiara"
+  },
+  "76265aa7": {
+    "key": "WEP_PL2200_A0",
+    "text": "Siete de espadas"
+  },
+  "6e59b0dd": {
+    "key": "WEP_PL1600_A0",
+    "text": "Lanza Arvess"
+  },
+  "08de4f36": {
+    "key": "WEP_PL2700_A0",
+    "text": "Trueno Flamek"
+  },
+  "08cee33c": {
+    "key": "WEP_PL0000_A1",
+    "text": "Espada de Eos"
+  },
+  "1b0f29bf": {
+    "key": "WEP_PL0100_A1",
+    "text": "Espada de Eos"
+  },
+  "90cda5f3": {
+    "key": "WEP_PL0300_A0",
+    "text": "Sílex"
+  },
+  "ee1ebc2e": {
+    "key": "WEP_PL0400_A0",
+    "text": "Cetro de aprendiz"
+  },
+  "cd19623a": {
+    "key": "WEP_PL2800_A0",
+    "text": "Vals mefistofélico"
+  },
+  "e45ed17f": {
+    "key": "WEP_PL2900_A0",
+    "text": "Hedera"
   }
 }

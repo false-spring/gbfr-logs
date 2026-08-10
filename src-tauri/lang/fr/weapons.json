@@ -33,7 +33,7 @@
   },
   "07bb324c": {
     "key": "WEP_PL0600_06",
-    "text": "Dague de Bahamut Coda"
+    "text": "Dague de Bahamut Futurum"
   },
   "08ac9299": {
     "key": "WEP_PL0000_03_00",
@@ -53,7 +53,7 @@
   },
   "0b1c14c1": {
     "key": "WEP_PL0900_06_02",
-    "text": "Mjöllnir"
+    "text": "Mjolnir"
   },
   "0d7b7a95": {
     "key": "WEP_PL0000_06_03",
@@ -101,7 +101,7 @@
   },
   "19a77e54": {
     "key": "WEP_PL1400_06_01",
-    "text": "Ameno Habakiri"
+    "text": "Ame no Habakiri"
   },
   "1a977f3f": {
     "key": "WEP_PL0100_A0",
@@ -157,7 +157,7 @@
   },
   "227b690e": {
     "key": "WEP_PL0900_06_03",
-    "text": "Mjöllnir, le broyeur foudroyant"
+    "text": "Mjolnir, le broyeur foudroyant"
   },
   "22e79816": {
     "key": "WEP_PL0400_03",
@@ -181,7 +181,7 @@
   },
   "25ff2db3": {
     "key": "WEP_PL0600_06_02",
-    "text": "Dague de Bahamut Coda"
+    "text": "Dague de Bahamut Futurum"
   },
   "26ad10bc": {
     "key": "WEP_PL0400_03_01",
@@ -221,7 +221,7 @@
   },
   "2cbcacca": {
     "key": "WEP_PL1400_06_02",
-    "text": "Ameno Habakiri"
+    "text": "Ame no Habakiri"
   },
   "2d9be4cc": {
     "key": "WEP_PL0200_04",
@@ -249,7 +249,7 @@
   },
   "304e4448": {
     "key": "WEP_PL1600_06",
-    "text": "Gáe Bolga"
+    "text": "Gae Bolga"
   },
   "32ee4d8a": {
     "key": "WEP_PL0100_05",
@@ -265,7 +265,7 @@
   },
   "348f349c": {
     "key": "WEP_PL1600_06_02",
-    "text": "Gáe Bolga"
+    "text": "Gae Bolga"
   },
   "34ad70e6": {
     "key": "WEP_PL0100_03_02",
@@ -573,7 +573,7 @@
   },
   "80ad3aeb": {
     "key": "WEP_PL1600_06_03",
-    "text": "Gáe Bolga, l'empaleuse"
+    "text": "Gae Bolga, l'empaleuse"
   },
   "82a244a3": {
     "key": "WEP_PL1900_05",
@@ -773,7 +773,7 @@
   },
   "bcd65f7d": {
     "key": "WEP_PL0600_06_03",
-    "text": "Dague primaire de Bahamut Coda"
+    "text": "Dague primaire de Bahamut Futurum"
   },
   "bddcd5e3": {
     "key": "WEP_PL1700_03",
@@ -833,7 +833,7 @@
   },
   "c84002e0": {
     "key": "WEP_PL0900_06",
-    "text": "Mjöllnir"
+    "text": "Mjolnir"
   },
   "c8736136": {
     "key": "WEP_PL0000_99",
@@ -905,7 +905,7 @@
   },
   "d7280fe5": {
     "key": "WEP_PL0900_06_01",
-    "text": "Mjöllnir"
+    "text": "Mjolnir"
   },
   "d7cee3b8": {
     "key": "WEP_PL0000_03",
@@ -913,7 +913,7 @@
   },
   "d8b6e17c": {
     "key": "WEP_PL1600_06_01",
-    "text": "Gáe Bolga"
+    "text": "Gae Bolga"
   },
   "da6ef17e": {
     "key": "WEP_PL1600_04",
@@ -997,7 +997,7 @@
   },
   "ebbe11a9": {
     "key": "WEP_PL0600_06_01",
-    "text": "Dague de Bahamut Coda"
+    "text": "Dague de Bahamut Futurum"
   },
   "ee6cd89e": {
     "key": "WEP_PL0500_04",
@@ -1085,6 +1085,370 @@
   },
   "fff2f00f": {
     "key": "WEP_PL1400_06",
-    "text": "Ameno Habakiri"
+    "text": "Ame no Habakiri"
+  },
+  "2c8681f8": {
+    "key": "WEP_PL1900_10",
+    "text": "Épée karmique de l'apocalypse"
+  },
+  "a626f67e": {
+    "key": "WEP_PL2100_04",
+    "text": "Lame de Michael"
+  },
+  "dfbb5727": {
+    "key": "WEP_PL2100_06",
+    "text": "Éphèse"
+  },
+  "74804589": {
+    "key": "74804589",
+    "text": "Éphèse"
+  },
+  "abdf528d": {
+    "key": "ABDF528D",
+    "text": "Éphèse"
+  },
+  "d016feb3": {
+    "key": "D016FEB3",
+    "text": "Éphèse, lame des confluences "
+  },
+  "70fd3c94": {
+    "key": "WEP_PL2200_04",
+    "text": "Vento di Spade"
+  },
+  "74d764b7": {
+    "key": "WEP_PL2200_06",
+    "text": "Épée Juttenkôki"
+  },
+  "aef15742": {
+    "key": "AEF15742",
+    "text": "Épée Juttenkôki"
+  },
+  "d5fe66a2": {
+    "key": "D5FE66A2",
+    "text": "Épée Juttenkôki"
+  },
+  "1ea819a4": {
+    "key": "1EA819A4",
+    "text": "Épée Juttenkôki, Sept Temps"
+  },
+  "91ddc1f1": {
+    "key": "WEP_PL2300_04",
+    "text": "Hercules"
+  },
+  "1064441e": {
+    "key": "WEP_PL2300_06",
+    "text": "Arc Juttenkôki"
+  },
+  "82ac447f": {
+    "key": "82AC447F",
+    "text": "Arc Juttenkôki"
+  },
+  "de958cdb": {
+    "key": "DE958CDB",
+    "text": "Arc Juttenkôki"
+  },
+  "40204755": {
+    "key": "40204755",
+    "text": "Arc Juttenkôki, les deux flèches"
+  },
+  "121cd3fd": {
+    "key": "WEP_PL2400_01",
+    "text": "Contra"
+  },
+  "3c667a36": {
+    "key": "WEP_PL2400_03",
+    "text": "Griffes dracocides"
+  },
+  "fd6b963e": {
+    "key": "WEP_PL2400_03_01",
+    "text": "Griffes dracocides"
+  },
+  "de80bc37": {
+    "key": "WEP_PL2400_03_02",
+    "text": "Griffes dracocides"
+  },
+  "7f10010d": {
+    "key": "WEP_PL2400_03_03",
+    "text": "Griffes dracocides antimonde"
+  },
+  "60720167": {
+    "key": "WEP_PL2400_04",
+    "text": "Deux-par-quatre"
+  },
+  "10180036": {
+    "key": "WEP_PL2400_06",
+    "text": "Hallebarde invincible"
+  },
+  "974dbc97": {
+    "key": "974DBC97",
+    "text": "Hallebarde invincible"
+  },
+  "6a018933": {
+    "key": "6A018933",
+    "text": "Hallebarde invincible"
+  },
+  "5de1b311": {
+    "key": "5DE1B311",
+    "text": "Hallebarde invincible, lupus"
+  },
+  "f76c20a2": {
+    "key": "WEP_PL2500_01",
+    "text": "Alphine"
+  },
+  "1cc90cae": {
+    "key": "WEP_PL2500_03",
+    "text": "Excalibur"
+  },
+  "1a961ac5": {
+    "key": "1A961AC5",
+    "text": "Excalibur"
+  },
+  "4102b6ab": {
+    "key": "4102B6AB",
+    "text": "Excalibur"
+  },
+  "802b09da": {
+    "key": "802B09DA",
+    "text": "Excalibur, lame du roi sacré"
+  },
+  "eb3724b6": {
+    "key": "WEP_PL2500_04",
+    "text": "Exo Maitrah Karuna, dieu déchu"
+  },
+  "90f5b18f": {
+    "key": "WEP_PL2500_06",
+    "text": "Ricercare"
+  },
+  "72ab825d": {
+    "key": "72AB825D",
+    "text": "Ricercare"
+  },
+  "87e6e352": {
+    "key": "87E6E352",
+    "text": "Ricercare"
+  },
+  "860ac3bf": {
+    "key": "860AC3BF",
+    "text": "Ricercare, lame symphonique"
+  },
+  "5f516e5f": {
+    "key": "WEP_PL2600_01",
+    "text": "Épée Embrasque"
+  },
+  "785a520a": {
+    "key": "WEP_PL2600_02",
+    "text": "Ira, exterminatrice de colosses"
+  },
+  "969cf8c7": {
+    "key": "WEP_PL2600_03",
+    "text": "Gram"
+  },
+  "1154a6c6": {
+    "key": "1154A6C6",
+    "text": "Gram"
+  },
+  "84f432d7": {
+    "key": "84F432D7",
+    "text": "Gram"
+  },
+  "78544a75": {
+    "key": "78544A75",
+    "text": "Gram, lame des dragons déchus"
+  },
+  "a1c42adc": {
+    "key": "WEP_PL2600_04",
+    "text": "Onikiri Yasutsuna"
+  },
+  "78b64e9b": {
+    "key": "WEP_PL2600_05",
+    "text": "Ridill"
+  },
+  "6cff175c": {
+    "key": "WEP_PL2600_06",
+    "text": "Schrödinger"
+  },
+  "51f70303": {
+    "key": "51F70303",
+    "text": "Schrödinger"
+  },
+  "b2931faa": {
+    "key": "B2931FAA",
+    "text": "Schrödinger"
+  },
+  "a716d1f2": {
+    "key": "A716D1F2",
+    "text": "Schrödinger, entropie harmonique"
+  },
+  "daa4d559": {
+    "key": "WEP_PL2700_01",
+    "text": "Foudre de Flamek"
+  },
+  "09cc74cf": {
+    "key": "WEP_PL2700_02",
+    "text": "Canon émeraude Sephira"
+  },
+  "14b3ae92": {
+    "key": "WEP_PL2700_03",
+    "text": "Fusil de Stratum"
+  },
+  "6d381177": {
+    "key": "6D381177",
+    "text": "Fusil de Stratum"
+  },
+  "e15ba40e": {
+    "key": "E15BA40E",
+    "text": "Fusil de Stratum"
+  },
+  "4fee9341": {
+    "key": "4FEE9341",
+    "text": "Fusil de Stratum, météores"
+  },
+  "8f6fa5d0": {
+    "key": "WEP_PL2700_04",
+    "text": "Nabuchodonosor"
+  },
+  "3897a020": {
+    "key": "WEP_PL2700_05",
+    "text": "Tireur Omega"
+  },
+  "6eea0d21": {
+    "key": "WEP_PL2700_06",
+    "text": "Hraesvelgr"
+  },
+  "7e092ccd": {
+    "key": "7E092CCD",
+    "text": "Hraesvelgr"
+  },
+  "e3b35c0d": {
+    "key": "E3B35C0D",
+    "text": "Hraesvelgr"
+  },
+  "ded16fcf": {
+    "key": "DED16FCF",
+    "text": "Hraesvelgr, aigle fulminant"
+  },
+  "75ec54d0": {
+    "key": "WEP_PL2800_01",
+    "text": "Valse de Méphisto"
+  },
+  "6ec326d3": {
+    "key": "WEP_PL2800_03",
+    "text": "Pointes radieuses"
+  },
+  "1826996a": {
+    "key": "1826996A",
+    "text": "Pointes radieuses"
+  },
+  "a14b98d8": {
+    "key": "A14B98D8",
+    "text": "Pointes radieuses"
+  },
+  "64705e7b": {
+    "key": "64705E7B",
+    "text": "Pointes radieuses, démon blanc"
+  },
+  "b927fca5": {
+    "key": "WEP_PL2800_04",
+    "text": "Shéhérazade"
+  },
+  "d5eb1dee": {
+    "key": "WEP_PL2800_06",
+    "text": "Croisée des chemins"
+  },
+  "82e85115": {
+    "key": "82E85115",
+    "text": "Croisée des chemins"
+  },
+  "9ae66fbd": {
+    "key": "9AE66FBD",
+    "text": "Croisée des chemins"
+  },
+  "ad99e05e": {
+    "key": "AD99E05E",
+    "text": "Croisée des chemins, feu d'enfer"
+  },
+  "9240d597": {
+    "key": "WEP_PL2900_01",
+    "text": "Hedera"
+  },
+  "1eb2b398": {
+    "key": "WEP_PL2900_03",
+    "text": "Morbus Flos"
+  },
+  "165f82f5": {
+    "key": "165F82F5",
+    "text": "Morbus Flos"
+  },
+  "280ea816": {
+    "key": "280EA816",
+    "text": "Morbus Flos"
+  },
+  "219ee448": {
+    "key": "219EE448",
+    "text": "Morbus Flos, floraison"
+  },
+  "f7128b85": {
+    "key": "WEP_PL2900_04",
+    "text": "Zagar"
+  },
+  "cdb13688": {
+    "key": "WEP_PL2900_06",
+    "text": "Ornement stygien"
+  },
+  "18b8476c": {
+    "key": "18B8476C",
+    "text": "Ornement stygien"
+  },
+  "32b5dc17": {
+    "key": "32B5DC17",
+    "text": "Ornement stygien"
+  },
+  "f0b8cf77": {
+    "key": "F0B8CF77",
+    "text": "Ornement stygien, Pilier noir"
+  },
+  "095082ab": {
+    "key": "WEP_PL0200_A0",
+    "text": "Roukalssa"
+  },
+  "e180dadb": {
+    "key": "WEP_PL0800_A0",
+    "text": "Altachiara"
+  },
+  "76265aa7": {
+    "key": "WEP_PL2200_A0",
+    "text": "Sette di Spade"
+  },
+  "6e59b0dd": {
+    "key": "WEP_PL1600_A0",
+    "text": "Lance d'Arvess"
+  },
+  "08de4f36": {
+    "key": "WEP_PL2700_A0",
+    "text": "Foudre de Flamek"
+  },
+  "08cee33c": {
+    "key": "WEP_PL0000_A1",
+    "text": "Épée d'Eos"
+  },
+  "1b0f29bf": {
+    "key": "WEP_PL0100_A1",
+    "text": "Épée d'Eos"
+  },
+  "90cda5f3": {
+    "key": "WEP_PL0300_A0",
+    "text": "Baïonnette à pointe"
+  },
+  "ee1ebc2e": {
+    "key": "WEP_PL0400_A0",
+    "text": "Sceptre d'apprentie sorcière"
+  },
+  "cd19623a": {
+    "key": "WEP_PL2800_A0",
+    "text": "Valse de Méphisto"
+  },
+  "e45ed17f": {
+    "key": "WEP_PL2900_A0",
+    "text": "Hedera"
   }
 }

@@ -1154,5 +1154,337 @@
   "ff1a207a": {
     "key": "ITEM_70_0007",
     "text": "Estátua de Caranguejo Dourada"
+  },
+  "4a41482c": {
+    "key": "ITEM_03_0003",
+    "text": "Casco Luxo de Vitalidade"
+  },
+  "b0782428": {
+    "key": "ITEM_04_0003",
+    "text": "Crina de Tormenta Sequestrada"
+  },
+  "35f709e3": {
+    "key": "ITEM_06_0003",
+    "text": "Cauda do Gênio Temível"
+  },
+  "456d2bb3": {
+    "key": "ITEM_09_0003",
+    "text": "Mortido"
+  },
+  "6e13e372": {
+    "key": "ITEM_09_0013",
+    "text": "Trevo do Lobo Prateado"
+  },
+  "4c21dc42": {
+    "key": "ITEM_09_0023",
+    "text": "Presa da Irmandade"
+  },
+  "8d888638": {
+    "key": "ITEM_09_0030",
+    "text": "Espírito do Céu Azul"
+  },
+  "9a3dc719": {
+    "key": "ITEM_09_0050",
+    "text": "Chama do Céu Azul"
+  },
+  "20c742de": {
+    "key": "ITEM_14_0001",
+    "text": "Fragmento de Azurita"
+  },
+  "c043bac9": {
+    "key": "ITEM_14_0023",
+    "text": "Mérito da Alvorada"
+  },
+  "537cb6d9": {
+    "key": "ITEM_14_0061",
+    "text": "Ragnita (Defensor)"
+  },
+  "86fb2ee1": {
+    "key": "ITEM_14_0062",
+    "text": "Ragnita (Atordoante)"
+  },
+  "654fa095": {
+    "key": "ITEM_14_0063",
+    "text": "Ragnita (Ascensão)"
+  },
+  "1f4bae8c": {
+    "key": "ITEM_14_0064",
+    "text": "Ragnita (Ferrão)"
+  },
+  "54732298": {
+    "key": "ITEM_14_0065",
+    "text": "Ragnita (Carrasco)"
+  },
+  "1c195d33": {
+    "key": "ITEM_14_0066",
+    "text": "Ragnita (Terminus)"
+  },
+  "8c4fc319": {
+    "key": "ITEM_14_0074",
+    "text": "Refínio do Caos"
+  },
+  "65063e17": {
+    "key": "ITEM_14_0076",
+    "text": "Artefato Místico"
+  },
+  "0eb683cd": {
+    "key": "ITEM_15_0010",
+    "text": "Grande Refínio I"
+  },
+  "98cdb46f": {
+    "key": "ITEM_15_0011",
+    "text": "Grande Refínio II"
+  },
+  "64a63fbc": {
+    "key": "ITEM_15_0012",
+    "text": "Grande Refínio III"
+  },
+  "5392dee6": {
+    "key": "ITEM_16_0005",
+    "text": "Pluma da Peste Divina"
+  },
+  "831f31ff": {
+    "key": "ITEM_16_0007",
+    "text": "Vazio Semeado"
+  },
+  "df713fa9": {
+    "key": "ITEM_16_0009",
+    "text": "Memória Extrema"
+  },
+  "03a19196": {
+    "key": "ITEM_16_0013",
+    "text": "Núcleo da Era"
+  },
+  "68bafc37": {
+    "key": "ITEM_16_0105",
+    "text": "Pluma Azul-Cel. Esquecida"
+  },
+  "c1563862": {
+    "key": "ITEM_16_0106",
+    "text": "Pluma Carmesim da Divind."
+  },
+  "fd1dc09a": {
+    "key": "ITEM_16_0901",
+    "text": "Nodo da Temp. Ígnea Prim."
+  },
+  "25165316": {
+    "key": "ITEM_16_0902",
+    "text": "Nodo da Sombra d'Água Prim."
+  },
+  "686f12ad": {
+    "key": "ITEM_16_0903",
+    "text": "Nodo da Asa de Vent. Prim."
+  },
+  "53a9d491": {
+    "key": "ITEM_16_0904",
+    "text": "Nodo da Avalanche Prim."
+  },
+  "0311b2de": {
+    "key": "ITEM_18_0003",
+    "text": "Faíscas do Apocalipse"
+  },
+  "6f38afe1": {
+    "key": "ITEM_19_0010",
+    "text": "Eidos do Mundo"
+  },
+  "85f40d79": {
+    "key": "ITEM_19_0012",
+    "text": "Signum Caótico"
+  },
+  "8a08f64e": {
+    "key": "ITEM_19_0013",
+    "text": "Signum da Aurora"
+  },
+  "d147a1ba": {
+    "key": "ITEM_19_0020",
+    "text": "Asas Abissais"
+  },
+  "05474649": {
+    "key": "ITEM_19_0022",
+    "text": "Cristal da Origem"
+  },
+  "f7dc6ed9": {
+    "key": "ITEM_19_0023",
+    "text": "Quartzo de Hexacromo"
+  },
+  "58fc9b99": {
+    "key": "ITEM_21_0001",
+    "text": "Vale de Transmaravilha"
+  },
+  "d0f04d9f": {
+    "key": "ITEM_22_0022",
+    "text": "Fogo Primordial"
+  },
+  "a2452b7c": {
+    "key": "ITEM_22_0032",
+    "text": "Água Primordial"
+  },
+  "89406db0": {
+    "key": "ITEM_22_0042",
+    "text": "Terra Primordial"
+  },
+  "a1ead2c2": {
+    "key": "ITEM_22_0052",
+    "text": "Vento Primordial"
+  },
+  "882f94a7": {
+    "key": "ITEM_22_0062",
+    "text": "Luz Primordial"
+  },
+  "c83f9e36": {
+    "key": "ITEM_22_0072",
+    "text": "Escuridão Primordial"
+  },
+  "faf93bcc": {
+    "key": "ITEM_22_0121",
+    "text": "Chama das Cunhas"
+  },
+  "eb707ea7": {
+    "key": "ITEM_23_0004",
+    "text": "Cartão de Trip: Gallanza"
+  },
+  "e8926145": {
+    "key": "ITEM_23_0005",
+    "text": "Cartão de Trip: Maglielle"
+  },
+  "41e4c8ce": {
+    "key": "ITEM_23_0006",
+    "text": "Cartão de Trip: Fraux"
+  },
+  "06e5185f": {
+    "key": "ITEM_23_0007",
+    "text": "Cartão de Trip: Fediel"
+  },
+  "17f349ba": {
+    "key": "ITEM_31_0003",
+    "text": "Olho de Demônio Vil"
+  },
+  "6837efc6": {
+    "key": "ITEM_31_0013",
+    "text": "Machado de G. da Extinção"
+  },
+  "19871bf3": {
+    "key": "ITEM_31_0023",
+    "text": "Machado de G. Escoriação"
+  },
+  "0e7cbc8e": {
+    "key": "ITEM_31_0033",
+    "text": "Bico Majestoso"
+  },
+  "25289584": {
+    "key": "ITEM_31_0043",
+    "text": "Lança Sinistra B. Terra"
+  },
+  "7500c5d9": {
+    "key": "ITEM_31_0053",
+    "text": "Lança Sinistra B. Gelo"
+  },
+  "695ea716": {
+    "key": "ITEM_31_0063",
+    "text": "Lança Sinistra B. Chamas"
+  },
+  "04c18eec": {
+    "key": "ITEM_31_0077",
+    "text": "Un. Pulsação da Carnif."
+  },
+  "f7f9a658": {
+    "key": "ITEM_31_0078",
+    "text": "Pontas Sinistras"
+  },
+  "d4ee7fc3": {
+    "key": "ITEM_31_0085",
+    "text": "Rubi de Sangue"
+  },
+  "2a5548a9": {
+    "key": "ITEM_31_0086",
+    "text": "Mandíbula Fraturada Tolo"
+  },
+  "381526a4": {
+    "key": "ITEM_31_0095",
+    "text": "Elmo Ensanguentado"
+  },
+  "bdbf43ee": {
+    "key": "ITEM_32_0044",
+    "text": "Faixa Lamento Rancoroso"
+  },
+  "adffe24e": {
+    "key": "ITEM_32_0046",
+    "text": "Pedra do Ritual Bestial"
+  },
+  "f74a6a4d": {
+    "key": "ITEM_32_1000",
+    "text": "Coroa Famosa"
+  },
+  "7388fe67": {
+    "key": "ITEM_33_0002",
+    "text": "Esplendor de Sephira"
+  },
+  "68eadaa9": {
+    "key": "ITEM_35_2000",
+    "text": "Ponto da Confluência"
+  },
+  "2657283e": {
+    "key": "ITEM_35_3000",
+    "text": "Ponto de Ressonância"
+  },
+  "9fba96d1": {
+    "key": "ITEM_60_0001",
+    "text": "Pinça-Miúda Sombria"
+  },
+  "076a9f41": {
+    "key": "ITEM_70_0018",
+    "text": "Estátua Caranguejo Negro"
+  },
+  "06c0d0a1": {
+    "key": "ITEM_70_0019",
+    "text": "Estátua Albacora Dourada"
+  },
+  "6c375d99": {
+    "key": "ITEM_70_0020",
+    "text": "Memória Celeste: Infinitesimal e Infinito"
+  },
+  "2c0b5a82": {
+    "key": "ITEM_70_0021",
+    "text": "Memória Celeste: Manifestação"
+  },
+  "96a00c42": {
+    "key": "ITEM_70_0022",
+    "text": "Memória Celeste: Legado do Amor"
+  },
+  "e3abc397": {
+    "key": "ITEM_70_0023",
+    "text": "Memória Celeste: Guerra dos Céus"
+  },
+  "0943913b": {
+    "key": "ITEM_70_0024",
+    "text": "Memória Celeste: Garota Azul"
+  },
+  "c57a5fe9": {
+    "key": "ITEM_70_0025",
+    "text": "Memória Celeste: Céus Divididos"
+  },
+  "4249436e": {
+    "key": "ITEM_70_0026",
+    "text": "Memória Celeste: Deus Partido"
+  },
+  "74201317": {
+    "key": "ITEM_70_0027",
+    "text": "Memória Celeste: Gênese Renascida"
+  },
+  "d11baafc": {
+    "key": "ITEM_70_0028",
+    "text": "Pacote de Cores de Arte Conceitual"
+  },
+  "c93e2fdd": {
+    "key": "ITEM_90_0000",
+    "text": "Filho da Treva e do Fogo"
+  },
+  "8bf58697": {
+    "key": "ITEM_90_0001",
+    "text": "Asas da Fronteira"
+  },
+  "cf24b2f6": {
+    "key": "ITEM_90_0002",
+    "text": "Colossus da Fortificação"
   }
 }

@@ -193,7 +193,7 @@
   },
   "29a7eec9": {
     "key": "ITEM_16_0011",
-    "text": "Manakreis"
+    "text": "Manaschaltkreis"
   },
   "29bba035": {
     "key": "ITEM_50_0001",
@@ -405,7 +405,7 @@
   },
   "60cb5ea6": {
     "key": "ITEM_14_0050",
-    "text": "Wiedergänger-Medaillon"
+    "text": "Caelum-Medaillon"
   },
   "60fd93bd": {
     "key": "ITEM_27_0030",
@@ -433,7 +433,7 @@
   },
   "65c8078d": {
     "key": "ITEM_09_0022",
-    "text": "Zahn des Halsabschneiders"
+    "text": "Zahn des Schwertschleiers"
   },
   "65d98a52": {
     "key": "ITEM_31_0032",
@@ -1154,5 +1154,337 @@
   "ff1a207a": {
     "key": "ITEM_70_0007",
     "text": "Goldene Krabbenstatue"
+  },
+  "4a41482c": {
+    "key": "ITEM_03_0003",
+    "text": "Stahlhuf der Lebenskraft"
+  },
+  "b0782428": {
+    "key": "ITEM_04_0003",
+    "text": "Abgetrennte Azurmähne"
+  },
+  "35f709e3": {
+    "key": "ITEM_06_0003",
+    "text": "Zäher Schreckensschwanz"
+  },
+  "456d2bb3": {
+    "key": "ITEM_09_0003",
+    "text": "Mortido"
+  },
+  "6e13e372": {
+    "key": "ITEM_09_0013",
+    "text": "Silberwolf-Zinke"
+  },
+  "4c21dc42": {
+    "key": "ITEM_09_0023",
+    "text": "Ast des Schwertschleiers"
+  },
+  "8d888638": {
+    "key": "ITEM_09_0030",
+    "text": "Seele des Himmelszelts"
+  },
+  "9a3dc719": {
+    "key": "ITEM_09_0050",
+    "text": "Leuchtfeuer des Himmels"
+  },
+  "20c742de": {
+    "key": "ITEM_14_0001",
+    "text": "Azuritsplitter"
+  },
+  "c043bac9": {
+    "key": "ITEM_14_0023",
+    "text": "Morgendämmerungssiegel"
+  },
+  "537cb6d9": {
+    "key": "ITEM_14_0061",
+    "text": "Ragnit (Verteidiger)"
+  },
+  "86fb2ee1": {
+    "key": "ITEM_14_0062",
+    "text": "Ragnit (Betäuber)"
+  },
+  "654fa095": {
+    "key": "ITEM_14_0063",
+    "text": "Ragnit (Aufstieg)"
+  },
+  "1f4bae8c": {
+    "key": "ITEM_14_0064",
+    "text": "Ragnit (Stachel)"
+  },
+  "54732298": {
+    "key": "ITEM_14_0065",
+    "text": "Ragnit (Scharfrichter)"
+  },
+  "1c195d33": {
+    "key": "ITEM_14_0066",
+    "text": "Ragnit (Terminus)"
+  },
+  "8c4fc319": {
+    "key": "ITEM_14_0074",
+    "text": "Chaosmaterie"
+  },
+  "65063e17": {
+    "key": "ITEM_14_0076",
+    "text": "Truhe der Sagen"
+  },
+  "0eb683cd": {
+    "key": "ITEM_15_0010",
+    "text": "Einzigartiges Refinium I"
+  },
+  "98cdb46f": {
+    "key": "ITEM_15_0011",
+    "text": "Einzigartiges Refinium II"
+  },
+  "64a63fbc": {
+    "key": "ITEM_15_0012",
+    "text": "Einzigartiges Refinium III"
+  },
+  "5392dee6": {
+    "key": "ITEM_16_0005",
+    "text": "Schwinge der Götter"
+  },
+  "831f31ff": {
+    "key": "ITEM_16_0007",
+    "text": "Dorn der Leere"
+  },
+  "df713fa9": {
+    "key": "ITEM_16_0009",
+    "text": "Ultimative Erinnerung"
+  },
+  "03a19196": {
+    "key": "ITEM_16_0013",
+    "text": "Abbadonkern"
+  },
+  "68bafc37": {
+    "key": "ITEM_16_0105",
+    "text": "Vergessene Azurschwinge"
+  },
+  "c1563862": {
+    "key": "ITEM_16_0106",
+    "text": "Göttliche Scharlachschwinge"
+  },
+  "fd1dc09a": {
+    "key": "ITEM_16_0901",
+    "text": "Nexus der Feuersbrunst"
+  },
+  "25165316": {
+    "key": "ITEM_16_0902",
+    "text": "Nexus der Sintflut"
+  },
+  "686f12ad": {
+    "key": "ITEM_16_0903",
+    "text": "Nexus der Orkangewalt"
+  },
+  "53a9d491": {
+    "key": "ITEM_16_0904",
+    "text": "Nexus der Erdmacht"
+  },
+  "0311b2de": {
+    "key": "ITEM_18_0003",
+    "text": "Kristall der Apokalypse"
+  },
+  "6f38afe1": {
+    "key": "ITEM_19_0010",
+    "text": "Weltenschema"
+  },
+  "85f40d79": {
+    "key": "ITEM_19_0012",
+    "text": "Chaotisches Kennzeichen"
+  },
+  "8a08f64e": {
+    "key": "ITEM_19_0013",
+    "text": "Aurora-Kennzeichen"
+  },
+  "d147a1ba": {
+    "key": "ITEM_19_0020",
+    "text": "Pechschwarzer Flügel"
+  },
+  "05474649": {
+    "key": "ITEM_19_0022",
+    "text": "Kristall der Wahrheit"
+  },
+  "f7dc6ed9": {
+    "key": "ITEM_19_0023",
+    "text": "Hexa-Kristall der Wahrheit"
+  },
+  "58fc9b99": {
+    "key": "ITEM_21_0001",
+    "text": "Umwunderung-Gutschein"
+  },
+  "d0f04d9f": {
+    "key": "ITEM_22_0022",
+    "text": "Urtümliche Flamme"
+  },
+  "a2452b7c": {
+    "key": "ITEM_22_0032",
+    "text": "Urtümliches Wasser"
+  },
+  "89406db0": {
+    "key": "ITEM_22_0042",
+    "text": "Urtümliche Erde"
+  },
+  "a1ead2c2": {
+    "key": "ITEM_22_0052",
+    "text": "Urtümlicher Wind"
+  },
+  "882f94a7": {
+    "key": "ITEM_22_0062",
+    "text": "Urtümliches Licht"
+  },
+  "c83f9e36": {
+    "key": "ITEM_22_0072",
+    "text": "Urtümliche Dunkelheit"
+  },
+  "faf93bcc": {
+    "key": "ITEM_22_0121",
+    "text": "Seelenflamme der Anker"
+  },
+  "eb707ea7": {
+    "key": "ITEM_23_0004",
+    "text": "Crewmitgliedskarte: Gallanza"
+  },
+  "e8926145": {
+    "key": "ITEM_23_0005",
+    "text": "Crewmitgliedskarte: Maglielle"
+  },
+  "41e4c8ce": {
+    "key": "ITEM_23_0006",
+    "text": "Crewmitgliedskarte: Fraux"
+  },
+  "06e5185f": {
+    "key": "ITEM_23_0007",
+    "text": "Crewmitgliedskarte: Fediel"
+  },
+  "17f349ba": {
+    "key": "ITEM_31_0003",
+    "text": "Fürchterliches Dämonenauge"
+  },
+  "6837efc6": {
+    "key": "ITEM_31_0013",
+    "text": "Permafrost-Streitaxt"
+  },
+  "19871bf3": {
+    "key": "ITEM_31_0023",
+    "text": "Flammenhöllen-Streitaxt"
+  },
+  "0e7cbc8e": {
+    "key": "ITEM_31_0033",
+    "text": "Prächtiger Schnabel"
+  },
+  "25289584": {
+    "key": "ITEM_31_0043",
+    "text": "Großhorn der Landbestie"
+  },
+  "7500c5d9": {
+    "key": "ITEM_31_0053",
+    "text": "Großhorn der Frostbestie"
+  },
+  "695ea716": {
+    "key": "ITEM_31_0063",
+    "text": "Großhorn der Flammenbestie"
+  },
+  "04c18eec": {
+    "key": "ITEM_31_0077",
+    "text": "Pulsierender Schlächter"
+  },
+  "f7f9a658": {
+    "key": "ITEM_31_0078",
+    "text": "Unheimlicher Stab"
+  },
+  "d4ee7fc3": {
+    "key": "ITEM_31_0085",
+    "text": "Blutrubin"
+  },
+  "2a5548a9": {
+    "key": "ITEM_31_0086",
+    "text": "Schwarz-goldener Kiefer"
+  },
+  "381526a4": {
+    "key": "ITEM_31_0095",
+    "text": "Dämonische Helmglocke"
+  },
+  "bdbf43ee": {
+    "key": "ITEM_32_0044",
+    "text": "Klagender Klumpen"
+  },
+  "adffe24e": {
+    "key": "ITEM_32_0046",
+    "text": "Bestienjuwel"
+  },
+  "f74a6a4d": {
+    "key": "ITEM_32_1000",
+    "text": "Krone der Sumo-Krabbe"
+  },
+  "7388fe67": {
+    "key": "ITEM_33_0002",
+    "text": "Sephira-Schimmer"
+  },
+  "68eadaa9": {
+    "key": "ITEM_35_2000",
+    "text": "Konfluxpunkte"
+  },
+  "2657283e": {
+    "key": "ITEM_35_3000",
+    "text": "Resonanzpunkte"
+  },
+  "9fba96d1": {
+    "key": "ITEM_60_0001",
+    "text": "Schwarze Kleinzangen"
+  },
+  "076a9f41": {
+    "key": "ITEM_70_0018",
+    "text": "Pechschwarze Krabbenstatue"
+  },
+  "06c0d0a1": {
+    "key": "ITEM_70_0019",
+    "text": "Goldene Albacorestatue"
+  },
+  "6c375d99": {
+    "key": "ITEM_70_0020",
+    "text": "Himmlische Erinnerung: Unzählige Leben"
+  },
+  "2c0b5a82": {
+    "key": "ITEM_70_0021",
+    "text": "Himmlische Erinnerung: Manifestation"
+  },
+  "96a00c42": {
+    "key": "ITEM_70_0022",
+    "text": "Himmlische Erinnerung: Flamme der Liebe"
+  },
+  "e3abc397": {
+    "key": "ITEM_70_0023",
+    "text": "Himmlische Erinnerung: Der Luftkrieg"
+  },
+  "0943913b": {
+    "key": "ITEM_70_0024",
+    "text": "Himmlische Erinnerung: Die Himmelsblaue Maid"
+  },
+  "c57a5fe9": {
+    "key": "ITEM_70_0025",
+    "text": "Himmlische Erinnerung: Gespaltener Himmel"
+  },
+  "4249436e": {
+    "key": "ITEM_70_0026",
+    "text": "Himmlische Erinnerung: Zerrissener Gott"
+  },
+  "74201317": {
+    "key": "ITEM_70_0027",
+    "text": "Himmlische Erinnerung: Regeneration und Schöpfung"
+  },
+  "d11baafc": {
+    "key": "ITEM_70_0028",
+    "text": "Konzeptfarbenpaket"
+  },
+  "c93e2fdd": {
+    "key": "ITEM_90_0000",
+    "text": "Beschwörungsstein: Kind der Flammen und der Finsternis"
+  },
+  "8bf58697": {
+    "key": "ITEM_90_0001",
+    "text": "Beschwörungsstein: Silberdrache der Schwelle"
+  },
+  "cf24b2f6": {
+    "key": "ITEM_90_0002",
+    "text": "Beschwörungsstein: Riesiger Schutzgott"
   }
 }

@@ -1062,5 +1062,449 @@
   "407325": {
     "key": "TXT_QR_407325",
     "text": "\"Volontari\" di Zathba"
+  },
+  "220001": {
+    "key": "TXT_QR_220001",
+    "text": "Divinità primordiali reincarnate"
+  },
+  "220002": {
+    "key": "TXT_QR_220002",
+    "text": "Misticità a luccichii"
+  },
+  "220003": {
+    "key": "TXT_QR_220003",
+    "text": "A caccia di gemme di Aquila"
+  },
+  "220004": {
+    "key": "TXT_QR_220004",
+    "text": "Slancio demoniaco"
+  },
+  "220005": {
+    "key": "TXT_QR_220005",
+    "text": "Verso le Profondità di Sephira"
+  },
+  "220101": {
+    "key": "TXT_QR_220101",
+    "text": "Indagine sul varco nell'aria"
+  },
+  "220102": {
+    "key": "TXT_QR_220102",
+    "text": "Indagine sul varco nell'aria II"
+  },
+  "220111": {
+    "key": "TXT_QR_220111",
+    "text": "Diceria d'argento"
+  },
+  "220112": {
+    "key": "TXT_QR_220112",
+    "text": "Diceria dorata"
+  },
+  "220301": {
+    "key": "TXT_QR_220301",
+    "text": "Un'altra occasione di risveglio"
+  },
+  "220302": {
+    "key": "TXT_QR_220302",
+    "text": "Emozioni risvegliate"
+  },
+  "220303": {
+    "key": "TXT_QR_220303",
+    "text": "Verso un domani risvegliato"
+  },
+  "220311": {
+    "key": "TXT_QR_220311",
+    "text": "Sorpasso del Terminus"
+  },
+  "220312": {
+    "key": "TXT_QR_220312",
+    "text": "Una parola Terminus di troppo"
+  },
+  "220313": {
+    "key": "TXT_QR_220313",
+    "text": "Le possibilità oltre il Terminus"
+  },
+  "220401": {
+    "key": "TXT_QR_220401",
+    "text": "Gli scarti del varco nell'aria"
+  },
+  "220411": {
+    "key": "TXT_QR_220411",
+    "text": "Premio ambito"
+  },
+  "230001": {
+    "key": "TXT_QR_230001",
+    "text": "Ordalia: smeraldo e scarlatto"
+  },
+  "230002": {
+    "key": "TXT_QR_230002",
+    "text": "Ordalia: oro e ceruleo"
+  },
+  "230003": {
+    "key": "TXT_QR_230003",
+    "text": "Ordalia: fato inevitabile"
+  },
+  "230004": {
+    "key": "TXT_QR_230004",
+    "text": "Mazurca bellica"
+  },
+  "230301": {
+    "key": "TXT_QR_230301",
+    "text": "Uno! Per una nuova ascensione"
+  },
+  "230302": {
+    "key": "TXT_QR_230302",
+    "text": "Due! Per un'ulteriore ascensione"
+  },
+  "230303": {
+    "key": "TXT_QR_230303",
+    "text": "Tre! Per un'ascensione prodigiosa"
+  },
+  "230311": {
+    "key": "TXT_QR_230311",
+    "text": "Uno! Verso un termine lontano"
+  },
+  "230312": {
+    "key": "TXT_QR_230312",
+    "text": "Due! Verso un termine illuminato"
+  },
+  "230313": {
+    "key": "TXT_QR_230313",
+    "text": "Tre! Verso un termine supremo"
+  },
+  "230321": {
+    "key": "TXT_QR_230321",
+    "text": "Conta fino a dieci e trascendi"
+  },
+  "230391": {
+    "key": "TXT_QR_230391",
+    "text": "Al di là di ogni limite"
+  },
+  "230401": {
+    "key": "TXT_QR_230401",
+    "text": "Tutti lo vogliono, tutti lo cercano"
+  },
+  "230402": {
+    "key": "TXT_QR_230402",
+    "text": "Pescato furioso"
+  },
+  "230411": {
+    "key": "TXT_QR_230411",
+    "text": "Azione preventiva"
+  },
+  "240121": {
+    "key": "TXT_QR_240121",
+    "text": "Sulle tracce di tre stelle rosse"
+  },
+  "290101": {
+    "key": "TXT_QR_290101",
+    "text": "Pazzesco! Crostacei neri?!"
+  },
+  "290102": {
+    "key": "TXT_QR_290102",
+    "text": "Avanti! Inseguite i crostacei neri!"
+  },
+  "290103": {
+    "key": "TXT_QR_290103",
+    "text": "Panico! Dei crostacei neri?"
+  },
+  "290104": {
+    "key": "TXT_QR_290104",
+    "text": "Shock! Crostacei neri avvistati!"
+  },
+  "290105": {
+    "key": "TXT_QR_290105",
+    "text": "Finale! Onore ai crostacei neri!"
+  },
+  "300024": {
+    "key": "TXT_QR_300024",
+    "text": "Elegia dei Lupi"
+  },
+  "300025": {
+    "key": "TXT_QR_300025",
+    "text": "Bugie belle e buone"
+  },
+  "300026": {
+    "key": "TXT_QR_300026",
+    "text": "Detective solitaria"
+  },
+  "300027": {
+    "key": "TXT_QR_300027",
+    "text": "Missione d'infiltrazione"
+  },
+  "300028": {
+    "key": "TXT_QR_300028",
+    "text": "Nota stonata"
+  },
+  "300029": {
+    "key": "TXT_QR_300029",
+    "text": "Una storia iniziata secoli or sono"
+  },
+  "301024": {
+    "key": "TXT_QR_301024",
+    "text": "Devozione assoluta"
+  },
+  "301025": {
+    "key": "TXT_QR_301025",
+    "text": "Vendetta travagliata"
+  },
+  "301026": {
+    "key": "TXT_QR_301026",
+    "text": "A tu per tu con il Velo di Lama"
+  },
+  "301027": {
+    "key": "TXT_QR_301027",
+    "text": "La vera luce del tuono"
+  },
+  "301028": {
+    "key": "TXT_QR_301028",
+    "text": "Ai confini di un mondo di speranza"
+  },
+  "301029": {
+    "key": "TXT_QR_301029",
+    "text": "Il futuro che ci attende"
+  },
+  "401317": {
+    "key": "TXT_QR_401317",
+    "text": "Respingi le orde di goblin"
+  },
+  "401318": {
+    "key": "TXT_QR_401318",
+    "text": "In pensiero per papà"
+  },
+  "402317": {
+    "key": "TXT_QR_402317",
+    "text": "Golemologia vol. I: golem del deserto"
+  },
+  "403313": {
+    "key": "TXT_QR_403313",
+    "text": "Ali di antichità"
+  },
+  "408301": {
+    "key": "TXT_QR_408301",
+    "text": "L'ordalia dei due Eterni"
+  },
+  "408302": {
+    "key": "TXT_QR_408302",
+    "text": "Fuori dal ring!"
+  },
+  "408305": {
+    "key": "TXT_QR_408305",
+    "text": "Ali mastodontiche"
+  },
+  "408306": {
+    "key": "TXT_QR_408306",
+    "text": "Eco di cenere e acciaio"
+  },
+  "408308": {
+    "key": "TXT_QR_408308",
+    "text": "Valle degli incubi"
+  },
+  "408310": {
+    "key": "TXT_QR_408310",
+    "text": "La via del guerriero demoniaco"
+  },
+  "408311": {
+    "key": "TXT_QR_408311",
+    "text": "Uno sguardo che divora"
+  },
+  "408312": {
+    "key": "TXT_QR_408312",
+    "text": "Furia infernale"
+  },
+  "408313": {
+    "key": "TXT_QR_408313",
+    "text": "Lanciere infallibile"
+  },
+  "408314": {
+    "key": "TXT_QR_408314",
+    "text": "Pellegrini dei sogni infranti"
+  },
+  "408315": {
+    "key": "TXT_QR_408315",
+    "text": "Lady delle lame"
+  },
+  "409302": {
+    "key": "TXT_QR_409302",
+    "text": "Bestia terrestre"
+  },
+  "409303": {
+    "key": "TXT_QR_409303",
+    "text": "Abbandona ogni speranza"
+  },
+  "409305": {
+    "key": "TXT_QR_409305",
+    "text": "Bestia del gelo"
+  },
+  "409307": {
+    "key": "TXT_QR_409307",
+    "text": "Desolazione cerulea e dorata"
+  },
+  "409308": {
+    "key": "TXT_QR_409308",
+    "text": "L'orda mostruosa"
+  },
+  "409309": {
+    "key": "TXT_QR_409309",
+    "text": "Balenio fiammante di Sephira"
+  },
+  "409311": {
+    "key": "TXT_QR_409311",
+    "text": "Rancore viscido"
+  },
+  "409312": {
+    "key": "TXT_QR_409312",
+    "text": "Pericolo scarlatto e smeraldino"
+  },
+  "409313": {
+    "key": "TXT_QR_409313",
+    "text": "Bestia infuocata"
+  },
+  "409314": {
+    "key": "TXT_QR_409314",
+    "text": "Possibile reclusione"
+  },
+  "409315": {
+    "key": "TXT_QR_409315",
+    "text": "L'adunata dei draghi"
+  },
+  "409317": {
+    "key": "TXT_QR_409317",
+    "text": "Possibile prosperità"
+  },
+  "409319": {
+    "key": "TXT_QR_409319",
+    "text": "Possibile terrore"
+  },
+  "409320": {
+    "key": "TXT_QR_409320",
+    "text": "Lucori distanti"
+  },
+  "40a301": {
+    "key": "TXT_QR_40A301",
+    "text": "Ordine del nuovo mondo"
+  },
+  "40a302": {
+    "key": "TXT_QR_40A302",
+    "text": "La dura legge della sopravvivenza"
+  },
+  "40a303": {
+    "key": "TXT_QR_40A303",
+    "text": "Spada del crepuscolo"
+  },
+  "40a304": {
+    "key": "TXT_QR_40A304",
+    "text": "La scia dei fuochi fatui"
+  },
+  "40a305": {
+    "key": "TXT_QR_40A305",
+    "text": "Fulmine bianco"
+  },
+  "40a306": {
+    "key": "TXT_QR_40A306",
+    "text": "Fiamme oscure"
+  },
+  "40a307": {
+    "key": "TXT_QR_40A307",
+    "text": "Prelibatezze vulcaniche"
+  },
+  "40a308": {
+    "key": "TXT_QR_40A308",
+    "text": "L'Eterno perde il pelo..."
+  },
+  "40a309": {
+    "key": "TXT_QR_40A309",
+    "text": "Lampi d'oro su scaglie di tenebra"
+  },
+  "40a310": {
+    "key": "TXT_QR_40A310",
+    "text": "Connubio roccioso"
+  },
+  "40a311": {
+    "key": "TXT_QR_40A311",
+    "text": "Bagliore lunare"
+  },
+  "40a312": {
+    "key": "TXT_QR_40A312",
+    "text": "Mazurca bellica"
+  },
+  "40a313": {
+    "key": "TXT_QR_40A313",
+    "text": "Ode alla stella del mattino"
+  },
+  "40a314": {
+    "key": "TXT_QR_40A314",
+    "text": "Lunga vita al re dei re"
+  },
+  "40a316": {
+    "key": "TXT_QR_40A316",
+    "text": "Cielo indimenticabile"
+  },
+  "40a320": {
+    "key": "TXT_QR_40A320",
+    "text": "Un ruggito che sovverte i cieli"
+  },
+  "40a321": {
+    "key": "TXT_QR_40A321",
+    "text": "Ira sacra nel campo di battaglia"
+  },
+  "40a322": {
+    "key": "TXT_QR_40A322",
+    "text": "Verità o mera leggenda?"
+  },
+  "40a323": {
+    "key": "TXT_QR_40A323",
+    "text": "Nemici giurati"
+  },
+  "40a324": {
+    "key": "TXT_QR_40A324",
+    "text": "Prosperità inquieta"
+  },
+  "40a325": {
+    "key": "TXT_QR_40A325",
+    "text": "Reclusione rancorosa"
+  },
+  "40a326": {
+    "key": "TXT_QR_40A326",
+    "text": "Cronache dei quattro elementi"
+  },
+  "40a327": {
+    "key": "TXT_QR_40A327",
+    "text": "Amore per le creazioni distanti"
+  },
+  "40a328": {
+    "key": "TXT_QR_40A328",
+    "text": "Il divinautoma sfrenato"
+  },
+  "40a329": {
+    "key": "TXT_QR_40A329",
+    "text": "Impulso primordiale"
+  },
+  "40a330": {
+    "key": "TXT_QR_40A330",
+    "text": "Orgoglio delle stelle polari"
+  },
+  "40b301": {
+    "key": "TXT_QR_40B301",
+    "text": "Criticità mondiale"
+  },
+  "40b309": {
+    "key": "TXT_QR_40B309",
+    "text": "Criticità violacea"
+  },
+  "40b313": {
+    "key": "TXT_QR_40B313",
+    "text": "Criticità apocalittica"
+  },
+  "40b314": {
+    "key": "TXT_QR_40B314",
+    "text": "Criticità caotica"
+  },
+  "40b316": {
+    "key": "TXT_QR_40B316",
+    "text": "Criticità della legge suprema"
+  },
+  "4fe500": {
+    "key": "TXT_QR_4FE500",
+    "text": "Morte al capo dei goblin"
   }
 }

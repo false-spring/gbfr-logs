@@ -61,7 +61,7 @@
   },
   "15806dfc": {
     "key": "SKILL_172_01",
-    "text": "Aureola del arcángel"
+    "text": "Aureola del jerarca"
   },
   "16eff868": {
     "key": "SKILL_122_01",
@@ -97,7 +97,7 @@
   },
   "281214ab": {
     "key": "SKILL_171_03",
-    "text": "Frontera de dos coronas"
+    "text": "Terminus de dos coronas"
   },
   "29b07beb": {
     "key": "SKILL_127_00",
@@ -173,7 +173,7 @@
   },
   "4e5f6706": {
     "key": "SKILL_172_02",
-    "text": "Hostilidad del arcángel"
+    "text": "Hostilidad del jerarca"
   },
   "4f135217": {
     "key": "SKILL_131_02",
@@ -533,7 +533,7 @@
   },
   "d40d1e9b": {
     "key": "SKILL_172_00",
-    "text": "Admiración del arcángel"
+    "text": "Admiración del jerarca"
   },
   "d54f8ca7": {
     "key": "SKILL_051_00",
@@ -625,7 +625,7 @@
   },
   "ef05ec4d": {
     "key": "SKILL_170_03",
-    "text": "Frontera de Siete Estrellas"
+    "text": "Terminus de Siete Estrellas"
   },
   "f17850b9": {
     "key": "SKILL_024_00",
@@ -658,5 +658,165 @@
   "fdd1ad24": {
     "key": "SKILL_127_02",
     "text": "Hostilidad de la mariposa"
+  },
+  "d461ecfb": {
+    "key": "SKILL_141_04",
+    "text": "Cangréditos de inversión"
+  },
+  "1e1cecce": {
+    "key": "SKILL_143_10",
+    "text": "Nueva catástrofe"
+  },
+  "1de14c65": {
+    "key": "SKILL_173_00",
+    "text": "Desenfreno de lobo alfa"
+  },
+  "26956f25": {
+    "key": "SKILL_173_01",
+    "text": "Remolino de lobo alfa"
+  },
+  "dba19768": {
+    "key": "SKILL_173_02",
+    "text": "Hostilidad de lobo alfa"
+  },
+  "7b5b081d": {
+    "key": "SKILL_174_00",
+    "text": "Serenata de emperatriz"
+  },
+  "9ace140b": {
+    "key": "SKILL_174_01",
+    "text": "Danza de emperatriz"
+  },
+  "79266456": {
+    "key": "SKILL_174_02",
+    "text": "Hostilidad de emperatriz"
+  },
+  "d176d262": {
+    "key": "SKILL_175_00",
+    "text": "Filo índigo"
+  },
+  "461a8e07": {
+    "key": "SKILL_175_01",
+    "text": "Adversidad índigo"
+  },
+  "b953cc1e": {
+    "key": "SKILL_175_02",
+    "text": "Hostilidad índigo"
+  },
+  "7d75d904": {
+    "key": "SKILL_176_00",
+    "text": "Recarga de lobo tronador"
+  },
+  "be3404b9": {
+    "key": "SKILL_176_01",
+    "text": "Perspicacia de lobo tronador"
+  },
+  "3eb345d7": {
+    "key": "SKILL_176_02",
+    "text": "Hostilidad de lobo tronador"
+  },
+  "47384248": {
+    "key": "SKILL_177_00",
+    "text": "Gracia del resurgir"
+  },
+  "30773197": {
+    "key": "SKILL_177_01",
+    "text": "Dinamismo del resurgir"
+  },
+  "807b6684": {
+    "key": "SKILL_177_02",
+    "text": "Hostilidad del resurgir"
+  },
+  "06719232": {
+    "key": "SKILL_178_00",
+    "text": "Mantra azabache"
+  },
+  "ed8d8ad8": {
+    "key": "SKILL_178_01",
+    "text": "Progreso azabache"
+  },
+  "5559232f": {
+    "key": "SKILL_178_02",
+    "text": "Hostilidad azabache"
+  },
+  "bf78fbfc": {
+    "key": "SKILL_301_00",
+    "text": "Temible cangrejera azabache"
+  },
+  "46ee3116": {
+    "key": "SKILL_302_00",
+    "text": "Concordia azabache"
+  },
+  "89c66acb": {
+    "key": "SKILL_303_00",
+    "text": "Fuerza de luchador de sumo"
+  },
+  "3b71af12": {
+    "key": "SKILL_311_00",
+    "text": "Lím. de daño: cielo fragoso"
+  },
+  "fff8cf64": {
+    "key": "SKILL_312_00",
+    "text": "Lím. de daño: cielo dinámico"
+  },
+  "235d86ef": {
+    "key": "SKILL_313_00",
+    "text": "Supernova"
+  },
+  "aefeb1bc": {
+    "key": "SKILL_314_00",
+    "text": "Lím. de daño: cielo azul"
+  },
+  "0151cf9e": {
+    "key": "SKILL_315_00",
+    "text": "Lím. de daño: cielo carmesí"
+  },
+  "bbd77c33": {
+    "key": "SKILL_316_00",
+    "text": "Impacto extra"
+  },
+  "020db733": {
+    "key": "SKILL_317_00",
+    "text": "Arte extra"
+  },
+  "3f682593": {
+    "key": "SKILL_318_00",
+    "text": "Primacía extra"
+  },
+  "79027fc8": {
+    "key": "SKILL_319_00",
+    "text": "Quebradura extra"
+  },
+  "0de887a0": {
+    "key": "SKILL_320_00",
+    "text": "Empíreo abrasador"
+  },
+  "a7726190": {
+    "key": "SKILL_321_00",
+    "text": "Empíreo refulgente"
+  },
+  "9232dc17": {
+    "key": "SKILL_322_00",
+    "text": "Empíreo confinante"
+  },
+  "36e3848d": {
+    "key": "SKILL_323_00",
+    "text": "Empíreo flámeo"
+  },
+  "a898e283": {
+    "key": "SKILL_324_00",
+    "text": "Empíreo níveo"
+  },
+  "d029fe08": {
+    "key": "SKILL_325_00",
+    "text": "Sin límites"
+  },
+  "73220725": {
+    "key": "SKILL_326_00",
+    "text": "Empíreo sosegado"
+  },
+  "f26baea5": {
+    "key": "SKILL_327_00",
+    "text": "Divergencia"
   }
 }

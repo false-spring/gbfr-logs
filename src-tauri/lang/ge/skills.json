@@ -1,0 +1,1034 @@
+{
+  "bad9baa3": {
+    "key": "AB_PL0000_01",
+    "text": "Dezimieren"
+  },
+  "538572d0": {
+    "key": "AB_PL0000_02",
+    "text": "Harnischbruch"
+  },
+  "dbe960dd": {
+    "key": "AB_PL0000_03",
+    "text": "Phalanx"
+  },
+  "e5598482": {
+    "key": "AB_PL0000_04",
+    "text": "Alle Heilen"
+  },
+  "967964c1": {
+    "key": "AB_PL0000_05",
+    "text": "Pfeilregen"
+  },
+  "42d185d5": {
+    "key": "AB_PL0000_06",
+    "text": "Nebel des Elends"
+  },
+  "fb1526c3": {
+    "key": "AB_PL0000_07",
+    "text": "Jähzorn"
+  },
+  "b2f74994": {
+    "key": "AB_PL0000_08",
+    "text": "Eruption"
+  },
+  "1e4c06ec": {
+    "key": "AB_PL0000_09",
+    "text": "Klarheit"
+  },
+  "6fd0843a": {
+    "key": "AB_PL0000_10",
+    "text": "Reginleif"
+  },
+  "fc0562ec": {
+    "key": "AB_PL0000_11",
+    "text": "Hinhalten"
+  },
+  "66b7cf9c": {
+    "key": "AB_PL0000_12",
+    "text": "Wiederbeleben"
+  },
+  "f9492778": {
+    "key": "AB_PL0000_13",
+    "text": "Schleier"
+  },
+  "f4bb441f": {
+    "key": "AB_PL0000_14",
+    "text": "Annullieren"
+  },
+  "abfe9091": {
+    "key": "AB_PL0000_15",
+    "text": "Übertragung"
+  },
+  "4f634ad4": {
+    "key": "AB_PL0000_16",
+    "text": "Ersetzen"
+  },
+  "aa949a9e": {
+    "key": "AB_PL0100_01",
+    "text": "Dezimieren"
+  },
+  "faff8838": {
+    "key": "AB_PL0100_02",
+    "text": "Harnischbruch"
+  },
+  "ef2108b4": {
+    "key": "AB_PL0100_03",
+    "text": "Phalanx"
+  },
+  "3111fe5e": {
+    "key": "AB_PL0100_04",
+    "text": "Alle Heilen"
+  },
+  "fad51809": {
+    "key": "AB_PL0100_05",
+    "text": "Pfeilregen"
+  },
+  "c908857c": {
+    "key": "AB_PL0100_06",
+    "text": "Nebel des Elends"
+  },
+  "3c5a7509": {
+    "key": "AB_PL0100_07",
+    "text": "Jähzorn"
+  },
+  "401ab759": {
+    "key": "AB_PL0100_08",
+    "text": "Eruption"
+  },
+  "ccec1035": {
+    "key": "AB_PL0100_09",
+    "text": "Klarheit"
+  },
+  "4257541b": {
+    "key": "AB_PL0100_10",
+    "text": "Reginleif"
+  },
+  "2a8ef6c4": {
+    "key": "AB_PL0100_11",
+    "text": "Hinhalten"
+  },
+  "eb16fd99": {
+    "key": "AB_PL0100_12",
+    "text": "Wiederbeleben"
+  },
+  "7ef53ff4": {
+    "key": "AB_PL0100_13",
+    "text": "Schleier"
+  },
+  "8e2bfc26": {
+    "key": "AB_PL0100_14",
+    "text": "Annullieren"
+  },
+  "531dd853": {
+    "key": "AB_PL0100_15",
+    "text": "Übertragung"
+  },
+  "d064b37f": {
+    "key": "AB_PL0100_16",
+    "text": "Ersetzen"
+  },
+  "9fed6cf3": {
+    "key": "AB_PL0200_01",
+    "text": "Verwunschenes Terrain"
+  },
+  "e224a3d2": {
+    "key": "AB_PL0200_02",
+    "text": "Winterregen"
+  },
+  "66e797cc": {
+    "key": "AB_PL0200_03",
+    "text": "Heilen"
+  },
+  "79a07d8e": {
+    "key": "AB_PL0200_04",
+    "text": "Heilige Winde"
+  },
+  "87288538": {
+    "key": "AB_PL0200_05",
+    "text": "Himmelblaues Schwert"
+  },
+  "71b81b9c": {
+    "key": "AB_PL0200_06",
+    "text": "Lichtwall"
+  },
+  "9f1539d2": {
+    "key": "AB_PL0200_07",
+    "text": "Machtgefährt"
+  },
+  "ed04d44b": {
+    "key": "AB_PL0200_08",
+    "text": "Smaragd-Schild"
+  },
+  "5c1519f8": {
+    "key": "AB_PL0300_01",
+    "text": "Hitzkopf"
+  },
+  "7c63d77a": {
+    "key": "AB_PL0300_02",
+    "text": "Kugelhagel"
+  },
+  "d712d990": {
+    "key": "AB_PL0300_03",
+    "text": "Doppelschuss"
+  },
+  "a5f5e86c": {
+    "key": "AB_PL0300_04",
+    "text": "Dauer"
+  },
+  "099abf09": {
+    "key": "AB_PL0300_05",
+    "text": "Sargmacher"
+  },
+  "243ecbfc": {
+    "key": "AB_PL0300_06",
+    "text": "Wilder Pulverdampf"
+  },
+  "4d598bbd": {
+    "key": "AB_PL0300_07",
+    "text": "Schlackenschuss"
+  },
+  "f07b5a9d": {
+    "key": "AB_PL0300_08",
+    "text": "Kollateralschaden"
+  },
+  "3d4193db": {
+    "key": "AB_PL0400_01",
+    "text": "Heilender Wind"
+  },
+  "1c7aa5cc": {
+    "key": "AB_PL0400_02",
+    "text": "Einfrieren"
+  },
+  "32b4a16e": {
+    "key": "AB_PL0400_03",
+    "text": "Blitz"
+  },
+  "200663cb": {
+    "key": "AB_PL0400_04",
+    "text": "Schwerkraftbrunnen"
+  },
+  "64a6c124": {
+    "key": "AB_PL0400_05",
+    "text": "Feuer"
+  },
+  "65083f2d": {
+    "key": "AB_PL0400_06",
+    "text": "Konzentration"
+  },
+  "d4c45d64": {
+    "key": "AB_PL0400_07",
+    "text": "Blühende Sieben"
+  },
+  "b40ccd9c": {
+    "key": "AB_PL0400_08",
+    "text": "Mystischer Wirbel"
+  },
+  "d0768c6b": {
+    "key": "AB_PL0500_01",
+    "text": "Sumrak"
+  },
+  "3cf50957": {
+    "key": "AB_PL0500_02",
+    "text": "Zünder"
+  },
+  "772fa1d5": {
+    "key": "AB_PL0500_03",
+    "text": "Abfangen"
+  },
+  "b54c90e4": {
+    "key": "AB_PL0500_04",
+    "text": "Vollmantelgeschoss"
+  },
+  "2ea1b3db": {
+    "key": "AB_PL0500_05",
+    "text": "Giftgranate"
+  },
+  "c3ccadf8": {
+    "key": "AB_PL0500_06",
+    "text": "Lähmende Kugel"
+  },
+  "2246eec2": {
+    "key": "AB_PL0500_07",
+    "text": "Heilende Kugel"
+  },
+  "d457585d": {
+    "key": "AB_PL0500_08",
+    "text": "Störer"
+  },
+  "00f6213e": {
+    "key": "AB_PL0600_01",
+    "text": "Parfümspur"
+  },
+  "3eb33877": {
+    "key": "AB_PL0600_02",
+    "text": "Rosen-Herrschaft"
+  },
+  "c7db192c": {
+    "key": "AB_PL0600_03",
+    "text": "Verzaubern"
+  },
+  "8c4d811c": {
+    "key": "AB_PL0600_04",
+    "text": "Gewundene Rose"
+  },
+  "cd6940de": {
+    "key": "AB_PL0600_05",
+    "text": "Eiserne Jungfrau"
+  },
+  "395e4823": {
+    "key": "AB_PL0600_06",
+    "text": "Verlorene Liebe"
+  },
+  "cf0b171b": {
+    "key": "AB_PL0600_07",
+    "text": "Rosenbarriere"
+  },
+  "8f187f08": {
+    "key": "AB_PL0600_08",
+    "text": "Blumenstrauß"
+  },
+  "a44b77a1": {
+    "key": "AB_PL0700_01",
+    "text": "Geistervertreibung"
+  },
+  "ceebae4a": {
+    "key": "AB_PL0700_02",
+    "text": "Blaues Gespenst"
+  },
+  "03e4d1bc": {
+    "key": "AB_PL0700_03",
+    "text": "Sic 'Em, Geegee!"
+  },
+  "512cba53": {
+    "key": "AB_PL0700_04",
+    "text": "Segnung"
+  },
+  "8cbe0423": {
+    "key": "AB_PL0700_05",
+    "text": "Pendel"
+  },
+  "94da6b12": {
+    "key": "AB_PL0700_06",
+    "text": "Strafe"
+  },
+  "82695b1e": {
+    "key": "AB_PL0700_07",
+    "text": "Hinrichten"
+  },
+  "5ce11765": {
+    "key": "AB_PL0700_08",
+    "text": "Umlauf"
+  },
+  "7eb5a896": {
+    "key": "AB_PL0800_01",
+    "text": "Impulsklinge"
+  },
+  "920dd8b3": {
+    "key": "AB_PL0800_02",
+    "text": "Kaltzwinger"
+  },
+  "282fd588": {
+    "key": "AB_PL0800_03",
+    "text": "Lawinensturm"
+  },
+  "5d19bbe2": {
+    "key": "AB_PL0800_04",
+    "text": "Blauer Dolch"
+  },
+  "511571ee": {
+    "key": "AB_PL0800_05",
+    "text": "Turbulenz"
+  },
+  "2ecb1f0b": {
+    "key": "AB_PL0800_06",
+    "text": "Südkreuz"
+  },
+  "05359b18": {
+    "key": "AB_PL0800_07",
+    "text": "Schwertgeist"
+  },
+  "a4d546ab": {
+    "key": "AB_PL0800_08",
+    "text": "Luftspiegelung"
+  },
+  "12f12cac": {
+    "key": "AB_PL0900_01",
+    "text": "Bollwerk"
+  },
+  "fbef06f2": {
+    "key": "AB_PL0900_02",
+    "text": "Spaltteiler"
+  },
+  "1dd6b65d": {
+    "key": "AB_PL0900_03",
+    "text": "Durchbruch"
+  },
+  "050ddce6": {
+    "key": "AB_PL0900_04",
+    "text": "Waffenzerstörung"
+  },
+  "b9e9ed9f": {
+    "key": "AB_PL0900_05",
+    "text": "Heldenhafter Takt"
+  },
+  "bd38e05b": {
+    "key": "AB_PL0900_06",
+    "text": "Seelenausbruch"
+  },
+  "bc4ebf36": {
+    "key": "AB_PL0900_07",
+    "text": "Energiezerstörung"
+  },
+  "88bcd098": {
+    "key": "AB_PL0900_08",
+    "text": "Drachenstolz"
+  },
+  "caeeda5d": {
+    "key": "AB_PL1000_01",
+    "text": "Feuerangriff"
+  },
+  "98e1b356": {
+    "key": "AB_PL1000_02",
+    "text": "Flammenmarsch"
+  },
+  "01439452": {
+    "key": "AB_PL1000_03",
+    "text": "X-Seele"
+  },
+  "70fe4df6": {
+    "key": "AB_PL1000_04",
+    "text": "Zerreißen"
+  },
+  "6891463e": {
+    "key": "AB_PL1000_05",
+    "text": "Träumerei"
+  },
+  "8b70dd12": {
+    "key": "AB_PL1000_06",
+    "text": "Macht"
+  },
+  "01051e0b": {
+    "key": "AB_PL1000_07",
+    "text": "Königliche Autorität"
+  },
+  "241e1792": {
+    "key": "AB_PL1000_08",
+    "text": "Roter Wirbel"
+  },
+  "62aab75d": {
+    "key": "AB_PL1100_01",
+    "text": "Uwe"
+  },
+  "00aace55": {
+    "key": "AB_PL1100_02",
+    "text": "L’ombre d’hier"
+  },
+  "94b29689": {
+    "key": "AB_PL1100_03",
+    "text": "Bösartigkeit"
+  },
+  "a662c045": {
+    "key": "AB_PL1100_04",
+    "text": "Nelahnav"
+  },
+  "c6f4ccb1": {
+    "key": "AB_PL1100_05",
+    "text": "Salvator"
+  },
+  "eff4746c": {
+    "key": "AB_PL1100_06",
+    "text": "Illusion"
+  },
+  "5a356634": {
+    "key": "AB_PL1100_07",
+    "text": "Verdrängen"
+  },
+  "75d65667": {
+    "key": "AB_PL1100_08",
+    "text": "Drakonische Befreiung"
+  },
+  "ed00c663": {
+    "key": "AB_PL1200_01",
+    "text": "Königsschild"
+  },
+  "bd038b68": {
+    "key": "AB_PL1200_02",
+    "text": "Funkelfeger"
+  },
+  "24b19804": {
+    "key": "AB_PL1200_03",
+    "text": "Erwachender Schnitt"
+  },
+  "05ce9ce6": {
+    "key": "AB_PL1200_04",
+    "text": "Tapfere Haltung"
+  },
+  "c07a8e90": {
+    "key": "AB_PL1200_05",
+    "text": "Heilige Ladung"
+  },
+  "69fcecc3": {
+    "key": "AB_PL1200_06",
+    "text": "Unbezwingbar"
+  },
+  "d696964e": {
+    "key": "AB_PL1200_07",
+    "text": "Schwert Lumières"
+  },
+  "58e10372": {
+    "key": "AB_PL1200_08",
+    "text": "Himmelsleiter"
+  },
+  "1deeb111": {
+    "key": "AB_PL1300_01",
+    "text": "Erwachen"
+  },
+  "5d39ff76": {
+    "key": "AB_PL1300_02",
+    "text": "Leerer Nebel"
+  },
+  "19a55d74": {
+    "key": "AB_PL1300_03",
+    "text": "Dreikantklinge"
+  },
+  "fe554ce1": {
+    "key": "AB_PL1300_04",
+    "text": "Ewige Rotation"
+  },
+  "167179d2": {
+    "key": "AB_PL1300_05",
+    "text": "Auge um Auge"
+  },
+  "5acc7a93": {
+    "key": "AB_PL1300_06",
+    "text": "Hymne der Hunderten"
+  },
+  "d7cc0564": {
+    "key": "AB_PL1300_07",
+    "text": "Blinkende Leere"
+  },
+  "512ddb88": {
+    "key": "AB_PL1300_08",
+    "text": "Himmelsbruch"
+  },
+  "1d6f5c2d": {
+    "key": "AB_PL1400_01",
+    "text": "Kyokasuigetsu"
+  },
+  "f74b3c5b": {
+    "key": "AB_PL1400_02",
+    "text": "Setsuna"
+  },
+  "b28d2735": {
+    "key": "AB_PL1400_03",
+    "text": "Zenit des Nichts"
+  },
+  "0adac47b": {
+    "key": "AB_PL1400_04",
+    "text": "Sichelmond"
+  },
+  "390a6ec6": {
+    "key": "AB_PL1400_05",
+    "text": "Vergänglichkeit"
+  },
+  "41e3c434": {
+    "key": "AB_PL1400_06",
+    "text": "Rosa Blütentanz"
+  },
+  "3614971b": {
+    "key": "AB_PL1400_07",
+    "text": "Blauer Blütentanz"
+  },
+  "3cad2dd9": {
+    "key": "AB_PL1400_08",
+    "text": "Völlige Hingabe"
+  },
+  "bcb4c311": {
+    "key": "AB_PL1500_01",
+    "text": "Arhat Himmelsbrecher"
+  },
+  "abd5990a": {
+    "key": "AB_PL1500_02",
+    "text": "Brennende Hand"
+  },
+  "088a1d08": {
+    "key": "AB_PL1500_03",
+    "text": "Eisenschulter"
+  },
+  "ee1ed3e4": {
+    "key": "AB_PL1500_04",
+    "text": "Wahre Avidya"
+  },
+  "6b54f359": {
+    "key": "AB_PL1500_05",
+    "text": "Löwenhaltung"
+  },
+  "0f41d9b0": {
+    "key": "AB_PL1500_06",
+    "text": "Höllisches Stampfen"
+  },
+  "967c9abc": {
+    "key": "AB_PL1500_07",
+    "text": "Ewiger Jähzorn"
+  },
+  "84174bdd": {
+    "key": "AB_PL1500_08",
+    "text": "Dhyana"
+  },
+  "95e40e12": {
+    "key": "AB_PL1600_01",
+    "text": "Endlose Wunder"
+  },
+  "67270513": {
+    "key": "AB_PL1600_02",
+    "text": "Wutregen"
+  },
+  "974342aa": {
+    "key": "AB_PL1600_03",
+    "text": "Arvess-Speer"
+  },
+  "52e3eed1": {
+    "key": "AB_PL1600_04",
+    "text": "Signo-Verstärkung"
+  },
+  "2ae2fa9d": {
+    "key": "AB_PL1600_05",
+    "text": "Flügelknipser"
+  },
+  "8c3c7ddc": {
+    "key": "AB_PL1600_06",
+    "text": "Rachsüchtige Flamme"
+  },
+  "33028d0b": {
+    "key": "AB_PL1600_07",
+    "text": "Tausend Flammen"
+  },
+  "a8dd5b10": {
+    "key": "AB_PL1600_08",
+    "text": "Majestät des Reiches"
+  },
+  "3b5c9f6d": {
+    "key": "AB_PL1700_01",
+    "text": "Bataillone der Angst"
+  },
+  "ec775337": {
+    "key": "AB_PL1700_02",
+    "text": "Gewalttätige Schatten"
+  },
+  "8121f2bf": {
+    "key": "AB_PL1700_03",
+    "text": "Großsense Grynoth"
+  },
+  "3a6c7767": {
+    "key": "AB_PL1700_04",
+    "text": "Unsterblicher Schmerz"
+  },
+  "d71a616c": {
+    "key": "AB_PL1700_05",
+    "text": "Vergessene Sagen"
+  },
+  "7ea722fc": {
+    "key": "AB_PL1700_06",
+    "text": "Verdammung"
+  },
+  "ce6a60cf": {
+    "key": "AB_PL1700_07",
+    "text": "Schattenfinsternis"
+  },
+  "90c49270": {
+    "key": "AB_PL1700_08",
+    "text": "Zorn des Jenseits"
+  },
+  "75043b52": {
+    "key": "AB_PL1800_01",
+    "text": "Mimikerpuppe"
+  },
+  "12a18828": {
+    "key": "AB_PL1800_02",
+    "text": "Märchen"
+  },
+  "2e064364": {
+    "key": "AB_PL1800_03",
+    "text": "Phantasmagoria"
+  },
+  "85c06563": {
+    "key": "AB_PL1800_04",
+    "text": "Verstärken"
+  },
+  "ee45b7ef": {
+    "key": "AB_PL1800_05",
+    "text": "Störung"
+  },
+  "b97bd8d4": {
+    "key": "AB_PL1800_06",
+    "text": "Rhizomata"
+  },
+  "ed1219cc": {
+    "key": "AB_PL1800_07",
+    "text": "Alexandria"
+  },
+  "5b42826c": {
+    "key": "AB_PL1800_08",
+    "text": "Zug der Schmerzen"
+  },
+  "e2dc99d9": {
+    "key": "AB_PL1900_01",
+    "text": "Reginleif Récidive"
+  },
+  "c1d7660c": {
+    "key": "AB_PL1900_02",
+    "text": "Ungebunden"
+  },
+  "0af90b6d": {
+    "key": "AB_PL1900_03",
+    "text": "Sühne"
+  },
+  "98309953": {
+    "key": "AB_PL1900_04",
+    "text": "Ragnarök-Form"
+  },
+  "38b12f6a": {
+    "key": "AB_PL1900_05",
+    "text": "Plage"
+  },
+  "b132100b": {
+    "key": "AB_PL1900_06",
+    "text": "Vierfache Vergeltung"
+  },
+  "968220fa": {
+    "key": "AB_PL1900_07",
+    "text": "Nie genug"
+  },
+  "c516d104": {
+    "key": "AB_PL1900_08",
+    "text": "Arkadien"
+  },
+  "18784cf8": {
+    "key": "AB_PL2000_01",
+    "text": "Reginleif Récidive"
+  },
+  "f8f512dc": {
+    "key": "AB_PL2000_02",
+    "text": "Plage"
+  },
+  "5f4c5757": {
+    "key": "AB_PL2000_03",
+    "text": "Nie genug"
+  },
+  "3f4b5c9e": {
+    "key": "AB_PL2000_04",
+    "text": "Arkadien"
+  },
+  "542f400f": {
+    "key": "AB_PL2100_01",
+    "text": "Atem des Lebens"
+  },
+  "da860bd8": {
+    "key": "AB_PL2100_02",
+    "text": "Kein Ausweg"
+  },
+  "34222ea5": {
+    "key": "AB_PL2100_03",
+    "text": "Ecliptica"
+  },
+  "eb81f079": {
+    "key": "AB_PL2100_04",
+    "text": "Die Macht des Einen"
+  },
+  "31e089b9": {
+    "key": "AB_PL2100_05",
+    "text": "Revontulet"
+  },
+  "0b1bb3fb": {
+    "key": "AB_PL2100_06",
+    "text": "Allein im Himmel"
+  },
+  "1031dbd0": {
+    "key": "AB_PL2100_07",
+    "text": "Talviyö"
+  },
+  "a7c5a324": {
+    "key": "AB_PL2100_08",
+    "text": "Himmelsgefängnis"
+  },
+  "d99ad2ad": {
+    "key": "AB_PL2200_01",
+    "text": "Barrido"
+  },
+  "a7eb9e69": {
+    "key": "AB_PL2200_02",
+    "text": "Infinito Creare"
+  },
+  "6e8e210a": {
+    "key": "AB_PL2200_03",
+    "text": "Rotura"
+  },
+  "705a6a63": {
+    "key": "AB_PL2200_04",
+    "text": "Ispirazione"
+  },
+  "0bd7b2e1": {
+    "key": "AB_PL2200_05",
+    "text": "Prisión de Armas"
+  },
+  "abab2642": {
+    "key": "AB_PL2200_06",
+    "text": "Despedazar"
+  },
+  "c6629ae0": {
+    "key": "AB_PL2200_07",
+    "text": "Tempesta"
+  },
+  "3bb98b51": {
+    "key": "AB_PL2200_08",
+    "text": "Siebenstern-Brillanz"
+  },
+  "7f683594": {
+    "key": "AB_PL2300_01",
+    "text": "Merkulicht"
+  },
+  "7c0f49fb": {
+    "key": "AB_PL2300_02",
+    "text": "Verderbtheit"
+  },
+  "bba467c0": {
+    "key": "AB_PL2300_03",
+    "text": "Trumpf"
+  },
+  "da816022": {
+    "key": "AB_PL2300_04",
+    "text": "Tapfere Bindung"
+  },
+  "bb425ac9": {
+    "key": "AB_PL2300_05",
+    "text": "Rad des Todes"
+  },
+  "a6b54953": {
+    "key": "AB_PL2300_06",
+    "text": "Tödlicher Regen"
+  },
+  "d95b6aba": {
+    "key": "AB_PL2300_07",
+    "text": "Beispielloses Auge"
+  },
+  "2189f8ba": {
+    "key": "AB_PL2300_08",
+    "text": "Krieg zweier Kronen"
+  },
+  "966f4a6f": {
+    "key": "AB_PL2400_01",
+    "text": "Seitenstecher"
+  },
+  "430f5db4": {
+    "key": "AB_PL2400_02",
+    "text": "Sturzflug"
+  },
+  "915b5131": {
+    "key": "AB_PL2400_03",
+    "text": "Speerstoß"
+  },
+  "bcc01262": {
+    "key": "AB_PL2400_04",
+    "text": "Martialischer Speer"
+  },
+  "642b9935": {
+    "key": "AB_PL2400_05",
+    "text": "Niedermähen"
+  },
+  "4c13102e": {
+    "key": "AB_PL2400_06",
+    "text": "Vorstoß"
+  },
+  "4bc55ee0": {
+    "key": "AB_PL2400_07",
+    "text": "Helmbrecher"
+  },
+  "6aa831f7": {
+    "key": "AB_PL2400_08",
+    "text": "Zermalmer"
+  },
+  "bc2ef1d8": {
+    "key": "AB_PL2400_09",
+    "text": "Blitzender Fangzahn"
+  },
+  "b9c33c89": {
+    "key": "AB_PL2500_01",
+    "text": "Zepter der Wunder"
+  },
+  "91d8e40b": {
+    "key": "AB_PL2500_02",
+    "text": "Blitzhammer"
+  },
+  "55aedf7b": {
+    "key": "AB_PL2500_03",
+    "text": "Todesschuss-Flinte"
+  },
+  "e69d5c9c": {
+    "key": "AB_PL2500_04",
+    "text": "Sagenspeer"
+  },
+  "547c38ae": {
+    "key": "AB_PL2500_05",
+    "text": "Unbeugsam"
+  },
+  "d6403105": {
+    "key": "AB_PL2500_06",
+    "text": "Nachtmusik"
+  },
+  "6b21afbb": {
+    "key": "AB_PL2500_07",
+    "text": "Sostenuto"
+  },
+  "d5d1bd18": {
+    "key": "AB_PL2500_08",
+    "text": "Kantate der Tapferkeit"
+  },
+  "9887f9a4": {
+    "key": "AB_PL2600_01",
+    "text": "Reitende Wut"
+  },
+  "f1e56fb1": {
+    "key": "AB_PL2600_02",
+    "text": "Sternenjäger"
+  },
+  "267ff179": {
+    "key": "AB_PL2600_03",
+    "text": "Embrasque-Schwert"
+  },
+  "24b49fe8": {
+    "key": "AB_PL2600_04",
+    "text": "Ewige Quest"
+  },
+  "746f18a4": {
+    "key": "AB_PL2600_05",
+    "text": "Flammende Herzen"
+  },
+  "b85aa34f": {
+    "key": "AB_PL2600_06",
+    "text": "Donnervogel"
+  },
+  "d16eeeea": {
+    "key": "AB_PL2600_07",
+    "text": "Entfesseln"
+  },
+  "2a60f8ca": {
+    "key": "AB_PL2600_08",
+    "text": "Aufblitzende Nova"
+  },
+  "017117e8": {
+    "key": "AB_PL2700_01",
+    "text": "Langsamer Tod"
+  },
+  "aa6e61e5": {
+    "key": "AB_PL2700_02",
+    "text": "Für immer und ewig"
+  },
+  "e1410c7b": {
+    "key": "AB_PL2700_03",
+    "text": "Spiel mit dem Feuer"
+  },
+  "9abfc62c": {
+    "key": "AB_PL2700_04",
+    "text": "Säurebrüller"
+  },
+  "9ac21d84": {
+    "key": "AB_PL2700_05",
+    "text": "Überholspur"
+  },
+  "0026ab65": {
+    "key": "AB_PL2700_06",
+    "text": "Niemals aufgeben"
+  },
+  "a5391991": {
+    "key": "AB_PL2700_07",
+    "text": "Flamek-Donner"
+  },
+  "aea6d151": {
+    "key": "AB_PL2700_08",
+    "text": "Die Himmel fallen"
+  },
+  "355b0df9": {
+    "key": "AB_PL2800_01",
+    "text": "Niederschmettern"
+  },
+  "6fb5fbda": {
+    "key": "AB_PL2800_02",
+    "text": "Blutroter Albtraum"
+  },
+  "484b29f5": {
+    "key": "AB_PL2800_03",
+    "text": "Indominus"
+  },
+  "530600d2": {
+    "key": "AB_PL2800_04",
+    "text": "Gelegenheit"
+  },
+  "44f5c74f": {
+    "key": "AB_PL2800_05",
+    "text": "Land der Toten"
+  },
+  "10fae6ab": {
+    "key": "AB_PL2800_06",
+    "text": "Ins Gesicht"
+  },
+  "87d51ba4": {
+    "key": "AB_PL2800_07",
+    "text": "Pracht"
+  },
+  "0b84f88d": {
+    "key": "AB_PL2800_08",
+    "text": "Kraftwerk"
+  },
+  "8f4e9d6f": {
+    "key": "AB_PL2900_01",
+    "text": "Seelenbrecher"
+  },
+  "981a10bc": {
+    "key": "AB_PL2900_02",
+    "text": "Klaue der Umkehr"
+  },
+  "b2795ca0": {
+    "key": "AB_PL2900_03",
+    "text": "Omen des Unheils"
+  },
+  "c3c3d59a": {
+    "key": "AB_PL2900_04",
+    "text": "Pechschwarzer Segen"
+  },
+  "724636a8": {
+    "key": "AB_PL2900_05",
+    "text": "Urtümliche Furcht"
+  },
+  "b09eac4c": {
+    "key": "AB_PL2900_06",
+    "text": "Verfluchtes Begräbnis"
+  },
+  "d113989a": {
+    "key": "AB_PL2900_07",
+    "text": "Miasmaloch"
+  },
+  "b1c60cab": {
+    "key": "AB_PL2900_08",
+    "text": "Sphäre der Umkehr"
+  },
+  "0b04fd2a": {
+    "key": "AB_NP0000_01",
+    "text": "Heilendes Wasser"
+  },
+  "869bd124": {
+    "key": "AB_NP0000_02",
+    "text": "Beständige Erde"
+  },
+  "d08a0a37": {
+    "key": "AB_NP0000_03",
+    "text": "Blaue Barriere"
+  },
+  "fb52815e": {
+    "key": "AB_NP0300_01",
+    "text": "Göttliche Bindung"
+  },
+  "8aea1313": {
+    "key": "AB_NP0300_02",
+    "text": "Himmelsgeysir"
+  }
+}

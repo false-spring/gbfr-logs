@@ -1062,5 +1062,449 @@
   "407325": {
     "key": "TXT_QR_407325",
     "text": "Zathba's \"Volunteers\""
+  },
+  "220001": {
+    "key": "TXT_QR_220001",
+    "text": "Gods of a World Beyond"
+  },
+  "220002": {
+    "key": "TXT_QR_220002",
+    "text": "A Glint of Things to Come"
+  },
+  "220003": {
+    "key": "TXT_QR_220003",
+    "text": "Hidden Gems of Aquila"
+  },
+  "220004": {
+    "key": "TXT_QR_220004",
+    "text": "Reviving The Devil"
+  },
+  "220005": {
+    "key": "TXT_QR_220005",
+    "text": "Into the Sephira Abyss"
+  },
+  "220101": {
+    "key": "TXT_QR_220101",
+    "text": "Back Alley Mystery"
+  },
+  "220102": {
+    "key": "TXT_QR_220102",
+    "text": "More Strangeness Afoot"
+  },
+  "220111": {
+    "key": "TXT_QR_220111",
+    "text": "Chasing Rumors: The Silver Grail"
+  },
+  "220112": {
+    "key": "TXT_QR_220112",
+    "text": "Chasing Rumors: The Golden Grail"
+  },
+  "220301": {
+    "key": "TXT_QR_220301",
+    "text": "No Time to Snooze"
+  },
+  "220302": {
+    "key": "TXT_QR_220302",
+    "text": "Awakened Emotion"
+  },
+  "220303": {
+    "key": "TXT_QR_220303",
+    "text": "Dawn of a New Awakening"
+  },
+  "220311": {
+    "key": "TXT_QR_220311",
+    "text": "Terminus 2"
+  },
+  "220312": {
+    "key": "TXT_QR_220312",
+    "text": "Me and My Big Mouth"
+  },
+  "220313": {
+    "key": "TXT_QR_220313",
+    "text": "Beyond the Terminus"
+  },
+  "220401": {
+    "key": "TXT_QR_220401",
+    "text": "All That Glitters"
+  },
+  "220411": {
+    "key": "TXT_QR_220411",
+    "text": "Pry It from My Claws"
+  },
+  "230001": {
+    "key": "TXT_QR_230001",
+    "text": "Trial of Vermillion and Emerald"
+  },
+  "230002": {
+    "key": "TXT_QR_230002",
+    "text": "Trial of Azure and Gold"
+  },
+  "230003": {
+    "key": "TXT_QR_230003",
+    "text": "Trial of White and Black"
+  },
+  "230004": {
+    "key": "TXT_QR_230004",
+    "text": "Mazurka of War"
+  },
+  "230301": {
+    "key": "TXT_QR_230301",
+    "text": "Count One: The Weapon Awakens"
+  },
+  "230302": {
+    "key": "TXT_QR_230302",
+    "text": "Count Two: Rise Up"
+  },
+  "230303": {
+    "key": "TXT_QR_230303",
+    "text": "Count Three: Final Ascension"
+  },
+  "230311": {
+    "key": "TXT_QR_230311",
+    "text": "Count One: Start of the End"
+  },
+  "230312": {
+    "key": "TXT_QR_230312",
+    "text": "Count Two: Right on Track"
+  },
+  "230313": {
+    "key": "TXT_QR_230313",
+    "text": "Count Three: Last Stop"
+  },
+  "230321": {
+    "key": "TXT_QR_230321",
+    "text": "TKO"
+  },
+  "230391": {
+    "key": "TXT_QR_230391",
+    "text": "Push the Limits"
+  },
+  "230401": {
+    "key": "TXT_QR_230401",
+    "text": "Some Assembly Required"
+  },
+  "230402": {
+    "key": "TXT_QR_230402",
+    "text": "Like a Fish out of Magma"
+  },
+  "230411": {
+    "key": "TXT_QR_230411",
+    "text": "The Crew That Never Rests"
+  },
+  "240121": {
+    "key": "TXT_QR_240121",
+    "text": "Chasing Rumors: Red Tri-Stars"
+  },
+  "290101": {
+    "key": "TXT_QR_290101",
+    "text": "Eureka! They Do Exist!"
+  },
+  "290102": {
+    "key": "TXT_QR_290102",
+    "text": "Go! Nab Those Dark Crustaceans!"
+  },
+  "290103": {
+    "key": "TXT_QR_290103",
+    "text": "Yikes! I'm Not Going in There!"
+  },
+  "290104": {
+    "key": "TXT_QR_290104",
+    "text": "Wait! I Thought I Saw One!"
+  },
+  "290105": {
+    "key": "TXT_QR_290105",
+    "text": "Curtain Call! Long Live the Pincers!"
+  },
+  "300024": {
+    "key": "TXT_QR_300024",
+    "text": "Fallen Wolves"
+  },
+  "300025": {
+    "key": "TXT_QR_300025",
+    "text": "Lies in the Snow"
+  },
+  "300026": {
+    "key": "TXT_QR_300026",
+    "text": "Solo Investigation"
+  },
+  "300027": {
+    "key": "TXT_QR_300027",
+    "text": "Infiltration"
+  },
+  "300028": {
+    "key": "TXT_QR_300028",
+    "text": "Fixing Mistakes"
+  },
+  "300029": {
+    "key": "TXT_QR_300029",
+    "text": "Inherit the Past"
+  },
+  "301024": {
+    "key": "TXT_QR_301024",
+    "text": "Feast of Frenzy"
+  },
+  "301025": {
+    "key": "TXT_QR_301025",
+    "text": "Tragedy of Blood"
+  },
+  "301026": {
+    "key": "TXT_QR_301026",
+    "text": "Sword Veil Standoff"
+  },
+  "301027": {
+    "key": "TXT_QR_301027",
+    "text": "True Thunder"
+  },
+  "301028": {
+    "key": "TXT_QR_301028",
+    "text": "At the End of the World"
+  },
+  "301029": {
+    "key": "TXT_QR_301029",
+    "text": "Axiom of Our Provenance"
+  },
+  "401317": {
+    "key": "TXT_QR_401317",
+    "text": "Bash the Goblin Hordes"
+  },
+  "401318": {
+    "key": "TXT_QR_401318",
+    "text": "Worried about Papa"
+  },
+  "402317": {
+    "key": "TXT_QR_402317",
+    "text": "Golemology 101: Desert Golems"
+  },
+  "403313": {
+    "key": "TXT_QR_403313",
+    "text": "Wings of Antiquity"
+  },
+  "408301": {
+    "key": "TXT_QR_408301",
+    "text": "A Trial of Two Eternities"
+  },
+  "408302": {
+    "key": "TXT_QR_408302",
+    "text": "Jumbo Crab's Title Fight"
+  },
+  "408305": {
+    "key": "TXT_QR_408305",
+    "text": "Sun Blotter"
+  },
+  "408306": {
+    "key": "TXT_QR_408306",
+    "text": "Gray Gear Reverberance"
+  },
+  "408308": {
+    "key": "TXT_QR_408308",
+    "text": "Nightmare Valley"
+  },
+  "408310": {
+    "key": "TXT_QR_408310",
+    "text": "The General Assembly"
+  },
+  "408311": {
+    "key": "TXT_QR_408311",
+    "text": "You're Being Watched"
+  },
+  "408312": {
+    "key": "TXT_QR_408312",
+    "text": "In the Depths of Madness"
+  },
+  "408313": {
+    "key": "TXT_QR_408313",
+    "text": "Spear of the Invincible"
+  },
+  "408314": {
+    "key": "TXT_QR_408314",
+    "text": "Pilgrims of Self-Delusion"
+  },
+  "408315": {
+    "key": "TXT_QR_408315",
+    "text": "One-Woman Army"
+  },
+  "409302": {
+    "key": "TXT_QR_409302",
+    "text": "Bestial Earth"
+  },
+  "409303": {
+    "key": "TXT_QR_409303",
+    "text": "Abandon Hope"
+  },
+  "409305": {
+    "key": "TXT_QR_409305",
+    "text": "Bestial Frost"
+  },
+  "409307": {
+    "key": "TXT_QR_409307",
+    "text": "Permafrost"
+  },
+  "409308": {
+    "key": "TXT_QR_409308",
+    "text": "Incoming!"
+  },
+  "409309": {
+    "key": "TXT_QR_409309",
+    "text": "Sephira's Sanguine Glimmer"
+  },
+  "409311": {
+    "key": "TXT_QR_409311",
+    "text": "Revenge of the Ooze"
+  },
+  "409312": {
+    "key": "TXT_QR_409312",
+    "text": "Wildfire"
+  },
+  "409313": {
+    "key": "TXT_QR_409313",
+    "text": "Bestial Blaze"
+  },
+  "409314": {
+    "key": "TXT_QR_409314",
+    "text": "Shadows of the Past: Sequestration"
+  },
+  "409315": {
+    "key": "TXT_QR_409315",
+    "text": "Procession of Dragons"
+  },
+  "409317": {
+    "key": "TXT_QR_409317",
+    "text": "Shadows of the Past: Vitality"
+  },
+  "409319": {
+    "key": "TXT_QR_409319",
+    "text": "Shadows of the Past: Dread"
+  },
+  "409320": {
+    "key": "TXT_QR_409320",
+    "text": "Bring Light to the World"
+  },
+  "40a301": {
+    "key": "TXT_QR_40A301",
+    "text": "New World Order"
+  },
+  "40a302": {
+    "key": "TXT_QR_40A302",
+    "text": "Survival of the Fittest"
+  },
+  "40a303": {
+    "key": "TXT_QR_40A303",
+    "text": "Weight of a Blade"
+  },
+  "40a304": {
+    "key": "TXT_QR_40A304",
+    "text": "March of Lost Souls"
+  },
+  "40a305": {
+    "key": "TXT_QR_40A305",
+    "text": "Lightning Strikes Twice"
+  },
+  "40a306": {
+    "key": "TXT_QR_40A306",
+    "text": "All-Consuming Darkness"
+  },
+  "40a307": {
+    "key": "TXT_QR_40A307",
+    "text": "Flavor Blast!"
+  },
+  "40a308": {
+    "key": "TXT_QR_40A308",
+    "text": "The Eternal Grind"
+  },
+  "40a309": {
+    "key": "TXT_QR_40A309",
+    "text": "A Reckoning for the Reckoner"
+  },
+  "40a310": {
+    "key": "TXT_QR_40A310",
+    "text": "Tectonic Clash"
+  },
+  "40a311": {
+    "key": "TXT_QR_40A311",
+    "text": "Terror from the Moon"
+  },
+  "40a312": {
+    "key": "TXT_QR_40A312",
+    "text": "Mazurka of War"
+  },
+  "40a313": {
+    "key": "TXT_QR_40A313",
+    "text": "A Prayer for Black Wings' Demise"
+  },
+  "40a314": {
+    "key": "TXT_QR_40A314",
+    "text": "Let Chaos Reign"
+  },
+  "40a316": {
+    "key": "TXT_QR_40A316",
+    "text": "The Not Forgotten Sky"
+  },
+  "40a320": {
+    "key": "TXT_QR_40A320",
+    "text": "Roar from the Heavens"
+  },
+  "40a321": {
+    "key": "TXT_QR_40A321",
+    "text": "Supernatural Appetite for Meat"
+  },
+  "40a322": {
+    "key": "TXT_QR_40A322",
+    "text": "The Myths Are Real"
+  },
+  "40a323": {
+    "key": "TXT_QR_40A323",
+    "text": "In the Wrong Hands"
+  },
+  "40a324": {
+    "key": "TXT_QR_40A324",
+    "text": "The Tempest Rises"
+  },
+  "40a325": {
+    "key": "TXT_QR_40A325",
+    "text": "Reclusive Vengeance"
+  },
+  "40a326": {
+    "key": "TXT_QR_40A326",
+    "text": "Four Dragons of the Apocalypse"
+  },
+  "40a327": {
+    "key": "TXT_QR_40A327",
+    "text": "Rock Around the Clock"
+  },
+  "40a328": {
+    "key": "TXT_QR_40A328",
+    "text": "An Act of Automagod"
+  },
+  "40a329": {
+    "key": "TXT_QR_40A329",
+    "text": "Beneath Primeval Wings"
+  },
+  "40a330": {
+    "key": "TXT_QR_40A330",
+    "text": "Eternal Pride"
+  },
+  "40b301": {
+    "key": "TXT_QR_40B301",
+    "text": "On the Threshold of The World"
+  },
+  "40b309": {
+    "key": "TXT_QR_40B309",
+    "text": "On the Threshold of Destruction"
+  },
+  "40b313": {
+    "key": "TXT_QR_40B313",
+    "text": "On the Threshold of Finality"
+  },
+  "40b314": {
+    "key": "TXT_QR_40B314",
+    "text": "On the Threshold of Chaos"
+  },
+  "40b316": {
+    "key": "TXT_QR_40B316",
+    "text": "On the Threshold of Provenance"
+  },
+  "4fe500": {
+    "key": "TXT_QR_4FE500",
+    "text": "Defeat—*wheeze*—Goblin Boss"
   }
 }

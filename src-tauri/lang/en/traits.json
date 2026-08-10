@@ -658,5 +658,165 @@
   "fdd1ad24": {
     "key": "SKILL_127_02",
     "text": "Butterfly's Warpath"
+  },
+  "d461ecfb": {
+    "key": "SKILL_141_04",
+    "text": "Crabvestment Returns"
+  },
+  "1e1cecce": {
+    "key": "SKILL_143_10",
+    "text": "Catastrophe Nova"
+  },
+  "1de14c65": {
+    "key": "SKILL_173_00",
+    "text": "Gladiator's Frenzy"
+  },
+  "26956f25": {
+    "key": "SKILL_173_01",
+    "text": "Gladiator's Top"
+  },
+  "dba19768": {
+    "key": "SKILL_173_02",
+    "text": "Gladiator's Warpath"
+  },
+  "7b5b081d": {
+    "key": "SKILL_174_00",
+    "text": "Bladequeen's Serenade"
+  },
+  "9ace140b": {
+    "key": "SKILL_174_01",
+    "text": "Bladequeen's Circuit"
+  },
+  "79266456": {
+    "key": "SKILL_174_02",
+    "text": "Bladequeen's Warpath"
+  },
+  "d176d262": {
+    "key": "SKILL_175_00",
+    "text": "Ultramarine's Flash"
+  },
+  "461a8e07": {
+    "key": "SKILL_175_01",
+    "text": "Ultramarine's Adversity"
+  },
+  "b953cc1e": {
+    "key": "SKILL_175_02",
+    "text": "Ultramarine's Warpath"
+  },
+  "7d75d904": {
+    "key": "SKILL_176_00",
+    "text": "Thunderwolf's Recharge"
+  },
+  "be3404b9": {
+    "key": "SKILL_176_01",
+    "text": "Thunderwolf's Acuity"
+  },
+  "3eb345d7": {
+    "key": "SKILL_176_02",
+    "text": "Thunderwolf's Warpath"
+  },
+  "47384248": {
+    "key": "SKILL_177_00",
+    "text": "Enchantress's Blessing"
+  },
+  "30773197": {
+    "key": "SKILL_177_01",
+    "text": "Enchantress's Rhythm"
+  },
+  "807b6684": {
+    "key": "SKILL_177_02",
+    "text": "Enchantress's Warpath"
+  },
+  "06719232": {
+    "key": "SKILL_178_00",
+    "text": "The Black's Mark"
+  },
+  "ed8d8ad8": {
+    "key": "SKILL_178_01",
+    "text": "The Black's Impulse"
+  },
+  "5559232f": {
+    "key": "SKILL_178_02",
+    "text": "The Black's Warpath"
+  },
+  "bf78fbfc": {
+    "key": "SKILL_301_00",
+    "text": "Immortal Shell"
+  },
+  "46ee3116": {
+    "key": "SKILL_302_00",
+    "text": "In a Pinch"
+  },
+  "89c66acb": {
+    "key": "SKILL_303_00",
+    "text": "Sumo Force"
+  },
+  "3b71af12": {
+    "key": "SKILL_311_00",
+    "text": "DMG Cap Ecru"
+  },
+  "fff8cf64": {
+    "key": "SKILL_312_00",
+    "text": "DMG Cap Sage"
+  },
+  "235d86ef": {
+    "key": "SKILL_313_00",
+    "text": "Supernova"
+  },
+  "aefeb1bc": {
+    "key": "SKILL_314_00",
+    "text": "DMG Cap Cobalt"
+  },
+  "0151cf9e": {
+    "key": "SKILL_315_00",
+    "text": "DMG Cap Cardinal"
+  },
+  "bbd77c33": {
+    "key": "SKILL_316_00",
+    "text": "Unbound Strike"
+  },
+  "020db733": {
+    "key": "SKILL_317_00",
+    "text": "Unbound Technique"
+  },
+  "3f682593": {
+    "key": "SKILL_318_00",
+    "text": "Unbound Exertion"
+  },
+  "79027fc8": {
+    "key": "SKILL_319_00",
+    "text": "Unbound Master"
+  },
+  "0de887a0": {
+    "key": "SKILL_320_00",
+    "text": "Celestial Nyx"
+  },
+  "a7726190": {
+    "key": "SKILL_321_00",
+    "text": "Celestial Lumen"
+  },
+  "9232dc17": {
+    "key": "SKILL_322_00",
+    "text": "Celestial Terra"
+  },
+  "36e3848d": {
+    "key": "SKILL_323_00",
+    "text": "Celestial Incendo"
+  },
+  "a898e283": {
+    "key": "SKILL_324_00",
+    "text": "Celestial Aqua"
+  },
+  "d029fe08": {
+    "key": "SKILL_325_00",
+    "text": "Fatebreaker"
+  },
+  "73220725": {
+    "key": "SKILL_326_00",
+    "text": "Celestial Ventus"
+  },
+  "f26baea5": {
+    "key": "SKILL_327_00",
+    "text": "Divergence"
   }
 }

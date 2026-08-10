@@ -1037,7 +1037,7 @@
   },
   "407319": {
     "key": "TXT_QR_407319",
-    "text": "El mecadeus ataca de nuevo"
+    "text": "El dios autómata ataca de nuevo"
   },
   "407320": {
     "key": "TXT_QR_407320",
@@ -1062,5 +1062,449 @@
   "407325": {
     "key": "TXT_QR_407325",
     "text": "Los \"voluntarios\" de Zathba"
+  },
+  "220001": {
+    "key": "TXT_QR_220001",
+    "text": "Resurgir de las deidades"
+  },
+  "220002": {
+    "key": "TXT_QR_220002",
+    "text": "Unos misteriosos resplandores"
+  },
+  "220003": {
+    "key": "TXT_QR_220003",
+    "text": "Gemas de Aquila"
+  },
+  "220004": {
+    "key": "TXT_QR_220004",
+    "text": "Auge diabólico"
+  },
+  "220005": {
+    "key": "TXT_QR_220005",
+    "text": "Hacia la sima de Céfira"
+  },
+  "220101": {
+    "key": "TXT_QR_220101",
+    "text": "Investigando la brecha misteriosa"
+  },
+  "220102": {
+    "key": "TXT_QR_220102",
+    "text": "De vuelta a la brecha misteriosa"
+  },
+  "220111": {
+    "key": "TXT_QR_220111",
+    "text": "Rumor plateado"
+  },
+  "220112": {
+    "key": "TXT_QR_220112",
+    "text": "Rumor dorado"
+  },
+  "220301": {
+    "key": "TXT_QR_220301",
+    "text": "Otra oportunidad de despertar"
+  },
+  "220302": {
+    "key": "TXT_QR_220302",
+    "text": "Los sentimientos del despertar"
+  },
+  "220303": {
+    "key": "TXT_QR_220303",
+    "text": "Despertar para ver el mañana"
+  },
+  "220311": {
+    "key": "TXT_QR_220311",
+    "text": "Se me han protoadelantado"
+  },
+  "220312": {
+    "key": "TXT_QR_220312",
+    "text": "Protobocazas"
+  },
+  "220313": {
+    "key": "TXT_QR_220313",
+    "text": "Posibilidades más allá de proto"
+  },
+  "220401": {
+    "key": "TXT_QR_220401",
+    "text": "Producto de la brecha misteriosa"
+  },
+  "220411": {
+    "key": "TXT_QR_220411",
+    "text": "Que rulen los premios"
+  },
+  "230001": {
+    "key": "TXT_QR_230001",
+    "text": "Prueba cinabrio y viridián"
+  },
+  "230002": {
+    "key": "TXT_QR_230002",
+    "text": "Prueba cerúlea y dorada"
+  },
+  "230003": {
+    "key": "TXT_QR_230003",
+    "text": "Prueba alba y azabache"
+  },
+  "230004": {
+    "key": "TXT_QR_230004",
+    "text": "Mazurca de batalla"
+  },
+  "230301": {
+    "key": "TXT_QR_230301",
+    "text": "Uno: nuevo despertar"
+  },
+  "230302": {
+    "key": "TXT_QR_230302",
+    "text": "Dos: despertar adicional"
+  },
+  "230303": {
+    "key": "TXT_QR_230303",
+    "text": "Tres: despertar definitivo"
+  },
+  "230311": {
+    "key": "TXT_QR_230311",
+    "text": "Uno: protodistancia"
+  },
+  "230312": {
+    "key": "TXT_QR_230312",
+    "text": "Dos: protointelección"
+  },
+  "230313": {
+    "key": "TXT_QR_230313",
+    "text": "Tres: protoconsecución"
+  },
+  "230321": {
+    "key": "TXT_QR_230321",
+    "text": "Cuenta atrás para trascender"
+  },
+  "230391": {
+    "key": "TXT_QR_230391",
+    "text": "Más allá del límite"
+  },
+  "230401": {
+    "key": "TXT_QR_230401",
+    "text": "Mineral prometedor"
+  },
+  "230402": {
+    "key": "TXT_QR_230402",
+    "text": "Vesania del pez gigantesco"
+  },
+  "230411": {
+    "key": "TXT_QR_230411",
+    "text": "Más vale prevenir que resucitar"
+  },
+  "240121": {
+    "key": "TXT_QR_240121",
+    "text": "Tras las tres estrellas rojas"
+  },
+  "290101": {
+    "key": "TXT_QR_290101",
+    "text": "¡Milagro! Hay cangrejos azabaches"
+  },
+  "290102": {
+    "key": "TXT_QR_290102",
+    "text": "¡Reto! Tras los cangrejos"
+  },
+  "290103": {
+    "key": "TXT_QR_290103",
+    "text": "¡Tiembla! Cangrejos peculiares"
+  },
+  "290104": {
+    "key": "TXT_QR_290104",
+    "text": "¡Sorpresa! Cangrejos avistados"
+  },
+  "290105": {
+    "key": "TXT_QR_290105",
+    "text": "¡Fin! Vivan los cangrejos"
+  },
+  "300024": {
+    "key": "TXT_QR_300024",
+    "text": "Elegía de los lobos"
+  },
+  "300025": {
+    "key": "TXT_QR_300025",
+    "text": "Cuidado con las mentiras"
+  },
+  "300026": {
+    "key": "TXT_QR_300026",
+    "text": "Detective solitaria"
+  },
+  "300027": {
+    "key": "TXT_QR_300027",
+    "text": "Infiltración"
+  },
+  "300028": {
+    "key": "TXT_QR_300028",
+    "text": "Nota desafinada"
+  },
+  "300029": {
+    "key": "TXT_QR_300029",
+    "text": "Legado de otrora"
+  },
+  "301024": {
+    "key": "TXT_QR_301024",
+    "text": "Toda la carne en el asador"
+  },
+  "301025": {
+    "key": "TXT_QR_301025",
+    "text": "Venganza entre adversidades"
+  },
+  "301026": {
+    "key": "TXT_QR_301026",
+    "text": "Enfrentamiento contra el Velo"
+  },
+  "301027": {
+    "key": "TXT_QR_301027",
+    "text": "Relámpago verdadero"
+  },
+  "301028": {
+    "key": "TXT_QR_301028",
+    "text": "Mundo ideal"
+  },
+  "301029": {
+    "key": "TXT_QR_301029",
+    "text": "Mensaje para el futuro"
+  },
+  "401317": {
+    "key": "TXT_QR_401317",
+    "text": "Aplasta a las hordas de trasgos"
+  },
+  "401318": {
+    "key": "TXT_QR_401318",
+    "text": "¿Está bien mi papá?"
+  },
+  "402317": {
+    "key": "TXT_QR_402317",
+    "text": "Golemología I: gólems desérticos"
+  },
+  "403313": {
+    "key": "TXT_QR_403313",
+    "text": "Alas de la antigüedad"
+  },
+  "408301": {
+    "key": "TXT_QR_408301",
+    "text": "Enfrentamiento boreal"
+  },
+  "408302": {
+    "key": "TXT_QR_408302",
+    "text": "Festín crustáceo"
+  },
+  "408305": {
+    "key": "TXT_QR_408305",
+    "text": "Pajarraco"
+  },
+  "408306": {
+    "key": "TXT_QR_408306",
+    "text": "Eco metálico"
+  },
+  "408308": {
+    "key": "TXT_QR_408308",
+    "text": "Valle de las pesadillas"
+  },
+  "408310": {
+    "key": "TXT_QR_408310",
+    "text": "Belicosos hasta la médula"
+  },
+  "408311": {
+    "key": "TXT_QR_408311",
+    "text": "Espiritismo"
+  },
+  "408312": {
+    "key": "TXT_QR_408312",
+    "text": "Tártaro salvaje"
+  },
+  "408313": {
+    "key": "TXT_QR_408313",
+    "text": "Fulgor de una lanza"
+  },
+  "408314": {
+    "key": "TXT_QR_408314",
+    "text": "Enajenación de los peregrinos"
+  },
+  "408315": {
+    "key": "TXT_QR_408315",
+    "text": "Mil espadas"
+  },
+  "409302": {
+    "key": "TXT_QR_409302",
+    "text": "Bestia terrestre"
+  },
+  "409303": {
+    "key": "TXT_QR_409303",
+    "text": "Purgatorio"
+  },
+  "409305": {
+    "key": "TXT_QR_409305",
+    "text": "Bestia gélida"
+  },
+  "409307": {
+    "key": "TXT_QR_409307",
+    "text": "Desolación cerúlea y dorada"
+  },
+  "409308": {
+    "key": "TXT_QR_409308",
+    "text": "Procesión monstruosa"
+  },
+  "409309": {
+    "key": "TXT_QR_409309",
+    "text": "Resplandor llameante de Céfira"
+  },
+  "409311": {
+    "key": "TXT_QR_409311",
+    "text": "Inquina viscosa"
+  },
+  "409312": {
+    "key": "TXT_QR_409312",
+    "text": "Amenaza cinabrio y viridián"
+  },
+  "409313": {
+    "key": "TXT_QR_409313",
+    "text": "Bestia ardiente"
+  },
+  "409314": {
+    "key": "TXT_QR_409314",
+    "text": "Posible aislamiento"
+  },
+  "409315": {
+    "key": "TXT_QR_409315",
+    "text": "Desdicha dragontina"
+  },
+  "409317": {
+    "key": "TXT_QR_409317",
+    "text": "Posible vitalidad"
+  },
+  "409319": {
+    "key": "TXT_QR_409319",
+    "text": "Posible miedo"
+  },
+  "409320": {
+    "key": "TXT_QR_409320",
+    "text": "Brillo de Céfira en la lejanía"
+  },
+  "40a301": {
+    "key": "TXT_QR_40A301",
+    "text": "Nuevo orden mundial"
+  },
+  "40a302": {
+    "key": "TXT_QR_40A302",
+    "text": "Supervivencia del más apto"
+  },
+  "40a303": {
+    "key": "TXT_QR_40A303",
+    "text": "Hoja del ocaso"
+  },
+  "40a304": {
+    "key": "TXT_QR_40A304",
+    "text": "Almas errantes"
+  },
+  "40a305": {
+    "key": "TXT_QR_40A305",
+    "text": "Trueno prístino"
+  },
+  "40a306": {
+    "key": "TXT_QR_40A306",
+    "text": "Llama azabache"
+  },
+  "40a307": {
+    "key": "TXT_QR_40A307",
+    "text": "Lucha por el manjar volcánico"
+  },
+  "40a308": {
+    "key": "TXT_QR_40A308",
+    "text": "Sopla bóreas de nuevo"
+  },
+  "40a309": {
+    "key": "TXT_QR_40A309",
+    "text": "Ocaso púrpura"
+  },
+  "40a310": {
+    "key": "TXT_QR_40A310",
+    "text": "Mezcla pétrea"
+  },
+  "40a311": {
+    "key": "TXT_QR_40A311",
+    "text": "Luz lunar"
+  },
+  "40a312": {
+    "key": "TXT_QR_40A312",
+    "text": "Mazurca de batalla"
+  },
+  "40a313": {
+    "key": "TXT_QR_40A313",
+    "text": "Deseo un lucero del alba eterno"
+  },
+  "40a314": {
+    "key": "TXT_QR_40A314",
+    "text": "El ser absoluto"
+  },
+  "40a316": {
+    "key": "TXT_QR_40A316",
+    "text": "Cielo inolvidable"
+  },
+  "40a320": {
+    "key": "TXT_QR_40A320",
+    "text": "Expansión del rugido dragontino"
+  },
+  "40a321": {
+    "key": "TXT_QR_40A321",
+    "text": "Furia sagrada en el campo de batalla"
+  },
+  "40a322": {
+    "key": "TXT_QR_40A322",
+    "text": "Verificando leyendas"
+  },
+  "40a323": {
+    "key": "TXT_QR_40A323",
+    "text": "Némesis demoniacos"
+  },
+  "40a324": {
+    "key": "TXT_QR_40A324",
+    "text": "Vitalidad oscilante"
+  },
+  "40a325": {
+    "key": "TXT_QR_40A325",
+    "text": "Aislamiento vindicador"
+  },
+  "40a326": {
+    "key": "TXT_QR_40A326",
+    "text": "Leyenda de las draconitas"
+  },
+  "40a327": {
+    "key": "TXT_QR_40A327",
+    "text": "Entusiasmo por creaciones de otrora"
+  },
+  "40a328": {
+    "key": "TXT_QR_40A328",
+    "text": "Dios autómata descontrolado"
+  },
+  "40a329": {
+    "key": "TXT_QR_40A329",
+    "text": "Impulso primigenio"
+  },
+  "40a330": {
+    "key": "TXT_QR_40A330",
+    "text": "Orgullo de las estrellas boreales"
+  },
+  "40b301": {
+    "key": "TXT_QR_40B301",
+    "text": "Sumidad del mundo"
+  },
+  "40b309": {
+    "key": "TXT_QR_40B309",
+    "text": "Sumidad de la oscuridad"
+  },
+  "40b313": {
+    "key": "TXT_QR_40B313",
+    "text": "Sumidad del apocalipsis"
+  },
+  "40b314": {
+    "key": "TXT_QR_40B314",
+    "text": "Sumidad del caos"
+  },
+  "40b316": {
+    "key": "TXT_QR_40B316",
+    "text": "Sumidad de la esencia suprema"
+  },
+  "4fe500": {
+    "key": "TXT_QR_4FE500",
+    "text": "A por el... Uf... trasgo jefe"
   }
 }

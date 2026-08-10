@@ -401,59 +401,59 @@
   },
   "290002": {
     "key": "TXT_QR_290002",
-    "text": "Rette die Krustentiere Teil Deux"
+    "text": "Rette die Krustentiere: Teil II"
   },
   "290003": {
     "key": "TXT_QR_290003",
-    "text": "Rette die Krustentiere die Dritte"
+    "text": "Rette die Krustentiere: Dritter Akt"
   },
   "290004": {
     "key": "TXT_QR_290004",
-    "text": "Rette die Krustentiere Reloaded"
+    "text": "Rette die Krustentiere: Reloaded"
   },
   "290005": {
     "key": "TXT_QR_290005",
-    "text": "Rette die Krustentiere Jenseits"
+    "text": "Rette die Krustentiere: Beyond"
   },
   "290006": {
     "key": "TXT_QR_290006",
-    "text": "Rette die Krustentiere Neo"
+    "text": "Rette die Krustentiere: Neo"
   },
   "290007": {
     "key": "TXT_QR_290007",
-    "text": "Rette die Krustentiere Rückkehr"
+    "text": "Rette die Krustentiere: Rückkehr"
   },
   "290008": {
     "key": "TXT_QR_290008",
-    "text": "Rette die Krustentiere Prime"
+    "text": "Rette die Krustentiere: Prime"
   },
   "290009": {
     "key": "TXT_QR_290009",
-    "text": "Rette die Krustentiere Neue Ära"
+    "text": "Rette die Krustentiere: Neue Ära"
   },
   "290010": {
     "key": "TXT_QR_290010",
-    "text": "Rette die Krustentiere Chroniken"
+    "text": "Rette die Krustentiere: Chroniken"
   },
   "290011": {
     "key": "TXT_QR_290011",
-    "text": "Rette die Krustentiere Ursprünge"
+    "text": "Rette die Krustentiere: Ursprung"
   },
   "290012": {
     "key": "TXT_QR_290012",
-    "text": "Rette d. Krustent. Vorherrschaft"
+    "text": "Rette d. Krustent.: Vorherrschaft"
   },
   "290013": {
     "key": "TXT_QR_290013",
-    "text": "Rette d. Krustent. Unendlichkeit"
+    "text": "Rette d. Krustent.: Unendlichkeit"
   },
   "290014": {
     "key": "TXT_QR_290014",
-    "text": "Rette die Krustentiere Erhebt sich"
+    "text": "Rette die Krustentiere: Aufstieg"
   },
   "290015": {
     "key": "TXT_QR_290015",
-    "text": "Rette die Krustentiere Finale"
+    "text": "Rette die Krustentiere: Finale"
   },
   "300000": {
     "key": "TXT_QR_300000",
@@ -1062,5 +1062,449 @@
   "407325": {
     "key": "TXT_QR_407325",
     "text": "Zathbas „Freiwillige“"
+  },
+  "220001": {
+    "key": "TXT_QR_220001",
+    "text": "Wiedergeborener Sternengott"
+  },
+  "220002": {
+    "key": "TXT_QR_220002",
+    "text": "Mysteriöses Funkeln"
+  },
+  "220003": {
+    "key": "TXT_QR_220003",
+    "text": "Edelsteine aus Aquila"
+  },
+  "220004": {
+    "key": "TXT_QR_220004",
+    "text": "Diabolisches Erwachen"
+  },
+  "220005": {
+    "key": "TXT_QR_220005",
+    "text": "Die Sephira-Tiefen"
+  },
+  "220101": {
+    "key": "TXT_QR_220101",
+    "text": "Untersuchung des Nebels"
+  },
+  "220102": {
+    "key": "TXT_QR_220102",
+    "text": "Erneute Untersuchung des Nebels"
+  },
+  "220111": {
+    "key": "TXT_QR_220111",
+    "text": "Silbernes Gerücht"
+  },
+  "220112": {
+    "key": "TXT_QR_220112",
+    "text": "Goldenes Gerücht"
+  },
+  "220301": {
+    "key": "TXT_QR_220301",
+    "text": "Noch eine Erweckung"
+  },
+  "220302": {
+    "key": "TXT_QR_220302",
+    "text": "Bewunderung der Erweckung"
+  },
+  "220303": {
+    "key": "TXT_QR_220303",
+    "text": "Erweckung zum Morgen"
+  },
+  "220311": {
+    "key": "TXT_QR_220311",
+    "text": "Überstiegener Terminus"
+  },
+  "220312": {
+    "key": "TXT_QR_220312",
+    "text": "Terminus-Plappermaul"
+  },
+  "220313": {
+    "key": "TXT_QR_220313",
+    "text": "Potenzial jenseits des Terminus"
+  },
+  "220401": {
+    "key": "TXT_QR_220401",
+    "text": "Beiprodukt des seltsamen Nebels"
+  },
+  "220411": {
+    "key": "TXT_QR_220411",
+    "text": "Das Übliche"
+  },
+  "230001": {
+    "key": "TXT_QR_230001",
+    "text": "Prüfung der Pforte: Rot und Grün"
+  },
+  "230002": {
+    "key": "TXT_QR_230002",
+    "text": "Prüfung der Pforte: Blau und Gold"
+  },
+  "230003": {
+    "key": "TXT_QR_230003",
+    "text": "Prüfung der Pforte: Schw. u. Weiß"
+  },
+  "230004": {
+    "key": "TXT_QR_230004",
+    "text": "Mazurka der Schlacht"
+  },
+  "230301": {
+    "key": "TXT_QR_230301",
+    "text": "Eins! Neue Erweckung!"
+  },
+  "230302": {
+    "key": "TXT_QR_230302",
+    "text": "Zwei! Steigende Erweckung!"
+  },
+  "230303": {
+    "key": "TXT_QR_230303",
+    "text": "Drei! Vollendete Erweckung!"
+  },
+  "230311": {
+    "key": "TXT_QR_230311",
+    "text": "Eins! Ferner Terminus"
+  },
+  "230312": {
+    "key": "TXT_QR_230312",
+    "text": "Zwei! Erleuchteter Terminus"
+  },
+  "230313": {
+    "key": "TXT_QR_230313",
+    "text": "Drei! Endgültiger Terminus"
+  },
+  "230321": {
+    "key": "TXT_QR_230321",
+    "text": "Grenzenlose Transzendenz"
+  },
+  "230391": {
+    "key": "TXT_QR_230391",
+    "text": "Über alle Grenzen"
+  },
+  "230401": {
+    "key": "TXT_QR_230401",
+    "text": "Erz der Hoffnung"
+  },
+  "230402": {
+    "key": "TXT_QR_230402",
+    "text": "Lavafisch im Porzellanladen"
+  },
+  "230411": {
+    "key": "TXT_QR_230411",
+    "text": "Unerschrockener Himmelsfahrer"
+  },
+  "240121": {
+    "key": "TXT_QR_240121",
+    "text": "Auf der Spur der roten Drillinge"
+  },
+  "290101": {
+    "key": "TXT_QR_290101",
+    "text": "Die schwarzen Krabben gibt es!?"
+  },
+  "290102": {
+    "key": "TXT_QR_290102",
+    "text": "Folge den schwarzen Krabben!"
+  },
+  "290103": {
+    "key": "TXT_QR_290103",
+    "text": "Ökologie der schwarzen Krabben"
+  },
+  "290104": {
+    "key": "TXT_QR_290104",
+    "text": "Schock! Krabben gesichtet!"
+  },
+  "290105": {
+    "key": "TXT_QR_290105",
+    "text": "Ehre den schwarzen Krabben!"
+  },
+  "300024": {
+    "key": "TXT_QR_300024",
+    "text": "Elegie der Wölfe"
+  },
+  "300025": {
+    "key": "TXT_QR_300025",
+    "text": "Vorsicht vor Lügnern!"
+  },
+  "300026": {
+    "key": "TXT_QR_300026",
+    "text": "Auf eigene Faust"
+  },
+  "300027": {
+    "key": "TXT_QR_300027",
+    "text": "Infiltration"
+  },
+  "300028": {
+    "key": "TXT_QR_300028",
+    "text": "Kakofonie"
+  },
+  "300029": {
+    "key": "TXT_QR_300029",
+    "text": "Von grauer Urzeit bis heute"
+  },
+  "301024": {
+    "key": "TXT_QR_301024",
+    "text": "Riesenrad"
+  },
+  "301025": {
+    "key": "TXT_QR_301025",
+    "text": "Verhängnisvoller Racheakt"
+  },
+  "301026": {
+    "key": "TXT_QR_301026",
+    "text": "Schlacht gegen den Schwertschleier"
+  },
+  "301027": {
+    "key": "TXT_QR_301027",
+    "text": "Wahrhaftiger Blitz"
+  },
+  "301028": {
+    "key": "TXT_QR_301028",
+    "text": "Die Welt unserer Träume"
+  },
+  "301029": {
+    "key": "TXT_QR_301029",
+    "text": "Nachricht an die Zukunft"
+  },
+  "401317": {
+    "key": "TXT_QR_401317",
+    "text": "Besiege die Goblin-Horden"
+  },
+  "401318": {
+    "key": "TXT_QR_401318",
+    "text": "Sorgen um Papa"
+  },
+  "402317": {
+    "key": "TXT_QR_402317",
+    "text": "Golemologie 101: Wüsten-Golems"
+  },
+  "403313": {
+    "key": "TXT_QR_403313",
+    "text": "Schwingen des Altertums"
+  },
+  "408301": {
+    "key": "TXT_QR_408301",
+    "text": "Leitsterne"
+  },
+  "408302": {
+    "key": "TXT_QR_408302",
+    "text": "Ring frei für die Krabbe!"
+  },
+  "408305": {
+    "key": "TXT_QR_408305",
+    "text": "Riesenvogel"
+  },
+  "408306": {
+    "key": "TXT_QR_408306",
+    "text": "Stumpfer Wiederhall"
+  },
+  "408308": {
+    "key": "TXT_QR_408308",
+    "text": "Tal der Albträume"
+  },
+  "408310": {
+    "key": "TXT_QR_408310",
+    "text": "Dämonische Kampfwut"
+  },
+  "408311": {
+    "key": "TXT_QR_408311",
+    "text": "Grusel"
+  },
+  "408312": {
+    "key": "TXT_QR_408312",
+    "text": "Infernale Raserei"
+  },
+  "408313": {
+    "key": "TXT_QR_408313",
+    "text": "Speerstoß"
+  },
+  "408314": {
+    "key": "TXT_QR_408314",
+    "text": "Reisender Fiebertraum"
+  },
+  "408315": {
+    "key": "TXT_QR_408315",
+    "text": "Tausend Klingen"
+  },
+  "409302": {
+    "key": "TXT_QR_409302",
+    "text": "Erdbestie"
+  },
+  "409303": {
+    "key": "TXT_QR_409303",
+    "text": "Fegefeuer"
+  },
+  "409305": {
+    "key": "TXT_QR_409305",
+    "text": "Eisbestie"
+  },
+  "409307": {
+    "key": "TXT_QR_409307",
+    "text": "Ruin, Blau und Gold"
+  },
+  "409308": {
+    "key": "TXT_QR_409308",
+    "text": "Geisterversammlung"
+  },
+  "409309": {
+    "key": "TXT_QR_409309",
+    "text": "Gleißende Flamme von Sephira"
+  },
+  "409311": {
+    "key": "TXT_QR_409311",
+    "text": "Schleimiger Hass"
+  },
+  "409312": {
+    "key": "TXT_QR_409312",
+    "text": "Todesgefahr, Rot und Grün"
+  },
+  "409313": {
+    "key": "TXT_QR_409313",
+    "text": "Feuerbestie"
+  },
+  "409314": {
+    "key": "TXT_QR_409314",
+    "text": "Potenzial „Abgeschiedenheit“"
+  },
+  "409315": {
+    "key": "TXT_QR_409315",
+    "text": "Unheil der Drachen"
+  },
+  "409317": {
+    "key": "TXT_QR_409317",
+    "text": "Potenzial „Lebenskraft“"
+  },
+  "409319": {
+    "key": "TXT_QR_409319",
+    "text": "Potenzial „Schrecken“"
+  },
+  "409320": {
+    "key": "TXT_QR_409320",
+    "text": "Sephiras Glanz"
+  },
+  "40a301": {
+    "key": "TXT_QR_40A301",
+    "text": "Neue Weltordnung"
+  },
+  "40a302": {
+    "key": "TXT_QR_40A302",
+    "text": "Die Stärksten überleben"
+  },
+  "40a303": {
+    "key": "TXT_QR_40A303",
+    "text": "Zwielichtklinge"
+  },
+  "40a304": {
+    "key": "TXT_QR_40A304",
+    "text": "Seelenglimmer"
+  },
+  "40a305": {
+    "key": "TXT_QR_40A305",
+    "text": "Gleißender Blitz"
+  },
+  "40a306": {
+    "key": "TXT_QR_40A306",
+    "text": "Düsterfeuer"
+  },
+  "40a307": {
+    "key": "TXT_QR_40A307",
+    "text": "Vulkanische Köstlichkeiten"
+  },
+  "40a308": {
+    "key": "TXT_QR_40A308",
+    "text": "Wiederkehrende Leitsterne"
+  },
+  "40a309": {
+    "key": "TXT_QR_40A309",
+    "text": "Silbernes Zwielicht"
+  },
+  "40a310": {
+    "key": "TXT_QR_40A310",
+    "text": "Verflochtene Felsen"
+  },
+  "40a311": {
+    "key": "TXT_QR_40A311",
+    "text": "Mondlicht"
+  },
+  "40a312": {
+    "key": "TXT_QR_40A312",
+    "text": "Mazurka der Schlacht"
+  },
+  "40a313": {
+    "key": "TXT_QR_40A313",
+    "text": "Ewiger Stern"
+  },
+  "40a314": {
+    "key": "TXT_QR_40A314",
+    "text": "Der Absolute"
+  },
+  "40a316": {
+    "key": "TXT_QR_40A316",
+    "text": "Unvergesslicher Himmel"
+  },
+  "40a320": {
+    "key": "TXT_QR_40A320",
+    "text": "Erschütternde Drachenstimme"
+  },
+  "40a321": {
+    "key": "TXT_QR_40A321",
+    "text": "Die heilige Bestie"
+  },
+  "40a322": {
+    "key": "TXT_QR_40A322",
+    "text": "Untersuche die Heldengeschichte!"
+  },
+  "40a323": {
+    "key": "TXT_QR_40A323",
+    "text": "Geballter Groll"
+  },
+  "40a324": {
+    "key": "TXT_QR_40A324",
+    "text": "Säuselnde Lebenskraft"
+  },
+  "40a325": {
+    "key": "TXT_QR_40A325",
+    "text": "Reinigende Abgeschiedenheit"
+  },
+  "40a326": {
+    "key": "TXT_QR_40A326",
+    "text": "Legende der Vier Kugeln"
+  },
+  "40a327": {
+    "key": "TXT_QR_40A327",
+    "text": "Verblasster Schaffungswunsch"
+  },
+  "40a328": {
+    "key": "TXT_QR_40A328",
+    "text": "Unkontrollierbarer Automagott"
+  },
+  "40a329": {
+    "key": "TXT_QR_40A329",
+    "text": "Ursprünglicher Impuls"
+  },
+  "40a330": {
+    "key": "TXT_QR_40A330",
+    "text": "Stolz der Leitsterne"
+  },
+  "40b301": {
+    "key": "TXT_QR_40B301",
+    "text": "Grenze der Welt"
+  },
+  "40b309": {
+    "key": "TXT_QR_40B309",
+    "text": "Grenze der Düsternis"
+  },
+  "40b313": {
+    "key": "TXT_QR_40B313",
+    "text": "Grenze des Untergangs"
+  },
+  "40b314": {
+    "key": "TXT_QR_40B314",
+    "text": "Grenze des Chaos"
+  },
+  "40b316": {
+    "key": "TXT_QR_40B316",
+    "text": "Grenze der absoluten Wahrheit"
+  },
+  "4fe500": {
+    "key": "TXT_QR_4FE500",
+    "text": "Besiege – *keuch* – Goblin-Boss"
   }
 }

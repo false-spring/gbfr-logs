@@ -61,7 +61,7 @@
   },
   "15806dfc": {
     "key": "SKILL_172_01",
-    "text": "Halo de l'ange suprême"
+    "text": "Halo du chef des anges"
   },
   "16eff868": {
     "key": "SKILL_122_01",
@@ -77,7 +77,7 @@
   },
   "1c360c63": {
     "key": "SKILL_008_00",
-    "text": "Ogi"
+    "text": "Attaque chargée"
   },
   "1dc9d7e7": {
     "key": "SKILL_136_00",
@@ -165,7 +165,7 @@
   },
   "4bf2e191": {
     "key": "SKILL_138_00",
-    "text": "Résistance ATT ↓"
+    "text": "Résistance ATT ↓"
   },
   "4c588c27": {
     "key": "SKILL_146_00",
@@ -173,7 +173,7 @@
   },
   "4e5f6706": {
     "key": "SKILL_172_02",
-    "text": "Ardeur de l'ange suprême"
+    "text": "Ardeur du chef des anges"
   },
   "4f135217": {
     "key": "SKILL_131_02",
@@ -233,7 +233,7 @@
   },
   "66de60b1": {
     "key": "SKILL_139_00",
-    "text": "Résistance DÉF ↓"
+    "text": "Résistance DÉF ↓"
   },
   "6b694d6d": {
     "key": "SKILL_014_00",
@@ -297,7 +297,7 @@
   },
   "81b293d9": {
     "key": "SKILL_171_02",
-    "text": "Impétuosité de la chasse funeste"
+    "text": "Impétuosité de la chasseuse"
   },
   "82ce278d": {
     "key": "SKILL_152_00",
@@ -313,7 +313,7 @@
   },
   "8572b8af": {
     "key": "SKILL_171_01",
-    "text": "Essor de la chasse funeste"
+    "text": "Essor de la chasseuse"
   },
   "86cbcdc4": {
     "key": "SKILL_124_00",
@@ -369,7 +369,7 @@
   },
   "973b49af": {
     "key": "SKILL_046_00",
-    "text": "Résistance Poison"
+    "text": "Résistance Empoisonnement"
   },
   "9a9dc170": {
     "key": "SKILL_125_00",
@@ -477,7 +477,7 @@
   },
   "c0979a17": {
     "key": "SKILL_013_00",
-    "text": "Dégâts de coup critique"
+    "text": "Dégâts critiques"
   },
   "c2a4c7a9": {
     "key": "SKILL_119_01",
@@ -517,7 +517,7 @@
   },
   "cfb48782": {
     "key": "SKILL_058_00",
-    "text": "Rés. Arts Célestes scellés "
+    "text": "Rés. Arts Célestes scellés"
   },
   "d1012d8c": {
     "key": "SKILL_121_01",
@@ -533,7 +533,7 @@
   },
   "d40d1e9b": {
     "key": "SKILL_172_00",
-    "text": "Grâce de l'ange suprême"
+    "text": "Grâce du chef des anges"
   },
   "d54f8ca7": {
     "key": "SKILL_051_00",
@@ -605,7 +605,7 @@
   },
   "e85ff8e0": {
     "key": "SKILL_171_00",
-    "text": "Salve de la chasse funeste"
+    "text": "Salve de la chasseuse"
   },
   "eae321eb": {
     "key": "SKILL_083_00",
@@ -658,5 +658,165 @@
   "fdd1ad24": {
     "key": "SKILL_127_02",
     "text": "Impétuosité du papillon"
+  },
+  "d461ecfb": {
+    "key": "SKILL_141_04",
+    "text": "Rentabilité carapacée"
+  },
+  "1e1cecce": {
+    "key": "SKILL_143_10",
+    "text": "Catastrophe : Nova"
+  },
+  "1de14c65": {
+    "key": "SKILL_173_00",
+    "text": "Passion du loup alpha"
+  },
+  "26956f25": {
+    "key": "SKILL_173_01",
+    "text": "Grande toupie du loup alpha"
+  },
+  "dba19768": {
+    "key": "SKILL_173_02",
+    "text": "Impétuosité du loup alpha"
+  },
+  "7b5b081d": {
+    "key": "SKILL_174_00",
+    "text": "Sérénade Reine des lames"
+  },
+  "9ace140b": {
+    "key": "SKILL_174_01",
+    "text": "Ronde Reine des lames"
+  },
+  "79266456": {
+    "key": "SKILL_174_02",
+    "text": "Impétuosité Reine des lames"
+  },
+  "d176d262": {
+    "key": "SKILL_175_00",
+    "text": "Éclair d’épée ultramarine"
+  },
+  "461a8e07": {
+    "key": "SKILL_175_01",
+    "text": "Adversité ultramarine"
+  },
+  "b953cc1e": {
+    "key": "SKILL_175_02",
+    "text": "Impétuosité ultramarine"
+  },
+  "7d75d904": {
+    "key": "SKILL_176_00",
+    "text": "Munition du loup de foudre"
+  },
+  "be3404b9": {
+    "key": "SKILL_176_01",
+    "text": "Vision du loup de foudre"
+  },
+  "3eb345d7": {
+    "key": "SKILL_176_02",
+    "text": "Impétuosité du loup de foudre"
+  },
+  "47384248": {
+    "key": "SKILL_177_00",
+    "text": "Grâce de réincarnation"
+  },
+  "30773197": {
+    "key": "SKILL_177_01",
+    "text": "Élan de réincarnation"
+  },
+  "807b6684": {
+    "key": "SKILL_177_02",
+    "text": "Impétuosité de réincarnation"
+  },
+  "06719232": {
+    "key": "SKILL_178_00",
+    "text": "Sceau maudit noir\n"
+  },
+  "ed8d8ad8": {
+    "key": "SKILL_178_01",
+    "text": "Bond noir"
+  },
+  "5559232f": {
+    "key": "SKILL_178_02",
+    "text": "Impétuosité noire"
+  },
+  "bf78fbfc": {
+    "key": "SKILL_301_00",
+    "text": "Crabe de jais redoutable"
+  },
+  "46ee3116": {
+    "key": "SKILL_302_00",
+    "text": "Concorde aux yeux de jais"
+  },
+  "89c66acb": {
+    "key": "SKILL_303_00",
+    "text": "Force du sumo"
+  },
+  "3b71af12": {
+    "key": "SKILL_311_00",
+    "text": "Firmament rugissant"
+  },
+  "fff8cf64": {
+    "key": "SKILL_312_00",
+    "text": "Firmament dynamique"
+  },
+  "235d86ef": {
+    "key": "SKILL_313_00",
+    "text": "Supernova"
+  },
+  "aefeb1bc": {
+    "key": "SKILL_314_00",
+    "text": "Firmament d'azur"
+  },
+  "0151cf9e": {
+    "key": "SKILL_315_00",
+    "text": "Firmament cramoisi"
+  },
+  "bbd77c33": {
+    "key": "SKILL_316_00",
+    "text": "Attaques extraordinaires"
+  },
+  "020db733": {
+    "key": "SKILL_317_00",
+    "text": "Talents extraordinaires"
+  },
+  "3f682593": {
+    "key": "SKILL_318_00",
+    "text": "Arts extraordinaires"
+  },
+  "79027fc8": {
+    "key": "SKILL_319_00",
+    "text": "Maîtrise extraordinaire"
+  },
+  "0de887a0": {
+    "key": "SKILL_320_00",
+    "text": "Affûtage astral"
+  },
+  "a7726190": {
+    "key": "SKILL_321_00",
+    "text": "Éclat astral"
+  },
+  "9232dc17": {
+    "key": "SKILL_322_00",
+    "text": "Terre astrale"
+  },
+  "36e3848d": {
+    "key": "SKILL_323_00",
+    "text": "Flamme astrale"
+  },
+  "a898e283": {
+    "key": "SKILL_324_00",
+    "text": "Neige astrale"
+  },
+  "d029fe08": {
+    "key": "SKILL_325_00",
+    "text": "Rebelle des cieux"
+  },
+  "73220725": {
+    "key": "SKILL_326_00",
+    "text": "Paix astrale"
+  },
+  "f26baea5": {
+    "key": "SKILL_327_00",
+    "text": "Divergence"
   }
 }
