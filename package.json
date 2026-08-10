@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint ./src",
     "tsc": "tsc",
-    "format": "prettier --write --ignore-unknown --ext js,jsx,ts,tsx src ./src",
-    "format-check": "prettier --check --ignore-unknown --ext js,jsx,ts,tsx src ./src",
+    "format": "prettier --write --ignore-unknown src src-tauri/lang src-tauri/assets",
+    "format-check": "prettier --check --ignore-unknown src src-tauri/lang src-tauri/assets",
     "tauri": "tauri",
     "test": "vitest"
   },

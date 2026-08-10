@@ -157,7 +157,7 @@
     "normal-attack": { "skills": [100, 101, 102] },
     "stiller-glantz": { "skills": [103, 104, 105, 106, 107, 108, 109] },
     "aerial-attack": { "skills": [300, 301, 302, 400, 410] },
-    "combo-finisher":{ "skills":[150, 151, 152] }
+    "combo-finisher": { "skills": [150, 151, 152] }
   },
   "Pl0900": {
     "normal-attack": {
@@ -264,7 +264,7 @@
       "skills": [5, 1005]
     },
     "dawnfly-finisher": {
-        "skills": [1000, 4000]
+      "skills": [1000, 4000]
     }
   },
   "Pl1500": {
@@ -429,8 +429,8 @@
     "power-strike": { "skills": [110, 116, 120, 130] },
     "finisher": { "skills": [104, 111, 121] },
     "turbine-hold": { "skills": [200, 202, 203, 204, 205, 210, 220, 230, 231] },
-    "turbine-deathmatch-release": { "skills": [212, 233]},
-    "turbine-normal-release": { "skills": [201, 211, 232]},
+    "turbine-deathmatch-release": { "skills": [212, 233] },
+    "turbine-normal-release": { "skills": [201, 211, 232] },
     "infinite-combo": { "skills": [140, 141, 142, 150] },
     "aerial-attack": { "skills": [300, 301, 302, 310, 400, 410] },
     "martial-spear": { "skills": [1400, 1410] }
