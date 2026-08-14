@@ -989,6 +989,9 @@ mod tests {
                 attack_rate: None,
                 stun_value: None,
                 damage_cap: None,
+                stun_fill: None,
+                target_base_type: None,
+                stun_max: None,
             }),
         ));
 
@@ -1020,6 +1023,9 @@ mod tests {
                 attack_rate: None,
                 stun_value: None,
                 damage_cap: None,
+                stun_fill: None,
+                target_base_type: None,
+                stun_max: None,
             }),
         ));
 
@@ -1044,6 +1050,9 @@ mod tests {
                 attack_rate: None,
                 stun_value: None,
                 damage_cap: None,
+                stun_fill: None,
+                target_base_type: None,
+                stun_max: None,
             }),
         ));
 

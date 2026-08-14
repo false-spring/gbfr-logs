@@ -175,6 +175,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -220,6 +223,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -273,6 +279,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let skill_two = DamageEvent {
@@ -294,6 +303,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state
@@ -342,6 +354,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let child_skill = DamageEvent {
@@ -363,6 +378,9 @@ mod tests {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(
@@ -417,6 +435,9 @@ mod tests {
             attack_rate: None,
             stun_value: Some(5.0),
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         let player_data = PlayerData {
@@ -479,6 +500,9 @@ mod tests {
             attack_rate: None,
             stun_value: Some(5.0),
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         };
 
         player_state.update_from_damage_event(&AdjustedDamageInstance::from_damage_event(

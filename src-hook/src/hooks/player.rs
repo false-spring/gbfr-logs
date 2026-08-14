@@ -141,6 +141,18 @@ impl OnLoadPlayerHook {
                 weapon_level: weapon_info.weapon_level,
                 weapon_hp: weapon_info.weapon_hp,
                 weapon_attack: weapon_info.weapon_attack,
+                trait_4_id: 0,
+                trait_4_level: 0,
+                trait_5_id: 0,
+                trait_5_level: 0,
+                transcendence_level: 0,
+                awakening_level_er: 0,
+                wrightstone_trait_1_id: 0,
+                wrightstone_trait_1_level: 0,
+                wrightstone_trait_2_id: 0,
+                wrightstone_trait_2_level: 0,
+                wrightstone_trait_3_id: 0,
+                wrightstone_trait_3_level: 0,
             };
 
             let overmastery_info = protocol::OvermasteryInfo {
@@ -169,6 +181,7 @@ impl OnLoadPlayerHook {
                     stun_power: player_stats.stun_power,
                     critical_rate: player_stats.critical_rate,
                     total_power: player_stats.total_power,
+                    dmg_cap_channels: [0.0; 3],
                 },
                 character_type,
                 weapon_info,

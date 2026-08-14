@@ -94,6 +94,7 @@ impl OnHandleSBAUpdateHook {
                 actor_index: source_parent_idx,
                 sba_value: new_sba_value,
                 sba_added,
+                cause: protocol::SbaCause::default(),
             });
 
             let _ = self.tx.send(payload);
@@ -337,6 +338,7 @@ impl OnRemoteSBAUpdateHook {
                 actor_index: source_parent_idx,
                 sba_value: new_sba_value,
                 sba_added,
+                cause: protocol::SbaCause::default(),
             });
 
             let _ = self.tx.send(payload);

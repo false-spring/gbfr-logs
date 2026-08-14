@@ -145,6 +145,9 @@ impl OnProcessDamageHook {
             attack_rate: Some(damage_instance.attack_rate),
             damage_cap: Some(damage_instance.damage_cap),
             stun_value,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         });
 
         let _ = self.tx.send(event);
@@ -237,6 +240,9 @@ impl OnProcessDotHook {
             attack_rate: None,
             stun_value: None,
             damage_cap: None,
+            stun_fill: None,
+            target_base_type: None,
+            stun_max: None,
         });
 
         let _ = self.tx.send(event);
